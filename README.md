@@ -1,22 +1,24 @@
-# Chapter 2 companion: Dielectric Waveguides and Optical Fibers
+# OptoElectronics companion of the course "Basics of OptoElectronics"
 
-Interactive companion to Chapter 2 of the Optoelectronics course (University of Trento).
+Interactive companions to the chapters of the course (University of Trento).
 
-**Website:** https://philippevelha.github.io/optoelectronics-ch2/
-**Run in Colab:** [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/philippevelha/optoelectronics-ch2/blob/main/notebooks/interactive_explorers.ipynb)
+**Website:** https://philippevelha.github.io/Optoelectronics-teaching/
 
-| Folder / file | Content |
-|---|---|
-| `*.qmd` | the chapters (Quarto) |
-| `fiberlib.py` | the physics toolbox: modes, dispersion, loss, link simulation, gratings |
-| `notebooks/` | one notebook per chapter + `interactive_explorers.ipynb` (ipywidgets) |
-| `_freeze/` | cached computation results (keeps re-rendering fast) |
+| Chapter | Website | Run in Colab |
+|---|---|---|
+| 2. Dielectric waveguides and optical fibers | [open](https://philippevelha.github.io/Optoelectronics-teaching/chapter2/) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter2/notebooks/interactive_explorers.ipynb) |
 
-## Updating
+## Structure
+
+- `chapter2/`: Quarto book for Chapter 2 (chapters `*.qmd`, `fiberlib.py`, `notebooks/`)
+- `site/index.html`: landing page of the website, listing the chapters
+- `publish.sh`: renders each chapter and updates the website (`gh-pages` branch)
+
+## Updating the website
 
 ```bash
-pip install -r requirements.txt
-cd notebooks && python build_notebooks.py && cd ..
+pip install -r chapter2/requirements.txt
+(cd chapter2/notebooks && python build_notebooks.py)   # if chapters changed
 git add -A && git commit -m "..." && git push
-quarto publish gh-pages
+bash publish.sh
 ```

@@ -3,7 +3,4 @@ _book/
 __pycache__/
 *.quarto_ipynb
 .ipynb_checkpoints/
-/.luarc.json
-
-/.quarto/
-**/*.quarto_ipynb
+.gh-pages/
