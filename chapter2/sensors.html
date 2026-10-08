@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Fiber sensors: OTDR, distributed sensing, interferometers – Dielectric Waveguides and Optical Fibers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ideas.html" rel="next">
+<link href="./special-fbg.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./special-fbg.html">Beyond telecom</a></li><li class="breadcrumb-item"><a href="./sensors.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fiber sensors: OTDR, distributed sensing, interferometers</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Dielectric Waveguides and Optical Fibers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter2/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guiding light</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./planar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Planar dielectric waveguides</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fibers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Step-index optical fibers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Spreading and losing light</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dispersion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./grin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graded-index fibers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./attenuation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Attenuation and bending loss</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">From fibers to systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bitrate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bit rate, bandwidth and capacity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wdm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WDM, couplers and nonlinear effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Beyond telecom</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./special-fbg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Special fibers and fiber Bragg gratings</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fiber sensors: OTDR, distributed sensing, interferometers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projects and new ideas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#optical-time-domain-reflectometry-slides-245266" id="toc-optical-time-domain-reflectometry-slides-245266" class="nav-link active" data-scroll-target="#optical-time-domain-reflectometry-slides-245266"><span class="header-section-number">9.1</span> Optical time-domain reflectometry (slides 245–266)</a>
+  <ul class="collapse">
+  <li><a href="#example-slide-262" id="toc-example-slide-262" class="nav-link" data-scroll-target="#example-slide-262"><span class="header-section-number">9.1.1</span> Example (slide 262)</a></li>
+  <li><a href="#averaging-slides-252253" id="toc-averaging-slides-252253" class="nav-link" data-scroll-target="#averaging-slides-252253"><span class="header-section-number">9.1.2</span> Averaging (slides 252–253)</a></li>
+  <li><a href="#otdr-simulator-live" id="toc-otdr-simulator-live" class="nav-link" data-scroll-target="#otdr-simulator-live"><span class="header-section-number">9.1.3</span> OTDR simulator, live</a></li>
+  <li><a href="#measuring-a-splice-by-least-squares-slides-263265" id="toc-measuring-a-splice-by-least-squares-slides-263265" class="nav-link" data-scroll-target="#measuring-a-splice-by-least-squares-slides-263265"><span class="header-section-number">9.1.4</span> Measuring a splice by least squares (slides 263–265)</a></li>
+  </ul></li>
+  <li><a href="#raman-distributed-temperature-sensing-slides-237241" id="toc-raman-distributed-temperature-sensing-slides-237241" class="nav-link" data-scroll-target="#raman-distributed-temperature-sensing-slides-237241"><span class="header-section-number">9.2</span> Raman distributed temperature sensing (slides 237–241)</a></li>
+  <li><a href="#brillouin-sensing-slides-242244" id="toc-brillouin-sensing-slides-242244" class="nav-link" data-scroll-target="#brillouin-sensing-slides-242244"><span class="header-section-number">9.3</span> Brillouin sensing (slides 242–244)</a></li>
+  <li><a href="#fabryperot-filters-and-sensors-slides-271283" id="toc-fabryperot-filters-and-sensors-slides-271283" class="nav-link" data-scroll-target="#fabryperot-filters-and-sensors-slides-271283"><span class="header-section-number">9.4</span> Fabry–Perot filters and sensors (slides 271–283)</a></li>
+  <li><a href="#the-sagnac-effect-and-fiber-optic-gyroscopes-slides-284311" id="toc-the-sagnac-effect-and-fiber-optic-gyroscopes-slides-284311" class="nav-link" data-scroll-target="#the-sagnac-effect-and-fiber-optic-gyroscopes-slides-284311"><span class="header-section-number">9.5</span> The Sagnac effect and fiber-optic gyroscopes (slides 284–311)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">9.6</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter2/sensors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./special-fbg.html">Beyond telecom</a></li><li class="breadcrumb-item"><a href="./sensors.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fiber sensors: OTDR, distributed sensing, interferometers</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-sensors" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fiber sensors: OTDR, distributed sensing, interferometers</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter2/notebooks/sensors.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 231–311.</em> The weaknesses of a fiber for telecom (scattering, sensitivity to strain and temperature) become strengths for sensing. Fiber sensors are immune to EMI, need no electrical power at the sensing point, survive harsh environments, and can be <strong>distributed</strong> along tens of km.</p>
+<section id="optical-time-domain-reflectometry-slides-245266" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="optical-time-domain-reflectometry-slides-245266"><span class="header-section-number">9.1</span> Optical time-domain reflectometry (slides 245–266)</h2>
+<p>Send a short pulse and listen to the Rayleigh <strong>backscatter</strong>. Light returning at time <span class="math inline">\(t\)</span> comes from</p>
+<p><span class="math display">\[
+z=\frac{v_g t}{2},\qquad \Delta z_\text{res}=\frac{v_g\tau}{2}\ (\text{pulse width }\tau).
+\]</span></p>
+<p>The backscattered power from position <span class="math inline">\(z\)</span> is</p>
+<p><span class="math display">\[
+P_{bs}(z)=P_0\,S\,\alpha_s\,\frac{v_g\tau}{2}\,e^{-2\alpha z},
+\]</span></p>
+<p>where <span class="math inline">\(S\approx10^{-3}\)</span> is the capture factor and <span class="math inline">\(\alpha_s\)</span> the scattering coefficient. OTDR traces are plotted in <strong>one-way dB</strong>, <span class="math inline">\(5\log_{10}P\)</span>, so that the slope reads directly as the fiber attenuation.</p>
+<section id="example-slide-262" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="example-slide-262"><span class="header-section-number">9.1.1</span> Example (slide 262)</h3>
+<div id="578eea8b" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>P0 <span class="op">=</span> fl.dBm_to_W(<span class="dv">13</span>)<span class="op">;</span> tau <span class="op">=</span> <span class="fl">10e-6</span><span class="op">;</span> vg <span class="op">=</span> c0 <span class="op">/</span> <span class="fl">1.468</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.33</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="fl">1e3</span><span class="op">;</span> alpha_s <span class="op">=</span> <span class="fl">0.3</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="fl">1e3</span><span class="op">;</span> S <span class="op">=</span> <span class="fl">1e-3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> z <span class="kw">in</span> [<span class="dv">0</span>, <span class="fl">50e3</span>, <span class="fl">100e3</span>]:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> P0 <span class="op">*</span> S <span class="op">*</span> alpha_s <span class="op">*</span> vg <span class="op">*</span> tau <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> alpha <span class="op">*</span> z)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"z = </span><span class="sc">{</span>z<span class="op">/</span><span class="fl">1e3</span><span class="sc">:5.0f}</span><span class="ss"> km:  P_bs = </span><span class="sc">{</span>P<span class="op">*</span><span class="fl">1e9</span><span class="sc">:9.3f}</span><span class="ss"> nW = </span><span class="sc">{</span>fl<span class="sc">.</span>W_to_dBm(P)<span class="sc">:6.1f}</span><span class="ss"> dBm"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Spatial resolution with τ = 10 µs: </span><span class="sc">{</span>vg<span class="op">*</span>tau<span class="op">/</span><span class="dv">2</span><span class="sc">:.0f}</span><span class="ss"> m"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>z =     0 km:  P_bs =  1407.330 nW =  -28.5 dBm
+z =    50 km:  P_bs =     0.705 nW =  -61.5 dBm
+z =   100 km:  P_bs =     0.000 nW =  -94.5 dBm
+Spatial resolution with τ = 10 µs: 1021 m</code></pre>
+</div>
+</div>
+</section>
+<section id="averaging-slides-252253" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="averaging-slides-252253"><span class="header-section-number">9.1.2</span> Averaging (slides 252–253)</h3>
+<p>Noise falls as <span class="math inline">\(\sqrt N\)</span> with <span class="math inline">\(N\)</span> averaged shots. Each shot must wait one round trip, <span class="math inline">\(T=2nL/c\)</span>.</p>
+<div id="eabdd39f" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fl">10e3</span><span class="op">;</span> T <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">1.468</span> <span class="op">*</span> L <span class="op">/</span> c0</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t_meas <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">180</span>]:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="fl">0.9</span> <span class="op">*</span> t_meas <span class="op">/</span> T</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>t_meas<span class="sc">:4d}</span><span class="ss"> s: N = </span><span class="sc">{</span>N<span class="sc">:.3g}</span><span class="ss"> shots → noise reduced by √N = </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(N)<span class="sc">:.0f}</span><span class="ss">× "</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"= </span><span class="sc">{</span><span class="dv">5</span><span class="op">*</span>np<span class="sc">.</span>log10(N)<span class="sc">:.1f}</span><span class="ss"> dB (one-way OTDR scale)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   1 s: N = 9.19e+03 shots → noise reduced by √N = 96× = 19.8 dB (one-way OTDR scale)
+ 180 s: N = 1.65e+06 shots → noise reduced by √N = 1286× = 31.1 dB (one-way OTDR scale)</code></pre>
+</div>
+</div>
+</section>
+<section id="otdr-simulator-live" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="otdr-simulator-live"><span class="header-section-number">9.1.3</span> OTDR simulator, live</h3>
+<p>The fiber below has a front connector, a fusion splice at 8 km, a tight bend at 15 km, a mechanical splice at 22 km and an open end at 30 km. Change the pulse width and the averaging, and look at the trade-off between <strong>dynamic range</strong> and <strong>resolution</strong> (slide 256).</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="65" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 64;"><span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>viewof ot <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tau</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">100</span><span class="op">,</span> <span class="dv">300</span><span class="op">,</span> <span class="dv">1000</span><span class="op">,</span> <span class="dv">3000</span><span class="op">,</span> <span class="dv">10000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"pulse width (ns)"</span>})<span class="op">,</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>  <span class="dt">N</span><span class="op">:</span>   Inputs<span class="op">.</span><span class="fu">select</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">256</span><span class="op">,</span> <span class="dv">4096</span><span class="op">,</span> <span class="dv">65536</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">256</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"averages"</span>})<span class="op">,</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  <span class="dt">a</span><span class="op">:</span>   Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.15</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.33</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"loss (dB/km)"</span>})</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="75" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 74;"><span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>otdr <span class="op">=</span> {</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> dz <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> Lmax <span class="op">=</span> <span class="dv">34000</span><span class="op">,</span> vg <span class="op">=</span> <span class="dv">299792458</span> <span class="op">/</span> <span class="fl">1.468</span><span class="op">,</span> W <span class="op">=</span> vg <span class="op">*</span> ot<span class="op">.</span><span class="at">tau</span> <span class="op">*</span> <span class="fl">1e-9</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span>   <span class="co">// m</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(Lmax <span class="op">/</span> dz)<span class="op">;</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> events <span class="op">=</span> [{<span class="dt">z</span><span class="op">:</span> <span class="dv">8000</span><span class="op">,</span> <span class="dt">loss</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">refl</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span> {<span class="dt">z</span><span class="op">:</span> <span class="dv">15000</span><span class="op">,</span> <span class="dt">loss</span><span class="op">:</span> <span class="fl">0.6</span><span class="op">,</span> <span class="dt">refl</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>                  {<span class="dt">z</span><span class="op">:</span> <span class="dv">22000</span><span class="op">,</span> <span class="dt">loss</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span> <span class="dt">refl</span><span class="op">:</span> <span class="fl">1e-4</span>}<span class="op">,</span> {<span class="dt">z</span><span class="op">:</span> <span class="dv">30000</span><span class="op">,</span> <span class="dt">loss</span><span class="op">:</span> <span class="dv">99</span><span class="op">,</span> <span class="dt">refl</span><span class="op">:</span> <span class="fl">0.035</span>}]<span class="op">;</span></span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> a <span class="op">=</span> ot<span class="op">.</span><span class="at">a</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="dv">1000</span><span class="op">,</span> <span class="im">as</span> <span class="op">=</span> <span class="fl">0.3</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> raw <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(n)<span class="op">;</span> <span class="kw">let</span> lossdB <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> z <span class="op">=</span> i <span class="op">*</span> dz<span class="op">;</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> e <span class="kw">of</span> events) <span class="cf">if</span> (z <span class="op">&gt;=</span> e<span class="op">.</span><span class="at">z</span> <span class="op">&amp;&amp;</span> z <span class="op">-</span> dz <span class="op">&lt;</span> e<span class="op">.</span><span class="at">z</span>) { raw[i] <span class="op">+=</span> e<span class="op">.</span><span class="at">refl</span> <span class="op">/</span> dz <span class="op">*</span> <span class="dv">10</span> <span class="op">**</span> (<span class="op">-</span>lossdB <span class="op">/</span> <span class="dv">5</span>)<span class="op">;</span> lossdB <span class="op">+=</span> e<span class="op">.</span><span class="at">loss</span><span class="op">;</span> }</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (lossdB <span class="op">&lt;</span> <span class="dv">50</span>) raw[i] <span class="op">+=</span> <span class="fl">1e-3</span> <span class="op">*</span> <span class="im">as</span> <span class="op">*</span> <span class="dv">10</span> <span class="op">**</span> (<span class="op">-</span>lossdB <span class="op">/</span> <span class="dv">5</span>) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> a <span class="op">*</span> z)<span class="op">;</span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> k <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">1</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(W <span class="op">/</span> dz))<span class="op">,</span> conv <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(n)<span class="op">;</span> <span class="kw">let</span> acc <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>   <span class="co">// rectangular pulse</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++</span>) { acc <span class="op">+=</span> raw[i]<span class="op">;</span> <span class="cf">if</span> (i <span class="op">&gt;=</span> k) acc <span class="op">-=</span> raw[i <span class="op">-</span> k]<span class="op">;</span> conv[i] <span class="op">=</span> acc <span class="op">*</span> dz<span class="op">;</span> }</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> P0 <span class="op">=</span> <span class="fl">0.02</span><span class="op">,</span> noise <span class="op">=</span> <span class="fl">3e-12</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(ot<span class="op">.</span><span class="at">N</span>)<span class="op">;</span>              <span class="co">// W, receiver noise after averaging</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i <span class="op">+=</span> <span class="dv">5</span>) {</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> u1 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">||</span> <span class="fl">1e-12</span><span class="op">,</span> u2 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>()<span class="op">;</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> p <span class="op">=</span> P0 <span class="op">*</span> conv[i] <span class="op">+</span> noise <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(u1)) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> u2)<span class="op">;</span></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>    out<span class="op">.</span><span class="fu">push</span>({<span class="dt">z</span><span class="op">:</span> i <span class="op">*</span> dz <span class="op">/</span> <span class="dv">1000</span><span class="op">,</span> <span class="dt">dB</span><span class="op">:</span> <span class="dv">5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(p<span class="op">,</span> <span class="fl">1e-16</span>) <span class="op">/</span> <span class="fl">1e-3</span>)})<span class="op">;</span></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p0 <span class="op">=</span> <span class="dv">5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(P0 <span class="op">*</span> <span class="fl">1e-3</span> <span class="op">*</span> <span class="im">as</span> <span class="op">*</span> W <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> floor <span class="op">=</span> <span class="dv">5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(noise <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">;</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {out<span class="op">,</span> W<span class="op">,</span> <span class="dt">DR</span><span class="op">:</span> p0 <span class="op">-</span> floor<span class="op">,</span> floor}<span class="op">;</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">340</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"distance (km)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"backscatter (dB, one-way, rel. 1 mW)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(otdr<span class="op">.</span><span class="at">out</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"z"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"dB"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.2</span>})<span class="op">,</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">ruleY</span>([otdr<span class="op">.</span><span class="at">floor</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">text</span>([<span class="st">"fusion splice"</span><span class="op">,</span> <span class="st">"bend"</span><span class="op">,</span> <span class="st">"mech. splice"</span><span class="op">,</span> <span class="st">"end"</span>]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> [<span class="dv">8</span><span class="op">,</span> <span class="dv">15</span><span class="op">,</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> otdr<span class="op">.</span><span class="at">floor</span> <span class="op">+</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span>})]</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="108" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 107;"><span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;pulse </span><span class="sc">${</span>ot<span class="op">.</span><span class="at">tau</span><span class="sc">}</span><span class="vs"> ns → spatial resolution ≈ &lt;b&gt;</span><span class="sc">${</span>otdr<span class="op">.</span><span class="at">W</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> m&lt;/b&gt; ·</span></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="vs">dynamic range ≈ &lt;b&gt;</span><span class="sc">${</span>otdr<span class="op">.</span><span class="at">DR</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dB&lt;/b&gt; (one-way) · red: noise floor after </span><span class="sc">${</span>ot<span class="op">.</span><span class="at">N</span><span class="sc">}</span><span class="vs"> averages&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="measuring-a-splice-by-least-squares-slides-263265" class="level3" data-number="9.1.4">
+<h3 data-number="9.1.4" class="anchored" data-anchor-id="measuring-a-splice-by-least-squares-slides-263265"><span class="header-section-number">9.1.4</span> Measuring a splice by least squares (slides 263–265)</h3>
+<div id="cell-fig-splice" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">2000</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>true_loss, zs <span class="op">=</span> <span class="fl">0.25</span>, <span class="fl">9.0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="op">-</span><span class="fl">0.2</span> <span class="op">*</span> z <span class="op">-</span> true_loss <span class="op">*</span> (z <span class="op">&gt;</span> zs) <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="fl">0.03</span> <span class="op">+</span> <span class="fl">0.004</span> <span class="op">*</span> z, z.size)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> (z <span class="op">&gt;</span> <span class="dv">1</span>) <span class="op">&amp;</span> (z <span class="op">&lt;</span> zs <span class="op">-</span> <span class="fl">0.3</span>)<span class="op">;</span> m2 <span class="op">=</span> (z <span class="op">&gt;</span> zs <span class="op">+</span> <span class="fl">0.3</span>) <span class="op">&amp;</span> (z <span class="op">&lt;</span> <span class="dv">19</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>p1, p2 <span class="op">=</span> np.polyfit(z[m1], y[m1], <span class="dv">1</span>), np.polyfit(z[m2], y[m2], <span class="dv">1</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ax.plot(z, y, <span class="st">"."</span>, ms<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span>fl.PALETTE[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>ax.plot(z, np.polyval(p1, z), color<span class="op">=</span>fl.PALETTE[<span class="dv">1</span>], label<span class="op">=</span><span class="ss">f"L1: </span><span class="sc">{</span><span class="op">-</span>p1[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> dB/km"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ax.plot(z, np.polyval(p2, z), color<span class="op">=</span>fl.PALETTE[<span class="dv">2</span>], label<span class="op">=</span><span class="ss">f"L2: </span><span class="sc">{</span><span class="op">-</span>p2[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> dB/km"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ax.axvline(zs, color<span class="op">=</span>fl.INK2, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"distance (km)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"relative level (dB)"</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated splice loss = </span><span class="sc">{</span>np<span class="sc">.</span>polyval(p1, zs) <span class="op">-</span> np<span class="sc">.</span>polyval(p2, zs)<span class="sc">:.3f}</span><span class="ss"> dB (true </span><span class="sc">{</span>true_loss<span class="sc">}</span><span class="ss"> dB)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-splice" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-splice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sensors_files/figure-html/fig-splice-output-1.png" width="717" height="425" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-splice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: A splice loss is measured by fitting straight lines to the backscatter before and after the event and taking their vertical offset at the event position.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Estimated splice loss = 0.257 dB (true 0.25 dB)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="raman-distributed-temperature-sensing-slides-237241" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="raman-distributed-temperature-sensing-slides-237241"><span class="header-section-number">9.2</span> Raman distributed temperature sensing (slides 237–241)</h2>
+<p>Spontaneous Raman scattering produces a Stokes and an anti-Stokes line shifted by ~13 THz. Only the anti-Stokes line depends strongly on the phonon population, so their ratio is a thermometer:</p>
+<p><span class="math display">\[
+R(T)=\frac{P_{AS}}{P_S}=\left(\frac{\lambda_S}{\lambda_{AS}}\right)^4\exp\left(-\frac{h\Delta\nu}{k_BT}\right).
+\]</span></p>
+<div id="cell-fig-raman" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="dv">200</span>, <span class="dv">600</span>, <span class="dv">300</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dnu <span class="op">=</span> <span class="fl">13.2e12</span><span class="op">;</span> nu_p <span class="op">=</span> c0 <span class="op">/</span> <span class="fl">1550e-9</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>lS, lAS <span class="op">=</span> c0 <span class="op">/</span> (nu_p <span class="op">-</span> dnu), c0 <span class="op">/</span> (nu_p <span class="op">+</span> dnu)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> (lS <span class="op">/</span> lAS) <span class="op">**</span> <span class="dv">4</span> <span class="op">*</span> np.exp(<span class="op">-</span>fl.h <span class="op">*</span> dnu <span class="op">/</span> (fl.kB <span class="op">*</span> T))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ax.plot(T <span class="op">-</span> <span class="fl">273.15</span>, R, label<span class="op">=</span><span class="st">"R(T)"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax.twinx()<span class="op">;</span> ax2.grid(<span class="va">False</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>ax2.plot(T <span class="op">-</span> <span class="fl">273.15</span>, <span class="dv">100</span> <span class="op">*</span> fl.h <span class="op">*</span> dnu <span class="op">/</span> (fl.kB <span class="op">*</span> T<span class="op">**</span><span class="dv">2</span>), <span class="st">"--"</span>, color<span class="op">=</span>fl.PALETTE[<span class="dv">1</span>], label<span class="op">=</span><span class="st">"sensitivity (%/K)"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"T (°C)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"P_AS / P_S"</span>)<span class="op">;</span> ax2.set_ylabel(<span class="st">"dR/R per K (%)"</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="st">"upper center"</span>, ncol<span class="op">=</span><span class="dv">2</span>, frameon<span class="op">=</span><span class="va">False</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sensitivity at 25 °C: </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>fl<span class="sc">.</span>h<span class="op">*</span>dnu<span class="op">/</span>(fl.kB<span class="op">*</span><span class="fl">298.15</span><span class="op">**</span><span class="dv">2</span>)<span class="sc">:.2f}</span><span class="ss"> %/K"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-raman" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-raman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sensors_files/figure-html/fig-raman-output-1.png" width="777" height="472" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-raman-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: Anti-Stokes/Stokes ratio versus temperature for a 1550 nm pump (Δν = 13.2 THz) and its relative sensitivity (≈ 0.8 %/K at room temperature).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sensitivity at 25 °C: 0.71 %/K</code></pre>
+</div>
+</div>
+</section>
+<section id="brillouin-sensing-slides-242244" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="brillouin-sensing-slides-242244"><span class="header-section-number">9.3</span> Brillouin sensing (slides 242–244)</h2>
+<p>The backscattered Brillouin line is shifted by <span class="math inline">\(\nu_B=2nv_a/\lambda\)</span>. Its shift depends on both strain and temperature.</p>
+<div id="c80cf4fc" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>n, va <span class="op">=</span> <span class="fl">1.45</span>, <span class="dv">5960</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lam <span class="kw">in</span> [<span class="fl">1.31e-6</span>, <span class="fl">1.55e-6</span>]:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"λ = </span><span class="sc">{</span>lam<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> µm: ν_B = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>n<span class="op">*</span>va<span class="op">/</span>lam<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> GHz"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Typical coefficients in SMF at 1550 nm: ≈ 0.05 MHz/µε and ≈ 1.1 MHz/K, with a gain linewidth of ≈ 30 MHz."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>λ = 1.31 µm: ν_B = 13.19 GHz
+λ = 1.55 µm: ν_B = 11.15 GHz
+Typical coefficients in SMF at 1550 nm: ≈ 0.05 MHz/µε and ≈ 1.1 MHz/K, with a gain linewidth of ≈ 30 MHz.</code></pre>
+</div>
+</div>
+</section>
+<section id="fabryperot-filters-and-sensors-slides-271283" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="fabryperot-filters-and-sensors-slides-271283"><span class="header-section-number">9.4</span> Fabry–Perot filters and sensors (slides 271–283)</h2>
+<p><span class="math display">\[
+T=\frac{1}{1+F\sin^2(\delta/2)},\qquad F=\frac{4R}{(1-R)^2},\qquad\delta=\frac{4\pi nd\nu}{c},\qquad
+\mathrm{FSR}=\frac{c}{2nd},\qquad \mathcal F=\frac{\pi\sqrt R}{1-R}.
+\]</span></p>
+<div id="cell-fig-fp" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> np.linspace(<span class="fl">10.5e12</span>, <span class="fl">12.5e12</span>, <span class="dv">4000</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, R <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.97</span>, <span class="fl">0.98</span>]):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    ax.plot(nu <span class="op">/</span> <span class="fl">1e12</span>, <span class="dv">10</span> <span class="op">*</span> np.log10(fl.fabry_perot_T(nu, <span class="fl">100e-6</span>, R)), color<span class="op">=</span>fl.PALETTE[k],</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="ss">f"R = </span><span class="sc">{</span>R<span class="op">*</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss"> %, finesse = </span><span class="sc">{</span>np<span class="sc">.</span>pi<span class="op">*</span>np<span class="sc">.</span>sqrt(R)<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>R)<span class="sc">:.0f}</span><span class="ss">"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"f (THz)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"T (dB)"</span>)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="dv">40</span>, <span class="dv">1</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-fp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sensors_files/figure-html/fig-fp-output-1.png" width="727" height="425" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.3: Transmission of a Fabry–Perot filter with d = 100 µm (air), R = 97 % and 98 % (slide 277). The FSR is 1.5 THz. A higher R narrows the resonance and deepens the rejection.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A change of the cavity length <span class="math inline">\(\delta d\)</span> (pressure on a diaphragm, strain, thermal expansion) shifts the fringes by <span class="math inline">\(\delta\nu/\nu=-\delta d/d\)</span>. This makes the Fabry–Perot one of the most sensitive point sensors (slides 279–283).</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb15" data-startfrom="193" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 192;"><span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a>viewof fp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb15-194"><a href="#cb15-194" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.04</span><span class="op">,</span> <span class="fl">0.995</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.9</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.005</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mirror reflectance R"</span>})<span class="op">,</span></span>
+<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a>  <span class="dt">d</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"gap d (µm)"</span>})<span class="op">,</span></span>
+<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dd</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">200</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"displacement δd (nm)"</span>})</span>
+<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb16" data-startfrom="202" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 201;"><span id="cb16-202"><a href="#cb16-202" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb16-203"><a href="#cb16-203" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> F <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> fp<span class="op">.</span><span class="at">R</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> fp<span class="op">.</span><span class="at">R</span>) <span class="op">**</span> <span class="dv">2</span><span class="op">,</span> d <span class="op">=</span> (fp<span class="op">.</span><span class="at">d</span> <span class="op">+</span> fp<span class="op">.</span><span class="at">dd</span> <span class="op">*</span> <span class="fl">1e-3</span>) <span class="op">*</span> <span class="fl">1e-6</span><span class="op">;</span></span>
+<span id="cb16-204"><a href="#cb16-204" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">1540</span><span class="op">,</span> <span class="dv">1560</span><span class="op">,</span> <span class="fl">0.005</span>)<span class="op">.</span><span class="fu">map</span>(l <span class="kw">=&gt;</span> {</span>
+<span id="cb16-205"><a href="#cb16-205" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> dl <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> d <span class="op">/</span> (l <span class="op">*</span> <span class="fl">1e-9</span>)<span class="op">;</span></span>
+<span id="cb16-206"><a href="#cb16-206" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {l<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> F <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(dl <span class="op">/</span> <span class="dv">2</span>) <span class="op">**</span> <span class="dv">2</span>)}<span class="op">;</span></span>
+<span id="cb16-207"><a href="#cb16-207" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb16-208"><a href="#cb16-208" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({<span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">260</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"λ (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"transmission"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.02</span>]}<span class="op">,</span></span>
+<span id="cb16-209"><a href="#cb16-209" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(data<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"l"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})]})<span class="op">;</span></span>
+<span id="cb16-210"><a href="#cb16-210" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb17" data-startfrom="215" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 214;"><span id="cb17-215"><a href="#cb17-215" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;FSR = </span><span class="sc">${</span>(<span class="dv">1550</span><span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> fp<span class="op">.</span><span class="at">d</span> <span class="op">*</span> <span class="dv">1000</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> nm · finesse = </span><span class="sc">${</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(fp<span class="op">.</span><span class="at">R</span>) <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> fp<span class="op">.</span><span class="at">R</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb17-216"><a href="#cb17-216" aria-hidden="true" tabindex="-1"></a><span class="vs">fringe shift for δd = </span><span class="sc">${</span>fp<span class="op">.</span><span class="at">dd</span><span class="sc">}</span><span class="vs"> nm: </span><span class="sc">${</span>(<span class="dv">1550</span> <span class="op">*</span> fp<span class="op">.</span><span class="at">dd</span> <span class="op">*</span> <span class="fl">1e-3</span> <span class="op">/</span> fp<span class="op">.</span><span class="at">d</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> nm&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="the-sagnac-effect-and-fiber-optic-gyroscopes-slides-284311" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="the-sagnac-effect-and-fiber-optic-gyroscopes-slides-284311"><span class="header-section-number">9.5</span> The Sagnac effect and fiber-optic gyroscopes (slides 284–311)</h2>
+<p>In a loop rotating at <span class="math inline">\(\Omega\)</span>, the clockwise and counter-clockwise waves accumulate a phase difference</p>
+<p><span class="math display">\[
+\Delta\phi_S=\frac{2\pi LD}{\lambda c}\,\Omega=\frac{8\pi NA}{\lambda c}\,\Omega
+\]</span></p>
+<p>for a coil of length <span class="math inline">\(L\)</span> wound on a diameter <span class="math inline">\(D\)</span> (N turns of area A). Nothing else in the loop distinguishes the two directions, so this tiny phase can be measured.</p>
+<div id="cell-fig-fog" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>OmE <span class="op">=</span> <span class="fl">7.292e-5</span>                      <span class="co"># Earth rotation [rad/s]</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> L, D <span class="kw">in</span> [(<span class="dv">200</span>, <span class="fl">0.03</span>), (<span class="dv">1000</span>, <span class="fl">0.1</span>), (<span class="dv">5000</span>, <span class="fl">0.2</span>)]:</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L = </span><span class="sc">{</span>L<span class="sc">:5d}</span><span class="ss"> m, D = </span><span class="sc">{</span>D<span class="op">*</span><span class="dv">100</span><span class="sc">:4.0f}</span><span class="ss"> cm: scale factor </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">*</span>L<span class="op">*</span>D<span class="op">/</span>(<span class="fl">1.55e-6</span><span class="op">*</span>c0)<span class="sc">:.3f}</span><span class="ss"> rad/(rad/s), "</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"Earth rotation → Δφ = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">*</span>L<span class="op">*</span>D<span class="op">/</span>(<span class="fl">1.55e-6</span><span class="op">*</span>c0)<span class="op">*</span>OmE<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.1f}</span><span class="ss"> µrad"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>dphi <span class="op">=</span> np.linspace(<span class="op">-</span>np.pi, np.pi, <span class="dv">400</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>ax.plot(dphi, (<span class="dv">1</span> <span class="op">+</span> np.cos(dphi)) <span class="op">/</span> <span class="dv">2</span>, label<span class="op">=</span><span class="st">"unbiased: (1 + cos Δφ)/2"</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>ax.plot(dphi, np.sin(dphi), label<span class="op">=</span><span class="st">"with phase-modulation bias: ∝ sin Δφ"</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="dv">0</span>, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Sagnac phase Δφ (rad)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"detected signal (a.u.)"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>L =   200 m, D =    3 cm: scale factor 0.081 rad/(rad/s), Earth rotation → Δφ = 5.9 µrad
+L =  1000 m, D =   10 cm: scale factor 1.352 rad/(rad/s), Earth rotation → Δφ = 98.6 µrad
+L =  5000 m, D =   20 cm: scale factor 13.522 rad/(rad/s), Earth rotation → Δφ = 986.0 µrad</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-fog" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sensors_files/figure-html/fig-fog-output-2.png" width="742" height="425" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.4: Open-loop FOG response. Without bias (cos response) the gyro is blind to small rotations and to their sign. A ±π/2 phase modulation turns the response into sin(Δφ), which is linear and signed around zero (slides 295–297).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">9.6</span> Try it yourself</h2>
+<ol type="1">
+<li>Extend the OTDR simulator with a <strong>reflective connector</strong> and implement the <strong>attenuation dead-zone</strong> (receiver saturation and recovery time).</li>
+<li>A <strong>φ-OTDR</strong> (slide 267) uses a highly coherent laser: the backscatter becomes a speckle pattern whose changes reveal vibrations. Simulate it by summing random-phase scatterers inside the pulse and perturbing the phase locally.</li>
+<li>Compute the shot-noise-limited angle random walk of a FOG with 1 km coil, 100 µW at the detector. Compare with tactical-grade (~0.1 °/√h) and navigation-grade (&lt;0.001 °/√h) requirements.</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBvdCA9IElucHV0cy5mb3JtKHtcbiAgdGF1OiBJbnB1dHMuc2VsZWN0KFsxMCwgMzAsIDEwMCwgMzAwLCAxMDAwLCAzMDAwLCAxMDAwMF0sIHt2YWx1ZTogMzAwLCBsYWJlbDogXCJwdWxzZSB3aWR0aCAobnMpXCJ9KSxcbiAgTjogICBJbnB1dHMuc2VsZWN0KFsxLCAxNiwgMjU2LCA0MDk2LCA2NTUzNl0sIHt2YWx1ZTogMjU2LCBsYWJlbDogXCJhdmVyYWdlc1wifSksXG4gIGE6ICAgSW5wdXRzLnJhbmdlKFswLjE1LCAwLjVdLCB7dmFsdWU6IDAuMzMsIHN0ZXA6IDAuMDEsIGxhYmVsOiBcImxvc3MgKGRCL2ttKVwifSlcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJvdGRyID0ge1xuICBjb25zdCBkeiA9IDIsIExtYXggPSAzNDAwMCwgdmcgPSAyOTk3OTI0NTggLyAxLjQ2OCwgVyA9IHZnICogb3QudGF1ICogMWUtOSAvIDI7ICAgLy8gbVxuICBjb25zdCBuID0gTWF0aC5mbG9vcihMbWF4IC8gZHopO1xuICBjb25zdCBldmVudHMgPSBbe3o6IDgwMDAsIGxvc3M6IDAuMSwgcmVmbDogMH0sIHt6OiAxNTAwMCwgbG9zczogMC42LCByZWZsOiAwfSxcbiAgICAgICAgICAgICAgICAgIHt6OiAyMjAwMCwgbG9zczogMC40LCByZWZsOiAxZS00fSwge3o6IDMwMDAwLCBsb3NzOiA5OSwgcmVmbDogMC4wMzV9XTtcbiAgY29uc3QgYSA9IG90LmEgLyA0LjM0MyAvIDEwMDAsIGFzID0gMC4zIC8gNC4zNDMgLyAxMDAwO1xuICBjb25zdCByYXcgPSBuZXcgRmxvYXQ2NEFycmF5KG4pOyBsZXQgbG9zc2RCID0gMDtcbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBuOyBpKyspIHtcbiAgICBjb25zdCB6ID0gaSAqIGR6O1xuICAgIGZvciAoY29uc3QgZSBvZiBldmVudHMpIGlmICh6ID49IGUueiAmJiB6IC0gZHogPCBlLnopIHsgcmF3W2ldICs9IGUucmVmbCAvIGR6ICogMTAgKiogKC1sb3NzZEIgLyA1KTsgbG9zc2RCICs9IGUubG9zczsgfVxuICAgIGlmIChsb3NzZEIgPCA1MCkgcmF3W2ldICs9IDFlLTMgKiBhcyAqIDEwICoqICgtbG9zc2RCIC8gNSkgKiBNYXRoLmV4cCgtMiAqIGEgKiB6KTtcbiAgfVxuICBjb25zdCBrID0gTWF0aC5tYXgoMSwgTWF0aC5yb3VuZChXIC8gZHopKSwgY29udiA9IG5ldyBGbG9hdDY0QXJyYXkobik7IGxldCBhY2MgPSAwOyAgIC8vIHJlY3Rhbmd1bGFyIHB1bHNlXG4gIGZvciAobGV0IGkgPSAwOyBpIDwgbjsgaSsrKSB7IGFjYyArPSByYXdbaV07IGlmIChpID49IGspIGFjYyAtPSByYXdbaSAtIGtdOyBjb252W2ldID0gYWNjICogZHo7IH1cbiAgY29uc3QgUDAgPSAwLjAyLCBub2lzZSA9IDNlLTEyIC8gTWF0aC5zcXJ0KG90Lk4pOyAgICAgICAgICAgICAgLy8gVywgcmVjZWl2ZXIgbm9pc2UgYWZ0ZXIgYXZlcmFnaW5nXG4gIGNvbnN0IG91dCA9IFtdO1xuICBmb3IgKGxldCBpID0gMDsgaSA8IG47IGkgKz0gNSkge1xuICAgIGNvbnN0IHUxID0gTWF0aC5yYW5kb20oKSB8fCAxZS0xMiwgdTIgPSBNYXRoLnJhbmRvbSgpO1xuICAgIGNvbnN0IHAgPSBQMCAqIGNvbnZbaV0gKyBub2lzZSAqIE1hdGguc3FydCgtMiAqIE1hdGgubG9nKHUxKSkgKiBNYXRoLmNvcygyICogTWF0aC5QSSAqIHUyKTtcbiAgICBvdXQucHVzaCh7ejogaSAqIGR6IC8gMTAwMCwgZEI6IDUgKiBNYXRoLmxvZzEwKE1hdGgubWF4KHAsIDFlLTE2KSAvIDFlLTMpfSk7XG4gIH1cbiAgY29uc3QgcDAgPSA1ICogTWF0aC5sb2cxMChQMCAqIDFlLTMgKiBhcyAqIFcgLyAxZS0zKSwgZmxvb3IgPSA1ICogTWF0aC5sb2cxMChub2lzZSAvIDFlLTMpO1xuICByZXR1cm4ge291dCwgVywgRFI6IHAwIC0gZmxvb3IsIGZsb29yfTtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMzQwLCB4OiB7bGFiZWw6IFwiZGlzdGFuY2UgKGttKVwifSwgeToge2xhYmVsOiBcImJhY2tzY2F0dGVyIChkQiwgb25lLXdheSwgcmVsLiAxIG1XKVwiLCBncmlkOiB0cnVlfSxcbiAgbWFya3M6IFtQbG90LmxpbmUob3Rkci5vdXQsIHt4OiBcInpcIiwgeTogXCJkQlwiLCBzdHJva2U6IFwiIzJhNzhkNlwiLCBzdHJva2VXaWR0aDogMS4yfSksXG4gICAgICAgICAgUGxvdC5ydWxlWShbb3Rkci5mbG9vcl0sIHtzdHJva2U6IFwiI2UzNDk0OFwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCwzXCJ9KSxcbiAgICAgICAgICBQbG90LnRleHQoW1wiZnVzaW9uIHNwbGljZVwiLCBcImJlbmRcIiwgXCJtZWNoLiBzcGxpY2VcIiwgXCJlbmRcIl0sIHt4OiBbOCwgMTUsIDIyLCAzMF0sIHk6IG90ZHIuZmxvb3IgKyAyLCBkeTogLTYsIGZpbGw6IFwiIzUyNTE0ZVwiLCBmb250U2l6ZTogMTB9KV1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+cHVsc2UgJHtvdC50YXV9IG5zIOKGkiBzcGF0aWFsIHJlc29sdXRpb24g4omIIDxiPiR7b3Rkci5XLnRvRml4ZWQoMSl9IG08L2I+IMK3XG5keW5hbWljIHJhbmdlIOKJiCA8Yj4ke290ZHIuRFIudG9GaXhlZCgxKX0gZEI8L2I+IChvbmUtd2F5KSDCtyByZWQ6IG5vaXNlIGZsb29yIGFmdGVyICR7b3QuTn0gYXZlcmFnZXM8L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgZnAgPSBJbnB1dHMuZm9ybSh7XG4gIFI6IElucHV0cy5yYW5nZShbMC4wNCwgMC45OTVdLCB7dmFsdWU6IDAuOSwgc3RlcDogMC4wMDUsIGxhYmVsOiBcIm1pcnJvciByZWZsZWN0YW5jZSBSXCJ9KSxcbiAgZDogSW5wdXRzLnJhbmdlKFsxMCwgMTAwMF0sIHt2YWx1ZTogMTAwLCBzdGVwOiAxLCBsYWJlbDogXCJnYXAgZCAowrVtKVwifSksXG4gIGRkOiBJbnB1dHMucmFuZ2UoWy0yMDAsIDIwMF0sIHt2YWx1ZTogMCwgc3RlcDogMSwgbGFiZWw6IFwiZGlzcGxhY2VtZW50IM60ZCAobm0pXCJ9KVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IntcbiAgY29uc3QgRiA9IDQgKiBmcC5SIC8gKDEgLSBmcC5SKSAqKiAyLCBkID0gKGZwLmQgKyBmcC5kZCAqIDFlLTMpICogMWUtNjtcbiAgY29uc3QgZGF0YSA9IGQzLnJhbmdlKDE1NDAsIDE1NjAsIDAuMDA1KS5tYXAobCA9PiB7XG4gICAgY29uc3QgZGwgPSA0ICogTWF0aC5QSSAqIGQgLyAobCAqIDFlLTkpO1xuICAgIHJldHVybiB7bCwgVDogMSAvICgxICsgRiAqIE1hdGguc2luKGRsIC8gMikgKiogMil9O1xuICB9KTtcbiAgcmV0dXJuIFBsb3QucGxvdCh7d2lkdGg6IE1hdGgubWluKHdpZHRoLCAxMDUwKSwgaGVpZ2h0OiAyNjAsIHg6IHtsYWJlbDogXCLOuyAobm0pXCJ9LCB5OiB7bGFiZWw6IFwidHJhbnNtaXNzaW9uXCIsIGRvbWFpbjogWzAsIDEuMDJdfSxcbiAgICBtYXJrczogW1Bsb3QubGluZShkYXRhLCB7eDogXCJsXCIsIHk6IFwiVFwiLCBzdHJva2U6IFwiIzJhNzhkNlwiLCBzdHJva2VXaWR0aDogMn0pXX0pO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGA8ZGl2IGNsYXNzPVwicmVzdWx0LWJveFwiPkZTUiA9ICR7KDE1NTAqKjIgLyAoMiAqIGZwLmQgKiAxMDAwKSkudG9GaXhlZCgyKX0gbm0gwrcgZmluZXNzZSA9ICR7KE1hdGguUEkgKiBNYXRoLnNxcnQoZnAuUikgLyAoMSAtIGZwLlIpKS50b0ZpeGVkKDEpfSDCt1xuZnJpbmdlIHNoaWZ0IGZvciDOtGQgPSAke2ZwLmRkfSBubTogJHsoMTU1MCAqIGZwLmRkICogMWUtMyAvIGZwLmQpLnRvRml4ZWQoMyl9IG5tPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdvdCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdmcCcpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./special-fbg.html" class="pagination-link" aria-label="Special fibers and fiber Bragg gratings">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Special fibers and fiber Bragg gratings</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ideas.html" class="pagination-link" aria-label="Projects and new ideas">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projects and new ideas</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Fiber sensors: OTDR, distributed sensing, interferometers {#sec-sensors}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/sensors.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fiberlib <span class="im">as</span> fl</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>fl.use_style()</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>c0 <span class="op">=</span> fl.c0</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>*Slides 231–311.* The weaknesses of a fiber for telecom (scattering, sensitivity to strain and temperature) become</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>strengths for sensing. Fiber sensors are immune to EMI, need no electrical power at the sensing point, survive harsh</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>environments, and can be **distributed** along tens of km.</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Optical time-domain reflectometry (slides 245–266)</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>Send a short pulse and listen to the Rayleigh **backscatter**. Light returning at time $t$ comes from</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>z=\frac{v_g t}{2},\qquad \Delta z_\text{res}=\frac{v_g\tau}{2}\ (\text{pulse width }\tau).</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>The backscattered power from position $z$ is</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>P_{bs}(z)=P_0\,S\,\alpha_s\,\frac{v_g\tau}{2}\,e^{-2\alpha z},</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>where $S\approx10^{-3}$ is the capture factor and $\alpha_s$ the scattering coefficient. OTDR traces are plotted in</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>**one-way dB**, $5\log_{10}P$, so that the slope reads directly as the fiber attenuation.</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Example (slide 262)</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a>P0 <span class="op">=</span> fl.dBm_to_W(<span class="dv">13</span>)<span class="op">;</span> tau <span class="op">=</span> <span class="fl">10e-6</span><span class="op">;</span> vg <span class="op">=</span> c0 <span class="op">/</span> <span class="fl">1.468</span></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.33</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="fl">1e3</span><span class="op">;</span> alpha_s <span class="op">=</span> <span class="fl">0.3</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="fl">1e3</span><span class="op">;</span> S <span class="op">=</span> <span class="fl">1e-3</span></span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> z <span class="kw">in</span> [<span class="dv">0</span>, <span class="fl">50e3</span>, <span class="fl">100e3</span>]:</span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> P0 <span class="op">*</span> S <span class="op">*</span> alpha_s <span class="op">*</span> vg <span class="op">*</span> tau <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> alpha <span class="op">*</span> z)</span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"z = </span><span class="sc">{</span>z<span class="op">/</span><span class="fl">1e3</span><span class="sc">:5.0f}</span><span class="ss"> km:  P_bs = </span><span class="sc">{</span>P<span class="op">*</span><span class="fl">1e9</span><span class="sc">:9.3f}</span><span class="ss"> nW = </span><span class="sc">{</span>fl<span class="sc">.</span>W_to_dBm(P)<span class="sc">:6.1f}</span><span class="ss"> dBm"</span>)</span>
+<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Spatial resolution with τ = 10 µs: </span><span class="sc">{</span>vg<span class="op">*</span>tau<span class="op">/</span><span class="dv">2</span><span class="sc">:.0f}</span><span class="ss"> m"</span>)</span>
+<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### Averaging (slides 252–253)</span></span>
+<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>Noise falls as $\sqrt N$ with $N$ averaged shots. Each shot must wait one round trip, $T=2nL/c$.</span>
+<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fl">10e3</span><span class="op">;</span> T <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">1.468</span> <span class="op">*</span> L <span class="op">/</span> c0</span>
+<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t_meas <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">180</span>]:</span>
+<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="fl">0.9</span> <span class="op">*</span> t_meas <span class="op">/</span> T</span>
+<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>t_meas<span class="sc">:4d}</span><span class="ss"> s: N = </span><span class="sc">{</span>N<span class="sc">:.3g}</span><span class="ss"> shots → noise reduced by √N = </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(N)<span class="sc">:.0f}</span><span class="ss">× "</span></span>
+<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"= </span><span class="sc">{</span><span class="dv">5</span><span class="op">*</span>np<span class="sc">.</span>log10(N)<span class="sc">:.1f}</span><span class="ss"> dB (one-way OTDR scale)"</span>)</span>
+<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### OTDR simulator, live</span></span>
+<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a>The fiber below has a front connector, a fusion splice at 8 km, a tight bend at 15 km, a mechanical splice at 22 km</span>
+<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a>and an open end at 30 km. Change the pulse width and the averaging, and look at the trade-off between **dynamic range**</span>
+<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a>and **resolution** (slide 256).</span>
+<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb20-74"><a href="#cb20-74" aria-hidden="true" tabindex="-1"></a>viewof ot <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb20-75"><a href="#cb20-75" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tau</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">100</span><span class="op">,</span> <span class="dv">300</span><span class="op">,</span> <span class="dv">1000</span><span class="op">,</span> <span class="dv">3000</span><span class="op">,</span> <span class="dv">10000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"pulse width (ns)"</span>})<span class="op">,</span></span>
+<span id="cb20-76"><a href="#cb20-76" aria-hidden="true" tabindex="-1"></a>  <span class="dt">N</span><span class="op">:</span>   Inputs<span class="op">.</span><span class="fu">select</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">16</span><span class="op">,</span> <span class="dv">256</span><span class="op">,</span> <span class="dv">4096</span><span class="op">,</span> <span class="dv">65536</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">256</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"averages"</span>})<span class="op">,</span></span>
+<span id="cb20-77"><a href="#cb20-77" aria-hidden="true" tabindex="-1"></a>  <span class="dt">a</span><span class="op">:</span>   Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.15</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.33</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"loss (dB/km)"</span>})</span>
+<span id="cb20-78"><a href="#cb20-78" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb20-79"><a href="#cb20-79" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-80"><a href="#cb20-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-83"><a href="#cb20-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb20-84"><a href="#cb20-84" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb20-85"><a href="#cb20-85" aria-hidden="true" tabindex="-1"></a>otdr <span class="op">=</span> {</span>
+<span id="cb20-86"><a href="#cb20-86" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> dz <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> Lmax <span class="op">=</span> <span class="dv">34000</span><span class="op">,</span> vg <span class="op">=</span> <span class="dv">299792458</span> <span class="op">/</span> <span class="fl">1.468</span><span class="op">,</span> W <span class="op">=</span> vg <span class="op">*</span> ot<span class="op">.</span><span class="at">tau</span> <span class="op">*</span> <span class="fl">1e-9</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span>   <span class="co">// m</span></span>
+<span id="cb20-87"><a href="#cb20-87" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(Lmax <span class="op">/</span> dz)<span class="op">;</span></span>
+<span id="cb20-88"><a href="#cb20-88" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> events <span class="op">=</span> [{<span class="dt">z</span><span class="op">:</span> <span class="dv">8000</span><span class="op">,</span> <span class="dt">loss</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">refl</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span> {<span class="dt">z</span><span class="op">:</span> <span class="dv">15000</span><span class="op">,</span> <span class="dt">loss</span><span class="op">:</span> <span class="fl">0.6</span><span class="op">,</span> <span class="dt">refl</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb20-89"><a href="#cb20-89" aria-hidden="true" tabindex="-1"></a>                  {<span class="dt">z</span><span class="op">:</span> <span class="dv">22000</span><span class="op">,</span> <span class="dt">loss</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span> <span class="dt">refl</span><span class="op">:</span> <span class="fl">1e-4</span>}<span class="op">,</span> {<span class="dt">z</span><span class="op">:</span> <span class="dv">30000</span><span class="op">,</span> <span class="dt">loss</span><span class="op">:</span> <span class="dv">99</span><span class="op">,</span> <span class="dt">refl</span><span class="op">:</span> <span class="fl">0.035</span>}]<span class="op">;</span></span>
+<span id="cb20-90"><a href="#cb20-90" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> a <span class="op">=</span> ot<span class="op">.</span><span class="at">a</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="dv">1000</span><span class="op">,</span> <span class="im">as</span> <span class="op">=</span> <span class="fl">0.3</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb20-91"><a href="#cb20-91" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> raw <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(n)<span class="op">;</span> <span class="kw">let</span> lossdB <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb20-92"><a href="#cb20-92" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb20-93"><a href="#cb20-93" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> z <span class="op">=</span> i <span class="op">*</span> dz<span class="op">;</span></span>
+<span id="cb20-94"><a href="#cb20-94" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> e <span class="kw">of</span> events) <span class="cf">if</span> (z <span class="op">&gt;=</span> e<span class="op">.</span><span class="at">z</span> <span class="op">&amp;&amp;</span> z <span class="op">-</span> dz <span class="op">&lt;</span> e<span class="op">.</span><span class="at">z</span>) { raw[i] <span class="op">+=</span> e<span class="op">.</span><span class="at">refl</span> <span class="op">/</span> dz <span class="op">*</span> <span class="dv">10</span> <span class="op">**</span> (<span class="op">-</span>lossdB <span class="op">/</span> <span class="dv">5</span>)<span class="op">;</span> lossdB <span class="op">+=</span> e<span class="op">.</span><span class="at">loss</span><span class="op">;</span> }</span>
+<span id="cb20-95"><a href="#cb20-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (lossdB <span class="op">&lt;</span> <span class="dv">50</span>) raw[i] <span class="op">+=</span> <span class="fl">1e-3</span> <span class="op">*</span> <span class="im">as</span> <span class="op">*</span> <span class="dv">10</span> <span class="op">**</span> (<span class="op">-</span>lossdB <span class="op">/</span> <span class="dv">5</span>) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> a <span class="op">*</span> z)<span class="op">;</span></span>
+<span id="cb20-96"><a href="#cb20-96" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-97"><a href="#cb20-97" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> k <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">1</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(W <span class="op">/</span> dz))<span class="op">,</span> conv <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(n)<span class="op">;</span> <span class="kw">let</span> acc <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>   <span class="co">// rectangular pulse</span></span>
+<span id="cb20-98"><a href="#cb20-98" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++</span>) { acc <span class="op">+=</span> raw[i]<span class="op">;</span> <span class="cf">if</span> (i <span class="op">&gt;=</span> k) acc <span class="op">-=</span> raw[i <span class="op">-</span> k]<span class="op">;</span> conv[i] <span class="op">=</span> acc <span class="op">*</span> dz<span class="op">;</span> }</span>
+<span id="cb20-99"><a href="#cb20-99" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> P0 <span class="op">=</span> <span class="fl">0.02</span><span class="op">,</span> noise <span class="op">=</span> <span class="fl">3e-12</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(ot<span class="op">.</span><span class="at">N</span>)<span class="op">;</span>              <span class="co">// W, receiver noise after averaging</span></span>
+<span id="cb20-100"><a href="#cb20-100" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb20-101"><a href="#cb20-101" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i <span class="op">+=</span> <span class="dv">5</span>) {</span>
+<span id="cb20-102"><a href="#cb20-102" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> u1 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">||</span> <span class="fl">1e-12</span><span class="op">,</span> u2 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>()<span class="op">;</span></span>
+<span id="cb20-103"><a href="#cb20-103" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> p <span class="op">=</span> P0 <span class="op">*</span> conv[i] <span class="op">+</span> noise <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="op">-</span><span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(u1)) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> u2)<span class="op">;</span></span>
+<span id="cb20-104"><a href="#cb20-104" aria-hidden="true" tabindex="-1"></a>    out<span class="op">.</span><span class="fu">push</span>({<span class="dt">z</span><span class="op">:</span> i <span class="op">*</span> dz <span class="op">/</span> <span class="dv">1000</span><span class="op">,</span> <span class="dt">dB</span><span class="op">:</span> <span class="dv">5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(p<span class="op">,</span> <span class="fl">1e-16</span>) <span class="op">/</span> <span class="fl">1e-3</span>)})<span class="op">;</span></span>
+<span id="cb20-105"><a href="#cb20-105" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-106"><a href="#cb20-106" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p0 <span class="op">=</span> <span class="dv">5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(P0 <span class="op">*</span> <span class="fl">1e-3</span> <span class="op">*</span> <span class="im">as</span> <span class="op">*</span> W <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> floor <span class="op">=</span> <span class="dv">5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(noise <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">;</span></span>
+<span id="cb20-107"><a href="#cb20-107" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {out<span class="op">,</span> W<span class="op">,</span> <span class="dt">DR</span><span class="op">:</span> p0 <span class="op">-</span> floor<span class="op">,</span> floor}<span class="op">;</span></span>
+<span id="cb20-108"><a href="#cb20-108" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-109"><a href="#cb20-109" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb20-110"><a href="#cb20-110" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">340</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"distance (km)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"backscatter (dB, one-way, rel. 1 mW)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb20-111"><a href="#cb20-111" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(otdr<span class="op">.</span><span class="at">out</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"z"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"dB"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.2</span>})<span class="op">,</span></span>
+<span id="cb20-112"><a href="#cb20-112" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">ruleY</span>([otdr<span class="op">.</span><span class="at">floor</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb20-113"><a href="#cb20-113" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">text</span>([<span class="st">"fusion splice"</span><span class="op">,</span> <span class="st">"bend"</span><span class="op">,</span> <span class="st">"mech. splice"</span><span class="op">,</span> <span class="st">"end"</span>]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> [<span class="dv">8</span><span class="op">,</span> <span class="dv">15</span><span class="op">,</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> otdr<span class="op">.</span><span class="at">floor</span> <span class="op">+</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span>})]</span>
+<span id="cb20-114"><a href="#cb20-114" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb20-115"><a href="#cb20-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-116"><a href="#cb20-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-119"><a href="#cb20-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb20-120"><a href="#cb20-120" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb20-121"><a href="#cb20-121" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;pulse </span><span class="sc">${</span>ot<span class="op">.</span><span class="at">tau</span><span class="sc">}</span><span class="vs"> ns → spatial resolution ≈ &lt;b&gt;</span><span class="sc">${</span>otdr<span class="op">.</span><span class="at">W</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> m&lt;/b&gt; ·</span></span>
+<span id="cb20-122"><a href="#cb20-122" aria-hidden="true" tabindex="-1"></a><span class="vs">dynamic range ≈ &lt;b&gt;</span><span class="sc">${</span>otdr<span class="op">.</span><span class="at">DR</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dB&lt;/b&gt; (one-way) · red: noise floor after </span><span class="sc">${</span>ot<span class="op">.</span><span class="at">N</span><span class="sc">}</span><span class="vs"> averages&lt;/div&gt;`</span></span>
+<span id="cb20-123"><a href="#cb20-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-124"><a href="#cb20-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-125"><a href="#cb20-125" aria-hidden="true" tabindex="-1"></a><span class="fu">### Measuring a splice by least squares (slides 263–265)</span></span>
+<span id="cb20-126"><a href="#cb20-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-129"><a href="#cb20-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-130"><a href="#cb20-130" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-splice</span></span>
+<span id="cb20-131"><a href="#cb20-131" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "A splice loss is measured by fitting straight lines to the backscatter before and after the event and taking their vertical offset at the event position."</span></span>
+<span id="cb20-132"><a href="#cb20-132" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2</span>)</span>
+<span id="cb20-133"><a href="#cb20-133" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">2000</span>)</span>
+<span id="cb20-134"><a href="#cb20-134" aria-hidden="true" tabindex="-1"></a>true_loss, zs <span class="op">=</span> <span class="fl">0.25</span>, <span class="fl">9.0</span></span>
+<span id="cb20-135"><a href="#cb20-135" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="op">-</span><span class="fl">0.2</span> <span class="op">*</span> z <span class="op">-</span> true_loss <span class="op">*</span> (z <span class="op">&gt;</span> zs) <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="fl">0.03</span> <span class="op">+</span> <span class="fl">0.004</span> <span class="op">*</span> z, z.size)</span>
+<span id="cb20-136"><a href="#cb20-136" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> (z <span class="op">&gt;</span> <span class="dv">1</span>) <span class="op">&amp;</span> (z <span class="op">&lt;</span> zs <span class="op">-</span> <span class="fl">0.3</span>)<span class="op">;</span> m2 <span class="op">=</span> (z <span class="op">&gt;</span> zs <span class="op">+</span> <span class="fl">0.3</span>) <span class="op">&amp;</span> (z <span class="op">&lt;</span> <span class="dv">19</span>)</span>
+<span id="cb20-137"><a href="#cb20-137" aria-hidden="true" tabindex="-1"></a>p1, p2 <span class="op">=</span> np.polyfit(z[m1], y[m1], <span class="dv">1</span>), np.polyfit(z[m2], y[m2], <span class="dv">1</span>)</span>
+<span id="cb20-138"><a href="#cb20-138" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb20-139"><a href="#cb20-139" aria-hidden="true" tabindex="-1"></a>ax.plot(z, y, <span class="st">"."</span>, ms<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span>fl.PALETTE[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb20-140"><a href="#cb20-140" aria-hidden="true" tabindex="-1"></a>ax.plot(z, np.polyval(p1, z), color<span class="op">=</span>fl.PALETTE[<span class="dv">1</span>], label<span class="op">=</span><span class="ss">f"L1: </span><span class="sc">{</span><span class="op">-</span>p1[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> dB/km"</span>)</span>
+<span id="cb20-141"><a href="#cb20-141" aria-hidden="true" tabindex="-1"></a>ax.plot(z, np.polyval(p2, z), color<span class="op">=</span>fl.PALETTE[<span class="dv">2</span>], label<span class="op">=</span><span class="ss">f"L2: </span><span class="sc">{</span><span class="op">-</span>p2[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> dB/km"</span>)</span>
+<span id="cb20-142"><a href="#cb20-142" aria-hidden="true" tabindex="-1"></a>ax.axvline(zs, color<span class="op">=</span>fl.INK2, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb20-143"><a href="#cb20-143" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"distance (km)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"relative level (dB)"</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb20-144"><a href="#cb20-144" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb20-145"><a href="#cb20-145" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated splice loss = </span><span class="sc">{</span>np<span class="sc">.</span>polyval(p1, zs) <span class="op">-</span> np<span class="sc">.</span>polyval(p2, zs)<span class="sc">:.3f}</span><span class="ss"> dB (true </span><span class="sc">{</span>true_loss<span class="sc">}</span><span class="ss"> dB)"</span>)</span>
+<span id="cb20-146"><a href="#cb20-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-147"><a href="#cb20-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-148"><a href="#cb20-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## Raman distributed temperature sensing (slides 237–241)</span></span>
+<span id="cb20-149"><a href="#cb20-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-150"><a href="#cb20-150" aria-hidden="true" tabindex="-1"></a>Spontaneous Raman scattering produces a Stokes and an anti-Stokes line shifted by ~13 THz. Only the anti-Stokes line</span>
+<span id="cb20-151"><a href="#cb20-151" aria-hidden="true" tabindex="-1"></a>depends strongly on the phonon population, so their ratio is a thermometer:</span>
+<span id="cb20-152"><a href="#cb20-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-153"><a href="#cb20-153" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-154"><a href="#cb20-154" aria-hidden="true" tabindex="-1"></a>R(T)=\frac{P_{AS}}{P_S}=\left(\frac{\lambda_S}{\lambda_{AS}}\right)^4\exp\left(-\frac{h\Delta\nu}{k_BT}\right).</span>
+<span id="cb20-155"><a href="#cb20-155" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-156"><a href="#cb20-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-159"><a href="#cb20-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-160"><a href="#cb20-160" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-raman</span></span>
+<span id="cb20-161"><a href="#cb20-161" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Anti-Stokes/Stokes ratio versus temperature for a 1550 nm pump (Δν = 13.2 THz) and its relative sensitivity (≈ 0.8 %/K at room temperature)."</span></span>
+<span id="cb20-162"><a href="#cb20-162" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="dv">200</span>, <span class="dv">600</span>, <span class="dv">300</span>)</span>
+<span id="cb20-163"><a href="#cb20-163" aria-hidden="true" tabindex="-1"></a>dnu <span class="op">=</span> <span class="fl">13.2e12</span><span class="op">;</span> nu_p <span class="op">=</span> c0 <span class="op">/</span> <span class="fl">1550e-9</span></span>
+<span id="cb20-164"><a href="#cb20-164" aria-hidden="true" tabindex="-1"></a>lS, lAS <span class="op">=</span> c0 <span class="op">/</span> (nu_p <span class="op">-</span> dnu), c0 <span class="op">/</span> (nu_p <span class="op">+</span> dnu)</span>
+<span id="cb20-165"><a href="#cb20-165" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> (lS <span class="op">/</span> lAS) <span class="op">**</span> <span class="dv">4</span> <span class="op">*</span> np.exp(<span class="op">-</span>fl.h <span class="op">*</span> dnu <span class="op">/</span> (fl.kB <span class="op">*</span> T))</span>
+<span id="cb20-166"><a href="#cb20-166" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb20-167"><a href="#cb20-167" aria-hidden="true" tabindex="-1"></a>ax.plot(T <span class="op">-</span> <span class="fl">273.15</span>, R, label<span class="op">=</span><span class="st">"R(T)"</span>)</span>
+<span id="cb20-168"><a href="#cb20-168" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax.twinx()<span class="op">;</span> ax2.grid(<span class="va">False</span>)</span>
+<span id="cb20-169"><a href="#cb20-169" aria-hidden="true" tabindex="-1"></a>ax2.plot(T <span class="op">-</span> <span class="fl">273.15</span>, <span class="dv">100</span> <span class="op">*</span> fl.h <span class="op">*</span> dnu <span class="op">/</span> (fl.kB <span class="op">*</span> T<span class="op">**</span><span class="dv">2</span>), <span class="st">"--"</span>, color<span class="op">=</span>fl.PALETTE[<span class="dv">1</span>], label<span class="op">=</span><span class="st">"sensitivity (%/K)"</span>)</span>
+<span id="cb20-170"><a href="#cb20-170" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"T (°C)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"P_AS / P_S"</span>)<span class="op">;</span> ax2.set_ylabel(<span class="st">"dR/R per K (%)"</span>)</span>
+<span id="cb20-171"><a href="#cb20-171" aria-hidden="true" tabindex="-1"></a>fig.legend(loc<span class="op">=</span><span class="st">"upper center"</span>, ncol<span class="op">=</span><span class="dv">2</span>, frameon<span class="op">=</span><span class="va">False</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb20-172"><a href="#cb20-172" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sensitivity at 25 °C: </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>fl<span class="sc">.</span>h<span class="op">*</span>dnu<span class="op">/</span>(fl.kB<span class="op">*</span><span class="fl">298.15</span><span class="op">**</span><span class="dv">2</span>)<span class="sc">:.2f}</span><span class="ss"> %/K"</span>)</span>
+<span id="cb20-173"><a href="#cb20-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-174"><a href="#cb20-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-175"><a href="#cb20-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## Brillouin sensing (slides 242–244)</span></span>
+<span id="cb20-176"><a href="#cb20-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-177"><a href="#cb20-177" aria-hidden="true" tabindex="-1"></a>The backscattered Brillouin line is shifted by $\nu_B=2nv_a/\lambda$. Its shift depends on both strain and temperature.</span>
+<span id="cb20-178"><a href="#cb20-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-181"><a href="#cb20-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-182"><a href="#cb20-182" aria-hidden="true" tabindex="-1"></a>n, va <span class="op">=</span> <span class="fl">1.45</span>, <span class="dv">5960</span></span>
+<span id="cb20-183"><a href="#cb20-183" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lam <span class="kw">in</span> [<span class="fl">1.31e-6</span>, <span class="fl">1.55e-6</span>]:</span>
+<span id="cb20-184"><a href="#cb20-184" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"λ = </span><span class="sc">{</span>lam<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> µm: ν_B = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>n<span class="op">*</span>va<span class="op">/</span>lam<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> GHz"</span>)</span>
+<span id="cb20-185"><a href="#cb20-185" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Typical coefficients in SMF at 1550 nm: ≈ 0.05 MHz/µε and ≈ 1.1 MHz/K, with a gain linewidth of ≈ 30 MHz."</span>)</span>
+<span id="cb20-186"><a href="#cb20-186" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-187"><a href="#cb20-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-188"><a href="#cb20-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fabry–Perot filters and sensors (slides 271–283)</span></span>
+<span id="cb20-189"><a href="#cb20-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-190"><a href="#cb20-190" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-191"><a href="#cb20-191" aria-hidden="true" tabindex="-1"></a>T=\frac{1}{1+F\sin^2(\delta/2)},\qquad F=\frac{4R}{(1-R)^2},\qquad\delta=\frac{4\pi nd\nu}{c},\qquad</span>
+<span id="cb20-192"><a href="#cb20-192" aria-hidden="true" tabindex="-1"></a>\mathrm{FSR}=\frac{c}{2nd},\qquad \mathcal F=\frac{\pi\sqrt R}{1-R}.</span>
+<span id="cb20-193"><a href="#cb20-193" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-194"><a href="#cb20-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-197"><a href="#cb20-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-198"><a href="#cb20-198" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-fp</span></span>
+<span id="cb20-199"><a href="#cb20-199" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Transmission of a Fabry–Perot filter with d = 100 µm (air), R = 97 % and 98 % (slide 277). The FSR is 1.5 THz. A higher R narrows the resonance and deepens the rejection."</span></span>
+<span id="cb20-200"><a href="#cb20-200" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> np.linspace(<span class="fl">10.5e12</span>, <span class="fl">12.5e12</span>, <span class="dv">4000</span>)</span>
+<span id="cb20-201"><a href="#cb20-201" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb20-202"><a href="#cb20-202" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, R <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.97</span>, <span class="fl">0.98</span>]):</span>
+<span id="cb20-203"><a href="#cb20-203" aria-hidden="true" tabindex="-1"></a>    ax.plot(nu <span class="op">/</span> <span class="fl">1e12</span>, <span class="dv">10</span> <span class="op">*</span> np.log10(fl.fabry_perot_T(nu, <span class="fl">100e-6</span>, R)), color<span class="op">=</span>fl.PALETTE[k],</span>
+<span id="cb20-204"><a href="#cb20-204" aria-hidden="true" tabindex="-1"></a>            label<span class="op">=</span><span class="ss">f"R = </span><span class="sc">{</span>R<span class="op">*</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss"> %, finesse = </span><span class="sc">{</span>np<span class="sc">.</span>pi<span class="op">*</span>np<span class="sc">.</span>sqrt(R)<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>R)<span class="sc">:.0f}</span><span class="ss">"</span>)</span>
+<span id="cb20-205"><a href="#cb20-205" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"f (THz)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"T (dB)"</span>)<span class="op">;</span> ax.set_ylim(<span class="op">-</span><span class="dv">40</span>, <span class="dv">1</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb20-206"><a href="#cb20-206" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb20-207"><a href="#cb20-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-208"><a href="#cb20-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-209"><a href="#cb20-209" aria-hidden="true" tabindex="-1"></a>A change of the cavity length $\delta d$ (pressure on a diaphragm, strain, thermal expansion) shifts the fringes by</span>
+<span id="cb20-210"><a href="#cb20-210" aria-hidden="true" tabindex="-1"></a>$\delta\nu/\nu=-\delta d/d$. This makes the Fabry–Perot one of the most sensitive point sensors (slides 279–283).</span>
+<span id="cb20-211"><a href="#cb20-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-214"><a href="#cb20-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb20-215"><a href="#cb20-215" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb20-216"><a href="#cb20-216" aria-hidden="true" tabindex="-1"></a>viewof fp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb20-217"><a href="#cb20-217" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.04</span><span class="op">,</span> <span class="fl">0.995</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.9</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.005</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mirror reflectance R"</span>})<span class="op">,</span></span>
+<span id="cb20-218"><a href="#cb20-218" aria-hidden="true" tabindex="-1"></a>  <span class="dt">d</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"gap d (µm)"</span>})<span class="op">,</span></span>
+<span id="cb20-219"><a href="#cb20-219" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dd</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">200</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"displacement δd (nm)"</span>})</span>
+<span id="cb20-220"><a href="#cb20-220" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb20-221"><a href="#cb20-221" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-222"><a href="#cb20-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-225"><a href="#cb20-225" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb20-226"><a href="#cb20-226" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb20-227"><a href="#cb20-227" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb20-228"><a href="#cb20-228" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> F <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> fp<span class="op">.</span><span class="at">R</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> fp<span class="op">.</span><span class="at">R</span>) <span class="op">**</span> <span class="dv">2</span><span class="op">,</span> d <span class="op">=</span> (fp<span class="op">.</span><span class="at">d</span> <span class="op">+</span> fp<span class="op">.</span><span class="at">dd</span> <span class="op">*</span> <span class="fl">1e-3</span>) <span class="op">*</span> <span class="fl">1e-6</span><span class="op">;</span></span>
+<span id="cb20-229"><a href="#cb20-229" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">1540</span><span class="op">,</span> <span class="dv">1560</span><span class="op">,</span> <span class="fl">0.005</span>)<span class="op">.</span><span class="fu">map</span>(l <span class="kw">=&gt;</span> {</span>
+<span id="cb20-230"><a href="#cb20-230" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> dl <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> d <span class="op">/</span> (l <span class="op">*</span> <span class="fl">1e-9</span>)<span class="op">;</span></span>
+<span id="cb20-231"><a href="#cb20-231" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {l<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> F <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(dl <span class="op">/</span> <span class="dv">2</span>) <span class="op">**</span> <span class="dv">2</span>)}<span class="op">;</span></span>
+<span id="cb20-232"><a href="#cb20-232" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb20-233"><a href="#cb20-233" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({<span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">260</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"λ (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"transmission"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.02</span>]}<span class="op">,</span></span>
+<span id="cb20-234"><a href="#cb20-234" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(data<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"l"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})]})<span class="op">;</span></span>
+<span id="cb20-235"><a href="#cb20-235" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-236"><a href="#cb20-236" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-237"><a href="#cb20-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-240"><a href="#cb20-240" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb20-241"><a href="#cb20-241" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb20-242"><a href="#cb20-242" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;FSR = </span><span class="sc">${</span>(<span class="dv">1550</span><span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> fp<span class="op">.</span><span class="at">d</span> <span class="op">*</span> <span class="dv">1000</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> nm · finesse = </span><span class="sc">${</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(fp<span class="op">.</span><span class="at">R</span>) <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> fp<span class="op">.</span><span class="at">R</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb20-243"><a href="#cb20-243" aria-hidden="true" tabindex="-1"></a><span class="vs">fringe shift for δd = </span><span class="sc">${</span>fp<span class="op">.</span><span class="at">dd</span><span class="sc">}</span><span class="vs"> nm: </span><span class="sc">${</span>(<span class="dv">1550</span> <span class="op">*</span> fp<span class="op">.</span><span class="at">dd</span> <span class="op">*</span> <span class="fl">1e-3</span> <span class="op">/</span> fp<span class="op">.</span><span class="at">d</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> nm&lt;/div&gt;`</span></span>
+<span id="cb20-244"><a href="#cb20-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-245"><a href="#cb20-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-246"><a href="#cb20-246" aria-hidden="true" tabindex="-1"></a><span class="fu">## The Sagnac effect and fiber-optic gyroscopes (slides 284–311)</span></span>
+<span id="cb20-247"><a href="#cb20-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-248"><a href="#cb20-248" aria-hidden="true" tabindex="-1"></a>In a loop rotating at $\Omega$, the clockwise and counter-clockwise waves accumulate a phase difference</span>
+<span id="cb20-249"><a href="#cb20-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-250"><a href="#cb20-250" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-251"><a href="#cb20-251" aria-hidden="true" tabindex="-1"></a>\Delta\phi_S=\frac{2\pi LD}{\lambda c}\,\Omega=\frac{8\pi NA}{\lambda c}\,\Omega</span>
+<span id="cb20-252"><a href="#cb20-252" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-253"><a href="#cb20-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-254"><a href="#cb20-254" aria-hidden="true" tabindex="-1"></a>for a coil of length $L$ wound on a diameter $D$ (N turns of area A). Nothing else in the loop distinguishes the two</span>
+<span id="cb20-255"><a href="#cb20-255" aria-hidden="true" tabindex="-1"></a>directions, so this tiny phase can be measured.</span>
+<span id="cb20-256"><a href="#cb20-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-259"><a href="#cb20-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb20-260"><a href="#cb20-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-fog</span></span>
+<span id="cb20-261"><a href="#cb20-261" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Open-loop FOG response. Without bias (cos response) the gyro is blind to small rotations and to their sign. A ±π/2 phase modulation turns the response into sin(Δφ), which is linear and signed around zero (slides 295–297)."</span></span>
+<span id="cb20-262"><a href="#cb20-262" aria-hidden="true" tabindex="-1"></a>OmE <span class="op">=</span> <span class="fl">7.292e-5</span>                      <span class="co"># Earth rotation [rad/s]</span></span>
+<span id="cb20-263"><a href="#cb20-263" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> L, D <span class="kw">in</span> [(<span class="dv">200</span>, <span class="fl">0.03</span>), (<span class="dv">1000</span>, <span class="fl">0.1</span>), (<span class="dv">5000</span>, <span class="fl">0.2</span>)]:</span>
+<span id="cb20-264"><a href="#cb20-264" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"L = </span><span class="sc">{</span>L<span class="sc">:5d}</span><span class="ss"> m, D = </span><span class="sc">{</span>D<span class="op">*</span><span class="dv">100</span><span class="sc">:4.0f}</span><span class="ss"> cm: scale factor </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">*</span>L<span class="op">*</span>D<span class="op">/</span>(<span class="fl">1.55e-6</span><span class="op">*</span>c0)<span class="sc">:.3f}</span><span class="ss"> rad/(rad/s), "</span></span>
+<span id="cb20-265"><a href="#cb20-265" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"Earth rotation → Δφ = </span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span>np<span class="sc">.</span>pi<span class="op">*</span>L<span class="op">*</span>D<span class="op">/</span>(<span class="fl">1.55e-6</span><span class="op">*</span>c0)<span class="op">*</span>OmE<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.1f}</span><span class="ss"> µrad"</span>)</span>
+<span id="cb20-266"><a href="#cb20-266" aria-hidden="true" tabindex="-1"></a>dphi <span class="op">=</span> np.linspace(<span class="op">-</span>np.pi, np.pi, <span class="dv">400</span>)</span>
+<span id="cb20-267"><a href="#cb20-267" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb20-268"><a href="#cb20-268" aria-hidden="true" tabindex="-1"></a>ax.plot(dphi, (<span class="dv">1</span> <span class="op">+</span> np.cos(dphi)) <span class="op">/</span> <span class="dv">2</span>, label<span class="op">=</span><span class="st">"unbiased: (1 + cos Δφ)/2"</span>)</span>
+<span id="cb20-269"><a href="#cb20-269" aria-hidden="true" tabindex="-1"></a>ax.plot(dphi, np.sin(dphi), label<span class="op">=</span><span class="st">"with phase-modulation bias: ∝ sin Δφ"</span>)</span>
+<span id="cb20-270"><a href="#cb20-270" aria-hidden="true" tabindex="-1"></a>ax.axvline(<span class="dv">0</span>, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb20-271"><a href="#cb20-271" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Sagnac phase Δφ (rad)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"detected signal (a.u.)"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb20-272"><a href="#cb20-272" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb20-273"><a href="#cb20-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb20-274"><a href="#cb20-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-275"><a href="#cb20-275" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb20-276"><a href="#cb20-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-277"><a href="#cb20-277" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Extend the OTDR simulator with a **reflective connector** and implement the **attenuation dead-zone** (receiver</span>
+<span id="cb20-278"><a href="#cb20-278" aria-hidden="true" tabindex="-1"></a>   saturation and recovery time).</span>
+<span id="cb20-279"><a href="#cb20-279" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>A **φ-OTDR** (slide 267) uses a highly coherent laser: the backscatter becomes a speckle pattern whose changes reveal</span>
+<span id="cb20-280"><a href="#cb20-280" aria-hidden="true" tabindex="-1"></a>   vibrations. Simulate it by summing random-phase scatterers inside the pulse and perturbing the phase locally.</span>
+<span id="cb20-281"><a href="#cb20-281" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Compute the shot-noise-limited angle random walk of a FOG with 1 km coil, 100 µW at the detector. Compare with</span>
+<span id="cb20-282"><a href="#cb20-282" aria-hidden="true" tabindex="-1"></a>   tactical-grade (~0.1 °/√h) and navigation-grade (&lt;0.001 °/√h) requirements.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter2/sensors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; WDM, couplers and nonlinear effects – Dielectric Waveguides and Optical Fibers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./special-fbg.html" rel="next">
+<link href="./bitrate.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bitrate.html">From fibers to systems</a></li><li class="breadcrumb-item"><a href="./wdm.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WDM, couplers and nonlinear effects</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Dielectric Waveguides and Optical Fibers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter2/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guiding light</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./planar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Planar dielectric waveguides</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fibers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Step-index optical fibers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Spreading and losing light</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dispersion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./grin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graded-index fibers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./attenuation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Attenuation and bending loss</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">From fibers to systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bitrate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bit rate, bandwidth and capacity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wdm.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WDM, couplers and nonlinear effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Beyond telecom</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./special-fbg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Special fibers and fiber Bragg gratings</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fiber sensors: OTDR, distributed sensing, interferometers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projects and new ideas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-itu-grid-slides-175176" id="toc-the-itu-grid-slides-175176" class="nav-link active" data-scroll-target="#the-itu-grid-slides-175176"><span class="header-section-number">7.1</span> The ITU grid (slides 175–176)</a></li>
+  <li><a href="#passive-couplers-slides-177184" id="toc-passive-couplers-slides-177184" class="nav-link" data-scroll-target="#passive-couplers-slides-177184"><span class="header-section-number">7.2</span> Passive couplers (slides 177–184)</a>
+  <ul class="collapse">
+  <li><a href="#star-couplers" id="toc-star-couplers" class="nav-link" data-scroll-target="#star-couplers"><span class="header-section-number">7.2.1</span> Star couplers</a></li>
+  </ul></li>
+  <li><a href="#four-wave-mixing-slides-185188" id="toc-four-wave-mixing-slides-185188" class="nav-link" data-scroll-target="#four-wave-mixing-slides-185188"><span class="header-section-number">7.3</span> Four-wave mixing (slides 185–188)</a>
+  <ul class="collapse">
+  <li><a href="#why-a-little-dispersion-helps-slide-87" id="toc-why-a-little-dispersion-helps-slide-87" class="nav-link" data-scroll-target="#why-a-little-dispersion-helps-slide-87"><span class="header-section-number">7.3.1</span> Why a little dispersion helps (slide 87)</a></li>
+  </ul></li>
+  <li><a href="#self-phase-modulation-and-chirp-slides-189190" id="toc-self-phase-modulation-and-chirp-slides-189190" class="nav-link" data-scroll-target="#self-phase-modulation-and-chirp-slides-189190"><span class="header-section-number">7.4</span> Self-phase modulation and chirp (slides 189–190)</a></li>
+  <li><a href="#stimulated-brillouin-scattering-slides-191194" id="toc-stimulated-brillouin-scattering-slides-191194" class="nav-link" data-scroll-target="#stimulated-brillouin-scattering-slides-191194"><span class="header-section-number">7.5</span> Stimulated Brillouin scattering (slides 191–194)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">7.6</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter2/wdm.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bitrate.html">From fibers to systems</a></li><li class="breadcrumb-item"><a href="./wdm.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WDM, couplers and nonlinear effects</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-wdm" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WDM, couplers and nonlinear effects</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter2/notebooks/wdm.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 174–194.</em> One fiber, many colours. Wavelength-division multiplexing (WDM) multiplies the capacity of a fiber by the number of channels, but it brings new problems: components that combine and split light, and nonlinear interactions between channels.</p>
+<section id="the-itu-grid-slides-175176" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="the-itu-grid-slides-175176"><span class="header-section-number">7.1</span> The ITU grid (slides 175–176)</h2>
+<p>DWDM channels sit on a frequency grid anchored at 193.1 THz. A channel spacing <span class="math inline">\(\Delta\nu\)</span> corresponds to <span class="math inline">\(\Delta\lambda=\lambda^2\Delta\nu/c\)</span>.</p>
+<div id="cd13fc0c" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dnu <span class="kw">in</span> [<span class="dv">200</span>, <span class="dv">100</span>, <span class="dv">50</span>, <span class="fl">12.5</span>]:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Δν = </span><span class="sc">{</span>dnu<span class="sc">:6.1f}</span><span class="ss"> GHz  ↔  Δλ = </span><span class="sc">{</span>(<span class="fl">1.55e-6</span>)<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dnu<span class="op">*</span><span class="fl">1e9</span><span class="op">/</span>c0<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.3f}</span><span class="ss"> nm at 1550 nm;  "</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"channels in the C-band (4.4 THz): </span><span class="sc">{</span><span class="bu">int</span>(<span class="fl">4.4e3</span><span class="op">/</span>dnu)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Δν =  200.0 GHz  ↔  Δλ = 1.603 nm at 1550 nm;  channels in the C-band (4.4 THz): 22
+Δν =  100.0 GHz  ↔  Δλ = 0.801 nm at 1550 nm;  channels in the C-band (4.4 THz): 44
+Δν =   50.0 GHz  ↔  Δλ = 0.401 nm at 1550 nm;  channels in the C-band (4.4 THz): 88
+Δν =   12.5 GHz  ↔  Δλ = 0.100 nm at 1550 nm;  channels in the C-band (4.4 THz): 352</code></pre>
+</div>
+</div>
+<div id="cell-fig-grid" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> <span class="fl">193.1e12</span> <span class="op">+</span> np.arange(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>) <span class="op">*</span> <span class="fl">100e9</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lam_ch <span class="op">=</span> c0 <span class="op">/</span> nu</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> np.linspace(<span class="dv">1520</span>, <span class="dv">1575</span>, <span class="dv">800</span>) <span class="op">*</span> <span class="fl">1e-9</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">8.5</span>, <span class="fl">3.5</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ax.plot(lam <span class="op">*</span> <span class="fl">1e9</span>, fl.attenuation_model(lam, OH_peak<span class="op">=</span><span class="dv">0</span>), color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"fiber loss (dB/km)"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax.twinx()<span class="op">;</span> ax2.grid(<span class="va">False</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> <span class="bu">sum</span>(np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((lam <span class="op">-</span> l) <span class="op">/</span> <span class="fl">0.08e-9</span>) <span class="op">**</span> <span class="dv">2</span>) <span class="cf">for</span> l <span class="kw">in</span> lam_ch)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ax2.fill_between(lam <span class="op">*</span> <span class="fl">1e9</span>, spec, color<span class="op">=</span>fl.PALETTE[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.5</span>, lw<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax2.set_yticks([])<span class="op">;</span> ax2.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"λ (nm)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"loss (dB/km)"</span>)<span class="op">;</span> ax.set_ylim(<span class="fl">0.15</span>, <span class="fl">0.22</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"C-band DWDM, 100 GHz spacing"</span>, loc<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-grid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="wdm_files/figure-html/fig-grid-output-1.png" width="814" height="386" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: 40 DWDM channels on the 100 GHz ITU grid across the C-band, drawn over the fiber loss. Each channel carries its own data stream (e.g.&nbsp;100 Gb/s → 4 Tb/s per fiber).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="passive-couplers-slides-177184" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="passive-couplers-slides-177184"><span class="header-section-number">7.2</span> Passive couplers (slides 177–184)</h2>
+<p>In a fused 2×2 coupler the evanescent tail of one core excites the other (slide 178). Coupled-mode theory gives a periodic exchange of power along the coupling length <span class="math inline">\(z\)</span>:</p>
+<p><span class="math display">\[
+P_1=P_0\cos^2(\kappa z),\qquad P_2=P_0\sin^2(\kappa z).
+\]</span></p>
+<div id="cell-fig-coupler" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">400</span>)                  <span class="co"># mm</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, (lam, kap) <span class="kw">in</span> <span class="bu">enumerate</span>([(<span class="dv">1310</span>, <span class="fl">0.10</span>), (<span class="dv">1550</span>, <span class="fl">0.16</span>)]):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    ax.plot(z, np.cos(kap <span class="op">*</span> z) <span class="op">**</span> <span class="dv">2</span>, color<span class="op">=</span>fl.PALETTE[k], label<span class="op">=</span><span class="ss">f"P₁/P₀  </span><span class="sc">{</span>lam<span class="sc">}</span><span class="ss"> nm"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ax.plot(z, np.sin(kap <span class="op">*</span> z) <span class="op">**</span> <span class="dv">2</span>, <span class="st">"--"</span>, color<span class="op">=</span>fl.PALETTE[k], label<span class="op">=</span><span class="ss">f"P₂/P₀  </span><span class="sc">{</span>lam<span class="sc">}</span><span class="ss"> nm"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.axvline(np.pi <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="fl">0.16</span>, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax.text(np.pi <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="fl">0.16</span> <span class="op">+</span> <span class="fl">0.2</span>, <span class="fl">0.55</span>, <span class="st">"3 dB at 1550 nm"</span>, color<span class="op">=</span>fl.INK2, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"coupling length z (mm)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"power fraction"</span>)<span class="op">;</span> ax.legend(ncol<span class="op">=</span><span class="dv">2</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-coupler" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coupler-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="wdm_files/figure-html/fig-coupler-output-1.png" width="719" height="425" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coupler-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: Power exchange in a symmetric directional coupler. A 3 dB coupler needs κz = π/4. The coupling coefficient depends on wavelength, so a coupler designed for 1310 nm splits 1550 nm differently. This is the basis of the 1310/1550 WDM coupler.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The performance figures (slide 179) are, in dB:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>figure</th>
+<th>definition</th>
+<th>3 dB coupler</th>
+<th>tap coupler</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>split ratio</td>
+<td><span class="math inline">\(P_2/(P_1+P_2)\)</span></td>
+<td>50 %</td>
+<td>0.5 %</td>
+</tr>
+<tr class="even">
+<td>excess loss</td>
+<td><span class="math inline">\(10\log\frac{P_0}{P_1+P_2}\)</span></td>
+<td>~0.1 dB</td>
+<td>~0.1 dB</td>
+</tr>
+<tr class="odd">
+<td>insertion loss</td>
+<td><span class="math inline">\(10\log\frac{P_0}{P_j}\)</span></td>
+<td>~3.1 dB</td>
+<td>~23 dB (tap port)</td>
+</tr>
+<tr class="even">
+<td>crosstalk / directivity</td>
+<td><span class="math inline">\(10\log\frac{P_3}{P_0}\)</span></td>
+<td>−50 to −70 dB</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<section id="star-couplers" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="star-couplers"><span class="header-section-number">7.2.1</span> Star couplers</h3>
+<p>An <span class="math inline">\(N\times N\)</span> star built from 3 dB couplers needs <span class="math inline">\(\frac N2\log_2N\)</span> couplers, and each output gets <span class="math inline">\(1/N\)</span> of the power. That is a splitting loss of <span class="math inline">\(10\log_{10}N\)</span> dB, plus the excess loss of each stage.</p>
+<div id="41aace2c" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>, <span class="dv">64</span>]:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    st <span class="op">=</span> <span class="bu">int</span>(np.log2(N))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"N = </span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">: </span><span class="sc">{</span>N<span class="op">//</span><span class="dv">2</span><span class="op">*</span>st<span class="sc">:4d}</span><span class="ss"> couplers, </span><span class="sc">{</span>st<span class="sc">}</span><span class="ss"> stages, splitting loss </span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(N)<span class="sc">:5.1f}</span><span class="ss"> dB, "</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"with 0.1 dB excess/stage: </span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(N)<span class="op">+</span><span class="fl">0.1</span><span class="op">*</span>st<span class="sc">:5.1f}</span><span class="ss"> dB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>N =   2:    1 couplers, 1 stages, splitting loss   3.0 dB, with 0.1 dB excess/stage:   3.1 dB
+N =   4:    4 couplers, 2 stages, splitting loss   6.0 dB, with 0.1 dB excess/stage:   6.2 dB
+N =   8:   12 couplers, 3 stages, splitting loss   9.0 dB, with 0.1 dB excess/stage:   9.3 dB
+N =  16:   32 couplers, 4 stages, splitting loss  12.0 dB, with 0.1 dB excess/stage:  12.4 dB
+N =  32:   80 couplers, 5 stages, splitting loss  15.1 dB, with 0.1 dB excess/stage:  15.6 dB
+N =  64:  192 couplers, 6 stages, splitting loss  18.1 dB, with 0.1 dB excess/stage:  18.7 dB</code></pre>
+</div>
+</div>
+<p>This is the architecture of a <strong>passive optical network (PON)</strong> that brings fiber to the home: one 1×32 or 1×64 splitter feeds many households.</p>
+</section>
+</section>
+<section id="four-wave-mixing-slides-185188" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="four-wave-mixing-slides-185188"><span class="header-section-number">7.3</span> Four-wave mixing (slides 185–188)</h2>
+<p>The third-order polarisation <span class="math inline">\(P\propto a_3E^3\)</span> mixes three channels <span class="math inline">\(\nu_i,\nu_j,\nu_k\)</span> into new frequencies</p>
+<p><span class="math display">\[
+\nu_{ijk}=\nu_i+\nu_j-\nu_k .
+\]</span></p>
+<p>With <strong>equally spaced</strong> channels, many products fall <strong>exactly on top of existing channels</strong> and become crosstalk that cannot be filtered. With <span class="math inline">\(N\)</span> channels there are <span class="math inline">\(N^2(N-1)/2\)</span> products.</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="105" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 104;"><span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>viewof fwm <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>  <span class="dt">N</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">3</span><span class="op">,</span> <span class="dv">16</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"number of channels"</span>})<span class="op">,</span></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sp</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"equal"</span><span class="op">,</span> <span class="st">"unequal (Golomb-like)"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"equal"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"spacing"</span>})</span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="114" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 113;"><span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a>fwmData <span class="op">=</span> {</span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> golomb <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">15</span><span class="op">,</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">34</span><span class="op">,</span> <span class="dv">49</span><span class="op">,</span> <span class="dv">55</span><span class="op">,</span> <span class="dv">72</span><span class="op">,</span> <span class="dv">86</span><span class="op">,</span> <span class="dv">106</span><span class="op">,</span> <span class="dv">114</span><span class="op">,</span> <span class="dv">126</span><span class="op">,</span> <span class="dv">149</span>]<span class="op">;</span></span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ch <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(fwm<span class="op">.</span><span class="at">N</span>)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> fwm<span class="op">.</span><span class="at">sp</span> <span class="op">===</span> <span class="st">"equal"</span> <span class="op">?</span> i <span class="op">:</span> golomb[i] <span class="op">*</span> <span class="fl">0.55</span>)<span class="op">;</span></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> prods <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>()<span class="op">;</span></span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> i <span class="kw">of</span> ch) <span class="cf">for</span> (<span class="kw">const</span> j <span class="kw">of</span> ch) <span class="cf">for</span> (<span class="kw">const</span> k <span class="kw">of</span> ch) {</span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (k <span class="op">===</span> i <span class="op">||</span> k <span class="op">===</span> j) <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (j <span class="op">&lt;</span> i) <span class="cf">continue</span><span class="op">;</span>               <span class="co">// ν_i + ν_j symmetric</span></span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> f <span class="op">=</span> <span class="op">+</span>(i <span class="op">+</span> j <span class="op">-</span> k)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>    prods<span class="op">.</span><span class="fu">set</span>(f<span class="op">,</span> (prods<span class="op">.</span><span class="fu">get</span>(f) <span class="op">||</span> <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> P <span class="op">=</span> [<span class="op">...</span>prods]<span class="op">.</span><span class="fu">map</span>(([f<span class="op">,</span> n]) <span class="kw">=&gt;</span> ({f<span class="op">,</span> n<span class="op">,</span> <span class="dt">onChannel</span><span class="op">:</span> ch<span class="op">.</span><span class="fu">some</span>(c <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(c <span class="op">-</span> f) <span class="op">&lt;</span> <span class="fl">1e-6</span>)}))<span class="op">;</span></span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {ch<span class="op">,</span> P<span class="op">,</span> <span class="dt">hits</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">sum</span>(P<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">onChannel</span>)<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">n</span>)<span class="op">,</span> <span class="dt">total</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">sum</span>(P<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">n</span>)}<span class="op">;</span></span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">260</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"frequency (units of spacing)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"number of FWM products"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="kw">true</span><span class="op">,</span> <span class="kw">false</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#b9b8b2"</span>]<span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d <span class="op">?</span> <span class="st">"falls on a channel"</span> <span class="op">:</span> <span class="st">"between channels"</span>}<span class="op">,</span></span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(fwmData<span class="op">.</span><span class="at">ch</span><span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">max</span>(fwmData<span class="op">.</span><span class="at">P</span><span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">n</span>) <span class="op">*</span> <span class="fl">1.1</span>})<span class="op">,</span></span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(fwmData<span class="op">.</span><span class="at">P</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"f"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"n"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"onChannel"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(fwmData<span class="op">.</span><span class="at">P</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"f"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"n"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"onChannel"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`ν = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">f</span><span class="sc">}\n${</span>d<span class="op">.</span><span class="at">n</span><span class="sc">}</span><span class="vs"> products`</span>})</span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="139" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 138;"><span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;</span><span class="sc">${</span>fwm<span class="op">.</span><span class="at">N</span><span class="sc">}</span><span class="vs"> channels (blue) → </span><span class="sc">${</span>fwmData<span class="op">.</span><span class="at">total</span><span class="sc">}</span><span class="vs"> mixing products (N²(N−1)/2 = </span><span class="sc">${</span>fwm<span class="op">.</span><span class="at">N</span><span class="op">**</span><span class="dv">2</span><span class="op">*</span>(fwm<span class="op">.</span><span class="at">N</span><span class="op">-</span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span><span class="sc">}</span><span class="vs">),</span></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a><span class="vs">of which &lt;b&gt;</span><span class="sc">${</span>fwmData<span class="op">.</span><span class="at">hits</span><span class="sc">}</span><span class="vs">&lt;/b&gt; fall exactly on a signal channel.&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<section id="why-a-little-dispersion-helps-slide-87" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="why-a-little-dispersion-helps-slide-87"><span class="header-section-number">7.3.1</span> Why a little dispersion helps (slide 87)</h3>
+<p>FWM needs <strong>phase matching</strong>. The mismatch <span class="math inline">\(\Delta\beta\approx\frac{2\pi\lambda^2}{c}D\,\Delta\nu^2\)</span> grows with <span class="math inline">\(D\)</span>. The efficiency <span class="math inline">\(\eta\approx\frac{\alpha^2}{\alpha^2+\Delta\beta^2}\)</span> drops quickly when the channels walk off from each other. This is the reason for <strong>non-zero</strong> dispersion-shifted fibers.</p>
+<div id="cell-fig-fwm-eta" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dnu <span class="op">=</span> np.linspace(<span class="fl">10e9</span>, <span class="fl">200e9</span>, <span class="dv">400</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.2</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="fl">1e3</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, D <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.0</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">17</span>]):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> (<span class="fl">1.55e-6</span>) <span class="op">**</span> <span class="dv">2</span> <span class="op">/</span> c0 <span class="op">*</span> D <span class="op">*</span> PS <span class="op">*</span> dnu<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(dnu <span class="op">/</span> <span class="fl">1e9</span>, <span class="dv">10</span> <span class="op">*</span> np.log10(alpha<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (alpha<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> db<span class="op">**</span><span class="dv">2</span>)), color<span class="op">=</span>fl.PALETTE[k], label<span class="op">=</span><span class="ss">f"D = </span><span class="sc">{</span>D<span class="sc">}</span><span class="ss"> ps/nm/km"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"channel spacing (GHz)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"FWM efficiency η (dB)"</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-fwm-eta" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fwm-eta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="wdm_files/figure-html/fig-fwm-eta-output-1.png" width="727" height="425" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fwm-eta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.3: Approximate FWM efficiency versus channel spacing for fibers with different dispersion (α = 0.2 dB/km). At D = 0 (DSF) FWM is phase-matched for every spacing. A few ps/nm/km (NZ-DSF) is enough to suppress it.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="self-phase-modulation-and-chirp-slides-189190" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="self-phase-modulation-and-chirp-slides-189190"><span class="header-section-number">7.4</span> Self-phase modulation and chirp (slides 189–190)</h2>
+<p>With <span class="math inline">\(n=n_0+n_2I\)</span>, a pulse modulates its own phase, <span class="math inline">\(\phi_{NL}(t)=-\gamma P(t)L_\text{eff}\)</span>. The instantaneous frequency shift is <span class="math inline">\(\delta\omega=-d\phi_{NL}/dt\)</span>: red on the leading edge, blue on the trailing edge.</p>
+<div id="cell-fig-spm" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">600</span>) <span class="op">*</span> <span class="fl">1e-12</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>T0, P0, gam, Leff <span class="op">=</span> <span class="fl">20e-12</span>, <span class="fl">0.1</span>, <span class="fl">1.3e-3</span>, <span class="fl">21e3</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> P0 <span class="op">*</span> np.exp(<span class="op">-</span>(t <span class="op">/</span> T0) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> gam <span class="op">*</span> P <span class="op">*</span> Leff</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>dnu <span class="op">=</span> <span class="op">-</span>np.gradient(phi, t) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ax.plot(t <span class="op">*</span> <span class="fl">1e12</span>, P <span class="op">/</span> P0, color<span class="op">=</span>fl.INK2, label<span class="op">=</span><span class="st">"P(t)/P₀"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax.plot(t <span class="op">*</span> <span class="fl">1e12</span>, dnu <span class="op">/</span> np.<span class="bu">abs</span>(dnu).<span class="bu">max</span>(), color<span class="op">=</span>fl.PALETTE[<span class="dv">1</span>], label<span class="op">=</span><span class="ss">f"δν(t) / </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">abs</span>(dnu)<span class="sc">.</span><span class="bu">max</span>()<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> GHz"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"t (ps)"</span>)<span class="op">;</span> ax.legend()<span class="op">;</span> plt.show()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Max nonlinear phase = </span><span class="sc">{</span>phi<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss"> rad"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-spm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="wdm_files/figure-html/fig-spm-output-1.png" width="721" height="425" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.4: SPM-induced chirp of a 20 ps Gaussian pulse (peak 100 mW, γ = 1.3 /W/km, L_eff = 21 km).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Max nonlinear phase = 2.73 rad</code></pre>
+</div>
+</div>
+</section>
+<section id="stimulated-brillouin-scattering-slides-191194" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="stimulated-brillouin-scattering-slides-191194"><span class="header-section-number">7.5</span> Stimulated Brillouin scattering (slides 191–194)</h2>
+<p>A narrow-line, high-power signal is reflected back by the acoustic grating it creates itself. A classic estimate of the threshold is</p>
+<p><span class="math display">\[
+P_\text{th}\approx21\frac{A_\text{eff}}{g_BL_\text{eff}}\left(1+\frac{\Delta\nu_s}{\Delta\nu_B}\right),\qquad
+L_\text{eff}=\frac{1-e^{-\alpha L}}{\alpha},
+\]</span></p>
+<p>with <span class="math inline">\(g_B\approx5\times10^{-11}\)</span> m/W and a Brillouin linewidth <span class="math inline">\(\Delta\nu_B\approx30\)</span> MHz.</p>
+<div id="cell-fig-sbs" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Aeff, gB, dnB <span class="op">=</span> <span class="fl">80e-12</span>, <span class="fl">5e-11</span>, <span class="fl">30e6</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Leff <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span>alpha <span class="op">*</span> <span class="fl">50e3</span>)) <span class="op">/</span> alpha</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>lw <span class="op">=</span> np.logspace(<span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">200</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>Pth <span class="op">=</span> <span class="dv">21</span> <span class="op">*</span> Aeff <span class="op">/</span> (gB <span class="op">*</span> Leff) <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> lw <span class="op">/</span> dnB)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>ax.loglog(lw, Pth <span class="op">*</span> <span class="fl">1e3</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, txt <span class="kw">in</span> [(<span class="fl">1e5</span>, <span class="st">"ECL"</span>), (<span class="fl">1e7</span>, <span class="st">"DFB"</span>), (<span class="fl">5e9</span>, <span class="st">"10 Gb/s modulated"</span>)]:</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">":"</span>)<span class="op">;</span> ax.text(x <span class="op">*</span> <span class="fl">1.2</span>, <span class="fl">2e3</span>, txt, color<span class="op">=</span>fl.INK2, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"source linewidth (Hz)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"SBS threshold (mW)"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L_eff = </span><span class="sc">{</span>Leff<span class="op">/</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss"> km; narrow-line threshold ≈ </span><span class="sc">{</span><span class="dv">21</span><span class="op">*</span>Aeff<span class="op">/</span>(gB<span class="op">*</span>Leff)<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss"> mW"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-sbs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sbs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="wdm_files/figure-html/fig-sbs-output-1.png" width="791" height="489" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sbs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.5: SBS threshold versus source linewidth for SMF (A_eff = 80 µm²) over 50 km. A narrow external-cavity laser (kHz–MHz) hits SBS at a few mW. Broadening the line (dithering, modulation) pushes the threshold up.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>L_eff = 19.5 km; narrow-line threshold ≈ 1.7 mW</code></pre>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">7.6</span> Try it yourself</h2>
+<ol type="1">
+<li>Extend the FWM panel to compute the <strong>power</strong> of each product, <span class="math inline">\(P_{ijk}\propto\eta\,(D_{ijk}\gamma L_\text{eff})^2P_iP_jP_k\)</span> (degeneracy factor <span class="math inline">\(D_{ijk}=3\)</span> or 6), and the resulting SNR on the worst channel.</li>
+<li>Design an unequal channel plan for 8 channels in which <strong>no</strong> product falls on a channel, with the smallest total bandwidth. (Hint: Golomb rulers.)</li>
+<li>Implement the <strong>split-step Fourier method</strong> (a ~20-line loop alternating <code>fl.imdd_link</code>-style linear steps and <span class="math inline">\(e^{j\gamma|E|^2h}\)</span>) and observe SPM-induced spectral broadening and soliton formation for <span class="math inline">\(D&gt;0\)</span>.</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBmd20gPSBJbnB1dHMuZm9ybSh7XG4gIE46IElucHV0cy5yYW5nZShbMywgMTZdLCB7dmFsdWU6IDgsIHN0ZXA6IDEsIGxhYmVsOiBcIm51bWJlciBvZiBjaGFubmVsc1wifSksXG4gIHNwOiBJbnB1dHMucmFkaW8oW1wiZXF1YWxcIiwgXCJ1bmVxdWFsIChHb2xvbWItbGlrZSlcIl0sIHt2YWx1ZTogXCJlcXVhbFwiLCBsYWJlbDogXCJzcGFjaW5nXCJ9KVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImZ3bURhdGEgPSB7XG4gIGNvbnN0IGdvbG9tYiA9IFswLCAxLCA0LCA5LCAxNSwgMjIsIDMyLCAzNCwgNDksIDU1LCA3MiwgODYsIDEwNiwgMTE0LCAxMjYsIDE0OV07XG4gIGNvbnN0IGNoID0gZDMucmFuZ2UoZndtLk4pLm1hcChpID0+IGZ3bS5zcCA9PT0gXCJlcXVhbFwiID8gaSA6IGdvbG9tYltpXSAqIDAuNTUpO1xuICBjb25zdCBwcm9kcyA9IG5ldyBNYXAoKTtcbiAgZm9yIChjb25zdCBpIG9mIGNoKSBmb3IgKGNvbnN0IGogb2YgY2gpIGZvciAoY29uc3QgayBvZiBjaCkge1xuICAgIGlmIChrID09PSBpIHx8IGsgPT09IGopIGNvbnRpbnVlO1xuICAgIGlmIChqIDwgaSkgY29udGludWU7ICAgICAgICAgICAgICAgLy8gzr1faSArIM69X2ogc3ltbWV0cmljXG4gICAgY29uc3QgZiA9ICsoaSArIGogLSBrKS50b0ZpeGVkKDMpO1xuICAgIHByb2RzLnNldChmLCAocHJvZHMuZ2V0KGYpIHx8IDApICsgMSk7XG4gIH1cbiAgY29uc3QgUCA9IFsuLi5wcm9kc10ubWFwKChbZiwgbl0pID0+ICh7Ziwgbiwgb25DaGFubmVsOiBjaC5zb21lKGMgPT4gTWF0aC5hYnMoYyAtIGYpIDwgMWUtNil9KSk7XG4gIHJldHVybiB7Y2gsIFAsIGhpdHM6IGQzLnN1bShQLmZpbHRlcihkID0+IGQub25DaGFubmVsKSwgZCA9PiBkLm4pLCB0b3RhbDogZDMuc3VtKFAsIGQgPT4gZC5uKX07XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDEwNTApLCBoZWlnaHQ6IDI2MCwgeDoge2xhYmVsOiBcImZyZXF1ZW5jeSAodW5pdHMgb2Ygc3BhY2luZylcIn0sIHk6IHtsYWJlbDogXCJudW1iZXIgb2YgRldNIHByb2R1Y3RzXCIsIGdyaWQ6IHRydWV9LFxuICBjb2xvcjoge2RvbWFpbjogW3RydWUsIGZhbHNlXSwgcmFuZ2U6IFtcIiNlMzQ5NDhcIiwgXCIjYjliOGIyXCJdLCBsZWdlbmQ6IHRydWUsIHRpY2tGb3JtYXQ6IGQgPT4gZCA/IFwiZmFsbHMgb24gYSBjaGFubmVsXCIgOiBcImJldHdlZW4gY2hhbm5lbHNcIn0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ydWxlWChmd21EYXRhLmNoLCB7c3Ryb2tlOiBcIiMyYTc4ZDZcIiwgc3Ryb2tlV2lkdGg6IDMsIHkxOiAwLCB5MjogZDMubWF4KGZ3bURhdGEuUCwgZCA9PiBkLm4pICogMS4xfSksXG4gICAgUGxvdC5ydWxlWChmd21EYXRhLlAsIHt4OiBcImZcIiwgeTogXCJuXCIsIHN0cm9rZTogXCJvbkNoYW5uZWxcIiwgc3Ryb2tlV2lkdGg6IDJ9KSxcbiAgICBQbG90LmRvdChmd21EYXRhLlAsIHt4OiBcImZcIiwgeTogXCJuXCIsIGZpbGw6IFwib25DaGFubmVsXCIsIHI6IDMsIHRpcDogdHJ1ZSwgdGl0bGU6IGQgPT4gYM69ID0gJHtkLmZ9XFxuJHtkLm59IHByb2R1Y3RzYH0pXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+JHtmd20uTn0gY2hhbm5lbHMgKGJsdWUpIOKGkiAke2Z3bURhdGEudG90YWx9IG1peGluZyBwcm9kdWN0cyAoTsKyKE7iiJIxKS8yID0gJHtmd20uTioqMiooZndtLk4tMSkvMn0pLFxub2Ygd2hpY2ggPGI+JHtmd21EYXRhLmhpdHN9PC9iPiBmYWxsIGV4YWN0bHkgb24gYSBzaWduYWwgY2hhbm5lbC48L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2Z3bScpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./bitrate.html" class="pagination-link" aria-label="Bit rate, bandwidth and capacity">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bit rate, bandwidth and capacity</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./special-fbg.html" class="pagination-link" aria-label="Special fibers and fiber Bragg gratings">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Special fibers and fiber Bragg gratings</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># WDM, couplers and nonlinear effects {#sec-wdm}</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/wdm.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fiberlib <span class="im">as</span> fl</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>fl.use_style()</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>c0, PS <span class="op">=</span> fl.c0, fl.PS_NM_KM</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>*Slides 174–194.* One fiber, many colours. Wavelength-division multiplexing (WDM) multiplies the capacity of a</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>fiber by the number of channels, but it brings new problems: components that combine and split light, and</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>nonlinear interactions between channels.</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## The ITU grid (slides 175–176)</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>DWDM channels sit on a frequency grid anchored at 193.1 THz. A channel spacing $\Delta\nu$ corresponds to</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>$\Delta\lambda=\lambda^2\Delta\nu/c$.</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dnu <span class="kw">in</span> [<span class="dv">200</span>, <span class="dv">100</span>, <span class="dv">50</span>, <span class="fl">12.5</span>]:</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Δν = </span><span class="sc">{</span>dnu<span class="sc">:6.1f}</span><span class="ss"> GHz  ↔  Δλ = </span><span class="sc">{</span>(<span class="fl">1.55e-6</span>)<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dnu<span class="op">*</span><span class="fl">1e9</span><span class="op">/</span>c0<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.3f}</span><span class="ss"> nm at 1550 nm;  "</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"channels in the C-band (4.4 THz): </span><span class="sc">{</span><span class="bu">int</span>(<span class="fl">4.4e3</span><span class="op">/</span>dnu)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-grid</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "40 DWDM channels on the 100 GHz ITU grid across the C-band, drawn over the fiber loss. Each channel carries its own data stream (e.g. 100 Gb/s → 4 Tb/s per fiber)."</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> <span class="fl">193.1e12</span> <span class="op">+</span> np.arange(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>) <span class="op">*</span> <span class="fl">100e9</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>lam_ch <span class="op">=</span> c0 <span class="op">/</span> nu</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> np.linspace(<span class="dv">1520</span>, <span class="dv">1575</span>, <span class="dv">800</span>) <span class="op">*</span> <span class="fl">1e-9</span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">8.5</span>, <span class="fl">3.5</span>))</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>ax.plot(lam <span class="op">*</span> <span class="fl">1e9</span>, fl.attenuation_model(lam, OH_peak<span class="op">=</span><span class="dv">0</span>), color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"fiber loss (dB/km)"</span>)</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> ax.twinx()<span class="op">;</span> ax2.grid(<span class="va">False</span>)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>spec <span class="op">=</span> <span class="bu">sum</span>(np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((lam <span class="op">-</span> l) <span class="op">/</span> <span class="fl">0.08e-9</span>) <span class="op">**</span> <span class="dv">2</span>) <span class="cf">for</span> l <span class="kw">in</span> lam_ch)</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>ax2.fill_between(lam <span class="op">*</span> <span class="fl">1e9</span>, spec, color<span class="op">=</span>fl.PALETTE[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.5</span>, lw<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>ax2.set_yticks([])<span class="op">;</span> ax2.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"λ (nm)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"loss (dB/km)"</span>)<span class="op">;</span> ax.set_ylim(<span class="fl">0.15</span>, <span class="fl">0.22</span>)</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"C-band DWDM, 100 GHz spacing"</span>, loc<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Passive couplers (slides 177–184)</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>In a fused 2×2 coupler the evanescent tail of one core excites the other (slide 178). Coupled-mode theory gives a</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>periodic exchange of power along the coupling length $z$:</span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>P_1=P_0\cos^2(\kappa z),\qquad P_2=P_0\sin^2(\kappa z).</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-coupler</span></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Power exchange in a symmetric directional coupler. A 3 dB coupler needs κz = π/4. The coupling coefficient depends on wavelength, so a coupler designed for 1310 nm splits 1550 nm differently. This is the basis of the 1310/1550 WDM coupler."</span></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">400</span>)                  <span class="co"># mm</span></span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, (lam, kap) <span class="kw">in</span> <span class="bu">enumerate</span>([(<span class="dv">1310</span>, <span class="fl">0.10</span>), (<span class="dv">1550</span>, <span class="fl">0.16</span>)]):</span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>    ax.plot(z, np.cos(kap <span class="op">*</span> z) <span class="op">**</span> <span class="dv">2</span>, color<span class="op">=</span>fl.PALETTE[k], label<span class="op">=</span><span class="ss">f"P₁/P₀  </span><span class="sc">{</span>lam<span class="sc">}</span><span class="ss"> nm"</span>)</span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>    ax.plot(z, np.sin(kap <span class="op">*</span> z) <span class="op">**</span> <span class="dv">2</span>, <span class="st">"--"</span>, color<span class="op">=</span>fl.PALETTE[k], label<span class="op">=</span><span class="ss">f"P₂/P₀  </span><span class="sc">{</span>lam<span class="sc">}</span><span class="ss"> nm"</span>)</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>ax.axvline(np.pi <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="fl">0.16</span>, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>ax.text(np.pi <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="fl">0.16</span> <span class="op">+</span> <span class="fl">0.2</span>, <span class="fl">0.55</span>, <span class="st">"3 dB at 1550 nm"</span>, color<span class="op">=</span>fl.INK2, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"coupling length z (mm)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"power fraction"</span>)<span class="op">;</span> ax.legend(ncol<span class="op">=</span><span class="dv">2</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>The performance figures (slide 179) are, in dB:</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> figure <span class="pp">|</span> definition <span class="pp">|</span> 3 dB coupler <span class="pp">|</span> tap coupler <span class="pp">|</span></span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> split ratio <span class="pp">|</span> $P_2/(P_1+P_2)$ <span class="pp">|</span> 50 % <span class="pp">|</span> 0.5 % <span class="pp">|</span></span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> excess loss <span class="pp">|</span> $10\log\frac{P_0}{P_1+P_2}$ <span class="pp">|</span> ~0.1 dB <span class="pp">|</span> ~0.1 dB <span class="pp">|</span></span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> insertion loss <span class="pp">|</span> $10\log\frac{P_0}{P_j}$ <span class="pp">|</span> ~3.1 dB <span class="pp">|</span> ~23 dB (tap port) <span class="pp">|</span></span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> crosstalk / directivity <span class="pp">|</span> $10\log\frac{P_3}{P_0}$ <span class="pp">|</span> −50 to −70 dB <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a><span class="fu">### Star couplers</span></span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a>An $N\times N$ star built from 3 dB couplers needs $\frac N2\log_2N$ couplers, and each output gets $1/N$ of the</span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a>power. That is a splitting loss of $10\log_{10}N$ dB, plus the excess loss of each stage.</span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>, <span class="dv">64</span>]:</span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a>    st <span class="op">=</span> <span class="bu">int</span>(np.log2(N))</span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"N = </span><span class="sc">{</span>N<span class="sc">:3d}</span><span class="ss">: </span><span class="sc">{</span>N<span class="op">//</span><span class="dv">2</span><span class="op">*</span>st<span class="sc">:4d}</span><span class="ss"> couplers, </span><span class="sc">{</span>st<span class="sc">}</span><span class="ss"> stages, splitting loss </span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(N)<span class="sc">:5.1f}</span><span class="ss"> dB, "</span></span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a>          <span class="ss">f"with 0.1 dB excess/stage: </span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(N)<span class="op">+</span><span class="fl">0.1</span><span class="op">*</span>st<span class="sc">:5.1f}</span><span class="ss"> dB"</span>)</span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>This is the architecture of a **passive optical network (PON)** that brings fiber to the home: one 1×32 or 1×64</span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a>splitter feeds many households.</span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Four-wave mixing (slides 185–188)</span></span>
+<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a>The third-order polarisation $P\propto a_3E^3$ mixes three channels $\nu_i,\nu_j,\nu_k$ into new frequencies</span>
+<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a>\nu_{ijk}=\nu_i+\nu_j-\nu_k .</span>
+<span id="cb15-109"><a href="#cb15-109" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a>With **equally spaced** channels, many products fall **exactly on top of existing channels** and become crosstalk</span>
+<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a>that cannot be filtered. With $N$ channels there are $N^2(N-1)/2$ products.</span>
+<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>viewof fwm <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a>  <span class="dt">N</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">3</span><span class="op">,</span> <span class="dv">16</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"number of channels"</span>})<span class="op">,</span></span>
+<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sp</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"equal"</span><span class="op">,</span> <span class="st">"unequal (Golomb-like)"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"equal"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"spacing"</span>})</span>
+<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a>fwmData <span class="op">=</span> {</span>
+<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> golomb <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">15</span><span class="op">,</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">32</span><span class="op">,</span> <span class="dv">34</span><span class="op">,</span> <span class="dv">49</span><span class="op">,</span> <span class="dv">55</span><span class="op">,</span> <span class="dv">72</span><span class="op">,</span> <span class="dv">86</span><span class="op">,</span> <span class="dv">106</span><span class="op">,</span> <span class="dv">114</span><span class="op">,</span> <span class="dv">126</span><span class="op">,</span> <span class="dv">149</span>]<span class="op">;</span></span>
+<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ch <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(fwm<span class="op">.</span><span class="at">N</span>)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> fwm<span class="op">.</span><span class="at">sp</span> <span class="op">===</span> <span class="st">"equal"</span> <span class="op">?</span> i <span class="op">:</span> golomb[i] <span class="op">*</span> <span class="fl">0.55</span>)<span class="op">;</span></span>
+<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> prods <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>()<span class="op">;</span></span>
+<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> i <span class="kw">of</span> ch) <span class="cf">for</span> (<span class="kw">const</span> j <span class="kw">of</span> ch) <span class="cf">for</span> (<span class="kw">const</span> k <span class="kw">of</span> ch) {</span>
+<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (k <span class="op">===</span> i <span class="op">||</span> k <span class="op">===</span> j) <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (j <span class="op">&lt;</span> i) <span class="cf">continue</span><span class="op">;</span>               <span class="co">// ν_i + ν_j symmetric</span></span>
+<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> f <span class="op">=</span> <span class="op">+</span>(i <span class="op">+</span> j <span class="op">-</span> k)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a>    prods<span class="op">.</span><span class="fu">set</span>(f<span class="op">,</span> (prods<span class="op">.</span><span class="fu">get</span>(f) <span class="op">||</span> <span class="dv">0</span>) <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> P <span class="op">=</span> [<span class="op">...</span>prods]<span class="op">.</span><span class="fu">map</span>(([f<span class="op">,</span> n]) <span class="kw">=&gt;</span> ({f<span class="op">,</span> n<span class="op">,</span> <span class="dt">onChannel</span><span class="op">:</span> ch<span class="op">.</span><span class="fu">some</span>(c <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(c <span class="op">-</span> f) <span class="op">&lt;</span> <span class="fl">1e-6</span>)}))<span class="op">;</span></span>
+<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {ch<span class="op">,</span> P<span class="op">,</span> <span class="dt">hits</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">sum</span>(P<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">onChannel</span>)<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">n</span>)<span class="op">,</span> <span class="dt">total</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">sum</span>(P<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">n</span>)}<span class="op">;</span></span>
+<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">260</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"frequency (units of spacing)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"number of FWM products"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="kw">true</span><span class="op">,</span> <span class="kw">false</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#b9b8b2"</span>]<span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d <span class="op">?</span> <span class="st">"falls on a channel"</span> <span class="op">:</span> <span class="st">"between channels"</span>}<span class="op">,</span></span>
+<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(fwmData<span class="op">.</span><span class="at">ch</span><span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">max</span>(fwmData<span class="op">.</span><span class="at">P</span><span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">n</span>) <span class="op">*</span> <span class="fl">1.1</span>})<span class="op">,</span></span>
+<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(fwmData<span class="op">.</span><span class="at">P</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"f"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"n"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"onChannel"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(fwmData<span class="op">.</span><span class="at">P</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"f"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"n"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"onChannel"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`ν = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">f</span><span class="sc">}\n${</span>d<span class="op">.</span><span class="at">n</span><span class="sc">}</span><span class="vs"> products`</span>})</span>
+<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;</span><span class="sc">${</span>fwm<span class="op">.</span><span class="at">N</span><span class="sc">}</span><span class="vs"> channels (blue) → </span><span class="sc">${</span>fwmData<span class="op">.</span><span class="at">total</span><span class="sc">}</span><span class="vs"> mixing products (N²(N−1)/2 = </span><span class="sc">${</span>fwm<span class="op">.</span><span class="at">N</span><span class="op">**</span><span class="dv">2</span><span class="op">*</span>(fwm<span class="op">.</span><span class="at">N</span><span class="op">-</span><span class="dv">1</span>)<span class="op">/</span><span class="dv">2</span><span class="sc">}</span><span class="vs">),</span></span>
+<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a><span class="vs">of which &lt;b&gt;</span><span class="sc">${</span>fwmData<span class="op">.</span><span class="at">hits</span><span class="sc">}</span><span class="vs">&lt;/b&gt; fall exactly on a signal channel.&lt;/div&gt;`</span></span>
+<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-159"><a href="#cb15-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-160"><a href="#cb15-160" aria-hidden="true" tabindex="-1"></a><span class="fu">### Why a little dispersion helps (slide 87)</span></span>
+<span id="cb15-161"><a href="#cb15-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-162"><a href="#cb15-162" aria-hidden="true" tabindex="-1"></a>FWM needs **phase matching**. The mismatch $\Delta\beta\approx\frac{2\pi\lambda^2}{c}D\,\Delta\nu^2$ grows with $D$. The</span>
+<span id="cb15-163"><a href="#cb15-163" aria-hidden="true" tabindex="-1"></a>efficiency $\eta\approx\frac{\alpha^2}{\alpha^2+\Delta\beta^2}$ drops quickly when the channels walk off from each other.</span>
+<span id="cb15-164"><a href="#cb15-164" aria-hidden="true" tabindex="-1"></a>This is the reason for **non-zero** dispersion-shifted fibers.</span>
+<span id="cb15-165"><a href="#cb15-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-168"><a href="#cb15-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-169"><a href="#cb15-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-fwm-eta</span></span>
+<span id="cb15-170"><a href="#cb15-170" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Approximate FWM efficiency versus channel spacing for fibers with different dispersion (α = 0.2 dB/km). At D = 0 (DSF) FWM is phase-matched for every spacing. A few ps/nm/km (NZ-DSF) is enough to suppress it."</span></span>
+<span id="cb15-171"><a href="#cb15-171" aria-hidden="true" tabindex="-1"></a>dnu <span class="op">=</span> np.linspace(<span class="fl">10e9</span>, <span class="fl">200e9</span>, <span class="dv">400</span>)</span>
+<span id="cb15-172"><a href="#cb15-172" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.2</span> <span class="op">/</span> <span class="fl">4.343</span> <span class="op">/</span> <span class="fl">1e3</span></span>
+<span id="cb15-173"><a href="#cb15-173" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb15-174"><a href="#cb15-174" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, D <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="fl">0.0</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">17</span>]):</span>
+<span id="cb15-175"><a href="#cb15-175" aria-hidden="true" tabindex="-1"></a>    db <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> (<span class="fl">1.55e-6</span>) <span class="op">**</span> <span class="dv">2</span> <span class="op">/</span> c0 <span class="op">*</span> D <span class="op">*</span> PS <span class="op">*</span> dnu<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb15-176"><a href="#cb15-176" aria-hidden="true" tabindex="-1"></a>    ax.plot(dnu <span class="op">/</span> <span class="fl">1e9</span>, <span class="dv">10</span> <span class="op">*</span> np.log10(alpha<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (alpha<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> db<span class="op">**</span><span class="dv">2</span>)), color<span class="op">=</span>fl.PALETTE[k], label<span class="op">=</span><span class="ss">f"D = </span><span class="sc">{</span>D<span class="sc">}</span><span class="ss"> ps/nm/km"</span>)</span>
+<span id="cb15-177"><a href="#cb15-177" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"channel spacing (GHz)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"FWM efficiency η (dB)"</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb15-178"><a href="#cb15-178" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-179"><a href="#cb15-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-180"><a href="#cb15-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-181"><a href="#cb15-181" aria-hidden="true" tabindex="-1"></a><span class="fu">## Self-phase modulation and chirp (slides 189–190)</span></span>
+<span id="cb15-182"><a href="#cb15-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-183"><a href="#cb15-183" aria-hidden="true" tabindex="-1"></a>With $n=n_0+n_2I$, a pulse modulates its own phase, $\phi_{NL}(t)=-\gamma P(t)L_\text{eff}$. The instantaneous</span>
+<span id="cb15-184"><a href="#cb15-184" aria-hidden="true" tabindex="-1"></a>frequency shift is $\delta\omega=-d\phi_{NL}/dt$: red on the leading edge, blue on the trailing edge.</span>
+<span id="cb15-185"><a href="#cb15-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-188"><a href="#cb15-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-189"><a href="#cb15-189" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-spm</span></span>
+<span id="cb15-190"><a href="#cb15-190" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "SPM-induced chirp of a 20 ps Gaussian pulse (peak 100 mW, γ = 1.3 /W/km, L_eff = 21 km)."</span></span>
+<span id="cb15-191"><a href="#cb15-191" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">60</span>, <span class="dv">60</span>, <span class="dv">600</span>) <span class="op">*</span> <span class="fl">1e-12</span></span>
+<span id="cb15-192"><a href="#cb15-192" aria-hidden="true" tabindex="-1"></a>T0, P0, gam, Leff <span class="op">=</span> <span class="fl">20e-12</span>, <span class="fl">0.1</span>, <span class="fl">1.3e-3</span>, <span class="fl">21e3</span></span>
+<span id="cb15-193"><a href="#cb15-193" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> P0 <span class="op">*</span> np.exp(<span class="op">-</span>(t <span class="op">/</span> T0) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb15-194"><a href="#cb15-194" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> gam <span class="op">*</span> P <span class="op">*</span> Leff</span>
+<span id="cb15-195"><a href="#cb15-195" aria-hidden="true" tabindex="-1"></a>dnu <span class="op">=</span> <span class="op">-</span>np.gradient(phi, t) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi)</span>
+<span id="cb15-196"><a href="#cb15-196" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb15-197"><a href="#cb15-197" aria-hidden="true" tabindex="-1"></a>ax.plot(t <span class="op">*</span> <span class="fl">1e12</span>, P <span class="op">/</span> P0, color<span class="op">=</span>fl.INK2, label<span class="op">=</span><span class="st">"P(t)/P₀"</span>)</span>
+<span id="cb15-198"><a href="#cb15-198" aria-hidden="true" tabindex="-1"></a>ax.plot(t <span class="op">*</span> <span class="fl">1e12</span>, dnu <span class="op">/</span> np.<span class="bu">abs</span>(dnu).<span class="bu">max</span>(), color<span class="op">=</span>fl.PALETTE[<span class="dv">1</span>], label<span class="op">=</span><span class="ss">f"δν(t) / </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">abs</span>(dnu)<span class="sc">.</span><span class="bu">max</span>()<span class="op">/</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> GHz"</span>)</span>
+<span id="cb15-199"><a href="#cb15-199" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">0</span>, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb15-200"><a href="#cb15-200" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"t (ps)"</span>)<span class="op">;</span> ax.legend()<span class="op">;</span> plt.show()</span>
+<span id="cb15-201"><a href="#cb15-201" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Max nonlinear phase = </span><span class="sc">{</span>phi<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.2f}</span><span class="ss"> rad"</span>)</span>
+<span id="cb15-202"><a href="#cb15-202" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-203"><a href="#cb15-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-204"><a href="#cb15-204" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stimulated Brillouin scattering (slides 191–194)</span></span>
+<span id="cb15-205"><a href="#cb15-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-206"><a href="#cb15-206" aria-hidden="true" tabindex="-1"></a>A narrow-line, high-power signal is reflected back by the acoustic grating it creates itself. A classic estimate of</span>
+<span id="cb15-207"><a href="#cb15-207" aria-hidden="true" tabindex="-1"></a>the threshold is</span>
+<span id="cb15-208"><a href="#cb15-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-209"><a href="#cb15-209" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb15-210"><a href="#cb15-210" aria-hidden="true" tabindex="-1"></a>P_\text{th}\approx21\frac{A_\text{eff}}{g_BL_\text{eff}}\left(1+\frac{\Delta\nu_s}{\Delta\nu_B}\right),\qquad</span>
+<span id="cb15-211"><a href="#cb15-211" aria-hidden="true" tabindex="-1"></a>L_\text{eff}=\frac{1-e^{-\alpha L}}{\alpha},</span>
+<span id="cb15-212"><a href="#cb15-212" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb15-213"><a href="#cb15-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-214"><a href="#cb15-214" aria-hidden="true" tabindex="-1"></a>with $g_B\approx5\times10^{-11}$ m/W and a Brillouin linewidth $\Delta\nu_B\approx30$ MHz.</span>
+<span id="cb15-215"><a href="#cb15-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-218"><a href="#cb15-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb15-219"><a href="#cb15-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-sbs</span></span>
+<span id="cb15-220"><a href="#cb15-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "SBS threshold versus source linewidth for SMF (A_eff = 80 µm²) over 50 km. A narrow external-cavity laser (kHz–MHz) hits SBS at a few mW. Broadening the line (dithering, modulation) pushes the threshold up."</span></span>
+<span id="cb15-221"><a href="#cb15-221" aria-hidden="true" tabindex="-1"></a>Aeff, gB, dnB <span class="op">=</span> <span class="fl">80e-12</span>, <span class="fl">5e-11</span>, <span class="fl">30e6</span></span>
+<span id="cb15-222"><a href="#cb15-222" aria-hidden="true" tabindex="-1"></a>Leff <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span>alpha <span class="op">*</span> <span class="fl">50e3</span>)) <span class="op">/</span> alpha</span>
+<span id="cb15-223"><a href="#cb15-223" aria-hidden="true" tabindex="-1"></a>lw <span class="op">=</span> np.logspace(<span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">200</span>)</span>
+<span id="cb15-224"><a href="#cb15-224" aria-hidden="true" tabindex="-1"></a>Pth <span class="op">=</span> <span class="dv">21</span> <span class="op">*</span> Aeff <span class="op">/</span> (gB <span class="op">*</span> Leff) <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> lw <span class="op">/</span> dnB)</span>
+<span id="cb15-225"><a href="#cb15-225" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb15-226"><a href="#cb15-226" aria-hidden="true" tabindex="-1"></a>ax.loglog(lw, Pth <span class="op">*</span> <span class="fl">1e3</span>)</span>
+<span id="cb15-227"><a href="#cb15-227" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, txt <span class="kw">in</span> [(<span class="fl">1e5</span>, <span class="st">"ECL"</span>), (<span class="fl">1e7</span>, <span class="st">"DFB"</span>), (<span class="fl">5e9</span>, <span class="st">"10 Gb/s modulated"</span>)]:</span>
+<span id="cb15-228"><a href="#cb15-228" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">":"</span>)<span class="op">;</span> ax.text(x <span class="op">*</span> <span class="fl">1.2</span>, <span class="fl">2e3</span>, txt, color<span class="op">=</span>fl.INK2, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb15-229"><a href="#cb15-229" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"source linewidth (Hz)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"SBS threshold (mW)"</span>)</span>
+<span id="cb15-230"><a href="#cb15-230" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-231"><a href="#cb15-231" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L_eff = </span><span class="sc">{</span>Leff<span class="op">/</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss"> km; narrow-line threshold ≈ </span><span class="sc">{</span><span class="dv">21</span><span class="op">*</span>Aeff<span class="op">/</span>(gB<span class="op">*</span>Leff)<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss"> mW"</span>)</span>
+<span id="cb15-232"><a href="#cb15-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-233"><a href="#cb15-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-234"><a href="#cb15-234" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb15-235"><a href="#cb15-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-236"><a href="#cb15-236" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Extend the FWM panel to compute the **power** of each product,</span>
+<span id="cb15-237"><a href="#cb15-237" aria-hidden="true" tabindex="-1"></a>   $P_{ijk}\propto\eta\,(D_{ijk}\gamma L_\text{eff})^2P_iP_jP_k$ (degeneracy factor $D_{ijk}=3$ or 6), and the resulting</span>
+<span id="cb15-238"><a href="#cb15-238" aria-hidden="true" tabindex="-1"></a>   SNR on the worst channel.</span>
+<span id="cb15-239"><a href="#cb15-239" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Design an unequal channel plan for 8 channels in which **no** product falls on a channel, with the smallest</span>
+<span id="cb15-240"><a href="#cb15-240" aria-hidden="true" tabindex="-1"></a>   total bandwidth. (Hint: Golomb rulers.)</span>
+<span id="cb15-241"><a href="#cb15-241" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Implement the **split-step Fourier method** (a ~20-line loop alternating <span class="in">`fl.imdd_link`</span>-style linear steps and</span>
+<span id="cb15-242"><a href="#cb15-242" aria-hidden="true" tabindex="-1"></a>   $e^{j\gamma|E|^2h}$) and observe SPM-induced spectral broadening and soliton formation for $D&gt;0$.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter2/wdm.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Planar dielectric waveguides – Dielectric Waveguides and Optical Fibers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./fibers.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./planar.html">Guiding light</a></li><li class="breadcrumb-item"><a href="./planar.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Planar dielectric waveguides</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Dielectric Waveguides and Optical Fibers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter2/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guiding light</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./planar.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Planar dielectric waveguides</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fibers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Step-index optical fibers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Spreading and losing light</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Dispersion</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./grin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Graded-index fibers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./attenuation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Attenuation and bending loss</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">From fibers to systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bitrate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bit rate, bandwidth and capacity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wdm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">WDM, couplers and nonlinear effects</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Beyond telecom</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./special-fbg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Special fibers and fiber Bragg gratings</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Fiber sensors: OTDR, distributed sensing, interferometers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Projects and new ideas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-waveguide-condition" id="toc-the-waveguide-condition" class="nav-link active" data-scroll-target="#the-waveguide-condition"><span class="header-section-number">1.1</span> The waveguide condition</a>
+  <ul class="collapse">
+  <li><a href="#graphical-solution-live" id="toc-graphical-solution-live" class="nav-link" data-scroll-target="#graphical-solution-live"><span class="header-section-number">1.1.1</span> Graphical solution, live</a></li>
+  </ul></li>
+  <li><a href="#worked-example-the-20-µm-guide-slides-2426" id="toc-worked-example-the-20-µm-guide-slides-2426" class="nav-link" data-scroll-target="#worked-example-the-20-µm-guide-slides-2426"><span class="header-section-number">1.2</span> Worked example: the 20 µm guide (slides 24–26)</a>
+  <ul class="collapse">
+  <li><a href="#mode-field-patterns" id="toc-mode-field-patterns" class="nav-link" data-scroll-target="#mode-field-patterns"><span class="header-section-number">1.2.1</span> Mode field patterns</a></li>
+  <li><a href="#mode-field-width-slide-29" id="toc-mode-field-width-slide-29" class="nav-link" data-scroll-target="#mode-field-width-slide-29"><span class="header-section-number">1.2.2</span> Mode field width (slide 29)</a></li>
+  </ul></li>
+  <li><a href="#v-number-and-number-of-modes-slides-22-28" id="toc-v-number-and-number-of-modes-slides-22-28" class="nav-link" data-scroll-target="#v-number-and-number-of-modes-slides-22-28"><span class="header-section-number">1.3</span> <span class="math inline">\(V\)</span>-number and number of modes (slides 22, 28)</a></li>
+  <li><a href="#dispersion-diagram-and-group-velocity-slides-3039" id="toc-dispersion-diagram-and-group-velocity-slides-3039" class="nav-link" data-scroll-target="#dispersion-diagram-and-group-velocity-slides-3039"><span class="header-section-number">1.4</span> Dispersion diagram and group velocity (slides 30–39)</a>
+  <ul class="collapse">
+  <li><a href="#intermodal-dispersion-of-the-slab" id="toc-intermodal-dispersion-of-the-slab" class="nav-link" data-scroll-target="#intermodal-dispersion-of-the-slab"><span class="header-section-number">1.4.1</span> Intermodal dispersion of the slab</a></li>
+  </ul></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">1.5</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter2/planar.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./planar.html">Guiding light</a></li><li class="breadcrumb-item"><a href="./planar.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Planar dielectric waveguides</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-planar" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Planar dielectric waveguides</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter2/notebooks/planar.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 7–39.</em> A core of index <span class="math inline">\(n_1\)</span> and thickness <span class="math inline">\(2a\)</span> sandwiched between two claddings of index <span class="math inline">\(n_2&lt;n_1\)</span>. It is the simplest waveguide, and almost everything we will say about fibers already appears here: modes, cut-off, the <span class="math inline">\(V\)</span>-number, evanescent tails and dispersion.</p>
+<section id="the-waveguide-condition" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-waveguide-condition"><span class="header-section-number">1.1</span> The waveguide condition</h2>
+<p>A ray zig-zagging at angle <span class="math inline">\(\theta\)</span> (from the normal) must <strong>interfere constructively with itself</strong> after two reflections (slides 9–11). With <span class="math inline">\(k_1=2\pi n_1/\lambda\)</span> and a phase change <span class="math inline">\(\phi\)</span> at each total internal reflection (TIR):</p>
+<p><span id="eq-wg-condition"><span class="math display">\[
+\frac{2\pi n_1 (2a)}{\lambda}\cos\theta_m-\phi_m=m\pi ,\qquad m=0,1,2,\dots
+\tag{1.1}\]</span></span></p>
+<p>The TIR phase for TE (E along <span class="math inline">\(x\)</span>, perpendicular to the plane of incidence) and TM polarisation is</p>
+<p><span class="math display">\[
+\tan\frac{\phi_m}{2}=\frac{\sqrt{\sin^2\theta_m-(n_2/n_1)^2}}{\cos\theta_m}\;(\text{TE}),\qquad
+\tan\frac{\phi_m}{2}=\frac{\sqrt{\sin^2\theta_m-(n_2/n_1)^2}}{(n_2/n_1)^2\cos\theta_m}\;(\text{TM}).
+\]</span></p>
+<p>Each allowed angle <span class="math inline">\(\theta_m\)</span> is a <strong>mode</strong>. Its propagation constant along the guide is <span class="math inline">\(\beta_m=k_1\sin\theta_m\)</span>, and the transverse one is <span class="math inline">\(\kappa_m=k_1\cos\theta_m\)</span> (slide 12). We can write <span class="math inline">\(\beta_m = k_0 n_\text{eff}\)</span> with <span class="math inline">\(n_2&lt;n_\text{eff}=n_1\sin\theta_m&lt;n_1\)</span>.</p>
+<section id="graphical-solution-live" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="graphical-solution-live"><span class="header-section-number">1.1.1</span> Graphical solution, live</h3>
+<p>Introduce <span class="math inline">\(u=k_1 a\cos\theta\)</span> and <span class="math inline">\(w=a\sqrt{\beta^2-k_0^2n_2^2}\)</span>. Then <span class="math inline">\(u^2+w^2=V^2\)</span>, and <a href="#eq-wg-condition" class="quarto-xref">Equation&nbsp;<span>1.1</span></a> becomes the classic pair (TE):</p>
+<p><span class="math display">\[
+w = u\tan u \;\;(\text{even modes } m=0,2,\dots),\qquad
+w = -u\cot u \;\;(\text{odd modes } m=1,3,\dots).
+\]</span></p>
+<p>The guided modes are the intersections of these curves with the circle of radius <span class="math inline">\(V\)</span>. Move the slider: a new mode appears each time <span class="math inline">\(V\)</span> crosses a multiple of <span class="math inline">\(\pi/2\)</span>.</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="53" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 52;"><span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>viewof Vslab <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.2</span><span class="op">,</span> <span class="dv">12</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">3.15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"V-number"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="59" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 58;"><span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>slabCurves <span class="op">=</span> {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> <span class="dv">9</span><span class="op">;</span> k<span class="op">++</span>) {           <span class="co">// branches of u tan u and -u cot u</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> u0 <span class="op">=</span> k <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span><span class="op">,</span> even <span class="op">=</span> k <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">400</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> u <span class="op">=</span> u0 <span class="op">+</span> (<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> i <span class="op">/</span> <span class="dv">400</span><span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> w <span class="op">=</span> even <span class="op">?</span> u <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tan</span>(u) <span class="op">:</span> <span class="op">-</span>u <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tan</span>(u)<span class="op">;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (w <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> w <span class="op">&lt;</span> <span class="dv">14</span>) pts<span class="op">.</span><span class="fu">push</span>({u<span class="op">,</span> w<span class="op">,</span> <span class="dt">branch</span><span class="op">:</span> k<span class="op">,</span> <span class="dt">parity</span><span class="op">:</span> even <span class="op">?</span> <span class="st">"even (u tan u)"</span> <span class="op">:</span> <span class="st">"odd (−u cot u)"</span>})<span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> pts<span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>slabRoots <span class="op">=</span> {</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">&lt;</span> Vslab<span class="op">;</span> k<span class="op">++</span>) {</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> even <span class="op">=</span> k <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> f <span class="op">=</span> u <span class="kw">=&gt;</span> (even <span class="op">?</span> u <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tan</span>(u) <span class="op">:</span> <span class="op">-</span>u <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tan</span>(u)) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(Vslab<span class="op">*</span>Vslab <span class="op">-</span> u<span class="op">*</span>u<span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> lo <span class="op">=</span> k <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">+</span> <span class="fl">1e-9</span><span class="op">,</span> hi <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>((k <span class="op">+</span> <span class="dv">1</span>) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> <span class="fl">1e-9</span><span class="op">,</span> Vslab)<span class="op">;</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> it <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> it <span class="op">&lt;</span> <span class="dv">80</span><span class="op">;</span> it<span class="op">++</span>) { <span class="kw">const</span> mid <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> (<span class="fu">f</span>(lo) <span class="op">*</span> <span class="fu">f</span>(mid) <span class="op">&lt;=</span> <span class="dv">0</span>) <span class="op">?</span> hi <span class="op">=</span> mid <span class="op">:</span> lo <span class="op">=</span> mid<span class="op">;</span> }</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> u <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    out<span class="op">.</span><span class="fu">push</span>({<span class="dt">m</span><span class="op">:</span> k<span class="op">,</span> u<span class="op">,</span> <span class="dt">w</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(Vslab<span class="op">*</span>Vslab <span class="op">-</span> u<span class="op">*</span>u<span class="op">,</span> <span class="dv">0</span>))<span class="op">,</span> <span class="dt">b</span><span class="op">:</span> <span class="dv">1</span> <span class="op">-</span> (u<span class="op">/</span>Vslab)<span class="op">**</span><span class="dv">2</span>})<span class="op">;</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">640</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">380</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"u = k₁a cos θ"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">12.5</span>]}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">12.5</span>]}<span class="op">,</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="st">"even (u tan u)"</span><span class="op">,</span> <span class="st">"odd (−u cot u)"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#eb6834"</span>]<span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(slabCurves<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"branch"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"parity"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">1.0001</span><span class="op">,</span> <span class="fl">0.005</span>)<span class="op">.</span><span class="fu">map</span>(t <span class="kw">=&gt;</span> ({<span class="dt">u</span><span class="op">:</span> Vslab<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(t<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span>)<span class="op">,</span> <span class="dt">w</span><span class="op">:</span> Vslab<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(t<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span>)}))<span class="op">,</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>              {<span class="dt">x</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(slabRoots<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"white"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>             <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`TE</span><span class="sc">${</span>d<span class="op">.</span><span class="at">m</span><span class="sc">}\n</span><span class="vs">u = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">u</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}\n</span><span class="vs">w = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">w</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}\n</span><span class="vs">b = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">b</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">`</span>})<span class="op">,</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(slabRoots<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`TE</span><span class="sc">${</span>d<span class="op">.</span><span class="at">m</span><span class="sc">}</span><span class="vs">`</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">14</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span>})<span class="op">,</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="99" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 98;"><span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;V = </span><span class="sc">${</span>Vslab<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> → &lt;b&gt;</span><span class="sc">${</span>slabRoots<span class="op">.</span><span class="at">length</span><span class="sc">}</span><span class="vs"> TE mode(s)&lt;/b&gt;</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="vs">  (formula: M = ⌊2V/π⌋ + 1 = </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="dv">2</span><span class="op">*</span>Vslab<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="vs">).</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>Vslab <span class="op">&lt;</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span> <span class="op">?</span> <span class="st">"Single-mode: V &lt; π/2."</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="worked-example-the-20-µm-guide-slides-2426" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="worked-example-the-20-µm-guide-slides-2426"><span class="header-section-number">1.2</span> Worked example: the 20 µm guide (slides 24–26)</h2>
+<blockquote class="blockquote">
+<p>A planar guide with <span class="math inline">\(2a=20\)</span> µm, <span class="math inline">\(n_1=1.455\)</span>, <span class="math inline">\(n_2=1.440\)</span>, <span class="math inline">\(\lambda=900\)</span> nm. Find the modes.</p>
+</blockquote>
+<div id="7d35c6ec" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d, wl, n1, n2 <span class="op">=</span> <span class="fl">20e-6</span>, <span class="fl">900e-9</span>, <span class="fl">1.455</span>, <span class="fl">1.440</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>th <span class="op">=</span> fl.slab_modes(d, wl, n1, n2, <span class="st">"TE"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>pen <span class="op">=</span> fl.slab_penetration(th, wl, n1, n2)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> fl.V_number(d <span class="op">/</span> <span class="dv">2</span>, wl, n1, n2)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>tab <span class="op">=</span> pd.DataFrame({<span class="st">"m"</span>: <span class="bu">range</span>(<span class="bu">len</span>(th)),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"θ_m (deg)"</span>: np.degrees(th).<span class="bu">round</span>(<span class="dv">1</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"δ_m (µm)"</span>: (pen <span class="op">*</span> <span class="fl">1e6</span>).<span class="bu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"n_eff"</span>: (n1 <span class="op">*</span> np.sin(th)).<span class="bu">round</span>(<span class="dv">4</span>)})</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"V = </span><span class="sc">{</span>V<span class="sc">:.2f}</span><span class="ss">, critical angle θc = </span><span class="sc">{</span>np<span class="sc">.</span>degrees(np.arcsin(n2<span class="op">/</span>n1))<span class="sc">:.2f}</span><span class="ss">°, "</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"number of TE modes = </span><span class="sc">{</span><span class="bu">len</span>(th)<span class="sc">}</span><span class="ss"> (TM: </span><span class="sc">{</span><span class="bu">len</span>(fl.slab_modes(d, wl, n1, n2, <span class="st">'TM'</span>))<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>tab.style.hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>V = 14.55, critical angle θc = 81.77°, number of TE modes = 10 (TM: 10)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<style type="text/css">
+</style>
+
+<table id="T_b5d47" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_b5d47_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">m</th>
+<th id="T_b5d47_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">θ_m (deg)</th>
+<th id="T_b5d47_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">δ_m (µm)</th>
+<th id="T_b5d47_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">n_eff</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_b5d47_row0_col0" class="data row0 col0">0</td>
+<td id="T_b5d47_row0_col1" class="data row0 col1">89.200000</td>
+<td id="T_b5d47_row0_col2" class="data row0 col2">0.691000</td>
+<td id="T_b5d47_row0_col3" class="data row0 col3">1.454800</td>
+</tr>
+<tr class="even">
+<td id="T_b5d47_row1_col0" class="data row1 col0">1</td>
+<td id="T_b5d47_row1_col1" class="data row1 col1">88.300000</td>
+<td id="T_b5d47_row1_col2" class="data row1 col2">0.702000</td>
+<td id="T_b5d47_row1_col3" class="data row1 col3">1.454400</td>
+</tr>
+<tr class="odd">
+<td id="T_b5d47_row2_col0" class="data row2 col0">2</td>
+<td id="T_b5d47_row2_col1" class="data row2 col1">87.500000</td>
+<td id="T_b5d47_row2_col2" class="data row2 col2">0.721000</td>
+<td id="T_b5d47_row2_col3" class="data row2 col3">1.453600</td>
+</tr>
+<tr class="even">
+<td id="T_b5d47_row3_col0" class="data row3 col0">3</td>
+<td id="T_b5d47_row3_col1" class="data row3 col1">86.700000</td>
+<td id="T_b5d47_row3_col2" class="data row3 col2">0.751000</td>
+<td id="T_b5d47_row3_col3" class="data row3 col3">1.452600</td>
+</tr>
+<tr class="odd">
+<td id="T_b5d47_row4_col0" class="data row4 col0">4</td>
+<td id="T_b5d47_row4_col1" class="data row4 col1">85.900000</td>
+<td id="T_b5d47_row4_col2" class="data row4 col2">0.796000</td>
+<td id="T_b5d47_row4_col3" class="data row4 col3">1.451200</td>
+</tr>
+<tr class="even">
+<td id="T_b5d47_row5_col0" class="data row5 col0">5</td>
+<td id="T_b5d47_row5_col1" class="data row5 col1">85.000000</td>
+<td id="T_b5d47_row5_col2" class="data row5 col2">0.862000</td>
+<td id="T_b5d47_row5_col3" class="data row5 col3">1.449600</td>
+</tr>
+<tr class="odd">
+<td id="T_b5d47_row6_col0" class="data row6 col0">6</td>
+<td id="T_b5d47_row6_col1" class="data row6 col1">84.200000</td>
+<td id="T_b5d47_row6_col2" class="data row6 col2">0.966000</td>
+<td id="T_b5d47_row6_col3" class="data row6 col3">1.447600</td>
+</tr>
+<tr class="even">
+<td id="T_b5d47_row7_col0" class="data row7 col0">7</td>
+<td id="T_b5d47_row7_col1" class="data row7 col1">83.400000</td>
+<td id="T_b5d47_row7_col2" class="data row7 col2">1.146000</td>
+<td id="T_b5d47_row7_col3" class="data row7 col3">1.445400</td>
+</tr>
+<tr class="odd">
+<td id="T_b5d47_row8_col0" class="data row8 col0">8</td>
+<td id="T_b5d47_row8_col1" class="data row8 col1">82.600000</td>
+<td id="T_b5d47_row8_col2" class="data row8 col2">1.544000</td>
+<td id="T_b5d47_row8_col3" class="data row8 col3">1.443000</td>
+</tr>
+<tr class="even">
+<td id="T_b5d47_row9_col0" class="data row9 col0">9</td>
+<td id="T_b5d47_row9_col1" class="data row9 col1">81.900000</td>
+<td id="T_b5d47_row9_col2" class="data row9 col2">3.864000</td>
+<td id="T_b5d47_row9_col3" class="data row9 col3">1.440500</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The table reproduces slide 26 exactly. Notice two trends.</p>
+<ul>
+<li>Higher modes travel at <strong>steeper angles</strong> (smaller <span class="math inline">\(\theta_m\)</span>, closer to <span class="math inline">\(\theta_c\)</span>).</li>
+<li>Higher modes have a <strong>larger penetration</strong> <span class="math inline">\(\delta_m\)</span> into the cladding, and it diverges near cut-off.</li>
+</ul>
+<section id="mode-field-patterns" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="mode-field-patterns"><span class="header-section-number">1.2.1</span> Mode field patterns</h3>
+<p>Inside the core the field is a standing wave <span class="math inline">\(\cos(\kappa y)\)</span> or <span class="math inline">\(\sin(\kappa y)\)</span>. In the cladding it decays as <span class="math inline">\(\exp(-|y|/\delta_m)\)</span> (slides 16–20).</p>
+<div id="cell-fig-slab-fields" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">18e-6</span>, <span class="fl">18e-6</span>, <span class="dv">1500</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, color<span class="op">=</span>fl.PALETTE[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.08</span>, lw<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, m <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">9</span>]):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> fl.slab_field(y, d, wl, n1, n2, th[m], m)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(y <span class="op">*</span> <span class="fl">1e6</span>, E <span class="op">+</span> <span class="fl">2.4</span> <span class="op">*</span> k, color<span class="op">=</span>fl.PALETTE[k])</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">18.5</span>, <span class="fl">2.4</span> <span class="op">*</span> k, <span class="ss">f"TE$_</span><span class="sc">{</span>m<span class="sc">}</span><span class="ss">$"</span>, va<span class="op">=</span><span class="st">"center"</span>, color<span class="op">=</span>fl.INK)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"y (µm)"</span>)<span class="op">;</span> ax.set_yticks([])<span class="op">;</span> ax.set_xlim(<span class="op">-</span><span class="dv">18</span>, <span class="fl">20.5</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Transverse field $E_m(y)$"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-slab-fields" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slab-fields-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="planar_files/figure-html/fig-slab-fields-output-1.png" width="705" height="432" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slab-fields-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: TE mode fields of the 20 µm guide at 900 nm. The shaded band is the core. Higher modes spill further into the cladding.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mode-field-width-slide-29" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="mode-field-width-slide-29"><span class="header-section-number">1.2.2</span> Mode field width (slide 29)</h3>
+<p>A semi-quantitative width is <span class="math inline">\(2w_0 = 2a + 2\delta\)</span>. For a single-mode slab this becomes <span class="math inline">\(2w_0 \approx 2a\,(V+1)/V\)</span>. We will see a more rigorous definition for fibers (MFD).</p>
+</section>
+</section>
+<section id="v-number-and-number-of-modes-slides-22-28" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="v-number-and-number-of-modes-slides-22-28"><span class="header-section-number">1.3</span> <span class="math inline">\(V\)</span>-number and number of modes (slides 22, 28)</h2>
+<p><span class="math display">\[
+V=\frac{2\pi a}{\lambda}\sqrt{n_1^2-n_2^2},\qquad M=\left\lfloor \frac{2V}{\pi}\right\rfloor+1 .
+\]</span></p>
+<p>For <span class="math inline">\(V&lt;\pi/2\)</span> only TE<span class="math inline">\(_0\)</span> (and TM<span class="math inline">\(_0\)</span>) propagate. The <strong>cut-off wavelength</strong> is <span class="math inline">\(\lambda_c = 4a\sqrt{n_1^2-n_2^2}\)</span>. Above it the slab is single-mode.</p>
+<div id="cell-fig-slab-count" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wls <span class="op">=</span> np.linspace(<span class="fl">0.4e-6</span>, <span class="fl">4e-6</span>, <span class="dv">400</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(fl.slab_modes(d, w, n1, n2)) <span class="cf">for</span> w <span class="kw">in</span> wls]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Vs <span class="op">=</span> fl.V_number(d <span class="op">/</span> <span class="dv">2</span>, wls, n1, n2)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ax.step(wls <span class="op">*</span> <span class="fl">1e6</span>, counts, where<span class="op">=</span><span class="st">"mid"</span>, label<span class="op">=</span><span class="st">"exact count"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ax.plot(wls <span class="op">*</span> <span class="fl">1e6</span>, <span class="dv">2</span> <span class="op">*</span> Vs <span class="op">/</span> np.pi <span class="op">+</span> <span class="dv">1</span>, <span class="st">"--"</span>, color<span class="op">=</span>fl.PALETTE[<span class="dv">1</span>], lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">"2V/π + 1"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"λ (µm)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"number of TE modes"</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>lc <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> (d <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> np.sqrt(n1<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> n2<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>ax.axvline(lc <span class="op">*</span> <span class="fl">1e6</span>, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ax.text(lc <span class="op">*</span> <span class="fl">1e6</span>, ax.get_ylim()[<span class="dv">1</span>] <span class="op">*</span> <span class="fl">0.85</span>, <span class="ss">f"  λc = </span><span class="sc">{</span>lc<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> µm"</span>, color<span class="op">=</span>fl.INK2)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-slab-count" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slab-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="planar_files/figure-html/fig-slab-count-output-1.png" width="819" height="426" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slab-count-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Number of TE modes versus wavelength for the 20 µm guide. The staircase follows 2V/π.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dispersion-diagram-and-group-velocity-slides-3039" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="dispersion-diagram-and-group-velocity-slides-3039"><span class="header-section-number">1.4</span> Dispersion diagram and group velocity (slides 30–39)</h2>
+<p>Each mode has its own <span class="math inline">\(\beta_m(\omega)\)</span>. The <strong>group velocity</strong> is the slope <span class="math inline">\(v_g = d\omega/d\beta\)</span>. Here we compute it exactly, with non-dispersive <span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span> so that only the <em>waveguide</em> effect remains. These are the “calculations by the author” curves of slides 32–36.</p>
+<div id="cell-fig-slab-vg" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vg_curve(m, omegas):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.array([fl.slab_beta(w, d, n1, n2, m) <span class="cf">for</span> w <span class="kw">in</span> omegas])</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.gradient(omegas, beta)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>omegas <span class="op">=</span> np.linspace(<span class="fl">0.05e15</span>, <span class="fl">1.6e16</span>, <span class="dv">700</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.4</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, m <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">20</span>, <span class="dv">40</span>]):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    vg <span class="op">=</span> vg_curve(m, omegas)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> np.isfinite(vg)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    ax.plot(omegas[ok], vg[ok] <span class="op">/</span> <span class="fl">1e8</span>, color<span class="op">=</span>fl.PALETTE[k], label<span class="op">=</span><span class="ss">f"TE$_</span><span class="ch">{{</span><span class="sc">{</span>m<span class="sc">}</span><span class="ch">}}</span><span class="ss">$"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ax.axhline(c0 <span class="op">/</span> n2 <span class="op">/</span> <span class="fl">1e8</span>, color<span class="op">=</span>fl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span> ax.text(<span class="fl">1.61e16</span>, c0<span class="op">/</span>n2<span class="op">/</span><span class="fl">1e8</span>, <span class="st">" c/n₂"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ax.axhline(c0 <span class="op">/</span> n1 <span class="op">/</span> <span class="fl">1e8</span>, color<span class="op">=</span>fl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span> ax.text(<span class="fl">1.61e16</span>, c0<span class="op">/</span>n1<span class="op">/</span><span class="fl">1e8</span>, <span class="st">" c/n₁"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ax.axhline(c0 <span class="op">*</span> n2 <span class="op">/</span> n1<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="fl">1e8</span>, color<span class="op">=</span>fl.INK2, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">1.61e16</span>, c0<span class="op">*</span>n2<span class="op">/</span>n1<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="fl">1e8</span>, <span class="st">" (c/n₁)sinθc"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"ω (rad/s)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"$v_g$ (×10⁸ m/s)"</span>)<span class="op">;</span> ax.legend(ncol<span class="op">=</span><span class="dv">5</span>, loc<span class="op">=</span><span class="st">"upper center"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">2.035</span>, <span class="fl">2.09</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-slab-vg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-slab-vg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="planar_files/figure-html/fig-slab-vg-output-1.png" width="837" height="448" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-slab-vg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Group velocity of TE modes versus frequency (2a = 20 µm, n1 = 1.455, n2 = 1.440). Every mode starts at c/n2 at its cut-off, dips below c/n1 and tends to c/n1 at high frequency. Near cut-off a higher mode can be FASTER than TE0.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why can TE<span class="math inline">\(_1\)</span> be faster than TE<span class="math inline">\(_0\)</span>? (slide 38)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Near cut-off, a mode carries a large fraction of its power in the cladding, where light is faster (<span class="math inline">\(c/n_2\)</span>). The ray picture (steeper ray means a longer path) is then not the whole story. The evanescent tail matters.</p>
+</div>
+</div>
+<section id="intermodal-dispersion-of-the-slab" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="intermodal-dispersion-of-the-slab"><span class="header-section-number">1.4.1</span> Intermodal dispersion of the slab</h3>
+<p>Far from cut-off the fastest mode travels at <span class="math inline">\(\approx c/n_1\)</span> and the slowest at <span class="math inline">\(\approx (c/n_1)\sin\theta_c=c\,n_2/n_1^2\)</span>. The spread over a length <span class="math inline">\(L\)</span> is therefore</p>
+<p><span class="math display">\[
+\frac{\Delta\tau}{L}\approx\frac{n_1-n_2}{c}\cdot\frac{n_1}{n_2}\approx\frac{n_1-n_2}{c}.
+\]</span></p>
+<div id="d501a5bb" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Δτ/L ≈ (n1-n2)/c = </span><span class="sc">{</span>(n1<span class="op">-</span>n2)<span class="op">/</span>c0<span class="op">*</span><span class="fl">1e12</span><span class="op">*</span><span class="fl">1e3</span><span class="op">/</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss"> ps/m = </span><span class="sc">{</span>(n1<span class="op">-</span>n2)<span class="op">/</span>c0<span class="op">*</span><span class="fl">1e9</span><span class="op">*</span><span class="fl">1e3</span><span class="sc">:.0f}</span><span class="ss"> ns/km"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Δτ/L ≈ (n1-n2)/c = 50.0 ps/m = 50 ns/km</code></pre>
+</div>
+</div>
+<p>At 50 ns/km a 1 ns pulse becomes 50 ns long after 1 km. This is why multimode guides are limited to short links.</p>
+</section>
+</section>
+<section id="try-it-yourself" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">1.5</span> Try it yourself</h2>
+<ol type="1">
+<li>Use <code>fl.slab_modes(..., "TM")</code> and compare TE and TM angles. Which polarisation is more confined, and why (look at the <span class="math inline">\((n_2/n_1)^2\)</span> factor)?</li>
+<li>Find the thickness <span class="math inline">\(2a\)</span> that makes the 20 µm-type guide single-mode at 1.55 µm.</li>
+<li><strong>Asymmetric slab (new):</strong> replace one cladding by air (<span class="math inline">\(n_3=1\)</span>). The condition becomes <span class="math inline">\(2k_1a\cos\theta-\phi_{12}-\phi_{13}=2\pi m\)</span>. Write a 10-line solver and show that this guide has a <strong>non-zero cut-off even for the fundamental mode</strong>, unlike the symmetric one.</li>
+<li>Compare with the online mode solver cited on slide 27 (<a href="https://www.computational-photonics.eu/oms.html">computational-photonics.eu/oms.html</a>).</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBWc2xhYiA9IElucHV0cy5yYW5nZShbMC4yLCAxMl0sIHt2YWx1ZTogMy4xNSwgc3RlcDogMC4wMSwgbGFiZWw6IFwiVi1udW1iZXJcIn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJzbGFiQ3VydmVzID0ge1xuICBjb25zdCBwdHMgPSBbXTtcbiAgZm9yIChsZXQgayA9IDA7IGsgPCA5OyBrKyspIHsgICAgICAgICAgIC8vIGJyYW5jaGVzIG9mIHUgdGFuIHUgYW5kIC11IGNvdCB1XG4gICAgY29uc3QgdTAgPSBrICogTWF0aC5QSSAvIDIsIGV2ZW4gPSBrICUgMiA9PT0gMDtcbiAgICBmb3IgKGxldCBpID0gMTsgaSA8IDQwMDsgaSsrKSB7XG4gICAgICBjb25zdCB1ID0gdTAgKyAoTWF0aC5QSSAvIDIpICogaSAvIDQwMDtcbiAgICAgIGNvbnN0IHcgPSBldmVuID8gdSAqIE1hdGgudGFuKHUpIDogLXUgLyBNYXRoLnRhbih1KTtcbiAgICAgIGlmICh3ID49IDAgJiYgdyA8IDE0KSBwdHMucHVzaCh7dSwgdywgYnJhbmNoOiBrLCBwYXJpdHk6IGV2ZW4gPyBcImV2ZW4gKHUgdGFuIHUpXCIgOiBcIm9kZCAo4oiSdSBjb3QgdSlcIn0pO1xuICAgIH1cbiAgfVxuICByZXR1cm4gcHRzO1xufVxuc2xhYlJvb3RzID0ge1xuICBjb25zdCBvdXQgPSBbXTtcbiAgZm9yIChsZXQgayA9IDA7IGsgKiBNYXRoLlBJIC8gMiA8IFZzbGFiOyBrKyspIHtcbiAgICBjb25zdCBldmVuID0gayAlIDIgPT09IDA7XG4gICAgY29uc3QgZiA9IHUgPT4gKGV2ZW4gPyB1ICogTWF0aC50YW4odSkgOiAtdSAvIE1hdGgudGFuKHUpKSAtIE1hdGguc3FydChNYXRoLm1heChWc2xhYipWc2xhYiAtIHUqdSwgMCkpO1xuICAgIGxldCBsbyA9IGsgKiBNYXRoLlBJIC8gMiArIDFlLTksIGhpID0gTWF0aC5taW4oKGsgKyAxKSAqIE1hdGguUEkgLyAyIC0gMWUtOSwgVnNsYWIpO1xuICAgIGZvciAobGV0IGl0ID0gMDsgaXQgPCA4MDsgaXQrKykgeyBjb25zdCBtaWQgPSAobG8gKyBoaSkgLyAyOyAoZihsbykgKiBmKG1pZCkgPD0gMCkgPyBoaSA9IG1pZCA6IGxvID0gbWlkOyB9XG4gICAgY29uc3QgdSA9IChsbyArIGhpKSAvIDI7XG4gICAgb3V0LnB1c2goe206IGssIHUsIHc6IE1hdGguc3FydChNYXRoLm1heChWc2xhYipWc2xhYiAtIHUqdSwgMCkpLCBiOiAxIC0gKHUvVnNsYWIpKioyfSk7XG4gIH1cbiAgcmV0dXJuIG91dDtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiA2NDAsIGhlaWdodDogMzgwLCB4OiB7bGFiZWw6IFwidSA9IGvigoFhIGNvcyDOuFwiLCBkb21haW46IFswLCAxMi41XX0sIHk6IHtsYWJlbDogXCJ3XCIsIGRvbWFpbjogWzAsIDEyLjVdfSxcbiAgY29sb3I6IHtkb21haW46IFtcImV2ZW4gKHUgdGFuIHUpXCIsIFwib2RkICjiiJJ1IGNvdCB1KVwiXSwgcmFuZ2U6IFtcIiMyYTc4ZDZcIiwgXCIjZWI2ODM0XCJdLCBsZWdlbmQ6IHRydWV9LFxuICBtYXJrczogW1xuICAgIFBsb3QubGluZShzbGFiQ3VydmVzLCB7eDogXCJ1XCIsIHk6IFwid1wiLCB6OiBcImJyYW5jaFwiLCBzdHJva2U6IFwicGFyaXR5XCIsIHN0cm9rZVdpZHRoOiAyfSksXG4gICAgUGxvdC5saW5lKGQzLnJhbmdlKDAsIDEuMDAwMSwgMC4wMDUpLm1hcCh0ID0+ICh7dTogVnNsYWIqTWF0aC5jb3ModCpNYXRoLlBJLzIpLCB3OiBWc2xhYipNYXRoLnNpbih0Kk1hdGguUEkvMil9KSksXG4gICAgICAgICAgICAgIHt4OiBcInVcIiwgeTogXCJ3XCIsIHN0cm9rZTogXCIjNTI1MTRlXCIsIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIn0pLFxuICAgIFBsb3QuZG90KHNsYWJSb290cywge3g6IFwidVwiLCB5OiBcIndcIiwgcjogNiwgZmlsbDogXCIjMGIwYjBiXCIsIHN0cm9rZTogXCJ3aGl0ZVwiLCBzdHJva2VXaWR0aDogMiwgdGlwOiB0cnVlLFxuICAgICAgICAgICAgIHRpdGxlOiBkID0+IGBURSR7ZC5tfVxcbnUgPSAke2QudS50b0ZpeGVkKDMpfVxcbncgPSAke2Qudy50b0ZpeGVkKDMpfVxcbmIgPSAke2QuYi50b0ZpeGVkKDQpfWB9KSxcbiAgICBQbG90LnRleHQoc2xhYlJvb3RzLCB7eDogXCJ1XCIsIHk6IFwid1wiLCB0ZXh0OiBkID0+IGBURSR7ZC5tfWAsIGR5OiAtMTQsIGZvbnRXZWlnaHQ6IFwiYm9sZFwifSksXG4gICAgUGxvdC5ydWxlWShbMF0pLCBQbG90LnJ1bGVYKFswXSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cInJlc3VsdC1ib3hcIj5WID0gJHtWc2xhYi50b0ZpeGVkKDIpfSDihpIgPGI+JHtzbGFiUm9vdHMubGVuZ3RofSBURSBtb2RlKHMpPC9iPlxuICAoZm9ybXVsYTogTSA9IOKMijJWL8+A4oyLICsgMSA9ICR7TWF0aC5mbG9vcigyKlZzbGFiL01hdGguUEkpKzF9KS5cbiAgJHtWc2xhYiA8IE1hdGguUEkvMiA/IFwiU2luZ2xlLW1vZGU6IFYgPCDPgC8yLlwiIDogXCJcIn08L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ1ZzbGFiJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter2\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./fibers.html" class="pagination-link" aria-label="Step-index optical fibers">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Step-index optical fibers</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Planar dielectric waveguides {#sec-planar}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/planar.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fiberlib <span class="im">as</span> fl</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>fl.use_style()</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>c0 <span class="op">=</span> fl.c0</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>*Slides 7–39.* A core of index $n_1$ and thickness $2a$ sandwiched between two claddings of</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>index $n_2&lt;n_1$. It is the simplest waveguide, and almost everything we will say about fibers</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>already appears here: modes, cut-off, the $V$-number, evanescent tails and dispersion.</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## The waveguide condition</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>A ray zig-zagging at angle $\theta$ (from the normal) must **interfere constructively with itself**</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>after two reflections (slides 9–11). With $k_1=2\pi n_1/\lambda$ and a phase change $\phi$ at each</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>total internal reflection (TIR):</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>\frac{2\pi n_1 (2a)}{\lambda}\cos\theta_m-\phi_m=m\pi ,\qquad m=0,1,2,\dots</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>$$ {#eq-wg-condition}</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>The TIR phase for TE (E along $x$, perpendicular to the plane of incidence) and TM polarisation is</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>\tan\frac{\phi_m}{2}=\frac{\sqrt{\sin^2\theta_m-(n_2/n_1)^2}}{\cos\theta_m}\;(\text{TE}),\qquad</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>\tan\frac{\phi_m}{2}=\frac{\sqrt{\sin^2\theta_m-(n_2/n_1)^2}}{(n_2/n_1)^2\cos\theta_m}\;(\text{TM}).</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>Each allowed angle $\theta_m$ is a **mode**. Its propagation constant along the guide is</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>$\beta_m=k_1\sin\theta_m$, and the transverse one is $\kappa_m=k_1\cos\theta_m$ (slide 12).</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>We can write $\beta_m = k_0 n_\text{eff}$ with $n_2&lt;n_\text{eff}=n_1\sin\theta_m&lt;n_1$.</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Graphical solution, live</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>Introduce $u=k_1 a\cos\theta$ and $w=a\sqrt{\beta^2-k_0^2n_2^2}$. Then $u^2+w^2=V^2$, and</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>@eq-wg-condition becomes the classic pair (TE):</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>w = u\tan u \;\;(\text{even modes } m=0,2,\dots),\qquad</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>w = -u\cot u \;\;(\text{odd modes } m=1,3,\dots).</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>The guided modes are the intersections of these curves with the circle of radius $V$.</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>Move the slider: a new mode appears each time $V$ crosses a multiple of $\pi/2$.</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>viewof Vslab <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.2</span><span class="op">,</span> <span class="dv">12</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">3.15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"V-number"</span>})</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>slabCurves <span class="op">=</span> {</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> <span class="dv">9</span><span class="op">;</span> k<span class="op">++</span>) {           <span class="co">// branches of u tan u and -u cot u</span></span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> u0 <span class="op">=</span> k <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span><span class="op">,</span> even <span class="op">=</span> k <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">400</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> u <span class="op">=</span> u0 <span class="op">+</span> (<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> i <span class="op">/</span> <span class="dv">400</span><span class="op">;</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> w <span class="op">=</span> even <span class="op">?</span> u <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tan</span>(u) <span class="op">:</span> <span class="op">-</span>u <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tan</span>(u)<span class="op">;</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (w <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> w <span class="op">&lt;</span> <span class="dv">14</span>) pts<span class="op">.</span><span class="fu">push</span>({u<span class="op">,</span> w<span class="op">,</span> <span class="dt">branch</span><span class="op">:</span> k<span class="op">,</span> <span class="dt">parity</span><span class="op">:</span> even <span class="op">?</span> <span class="st">"even (u tan u)"</span> <span class="op">:</span> <span class="st">"odd (−u cot u)"</span>})<span class="op">;</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> pts<span class="op">;</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>slabRoots <span class="op">=</span> {</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">&lt;</span> Vslab<span class="op">;</span> k<span class="op">++</span>) {</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> even <span class="op">=</span> k <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> f <span class="op">=</span> u <span class="kw">=&gt;</span> (even <span class="op">?</span> u <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tan</span>(u) <span class="op">:</span> <span class="op">-</span>u <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">tan</span>(u)) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(Vslab<span class="op">*</span>Vslab <span class="op">-</span> u<span class="op">*</span>u<span class="op">,</span> <span class="dv">0</span>))<span class="op">;</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> lo <span class="op">=</span> k <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">+</span> <span class="fl">1e-9</span><span class="op">,</span> hi <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>((k <span class="op">+</span> <span class="dv">1</span>) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> <span class="fl">1e-9</span><span class="op">,</span> Vslab)<span class="op">;</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> it <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> it <span class="op">&lt;</span> <span class="dv">80</span><span class="op">;</span> it<span class="op">++</span>) { <span class="kw">const</span> mid <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> (<span class="fu">f</span>(lo) <span class="op">*</span> <span class="fu">f</span>(mid) <span class="op">&lt;=</span> <span class="dv">0</span>) <span class="op">?</span> hi <span class="op">=</span> mid <span class="op">:</span> lo <span class="op">=</span> mid<span class="op">;</span> }</span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> u <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>    out<span class="op">.</span><span class="fu">push</span>({<span class="dt">m</span><span class="op">:</span> k<span class="op">,</span> u<span class="op">,</span> <span class="dt">w</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(Vslab<span class="op">*</span>Vslab <span class="op">-</span> u<span class="op">*</span>u<span class="op">,</span> <span class="dv">0</span>))<span class="op">,</span> <span class="dt">b</span><span class="op">:</span> <span class="dv">1</span> <span class="op">-</span> (u<span class="op">/</span>Vslab)<span class="op">**</span><span class="dv">2</span>})<span class="op">;</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">640</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">380</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"u = k₁a cos θ"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">12.5</span>]}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">12.5</span>]}<span class="op">,</span></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="st">"even (u tan u)"</span><span class="op">,</span> <span class="st">"odd (−u cot u)"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#eb6834"</span>]<span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(slabCurves<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"branch"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"parity"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">1.0001</span><span class="op">,</span> <span class="fl">0.005</span>)<span class="op">.</span><span class="fu">map</span>(t <span class="kw">=&gt;</span> ({<span class="dt">u</span><span class="op">:</span> Vslab<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(t<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span>)<span class="op">,</span> <span class="dt">w</span><span class="op">:</span> Vslab<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(t<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span>)}))<span class="op">,</span></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>              {<span class="dt">x</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(slabRoots<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"white"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>             <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`TE</span><span class="sc">${</span>d<span class="op">.</span><span class="at">m</span><span class="sc">}\n</span><span class="vs">u = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">u</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}\n</span><span class="vs">w = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">w</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}\n</span><span class="vs">b = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">b</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">`</span>})<span class="op">,</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(slabRoots<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`TE</span><span class="sc">${</span>d<span class="op">.</span><span class="at">m</span><span class="sc">}</span><span class="vs">`</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">14</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span>})<span class="op">,</span></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])</span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;V = </span><span class="sc">${</span>Vslab<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> → &lt;b&gt;</span><span class="sc">${</span>slabRoots<span class="op">.</span><span class="at">length</span><span class="sc">}</span><span class="vs"> TE mode(s)&lt;/b&gt;</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a><span class="vs">  (formula: M = ⌊2V/π⌋ + 1 = </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(<span class="dv">2</span><span class="op">*</span>Vslab<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="vs">).</span></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>Vslab <span class="op">&lt;</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span> <span class="op">?</span> <span class="st">"Single-mode: V &lt; π/2."</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked example: the 20 µm guide (slides 24–26)</span></span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; A planar guide with $2a=20$ µm, $n_1=1.455$, $n_2=1.440$, $\lambda=900$ nm. Find the modes.</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>d, wl, n1, n2 <span class="op">=</span> <span class="fl">20e-6</span>, <span class="fl">900e-9</span>, <span class="fl">1.455</span>, <span class="fl">1.440</span></span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>th <span class="op">=</span> fl.slab_modes(d, wl, n1, n2, <span class="st">"TE"</span>)</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>pen <span class="op">=</span> fl.slab_penetration(th, wl, n1, n2)</span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> fl.V_number(d <span class="op">/</span> <span class="dv">2</span>, wl, n1, n2)</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>tab <span class="op">=</span> pd.DataFrame({<span class="st">"m"</span>: <span class="bu">range</span>(<span class="bu">len</span>(th)),</span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"θ_m (deg)"</span>: np.degrees(th).<span class="bu">round</span>(<span class="dv">1</span>),</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"δ_m (µm)"</span>: (pen <span class="op">*</span> <span class="fl">1e6</span>).<span class="bu">round</span>(<span class="dv">3</span>),</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"n_eff"</span>: (n1 <span class="op">*</span> np.sin(th)).<span class="bu">round</span>(<span class="dv">4</span>)})</span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"V = </span><span class="sc">{</span>V<span class="sc">:.2f}</span><span class="ss">, critical angle θc = </span><span class="sc">{</span>np<span class="sc">.</span>degrees(np.arcsin(n2<span class="op">/</span>n1))<span class="sc">:.2f}</span><span class="ss">°, "</span></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>      <span class="ss">f"number of TE modes = </span><span class="sc">{</span><span class="bu">len</span>(th)<span class="sc">}</span><span class="ss"> (TM: </span><span class="sc">{</span><span class="bu">len</span>(fl.slab_modes(d, wl, n1, n2, <span class="st">'TM'</span>))<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a>tab.style.hide(axis<span class="op">=</span><span class="st">"index"</span>)</span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>The table reproduces slide 26 exactly. Notice two trends.</span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Higher modes travel at **steeper angles** (smaller $\theta_m$, closer to $\theta_c$).</span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Higher modes have a **larger penetration** $\delta_m$ into the cladding, and it diverges near cut-off.</span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mode field patterns</span></span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>Inside the core the field is a standing wave $\cos(\kappa y)$ or $\sin(\kappa y)$. In the cladding it decays as</span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>$\exp(-|y|/\delta_m)$ (slides 16–20).</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-slab-fields</span></span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "TE mode fields of the 20 µm guide at 900 nm. The shaded band is the core. Higher modes spill further into the cladding."</span></span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">18e-6</span>, <span class="fl">18e-6</span>, <span class="dv">1500</span>)</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, color<span class="op">=</span>fl.PALETTE[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.08</span>, lw<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, m <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">9</span>]):</span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> fl.slab_field(y, d, wl, n1, n2, th[m], m)</span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>    ax.plot(y <span class="op">*</span> <span class="fl">1e6</span>, E <span class="op">+</span> <span class="fl">2.4</span> <span class="op">*</span> k, color<span class="op">=</span>fl.PALETTE[k])</span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="fl">18.5</span>, <span class="fl">2.4</span> <span class="op">*</span> k, <span class="ss">f"TE$_</span><span class="sc">{</span>m<span class="sc">}</span><span class="ss">$"</span>, va<span class="op">=</span><span class="st">"center"</span>, color<span class="op">=</span>fl.INK)</span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"y (µm)"</span>)<span class="op">;</span> ax.set_yticks([])<span class="op">;</span> ax.set_xlim(<span class="op">-</span><span class="dv">18</span>, <span class="fl">20.5</span>)</span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Transverse field $E_m(y)$"</span>)</span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### Mode field width (slide 29)</span></span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a>A semi-quantitative width is $2w_0 = 2a + 2\delta$. For a single-mode slab this becomes</span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>$2w_0 \approx 2a\,(V+1)/V$. We will see a more rigorous definition for fibers (MFD).</span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a><span class="fu">## $V$-number and number of modes (slides 22, 28)</span></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>V=\frac{2\pi a}{\lambda}\sqrt{n_1^2-n_2^2},\qquad M=\left\lfloor \frac{2V}{\pi}\right\rfloor+1 .</span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>For $V&lt;\pi/2$ only TE$_0$ (and TM$_0$) propagate. The **cut-off wavelength** is</span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a>$\lambda_c = 4a\sqrt{n_1^2-n_2^2}$. Above it the slab is single-mode.</span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-slab-count</span></span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Number of TE modes versus wavelength for the 20 µm guide. The staircase follows 2V/π."</span></span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a>wls <span class="op">=</span> np.linspace(<span class="fl">0.4e-6</span>, <span class="fl">4e-6</span>, <span class="dv">400</span>)</span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> [<span class="bu">len</span>(fl.slab_modes(d, w, n1, n2)) <span class="cf">for</span> w <span class="kw">in</span> wls]</span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a>Vs <span class="op">=</span> fl.V_number(d <span class="op">/</span> <span class="dv">2</span>, wls, n1, n2)</span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a>ax.step(wls <span class="op">*</span> <span class="fl">1e6</span>, counts, where<span class="op">=</span><span class="st">"mid"</span>, label<span class="op">=</span><span class="st">"exact count"</span>)</span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a>ax.plot(wls <span class="op">*</span> <span class="fl">1e6</span>, <span class="dv">2</span> <span class="op">*</span> Vs <span class="op">/</span> np.pi <span class="op">+</span> <span class="dv">1</span>, <span class="st">"--"</span>, color<span class="op">=</span>fl.PALETTE[<span class="dv">1</span>], lw<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="st">"2V/π + 1"</span>)</span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"λ (µm)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"number of TE modes"</span>)<span class="op">;</span> ax.legend()</span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a>lc <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> (d <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> np.sqrt(n1<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> n2<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>ax.axvline(lc <span class="op">*</span> <span class="fl">1e6</span>, color<span class="op">=</span>fl.INK2, lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>ax.text(lc <span class="op">*</span> <span class="fl">1e6</span>, ax.get_ylim()[<span class="dv">1</span>] <span class="op">*</span> <span class="fl">0.85</span>, <span class="ss">f"  λc = </span><span class="sc">{</span>lc<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.2f}</span><span class="ss"> µm"</span>, color<span class="op">=</span>fl.INK2)</span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dispersion diagram and group velocity (slides 30–39)</span></span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a>Each mode has its own $\beta_m(\omega)$. The **group velocity** is the slope</span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a>$v_g = d\omega/d\beta$. Here we compute it exactly, with non-dispersive $n_1$, $n_2$ so that only</span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a>the *waveguide* effect remains. These are the "calculations by the author" curves of slides 32–36.</span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-slab-vg</span></span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Group velocity of TE modes versus frequency (2a = 20 µm, n1 = 1.455, n2 = 1.440). Every mode starts at c/n2 at its cut-off, dips below c/n1 and tends to c/n1 at high frequency. Near cut-off a higher mode can be FASTER than TE0."</span></span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vg_curve(m, omegas):</span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.array([fl.slab_beta(w, d, n1, n2, m) <span class="cf">for</span> w <span class="kw">in</span> omegas])</span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.gradient(omegas, beta)</span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a>omegas <span class="op">=</span> np.linspace(<span class="fl">0.05e15</span>, <span class="fl">1.6e16</span>, <span class="dv">700</span>)</span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.4</span>))</span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, m <span class="kw">in</span> <span class="bu">enumerate</span>([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">20</span>, <span class="dv">40</span>]):</span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a>    vg <span class="op">=</span> vg_curve(m, omegas)</span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a>    ok <span class="op">=</span> np.isfinite(vg)</span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a>    ax.plot(omegas[ok], vg[ok] <span class="op">/</span> <span class="fl">1e8</span>, color<span class="op">=</span>fl.PALETTE[k], label<span class="op">=</span><span class="ss">f"TE$_</span><span class="ch">{{</span><span class="sc">{</span>m<span class="sc">}</span><span class="ch">}}</span><span class="ss">$"</span>)</span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>ax.axhline(c0 <span class="op">/</span> n2 <span class="op">/</span> <span class="fl">1e8</span>, color<span class="op">=</span>fl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span> ax.text(<span class="fl">1.61e16</span>, c0<span class="op">/</span>n2<span class="op">/</span><span class="fl">1e8</span>, <span class="st">" c/n₂"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a>ax.axhline(c0 <span class="op">/</span> n1 <span class="op">/</span> <span class="fl">1e8</span>, color<span class="op">=</span>fl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span> ax.text(<span class="fl">1.61e16</span>, c0<span class="op">/</span>n1<span class="op">/</span><span class="fl">1e8</span>, <span class="st">" c/n₁"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a>ax.axhline(c0 <span class="op">*</span> n2 <span class="op">/</span> n1<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="fl">1e8</span>, color<span class="op">=</span>fl.INK2, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">1.61e16</span>, c0<span class="op">*</span>n2<span class="op">/</span>n1<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="fl">1e8</span>, <span class="st">" (c/n₁)sinθc"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"ω (rad/s)"</span>)<span class="op">;</span> ax.set_ylabel(<span class="st">"$v_g$ (×10⁸ m/s)"</span>)<span class="op">;</span> ax.legend(ncol<span class="op">=</span><span class="dv">5</span>, loc<span class="op">=</span><span class="st">"upper center"</span>)</span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="fl">2.035</span>, <span class="fl">2.09</span>)</span>
+<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why can TE$_1$ be faster than TE$_0$? (slide 38)</span></span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a>Near cut-off, a mode carries a large fraction of its power in the cladding, where light is faster ($c/n_2$).</span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a>The ray picture (steeper ray means a longer path) is then not the whole story. The evanescent tail matters.</span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a><span class="fu">### Intermodal dispersion of the slab</span></span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a>Far from cut-off the fastest mode travels at $\approx c/n_1$ and the slowest at</span>
+<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a>$\approx (c/n_1)\sin\theta_c=c\,n_2/n_1^2$. The spread over a length $L$ is therefore</span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a>\frac{\Delta\tau}{L}\approx\frac{n_1-n_2}{c}\cdot\frac{n_1}{n_2}\approx\frac{n_1-n_2}{c}.</span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Δτ/L ≈ (n1-n2)/c = </span><span class="sc">{</span>(n1<span class="op">-</span>n2)<span class="op">/</span>c0<span class="op">*</span><span class="fl">1e12</span><span class="op">*</span><span class="fl">1e3</span><span class="op">/</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss"> ps/m = </span><span class="sc">{</span>(n1<span class="op">-</span>n2)<span class="op">/</span>c0<span class="op">*</span><span class="fl">1e9</span><span class="op">*</span><span class="fl">1e3</span><span class="sc">:.0f}</span><span class="ss"> ns/km"</span>)</span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a>At 50 ns/km a 1 ns pulse becomes 50 ns long after 1 km. This is why multimode guides are</span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a>limited to short links.</span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Use <span class="in">`fl.slab_modes(..., "TM")`</span> and compare TE and TM angles. Which polarisation is more</span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a>   confined, and why (look at the $(n_2/n_1)^2$ factor)?</span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Find the thickness $2a$ that makes the 20 µm-type guide single-mode at 1.55 µm.</span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Asymmetric slab (new):** replace one cladding by air ($n_3=1$). The condition becomes</span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a>   $2k_1a\cos\theta-\phi_{12}-\phi_{13}=2\pi m$. Write a 10-line solver and show that this guide</span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a>   has a **non-zero cut-off even for the fundamental mode**, unlike the symmetric one.</span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Compare with the online mode solver cited on slide 27</span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a>   (<span class="co">[</span><span class="ot">computational-photonics.eu/oms.html</span><span class="co">](https://www.computational-photonics.eu/oms.html)</span>).</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter2/planar.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

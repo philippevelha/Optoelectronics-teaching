@@ -1,0 +1,926 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Dielectric Waveguides and Optical Fibers",
+    "section": "",
+    "text": "Preface\nThis companion follows the slides of Chapter 2 — Dielectric Waveguides and Optical Fibers section by section. The slides tell the story; this book lets you compute it. Every figure is produced by a few lines of Python that you can unfold (“Show the Python”), copy, and modify. Most chapters also have live panels (sliders, marked with a blue bar on the left) that recompute directly in your browser. They need no Python installation.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#how-the-book-is-organised",
+    "href": "index.html#how-the-book-is-organised",
+    "title": "Dielectric Waveguides and Optical Fibers",
+    "section": "How the book is organised",
+    "text": "How the book is organised\n\n\n\nChapter\nSlides\nWhat you can play with\n\n\n\n\nPlanar waveguides\n7–39\ngraphical mode solver, TIR phase, mode fields, dispersion diagram, \\(v_g(\\omega)\\)\n\n\nStep-index fibers\n40–64\nexact LP-mode solver, \\(b\\)–\\(V\\) chart, 2-D mode patterns, MFD, fiber designer\n\n\nDispersion\n65–95\nSellmeier glasses, \\(D_m\\), \\(D_w\\), zero-dispersion engineering, PMD random walk, compensation\n\n\nGraded-index fibers\n122–134\nray tracing in a GRIN core, optimum profile \\(\\gamma\\), GRIN rod lens\n\n\nAttenuation & bending\n135–162\nloss spectrum builder, Rayleigh limit, bend-loss fitting\n\n\nBit rate & capacity\n96–121\nNyquist/Shannon, Gaussian pulse broadening, a full IM/DD link simulator with eye diagrams\n\n\nWDM, couplers & nonlinearity\n174–194\nITU grid, couplers, star couplers, four-wave-mixing product map, SPM chirp, SBS\n\n\nSpecial fibers & FBGs\n195–230\nBragg fibers, coupled-mode FBG spectra, strain/temperature sensing\n\n\nFiber sensors\n231–311\nOTDR trace simulator, Raman DTS, Brillouin, Fabry–Perot, Sagnac gyroscope\n\n\nProjects & new ideas\n—\nsuggestions to extend the course\n\n\n\nEach chapter ends with “Try it yourself” exercises. Where a slide contains a worked example, the companion recomputes it and gives the number, so you can check your hand calculation.\n\n\n\n\n\n\nNoteNotation used throughout\n\n\n\n\\(n_1\\) core index, \\(n_2\\) cladding index, \\(a\\) core radius (fiber) or half-thickness (slab), \\(\\Delta=(n_1^2-n_2^2)/2n_1^2\\approx (n_1-n_2)/n_1\\), \\(\\mathrm{NA}=\\sqrt{n_1^2-n_2^2}\\), \\(V=\\frac{2\\pi a}{\\lambda}\\mathrm{NA}\\), \\(b=(n_\\text{eff}^2-n_2^2)/(n_1^2-n_2^2)\\). Python uses SI units. Dispersion is quoted in ps nm\\(^{-1}\\) km\\(^{-1}\\).",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#a-bit-of-history-slides-15",
+    "href": "index.html#a-bit-of-history-slides-15",
+    "title": "Dielectric Waveguides and Optical Fibers",
+    "section": "A bit of history (slides 1–5)",
+    "text": "A bit of history (slides 1–5)\n\n\nShow the Python\nimport matplotlib.pyplot as plt\nimport fiberlib as fl\nfl.use_style()\n\nevents = [(1842, \"Colladon:\\nwater jet\"), (1854, \"Tyndall\\nlecture\"),\n          (1955, \"Kapany:\\nPhD, 'fiber optics'\"), (1966, \"Kao & Hockam:\\n&lt; 20 dB/km predicted\"),\n          (1970, \"Corning:\\nfirst low-loss fiber\"), (1987, \"EDFA\"),\n          (1996, \"Russell:\\nphotonic crystal fiber\"), (2009, \"Nobel Prize\\n(Kao)\")]\nfig, ax = plt.subplots(figsize=(9, 2.4))\nax.axhline(0, color=fl.INK2, lw=1)\nfor i, (y, txt) in enumerate(events):\n    up = 1 if i % 2 == 0 else -1\n    ax.plot([y, y], [0, 0.55 * up], color=fl.PALETTE[0], lw=1)\n    ax.plot(y, 0, \"o\", ms=6, color=fl.PALETTE[0])\n    ax.text(y, 0.62 * up, f\"{y}\\n{txt}\" if up &gt; 0 else f\"{txt}\\n{y}\",\n            ha=\"center\", va=\"bottom\" if up &gt; 0 else \"top\", fontsize=8.5, color=fl.INK)\nax.set_ylim(-1.6, 1.6); ax.set_xlim(1830, 2020)\nax.axis(\"off\")\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: Some milestones of light guiding mentioned in the slides.\n\n\n\n\n\nThe time axis is not linear in “interest”: it took more than a century to go from Colladon’s water jet to a usable glass fiber. The breakthrough was materials purity (Kao’s prediction that intrinsic glass losses could fall below 20 dB/km), not a new idea about guiding. The chapter Attenuation & bending shows why: today’s 0.15–0.2 dB/km sit close to the Rayleigh limit of silica.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#running-the-code-without-installing-anything",
+    "href": "index.html#running-the-code-without-installing-anything",
+    "title": "Dielectric Waveguides and Optical Fibers",
+    "section": "Running the code without installing anything",
+    "text": "Running the code without installing anything\nEvery chapter starts with an Open in Colab button that opens its code as a notebook in Google Colab. Colab is free and runs in the browser; you only need a Google account. The interactive ipywidgets explorers are here:\n\n\n\nOpen in Colab\n\n\nTo keep your changes, use File → Save a copy in Drive in Colab.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#using-the-code",
+    "href": "index.html#using-the-code",
+    "title": "Dielectric Waveguides and Optical Fibers",
+    "section": "Using the code",
+    "text": "Using the code\nAll functions live in a small, readable module, fiberlib.py (~400 lines), which you can import from your own notebooks:\nimport fiberlib as fl\nfl.LP_all(V=5)                 # list of guided LP modes (l, m, b)\nfl.D_material(1.55e-6)         # material dispersion of silica [s/m^2]\nSee the appendix Running the notebooks for installation, and for how to turn every chapter into a Jupyter notebook.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "planar.html",
+    "href": "planar.html",
+    "title": "1  Planar dielectric waveguides",
+    "section": "",
+    "text": "1.1 The waveguide condition\nRun this chapter’s code in Google Colab (no installation).\nSlides 7–39. A core of index \\(n_1\\) and thickness \\(2a\\) sandwiched between two claddings of index \\(n_2&lt;n_1\\). It is the simplest waveguide, and almost everything we will say about fibers already appears here: modes, cut-off, the \\(V\\)-number, evanescent tails and dispersion.\nA ray zig-zagging at angle \\(\\theta\\) (from the normal) must interfere constructively with itself after two reflections (slides 9–11). With \\(k_1=2\\pi n_1/\\lambda\\) and a phase change \\(\\phi\\) at each total internal reflection (TIR):\n\\[\n\\frac{2\\pi n_1 (2a)}{\\lambda}\\cos\\theta_m-\\phi_m=m\\pi ,\\qquad m=0,1,2,\\dots\n\\tag{1.1}\\]\nThe TIR phase for TE (E along \\(x\\), perpendicular to the plane of incidence) and TM polarisation is\n\\[\n\\tan\\frac{\\phi_m}{2}=\\frac{\\sqrt{\\sin^2\\theta_m-(n_2/n_1)^2}}{\\cos\\theta_m}\\;(\\text{TE}),\\qquad\n\\tan\\frac{\\phi_m}{2}=\\frac{\\sqrt{\\sin^2\\theta_m-(n_2/n_1)^2}}{(n_2/n_1)^2\\cos\\theta_m}\\;(\\text{TM}).\n\\]\nEach allowed angle \\(\\theta_m\\) is a mode. Its propagation constant along the guide is \\(\\beta_m=k_1\\sin\\theta_m\\), and the transverse one is \\(\\kappa_m=k_1\\cos\\theta_m\\) (slide 12). We can write \\(\\beta_m = k_0 n_\\text{eff}\\) with \\(n_2&lt;n_\\text{eff}=n_1\\sin\\theta_m&lt;n_1\\).",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planar dielectric waveguides</span>"
+    ]
+  },
+  {
+    "objectID": "planar.html#the-waveguide-condition",
+    "href": "planar.html#the-waveguide-condition",
+    "title": "1  Planar dielectric waveguides",
+    "section": "",
+    "text": "1.1.1 Graphical solution, live\nIntroduce \\(u=k_1 a\\cos\\theta\\) and \\(w=a\\sqrt{\\beta^2-k_0^2n_2^2}\\). Then \\(u^2+w^2=V^2\\), and Equation 1.1 becomes the classic pair (TE):\n\\[\nw = u\\tan u \\;\\;(\\text{even modes } m=0,2,\\dots),\\qquad\nw = -u\\cot u \\;\\;(\\text{odd modes } m=1,3,\\dots).\n\\]\nThe guided modes are the intersections of these curves with the circle of radius \\(V\\). Move the slider: a new mode appears each time \\(V\\) crosses a multiple of \\(\\pi/2\\).\n\n\nShow the Python\nviewof Vslab = Inputs.range([0.2, 12], {value: 3.15, step: 0.01, label: \"V-number\"})\n\n\n\n\n\n\n\n\n\nShow the Python\nslabCurves = {\n  const pts = [];\n  for (let k = 0; k &lt; 9; k++) {           // branches of u tan u and -u cot u\n    const u0 = k * Math.PI / 2, even = k % 2 === 0;\n    for (let i = 1; i &lt; 400; i++) {\n      const u = u0 + (Math.PI / 2) * i / 400;\n      const w = even ? u * Math.tan(u) : -u / Math.tan(u);\n      if (w &gt;= 0 && w &lt; 14) pts.push({u, w, branch: k, parity: even ? \"even (u tan u)\" : \"odd (−u cot u)\"});\n    }\n  }\n  return pts;\n}\nslabRoots = {\n  const out = [];\n  for (let k = 0; k * Math.PI / 2 &lt; Vslab; k++) {\n    const even = k % 2 === 0;\n    const f = u =&gt; (even ? u * Math.tan(u) : -u / Math.tan(u)) - Math.sqrt(Math.max(Vslab*Vslab - u*u, 0));\n    let lo = k * Math.PI / 2 + 1e-9, hi = Math.min((k + 1) * Math.PI / 2 - 1e-9, Vslab);\n    for (let it = 0; it &lt; 80; it++) { const mid = (lo + hi) / 2; (f(lo) * f(mid) &lt;= 0) ? hi = mid : lo = mid; }\n    const u = (lo + hi) / 2;\n    out.push({m: k, u, w: Math.sqrt(Math.max(Vslab*Vslab - u*u, 0)), b: 1 - (u/Vslab)**2});\n  }\n  return out;\n}\nPlot.plot({\n  width: 640, height: 380, x: {label: \"u = k₁a cos θ\", domain: [0, 12.5]}, y: {label: \"w\", domain: [0, 12.5]},\n  color: {domain: [\"even (u tan u)\", \"odd (−u cot u)\"], range: [\"#2a78d6\", \"#eb6834\"], legend: true},\n  marks: [\n    Plot.line(slabCurves, {x: \"u\", y: \"w\", z: \"branch\", stroke: \"parity\", strokeWidth: 2}),\n    Plot.line(d3.range(0, 1.0001, 0.005).map(t =&gt; ({u: Vslab*Math.cos(t*Math.PI/2), w: Vslab*Math.sin(t*Math.PI/2)})),\n              {x: \"u\", y: \"w\", stroke: \"#52514e\", strokeDasharray: \"4,3\"}),\n    Plot.dot(slabRoots, {x: \"u\", y: \"w\", r: 6, fill: \"#0b0b0b\", stroke: \"white\", strokeWidth: 2, tip: true,\n             title: d =&gt; `TE${d.m}\\nu = ${d.u.toFixed(3)}\\nw = ${d.w.toFixed(3)}\\nb = ${d.b.toFixed(4)}`}),\n    Plot.text(slabRoots, {x: \"u\", y: \"w\", text: d =&gt; `TE${d.m}`, dy: -14, fontWeight: \"bold\"}),\n    Plot.ruleY([0]), Plot.ruleX([0])\n  ]\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\nhtml`&lt;div class=\"result-box\"&gt;V = ${Vslab.toFixed(2)} → &lt;b&gt;${slabRoots.length} TE mode(s)&lt;/b&gt;\n  (formula: M = ⌊2V/π⌋ + 1 = ${Math.floor(2*Vslab/Math.PI)+1}).\n  ${Vslab &lt; Math.PI/2 ? \"Single-mode: V &lt; π/2.\" : \"\"}&lt;/div&gt;`",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planar dielectric waveguides</span>"
+    ]
+  },
+  {
+    "objectID": "planar.html#worked-example-the-20-µm-guide-slides-2426",
+    "href": "planar.html#worked-example-the-20-µm-guide-slides-2426",
+    "title": "1  Planar dielectric waveguides",
+    "section": "1.2 Worked example: the 20 µm guide (slides 24–26)",
+    "text": "1.2 Worked example: the 20 µm guide (slides 24–26)\n\nA planar guide with \\(2a=20\\) µm, \\(n_1=1.455\\), \\(n_2=1.440\\), \\(\\lambda=900\\) nm. Find the modes.\n\n\n\nShow the Python\nd, wl, n1, n2 = 20e-6, 900e-9, 1.455, 1.440\nth = fl.slab_modes(d, wl, n1, n2, \"TE\")\npen = fl.slab_penetration(th, wl, n1, n2)\nV = fl.V_number(d / 2, wl, n1, n2)\n\nimport pandas as pd\ntab = pd.DataFrame({\"m\": range(len(th)),\n                    \"θ_m (deg)\": np.degrees(th).round(1),\n                    \"δ_m (µm)\": (pen * 1e6).round(3),\n                    \"n_eff\": (n1 * np.sin(th)).round(4)})\nprint(f\"V = {V:.2f}, critical angle θc = {np.degrees(np.arcsin(n2/n1)):.2f}°, \"\n      f\"number of TE modes = {len(th)} (TM: {len(fl.slab_modes(d, wl, n1, n2, 'TM'))})\")\ntab.style.hide(axis=\"index\")\n\n\nV = 14.55, critical angle θc = 81.77°, number of TE modes = 10 (TM: 10)\n\n\n\n\n\n\n\nm\nθ_m (deg)\nδ_m (µm)\nn_eff\n\n\n\n\n0\n89.200000\n0.691000\n1.454800\n\n\n1\n88.300000\n0.702000\n1.454400\n\n\n2\n87.500000\n0.721000\n1.453600\n\n\n3\n86.700000\n0.751000\n1.452600\n\n\n4\n85.900000\n0.796000\n1.451200\n\n\n5\n85.000000\n0.862000\n1.449600\n\n\n6\n84.200000\n0.966000\n1.447600\n\n\n7\n83.400000\n1.146000\n1.445400\n\n\n8\n82.600000\n1.544000\n1.443000\n\n\n9\n81.900000\n3.864000\n1.440500\n\n\n\n\n\nThe table reproduces slide 26 exactly. Notice two trends.\n\nHigher modes travel at steeper angles (smaller \\(\\theta_m\\), closer to \\(\\theta_c\\)).\nHigher modes have a larger penetration \\(\\delta_m\\) into the cladding, and it diverges near cut-off.\n\n\n1.2.1 Mode field patterns\nInside the core the field is a standing wave \\(\\cos(\\kappa y)\\) or \\(\\sin(\\kappa y)\\). In the cladding it decays as \\(\\exp(-|y|/\\delta_m)\\) (slides 16–20).\n\n\nShow the Python\ny = np.linspace(-18e-6, 18e-6, 1500)\nfig, ax = plt.subplots(figsize=(8, 4))\nax.axvspan(-10, 10, color=fl.PALETTE[0], alpha=0.08, lw=0)\nfor k, m in enumerate([0, 1, 2, 9]):\n    E = fl.slab_field(y, d, wl, n1, n2, th[m], m)\n    ax.plot(y * 1e6, E + 2.4 * k, color=fl.PALETTE[k])\n    ax.text(18.5, 2.4 * k, f\"TE$_{m}$\", va=\"center\", color=fl.INK)\nax.set_xlabel(\"y (µm)\"); ax.set_yticks([]); ax.set_xlim(-18, 20.5)\nax.set_title(\"Transverse field $E_m(y)$\")\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1.1: TE mode fields of the 20 µm guide at 900 nm. The shaded band is the core. Higher modes spill further into the cladding.\n\n\n\n\n\n\n\n1.2.2 Mode field width (slide 29)\nA semi-quantitative width is \\(2w_0 = 2a + 2\\delta\\). For a single-mode slab this becomes \\(2w_0 \\approx 2a\\,(V+1)/V\\). We will see a more rigorous definition for fibers (MFD).",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planar dielectric waveguides</span>"
+    ]
+  },
+  {
+    "objectID": "planar.html#v-number-and-number-of-modes-slides-22-28",
+    "href": "planar.html#v-number-and-number-of-modes-slides-22-28",
+    "title": "1  Planar dielectric waveguides",
+    "section": "1.3 \\(V\\)-number and number of modes (slides 22, 28)",
+    "text": "1.3 \\(V\\)-number and number of modes (slides 22, 28)\n\\[\nV=\\frac{2\\pi a}{\\lambda}\\sqrt{n_1^2-n_2^2},\\qquad M=\\left\\lfloor \\frac{2V}{\\pi}\\right\\rfloor+1 .\n\\]\nFor \\(V&lt;\\pi/2\\) only TE\\(_0\\) (and TM\\(_0\\)) propagate. The cut-off wavelength is \\(\\lambda_c = 4a\\sqrt{n_1^2-n_2^2}\\). Above it the slab is single-mode.\n\n\nShow the Python\nwls = np.linspace(0.4e-6, 4e-6, 400)\ncounts = [len(fl.slab_modes(d, w, n1, n2)) for w in wls]\nVs = fl.V_number(d / 2, wls, n1, n2)\nfig, ax = plt.subplots()\nax.step(wls * 1e6, counts, where=\"mid\", label=\"exact count\")\nax.plot(wls * 1e6, 2 * Vs / np.pi + 1, \"--\", color=fl.PALETTE[1], lw=1.5, label=\"2V/π + 1\")\nax.set_xlabel(\"λ (µm)\"); ax.set_ylabel(\"number of TE modes\"); ax.legend()\nlc = 4 * (d / 2) * np.sqrt(n1**2 - n2**2)\nax.axvline(lc * 1e6, color=fl.INK2, lw=1, ls=\":\")\nax.text(lc * 1e6, ax.get_ylim()[1] * 0.85, f\"  λc = {lc*1e6:.2f} µm\", color=fl.INK2)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1.2: Number of TE modes versus wavelength for the 20 µm guide. The staircase follows 2V/π.",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planar dielectric waveguides</span>"
+    ]
+  },
+  {
+    "objectID": "planar.html#dispersion-diagram-and-group-velocity-slides-3039",
+    "href": "planar.html#dispersion-diagram-and-group-velocity-slides-3039",
+    "title": "1  Planar dielectric waveguides",
+    "section": "1.4 Dispersion diagram and group velocity (slides 30–39)",
+    "text": "1.4 Dispersion diagram and group velocity (slides 30–39)\nEach mode has its own \\(\\beta_m(\\omega)\\). The group velocity is the slope \\(v_g = d\\omega/d\\beta\\). Here we compute it exactly, with non-dispersive \\(n_1\\), \\(n_2\\) so that only the waveguide effect remains. These are the “calculations by the author” curves of slides 32–36.\n\n\nShow the Python\ndef vg_curve(m, omegas):\n    beta = np.array([fl.slab_beta(w, d, n1, n2, m) for w in omegas])\n    return np.gradient(omegas, beta)\n\nomegas = np.linspace(0.05e15, 1.6e16, 700)\nfig, ax = plt.subplots(figsize=(8, 4.4))\nfor k, m in enumerate([0, 1, 4, 20, 40]):\n    vg = vg_curve(m, omegas)\n    ok = np.isfinite(vg)\n    ax.plot(omegas[ok], vg[ok] / 1e8, color=fl.PALETTE[k], label=f\"TE$_{{{m}}}$\")\nax.axhline(c0 / n2 / 1e8, color=fl.INK2, ls=\":\", lw=1); ax.text(1.61e16, c0/n2/1e8, \" c/n₂\", va=\"center\")\nax.axhline(c0 / n1 / 1e8, color=fl.INK2, ls=\":\", lw=1); ax.text(1.61e16, c0/n1/1e8, \" c/n₁\", va=\"center\")\nax.axhline(c0 * n2 / n1**2 / 1e8, color=fl.INK2, ls=\"--\", lw=1)\nax.text(1.61e16, c0*n2/n1**2/1e8, \" (c/n₁)sinθc\", va=\"center\")\nax.set_xlabel(\"ω (rad/s)\"); ax.set_ylabel(\"$v_g$ (×10⁸ m/s)\"); ax.legend(ncol=5, loc=\"upper center\")\nax.set_ylim(2.035, 2.09)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1.3: Group velocity of TE modes versus frequency (2a = 20 µm, n1 = 1.455, n2 = 1.440). Every mode starts at c/n2 at its cut-off, dips below c/n1 and tends to c/n1 at high frequency. Near cut-off a higher mode can be FASTER than TE0.\n\n\n\n\n\n\n\n\n\n\n\nTipWhy can TE\\(_1\\) be faster than TE\\(_0\\)? (slide 38)\n\n\n\nNear cut-off, a mode carries a large fraction of its power in the cladding, where light is faster (\\(c/n_2\\)). The ray picture (steeper ray means a longer path) is then not the whole story. The evanescent tail matters.\n\n\n\n1.4.1 Intermodal dispersion of the slab\nFar from cut-off the fastest mode travels at \\(\\approx c/n_1\\) and the slowest at \\(\\approx (c/n_1)\\sin\\theta_c=c\\,n_2/n_1^2\\). The spread over a length \\(L\\) is therefore\n\\[\n\\frac{\\Delta\\tau}{L}\\approx\\frac{n_1-n_2}{c}\\cdot\\frac{n_1}{n_2}\\approx\\frac{n_1-n_2}{c}.\n\\]\n\n\nShow the Python\nprint(f\"Δτ/L ≈ (n1-n2)/c = {(n1-n2)/c0*1e12*1e3/1e3:.1f} ps/m = {(n1-n2)/c0*1e9*1e3:.0f} ns/km\")\n\n\nΔτ/L ≈ (n1-n2)/c = 50.0 ps/m = 50 ns/km\n\n\nAt 50 ns/km a 1 ns pulse becomes 50 ns long after 1 km. This is why multimode guides are limited to short links.",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planar dielectric waveguides</span>"
+    ]
+  },
+  {
+    "objectID": "planar.html#try-it-yourself",
+    "href": "planar.html#try-it-yourself",
+    "title": "1  Planar dielectric waveguides",
+    "section": "1.5 Try it yourself",
+    "text": "1.5 Try it yourself\n\nUse fl.slab_modes(..., \"TM\") and compare TE and TM angles. Which polarisation is more confined, and why (look at the \\((n_2/n_1)^2\\) factor)?\nFind the thickness \\(2a\\) that makes the 20 µm-type guide single-mode at 1.55 µm.\nAsymmetric slab (new): replace one cladding by air (\\(n_3=1\\)). The condition becomes \\(2k_1a\\cos\\theta-\\phi_{12}-\\phi_{13}=2\\pi m\\). Write a 10-line solver and show that this guide has a non-zero cut-off even for the fundamental mode, unlike the symmetric one.\nCompare with the online mode solver cited on slide 27 (computational-photonics.eu/oms.html).",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Planar dielectric waveguides</span>"
+    ]
+  },
+  {
+    "objectID": "fibers.html",
+    "href": "fibers.html",
+    "title": "2  Step-index optical fibers",
+    "section": "",
+    "text": "2.1 Weakly guiding fibers and LP modes (slides 43–47)\nRun this chapter’s code in Google Colab (no installation).\nSlides 40–64. A cylindrical core of radius \\(a\\) and index \\(n_1\\), inside a cladding of index \\(n_2\\). Two kinds of rays appear (slide 42). Meridional rays cross the axis. Skew rays spiral around it. In the wave picture the two families give the LP\\(_{lm}\\) modes.\nWhen \\(\\Delta\\ll1\\) (typically 0.3 % to 2 %), the guided modes are almost transverse and linearly polarised:\n\\[\nE_{LP}=E_{lm}(r,\\phi)\\,e^{j(\\omega t-\\beta_{lm}z)},\\qquad\nE_{lm}(r,\\phi)=f(r)\\cos(l\\phi)\\ \\text{or}\\ f(r)\\sin(l\\phi).\n\\]\nInside the core \\(f(r)\\propto J_l(ur/a)\\) and in the cladding \\(f(r)\\propto K_l(wr/a)\\), with \\(u^2+w^2=V^2\\). Continuity of \\(f\\) and \\(f'\\) at \\(r=a\\) gives the eigenvalue equation\n\\[\n\\frac{u\\,J_{l-1}(u)}{J_l(u)}=-\\frac{w\\,K_{l-1}(w)}{K_l(w)} .\n\\tag{2.1}\\]\nThe mode index \\(l\\) sets the azimuthal order (\\(2l\\) maxima around a circle). The index \\(m\\) counts the radial maxima. The function fl.LP_b(V, l, m) solves Equation 2.1, and you can read it in fiberlib.py: it is a sign-change scan followed by Brent’s method.\nShow the Python\nfor l, m, b in fl.LP_all(5.0):\n    print(f\"LP{l}{m}:  b = {b:.4f}\")\nprint(\"Guided modes incl. polarisation and orientation:\", fl.LP_count(5.0), \" (V²/2 =\", 5**2/2, \")\")\n\n\nLP01:  b = 0.8409\nLP11:  b = 0.6024\nLP21:  b = 0.3015\nLP02:  b = 0.2154\nGuided modes incl. polarisation and orientation: 12  (V²/2 = 12.5 )",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Step-index optical fibers</span>"
+    ]
+  },
+  {
+    "objectID": "fibers.html#weakly-guiding-fibers-and-lp-modes-slides-4347",
+    "href": "fibers.html#weakly-guiding-fibers-and-lp-modes-slides-4347",
+    "title": "2  Step-index optical fibers",
+    "section": "",
+    "text": "2.1.1 The \\(b\\)–\\(V\\) chart (slide 49)\n\n\nShow the Python\nVg = np.linspace(0.3, 10, 400)\nmodes = [(0,1),(1,1),(2,1),(0,2),(3,1),(1,2),(4,1),(2,2),(0,3),(5,1)]\ncurves = {}\nfig, ax = plt.subplots(figsize=(8, 4.6))\nfor k, (l, m) in enumerate(modes):\n    b = np.array([fl.LP_b(V, l, m) for V in Vg])\n    curves[f\"LP{l}{m}\"] = b\n    ok = np.isfinite(b)\n    ax.plot(Vg[ok], b[ok], color=fl.PALETTE[k % 8], lw=1.8)\n    i = np.where(ok)[0][-1]\n    ax.text(Vg[i] + 0.05, b[i], f\"LP$_{{{l}{m}}}$\", fontsize=8.5, va=\"center\")\nVa = np.linspace(1.2, 3.5, 100)\nax.plot(Va, fl.b_approx(Va), \"--\", color=fl.INK, lw=1, label=\"approximation (LP01)\")\nfor vc in [2.405, 3.832, 5.136, 5.520]:\n    ax.axvline(vc, color=fl.GRID, lw=1, zorder=0)\nax.set_xlabel(\"V\"); ax.set_ylabel(\"b\"); ax.set_ylim(0, 1); ax.set_xlim(0, 10.8)\nax.legend(loc=\"lower right\")\nplt.show()\n\n\n\n\n\n\n\n\nFigure 2.1: Normalized propagation constant b(V) of the first LP modes (exact solution of the weak-guidance eigenvalue equation). The dashed line is the LP01 approximation b ≈ (1.1428 − 0.996/V)², good for 1.5 &lt; V &lt; 2.5.\n\n\n\n\n\nThe cut-offs are zeros of Bessel functions. LP\\(_{0m}\\) is cut off at the zeros of \\(J_1\\) (0, 3.832, 7.016 …). LP\\(_{lm}\\) with \\(l\\ge1\\) is cut off at the zeros of \\(J_{l-1}\\), which gives 2.405 for LP\\(_{11}\\).\nBelow you can sweep \\(V\\) and see which modes are guided, together with their \\(b\\) and effective index.\n\n\n\n\n\n\n\nShow the Python\nviewof Vfib = Inputs.range([0.5, 10], {value: 2.2, step: 0.01, label: \"V-number\"})\n\n\n\n\n\n\n\n\n\nShow the Python\nbVlong = Object.keys(bV).filter(k =&gt; k !== \"V\").flatMap(k =&gt; bV.V.map((v, i) =&gt; ({V: v, b: bV[k][i], mode: k}))).filter(d =&gt; d.b &gt;= 0)\nbAtV = Object.keys(bV).filter(k =&gt; k !== \"V\").map(k =&gt; {\n  const i = d3.bisectLeft(bV.V, Vfib); const i0 = Math.max(1, Math.min(i, bV.V.length - 1));\n  const t = (Vfib - bV.V[i0-1]) / (bV.V[i0] - bV.V[i0-1]);\n  const b0 = bV[k][i0-1], b1 = bV[k][i0];\n  return {mode: k, b: (b0 &lt; 0 || b1 &lt; 0) ? -1 : b0 + t * (b1 - b0)};\n}).filter(d =&gt; d.b &gt; 0)\nPlot.plot({\n  width: Math.min(width, 1050), height: 360, x: {label: \"V\", domain: [0, 10]}, y: {label: \"b\", domain: [0, 1]},\n  marks: [\n    Plot.line(bVlong, {x: \"V\", y: \"b\", z: \"mode\", stroke: \"#b9b8b2\", strokeWidth: 1.5}),\n    Plot.ruleX([Vfib], {stroke: \"#2a78d6\", strokeWidth: 2}),\n    Plot.dot(bAtV, {x: () =&gt; Vfib, y: \"b\", r: 5, fill: \"#2a78d6\", stroke: \"white\", strokeWidth: 2, tip: true,\n                    title: d =&gt; `${d.mode}  b = ${d.b.toFixed(4)}`}),\n    Plot.text(bAtV, {x: () =&gt; Vfib, y: \"b\", text: \"mode\", dx: 10, textAnchor: \"start\", fontWeight: \"bold\"})\n  ]\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\nhtml`&lt;div class=\"result-box\"&gt;V = ${Vfib.toFixed(2)}: &lt;b&gt;${bAtV.length} LP mode(s)&lt;/b&gt; (${bAtV.map(d =&gt; d.mode).join(\", \")})\n · total with degeneracies ≈ ${bAtV.reduce((s, d) =&gt; s + (d.mode[2] === \"0\" ? 2 : 4), 0)}\n · V²/2 = ${(Vfib*Vfib/2).toFixed(1)}\n ${Vfib &lt; 2.405 ? \"· &lt;b&gt;single-mode&lt;/b&gt;\" : \"\"}&lt;/div&gt;`\n\n\n\n\n\n\n\n\n\n2.1.2 What the modes look like (slides 44–47)\n\n\nShow the Python\nV = 8.0\nallm = fl.LP_all(V)\nx = np.linspace(-1.6, 1.6, 241)\nX, Y = np.meshgrid(x, x)\nR, PHI = np.hypot(X, Y), np.arctan2(Y, X)\nn = len(allm); cols = 5; rows = int(np.ceil(n / cols))\nfig, axs = plt.subplots(rows, cols, figsize=(1.9 * cols, 2.0 * rows))\nfor ax in axs.flat: ax.axis(\"off\")\nfor ax, (l, m, b) in zip(axs.flat, allm):\n    E = fl.LP_field(R, V, b, l) * np.cos(l * PHI)\n    E /= np.abs(E).max()\n    ax.imshow(E, cmap=\"RdBu_r\", vmin=-1, vmax=1, extent=[-1.6, 1.6, -1.6, 1.6])\n    ax.add_patch(plt.Circle((0, 0), 1, fill=False, color=\"k\", lw=0.6))\n    ax.set_title(f\"LP$_{{{l}{m}}}$  b={b:.2f}\", fontsize=9)\nplt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\nFigure 2.2: Transverse field E(x,y) of the LP modes guided at V = 8 (cos lφ orientation). Red and blue are opposite signs. The circle marks the core.\n\n\n\n\n\n\n\nShow the Python\nr = np.linspace(0, 2, 400)\nfig, ax = plt.subplots()\nax.axvspan(0, 1, color=fl.PALETTE[0], alpha=0.07, lw=0)\nfor k, (l, m, b) in enumerate(allm[:8]):\n    I = fl.LP_field(r, V, b, l) ** 2\n    ax.plot(r, I / I.max(), color=fl.PALETTE[k], lw=1.6, label=f\"LP{l}{m}\")\nax.set_xlabel(\"r / a\"); ax.set_ylabel(\"normalized irradiance\"); ax.legend(ncol=4, fontsize=8)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 2.3: Radial irradiance |f(r)|² of the guided LP modes at V = 8, normalized to the core boundary value. Low-b modes reach far into the cladding.",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Step-index optical fibers</span>"
+    ]
+  },
+  {
+    "objectID": "fibers.html#fiber-parameters-slides-48-6162",
+    "href": "fibers.html#fiber-parameters-slides-48-6162",
+    "title": "2  Step-index optical fibers",
+    "section": "2.2 Fiber parameters (slides 48, 61–62)",
+    "text": "2.2 Fiber parameters (slides 48, 61–62)\n\n\n\n\n\n\n\nquantity\nformula\n\n\n\n\nnormalized index difference\n\\(\\Delta = \\dfrac{n_1^2-n_2^2}{2n_1^2}\\approx\\dfrac{n_1-n_2}{n_1}\\)\n\n\nnumerical aperture\n\\(\\mathrm{NA}=\\sqrt{n_1^2-n_2^2}\\approx n_1\\sqrt{2\\Delta}\\)\n\n\nacceptance angle\n\\(\\sin\\alpha_\\text{max} = \\mathrm{NA}/n_0\\)\n\n\n\\(V\\)-number\n\\(V=\\dfrac{2\\pi a}{\\lambda}\\,\\mathrm{NA}\\)\n\n\nsingle mode\n\\(V&lt;2.405\\), i.e. \\(\\lambda&gt;\\lambda_c=\\dfrac{2\\pi a\\,\\mathrm{NA}}{2.405}\\)\n\n\nnumber of modes (\\(V\\gg1\\))\n\\(M\\approx V^2/2\\)\n\n\n\n\n\nShow the Python\nVs = np.linspace(0.5, 25, 120)\nMex = [fl.LP_count(v) for v in Vs]\nfig, ax = plt.subplots()\nax.step(Vs, Mex, where=\"post\", label=\"exact count\")\nax.plot(Vs, Vs**2 / 2, \"--\", color=fl.PALETTE[1], label=\"V²/2\")\nax.set_xlabel(\"V\"); ax.set_ylabel(\"number of modes M\"); ax.legend()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 2.4: Exact number of guided modes (both polarisations, both orientations) compared with V²/2.\n\n\n\n\n\n\n2.2.1 Single-mode cut-off vs. index contrast (from ofiber_test.ipynb)\n\n\nShow the Python\nn_clad = 1.45\nD = np.linspace(0.0005, 0.02, 300)\nn_core = n_clad / (1 - D)\nfig, ax = plt.subplots()\nfor k, a in enumerate(np.array([2, 2.5, 3, 3.5, 4, 4.5, 5]) * 1e-6):\n    lc = 2 * np.pi * a * fl.NA(n_core, n_clad) / 2.405\n    ax.plot(D * 100, lc * 1e9, color=fl.PALETTE[k], label=f\"a = {a*1e6:.1f} µm\")\nfor lam in (1310, 1550):\n    ax.axhline(lam, color=fl.INK2, lw=0.8, ls=\":\")\nax.set_xlabel(\"Δ (%)\"); ax.set_ylabel(\"λc (nm)\"); ax.set_ylim(0, 3000); ax.legend(ncol=2, fontsize=8)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 2.5: Cut-off wavelength of a step-index fiber versus Δ for several core radii (n2 = 1.45).",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Step-index optical fibers</span>"
+    ]
+  },
+  {
+    "objectID": "fibers.html#live-fiber-designer",
+    "href": "fibers.html#live-fiber-designer",
+    "title": "2  Step-index optical fibers",
+    "section": "2.3 Live fiber designer",
+    "text": "2.3 Live fiber designer\nType the fiber parameters and all the quantities of slides 48–64 update. You can also use this panel to check every worked example below.\n\n\nShow the Python\nviewof fd = Inputs.form({\n  n1: Inputs.number([1.3, 1.7], {value: 1.4532, step: 0.0001, label: \"core index n₁\"}),\n  n2: Inputs.number([1.3, 1.7], {value: 1.4485, step: 0.0001, label: \"cladding index n₂\"}),\n  d:  Inputs.number([1, 1000], {value: 8.2, step: 0.1, label: \"core diameter 2a (µm)\"}),\n  lam: Inputs.number([0.3, 2.5], {value: 1.31, step: 0.01, label: \"wavelength λ (µm)\"})\n})\n\n\n\n\n\n\n\n\n\nShow the Python\nfiberOut = {\n  const {n1, n2, d, lam} = fd, a = d / 2;\n  if (!(n1 &gt; n2)) return null;\n  const NAv = Math.sqrt(n1*n1 - n2*n2), Dl = (n1*n1 - n2*n2) / (2*n1*n1);\n  const V = 2*Math.PI*a/lam*NAv, lc = 2*Math.PI*a*NAv/2.405;\n  const mfd = 2*a*(0.65 + 1.619*Math.pow(V, -1.5) + 2.879*Math.pow(V, -6));\n  return {NAv, Dl, V, lc, mfd, amax: Math.asin(Math.min(NAv, 1)) * 180/Math.PI, M: V*V/2,\n          dtau: (n1 - n2) / 299792458 * 1e3 * 1e9};\n}\nfiberOut === null ? html`&lt;div class=\"result-box\"&gt;n₁ must be larger than n₂.&lt;/div&gt;` :\nhtml`&lt;div class=\"result-box\"&gt;\nΔ = ${(100*fiberOut.Dl).toFixed(3)} % · NA = ${fiberOut.NAv.toFixed(4)} ·\nα&lt;sub&gt;max&lt;/sub&gt; = ${fiberOut.amax.toFixed(2)}° (total 2α&lt;sub&gt;max&lt;/sub&gt; = ${(2*fiberOut.amax).toFixed(1)}°)&lt;br&gt;\nV = &lt;b&gt;${fiberOut.V.toFixed(3)}&lt;/b&gt; → ${fiberOut.V &lt; 2.405 ? \"&lt;b&gt;single-mode&lt;/b&gt;\" : `&lt;b&gt;multimode&lt;/b&gt;, M ≈ V²/2 ≈ ${Math.round(fiberOut.M)}`}&lt;br&gt;\ncut-off wavelength λ&lt;sub&gt;c&lt;/sub&gt; = ${(1000*fiberOut.lc).toFixed(0)} nm&lt;br&gt;\n${fiberOut.V &gt; 0.8 && fiberOut.V &lt; 2.6 ? `MFD (Marcuse) = ${fiberOut.mfd.toFixed(2)} µm · ` : \"\"}\nstep-index intermodal spread ≈ ${fiberOut.dtau.toFixed(1)} ns/km\n&lt;/div&gt;`",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Step-index optical fibers</span>"
+    ]
+  },
+  {
+    "objectID": "fibers.html#worked-examples-slides-5164-recomputed",
+    "href": "fibers.html#worked-examples-slides-5164-recomputed",
+    "title": "2  Step-index optical fibers",
+    "section": "2.4 Worked examples (slides 51–64), recomputed",
+    "text": "2.4 Worked examples (slides 51–64), recomputed\n\n\nShow the Python\ndef report(title, **kv):\n    print(f\"── {title}\")\n    for k, v in kv.items(): print(f\"   {k:&lt;28s} {v}\")\n\n# Slide 57 — multimode fiber\nV = fl.V_number(50e-6, 0.85e-6, 1.468, 1.447)\nreport(\"Slide 57: MMF, 2a = 100 µm, λ = 850 nm\", V=f\"{V:.2f}\", **{\"M ≈ V²/2\": f\"{V**2/2:.0f}\",\n       \"exact count\": fl.LP_count(V)})\n\n# Slide 58 — maximum radius for SMF at 1.3 µm\na_max = 2.405 * 1.3e-6 / (2 * np.pi * fl.NA(1.468, 1.447))\nreport(\"Slide 58: SMF core radius at 1.3 µm\", **{\"a ≤\": f\"{a_max*1e6:.2f} µm\"})\n\n# Slides 59-60 — cut-off and MFD\na, n1, n2 = 4.1e-6, 1.4532, 1.4485\nlc = 2 * np.pi * a * fl.NA(n1, n2) / 2.405\nV = fl.V_number(a, 1.31e-6, n1, n2)\nreport(\"Slides 59–60: 2a = 8.2 µm at 1.31 µm\", **{\n    \"λc\": f\"{lc*1e6:.3f} µm\", \"V\": f\"{V:.3f}\",\n    \"MFD Marcuse\": f\"{fl.mfd_marcuse(a, V)*1e6:.2f} µm\",\n    \"MFD 2a(2.6/V)\": f\"{2*a*2.6/V*1e6:.2f} µm\",\n    \"MFD exact Gaussian fit (new)\": f\"{fl.mfd_exact_gaussian(a, V)*1e6:.2f} µm\",\n    \"MFD Petermann II (ITU, new)\": f\"{fl.mfd_petermann2(a, V)*1e6:.2f} µm\"})\n\n# Slide 63 — NA and acceptance\nn1, n2 = 1.480, 1.460\nNAv = fl.NA(n1, n2); V = fl.V_number(50e-6, 0.85e-6, n1, n2)\nreport(\"Slide 63: MMF NA\", NA=f\"{NAv:.4f}\", **{\"α_max\": f\"{np.degrees(np.arcsin(NAv)):.1f}°\",\n       \"2α_max\": f\"{2*np.degrees(np.arcsin(NAv)):.1f}°\", \"V\": f\"{V:.2f}\", \"M\": f\"{V**2/2:.0f}\",\n       \"Δ\": f\"{(n1-n2)/n1*100:.2f} %\"})\n\n# Slide 64 — SMF with Δ = 0.3 %\nn1, Dl = 1.460, 0.003\nNAv = n1 * np.sqrt(2 * Dl)\nreport(\"Slide 64: SMF, 2a = 8 µm, Δ = 0.3 %\", NA=f\"{NAv:.3f}\",\n       **{\"2α_max\": f\"{2*np.degrees(np.arcsin(NAv)):.1f}°\", \"λc\": f\"{2*np.pi*4e-6*NAv/2.405*1e6:.2f} µm\"})\n\n\n── Slide 57: MMF, 2a = 100 µm, λ = 850 nm\n   V                            91.44\n   M ≈ V²/2                     4181\n   exact count                  4202\n── Slide 58: SMF core radius at 1.3 µm\n   a ≤                          2.01 µm\n── Slides 59–60: 2a = 8.2 µm at 1.31 µm\n   λc                           1.251 µm\n   V                            2.297\n   MFD Marcuse                  9.31 µm\n   MFD 2a(2.6/V)                9.28 µm\n   MFD exact Gaussian fit (new) 9.23 µm\n   MFD Petermann II (ITU, new)  9.14 µm\n── Slide 63: MMF NA\n   NA                           0.2425\n   α_max                        14.0°\n   2α_max                       28.1°\n   V                            89.62\n   M                            4016\n   Δ                            1.35 %\n── Slide 64: SMF, 2a = 8 µm, Δ = 0.3 %\n   NA                           0.113\n   2α_max                       13.0°\n   λc                           1.18 µm\n\n\n\n2.4.1 Group velocity and group delay (slides 51–52)\n\nSMF with \\(n_1=1.4480\\), \\(n_2=1.4400\\), \\(a=3\\) µm at \\(\\lambda=1.5\\) µm. What are \\(v_g\\) and the group delay over 1 km? Neglect material dispersion.\n\nThe slides use \\(\\beta \\approx n_2k[1+b\\Delta]\\) with the approximate \\(b(V)\\), and a 0.1 % finite difference. We do the same and also use the exact \\(b(V)\\) and an exact derivative.\n\n\nShow the Python\nn1, n2, a = 1.4480, 1.4400, 3e-6\nDl = (n1 - n2) / n1\ndef beta(wl, exact):\n    V = fl.V_number(a, wl, n1, n2)\n    b = fl.LP_b(V, 0, 1) if exact else fl.b_approx(V)\n    return n2 * 2 * np.pi / wl * (1 + b * Dl)\nfor exact, h in [(False, 1.5e-9), (True, 1e-12)]:\n    w1, w2 = 1.5e-6, 1.5e-6 + h\n    om = lambda wl: 2 * np.pi * c0 / wl\n    vg = (om(w1) - om(w2)) / (beta(w1, exact) - beta(w2, exact))\n    print(f\"{'exact b(V), dλ→0' if exact else 'approx. b(V), dλ = 0.1%':&lt;26s}: \"\n          f\"b = {fl.LP_b(fl.V_number(a,w1,n1,n2),0,1) if exact else fl.b_approx(fl.V_number(a,w1,n1,n2)):.5f}, \"\n          f\"v_g = {vg:.5e} m/s, τ_g(1 km) = {1e3/vg*1e6:.4f} µs\")\n\n\napprox. b(V), dλ = 0.1%   : b = 0.38609, v_g = 2.07007e+08 m/s, τ_g(1 km) = 4.8308 µs\nexact b(V), dλ→0          : b = 0.38614, v_g = 2.06997e+08 m/s, τ_g(1 km) = 4.8310 µs",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Step-index optical fibers</span>"
+    ]
+  },
+  {
+    "objectID": "fibers.html#mode-field-diameter-slides-5356",
+    "href": "fibers.html#mode-field-diameter-slides-5356",
+    "title": "2  Step-index optical fibers",
+    "section": "2.5 Mode field diameter (slides 53–56)",
+    "text": "2.5 Mode field diameter (slides 53–56)\nThe LP\\(_{01}\\) field is very close to a Gaussian \\(E\\propto\\exp(-r^2/w^2)\\). The MFD is \\(2w\\). Because the intensity is Gaussian, the fraction of power inside \\(r&lt;w\\) is \\(1-e^{-2}\\approx 86\\,\\%\\), just like a Gaussian beam (Chapter 1).\n\n\nShow the Python\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 3.9))\nV = 2.30; b = fl.LP_b(V, 0, 1)\nr = np.linspace(0, 3, 400)\nE = fl.LP_field(r, V, b, 0); E /= E[0]\nw = fl.mfd_exact_gaussian(1, V) / 2\nax1.plot(r, E**2, label=\"exact LP₀₁ intensity\")\nax1.plot(r, np.exp(-2 * (r / w) ** 2), \"--\", label=f\"Gaussian, w = {w:.3f} a\")\nax1.axvline(1, color=fl.INK2, lw=0.8, ls=\":\"); ax1.text(1.02, 0.9, \"core edge\", color=fl.INK2)\nax1.set_xlabel(\"r / a\"); ax1.set_ylabel(\"intensity\"); ax1.legend()\nVs = np.linspace(1.2, 3.0, 40)\nax2.plot(Vs, [fl.mfd_exact_gaussian(1, v) / 2 for v in Vs], label=\"exact (Gaussian fit)\")\nax2.plot(Vs, [fl.mfd_petermann2(1, v) / 2 for v in Vs], label=\"Petermann II\")\nax2.plot(Vs, fl.mfd_marcuse(1, Vs) / 2, \"--\", label=\"Marcuse\")\nax2.plot(Vs, 2.6 / Vs, \":\", label=\"2.6/V\")\nax2.axvspan(1.5, 2.5, color=fl.GRID, alpha=0.5, lw=0)\nax2.set_xlabel(\"V\"); ax2.set_ylabel(\"MFD / 2a\"); ax2.legend(fontsize=8)\nplt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\nFigure 2.6: Left: exact LP01 field at V = 2.30 and its best Gaussian fit. Right: MFD/2a versus V from three definitions. Marcuse’s formula is excellent for 1.5 &lt; V &lt; 2.5. The simple 2.6/V rule is not.\n\n\n\n\n\n\n2.5.1 \\(V\\) across the telecom band (from ofiber_test.ipynb)\nThe indices themselves depend on \\(\\lambda\\) (Sellmeier, see Chapter 3). Here is \\(V(\\lambda)\\) for a 9 µm core of SiO\\(_2\\) doped with 2 % GeO\\(_2\\) inside a pure-silica cladding:\n\n\nShow the Python\nlam = np.linspace(1000, 1650, 200) * 1e-9\nV = fl.V_number(4.5e-6, lam, fl.n_doped(lam, 0.02), fl.n_silica(lam))\nfig, ax = plt.subplots()\nax.plot(lam * 1e9, V)\nax.axhspan(2.0, 2.405, color=fl.PALETTE[2], alpha=0.12, lw=0)\nax.axhline(2.405, color=fl.INK2, lw=0.8)\nax.text(1610, 2.2, \"practical SM window\\n2.0 &lt; V &lt; 2.405\", ha=\"right\", va=\"center\", fontsize=9)\nax.set_xlabel(\"λ (nm)\"); ax.set_ylabel(\"V\")\nplt.show()\n\n\n\n\n\n\n\n\nFigure 2.7: V-number versus wavelength for 2a = 9 µm, core SiO2 + 2 mol% GeO2, cladding pure SiO2.",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Step-index optical fibers</span>"
+    ]
+  },
+  {
+    "objectID": "fibers.html#try-it-yourself",
+    "href": "fibers.html#try-it-yourself",
+    "title": "2  Step-index optical fibers",
+    "section": "2.6 Try it yourself",
+    "text": "2.6 Try it yourself\n\nModify the 2-D map cell to plot intensity of LP\\(_{11}\\) as the sum of its cos and sin variants with random phases. This is what a speckled multimode output looks like.\nCheck the claim of slide 55: for which \\(V\\) range is Marcuse within 1 % of the exact Gaussian fit?\nExact vector modes (advanced). LP\\(_{11}\\) is really HE\\(_{21}\\), TE\\(_{01}\\) and TM\\(_{01}\\), which have slightly different \\(\\beta\\). Look up the full eigenvalue equation (Snyder & Love) and plot the splitting versus \\(\\Delta\\). This is the beginning of mode-division multiplexing (MDM) with few-mode fibers.\nUse the fiber designer to design a fiber that is single-mode at 850 nm (VCSEL links), with an MFD larger than 5 µm.",
+    "crumbs": [
+      "Guiding light",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Step-index optical fibers</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html",
+    "href": "dispersion.html",
+    "title": "3  Dispersion",
+    "section": "",
+    "text": "3.1 Intermodal dispersion (slides 66–67)\nRun this chapter’s code in Google Colab (no installation).\nSlides 65–95. “Dispersion = spread of information.” A short pulse that enters the fiber leaves it broader, because its constituents (modes, wavelengths, polarisations) arrive at different times.\nFar from cut-off, the fastest and slowest rays differ by \\(\\Delta\\tau/L\\approx (n_1-n_2)/c=n_1\\Delta/c\\). The spread depends on length.\nShow the Python\nfor n1, n2 in [(1.48, 1.46), (1.475, 1.475*0.99), (1.4532, 1.4485)]:\n    print(f\"n1 = {n1:.4f}, n2 = {n2:.4f}:  Δτ/L ≈ {(n1-n2)/c0*1e12:.1f} ns/km\")\n\n\nn1 = 1.4800, n2 = 1.4600:  Δτ/L ≈ 66.7 ns/km\nn1 = 1.4750, n2 = 1.4603:  Δτ/L ≈ 49.2 ns/km\nn1 = 1.4532, n2 = 1.4485:  Δτ/L ≈ 15.7 ns/km",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html#chromatic-dispersion-in-the-fundamental-mode-slides-6871",
+    "href": "dispersion.html#chromatic-dispersion-in-the-fundamental-mode-slides-6871",
+    "title": "3  Dispersion",
+    "section": "3.2 Chromatic dispersion in the fundamental mode (slides 68–71)",
+    "text": "3.2 Chromatic dispersion in the fundamental mode (slides 68–71)\nA source of spectral width \\(\\Delta\\lambda\\) launches several wavelengths. Each has its own group delay \\(\\tau_g(\\lambda)=L/v_g\\). The dispersion coefficient is\n\\[\nD=\\frac1L\\frac{d\\tau_g}{d\\lambda}\\quad[\\text{ps nm}^{-1}\\text{km}^{-1}],\\qquad\n\\Delta\\tau = |D|\\,L\\,\\Delta\\lambda .\n\\]\n\n3.2.1 Material dispersion from the Sellmeier equation\n\\[\nn^2(\\lambda)=1+\\sum_{i=1}^{3}\\frac{B_i\\lambda^2}{\\lambda^2-\\lambda_i^2},\\qquad\nN_g=n-\\lambda\\frac{dn}{d\\lambda},\\qquad\nD_m=-\\frac{\\lambda}{c}\\frac{d^2n}{d\\lambda^2}.\n\\]\nWe use Malitson’s coefficients for SiO\\(_2\\) and Fleming’s for GeO\\(_2\\). A doped core (SiO\\(_2\\))\\(_{1-x}\\)(GeO\\(_2\\))\\(_x\\) is obtained by mixing the coefficients linearly.\n\n\nShow the Python\nlam = np.linspace(0.6, 1.8, 500) * 1e-6\nfig, axs = plt.subplots(1, 3, figsize=(11, 3.6))\nfor k, x in enumerate([0, 0.05, 0.135]):\n    lab = \"SiO₂\" if x == 0 else f\"SiO₂ + {x*100:.1f}% GeO₂\"\n    axs[0].plot(lam * 1e6, fl.n_doped(lam, x), color=fl.PALETTE[k], label=lab)\n    axs[1].plot(lam * 1e6, fl.group_index(lam, x), color=fl.PALETTE[k])\n    axs[2].plot(lam * 1e6, fl.D_material(lam, x) / PS, color=fl.PALETTE[k])\naxs[0].set_ylabel(\"n\"); axs[1].set_ylabel(\"$N_g$\"); axs[2].set_ylabel(\"$D_m$ (ps nm⁻¹ km⁻¹)\")\naxs[2].axhline(0, color=fl.INK2, lw=0.8)\nfor ax in axs: ax.set_xlabel(\"λ (µm)\")\naxs[0].legend(fontsize=8)\nplt.tight_layout(); plt.show()\nfrom scipy.optimize import brentq\nprint(\"Zero material dispersion of silica: λ0 = %.1f nm\" % (brentq(fl.D_material, 1.2e-6, 1.35e-6) * 1e9))\n\n\n\n\n\n\n\n\nFigure 3.1: Refractive index n, group index Ng and material dispersion Dm of pure silica and germania-doped silica. Ng has a minimum where Dm crosses zero, near 1.27 µm for silica.\n\n\n\n\n\nZero material dispersion of silica: λ0 = 1272.8 nm\n\n\n\n\n\n\n\n\nTipPositive and negative \\(D\\) (slide 78)\n\n\n\n\\(D&gt;0\\) means longer wavelengths arrive later (\\(N_g\\) grows with \\(\\lambda\\)). This is the “anomalous” regime above 1.3 µm in silica. \\(D&lt;0\\) means shorter wavelengths arrive later. In fiber-optics jargon \\(D&gt;0\\) corresponds to \\(\\beta_2=-\\lambda^2D/2\\pi c&lt;0\\).\n\n\n\n\n3.2.2 Waveguide dispersion (slides 74–76)\nEven with constant \\(n_1, n_2\\), the group delay depends on \\(\\lambda\\) through \\(V\\):\n\\[\nD_w\\approx-\\frac{n_2\\Delta}{c\\lambda}\\,V\\frac{d^2(Vb)}{dV^2},\n\\qquad V\\frac{d^2(Vb)}{dV^2}\\approx0.080+0.549(2.834-V)^2 .\n\\]\n\n\n3.2.3 Putting it together (slide 77)\nThe “exact” chromatic dispersion follows from the effective index \\(n_\\text{eff}^2=n_2^2+b(V)(n_1^2-n_2^2)\\) computed with the wavelength-dependent Sellmeier indices and the exact \\(b(V)\\). Then \\(\\tau_g/L=(n_\\text{eff}-\\lambda\\,dn_\\text{eff}/d\\lambda)/c\\), and \\(D\\) is its derivative. This includes material, waveguide and profile dispersion at once, with no approximation beyond weak guidance.\n\n\nShow the Python\na, xc = 4.1e-6, 0.035\nlam = np.linspace(1.1, 1.7, 61) * 1e-6\nDtot = np.array([fl.D_total_smf(l, a, xc) for l in lam]) / PS\nDm = fl.D_material(lam, xc) / PS\nn2l = fl.n_silica(lam); n1l = fl.n_doped(lam, xc)\nDw = fl.D_waveguide_approx(lam, a, n2l, fl.Delta(n1l, n2l)) / PS\nfig, ax = plt.subplots(figsize=(8, 4.4))\nax.plot(lam * 1e9, Dm, label=\"material $D_m$ (core glass)\")\nax.plot(lam * 1e9, Dw, label=\"waveguide $D_w$ (approx.)\")\nax.plot(lam * 1e9, Dm + Dw, \"--\", label=\"$D_m + D_w$\")\nax.plot(lam * 1e9, Dtot, color=fl.INK, lw=2.2, label=\"exact chromatic $D$\")\nax.axhline(0, color=fl.INK2, lw=0.8)\nl0 = brentq(lambda l: fl.D_total_smf(l, a, xc), 1.25e-6, 1.4e-6)\nax.axvline(l0 * 1e9, color=fl.INK2, lw=0.8, ls=\":\")\nax.text(l0 * 1e9 + 5, -25, f\"λ₀ = {l0*1e9:.0f} nm\", color=fl.INK2)\nax.set_xlabel(\"λ (nm)\"); ax.set_ylabel(\"D (ps nm⁻¹ km⁻¹)\"); ax.legend(fontsize=9)\nplt.show()\nS0 = (fl.D_total_smf(l0 + 5e-9, a, xc) - fl.D_total_smf(l0 - 5e-9, a, xc)) / 10e-9 / PS * 1e-9\nprint(f\"λ0 = {l0*1e9:.1f} nm, S0 = {S0:.3f} ps nm⁻² km⁻¹, D(1550) = {fl.D_total_smf(1.55e-6, a, xc)/PS:.2f} ps nm⁻¹ km⁻¹\")\n\n\n\n\n\n\n\n\nFigure 3.2: Chromatic dispersion of a standard-like SMF (2a = 8.2 µm, core SiO2 + 3.5% GeO2, cladding SiO2). The exact result (black) matches Dm + Dw (approximation) closely and gives λ0 ≈ 1.31 µm and D ≈ 17 ps/nm/km at 1550 nm, like ITU-T G.652.\n\n\n\n\n\nλ0 = 1307.8 nm, S0 = 0.086 ps nm⁻² km⁻¹, D(1550) = 16.78 ps nm⁻¹ km⁻¹",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html#dispersion-engineering-live-slides-76-8789",
+    "href": "dispersion.html#dispersion-engineering-live-slides-76-8789",
+    "title": "3  Dispersion",
+    "section": "3.3 Dispersion engineering, live (slides 76, 87–89)",
+    "text": "3.3 Dispersion engineering, live (slides 76, 87–89)\n\\(D_w\\) is negative and grows in magnitude when the core gets smaller and the index step larger. Pushing \\(\\lambda_0\\) to 1550 nm gives a dispersion-shifted fiber (DSF). Stopping slightly before gives a non-zero DSF (NZ-DSF, G.655), which keeps a little dispersion to suppress four-wave mixing in WDM. The curves below were computed with the exact model above. Pick a core radius and a GeO\\(_2\\) concentration.\n\n\n\n\n\n\n\nShow the Python\nviewof aSel = Inputs.select(dgrid.radii, {value: 4.0, label: \"core radius a (µm)\", format: d =&gt; d.toFixed(2)})\nviewof xSel = Inputs.select(dgrid.xs, {value: 0.035, label: \"GeO₂ mole fraction\", format: d =&gt; (100*d).toFixed(1) + \" %\"})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\ndCurve = {\n  const key = `${aSel.toFixed(2)}_${xSel.toFixed(3)}`;\n  const D = dgrid.D[key] || [];\n  return dgrid.lam.map((l, i) =&gt; ({lam: l, D: D[i]})).filter(d =&gt; Number.isFinite(d.D));\n}\ndRef = dgrid.lam.map((l, i) =&gt; ({lam: l, D: dgrid.D[\"4.00_0.035\"][i]}))\ndZero = {\n  for (let i = 1; i &lt; dCurve.length; i++) if (dCurve[i-1].D * dCurve[i].D &lt;= 0) {\n    const t = dCurve[i-1].D / (dCurve[i-1].D - dCurve[i].D);\n    return dCurve[i-1].lam + t * (dCurve[i].lam - dCurve[i-1].lam);\n  }\n  return null;\n}\nPlot.plot({\n  width: Math.min(width, 1050), height: 360, x: {label: \"λ (nm)\"}, y: {label: \"D (ps nm⁻¹ km⁻¹)\", domain: [-40, 30], grid: true},\n  marks: [\n    Plot.rectX([{x1: 1530, x2: 1565}], {x1: \"x1\", x2: \"x2\", fill: \"#1baf7a\", fillOpacity: 0.12}),\n    Plot.text([{x: 1547, y: 27}], {x: \"x\", y: \"y\", text: () =&gt; \"C-band\", fill: \"#52514e\"}),\n    Plot.ruleY([0], {stroke: \"#52514e\"}),\n    Plot.line(dRef, {x: \"lam\", y: \"D\", stroke: \"#b9b8b2\", strokeDasharray: \"4,3\"}),\n    Plot.line(dCurve, {x: \"lam\", y: \"D\", stroke: \"#2a78d6\", strokeWidth: 2.5}),\n    Plot.dot(dCurve, {x: \"lam\", y: \"D\", r: 3, fill: \"#2a78d6\", tip: true,\n             title: d =&gt; `λ = ${d.lam.toFixed(0)} nm\\nD = ${d.D.toFixed(2)} ps/nm/km`})\n  ]\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\n{\n  const D1550 = dCurve.length ? d3.scaleLinear().domain(dCurve.map(d =&gt; d.lam)).range(dCurve.map(d =&gt; d.D))(1550) : NaN;\n  return html`&lt;div class=\"result-box\"&gt;a = ${aSel} µm, GeO₂ = ${(100*xSel).toFixed(1)} % ·\n  λ₀ = ${dZero ? dZero.toFixed(0) + \" nm\" : \"none in range\"} · D(1550 nm) ≈ ${D1550.toFixed(1)} ps nm⁻¹ km⁻¹ ·\n  dashed: standard SMF (a = 4 µm, 3.5 %).&lt;br&gt;\n  &lt;i&gt;Watch out:&lt;/i&gt; small cores shift λ₀ but also lower V. Check the single-mode cut-off and the bend loss!&lt;/div&gt;`\n}",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html#commercial-fibers-slides-9092",
+    "href": "dispersion.html#commercial-fibers-slides-9092",
+    "title": "3  Dispersion",
+    "section": "3.4 Commercial fibers (slides 90–92)",
+    "text": "3.4 Commercial fibers (slides 90–92)\nNear \\(\\lambda_0\\), the ITU-T recommendations describe \\(D(\\lambda)\\) with only two numbers, \\(\\lambda_0\\) and the slope \\(S_0\\):\n\\[\nD(\\lambda)=\\frac{S_0}{4}\\left(\\lambda-\\frac{\\lambda_0^4}{\\lambda^3}\\right).\n\\]\n\n\nShow the Python\nlam = np.linspace(1260, 1625, 300)\nfibs = {\"G.652 standard SMF (SMF-28e+)\": (1317, 0.088),\n        \"G.655 NZ-DSF (TrueWave-like)\": (1450, 0.045),\n        \"G.656 wideband NZ-DSF (REACH-like)\": (1400, 0.045),\n        \"G.653 dispersion-shifted\": (1550, 0.07)}\nfig, ax = plt.subplots()\nfor k, (name, (l0_, S0_)) in enumerate(fibs.items()):\n    ax.plot(lam, S0_ / 4 * (lam - l0_**4 / lam**3), color=fl.PALETTE[k], label=name)\nax.axvspan(1530, 1565, color=fl.PALETTE[2], alpha=0.1, lw=0)\nax.axhline(0, color=fl.INK2, lw=0.8)\nax.set_xlabel(\"λ (nm)\"); ax.set_ylabel(\"D (ps nm⁻¹ km⁻¹)\"); ax.legend(fontsize=8)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 3.3: Chromatic dispersion of typical commercial fibers described with the ITU formula. Values follow the table on slide 90 (G.652/SMF-28e+: λ0 = 1317 nm, S0 = 0.088). The NZ-DSF curves are representative.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html#is-dispersion-really-zero-at-lambda_0-slide-79",
+    "href": "dispersion.html#is-dispersion-really-zero-at-lambda_0-slide-79",
+    "title": "3  Dispersion",
+    "section": "3.5 Is dispersion really zero at \\(\\lambda_0\\)? (slide 79)",
+    "text": "3.5 Is dispersion really zero at \\(\\lambda_0\\)? (slide 79)\nNo. At \\(\\lambda_0\\) the first-order term vanishes, but the delay is still a parabola in \\(\\lambda\\): \\(\\tau(\\lambda)\\approx\\tau_0+\\tfrac{L S_0}{2}(\\lambda-\\lambda_0)^2\\). The spread therefore scales as \\(\\Delta\\lambda^2\\).\n\n\nShow the Python\nL, S0_ = 100.0, 0.09          # km, ps/nm²/km\nfor dl in [0.1, 1, 2, 5, 10]:\n    lin = 17 * L * dl\n    quad = L * S0_ * dl**2 / 8          # spread over a ±Δλ/2 window around λ0\n    print(f\"Δλ = {dl:5.1f} nm : at 1550 nm {lin:9.1f} ps   |   at λ0 ≈ {quad:7.2f} ps\")\n\n\nΔλ =   0.1 nm : at 1550 nm     170.0 ps   |   at λ0 ≈    0.01 ps\nΔλ =   1.0 nm : at 1550 nm    1700.0 ps   |   at λ0 ≈    1.12 ps\nΔλ =   2.0 nm : at 1550 nm    3400.0 ps   |   at λ0 ≈    4.50 ps\nΔλ =   5.0 nm : at 1550 nm    8500.0 ps   |   at λ0 ≈   28.12 ps\nΔλ =  10.0 nm : at 1550 nm   17000.0 ps   |   at λ0 ≈  112.50 ps",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html#polarisation-mode-dispersion-slides-8083",
+    "href": "dispersion.html#polarisation-mode-dispersion-slides-8083",
+    "title": "3  Dispersion",
+    "section": "3.6 Polarisation mode dispersion (slides 80–83)",
+    "text": "3.6 Polarisation mode dispersion (slides 80–83)\nRandom strains make the fiber weakly birefringent (\\(\\delta n/n&lt;10^{-6}\\)), with axes that rotate randomly along the length. The total differential group delay (DGD) is therefore a random walk. The mean DGD grows as \\(\\sqrt L\\), \\(\\langle\\Delta\\tau\\rangle = D_\\text{PMD}\\sqrt L\\), and its distribution is Maxwellian. The concatenation rule for PMD vectors in Stokes space, \\(\\vec\\tau_{n+1}=R_n\\vec\\tau_n+\\delta\\vec\\tau_n\\), with random rotations \\(R_n\\), makes the vector perform a 3-D random walk:\n\n\nShow the Python\nrng = np.random.default_rng(3)\nLsec, nsec, nfib = 0.1, 1000, 4000            # 100 m sections, 100 km\ndgd_sec = 0.1 / np.sqrt(1 / Lsec) * np.sqrt(3 * np.pi / 8)   # chosen so that &lt;DGD&gt; = 0.1 ps/√km\nsteps = rng.normal(size=(nfib, nsec, 3))\nsteps *= dgd_sec / np.linalg.norm(steps, axis=2, keepdims=True)\ntau = np.linalg.norm(np.cumsum(steps, axis=1), axis=2)       # ps\nz = np.arange(1, nsec + 1) * Lsec\nfig, (a1, a2) = plt.subplots(1, 2, figsize=(10, 3.8))\na1.plot(z, tau[:20].T, color=fl.PALETTE[0], lw=0.6, alpha=0.5)\na1.plot(z, tau.mean(0), color=fl.INK, lw=2, label=\"mean DGD\")\na1.plot(z, 0.1 * np.sqrt(z), \"--\", color=fl.PALETTE[1], label=\"0.1 ps/√km · √L\")\na1.set_xlabel(\"L (km)\"); a1.set_ylabel(\"DGD (ps)\"); a1.legend()\nt = tau[:, -1]; m = t.mean()\na2.hist(t, bins=50, density=True, color=fl.PALETTE[0], alpha=0.7, rwidth=0.9)\nx = np.linspace(0, t.max(), 200)\na2.plot(x, 32 * x**2 / (np.pi**2 * m**3) * np.exp(-4 * x**2 / (np.pi * m**2)), color=fl.PALETTE[1], label=\"Maxwell\")\na2.set_xlabel(\"DGD at 100 km (ps)\"); a2.legend()\nplt.tight_layout(); plt.show()\nfrom scipy.special import erfc\ns_ = m * np.sqrt(np.pi / 8)                    # Maxwell scale parameter\npmax = lambda x: erfc(x / (np.sqrt(2) * s_)) + np.sqrt(2 / np.pi) * x / s_ * np.exp(-x**2 / (2 * s_**2))\nprint(f\"P(DGD &gt; 2×mean): simulated {(t &gt; 2*m).mean():.4f}, Maxwell {pmax(2*m):.4f}; \"\n      f\"P(DGD &gt; 3×mean) (Maxwell) = {pmax(3*m):.1e}. Outages are rare but not impossible.\")\n\n\n\n\n\n\n\n\nFigure 3.4: Monte-Carlo PMD. Left: DGD versus length for 20 random fibers (thin) and the ensemble mean ∝ √L. Right: histogram of the DGD at 100 km over 4000 fibers, with the Maxwell distribution.\n\n\n\n\n\nP(DGD &gt; 2×mean): simulated 0.0173, Maxwell 0.0171; P(DGD &gt; 3×mean) (Maxwell) = 4.2e-05. Outages are rare but not impossible.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html#self-phase-modulation-a-first-power-limit-slide-86",
+    "href": "dispersion.html#self-phase-modulation-a-first-power-limit-slide-86",
+    "title": "3  Dispersion",
+    "section": "3.7 Self-phase modulation: a first power limit (slide 86)",
+    "text": "3.7 Self-phase modulation: a first power limit (slide 86)\nWith \\(n'=n+CI\\) and \\(C=10^{-14}\\) cm²/W, which intensity gives \\(\\Delta\\tau/L\\approx0.1\\) ps/km? \\(\\Delta\\tau/L = \\Delta n/c\\), so \\(\\Delta n = c\\,(0.1\\text{ ps/km})\\) and \\(I=\\Delta n/C\\).\n\n\nShow the Python\ndn = c0 * 0.1e-12 / 1e3\nI = dn / 1e-14                       # W/cm²\nA = np.pi * (5e-4) ** 2               # cm², 2a = 10 µm\nprint(f\"Δn = {dn:.1e},  I = {I:.1e} W/cm²,  A = {A:.2e} cm²,  P = I·A = {I*A:.2f} W in a 10 µm core\")\n\n\nΔn = 3.0e-08,  I = 3.0e+06 W/cm²,  A = 7.85e-07 cm²,  P = I·A = 2.35 W in a 10 µm core\n\n\nThis SPM-induced spread is small compared with chromatic dispersion. Other nonlinear effects (SBS, FWM; see Chapter 7) set in at much lower powers, at a few to a few tens of mW.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html#dispersion-compensation-slides-9395",
+    "href": "dispersion.html#dispersion-compensation-slides-9395",
+    "title": "3  Dispersion",
+    "section": "3.8 Dispersion compensation (slides 93–95)",
+    "text": "3.8 Dispersion compensation (slides 93–95)\nAdd a short length \\(L_c\\) of fiber with large dispersion of opposite sign, \\(D_c\\). The accumulated dispersion is \\(D_tL_t+D_cL_c\\).\n\n\nShow the Python\nDt, Dc = 10, -100\nfig, ax = plt.subplots()\nz = np.linspace(0, 1000, 500); ax.plot(np.r_[z, 1000 + np.linspace(0, 80, 50)],\n        np.r_[Dt * z, Dt * 1000 + Dc * np.linspace(0, 80, 50)], label=\"DCF at the end (slide 93)\")\nzz, acc = [0], [0]\nfor span in range(10):\n    zz += [zz[-1] + 100]; acc += [acc[-1] + Dt * 100]\n    zz += [zz[-1] + 9.0]; acc += [acc[-1] + Dc * 9.0]\nax.plot(zz, acc, label=\"in-line DCF, 90 % compensation per span\")\nax.set_xlabel(\"distance (km)\"); ax.set_ylabel(\"accumulated dispersion (ps/nm)\"); ax.legend()\nplt.show()\nprint(f\"Slide 93: total = {Dt*1000 + Dc*80} ps/nm over 1080 km → D_eff = {(Dt*1000 + Dc*80)/1080:.2f} ps/nm/km\")\n\n\n\n\n\n\n\n\nFigure 3.5: Dispersion map. 1000 km of D = +10 ps/nm/km fiber with 80 km of D = −100 ps/nm/km DCF placed at the end (slide 93), compared with periodic in-line compensation every 100 km.\n\n\n\n\n\nSlide 93: total = 2000 ps/nm over 1080 km → D_eff = 1.85 ps/nm/km\n\n\nIn modern coherent systems, compensation is done digitally in the receiver DSP (see Chapter 10). This removed DCFs from most new links.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "dispersion.html#try-it-yourself",
+    "href": "dispersion.html#try-it-yourself",
+    "title": "3  Dispersion",
+    "section": "3.9 Try it yourself",
+    "text": "3.9 Try it yourself\n\nDesign a fiber with \\(\\lambda_0=1550\\) nm using the live panel. What happens to \\(V\\) at 1.55 µm and to the MFD?\nUsing fl.D_total_smf, compute \\(D\\) for a W-profile (depressed cladding). You will need to extend the solver to three layers. This is how dispersion-flattened fibers (slide 88) are made.\nHow many km of SMF can a 40 Gb/s NRZ signal travel if the tolerated spread is 0.3 bit periods, with a 0.1 nm source? And with a source linewidth dominated by the modulation itself?",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Dispersion</span>"
+    ]
+  },
+  {
+    "objectID": "grin.html",
+    "href": "grin.html",
+    "title": "4  Graded-index fibers",
+    "section": "",
+    "text": "4.1 Ray tracing in a graded core\nRun this chapter’s code in Google Colab (no installation).\nSlides 122–134. In a step-index MMF, steep rays travel longer paths and arrive late. If the index decreases away from the axis, those steep rays spend time in faster, low-index glass and can catch up with the axial ray.\n\\[\nn(r)=n_1\\left[1-2\\Delta\\left(\\frac{r}{a}\\right)^{\\gamma}\\right]^{1/2}\\ (r&lt;a),\\qquad n=n_2\\ (r\\ge a).\n\\]\nFor a meridional ray, the quantity \\(\\tilde\\beta=n(r)\\cos\\theta(r)\\) is conserved (Snell’s law for a continuous stratified medium, slide 123). The trajectory obeys\n\\[\n\\frac{d^2x}{dz^2}=\\frac{1}{2\\tilde\\beta^2}\\frac{\\partial n^2}{\\partial x},\\qquad\n\\frac{dt}{dz}=\\frac{n^2(x)}{c\\,\\tilde\\beta}.\n\\]\nWe integrate these equations for rays launched on axis at increasing angles, in a step-index core and in a parabolic (\\(\\gamma=2\\)) core with the same \\(n_1\\) and \\(\\Delta\\).\nShow the Python\nn1, Dl, a = 1.475, 0.02, 25e-6\nn2 = n1 * np.sqrt(1 - 2 * Dl)\ndef n_prof(x, gamma):\n    r = np.minimum(np.abs(x) / a, 1.0)\n    return n1 * np.sqrt(1 - 2 * Dl * r**gamma)\n\ndef trace_grin(theta0, gamma, zmax):\n    bt = n1 * np.cos(theta0)\n    def rhs(z, y):\n        x, xp, t = y\n        h = 1e-9\n        dn2 = (n_prof(x + h, gamma)**2 - n_prof(x - h, gamma)**2) / (2 * h)\n        return [xp, dn2 / (2 * bt**2), n_prof(x, gamma)**2 / (c0 * bt)]\n    s = solve_ivp(rhs, (0, zmax), [0, np.tan(theta0), 0], max_step=zmax / 4000, rtol=1e-10, atol=1e-14)\n    return s.t, s.y[0], s.y[2][-1]\n\ndef trace_step(theta0, zmax):\n    z = np.linspace(0, zmax, 4000)\n    period = 4 * a / np.tan(theta0)\n    ph = (z / period) % 1\n    x = a * np.where(ph &lt; .25, 4 * ph, np.where(ph &lt; .75, 2 - 4 * ph, 4 * ph - 4))\n    return z, x\n\nzmax = 2.5e-3\nangles = np.radians([2, 5, 8, 11])\nfig, axs = plt.subplots(2, 1, figsize=(9, 4.8), sharex=True)\nfor k, th0 in enumerate(angles):\n    z, x = trace_step(th0, zmax); axs[0].plot(z * 1e3, x * 1e6, color=fl.PALETTE[k], lw=1.3)\n    z, x, _ = trace_grin(th0, 2, zmax); axs[1].plot(z * 1e3, x * 1e6, color=fl.PALETTE[k], lw=1.3,\n                                                    label=f\"{np.degrees(th0):.0f}°\")\nfor ax, ttl in zip(axs, [\"step index\", \"graded index, γ = 2\"]):\n    ax.axhspan(-25, 25, color=fl.PALETTE[0], alpha=0.06, lw=0)\n    ax.set_ylabel(\"x (µm)\"); ax.set_title(ttl, loc=\"left\", fontsize=10)\naxs[1].set_xlabel(\"z (mm)\"); axs[1].legend(ncol=4, loc=\"lower right\", fontsize=8)\nplt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\nFigure 4.1: Meridional rays launched from the axis at 2°, 5°, 8° and 11° (inside the core) in a step-index fiber (top) and a parabolic GRIN fiber (bottom). The GRIN rays bend smoothly and periodically refocus on the axis.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Graded-index fibers</span>"
+    ]
+  },
+  {
+    "objectID": "grin.html#ray-tracing-in-a-graded-core",
+    "href": "grin.html#ray-tracing-in-a-graded-core",
+    "title": "4  Graded-index fibers",
+    "section": "",
+    "text": "4.1.1 Who arrives first?\nIntegrating the ray over a non-integer number of periods biases its average speed. So, for the transit time, we average exactly over one oscillation, between the axis and the turning point \\(x_t\\) where \\(n(x_t)=\\tilde\\beta\\):\n\\[\n\\frac{\\tau}{L}=\\frac1c\\,\\frac{\\int_0^{x_t} n^2\\,(n^2-\\tilde\\beta^2)^{-1/2}dx}{\\int_0^{x_t}\\tilde\\beta\\,(n^2-\\tilde\\beta^2)^{-1/2}dx}.\n\\]\n\n\nShow the Python\nfrom scipy.integrate import quad\ndef delay_ps_km(theta0, gamma):\n    \"\"\"Extra delay (ps/km) of a meridional ray vs the axial ray, exact period average.\n    With y = x/x_t: n^2 - bt^2 = (n1^2 - bt^2)(1 - y^gamma); substitute y = 1 - s^2.\"\"\"\n    bt = n1 * np.cos(theta0)\n    A2 = n1**2 - bt**2\n    wdy = lambda s: 2 * s / np.sqrt(-np.expm1(gamma * np.log1p(-s * s))) if s &gt; 0 else 2 / np.sqrt(gamma)\n    y = lambda s: 1 - s * s\n    num = quad(lambda s: (n1**2 - A2 * y(s)**gamma - n1 * bt) * wdy(s), 0, 1, epsrel=1e-12)[0]\n    den = quad(lambda s: bt * wdy(s), 0, 1, epsrel=1e-12)[0]\n    return num / den / c0 * 1e3 * 1e12\n\nthetas = np.radians(np.linspace(0.5, np.degrees(np.arccos(n2 / n1)) * 0.99, 30))\nfig, ax = plt.subplots()\nfor k, g in enumerate([1.8, 2 - 12 * Dl / 5, 2.0, 2.2, 4.0]):\n    ax.plot(np.degrees(thetas), [abs(delay_ps_km(th, g)) for th in thetas], color=fl.PALETTE[k], label=f\"γ = {g:.3f}\")\nax.plot(np.degrees(thetas), n1 / c0 * (1 / np.cos(thetas) - 1) * 1e15, \"--\", color=fl.INK, label=\"step index\")\nax.set_yscale(\"log\")\nax.set_xlabel(\"launch angle inside the core (deg)\"); ax.set_ylabel(\"|extra delay| (ps/km)\")\nax.legend(ncol=2, fontsize=8); plt.show()\n\n\n\n\n\n\n\n\nFigure 4.2: Extra delay per km relative to the axial ray, versus launch angle, for several profile exponents γ (Δ = 2 %). Step index grows like θ². For meridional rays the parabola (γ = 2) is best, with a residual ∝ θ⁴. The wave-theory optimum γ ≈ 2 − 12Δ/5 = 1.952 instead balances all modes, skew rays included. Note the logarithmic scale.\n\n\n\n\n\nThe ray picture already shows the ~1000× improvement and the sharp optimum. Meridional rays alone, however, do not see the skew rays, which is why their “best” profile is γ = 2 and not 2 − 12Δ/5. The exact numbers below come from wave theory, which counts every mode.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Graded-index fibers</span>"
+    ]
+  },
+  {
+    "objectID": "grin.html#optimum-profile-slides-124126",
+    "href": "grin.html#optimum-profile-slides-124126",
+    "title": "4  Graded-index fibers",
+    "section": "4.2 Optimum profile (slides 124–126)",
+    "text": "4.2 Optimum profile (slides 124–126)\nWave theory gives the rms intermodal spread for any \\(\\gamma\\) (Olshansky & Keck). With no profile dispersion, it is minimum at \\(\\gamma_\\text{opt}\\approx2-\\tfrac{12}{5}\\Delta\\), where\n\\[\n\\sigma_\\text{intermode}\\approx\\frac{L\\,n_1\\Delta^2}{20\\sqrt3\\,c} .\n\\]\n\n\nShow the Python\ng = np.linspace(1.5, 3.0, 2000)\nfig, ax = plt.subplots()\nfor k, D_ in enumerate([0.005, 0.01, 0.02]):\n    s = fl.sigma_intermodal_grin(g, 1.475, D_) * 1e12\n    ax.semilogy(g, s, color=fl.PALETTE[k], label=f\"Δ = {D_*100:.1f} %\")\n    i = s.argmin(); ax.plot(g[i], s[i], \"o\", color=fl.PALETTE[k])\n    print(f\"Δ = {D_:.3f}: γ_opt = {g[i]:.4f} (2 − 12Δ/5 = {2-12*D_/5:.4f}), σ_min = {s[i]:.2f} ps/km \"\n          f\"(formula {1.475*D_**2/(20*np.sqrt(3)*c0)*1e15:.2f}), σ at 1.15γ_opt = {fl.sigma_intermodal_grin(1.15*g[i],1.475,D_)*1e12:.0f} ps/km\")\nax.set_xlabel(\"γ\"); ax.set_ylabel(\"σ_intermode (ps/km)\"); ax.legend()\nplt.show()\n\n\nΔ = 0.005: γ_opt = 1.9877 (2 − 12Δ/5 = 1.9880), σ_min = 3.56 ps/km (formula 3.55), σ at 1.15γ_opt = 417 ps/km\nΔ = 0.010: γ_opt = 1.9765 (2 − 12Δ/5 = 1.9760), σ_min = 13.99 ps/km (formula 14.20), σ at 1.15γ_opt = 839 ps/km\nΔ = 0.020: γ_opt = 1.9532 (2 − 12Δ/5 = 1.9520), σ_min = 55.12 ps/km (formula 56.81), σ at 1.15γ_opt = 1690 ps/km\n\n\n\n\n\n\n\n\nFigure 4.3: rms intermodal spread per km versus profile index γ (n1 = 1.475). The minimum is extremely sharp. A 10–15 % error in γ costs an order of magnitude in bandwidth (slide 132).",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Graded-index fibers</span>"
+    ]
+  },
+  {
+    "objectID": "grin.html#worked-examples-recomputed",
+    "href": "grin.html#worked-examples-recomputed",
+    "title": "4  Graded-index fibers",
+    "section": "4.3 Worked examples, recomputed",
+    "text": "4.3 Worked examples, recomputed\n\n\nShow the Python\nc = c0\n# Slides 128-131 : 50 µm GRIN, n1 = 1.475, Δ = 0.01, 850 nm VCSEL 0.4 nm, Dch = -100 ps/nm/km\nn1, D_ = 1.475, 0.01\nn2 = n1 * (1 - D_)\nV = fl.V_number(25e-6, 0.85e-6, n1, n2)\nsig_inter = n1 * D_**2 / (20 * np.sqrt(3) * c) * 1e3          # s over 1 km\nt_inter = np.sqrt(6) * sig_inter                             # FWHM, triangular pulse\nt_intra = 100e-12 * 0.4                                      # FWHM\nt_tot = np.hypot(t_inter, t_intra)\nsig_tot = t_tot / np.sqrt(6)        # triangular-pulse rms\nB = 0.25 / sig_tot\nprint(f\"Slides 128–131: n2 = {n2:.4f}, V = {V:.2f}, M ≈ V²/4 = {V**2/4:.0f}\")\nprint(f\"  σ_inter = {sig_inter*1e12:.2f} ps/km, τ_inter = {t_inter*1e12:.1f} ps, τ_intra = {t_intra*1e12:.1f} ps, \"\n      f\"τ = {t_tot*1e12:.1f} ps → B = 0.25/σ ≈ {B/1e9:.1f} Gb/s, f_op ≈ 0.99B = {0.99*B/1e9:.1f} GHz\")\nstep = (n1 - n2) / c * 1e3\nprint(f\"  same indices, step-index: Δτ ≈ {step*1e9:.1f} ns/km → BL ≈ 0.25/(0.29Δτ) = {0.25/(0.29*step)/1e6:.1f} Mb/s·km\")\n\n# Slide 132\nn1, n2 = 1.48, 1.46; D_ = (n1 - n2) / n1\ns = n1 * D_**2 / (20 * np.sqrt(3) * c) * 1e3\nprint(f\"\\nSlide 132: Δ = {D_:.4f}, σ = {s*1e9:.3f} ns/km, BL = {0.25/s/1e9:.1f} Gb/s·km; \"\n      f\"step: {(n1-n2)/c*1e12:.1f} ns/km, BL = {0.25/(0.29*(n1-n2)/c*1e3)/1e6:.1f} Mb/s·km\")\n\n# Slide 133 : combining intermodal and intramodal\nn1, n2 = 1.474, 1.453; D_ = (n1 - n2) / n1\ns_inter = n1 * D_**2 / (20 * np.sqrt(3) * c) * 1e3\ns_intra = 0.425 * 7.5e-12 * 3\ns_tot = np.hypot(s_inter, s_intra)\nprint(f\"\\nSlide 133: Δ = {D_:.5f}, σ_inter = {s_inter*1e9:.4f} ns, σ_intra = {s_intra*1e9:.4f} ns, \"\n      f\"σ = {s_tot*1e9:.4f} ns → B = {0.25/s_tot/1e9:.1f} Gb/s (L = 1 km)\")\n\n\nSlides 128–131: n2 = 1.4603, V = 38.45, M ≈ V²/4 = 370\n  σ_inter = 14.20 ps/km, τ_inter = 34.8 ps, τ_intra = 40.0 ps, τ = 53.0 ps → B = 0.25/σ ≈ 11.6 Gb/s, f_op ≈ 0.99B = 11.4 GHz\n  same indices, step-index: Δτ ≈ 49.2 ns/km → BL ≈ 0.25/(0.29Δτ) = 17.5 Mb/s·km\n\nSlide 132: Δ = 0.0135, σ = 0.026 ns/km, BL = 9.6 Gb/s·km; step: 66.7 ns/km, BL = 12.9 Mb/s·km\n\nSlide 133: Δ = 0.01425, σ_inter = 0.0288 ns, σ_intra = 0.0096 ns, σ = 0.0304 ns → B = 8.2 Gb/s (L = 1 km)",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Graded-index fibers</span>"
+    ]
+  },
+  {
+    "objectID": "grin.html#grin-rod-lenses-slide-134",
+    "href": "grin.html#grin-rod-lenses-slide-134",
+    "title": "4  Graded-index fibers",
+    "section": "4.4 GRIN rod lenses (slide 134)",
+    "text": "4.4 GRIN rod lenses (slide 134)\nA parabolic rod (\\(\\gamma=2\\)) with \\(n(r)\\approx n_1[1-\\tfrac{A}{2}r^2]\\), \\(\\sqrt A=\\sqrt{2\\Delta}/a\\), makes every paraxial ray oscillate with the same period, the pitch \\(P=2\\pi/\\sqrt A\\). A quarter-pitch rod collimates a point source on its face. A half-pitch rod images the front face onto the back face (inverted).\n\n\nShow the Python\na_r, D_r = 1e-3, 0.01\nP = 2 * np.pi * a_r / np.sqrt(2 * D_r)\nz = np.linspace(0, 0.25 * P, 300); g_ = 2 * np.pi / P\nfig, ax = plt.subplots(figsize=(8, 3.2))\nax.axhspan(-1, 1, color=fl.PALETTE[0], alpha=0.07, lw=0)\nfor x0, col in [(0, fl.PALETTE[0]), (0.4e-3, fl.PALETTE[1])]:\n    for s0 in np.linspace(-0.12, 0.12, 7):\n        x = x0 * np.cos(g_ * z) + s0 / g_ * np.sin(g_ * z)\n        ax.plot(z * 1e3, x * 1e3, color=col, lw=1)\nax.set_xlabel(\"z (mm)\"); ax.set_ylabel(\"x (mm)\")\nax.set_title(f\"quarter-pitch rod: a = 1 mm, Δ = 1 %, P = {P*1e3:.1f} mm\", loc=\"left\", fontsize=10)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 4.4: Rays from a point on the axis of a 0.25-pitch GRIN rod come out collimated. Rays from an off-axis point leave parallel to each other but tilted.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Graded-index fibers</span>"
+    ]
+  },
+  {
+    "objectID": "grin.html#try-it-yourself",
+    "href": "grin.html#try-it-yourself",
+    "title": "4  Graded-index fibers",
+    "section": "4.5 Try it yourself",
+    "text": "4.5 Try it yourself\n\nAdd profile dispersion (\\(\\varepsilon\\neq0\\) in fl.sigma_intermodal_grin): \\(\\Delta\\) itself depends on \\(\\lambda\\). Show that a fiber optimised at 850 nm is no longer optimal at 1300 nm. This is why OM3/OM4 fibers are specified at 850 nm (slide 127).\nLaunch skew rays in the ray tracer (3-D, conserve the angular momentum \\(n r^2 d\\phi/ds\\)). Do they also arrive on time?\nCompute the number of modes \\(M\\approx\\frac{\\gamma}{\\gamma+2}\\frac{V^2}{2}\\) and compare step (\\(\\gamma\\to\\infty\\)) and parabolic.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Graded-index fibers</span>"
+    ]
+  },
+  {
+    "objectID": "attenuation.html",
+    "href": "attenuation.html",
+    "title": "5  Attenuation and bending loss",
+    "section": "",
+    "text": "5.1 The loss spectrum of silica (slides 136–142)\nRun this chapter’s code in Google Colab (no installation).\nSlides 135–162. Attenuation = absorption + scattering. Power decays exponentially, \\(P_\\text{out}=P_\\text{in}e^{-\\alpha L}\\), and engineers quote it in dB:\n\\[\n\\alpha_\\text{dB}=\\frac{10}{L}\\log_{10}\\frac{P_\\text{in}}{P_\\text{out}}=4.34\\,\\alpha .\n\\]\nFour contributions shape the classic “V” curve:\nShow the Python\nlam = np.linspace(0.8, 1.75, 600) * 1e-6\num = lam * 1e6\ntot = fl.attenuation_model(lam, AR=0.90, OH_peak=0.4)\nfig, ax = plt.subplots(figsize=(8, 4.4))\nax.semilogy(um, 0.90 / um**4, color=fl.PALETTE[0], label=\"Rayleigh 0.90/λ⁴\")\nax.semilogy(um, 7.81e11 * np.exp(-48.48 / um), color=fl.PALETTE[1], label=\"IR lattice absorption\")\nax.semilogy(um, tot, color=fl.INK, lw=2.2, label=\"total (with OH peak)\")\nax.semilogy(um, fl.attenuation_model(lam, AR=0.90, OH_peak=0.0), \"--\", color=fl.PALETTE[2], label=\"low-water-peak fiber\")\nbands = {\"O\": (1260, 1360), \"E\": (1360, 1460), \"S\": (1460, 1530), \"C\": (1530, 1565), \"L\": (1565, 1625)}\nfor k, (b, (l1, l2)) in enumerate(bands.items()):\n    ax.axvspan(l1 / 1e3, l2 / 1e3, color=fl.PALETTE[k % 8], alpha=0.07, lw=0)\n    ax.text((l1 + l2) / 2e3, 4, b, ha=\"center\", fontweight=\"bold\", color=fl.INK2)\nax.set_ylim(0.01, 6); ax.set_xlabel(\"λ (µm)\"); ax.set_ylabel(\"attenuation (dB/km)\")\nax.legend(fontsize=8, loc=\"lower left\"); plt.show()\ni = np.argmin(tot); print(f\"Minimum: {tot[i]:.3f} dB/km at {um[i]*1e3:.0f} nm\")\n\n\n\n\n\n\n\n\nFigure 5.1: Model loss spectrum of a silica SMF and its components. The minimum near 1550 nm (≈ 0.18 dB/km) is set by Rayleigh scattering on one side and lattice absorption on the other.\n\n\n\n\n\nMinimum: 0.176 dB/km at 1549 nm",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Attenuation and bending loss</span>"
+    ]
+  },
+  {
+    "objectID": "attenuation.html#the-loss-spectrum-of-silica-slides-136142",
+    "href": "attenuation.html#the-loss-spectrum-of-silica-slides-136142",
+    "title": "5  Attenuation and bending loss",
+    "section": "",
+    "text": "Rayleigh scattering \\(\\alpha_R=A_R/\\lambda^4\\) from frozen-in density fluctuations,\ninfrared (lattice, Reststrahlen) absorption \\(\\alpha_{FIR}=A\\,e^{-B/\\lambda}\\) with \\(A=7.81\\times10^{11}\\) dB/km and \\(B=48.48\\) µm,\nultraviolet (Urbach) tail from electronic transitions, negligible in the IR,\nOH⁻ overtones, chiefly at 1383 nm (and 1240 nm). “Low-water-peak” fibers (G.652.D) remove them and open the E-band.\n\n\n\n5.1.1 Build your own fiber loss, live\n\n\nShow the Python\nviewof att = Inputs.form({\n  AR: Inputs.range([0.5, 1.5], {value: 0.90, step: 0.01, label: \"A_R (dB km⁻¹ µm⁴)\"}),\n  OH: Inputs.range([0, 3], {value: 0.4, step: 0.05, label: \"OH peak at 1383 nm (dB/km)\"}),\n  L:  Inputs.range([1, 200], {value: 80, step: 1, label: \"link length (km)\"}),\n  P0: Inputs.range([-10, 20], {value: 3, step: 0.5, label: \"launch power (dBm)\"})\n})\n\n\n\n\n\n\n\n\n\nShow the Python\nattModel = l =&gt; att.AR / l**4 + 7.81e11*Math.exp(-48.48/l) + att.OH*Math.exp(-0.5*((l-1.383)/0.012)**2) + 0.08*att.OH*Math.exp(-0.5*((l-1.24)/0.015)**2)\nattData = d3.range(0.8, 1.75, 0.002).map(l =&gt; ({l: l*1000, a: attModel(l)}))\nPlot.plot({\n  width: Math.min(width, 1050), height: 320, y: {type: \"log\", domain: [0.05, 6], label: \"attenuation (dB/km)\", grid: true}, x: {label: \"λ (nm)\"},\n  marks: [Plot.line(attData, {x: \"l\", y: \"a\", stroke: \"#2a78d6\", strokeWidth: 2.5}),\n          Plot.ruleX([1310, 1550], {stroke: \"#b9b8b2\", strokeDasharray: \"4,3\"}),\n          Plot.tip(attData, Plot.pointerX({x: \"l\", y: \"a\", title: d =&gt; `${d.l.toFixed(0)} nm\\n${d.a.toFixed(3)} dB/km`}))]\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\nhtml`&lt;div class=\"result-box\"&gt;${[0.85, 1.31, 1.383, 1.55, 1.625].map(l =&gt;\n  `λ = ${(l*1000).toFixed(0)} nm: α = ${attModel(l).toFixed(3)} dB/km → after ${att.L} km: P = ${(att.P0 - attModel(l)*att.L).toFixed(1)} dBm`).join(\"&lt;br&gt;\")}&lt;/div&gt;`",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Attenuation and bending loss</span>"
+    ]
+  },
+  {
+    "objectID": "attenuation.html#rayleigh-scattering-the-ultimate-limit-slides-138139",
+    "href": "attenuation.html#rayleigh-scattering-the-ultimate-limit-slides-138139",
+    "title": "5  Attenuation and bending loss",
+    "section": "5.2 Rayleigh scattering: the ultimate limit (slides 138–139)",
+    "text": "5.2 Rayleigh scattering: the ultimate limit (slides 138–139)\n\\[\n\\alpha_R\\approx\\frac{8\\pi^3}{3\\lambda^4}(n^2-1)^2\\beta_T k_BT_f\n\\]\nwhere \\(\\beta_T\\) is the isothermal compressibility and \\(T_f\\) the fictive temperature.\n\n\nShow the Python\naR = fl.rayleigh_alpha(1.55e-6, 1.4446, 7e-11, 1730 + 273)\nprint(f\"Slide 139: α_R = {aR:.3e} m⁻¹ = {aR*1e3:.3e} km⁻¹ → {4.34*aR*1e3:.3f} dB/km at 1.55 µm\")\nfor lam in [0.85, 1.31, 1.55]:\n    print(f\"   at {lam} µm: {4.34e3*fl.rayleigh_alpha(lam*1e-6, 1.4446, 7e-11, 2003):.3f} dB/km\")\n\n\nSlide 139: α_R = 3.276e-05 m⁻¹ = 3.276e-02 km⁻¹ → 0.142 dB/km at 1.55 µm\n   at 0.85 µm: 1.572 dB/km\n   at 1.31 µm: 0.279 dB/km\n   at 1.55 µm: 0.142 dB/km\n\n\nLowering \\(T_f\\) (annealing, or alkali-doped “pure-silica-core” fibers) reduces scattering. Ultra-low-loss fibers reach about 0.14–0.15 dB/km, and hollow-core fibers have now gone below 0.1 dB/km (Chapter 8).\n\n5.2.1 Example (slides 145–147)\n\\(A_R\\) depends on the doping: \\(A_R\\approx0.63+2.06\\,\\mathrm{NA}\\) dB km\\(^{-1}\\) µm\\(^4\\) for GeO\\(_2\\)-doped step-index fibers.\n\n\nShow the Python\nNA_ = 0.14\naFIR = 7.81e11 * np.exp(-48.48 / 1.55)\nfor lam in [1.55, 1.31]:\n    r1 = 0.90 / lam**4\n    AR = 0.63 + 2.06 * NA_\n    r2 = AR / lam**4\n    extra = aFIR if lam == 1.55 else 0\n    print(f\"λ = {lam} µm: α_FIR = {extra:.3f}, rule of thumb {r1:.3f} → total {r1+extra:.3f};  \"\n          f\"A_R(NA) = {AR:.3f} → {r2:.3f} → total {r2+extra:.3f} dB/km\")\n\n\nλ = 1.55 µm: α_FIR = 0.020, rule of thumb 0.156 → total 0.176;  A_R(NA) = 0.918 → 0.159 → total 0.179 dB/km\nλ = 1.31 µm: α_FIR = 0.000, rule of thumb 0.306 → total 0.306;  A_R(NA) = 0.918 → 0.312 → total 0.312 dB/km",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Attenuation and bending loss</span>"
+    ]
+  },
+  {
+    "objectID": "attenuation.html#bending-loss-slides-148162",
+    "href": "attenuation.html#bending-loss-slides-148162",
+    "title": "5  Attenuation and bending loss",
+    "section": "5.3 Bending loss (slides 148–162)",
+    "text": "5.3 Bending loss (slides 148–162)\nWhen the fiber is bent, the part of the mode beyond a critical radius would have to travel faster than light to keep the wavefront plane, so it radiates (slide 152). Empirically,\n\\[\n\\alpha_B = A\\,e^{-R/R_c}.\n\\]\n\n5.3.1 Example: fit two measurements (slide 160)\n\n\nShow the Python\nR1, a1, R2, a2 = 12.5, 0.124, 5.0, 15.0\nRc = (R1 - R2) / np.log(a2 / a1)\nA = a2 * np.exp(R2 / Rc)\nprint(f\"R_c = {Rc:.2f} mm, A = {A:.0f} dB/turn, α_B(10 mm) = {A*np.exp(-10/Rc):.2f} dB/turn\")\nR = np.linspace(3, 20, 200)\nfig, ax = plt.subplots()\nax.semilogy(R, A * np.exp(-R / Rc), label=\"standard SMF (fit)\")\nax.semilogy([R1, R2], [a1, a2], \"o\", color=fl.INK, ms=8, label=\"measured (slide 160)\")\nax.semilogy(R, 0.2 * np.exp(-(R - 7.5) / 1.9), \"--\", label=\"bend-insensitive (G.657.A2-like, illustrative)\")\nax.axhline(0.1, color=fl.INK2, lw=0.8, ls=\":\"); ax.text(19.5, 0.12, \"0.1 dB/turn\", ha=\"right\", color=fl.INK2)\nax.set_xlabel(\"bend radius R (mm)\"); ax.set_ylabel(\"α_B (dB/turn)\"); ax.legend(fontsize=8)\nplt.show()\n\n\nR_c = 1.56 mm, A = 367 dB/turn, α_B(10 mm) = 0.61 dB/turn\n\n\n\n\n\n\n\n\nFigure 5.2: Bend loss of a standard SMF at 1550 nm from the two-point fit of slide 160, compared with typical values for bend-insensitive G.657 fibers (trench-assisted, slides 153–154).\n\n\n\n\n\n\n\n5.3.2 MAC number (slides 156–158)\n\\(N_\\text{MAC}=\\mathrm{MFD}/\\lambda_c\\). Bend loss grows exponentially with it. A large MFD (good for splicing and for low nonlinearity) and a short cut-off both make the fiber more bend-sensitive.\n\n\nShow the Python\nfor name, mfd, lc in [(\"G.652 SMF\", 9.2, 1.26), (\"G.657 (smaller MFD)\", 8.6, 1.26), (\"large-MFD fiber\", 10.5, 1.26)]:\n    print(f\"{name:&lt;22s} MFD = {mfd} µm, λc = {lc} µm → N_MAC = {mfd/lc:.2f}\")\n\n\nG.652 SMF              MFD = 9.2 µm, λc = 1.26 µm → N_MAC = 7.30\nG.657 (smaller MFD)    MFD = 8.6 µm, λc = 1.26 µm → N_MAC = 6.83\nlarge-MFD fiber        MFD = 10.5 µm, λc = 1.26 µm → N_MAC = 8.33\n\n\n\n\n5.3.3 Microbending scaling (slides 161–162)\n\\(R_c\\propto\\Delta^{-3/2}\\). At constant loss, \\(R\\propto\\Delta^{-3/2}\\):\n\n\nShow the Python\nD = np.array([0.00825, 0.00550, 0.00275]); Rm = np.array([6, 12, 35])\np = np.polyfit(np.log(D), np.log(Rm), 1)\nprint(f\"Fitted exponent: R ∝ Δ^{p[0]:.2f}  (theory −1.5)\")\n\n\nFitted exponent: R ∝ Δ^-1.60  (theory −1.5)",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Attenuation and bending loss</span>"
+    ]
+  },
+  {
+    "objectID": "attenuation.html#try-it-yourself",
+    "href": "attenuation.html#try-it-yourself",
+    "title": "5  Attenuation and bending loss",
+    "section": "5.4 Try it yourself",
+    "text": "5.4 Try it yourself\n\nAdd connector (0.3 dB) and splice (0.05 dB every 4 km) losses to the live panel. Write the power budget of a 100 km link and the margin left for a receiver with −28 dBm sensitivity.\nBend loss from the mode (new): Marcuse’s formula gives \\(\\alpha_B(R)\\) from \\(u, w, V\\) and \\(a\\). Implement it using fl.LP_b and compare with the fit above.\nWhy do older multimode fibers specify losses at 850 nm? Compute \\(\\alpha_R\\) at 850 nm and compare.",
+    "crumbs": [
+      "Spreading and losing light",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Attenuation and bending loss</span>"
+    ]
+  },
+  {
+    "objectID": "bitrate.html",
+    "href": "bitrate.html",
+    "title": "6  Bit rate, bandwidth and capacity",
+    "section": "",
+    "text": "6.1 Signals, spectra and limits (slides 97–105)\nRun this chapter’s code in Google Colab (no installation).\nSlides 96–121. Dispersion stretches each bit. When neighbouring bits overlap too much, the receiver can no longer tell a “1” from a “0”: this is intersymbol interference (ISI). Noise and attenuation then decide how much overlap is tolerable. This chapter connects the fiber physics to the bit error rate.\nNyquist: a noiseless channel of bandwidth \\(B\\) carries at most \\(2B\\) binary symbols per second (more with multi-level symbols). Shannon: with noise,\n\\[\nC=B\\log_2\\left(1+\\frac{S}{N}\\right).\n\\]\nShow the Python\nviewof sh = Inputs.form({\n  B: Inputs.number({value: 3200, label: \"bandwidth B (Hz)\"}),\n  snr: Inputs.range([-10, 60], {value: 30, step: 1, label: \"S/N (dB)\"})\n})\nShow the Python\n{\n  const s = 10 ** (sh.snr / 10), C = sh.B * Math.log2(1 + s);\n  return html`&lt;div class=\"result-box\"&gt;S/N = ${s.toFixed(1)} → C = &lt;b&gt;${C &gt;= 1e9 ? (C/1e9).toFixed(2)+\" Gb/s\" : C &gt;= 1e6 ? (C/1e6).toFixed(2)+\" Mb/s\" : (C/1e3).toFixed(2)+\" kb/s\"}&lt;/b&gt;\n  · Nyquist binary limit 2B = ${(2*sh.B/1e3).toFixed(1)} kb/s · levels needed ≈ √(1+S/N) = ${Math.sqrt(1+s).toFixed(1)}&lt;/div&gt;`\n}\nWith the defaults you get the slide 104 example (31.9 kb/s on a 3.2 kHz line at 30 dB). For a single C-band channel (\\(B\\approx50\\) GHz, \\(S/N\\approx20\\) dB), Shannon allows about 330 Gb/s per polarisation. Commercial coherent transceivers now operate within a few dB of this limit.\nShow the Python\nrng = np.random.default_rng(0)\nbits = fl.prbs(7, 24)\nx = np.repeat(bits, 40).astype(float)\nfig, axs = plt.subplots(3, 1, figsize=(8, 4.6), sharex=True)\nfor ax, snr in zip(axs, [1, 10, 100]):\n    noise = rng.normal(0, np.sqrt(np.mean(x**2) / snr), x.size)\n    ax.plot(x + noise, color=fl.PALETTE[0], lw=0.8); ax.plot(x, color=fl.INK, lw=1.2)\n    ax.set_ylabel(f\"S/N={snr}\"); ax.set_yticks([])\naxs[-1].set_xlabel(\"sample\"); plt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\nFigure 6.1: The same NRZ bit pattern received with S/N = 1, 10 and 100 (cf. slide 105).",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bit rate, bandwidth and capacity</span>"
+    ]
+  },
+  {
+    "objectID": "bitrate.html#line-codes-rz-and-nrz-slides-96-120",
+    "href": "bitrate.html#line-codes-rz-and-nrz-slides-96-120",
+    "title": "6  Bit rate, bandwidth and capacity",
+    "section": "6.2 Line codes: RZ and NRZ (slides 96, 120)",
+    "text": "6.2 Line codes: RZ and NRZ (slides 96, 120)\n\n\nShow the Python\nbits = np.array([0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0])\nsps = 50\nt = np.arange(len(bits) * sps) / sps\nnrz = np.repeat(bits, sps)\nrz = nrz * (np.tile(np.arange(sps), len(bits)) &lt; sps // 2)\nfig, axs = plt.subplots(2, 1, figsize=(8, 3.2), sharex=True)\naxs[0].plot(t, rz, color=fl.PALETTE[1]); axs[0].set_ylabel(\"RZ\")\naxs[1].plot(t, nrz, color=fl.PALETTE[0]); axs[1].set_ylabel(\"NRZ\")\nfor ax in axs:\n    ax.set_yticks([0, 1]); ax.set_xticks(range(len(bits) + 1))\n    for i, b in enumerate(bits): ax.text(i + .5, 1.15, str(b), ha=\"center\", fontsize=8, color=fl.INK2)\n    ax.set_ylim(-0.1, 1.35)\naxs[1].set_xlabel(\"time (bit periods)\"); plt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\nFigure 6.2: The same bits in RZ and NRZ format. NRZ needs half the bandwidth for the same bit rate, while RZ is more robust to ISI and easier for clock recovery.",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bit rate, bandwidth and capacity</span>"
+    ]
+  },
+  {
+    "objectID": "bitrate.html#dispersion-limited-bit-rate-slides-115121",
+    "href": "bitrate.html#dispersion-limited-bit-rate-slides-115121",
+    "title": "6  Bit rate, bandwidth and capacity",
+    "section": "6.3 Dispersion-limited bit rate (slides 115–121)",
+    "text": "6.3 Dispersion-limited bit rate (slides 115–121)\nFor a Gaussian output pulse with rms width \\(\\sigma\\) (\\(\\Delta\\tau_{1/2}=2.355\\sigma\\), i.e. \\(\\sigma\\approx0.425\\Delta\\tau_{1/2}\\)), allowing the overlap shown on slide 116:\n\\[\nB_\\text{RZ}\\approx\\frac{0.25}{\\sigma}=\\frac{0.59}{\\Delta\\tau_{1/2}},\\qquad B_\\text{NRZ}\\approx 2B_\\text{RZ}\\ (\\text{slide 96}),\n\\qquad f_\\text{op}\\approx0.75B,\\quad f_\\text{el}\\approx0.70f_\\text{op}.\n\\]\n\n\nShow the Python\nD, dl, L = 8, 2, 10                  # ps/nm/km, nm, km\nt12_per_km = D * dl                  # ps/km\nBL = 0.59 / (t12_per_km * 1e-12)     # b/s·km\nB = BL / L\nprint(f\"Slide 121: Δτ½/L = {t12_per_km} ps/km → BL = {BL/1e9:.1f} Gb/s·km; \"\n      f\"for 10 km B = {B/1e9:.2f} Gb/s, f_op = {0.75*B/1e9:.2f} GHz, f_el = {0.7*0.75*B/1e9:.2f} GHz\")\n\n\nSlide 121: Δτ½/L = 16 ps/km → BL = 36.9 Gb/s·km; for 10 km B = 3.69 Gb/s, f_op = 2.77 GHz, f_el = 1.94 GHz\n\n\n\n6.3.1 Two regimes: source linewidth vs. signal bandwidth (new)\nThe rule \\(\\Delta\\tau=|D|L\\Delta\\lambda\\) assumes the source is broad (\\(\\Delta\\lambda\\) fixed by the laser). Modern DFB lasers are so narrow that the spectrum is set by the modulation itself, \\(\\Delta\\lambda\\approx\\lambda^2B/c\\). Then \\(\\Delta\\tau\\approx|D|L\\lambda^2B/c\\), and requiring \\(\\Delta\\tau\\lesssim1/B\\) (one bit slot) gives the famous\n\\[\nB^2L\\lesssim\\frac{c}{|D|\\lambda^2}\\quad\\Rightarrow\\quad\\text{10 Gb/s: } \\sim\\!70\\text{ km},\\quad\\text{40 Gb/s: } \\sim\\!5\\text{ km at 17 ps/nm/km}.\n\\]\nDoubling the bit rate divides the reach by four.\n\n\nShow the Python\nBs = np.logspace(9, 11.3, 100)\nfig, ax = plt.subplots()\nfor k, dl in enumerate([1.0, 0.1]):\n    ax.loglog(Bs / 1e9, 0.59 / (17e-12 * dl) / Bs * 2, \"--\", color=fl.PALETTE[k], label=f\"source Δλ = {dl} nm (NRZ)\")\nax.loglog(Bs / 1e9, c0 / (17 * PS * (1.55e-6) ** 2 * Bs**2) / 1e3, color=fl.INK, label=\"transform-limited, B²L rule\")\nax.set_xlabel(\"bit rate (Gb/s)\"); ax.set_ylabel(\"max. length (km)\"); ax.legend(fontsize=8)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 6.3: Dispersion-limited reach versus bit rate for standard SMF (17 ps/nm/km) at 1550 nm. Broad sources (dashed) give B·L = const. Narrow lasers give B²·L = const.",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bit rate, bandwidth and capacity</span>"
+    ]
+  },
+  {
+    "objectID": "bitrate.html#simulating-a-real-link-slides-7273",
+    "href": "bitrate.html#simulating-a-real-link-slides-7273",
+    "title": "6  Bit rate, bandwidth and capacity",
+    "section": "6.4 Simulating a real link (slides 72–73)",
+    "text": "6.4 Simulating a real link (slides 72–73)\nNow we put everything together in a minimal intensity-modulation / direct-detection (IM/DD) simulator, fl.imdd_link (about 40 lines of numpy):\n\nPRBS bits → NRZ drive with finite rise time and extinction ratio,\nchirp-free optical field \\(E=\\sqrt{P(t)}\\),\nfiber: \\(\\tilde E(\\omega,L)=\\tilde E(\\omega,0)\\,e^{j\\beta_2\\omega^2L/2}\\,10^{-\\alpha L/20}\\), with \\(\\beta_2=-D\\lambda^2/2\\pi c\\),\nPIN photodiode \\(I=\\mathcal R|E|^2\\) plus shot and thermal noise, then an electrical filter of bandwidth \\(0.7B\\),\nsampling, \\(Q=(\\mu_1-\\mu_0)/(\\sigma_1+\\sigma_0)\\) and \\(\\text{BER}=\\tfrac12\\operatorname{erfc}(Q/\\sqrt2)\\).\n\nParameters of slide 73: 10 Gb/s, 3 dBm launch, NRZ, D = 17 ps/nm/km, 0.2 dB/km, no amplifier.\n\n\nShow the Python\nbits = fl.prbs(9, 2000)\nsps = 32\nfig, axs = plt.subplots(1, 4, figsize=(12, 3), sharey=False)\nfor ax, L in zip(axs, [0, 50, 100, 130]):\n    t, Ptx, I = fl.imdd_link(bits, L_km=L, sps=sps)\n    Q, ber, ph = fl.eye_metrics(I, bits, sps)\n    seg = 2 * sps\n    start = ph                     # eye opening centred at t = 1 bit\n    for k in range(20, 400):\n        s = I[start + k * sps: start + k * sps + seg]\n        if len(s) == seg: ax.plot(np.arange(seg) / sps, s * 1e3, color=fl.PALETTE[0], lw=0.4, alpha=0.25)\n    ax.set_title(f\"{L} km  Q = {Q:.1f}  BER ≈ {ber:.0e}\", fontsize=9)\n    ax.set_xlabel(\"time (bits)\")\naxs[0].set_ylabel(\"photocurrent (mA)\")\nplt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\nFigure 6.4: Eye diagrams after 0, 50, 100 and 130 km (10 Gb/s NRZ, 3 dBm, no amplification). Both the received power (loss) and ISI (dispersion) close the eye.\n\n\n\n\n\n\n6.4.1 Separating loss and dispersion\n\n\nShow the Python\nLs = np.arange(0, 251, 10)\ndef ber_vs_L(**kw):\n    out = []\n    for L in Ls:\n        _, _, I = fl.imdd_link(bits, L_km=L, sps=16, **kw)\n        out.append(max(fl.eye_metrics(I, bits, 16)[1], 1e-16))\n    return np.array(out)\nfig, ax = plt.subplots()\nax.semilogy(Ls, ber_vs_L(), \"o-\", ms=4, label=\"10 Gb/s, loss + dispersion\")\nax.semilogy(Ls, ber_vs_L(alpha_dB_km=0.0, P_launch_dBm=-12), \"s-\", ms=4, label=\"10 Gb/s, dispersion only (P_rx = −12 dBm)\")\nax.semilogy(Ls, ber_vs_L(alpha_dB_km=0.0, P_launch_dBm=-12, Rb=5e9), \"^-\", ms=4, label=\"5 Gb/s, dispersion only\")\nax.axhline(1e-9, color=fl.INK2, lw=0.8, ls=\":\"); ax.text(250, 2e-9, \"BER 10⁻⁹\", ha=\"right\", color=fl.INK2)\nax.axhline(3.8e-3, color=fl.INK2, lw=0.8, ls=\"--\"); ax.text(250, 5e-3, \"HD-FEC limit\", ha=\"right\", color=fl.INK2)\nax.set_ylim(1e-16, 1); ax.set_xlabel(\"L (km)\"); ax.set_ylabel(\"BER\"); ax.legend(fontsize=8)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 6.5: BER versus distance at 10 Gb/s. Without an amplifier (blue) the link fails at ≈ 100 km. With the received power held constant by an ideal amplifier, dispersion alone (orange) still limits it to ≈ 80 km at BER 10⁻⁹ (≈ 120 km with FEC), consistent with the B²L rule. Halving the bit rate (green) extends the dispersion limit ~4×.\n\n\n\n\n\n\n\n6.4.2 Why IM/DD and dispersion don’t mix: power fading (new)\nSquare-law detection of a chirp-free, dispersed signal acts as a filter on the intensity: \\(|H(f)|=|\\cos(2\\pi^2\\beta_2Lf^2)|\\). Its first null is at \\(f_1=1/\\sqrt{4\\pi|\\beta_2|L}\\). Once \\(f_1\\) falls inside the signal band, whole frequency components disappear and no amount of power will bring them back.\n\n\nShow the Python\nf = np.linspace(0, 20e9, 800)\nb2 = -17 * PS * (1.55e-6) ** 2 / (2 * np.pi * c0)\nfig, ax = plt.subplots()\nax.axvspan(0, 7, color=fl.PALETTE[0], alpha=0.07, lw=0)\nfor k, L in enumerate([20, 50, 100, 200]):\n    ax.plot(f / 1e9, 20 * np.log10(np.abs(np.cos(2 * np.pi**2 * b2 * L * 1e3 * f**2)) + 1e-6), color=fl.PALETTE[k], label=f\"{L} km\")\nax.set_ylim(-30, 2); ax.set_xlabel(\"modulation frequency (GHz)\"); ax.set_ylabel(\"|H(f)|² (dB)\"); ax.legend()\nplt.show()\nfor L in [50, 100, 200]:\n    print(f\"L = {L} km: first null at {1/np.sqrt(4*np.pi*abs(b2)*L*1e3)/1e9:.1f} GHz\")\n\n\n\n\n\n\n\n\nFigure 6.6: Small-signal intensity transfer function of SMF (17 ps/nm/km) for several lengths. The 10 Gb/s NRZ main lobe (shaded) is hit by the first null around 100 km.\n\n\n\n\n\nL = 50 km: first null at 8.6 GHz\nL = 100 km: first null at 6.1 GHz\nL = 200 km: first null at 4.3 GHz",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bit rate, bandwidth and capacity</span>"
+    ]
+  },
+  {
+    "objectID": "bitrate.html#live-link-simulator-runs-in-your-browser",
+    "href": "bitrate.html#live-link-simulator-runs-in-your-browser",
+    "title": "6  Bit rate, bandwidth and capacity",
+    "section": "6.5 Live link simulator (runs in your browser)",
+    "text": "6.5 Live link simulator (runs in your browser)\nThe same IM/DD model, written in JavaScript, runs in real time. Change the distance, bit rate or launch power and watch the eye.\n\n\nShow the Python\nviewof link = Inputs.form({\n  L:   Inputs.range([0, 200], {value: 60, step: 1, label: \"length (km)\"}),\n  Rb:  Inputs.select([2.5, 5, 10, 25, 40], {value: 10, label: \"bit rate (Gb/s)\"}),\n  D:   Inputs.range([-20, 20], {value: 17, step: 0.5, label: \"D (ps nm⁻¹ km⁻¹)\"}),\n  a:   Inputs.range([0, 0.5], {value: 0.2, step: 0.01, label: \"loss (dB/km)\"}),\n  P:   Inputs.range([-10, 15], {value: 3, step: 0.5, label: \"launch power (dBm)\"}),\n  fmt: Inputs.radio([\"NRZ\", \"RZ\"], {value: \"NRZ\", label: \"format\"}),\n  amp: Inputs.toggle({label: \"ideal preamplifier (fix P_rx = −10 dBm)\", value: false})\n})\n\n\n\n\n\n\n\n\n\nShow the Python\nfunction fft(re, im, inv) {          // in-place radix-2\n  const n = re.length;\n  for (let i = 1, j = 0; i &lt; n; i++) { let bit = n &gt;&gt; 1; for (; j & bit; bit &gt;&gt;= 1) j ^= bit; j ^= bit;\n    if (i &lt; j) { [re[i], re[j]] = [re[j], re[i]]; [im[i], im[j]] = [im[j], im[i]]; } }\n  for (let len = 2; len &lt;= n; len &lt;&lt;= 1) {\n    const ang = 2 * Math.PI / len * (inv ? 1 : -1), wr = Math.cos(ang), wi = Math.sin(ang);\n    for (let i = 0; i &lt; n; i += len) { let cr = 1, ci = 0;\n      for (let k = 0; k &lt; len / 2; k++) {\n        const ar = re[i+k], ai = im[i+k], br = re[i+k+len/2]*cr - im[i+k+len/2]*ci, bi = re[i+k+len/2]*ci + im[i+k+len/2]*cr;\n        re[i+k] = ar + br; im[i+k] = ai + bi; re[i+k+len/2] = ar - br; im[i+k+len/2] = ai - bi;\n        const t = cr * wr - ci * wi; ci = cr * wi + ci * wr; cr = t; } } }\n  if (inv) for (let i = 0; i &lt; n; i++) { re[i] /= n; im[i] /= n; }\n}\nsim = {\n  const nb = 256, sps = 16, N = nb * sps, Rb = link.Rb * 1e9, fs = sps * Rb, c = 299792458, lam = 1550e-9;\n  let st = 0x7f; const bits = [];\n  for (let i = 0; i &lt; nb; i++) { const b = ((st &gt;&gt; 6) ^ (st &gt;&gt; 5)) & 1; bits.push(st & 1); st = ((st &lt;&lt; 1) | b) & 0x7f; }\n  const freq = i =&gt; (i &lt; N/2 ? i : i - N) * fs / N;\n  // drive with Gaussian rise time 0.3 T\n  let re = new Float64Array(N), im = new Float64Array(N);\n  for (let i = 0; i &lt; N; i++) { const k = Math.floor(i / sps), ph = i % sps;\n    re[i] = bits[k] * (link.fmt === \"RZ\" ? (ph &lt; sps/2 ? 1 : 0) : 1); }\n  fft(re, im, false);\n  const sg = 0.3 / Rb / 2.563;\n  for (let i = 0; i &lt; N; i++) { const g = Math.exp(-0.5 * (2*Math.PI*freq(i)*sg)**2); re[i] *= g; im[i] *= g; }\n  fft(re, im, true);\n  const er = 10 ** (-1.5); let mean = 0;\n  for (let i = 0; i &lt; N; i++) { re[i] = er + (1 - er) * Math.min(Math.max(re[i], 0), 1); mean += re[i] / N; }\n  const P0 = 1e-3 * 10 ** (link.P / 10);\n  for (let i = 0; i &lt; N; i++) { re[i] = Math.sqrt(re[i] / mean * P0); im[i] = 0; }\n  // fiber\n  fft(re, im, false);\n  const b2 = -link.D * 1e-6 * lam * lam / (2 * Math.PI * c), Lm = link.L * 1e3;\n  const att = link.amp ? 1 : 10 ** (-link.a * link.L / 20);\n  for (let i = 0; i &lt; N; i++) { const w = 2 * Math.PI * freq(i), phi = b2 / 2 * w * w * Lm;\n    const r = re[i], m = im[i]; re[i] = (r * Math.cos(phi) - m * Math.sin(phi)) * att; im[i] = (r * Math.sin(phi) + m * Math.cos(phi)) * att; }\n  fft(re, im, true);\n  let I = new Float64Array(N), Pm = 0;\n  for (let i = 0; i &lt; N; i++) { I[i] = re[i]*re[i] + im[i]*im[i]; Pm += I[i] / N; }\n  if (link.amp) { const g = 1e-4 / Pm; for (let i = 0; i &lt; N; i++) I[i] *= g; Pm = 1e-4; }\n  // receiver: R = 0.9 A/W, shot + thermal (50 ohm, 3 dB NF), Bel = 0.7 Rb\n  const q = 1.602e-19, kT = 1.38e-23 * 300, Bel = 0.7 * Rb;\n  let nre = new Float64Array(N), nim = new Float64Array(N);\n  for (let i = 0; i &lt; N; i++) {\n    const Ii = 0.9 * I[i], s2 = 2*q*Ii*Bel + 4*kT*Bel/50*2;\n    const u1 = Math.random() || 1e-12, u2 = Math.random();\n    nre[i] = Ii + Math.sqrt(-2*Math.log(u1)) * Math.cos(2*Math.PI*u2) * Math.sqrt(s2 * fs / (2*Bel));\n  }\n  fft(nre, nim, false);\n  for (let i = 0; i &lt; N; i++) { const g = Math.exp(-Math.LN2 / 2 * (freq(i) / Bel) ** 2); nre[i] *= g; nim[i] *= g; }\n  fft(nre, nim, true);\n  // best sampling phase\n  let best = {Q: -1, ph: 0};\n  for (let ph = 0; ph &lt; sps; ph++) {\n    const one = [], zero = [];\n    for (let k = 4; k &lt; nb - 4; k++) (bits[k] ? one : zero).push(nre[k * sps + ph]);\n    const Q = (d3.mean(one) - d3.mean(zero)) / (d3.deviation(one) + d3.deviation(zero));\n    if (Q &gt; best.Q) best = {Q, ph};\n  }\n  const traces = [];\n  for (let k = 4; k &lt; nb - 6; k++) for (let j = 0; j &lt;= 2 * sps; j++) {\n    const idx = k * sps + best.ph - sps + j;\n    traces.push({t: j / sps, I: nre[idx] * 1e3, k});\n  }\n  return {traces, Q: best.Q, Prx: 10 * Math.log10(Pm / 1e-3)};\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\nPlot.plot({\n  width: Math.min(width, 1050), height: 330, x: {label: \"time (bit periods)\", domain: [0, 2]}, y: {label: \"photocurrent (mA)\"},\n  marks: [Plot.line(sim.traces, {x: \"t\", y: \"I\", z: \"k\", stroke: \"#2a78d6\", strokeOpacity: 0.18, strokeWidth: 1}),\n          Plot.ruleX([1], {stroke: \"#e34948\", strokeDasharray: \"4,3\"})]\n})\n\n\n\n\n\n\n\n\n\nShow the Python\n{\n  const ber = 0.5 * erfc(sim.Q / Math.SQRT2);\n  const Lrule = 299792458 / (Math.abs(link.D) * 1e-6 * (1550e-9)**2 * (link.Rb*1e9)**2) / 1e3;   // B²L rule, km\n  return html`&lt;div class=\"result-box\"&gt;P&lt;sub&gt;rx&lt;/sub&gt; = ${sim.Prx.toFixed(1)} dBm · Q = &lt;b&gt;${sim.Q.toFixed(2)}&lt;/b&gt; ·\n   BER ≈ &lt;b&gt;${ber &lt; 1e-15 ? \"&lt; 1e-15\" : ber.toExponential(1)}&lt;/b&gt;\n   ${ber &lt; 1e-9 ? \"✅ error-free\" : ber &lt; 3.8e-3 ? \"⚠️ needs FEC\" : \"❌ link down\"}\n   · B²L-rule reach c/(|D|λ²B²) ≈ ${link.D === 0 ? \"∞\" : Lrule.toFixed(0) + \" km\"}&lt;/div&gt;`\n}\n\n\n\n\n\n\n\n\n\nShow the Python\nfunction erfc(x) {          // Numerical Recipes erfc, |rel err| &lt; 1.2e-7\n  const z = Math.abs(x), t = 1 / (1 + 0.5 * z);\n  const r = t * Math.exp(-z*z - 1.26551223 + t*(1.00002368 + t*(0.37409196 + t*(0.09678418 + t*(-0.18628806 +\n    t*(0.27886807 + t*(-1.13520398 + t*(1.48851587 + t*(-0.82215223 + t*0.17087277)))))))));\n  return x &gt;= 0 ? r : 2 - r;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipThings to try\n\n\n\n\nSet D to −17. Does the eye care about the sign? (Not for a chirp-free source. With a chirped, directly modulated laser it would.)\nFind the maximum distance at 40 Gb/s. Then switch on the preamplifier. Which effect limits the link now?\nCompare RZ and NRZ at 100 km.",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bit rate, bandwidth and capacity</span>"
+    ]
+  },
+  {
+    "objectID": "bitrate.html#going-further-with-opticommpy",
+    "href": "bitrate.html#going-further-with-opticommpy",
+    "title": "6  Bit rate, bandwidth and capacity",
+    "section": "6.6 Going further with OptiCommPy",
+    "text": "6.6 Going further with OptiCommPy\nThe notebook opticomm.ipynb uses OptiCommPy, a full research-grade library. Since version 0.10 the pulse-shaping API takes a parameters object, which is why some cells of the original notebook fail. The corrected minimal version below gives the same Q as our simulator.\n\n\nShow the Python\nfrom optic.models.devices import mzm, photodiode\nfrom optic.models.channels import linearFiberChannel\nfrom optic.comm.modulation import modulateGray\nfrom optic.comm.metrics import bert\nfrom optic.dsp.core import firFilter, pulseShape, upsample, pnorm\nfrom optic.utils import parameters, dBm2W\n\nSpS, Rs = 16, 10e9\npp = parameters(); pp.pulseType, pp.SpS = \"nrz\", SpS          # new API (&gt;= 0.10)\npulse = pulseShape(pp); pulse /= abs(pulse).max()\npM = parameters(); pM.Vpi, pM.Vb = 2, -1\npC = parameters(); pC.alpha, pC.D, pC.Fc, pC.Fs = 0.2, 16, 193.1e12, SpS * Rs\npP = parameters(); pP.ideal, pP.B, pP.Fs, pP.seed = False, Rs, SpS * Rs, 1\n\nnp.random.seed(123); bitsTx = np.random.randint(2, size=20000)\nsigTx = firFilter(pulse, upsample(pnorm(modulateGray(bitsTx, 2, \"pam\")), SpS))\nfor L in [0, 50, 100]:\n    pC.L = L\n    I = photodiode(linearFiberChannel(mzm(np.sqrt(dBm2W(3)), sigTx, pM), pC), pP)\n    BER, Q = bert(I[0::SpS] / np.std(I), bitsTx)\n    print(f\"L = {L:3d} km: Q = {Q:5.2f}, BER = {BER:.1e}\")\n\n\nL =   0 km: Q = 17.98, BER = 0.0e+00\nL =  50 km: Q = 10.94, BER = 0.0e+00\nL = 100 km: Q =  3.61, BER = 1.0e-04",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bit rate, bandwidth and capacity</span>"
+    ]
+  },
+  {
+    "objectID": "bitrate.html#try-it-yourself",
+    "href": "bitrate.html#try-it-yourself",
+    "title": "6  Bit rate, bandwidth and capacity",
+    "section": "6.7 Try it yourself",
+    "text": "6.7 Try it yourself\n\nAdd a chirp parameter to fl.imdd_link (\\(E=\\sqrt P\\,e^{j\\alpha_H\\ln P/2}\\), Henry factor \\(\\alpha_H\\approx3\\)–5) and show that the sign of \\(D\\) now matters.\nReplace the PIN with an APD (gain \\(M\\), excess noise \\(F=M^x\\)). Find the optimum gain at 100 km.\nReplace NRZ by PAM-4 (2 bits/symbol, 4 levels, used in 400G data-centre links). What do you gain in dispersion tolerance, and what do you lose in sensitivity?",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bit rate, bandwidth and capacity</span>"
+    ]
+  },
+  {
+    "objectID": "wdm.html",
+    "href": "wdm.html",
+    "title": "7  WDM, couplers and nonlinear effects",
+    "section": "",
+    "text": "7.1 The ITU grid (slides 175–176)\nRun this chapter’s code in Google Colab (no installation).\nSlides 174–194. One fiber, many colours. Wavelength-division multiplexing (WDM) multiplies the capacity of a fiber by the number of channels, but it brings new problems: components that combine and split light, and nonlinear interactions between channels.\nDWDM channels sit on a frequency grid anchored at 193.1 THz. A channel spacing \\(\\Delta\\nu\\) corresponds to \\(\\Delta\\lambda=\\lambda^2\\Delta\\nu/c\\).\nShow the Python\nfor dnu in [200, 100, 50, 12.5]:\n    print(f\"Δν = {dnu:6.1f} GHz  ↔  Δλ = {(1.55e-6)**2*dnu*1e9/c0*1e9:.3f} nm at 1550 nm;  \"\n          f\"channels in the C-band (4.4 THz): {int(4.4e3/dnu)}\")\n\n\nΔν =  200.0 GHz  ↔  Δλ = 1.603 nm at 1550 nm;  channels in the C-band (4.4 THz): 22\nΔν =  100.0 GHz  ↔  Δλ = 0.801 nm at 1550 nm;  channels in the C-band (4.4 THz): 44\nΔν =   50.0 GHz  ↔  Δλ = 0.401 nm at 1550 nm;  channels in the C-band (4.4 THz): 88\nΔν =   12.5 GHz  ↔  Δλ = 0.100 nm at 1550 nm;  channels in the C-band (4.4 THz): 352\nShow the Python\nnu = 193.1e12 + np.arange(-20, 20) * 100e9\nlam_ch = c0 / nu\nlam = np.linspace(1520, 1575, 800) * 1e-9\nfig, ax = plt.subplots(figsize=(8.5, 3.5))\nax.plot(lam * 1e9, fl.attenuation_model(lam, OH_peak=0), color=fl.INK2, lw=1.2, label=\"fiber loss (dB/km)\")\nax2 = ax.twinx(); ax2.grid(False)\nspec = sum(np.exp(-0.5 * ((lam - l) / 0.08e-9) ** 2) for l in lam_ch)\nax2.fill_between(lam * 1e9, spec, color=fl.PALETTE[0], alpha=0.5, lw=0)\nax2.set_yticks([]); ax2.spines[\"right\"].set_visible(False)\nax.set_xlabel(\"λ (nm)\"); ax.set_ylabel(\"loss (dB/km)\"); ax.set_ylim(0.15, 0.22)\nax.set_title(\"C-band DWDM, 100 GHz spacing\", loc=\"left\", fontsize=10)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 7.1: 40 DWDM channels on the 100 GHz ITU grid across the C-band, drawn over the fiber loss. Each channel carries its own data stream (e.g. 100 Gb/s → 4 Tb/s per fiber).",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>WDM, couplers and nonlinear effects</span>"
+    ]
+  },
+  {
+    "objectID": "wdm.html#passive-couplers-slides-177184",
+    "href": "wdm.html#passive-couplers-slides-177184",
+    "title": "7  WDM, couplers and nonlinear effects",
+    "section": "7.2 Passive couplers (slides 177–184)",
+    "text": "7.2 Passive couplers (slides 177–184)\nIn a fused 2×2 coupler the evanescent tail of one core excites the other (slide 178). Coupled-mode theory gives a periodic exchange of power along the coupling length \\(z\\):\n\\[\nP_1=P_0\\cos^2(\\kappa z),\\qquad P_2=P_0\\sin^2(\\kappa z).\n\\]\n\n\nShow the Python\nz = np.linspace(0, 20, 400)                  # mm\nfig, ax = plt.subplots()\nfor k, (lam, kap) in enumerate([(1310, 0.10), (1550, 0.16)]):\n    ax.plot(z, np.cos(kap * z) ** 2, color=fl.PALETTE[k], label=f\"P₁/P₀  {lam} nm\")\n    ax.plot(z, np.sin(kap * z) ** 2, \"--\", color=fl.PALETTE[k], label=f\"P₂/P₀  {lam} nm\")\nax.axvline(np.pi / 4 / 0.16, color=fl.INK2, lw=0.8, ls=\":\")\nax.text(np.pi / 4 / 0.16 + 0.2, 0.55, \"3 dB at 1550 nm\", color=fl.INK2, fontsize=8)\nax.set_xlabel(\"coupling length z (mm)\"); ax.set_ylabel(\"power fraction\"); ax.legend(ncol=2, fontsize=8)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 7.2: Power exchange in a symmetric directional coupler. A 3 dB coupler needs κz = π/4. The coupling coefficient depends on wavelength, so a coupler designed for 1310 nm splits 1550 nm differently. This is the basis of the 1310/1550 WDM coupler.\n\n\n\n\n\nThe performance figures (slide 179) are, in dB:\n\n\n\n\n\n\n\n\n\nfigure\ndefinition\n3 dB coupler\ntap coupler\n\n\n\n\nsplit ratio\n\\(P_2/(P_1+P_2)\\)\n50 %\n0.5 %\n\n\nexcess loss\n\\(10\\log\\frac{P_0}{P_1+P_2}\\)\n~0.1 dB\n~0.1 dB\n\n\ninsertion loss\n\\(10\\log\\frac{P_0}{P_j}\\)\n~3.1 dB\n~23 dB (tap port)\n\n\ncrosstalk / directivity\n\\(10\\log\\frac{P_3}{P_0}\\)\n−50 to −70 dB\n\n\n\n\n\n7.2.1 Star couplers\nAn \\(N\\times N\\) star built from 3 dB couplers needs \\(\\frac N2\\log_2N\\) couplers, and each output gets \\(1/N\\) of the power. That is a splitting loss of \\(10\\log_{10}N\\) dB, plus the excess loss of each stage.\n\n\nShow the Python\nfor N in [2, 4, 8, 16, 32, 64]:\n    st = int(np.log2(N))\n    print(f\"N = {N:3d}: {N//2*st:4d} couplers, {st} stages, splitting loss {10*np.log10(N):5.1f} dB, \"\n          f\"with 0.1 dB excess/stage: {10*np.log10(N)+0.1*st:5.1f} dB\")\n\n\nN =   2:    1 couplers, 1 stages, splitting loss   3.0 dB, with 0.1 dB excess/stage:   3.1 dB\nN =   4:    4 couplers, 2 stages, splitting loss   6.0 dB, with 0.1 dB excess/stage:   6.2 dB\nN =   8:   12 couplers, 3 stages, splitting loss   9.0 dB, with 0.1 dB excess/stage:   9.3 dB\nN =  16:   32 couplers, 4 stages, splitting loss  12.0 dB, with 0.1 dB excess/stage:  12.4 dB\nN =  32:   80 couplers, 5 stages, splitting loss  15.1 dB, with 0.1 dB excess/stage:  15.6 dB\nN =  64:  192 couplers, 6 stages, splitting loss  18.1 dB, with 0.1 dB excess/stage:  18.7 dB\n\n\nThis is the architecture of a passive optical network (PON) that brings fiber to the home: one 1×32 or 1×64 splitter feeds many households.",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>WDM, couplers and nonlinear effects</span>"
+    ]
+  },
+  {
+    "objectID": "wdm.html#four-wave-mixing-slides-185188",
+    "href": "wdm.html#four-wave-mixing-slides-185188",
+    "title": "7  WDM, couplers and nonlinear effects",
+    "section": "7.3 Four-wave mixing (slides 185–188)",
+    "text": "7.3 Four-wave mixing (slides 185–188)\nThe third-order polarisation \\(P\\propto a_3E^3\\) mixes three channels \\(\\nu_i,\\nu_j,\\nu_k\\) into new frequencies\n\\[\n\\nu_{ijk}=\\nu_i+\\nu_j-\\nu_k .\n\\]\nWith equally spaced channels, many products fall exactly on top of existing channels and become crosstalk that cannot be filtered. With \\(N\\) channels there are \\(N^2(N-1)/2\\) products.\n\n\nShow the Python\nviewof fwm = Inputs.form({\n  N: Inputs.range([3, 16], {value: 8, step: 1, label: \"number of channels\"}),\n  sp: Inputs.radio([\"equal\", \"unequal (Golomb-like)\"], {value: \"equal\", label: \"spacing\"})\n})\n\n\n\n\n\n\n\n\n\nShow the Python\nfwmData = {\n  const golomb = [0, 1, 4, 9, 15, 22, 32, 34, 49, 55, 72, 86, 106, 114, 126, 149];\n  const ch = d3.range(fwm.N).map(i =&gt; fwm.sp === \"equal\" ? i : golomb[i] * 0.55);\n  const prods = new Map();\n  for (const i of ch) for (const j of ch) for (const k of ch) {\n    if (k === i || k === j) continue;\n    if (j &lt; i) continue;               // ν_i + ν_j symmetric\n    const f = +(i + j - k).toFixed(3);\n    prods.set(f, (prods.get(f) || 0) + 1);\n  }\n  const P = [...prods].map(([f, n]) =&gt; ({f, n, onChannel: ch.some(c =&gt; Math.abs(c - f) &lt; 1e-6)}));\n  return {ch, P, hits: d3.sum(P.filter(d =&gt; d.onChannel), d =&gt; d.n), total: d3.sum(P, d =&gt; d.n)};\n}\nPlot.plot({\n  width: Math.min(width, 1050), height: 260, x: {label: \"frequency (units of spacing)\"}, y: {label: \"number of FWM products\", grid: true},\n  color: {domain: [true, false], range: [\"#e34948\", \"#b9b8b2\"], legend: true, tickFormat: d =&gt; d ? \"falls on a channel\" : \"between channels\"},\n  marks: [\n    Plot.ruleX(fwmData.ch, {stroke: \"#2a78d6\", strokeWidth: 3, y1: 0, y2: d3.max(fwmData.P, d =&gt; d.n) * 1.1}),\n    Plot.ruleX(fwmData.P, {x: \"f\", y: \"n\", stroke: \"onChannel\", strokeWidth: 2}),\n    Plot.dot(fwmData.P, {x: \"f\", y: \"n\", fill: \"onChannel\", r: 3, tip: true, title: d =&gt; `ν = ${d.f}\\n${d.n} products`})\n  ]\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\nhtml`&lt;div class=\"result-box\"&gt;${fwm.N} channels (blue) → ${fwmData.total} mixing products (N²(N−1)/2 = ${fwm.N**2*(fwm.N-1)/2}),\nof which &lt;b&gt;${fwmData.hits}&lt;/b&gt; fall exactly on a signal channel.&lt;/div&gt;`\n\n\n\n\n\n\n\n\n7.3.1 Why a little dispersion helps (slide 87)\nFWM needs phase matching. The mismatch \\(\\Delta\\beta\\approx\\frac{2\\pi\\lambda^2}{c}D\\,\\Delta\\nu^2\\) grows with \\(D\\). The efficiency \\(\\eta\\approx\\frac{\\alpha^2}{\\alpha^2+\\Delta\\beta^2}\\) drops quickly when the channels walk off from each other. This is the reason for non-zero dispersion-shifted fibers.\n\n\nShow the Python\ndnu = np.linspace(10e9, 200e9, 400)\nalpha = 0.2 / 4.343 / 1e3\nfig, ax = plt.subplots()\nfor k, D in enumerate([0.0, 1, 4, 17]):\n    db = 2 * np.pi * (1.55e-6) ** 2 / c0 * D * PS * dnu**2\n    ax.plot(dnu / 1e9, 10 * np.log10(alpha**2 / (alpha**2 + db**2)), color=fl.PALETTE[k], label=f\"D = {D} ps/nm/km\")\nax.set_xlabel(\"channel spacing (GHz)\"); ax.set_ylabel(\"FWM efficiency η (dB)\"); ax.legend()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 7.3: Approximate FWM efficiency versus channel spacing for fibers with different dispersion (α = 0.2 dB/km). At D = 0 (DSF) FWM is phase-matched for every spacing. A few ps/nm/km (NZ-DSF) is enough to suppress it.",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>WDM, couplers and nonlinear effects</span>"
+    ]
+  },
+  {
+    "objectID": "wdm.html#self-phase-modulation-and-chirp-slides-189190",
+    "href": "wdm.html#self-phase-modulation-and-chirp-slides-189190",
+    "title": "7  WDM, couplers and nonlinear effects",
+    "section": "7.4 Self-phase modulation and chirp (slides 189–190)",
+    "text": "7.4 Self-phase modulation and chirp (slides 189–190)\nWith \\(n=n_0+n_2I\\), a pulse modulates its own phase, \\(\\phi_{NL}(t)=-\\gamma P(t)L_\\text{eff}\\). The instantaneous frequency shift is \\(\\delta\\omega=-d\\phi_{NL}/dt\\): red on the leading edge, blue on the trailing edge.\n\n\nShow the Python\nt = np.linspace(-60, 60, 600) * 1e-12\nT0, P0, gam, Leff = 20e-12, 0.1, 1.3e-3, 21e3\nP = P0 * np.exp(-(t / T0) ** 2)\nphi = gam * P * Leff\ndnu = -np.gradient(phi, t) / (2 * np.pi)\nfig, ax = plt.subplots()\nax.plot(t * 1e12, P / P0, color=fl.INK2, label=\"P(t)/P₀\")\nax.plot(t * 1e12, dnu / np.abs(dnu).max(), color=fl.PALETTE[1], label=f\"δν(t) / {np.abs(dnu).max()/1e9:.1f} GHz\")\nax.axhline(0, color=fl.INK2, lw=0.6)\nax.set_xlabel(\"t (ps)\"); ax.legend(); plt.show()\nprint(f\"Max nonlinear phase = {phi.max():.2f} rad\")\n\n\n\n\n\n\n\n\nFigure 7.4: SPM-induced chirp of a 20 ps Gaussian pulse (peak 100 mW, γ = 1.3 /W/km, L_eff = 21 km).\n\n\n\n\n\nMax nonlinear phase = 2.73 rad",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>WDM, couplers and nonlinear effects</span>"
+    ]
+  },
+  {
+    "objectID": "wdm.html#stimulated-brillouin-scattering-slides-191194",
+    "href": "wdm.html#stimulated-brillouin-scattering-slides-191194",
+    "title": "7  WDM, couplers and nonlinear effects",
+    "section": "7.5 Stimulated Brillouin scattering (slides 191–194)",
+    "text": "7.5 Stimulated Brillouin scattering (slides 191–194)\nA narrow-line, high-power signal is reflected back by the acoustic grating it creates itself. A classic estimate of the threshold is\n\\[\nP_\\text{th}\\approx21\\frac{A_\\text{eff}}{g_BL_\\text{eff}}\\left(1+\\frac{\\Delta\\nu_s}{\\Delta\\nu_B}\\right),\\qquad\nL_\\text{eff}=\\frac{1-e^{-\\alpha L}}{\\alpha},\n\\]\nwith \\(g_B\\approx5\\times10^{-11}\\) m/W and a Brillouin linewidth \\(\\Delta\\nu_B\\approx30\\) MHz.\n\n\nShow the Python\nAeff, gB, dnB = 80e-12, 5e-11, 30e6\nLeff = (1 - np.exp(-alpha * 50e3)) / alpha\nlw = np.logspace(3, 10, 200)\nPth = 21 * Aeff / (gB * Leff) * (1 + lw / dnB)\nfig, ax = plt.subplots()\nax.loglog(lw, Pth * 1e3)\nfor x, txt in [(1e5, \"ECL\"), (1e7, \"DFB\"), (5e9, \"10 Gb/s modulated\")]:\n    ax.axvline(x, color=fl.INK2, lw=0.8, ls=\":\"); ax.text(x * 1.2, 2e3, txt, color=fl.INK2, fontsize=8)\nax.set_xlabel(\"source linewidth (Hz)\"); ax.set_ylabel(\"SBS threshold (mW)\")\nplt.show()\nprint(f\"L_eff = {Leff/1e3:.1f} km; narrow-line threshold ≈ {21*Aeff/(gB*Leff)*1e3:.1f} mW\")\n\n\n\n\n\n\n\n\nFigure 7.5: SBS threshold versus source linewidth for SMF (A_eff = 80 µm²) over 50 km. A narrow external-cavity laser (kHz–MHz) hits SBS at a few mW. Broadening the line (dithering, modulation) pushes the threshold up.\n\n\n\n\n\nL_eff = 19.5 km; narrow-line threshold ≈ 1.7 mW",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>WDM, couplers and nonlinear effects</span>"
+    ]
+  },
+  {
+    "objectID": "wdm.html#try-it-yourself",
+    "href": "wdm.html#try-it-yourself",
+    "title": "7  WDM, couplers and nonlinear effects",
+    "section": "7.6 Try it yourself",
+    "text": "7.6 Try it yourself\n\nExtend the FWM panel to compute the power of each product, \\(P_{ijk}\\propto\\eta\\,(D_{ijk}\\gamma L_\\text{eff})^2P_iP_jP_k\\) (degeneracy factor \\(D_{ijk}=3\\) or 6), and the resulting SNR on the worst channel.\nDesign an unequal channel plan for 8 channels in which no product falls on a channel, with the smallest total bandwidth. (Hint: Golomb rulers.)\nImplement the split-step Fourier method (a ~20-line loop alternating fl.imdd_link-style linear steps and \\(e^{j\\gamma|E|^2h}\\)) and observe SPM-induced spectral broadening and soliton formation for \\(D&gt;0\\).",
+    "crumbs": [
+      "From fibers to systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>WDM, couplers and nonlinear effects</span>"
+    ]
+  },
+  {
+    "objectID": "special-fbg.html",
+    "href": "special-fbg.html",
+    "title": "8  Special fibers and fiber Bragg gratings",
+    "section": "",
+    "text": "8.1 Bragg fibers: a cladding that is a mirror (slides 196–198)\nRun this chapter’s code in Google Colab (no installation).\nSlides 195–230. Light can be confined by something other than total internal reflection. A periodic structure reflects a band of wavelengths. Wrapped around a core it makes a Bragg or photonic-crystal fiber. Written along the core it makes a fiber Bragg grating (FBG), which is a filter and a sensor.\nThe cladding alternates layers of index \\(n_1\\) and \\(n_2\\). Reflections add in phase when \\(n_1d_1+n_2d_2=m\\lambda/2\\). The usual quarter-wave design is \\(n_1d_1=n_2d_2=\\lambda/4\\). Locally, at normal incidence, the cladding behaves like a planar dielectric mirror. We can therefore compute its reflectance with the transfer-matrix method:\nShow the Python\ndef stack_R(lam, n_hi, n_lo, N, lam0, n_in=1.0, n_out=1.45):\n    d_hi, d_lo = lam0 / (4 * n_hi), lam0 / (4 * n_lo)\n    R = []\n    for l in lam:\n        M = np.eye(2, dtype=complex)\n        for n, d in [(n_hi, d_hi), (n_lo, d_lo)] * N:\n            ph = 2 * np.pi * n * d / l\n            M = M @ np.array([[np.cos(ph), 1j * np.sin(ph) / n], [1j * n * np.sin(ph), np.cos(ph)]])\n        B, C = M @ np.array([1, n_out])\n        r = (n_in * B - C) / (n_in * B + C)\n        R.append(abs(r) ** 2)\n    return np.array(R)\n\nlam = np.linspace(1000, 2500, 800) * 1e-9\nfig, ax = plt.subplots()\nfor k, N in enumerate([2, 5, 10]):\n    ax.plot(lam * 1e9, stack_R(lam, 2.5, 1.5, N, 1550e-9), color=fl.PALETTE[k], label=f\"{N} pairs (n = 2.5 / 1.5)\")\nax.plot(lam * 1e9, stack_R(lam, 1.49, 1.45, 60, 1550e-9), color=fl.PALETTE[3], label=\"60 pairs (n = 1.49 / 1.45)\")\ndl = 4 / np.pi * np.arcsin((2.5 - 1.5) / (2.5 + 1.5)) * 1550\nax.axvspan(1550 - dl / 2, 1550 + dl / 2, color=fl.GRID, alpha=0.5, lw=0)\nax.set_xlabel(\"λ (nm)\"); ax.set_ylabel(\"reflectance\"); ax.legend(fontsize=8)\nplt.show()\nprint(f\"Stop-band width (high contrast): Δλ ≈ (4/π)·asin((n_H−n_L)/(n_H+n_L))·λ0 = {dl:.0f} nm\")\n\n\n\n\n\n\n\n\nFigure 8.1: Reflectance of a quarter-wave stack (planar approximation of the Bragg-fiber cladding) designed for 1550 nm, for several numbers of layer pairs. Inside the stop band (photonic band gap) the light cannot escape the core.\n\n\n\n\n\nStop-band width (high contrast): Δλ ≈ (4/π)·asin((n_H−n_L)/(n_H+n_L))·λ0 = 499 nm\nThe core of a Bragg fiber can even be hollow. Only a high-contrast cladding gives a wide stop band, which is why hollow Bragg fibers use polymer/chalcogenide layers.",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Special fibers and fiber Bragg gratings</span>"
+    ]
+  },
+  {
+    "objectID": "special-fbg.html#photonic-crystal-fibers-slides-199207",
+    "href": "special-fbg.html#photonic-crystal-fibers-slides-199207",
+    "title": "8  Special fibers and fiber Bragg gratings",
+    "section": "8.2 Photonic crystal fibers (slides 199–207)",
+    "text": "8.2 Photonic crystal fibers (slides 199–207)\n\n\n\n\n\n\n\n\n\nsolid-core PCF\nhollow-core PCF / anti-resonant\n\n\n\n\nguiding\nmodified TIR (air holes lower the effective cladding index)\nphotonic band gap or anti-resonance\n\n\nkey property\nendlessly single-mode, large NA, engineerable dispersion\n~99.9 % of light in air: tiny nonlinearity and latency, almost no material dispersion\n\n\napplications\nsupercontinuum, high-power lasers, sensing\nlow-latency links, high-power delivery, gas spectroscopy\n\n\n\n\n\n\n\n\n\nNoteUpdate since the slides were written\n\n\n\nHollow-core nested anti-resonant fibers (NANF/DNANF) have been reported with attenuation below 0.1 dB/km around 1550 nm. That is lower than the Rayleigh limit of silica computed in Chapter 5, and the propagation is ~1.5 µs/km faster than in solid glass. They are being deployed in low-latency links (finance, data centres).",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Special fibers and fiber Bragg gratings</span>"
+    ]
+  },
+  {
+    "objectID": "special-fbg.html#fiber-bragg-gratings-slides-209213",
+    "href": "special-fbg.html#fiber-bragg-gratings-slides-209213",
+    "title": "8  Special fibers and fiber Bragg gratings",
+    "section": "8.3 Fiber Bragg gratings (slides 209–213)",
+    "text": "8.3 Fiber Bragg gratings (slides 209–213)\nA periodic modulation \\(\\Delta n\\) of period \\(\\Lambda\\) written in the core reflects the Bragg wavelength\n\\[\n\\lambda_B=2n_\\text{eff}\\Lambda .\n\\]\nCoupled-mode theory gives, for a uniform grating of length \\(L\\) with \\(\\kappa=\\pi\\Delta n/\\lambda\\):\n\\[\nR_\\text{max}=\\tanh^2(\\kappa L),\\qquad\n\\Delta\\lambda_0=\\frac{\\lambda_B^2}{\\pi n_\\text{eff}L}\\sqrt{(\\kappa L)^2+\\pi^2}\\ \\ (\\text{between first zeros}).\n\\]\n\\(\\kappa L&lt;1\\) is a weak grating (narrow, low \\(R\\)). \\(\\kappa L&gt;1\\) is a strong grating (flat-top, \\(R\\to1\\), width set by \\(\\Delta n\\)).\n\n8.3.1 Example: FBG at 1550 nm (slide 222)\n\n\nShow the Python\nlB, neff, dn, L = 1550e-9, 1.455, 1e-4, 10e-3\nLam = lB / (2 * neff)\nkap = np.pi * dn / lB\nwl = np.linspace(1549e-9, 1551e-9, 40001)\nR = fl.fbg_reflectance(wl, lB, neff, dn, L)\nm = R &gt;= R.max() / 2\nprint(f\"Λ = {Lam*1e9:.1f} nm (with n = 1.450 as on the slide: {lB/2/1.450*1e9:.1f} nm)\")\nprint(f\"κ = {kap:.1f} m⁻¹, κL = {kap*L:.3f} → strong grating, R_max = tanh²(κL) = {np.tanh(kap*L)**2:.3f}\")\nprint(f\"Δλ between first zeros = {fl.fbg_bandwidth(lB, neff, dn, L)*1e9:.3f} nm, FWHM = {(wl[m][-1]-wl[m][0])*1e9:.3f} nm\")\n\n\nΛ = 532.6 nm (with n = 1.450 as on the slide: 534.5 nm)\nκ = 202.7 m⁻¹, κL = 2.027 → strong grating, R_max = tanh²(κL) = 0.933\nΔλ between first zeros = 0.197 nm, FWHM = 0.149 nm\n\n\n\n\n\n\n\n\nWarningTo double-check on slide 222\n\n\n\nThe reflectance (93.3 %) matches. The coupled-mode bandwidth formula above gives ≈ 0.20 nm (0.15 nm FWHM) with these numbers, whereas the slide quotes 0.428 nm. It is worth verifying which expression or values were used there.\n\n\n\n\n8.3.2 FBG designer, live\n\n\nShow the Python\nviewof fbg = Inputs.form({\n  dn: Inputs.range([0.1, 20], {value: 1, step: 0.1, label: \"Δn (×10⁻⁴)\"}),\n  L:  Inputs.range([0.5, 50], {value: 10, step: 0.5, label: \"length L (mm)\"}),\n  lamB: Inputs.range([1500, 1600], {value: 1550, step: 0.5, label: \"λ_B (nm)\"}),\n  eps: Inputs.range([-2000, 2000], {value: 0, step: 50, label: \"strain (µε)\"}),\n  dT: Inputs.range([-100, 200], {value: 0, step: 5, label: \"ΔT (K)\"})\n})\n\n\n\n\n\n\n\n\n\nShow the Python\nfbgSpec = {\n  const n = 1.455, dn = fbg.dn * 1e-4, L = fbg.L * 1e-3;\n  const shift = fbg.lamB * ((1 - 0.22) * fbg.eps * 1e-6 + (0.55e-6 + 6.7e-6) * fbg.dT);   // nm\n  const lB = (fbg.lamB + shift) * 1e-9;\n  const out = [];\n  for (let l = fbg.lamB - 3; l &lt;= fbg.lamB + 3; l += 0.002) {\n    const lam = l * 1e-9, k = Math.PI * dn / lam, s = 2 * Math.PI * n * (1/lam - 1/lB);\n    let R;\n    if (k*k &gt; s*s) { const g = Math.sqrt(k*k - s*s), sh = Math.sinh(g*L), ch = Math.cosh(g*L);\n      R = k*k*sh*sh / (k*k*ch*ch - s*s); }\n    else { const g = Math.sqrt(s*s - k*k), sn = Math.sin(g*L), cs = Math.cos(g*L);\n      R = k*k*sn*sn / (s*s - k*k*cs*cs); }\n    out.push({l, R, T: 1 - R});\n  }\n  return {out, shift, kL: Math.PI * dn / (fbg.lamB*1e-9) * L};\n}\nPlot.plot({\n  width: Math.min(width, 1050), height: 300, x: {label: \"λ (nm)\"}, y: {label: \"reflectance\", domain: [0, 1.02], grid: true},\n  marks: [Plot.ruleX([fbg.lamB], {stroke: \"#b9b8b2\", strokeDasharray: \"4,3\"}),\n          Plot.areaY(fbgSpec.out, {x: \"l\", y: \"R\", fill: \"#2a78d6\", fillOpacity: 0.2}),\n          Plot.line(fbgSpec.out, {x: \"l\", y: \"R\", stroke: \"#2a78d6\", strokeWidth: 2}),\n          Plot.tip(fbgSpec.out, Plot.pointerX({x: \"l\", y: \"R\", title: d =&gt; `${d.l.toFixed(3)} nm\\nR = ${d.R.toFixed(3)}`}))]\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\nhtml`&lt;div class=\"result-box\"&gt;κL = ${fbgSpec.kL.toFixed(2)} (${fbgSpec.kL &gt; 1 ? \"strong\" : \"weak\"}) ·\nR&lt;sub&gt;max&lt;/sub&gt; = ${(100*Math.tanh(fbgSpec.kL)**2).toFixed(1)} % ·\nBragg shift = &lt;b&gt;${(1000*fbgSpec.shift).toFixed(0)} pm&lt;/b&gt;\n(≈ 1.2 pm/µε and ≈ 11 pm/K at 1550 nm)&lt;/div&gt;`\n\n\n\n\n\n\n\n\n\n8.3.3 Apodisation (new): getting rid of the side lobes\nA uniform grating has strong side lobes, which cause crosstalk between DWDM channels. Tapering \\(\\Delta n(z)\\) smoothly suppresses them. We compute non-uniform gratings with the piecewise-uniform transfer-matrix method (Erdogan, 1997): cut the grating into \\(M\\) short uniform sections and multiply their \\(2\\times2\\) coupled-mode matrices.\n\n\nShow the Python\ndef fbg_tmm(wl, lB, neff, dn_z, L):\n    M = len(dn_z); dz = L / M\n    R = np.empty(len(wl))\n    for i, l in enumerate(wl):\n        sig = 2 * np.pi * neff * (1 / l - 1 / lB)\n        F = np.eye(2, dtype=complex)\n        for dn in dn_z:\n            k = np.pi * dn / l\n            g = np.sqrt(complex(k**2 - sig**2))\n            ch, sh = np.cosh(g * dz), (np.sinh(g * dz) / g if abs(g) &gt; 1e-12 else dz)\n            Fi = np.array([[ch - 1j * sig * sh, -1j * k * sh], [1j * k * sh, ch + 1j * sig * sh]])\n            F = Fi @ F\n        R[i] = abs(F[1, 0] / F[0, 0]) ** 2\n    return R\n\nwl = np.linspace(1548.8e-9, 1551.2e-9, 1200)\nz = np.linspace(-0.5, 0.5, 120)\nuni = fl.fbg_reflectance(wl, lB, neff, 1e-4, L)\ngau = fbg_tmm(wl, lB, neff, 1e-4 * np.exp(-4 * np.log(2) * (z / 0.5) ** 2), L)\nfig, (a1, a2) = plt.subplots(1, 2, figsize=(10, 3.6), gridspec_kw={\"width_ratios\": [1, 2.2]})\na1.plot(z * 10, np.ones_like(z), label=\"uniform\"); a1.plot(z * 10, np.exp(-4 * np.log(2) * (z / 0.5) ** 2), label=\"Gaussian\")\na1.set_xlabel(\"z (mm)\"); a1.set_ylabel(\"Δn(z) / Δn₀\"); a1.legend(fontsize=8)\na2.plot(wl * 1e9, 10 * np.log10(uni + 1e-9), label=\"uniform (analytic)\")\na2.plot(wl * 1e9, 10 * np.log10(gau + 1e-9), label=\"Gaussian apodized (TMM)\")\na2.set_ylim(-60, 2); a2.set_xlabel(\"λ (nm)\"); a2.set_ylabel(\"R (dB)\"); a2.legend(fontsize=8)\nplt.tight_layout(); plt.show()\n\n\n\n\n\n\n\n\nFigure 8.2: Uniform versus Gaussian-apodized FBG (L = 10 mm, peak Δn = 1e-4), computed with the transfer-matrix method. Apodisation lowers the side lobes by more than 20 dB at the price of a slightly wider main lobe.",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Special fibers and fiber Bragg gratings</span>"
+    ]
+  },
+  {
+    "objectID": "special-fbg.html#fbg-sensors-slides-214227",
+    "href": "special-fbg.html#fbg-sensors-slides-214227",
+    "title": "8  Special fibers and fiber Bragg gratings",
+    "section": "8.4 FBG sensors (slides 214–227)",
+    "text": "8.4 FBG sensors (slides 214–227)\nStrain changes both \\(\\Lambda\\) and \\(n_\\text{eff}\\) (photo-elastic effect, \\(p_e\\approx0.22\\)). Temperature changes them through thermal expansion \\(\\alpha_\\Lambda\\) and the thermo-optic coefficient \\(\\xi\\):\n\\[\n\\frac{\\Delta\\lambda_B}{\\lambda_B}=(1-p_e)\\,\\varepsilon+(\\alpha_\\Lambda+\\xi)\\,\\Delta T .\n\\]\nSeveral gratings at different \\(\\lambda_B\\) on one fiber can be read by a single broadband source: this is wavelength-division multiplexed sensing (slides 221, 225).\n\n\nShow the Python\ncenters = np.array([1530, 1538, 1546, 1554, 1562]) * 1e-9\nshifts = [(0, 0), (0, 0), (800e-6, 0), (0, 0), (0, 40)]\nwl = np.linspace(1526e-9, 1567e-9, 6000)\nfig, ax = plt.subplots(figsize=(8.5, 3.4))\nax.plot(wl * 1e9, np.exp(-((wl - 1546.5e-9) / 22e-9) ** 2), color=fl.GRID, lw=6, label=\"broadband source\")\nfor k, (c, (eps, dT)) in enumerate(zip(centers, shifts)):\n    lb = c * (1 + 0.78 * eps + 7.25e-6 * dT)\n    Rk = fl.fbg_reflectance(wl, lb, 1.455, 2e-4, 5e-3)\n    ax.plot(wl * 1e9, Rk * np.exp(-((lb - 1546.5e-9) / 22e-9) ** 2), color=fl.PALETTE[k], label=\"ABCDE\"[k])\n    if lb != c:\n        ax.annotate(\"\", xy=(lb * 1e9, 1.02), xytext=(c * 1e9, 1.02), arrowprops=dict(arrowstyle=\"-&gt;\", color=fl.INK))\n        ax.text(c * 1e9, 1.06, f\"{(lb-c)*1e12:.0f} pm\", fontsize=8)\nax.set_xlabel(\"λ (nm)\"); ax.set_ylabel(\"reflected power (a.u.)\"); ax.legend(ncol=6, fontsize=8, loc=\"lower center\")\nax.set_ylim(0, 1.15); plt.show()\n\n\n\n\n\n\n\n\nFigure 8.3: Five FBG sensors multiplexed in wavelength on one fiber. Sensor C is strained by +800 µε and sensor E heated by +40 K. Each shifts inside its own spectral slot.",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Special fibers and fiber Bragg gratings</span>"
+    ]
+  },
+  {
+    "objectID": "special-fbg.html#try-it-yourself",
+    "href": "special-fbg.html#try-it-yourself",
+    "title": "8  Special fibers and fiber Bragg gratings",
+    "section": "8.5 Try it yourself",
+    "text": "8.5 Try it yourself\n\nUse fbg_tmm with a linear chirp of \\(\\Lambda(z)\\). Show that the reflected group delay varies linearly with \\(\\lambda\\). A chirped FBG is a compact dispersion compensator (Chapter 3).\nAdd a \\(\\pi\\) phase shift in the middle of the grating. What appears at \\(\\lambda_B\\)?\nHow can you separate strain from temperature with FBGs? (Hint: two gratings, one strain-free, or two gratings with different sensitivities.)",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Special fibers and fiber Bragg gratings</span>"
+    ]
+  },
+  {
+    "objectID": "sensors.html",
+    "href": "sensors.html",
+    "title": "9  Fiber sensors: OTDR, distributed sensing, interferometers",
+    "section": "",
+    "text": "9.1 Optical time-domain reflectometry (slides 245–266)\nRun this chapter’s code in Google Colab (no installation).\nSlides 231–311. The weaknesses of a fiber for telecom (scattering, sensitivity to strain and temperature) become strengths for sensing. Fiber sensors are immune to EMI, need no electrical power at the sensing point, survive harsh environments, and can be distributed along tens of km.\nSend a short pulse and listen to the Rayleigh backscatter. Light returning at time \\(t\\) comes from\n\\[\nz=\\frac{v_g t}{2},\\qquad \\Delta z_\\text{res}=\\frac{v_g\\tau}{2}\\ (\\text{pulse width }\\tau).\n\\]\nThe backscattered power from position \\(z\\) is\n\\[\nP_{bs}(z)=P_0\\,S\\,\\alpha_s\\,\\frac{v_g\\tau}{2}\\,e^{-2\\alpha z},\n\\]\nwhere \\(S\\approx10^{-3}\\) is the capture factor and \\(\\alpha_s\\) the scattering coefficient. OTDR traces are plotted in one-way dB, \\(5\\log_{10}P\\), so that the slope reads directly as the fiber attenuation.",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Fiber sensors: OTDR, distributed sensing, interferometers</span>"
+    ]
+  },
+  {
+    "objectID": "sensors.html#optical-time-domain-reflectometry-slides-245266",
+    "href": "sensors.html#optical-time-domain-reflectometry-slides-245266",
+    "title": "9  Fiber sensors: OTDR, distributed sensing, interferometers",
+    "section": "",
+    "text": "9.1.1 Example (slide 262)\n\n\nShow the Python\nP0 = fl.dBm_to_W(13); tau = 10e-6; vg = c0 / 1.468\nalpha = 0.33 / 4.343 / 1e3; alpha_s = 0.3 / 4.343 / 1e3; S = 1e-3\nfor z in [0, 50e3, 100e3]:\n    P = P0 * S * alpha_s * vg * tau / 2 * np.exp(-2 * alpha * z)\n    print(f\"z = {z/1e3:5.0f} km:  P_bs = {P*1e9:9.3f} nW = {fl.W_to_dBm(P):6.1f} dBm\")\nprint(f\"Spatial resolution with τ = 10 µs: {vg*tau/2:.0f} m\")\n\n\nz =     0 km:  P_bs =  1407.330 nW =  -28.5 dBm\nz =    50 km:  P_bs =     0.705 nW =  -61.5 dBm\nz =   100 km:  P_bs =     0.000 nW =  -94.5 dBm\nSpatial resolution with τ = 10 µs: 1021 m\n\n\n\n\n9.1.2 Averaging (slides 252–253)\nNoise falls as \\(\\sqrt N\\) with \\(N\\) averaged shots. Each shot must wait one round trip, \\(T=2nL/c\\).\n\n\nShow the Python\nL = 10e3; T = 2 * 1.468 * L / c0\nfor t_meas in [1, 180]:\n    N = 0.9 * t_meas / T\n    print(f\"{t_meas:4d} s: N = {N:.3g} shots → noise reduced by √N = {np.sqrt(N):.0f}× \"\n          f\"= {5*np.log10(N):.1f} dB (one-way OTDR scale)\")\n\n\n   1 s: N = 9.19e+03 shots → noise reduced by √N = 96× = 19.8 dB (one-way OTDR scale)\n 180 s: N = 1.65e+06 shots → noise reduced by √N = 1286× = 31.1 dB (one-way OTDR scale)\n\n\n\n\n9.1.3 OTDR simulator, live\nThe fiber below has a front connector, a fusion splice at 8 km, a tight bend at 15 km, a mechanical splice at 22 km and an open end at 30 km. Change the pulse width and the averaging, and look at the trade-off between dynamic range and resolution (slide 256).\n\n\nShow the Python\nviewof ot = Inputs.form({\n  tau: Inputs.select([10, 30, 100, 300, 1000, 3000, 10000], {value: 300, label: \"pulse width (ns)\"}),\n  N:   Inputs.select([1, 16, 256, 4096, 65536], {value: 256, label: \"averages\"}),\n  a:   Inputs.range([0.15, 0.5], {value: 0.33, step: 0.01, label: \"loss (dB/km)\"})\n})\n\n\n\n\n\n\n\n\n\nShow the Python\notdr = {\n  const dz = 2, Lmax = 34000, vg = 299792458 / 1.468, W = vg * ot.tau * 1e-9 / 2;   // m\n  const n = Math.floor(Lmax / dz);\n  const events = [{z: 8000, loss: 0.1, refl: 0}, {z: 15000, loss: 0.6, refl: 0},\n                  {z: 22000, loss: 0.4, refl: 1e-4}, {z: 30000, loss: 99, refl: 0.035}];\n  const a = ot.a / 4.343 / 1000, as = 0.3 / 4.343 / 1000;\n  const raw = new Float64Array(n); let lossdB = 0;\n  for (let i = 0; i &lt; n; i++) {\n    const z = i * dz;\n    for (const e of events) if (z &gt;= e.z && z - dz &lt; e.z) { raw[i] += e.refl / dz * 10 ** (-lossdB / 5); lossdB += e.loss; }\n    if (lossdB &lt; 50) raw[i] += 1e-3 * as * 10 ** (-lossdB / 5) * Math.exp(-2 * a * z);\n  }\n  const k = Math.max(1, Math.round(W / dz)), conv = new Float64Array(n); let acc = 0;   // rectangular pulse\n  for (let i = 0; i &lt; n; i++) { acc += raw[i]; if (i &gt;= k) acc -= raw[i - k]; conv[i] = acc * dz; }\n  const P0 = 0.02, noise = 3e-12 / Math.sqrt(ot.N);              // W, receiver noise after averaging\n  const out = [];\n  for (let i = 0; i &lt; n; i += 5) {\n    const u1 = Math.random() || 1e-12, u2 = Math.random();\n    const p = P0 * conv[i] + noise * Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);\n    out.push({z: i * dz / 1000, dB: 5 * Math.log10(Math.max(p, 1e-16) / 1e-3)});\n  }\n  const p0 = 5 * Math.log10(P0 * 1e-3 * as * W / 1e-3), floor = 5 * Math.log10(noise / 1e-3);\n  return {out, W, DR: p0 - floor, floor};\n}\nPlot.plot({\n  width: Math.min(width, 1050), height: 340, x: {label: \"distance (km)\"}, y: {label: \"backscatter (dB, one-way, rel. 1 mW)\", grid: true},\n  marks: [Plot.line(otdr.out, {x: \"z\", y: \"dB\", stroke: \"#2a78d6\", strokeWidth: 1.2}),\n          Plot.ruleY([otdr.floor], {stroke: \"#e34948\", strokeDasharray: \"4,3\"}),\n          Plot.text([\"fusion splice\", \"bend\", \"mech. splice\", \"end\"], {x: [8, 15, 22, 30], y: otdr.floor + 2, dy: -6, fill: \"#52514e\", fontSize: 10})]\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the Python\nhtml`&lt;div class=\"result-box\"&gt;pulse ${ot.tau} ns → spatial resolution ≈ &lt;b&gt;${otdr.W.toFixed(1)} m&lt;/b&gt; ·\ndynamic range ≈ &lt;b&gt;${otdr.DR.toFixed(1)} dB&lt;/b&gt; (one-way) · red: noise floor after ${ot.N} averages&lt;/div&gt;`\n\n\n\n\n\n\n\n\n\n9.1.4 Measuring a splice by least squares (slides 263–265)\n\n\nShow the Python\nrng = np.random.default_rng(2)\nz = np.linspace(0, 20, 2000)\ntrue_loss, zs = 0.25, 9.0\ny = -0.2 * z - true_loss * (z &gt; zs) + rng.normal(0, 0.03 + 0.004 * z, z.size)\nm1 = (z &gt; 1) & (z &lt; zs - 0.3); m2 = (z &gt; zs + 0.3) & (z &lt; 19)\np1, p2 = np.polyfit(z[m1], y[m1], 1), np.polyfit(z[m2], y[m2], 1)\nfig, ax = plt.subplots()\nax.plot(z, y, \".\", ms=1.5, color=fl.PALETTE[0], alpha=0.5)\nax.plot(z, np.polyval(p1, z), color=fl.PALETTE[1], label=f\"L1: {-p1[0]:.3f} dB/km\")\nax.plot(z, np.polyval(p2, z), color=fl.PALETTE[2], label=f\"L2: {-p2[0]:.3f} dB/km\")\nax.axvline(zs, color=fl.INK2, ls=\":\")\nax.set_xlabel(\"distance (km)\"); ax.set_ylabel(\"relative level (dB)\"); ax.legend()\nplt.show()\nprint(f\"Estimated splice loss = {np.polyval(p1, zs) - np.polyval(p2, zs):.3f} dB (true {true_loss} dB)\")\n\n\n\n\n\n\n\n\nFigure 9.1: A splice loss is measured by fitting straight lines to the backscatter before and after the event and taking their vertical offset at the event position.\n\n\n\n\n\nEstimated splice loss = 0.257 dB (true 0.25 dB)",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Fiber sensors: OTDR, distributed sensing, interferometers</span>"
+    ]
+  },
+  {
+    "objectID": "sensors.html#raman-distributed-temperature-sensing-slides-237241",
+    "href": "sensors.html#raman-distributed-temperature-sensing-slides-237241",
+    "title": "9  Fiber sensors: OTDR, distributed sensing, interferometers",
+    "section": "9.2 Raman distributed temperature sensing (slides 237–241)",
+    "text": "9.2 Raman distributed temperature sensing (slides 237–241)\nSpontaneous Raman scattering produces a Stokes and an anti-Stokes line shifted by ~13 THz. Only the anti-Stokes line depends strongly on the phonon population, so their ratio is a thermometer:\n\\[\nR(T)=\\frac{P_{AS}}{P_S}=\\left(\\frac{\\lambda_S}{\\lambda_{AS}}\\right)^4\\exp\\left(-\\frac{h\\Delta\\nu}{k_BT}\\right).\n\\]\n\n\nShow the Python\nT = np.linspace(200, 600, 300)\ndnu = 13.2e12; nu_p = c0 / 1550e-9\nlS, lAS = c0 / (nu_p - dnu), c0 / (nu_p + dnu)\nR = (lS / lAS) ** 4 * np.exp(-fl.h * dnu / (fl.kB * T))\nfig, ax = plt.subplots()\nax.plot(T - 273.15, R, label=\"R(T)\")\nax2 = ax.twinx(); ax2.grid(False)\nax2.plot(T - 273.15, 100 * fl.h * dnu / (fl.kB * T**2), \"--\", color=fl.PALETTE[1], label=\"sensitivity (%/K)\")\nax.set_xlabel(\"T (°C)\"); ax.set_ylabel(\"P_AS / P_S\"); ax2.set_ylabel(\"dR/R per K (%)\")\nfig.legend(loc=\"upper center\", ncol=2, frameon=False); plt.show()\nprint(f\"Sensitivity at 25 °C: {100*fl.h*dnu/(fl.kB*298.15**2):.2f} %/K\")\n\n\n\n\n\n\n\n\nFigure 9.2: Anti-Stokes/Stokes ratio versus temperature for a 1550 nm pump (Δν = 13.2 THz) and its relative sensitivity (≈ 0.8 %/K at room temperature).\n\n\n\n\n\nSensitivity at 25 °C: 0.71 %/K",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Fiber sensors: OTDR, distributed sensing, interferometers</span>"
+    ]
+  },
+  {
+    "objectID": "sensors.html#brillouin-sensing-slides-242244",
+    "href": "sensors.html#brillouin-sensing-slides-242244",
+    "title": "9  Fiber sensors: OTDR, distributed sensing, interferometers",
+    "section": "9.3 Brillouin sensing (slides 242–244)",
+    "text": "9.3 Brillouin sensing (slides 242–244)\nThe backscattered Brillouin line is shifted by \\(\\nu_B=2nv_a/\\lambda\\). Its shift depends on both strain and temperature.\n\n\nShow the Python\nn, va = 1.45, 5960\nfor lam in [1.31e-6, 1.55e-6]:\n    print(f\"λ = {lam*1e6:.2f} µm: ν_B = {2*n*va/lam/1e9:.2f} GHz\")\nprint(\"Typical coefficients in SMF at 1550 nm: ≈ 0.05 MHz/µε and ≈ 1.1 MHz/K, with a gain linewidth of ≈ 30 MHz.\")\n\n\nλ = 1.31 µm: ν_B = 13.19 GHz\nλ = 1.55 µm: ν_B = 11.15 GHz\nTypical coefficients in SMF at 1550 nm: ≈ 0.05 MHz/µε and ≈ 1.1 MHz/K, with a gain linewidth of ≈ 30 MHz.",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Fiber sensors: OTDR, distributed sensing, interferometers</span>"
+    ]
+  },
+  {
+    "objectID": "sensors.html#fabryperot-filters-and-sensors-slides-271283",
+    "href": "sensors.html#fabryperot-filters-and-sensors-slides-271283",
+    "title": "9  Fiber sensors: OTDR, distributed sensing, interferometers",
+    "section": "9.4 Fabry–Perot filters and sensors (slides 271–283)",
+    "text": "9.4 Fabry–Perot filters and sensors (slides 271–283)\n\\[\nT=\\frac{1}{1+F\\sin^2(\\delta/2)},\\qquad F=\\frac{4R}{(1-R)^2},\\qquad\\delta=\\frac{4\\pi nd\\nu}{c},\\qquad\n\\mathrm{FSR}=\\frac{c}{2nd},\\qquad \\mathcal F=\\frac{\\pi\\sqrt R}{1-R}.\n\\]\n\n\nShow the Python\nnu = np.linspace(10.5e12, 12.5e12, 4000)\nfig, ax = plt.subplots()\nfor k, R in enumerate([0.97, 0.98]):\n    ax.plot(nu / 1e12, 10 * np.log10(fl.fabry_perot_T(nu, 100e-6, R)), color=fl.PALETTE[k],\n            label=f\"R = {R*100:.0f} %, finesse = {np.pi*np.sqrt(R)/(1-R):.0f}\")\nax.set_xlabel(\"f (THz)\"); ax.set_ylabel(\"T (dB)\"); ax.set_ylim(-40, 1); ax.legend()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 9.3: Transmission of a Fabry–Perot filter with d = 100 µm (air), R = 97 % and 98 % (slide 277). The FSR is 1.5 THz. A higher R narrows the resonance and deepens the rejection.\n\n\n\n\n\nA change of the cavity length \\(\\delta d\\) (pressure on a diaphragm, strain, thermal expansion) shifts the fringes by \\(\\delta\\nu/\\nu=-\\delta d/d\\). This makes the Fabry–Perot one of the most sensitive point sensors (slides 279–283).\n\n\nShow the Python\nviewof fp = Inputs.form({\n  R: Inputs.range([0.04, 0.995], {value: 0.9, step: 0.005, label: \"mirror reflectance R\"}),\n  d: Inputs.range([10, 1000], {value: 100, step: 1, label: \"gap d (µm)\"}),\n  dd: Inputs.range([-200, 200], {value: 0, step: 1, label: \"displacement δd (nm)\"})\n})\n\n\n\n\n\n\n\n\n\nShow the Python\n{\n  const F = 4 * fp.R / (1 - fp.R) ** 2, d = (fp.d + fp.dd * 1e-3) * 1e-6;\n  const data = d3.range(1540, 1560, 0.005).map(l =&gt; {\n    const dl = 4 * Math.PI * d / (l * 1e-9);\n    return {l, T: 1 / (1 + F * Math.sin(dl / 2) ** 2)};\n  });\n  return Plot.plot({width: Math.min(width, 1050), height: 260, x: {label: \"λ (nm)\"}, y: {label: \"transmission\", domain: [0, 1.02]},\n    marks: [Plot.line(data, {x: \"l\", y: \"T\", stroke: \"#2a78d6\", strokeWidth: 2})]});\n}\n\n\n\n\n\n\n\n\n\nShow the Python\nhtml`&lt;div class=\"result-box\"&gt;FSR = ${(1550**2 / (2 * fp.d * 1000)).toFixed(2)} nm · finesse = ${(Math.PI * Math.sqrt(fp.R) / (1 - fp.R)).toFixed(1)} ·\nfringe shift for δd = ${fp.dd} nm: ${(1550 * fp.dd * 1e-3 / fp.d).toFixed(3)} nm&lt;/div&gt;`",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Fiber sensors: OTDR, distributed sensing, interferometers</span>"
+    ]
+  },
+  {
+    "objectID": "sensors.html#the-sagnac-effect-and-fiber-optic-gyroscopes-slides-284311",
+    "href": "sensors.html#the-sagnac-effect-and-fiber-optic-gyroscopes-slides-284311",
+    "title": "9  Fiber sensors: OTDR, distributed sensing, interferometers",
+    "section": "9.5 The Sagnac effect and fiber-optic gyroscopes (slides 284–311)",
+    "text": "9.5 The Sagnac effect and fiber-optic gyroscopes (slides 284–311)\nIn a loop rotating at \\(\\Omega\\), the clockwise and counter-clockwise waves accumulate a phase difference\n\\[\n\\Delta\\phi_S=\\frac{2\\pi LD}{\\lambda c}\\,\\Omega=\\frac{8\\pi NA}{\\lambda c}\\,\\Omega\n\\]\nfor a coil of length \\(L\\) wound on a diameter \\(D\\) (N turns of area A). Nothing else in the loop distinguishes the two directions, so this tiny phase can be measured.\n\n\nShow the Python\nOmE = 7.292e-5                      # Earth rotation [rad/s]\nfor L, D in [(200, 0.03), (1000, 0.1), (5000, 0.2)]:\n    print(f\"L = {L:5d} m, D = {D*100:4.0f} cm: scale factor {2*np.pi*L*D/(1.55e-6*c0):.3f} rad/(rad/s), \"\n          f\"Earth rotation → Δφ = {2*np.pi*L*D/(1.55e-6*c0)*OmE*1e6:.1f} µrad\")\ndphi = np.linspace(-np.pi, np.pi, 400)\nfig, ax = plt.subplots()\nax.plot(dphi, (1 + np.cos(dphi)) / 2, label=\"unbiased: (1 + cos Δφ)/2\")\nax.plot(dphi, np.sin(dphi), label=\"with phase-modulation bias: ∝ sin Δφ\")\nax.axvline(0, color=fl.INK2, lw=0.6)\nax.set_xlabel(\"Sagnac phase Δφ (rad)\"); ax.set_ylabel(\"detected signal (a.u.)\"); ax.legend(fontsize=8)\nplt.show()\n\n\nL =   200 m, D =    3 cm: scale factor 0.081 rad/(rad/s), Earth rotation → Δφ = 5.9 µrad\nL =  1000 m, D =   10 cm: scale factor 1.352 rad/(rad/s), Earth rotation → Δφ = 98.6 µrad\nL =  5000 m, D =   20 cm: scale factor 13.522 rad/(rad/s), Earth rotation → Δφ = 986.0 µrad\n\n\n\n\n\n\n\n\nFigure 9.4: Open-loop FOG response. Without bias (cos response) the gyro is blind to small rotations and to their sign. A ±π/2 phase modulation turns the response into sin(Δφ), which is linear and signed around zero (slides 295–297).",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Fiber sensors: OTDR, distributed sensing, interferometers</span>"
+    ]
+  },
+  {
+    "objectID": "sensors.html#try-it-yourself",
+    "href": "sensors.html#try-it-yourself",
+    "title": "9  Fiber sensors: OTDR, distributed sensing, interferometers",
+    "section": "9.6 Try it yourself",
+    "text": "9.6 Try it yourself\n\nExtend the OTDR simulator with a reflective connector and implement the attenuation dead-zone (receiver saturation and recovery time).\nA φ-OTDR (slide 267) uses a highly coherent laser: the backscatter becomes a speckle pattern whose changes reveal vibrations. Simulate it by summing random-phase scatterers inside the pulse and perturbing the phase locally.\nCompute the shot-noise-limited angle random walk of a FOG with 1 km coil, 100 µW at the detector. Compare with tactical-grade (~0.1 °/√h) and navigation-grade (&lt;0.001 °/√h) requirements.",
+    "crumbs": [
+      "Beyond telecom",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Fiber sensors: OTDR, distributed sensing, interferometers</span>"
+    ]
+  },
+  {
+    "objectID": "ideas.html",
+    "href": "ideas.html",
+    "title": "10  Projects and new ideas",
+    "section": "",
+    "text": "10.1 What has changed in fiber optics recently\nRun this chapter’s code in Google Colab (no installation).\nThis chapter collects improvements to the course, topics that have become important since the slides were written, and student projects that reuse the code of this book.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projects and new ideas</span>"
+    ]
+  },
+  {
+    "objectID": "ideas.html#what-has-changed-in-fiber-optics-recently",
+    "href": "ideas.html#what-has-changed-in-fiber-optics-recently",
+    "title": "10  Projects and new ideas",
+    "section": "",
+    "text": "topic\nwhy it matters\nwhere it connects in Chapter 2\n\n\n\n\nCoherent detection + DSP\nChromatic dispersion and PMD are now undone digitally, so DCF disappears from new links\ndispersion compensation, power fading\n\n\nHollow-core anti-resonant fibers\n&lt; 0.1 dB/km reported, 1/3 lower latency, ~1000× lower nonlinearity\nspecial fibers, Rayleigh limit\n\n\nSpace-division multiplexing\nmulticore and few-mode fibers multiply capacity again (petabit/s per fiber in the lab)\nLP modes, coupled-mode theory\n\n\nMulti-band (O to U)\nlow-water-peak fibers + new amplifiers use &gt; 50 nm beyond the C-band\nattenuation spectrum, OH peak\n\n\nDistributed acoustic sensing on telecom cables\nφ-OTDR turns submarine and urban cables into seismometers and traffic sensors\nOTDR, Rayleigh backscatter\n\n\nPAM-4 / IM-DD in data centres\n100–200 Gb/s per lane over short SMF, close to λ₀ = 1310 nm\nB²L limit, power fading\n\n\nQuantum key distribution\nsingle photons share fibers with classical channels, so Raman noise and FWM matter\nnonlinear effects, Raman\n\n\n\n\n10.1.1 A taste of the nonlinear Shannon limit\nAmplified links add ASE noise (\\(\\propto\\) number of spans), and nonlinear interference grows as \\(P^3\\) (the Gaussian-noise model). The SNR, \\(\\mathrm{SNR}=P/(P_\\text{ASE}+\\eta P^3)\\), therefore has an optimum launch power, and the capacity per fiber has a ceiling.\n\n\nShow the Python\nP = np.logspace(-4, -1.5, 300)          # W per channel\nh_nu, NF, G = fl.h * 193.4e12, 10 ** 0.5, 10 ** (80 * 0.2 / 10)\nB, eta1 = 32e9, 1.0e3                    # symbol bandwidth, NLI coefficient per span [1/W²]\nfig, ax = plt.subplots()\nfor k, Ns in enumerate([10, 20, 40]):\n    ase = Ns * NF * h_nu * G * B\n    snr = P / (ase + Ns * eta1 * P**3)\n    ax.plot(10 * np.log10(P / 1e-3), 10 * np.log10(snr), color=fl.PALETTE[k], label=f\"{Ns} spans ({Ns*80} km)\")\n    i = snr.argmax(); ax.plot(10*np.log10(P[i]/1e-3), 10*np.log10(snr[i]), \"o\", color=fl.PALETTE[k])\nax.set_xlabel(\"launch power per channel (dBm)\"); ax.set_ylabel(\"SNR (dB)\"); ax.legend()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 10.1: Toy GN-model: SNR versus launch power per channel for links of 10, 20 and 40 spans of 80 km. Below the optimum the link is noise-limited, above it nonlinearity-limited.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projects and new ideas</span>"
+    ]
+  },
+  {
+    "objectID": "ideas.html#improvements-to-the-course",
+    "href": "ideas.html#improvements-to-the-course",
+    "title": "10  Projects and new ideas",
+    "section": "10.2 Improvements to the course",
+    "text": "10.2 Improvements to the course\n\nLive figures instead of screenshots. Many slides show plots taken from books (b–V curves, \\(D(\\lambda)\\), loss spectrum, eye diagrams). Every one of them is now regenerated in this book by a few lines of code. Students can change a parameter and see the consequence, which builds intuition faster than a static picture.\n“Predict, then compute.” For each live panel, ask the class to predict the outcome before moving the slider (e.g. “What happens to the eye if D changes sign?”). This is quick, engaging and well suited to peer instruction.\nExercises with automatic checking. The worked examples are all reproduced numerically, so they can become exercises with randomised numbers (e.g. with quarto-live or Pyodide, Python runs in the browser and the answer can be checked on the spot). The problem set Chapter2_Questions_Problems.pdf is a natural source.\nOne running example through the chapter. Use the same standard SMF (a = 4.1 µm, 3.5 % GeO₂) from modes → MFD → dispersion → bend loss → link budget → eye diagram. Students then see how the design choices are coupled (e.g. a smaller core shifts λ₀ but raises bend loss).\nConnect with the online link simulator already used in the course (see opticallinksimulator.txt) and with the in-browser simulator of Chapter 6.\nShorten the sensor part, deepen the “why”. The gyroscope history slides (301–309) could become a single timeline, freeing time for the Sagnac calculation and the OTDR trade-offs, which are more transferable skills.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projects and new ideas</span>"
+    ]
+  },
+  {
+    "objectID": "ideas.html#student-projects",
+    "href": "ideas.html#student-projects",
+    "title": "10  Projects and new ideas",
+    "section": "10.3 Student projects",
+    "text": "10.3 Student projects\nEach project reuses fiberlib.py and can be done in 1–3 weeks.\n\n\n\n\n\n\n\n\n\n#\nproject\nskills\ndifficulty\n\n\n\n\n1\nFiber design optimiser: find (a, Δ) that give λ₀ = 1450 nm, single-mode above 1260 nm, MFD &gt; 8.5 µm, and minimum bend loss\noptimisation, mode solver\n★★\n\n\n2\nThree-layer (W / trench) fiber solver: extend LP_b to a depressed cladding and reproduce a dispersion-flattened fiber\nBessel functions, root finding\n★★★\n\n\n3\nSplit-step Fourier propagation: SPM, soliton, and the GN-model optimum launch power\nFFT, NLSE\n★★★\n\n\n4\nChirped FBG dispersion compensator: design a grating that compensates 80 km of SMF\nTMM, group delay\n★★\n\n\n5\nOTDR event detector: automatic detection/classification of events in a measured trace (least-squares, change-point, or a small ML classifier)\nsignal processing\n★★\n\n\n6\nPAM-4 vs NRZ data-centre link at 1310 nm with imdd_link\nmodulation, BER\n★★\n\n\n7\nFew-mode fiber MDM: LP-mode overlaps and mode-dependent loss; how many channels can a few-mode fiber carry?\nmodes, overlaps\n★★★\n\n\n8\nRaman DTS design: required averaging for 1 K resolution at 10 km\nnoise, statistics\n★★\n\n\n9\nMeasure your own fiber: cut-back loss and bend loss with a lab source and power meter, compared with the models of Chapter 5\nexperiment\n★",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projects and new ideas</span>"
+    ]
+  },
+  {
+    "objectID": "ideas.html#useful-open-source-tools",
+    "href": "ideas.html#useful-open-source-tools",
+    "title": "10  Projects and new ideas",
+    "section": "10.4 Useful open-source tools",
+    "text": "10.4 Useful open-source tools\n\nOptiCommPy: transmitters, channels, DSP and coherent receivers in Python.\nofiber (S. Prahl): the package used in ofiber_test.ipynb. It is a good cross-check for fiberlib (install with pip install ofiber).\nGNPy: GN-model planning of real optical networks.\nfemwell, Meep / MPB: finite-element and FDTD solvers for arbitrary waveguide cross-sections (PCF, multicore).",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projects and new ideas</span>"
+    ]
+  },
+  {
+    "objectID": "ideas.html#notes-for-the-instructor-checks-on-the-slides",
+    "href": "ideas.html#notes-for-the-instructor-checks-on-the-slides",
+    "title": "10  Projects and new ideas",
+    "section": "10.5 Notes for the instructor: checks on the slides",
+    "text": "10.5 Notes for the instructor: checks on the slides\nWhile recomputing the examples, everything matched the slides except the following points, which deserve a second look:\n\nSlide 222 (FBG): the bandwidth formula \\(\\frac{\\lambda_B^2}{\\pi nL}\\sqrt{(\\kappa L)^2+\\pi^2}\\) gives ≈ 0.20 nm, not 0.428 nm. The periodicity uses \\(n=1.450\\) while the statement gives \\(n_\\text{eff}=1.4550\\) (532.6 nm vs 534.5 nm).\nSlide 146: \\(0.90/1.55^4=0.156\\) dB/km rather than 0.178 dB/km (the total would be 0.176 dB/km). The NA-based value, 0.159 dB/km, is correct.\nSlide 139 (Rayleigh): the intermediate value is written both as \\(3.276\\times10^{-2}\\) and \\(3.735\\times10^{-2}\\) km⁻¹. The correct one is \\(3.276\\times10^{-2}\\) km⁻¹, which gives 0.142 dB/km.\nopticomm.ipynb: the errors come from an API change in OptiCommPy ≥ 0.10 (pulseShape now takes a parameters object, and bsp returns a different shape). A corrected cell is given in Chapter 6.\nofiber_test.ipynb needs pip install ofiber. All of its plots have an equivalent in this book that does not depend on it.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Projects and new ideas</span>"
+    ]
+  },
+  {
+    "objectID": "running.html",
+    "href": "running.html",
+    "title": "Appendix A — Running the notebooks",
+    "section": "",
+    "text": "A.1 Three ways to use this companion",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Running the notebooks</span>"
+    ]
+  },
+  {
+    "objectID": "running.html#three-ways-to-use-this-companion",
+    "href": "running.html#three-ways-to-use-this-companion",
+    "title": "Appendix A — Running the notebooks",
+    "section": "",
+    "text": "Read the website. The sliders (OJS panels) run in the browser with no installation. Open _book/index.html through a web server (e.g. quarto preview, or any static host such as GitHub Pages or the university web space). Some browsers block the interactive panels when the file is opened directly from disk.\nRun the code in Jupyter. Each chapter exists as a notebook in notebooks/ (generated with quarto convert chapter.qmd). The notebook notebooks/interactive_explorers.ipynb gathers ipywidgets versions of the main panels (fiber designer, b–V chart, dispersion, link simulator).\nRebuild the book after editing a chapter.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Running the notebooks</span>"
+    ]
+  },
+  {
+    "objectID": "running.html#publishing-the-website-github-pages",
+    "href": "running.html#publishing-the-website-github-pages",
+    "title": "Appendix A — Running the notebooks",
+    "section": "A.2 Publishing the website (GitHub Pages)",
+    "text": "A.2 Publishing the website (GitHub Pages)\nThe source lives at https://github.com/philippevelha/Optoelectronics-teaching (folder chapter2/) and the site at https://philippevelha.github.io/Optoelectronics-teaching/chapter2/. After editing a chapter:\ncd notebooks && python build_notebooks.py && cd ..   # refresh the notebooks (Colab buttons point to them)\ngit add -A && git commit -m \"Update chapter\" && git push   # update the source on GitHub\nbash ../publish.sh                                       # render and update the website",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Running the notebooks</span>"
+    ]
+  },
+  {
+    "objectID": "running.html#installation",
+    "href": "running.html#installation",
+    "title": "Appendix A — Running the notebooks",
+    "section": "A.3 Installation",
+    "text": "A.3 Installation\npip install -r requirements.txt     # numpy scipy matplotlib pandas jupyter ipywidgets (+ optional OptiCommPy)\nquarto preview                      # live preview while editing\nquarto render                       # builds _book/ (HTML)\nRendering executes every Python cell once. Results are cached in _freeze/ (freeze: auto), so later builds only re-run the chapters you changed.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Running the notebooks</span>"
+    ]
+  },
+  {
+    "objectID": "running.html#regenerating-the-notebooks",
+    "href": "running.html#regenerating-the-notebooks",
+    "title": "Appendix A — Running the notebooks",
+    "section": "A.4 Regenerating the notebooks",
+    "text": "A.4 Regenerating the notebooks\ncd notebooks\npython build_notebooks.py\nThe script converts every chapter, adds a setup cell that works both locally and in Colab (it downloads fiberlib.py from GitHub when running in Colab), and rebuilds interactive_explorers.ipynb.\nThe notebooks keep the Python cells. The OJS cells (browser panels) appear as non-executable cells. Use interactive_explorers.ipynb for their Python equivalents.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Running the notebooks</span>"
+    ]
+  },
+  {
+    "objectID": "running.html#the-fiberlib-module",
+    "href": "running.html#the-fiberlib-module",
+    "title": "Appendix A — Running the notebooks",
+    "section": "A.5 The fiberlib module",
+    "text": "A.5 The fiberlib module\n\n\n\n\n\n\n\nfunction\npurpose\n\n\n\n\nslab_modes, slab_field, slab_penetration, slab_beta\nsymmetric planar guide, TE/TM\n\n\nLP_b, LP_all, LP_count, LP_field, b_approx\nstep-index LP modes (exact, weak guidance)\n\n\nmfd_marcuse, mfd_exact_gaussian, mfd_petermann2\nmode-field diameter\n\n\nn_doped, n_silica, group_index, D_material\nSellmeier glasses and material dispersion\n\n\nneff_smf, group_delay_smf, D_total_smf, D_waveguide_approx\nexact chromatic dispersion of an SMF\n\n\nsigma_intermodal_grin\nOlshansky–Keck graded-index spread\n\n\nrayleigh_alpha, attenuation_model\nloss\n\n\nprbs, imdd_link, eye_metrics, Q_to_BER\nlink simulation\n\n\nfbg_reflectance, fbg_bandwidth, fabry_perot_T\ngratings and interferometers\n\n\n\nEvery function was checked against the worked examples of the slides (see the “recomputed” sections).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Running the notebooks</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html",
+    "href": "cheatsheet.html",
+    "title": "Appendix B — Formula sheet",
+    "section": "",
+    "text": "B.9 Typical numbers worth remembering\nAll the key relations of Chapter 2 on one page. Each block links to the chapter where the formula is derived and used. SI units unless stated otherwise. Use your browser’s Print → Save as PDF to get a paper copy.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#planar-waveguide-sec-planar",
+    "href": "cheatsheet.html#planar-waveguide-sec-planar",
+    "title": "Appendix B — Formula sheet",
+    "section": "B.1 Planar waveguide (Chapter 1)",
+    "text": "B.1 Planar waveguide (Chapter 1)\n\n\n\n\n\n\n\nwaveguide condition\n\\(\\dfrac{2\\pi n_1(2a)}{\\lambda}\\cos\\theta_m-\\phi_m=m\\pi\\)\n\n\nTIR phase (TE)\n\\(\\tan\\dfrac{\\phi_m}{2}=\\dfrac{\\sqrt{\\sin^2\\theta_m-(n_2/n_1)^2}}{\\cos\\theta_m}\\)\n\n\nTIR phase (TM)\n\\(\\tan\\dfrac{\\phi_m}{2}=\\dfrac{\\sqrt{\\sin^2\\theta_m-(n_2/n_1)^2}}{(n_2/n_1)^2\\cos\\theta_m}\\)\n\n\npropagation constants\n\\(\\beta_m=k_1\\sin\\theta_m,\\quad \\kappa_m=k_1\\cos\\theta_m\\)\n\n\neffective index\n\\(n_\\text{eff}=n_1\\sin\\theta_m,\\quad n_2&lt;n_\\text{eff}&lt;n_1\\)\n\n\ncritical angle\n\\(\\sin\\theta_c=n_2/n_1\\)\n\n\nV-number\n\\(V=\\dfrac{2\\pi a}{\\lambda}\\sqrt{n_1^2-n_2^2}\\)\n\n\nsingle mode\n\\(V&lt;\\pi/2,\\quad \\lambda_c=4a\\sqrt{n_1^2-n_2^2}\\)\n\n\nnumber of modes\n\\(M=\\lfloor 2V/\\pi\\rfloor+1\\)\n\n\npenetration depth\n\\(\\delta_m=1/\\alpha_m,\\ \\ \\alpha_m=\\dfrac{2\\pi n_2}{\\lambda}\\sqrt{\\dfrac{n_1^2}{n_2^2}\\sin^2\\theta_m-1}\\)\n\n\nmode field width\n\\(2w_0=2a+2\\delta\\approx 2a\\,\\dfrac{V+1}{V}\\)\n\n\ngroup velocity\n\\(v_g=d\\omega/d\\beta\\), between \\(c/n_1\\) and \\(c/n_2\\)\n\n\nintermodal spread\n\\(\\dfrac{\\Delta\\tau}{L}\\approx\\dfrac{n_1-n_2}{c}\\)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#step-index-fiber-sec-fibers",
+    "href": "cheatsheet.html#step-index-fiber-sec-fibers",
+    "title": "Appendix B — Formula sheet",
+    "section": "B.2 Step-index fiber (Chapter 2)",
+    "text": "B.2 Step-index fiber (Chapter 2)\n\n\n\n\n\n\n\nindex difference\n\\(\\Delta=\\dfrac{n_1^2-n_2^2}{2n_1^2}\\approx\\dfrac{n_1-n_2}{n_1}\\)\n\n\nnumerical aperture\n\\(\\mathrm{NA}=\\sqrt{n_1^2-n_2^2}\\approx n_1\\sqrt{2\\Delta}\\)\n\n\nacceptance angle\n\\(\\sin\\alpha_\\text{max}=\\mathrm{NA}/n_0\\), total \\(2\\alpha_\\text{max}\\)\n\n\nV-number\n\\(V=\\dfrac{2\\pi a}{\\lambda}\\,\\mathrm{NA}\\)\n\n\nsingle mode\n\\(V&lt;2.405\\ \\Leftrightarrow\\ \\lambda&gt;\\lambda_c=\\dfrac{2\\pi a\\,\\mathrm{NA}}{2.405}\\)\n\n\nnumber of modes\n\\(M\\approx V^2/2\\quad(V\\gg1)\\)\n\n\nLP eigenvalue eq.\n\\(\\dfrac{uJ_{l-1}(u)}{J_l(u)}=-\\dfrac{wK_{l-1}(w)}{K_l(w)},\\ \\ u^2+w^2=V^2\\)\n\n\nnormalized prop. const.\n\\(b=\\dfrac{(\\beta/k)^2-n_2^2}{n_1^2-n_2^2}=\\dfrac{w^2}{V^2}\\)\n\n\nLP₀₁ approximation\n\\(b\\approx(1.1428-0.996/V)^2,\\ \\ 1.5&lt;V&lt;2.5\\)\n\n\npropagation constant\n\\(\\beta\\approx n_2k\\,(1+b\\Delta)\\)\n\n\nMFD (Marcuse)\n\\(\\dfrac{2w}{2a}\\approx0.65+1.619V^{-3/2}+2.879V^{-6}\\)\n\n\nMFD (simple)\n\\(2w\\approx 2a\\,(2.6/V)\\)\n\n\npower inside \\(r&lt;w\\)\n\\(1-e^{-2}\\approx86\\,\\%\\)\n\n\nLP cut-offs\nLP₀ₘ: zeros of \\(J_1\\); LPₗₘ (\\(l\\ge1\\)): zeros of \\(J_{l-1}\\)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#dispersion-sec-dispersion",
+    "href": "cheatsheet.html#dispersion-sec-dispersion",
+    "title": "Appendix B — Formula sheet",
+    "section": "B.3 Dispersion (Chapter 3)",
+    "text": "B.3 Dispersion (Chapter 3)\n\n\n\n\n\n\n\ngroup delay\n\\(\\tau_g=L/v_g,\\quad v_g=d\\omega/d\\beta\\)\n\n\ngroup index\n\\(N_g=n-\\lambda\\,\\dfrac{dn}{d\\lambda}\\)\n\n\ndispersion coefficient\n\\(D=\\dfrac1L\\dfrac{d\\tau_g}{d\\lambda}\\) [ps nm⁻¹ km⁻¹]\n\n\nchromatic spread\n\\(\\Delta\\tau_{1/2}=\\lvert D_{ch}\\rvert\\,L\\,\\Delta\\lambda_{1/2}\\)\n\n\nmaterial dispersion\n\\(D_m=-\\dfrac{\\lambda}{c}\\dfrac{d^2n}{d\\lambda^2}\\)\n\n\nwaveguide dispersion\n\\(D_w\\approx-\\dfrac{n_2\\Delta}{c\\lambda}\\left[0.080+0.549(2.834-V)^2\\right]\\)\n\n\ntotal (chromatic)\n\\(D_{ch}=D_m+D_w+D_p\\)\n\n\nslope formula (ITU)\n\\(D(\\lambda)=\\dfrac{S_0}{4}\\left(\\lambda-\\dfrac{\\lambda_0^4}{\\lambda^3}\\right)\\)\n\n\nlink to \\(\\beta_2\\)\n\\(\\beta_2=-\\dfrac{\\lambda^2}{2\\pi c}D\\)\n\n\nSellmeier\n\\(n^2=1+\\sum_i\\dfrac{B_i\\lambda^2}{\\lambda^2-\\lambda_i^2}\\)\n\n\nPMD\n\\(\\sigma_\\text{PMD}\\approx D_\\text{PMD}\\sqrt L\\), \\(D_\\text{PMD}\\approx0.1\\)–\\(0.5\\) ps km⁻¹ᐟ²\n\n\ntotal rms spread\n\\(\\sigma^2=\\sigma_\\text{inter}^2+\\sigma_\\text{intra}^2+\\sigma_\\text{PMD}^2\\)\n\n\ncompensation\n\\(D_tL_t+D_cL_c\\approx0\\)\n\n\nSPM\n\\(n'=n+CI\\) (or \\(n_0+n_2I\\)), \\(\\ \\Delta\\tau/L=\\Delta n/c\\)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#bit-rate-and-capacity-sec-bitrate",
+    "href": "cheatsheet.html#bit-rate-and-capacity-sec-bitrate",
+    "title": "Appendix B — Formula sheet",
+    "section": "B.4 Bit rate and capacity (Chapter 6)",
+    "text": "B.4 Bit rate and capacity (Chapter 6)\n\n\n\n\n\n\n\nGaussian pulse widths\n\\(\\Delta\\tau_{1/2}=2.355\\,\\sigma,\\quad\\sigma\\approx0.425\\,\\Delta\\tau_{1/2}\\)\n\n\nmax bit rate (RZ)\n\\(B\\approx\\dfrac{0.25}{\\sigma}=\\dfrac{0.59}{\\Delta\\tau_{1/2}}\\)\n\n\nNRZ\n\\(B_\\text{NRZ}\\approx2B_\\text{RZ}\\)\n\n\nbit rate × distance\n\\(BL\\approx\\dfrac{0.59}{\\lvert D\\rvert\\,\\Delta\\lambda_{1/2}}\\) (RZ, Gaussian)\n\n\nnarrow source\n\\(B^2L\\lesssim\\dfrac{c}{\\lvert D\\rvert\\lambda^2}\\)\n\n\noptical bandwidth\n\\(f_{op}\\approx0.75B\\) (Gaussian), \\(0.99B\\) (triangle), \\(0.69B\\) (rect.)\n\n\nelectrical bandwidth\n\\(f_{el}\\approx0.70f_{op}\\)\n\n\ntriangular pulse\n\\(\\sigma=\\Delta\\tau_{1/2}/\\sqrt6\\)\n\n\nNyquist\n\\(R_\\text{max}=2B\\) symbols/s\n\n\nShannon\n\\(C=B\\log_2(1+S/N)\\)\n\n\ndecibels\n\\(S/N\\,[\\text{dB}]=10\\log_{10}(S/N)\\); \\(P[\\text{dBm}]=10\\log_{10}(P/1\\,\\text{mW})\\)\n\n\nQ factor\n\\(Q=\\dfrac{\\mu_1-\\mu_0}{\\sigma_1+\\sigma_0}\\), \\(\\ \\text{BER}=\\tfrac12\\operatorname{erfc}(Q/\\sqrt2)\\)\n\n\nreference points\n\\(Q=6\\Rightarrow\\text{BER}\\approx10^{-9}\\); \\(\\ Q=7\\Rightarrow10^{-12}\\)\n\n\nIM/DD power fading\n\\(\\lvert H(f)\\rvert=\\lvert\\cos(2\\pi^2\\beta_2Lf^2)\\rvert\\)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#graded-index-fiber-sec-grin",
+    "href": "cheatsheet.html#graded-index-fiber-sec-grin",
+    "title": "Appendix B — Formula sheet",
+    "section": "B.5 Graded-index fiber (Chapter 4)",
+    "text": "B.5 Graded-index fiber (Chapter 4)\n\n\n\n\n\n\n\nindex profile\n\\(n(r)=n_1\\left[1-2\\Delta(r/a)^\\gamma\\right]^{1/2}\\ (r&lt;a)\\)\n\n\noptimum profile\n\\(\\gamma_\\text{opt}\\approx2-\\tfrac{12}{5}\\Delta\\ (\\approx2)\\)\n\n\nminimum spread\n\\(\\dfrac{\\sigma_\\text{inter}}{L}\\approx\\dfrac{n_1\\Delta^2}{20\\sqrt3\\,c}\\)\n\n\nstep-index (comparison)\n\\(\\dfrac{\\Delta\\tau}{L}\\approx\\dfrac{n_1\\Delta}{c},\\ \\ \\sigma\\approx0.29\\,\\Delta\\tau\\)\n\n\nnumber of modes\n\\(M\\approx\\dfrac{\\gamma}{\\gamma+2}\\dfrac{V^2}{2}\\ \\ (\\gamma=2:\\ V^2/4)\\)\n\n\nray invariant\n\\(\\tilde\\beta=n(r)\\cos\\theta(r)=\\text{const.}\\)\n\n\nGRIN rod pitch\n\\(P=\\dfrac{2\\pi a}{\\sqrt{2\\Delta}}\\)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#attenuation-and-bending-sec-attenuation",
+    "href": "cheatsheet.html#attenuation-and-bending-sec-attenuation",
+    "title": "Appendix B — Formula sheet",
+    "section": "B.6 Attenuation and bending (Chapter 5)",
+    "text": "B.6 Attenuation and bending (Chapter 5)\n\n\n\n\n\n\n\nexponential decay\n\\(P_\\text{out}=P_\\text{in}e^{-\\alpha L}\\)\n\n\nin dB\n\\(\\alpha_\\text{dB}=\\dfrac{10}{L}\\log_{10}\\dfrac{P_\\text{in}}{P_\\text{out}}=4.34\\,\\alpha\\)\n\n\nRayleigh (physics)\n\\(\\alpha_R\\approx\\dfrac{8\\pi^3}{3\\lambda^4}(n^2-1)^2\\beta_Tk_BT_f\\)\n\n\nRayleigh (empirical)\n\\(\\alpha_R=A_R/\\lambda^4\\), \\(A_R\\approx0.9\\) dB km⁻¹ µm⁴\n\n\ndoping dependence\n\\(A_R\\approx0.63+2.06\\,\\mathrm{NA}\\) (step), \\(0.63+1.75\\,\\mathrm{NA}\\) (GRIN)\n\n\nIR lattice absorption\n\\(\\alpha_{FIR}=A\\,e^{-B/\\lambda}\\), \\(A=7.81\\times10^{11}\\) dB/km, \\(B=48.48\\) µm\n\n\nbending loss\n\\(\\alpha_B=A\\,e^{-R/R_c}\\)\n\n\nMAC number\n\\(N_\\text{MAC}=\\mathrm{MFD}/\\lambda_c\\) (typically 6–8)\n\n\nmicrobending scaling\n\\(R_c\\propto\\Delta^{-3/2}\\)\n\n\npower budget\n\\(P_{rx}=P_{tx}-\\alpha L-\\sum\\text{(splices, connectors)}-\\text{margin}\\)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#wdm-couplers-nonlinearity-sec-wdm",
+    "href": "cheatsheet.html#wdm-couplers-nonlinearity-sec-wdm",
+    "title": "Appendix B — Formula sheet",
+    "section": "B.7 WDM, couplers, nonlinearity (Chapter 7)",
+    "text": "B.7 WDM, couplers, nonlinearity (Chapter 7)\n\n\n\n\n\n\n\nchannel spacing\n\\(\\Delta\\lambda=\\dfrac{\\lambda^2}{c}\\Delta\\nu\\) (100 GHz ↔︎ 0.8 nm at 1550 nm)\n\n\ndirectional coupler\n\\(P_1=P_0\\cos^2(\\kappa z),\\ \\ P_2=P_0\\sin^2(\\kappa z)\\)\n\n\ncoupler figures\nsplit ratio \\(\\dfrac{P_2}{P_1+P_2}\\); excess loss \\(10\\log\\dfrac{P_0}{P_1+P_2}\\); insertion loss \\(10\\log\\dfrac{P_0}{P_j}\\)\n\n\nN×N star coupler\n\\(\\dfrac N2\\log_2N\\) 3 dB couplers, splitting loss \\(10\\log_{10}N\\)\n\n\nfour-wave mixing\n\\(\\nu_{ijk}=\\nu_i+\\nu_j-\\nu_k\\), \\(\\ N^2(N-1)/2\\) products\n\n\nSPM chirp\n\\(\\phi_{NL}=\\gamma PL_\\text{eff}\\), \\(\\ \\delta\\omega=-d\\phi_{NL}/dt\\)\n\n\neffective length\n\\(L_\\text{eff}=(1-e^{-\\alpha L})/\\alpha\\)\n\n\nSBS threshold\n\\(P_\\text{th}\\approx21\\dfrac{A_\\text{eff}}{g_BL_\\text{eff}}\\left(1+\\dfrac{\\Delta\\nu_s}{\\Delta\\nu_B}\\right)\\)\n\n\nBrillouin shift\n\\(\\nu_B=2nv_a/\\lambda\\approx11\\) GHz at 1550 nm",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#gratings-interferometers-sensors-sec-special-sec-sensors",
+    "href": "cheatsheet.html#gratings-interferometers-sensors-sec-special-sec-sensors",
+    "title": "Appendix B — Formula sheet",
+    "section": "B.8 Gratings, interferometers, sensors (Chapter 8, Chapter 9)",
+    "text": "B.8 Gratings, interferometers, sensors (Chapter 8, Chapter 9)\n\n\n\n\n\n\n\nBragg fiber / mirror\n\\(n_1d_1+n_2d_2=m\\lambda/2\\), quarter wave: \\(n_1d_1=n_2d_2=\\lambda/4\\)\n\n\nBragg wavelength\n\\(\\lambda_B=2n_\\text{eff}\\Lambda\\)\n\n\nFBG coupling\n\\(\\kappa=\\pi\\Delta n/\\lambda\\); strong if \\(\\kappa L&gt;1\\)\n\n\nFBG peak reflectance\n\\(R_\\text{max}=\\tanh^2(\\kappa L)\\)\n\n\nFBG bandwidth\n\\(\\Delta\\lambda_0=\\dfrac{\\lambda_B^2}{\\pi n_\\text{eff}L}\\sqrt{(\\kappa L)^2+\\pi^2}\\)\n\n\nFBG sensing\n\\(\\dfrac{\\Delta\\lambda_B}{\\lambda_B}=(1-p_e)\\varepsilon+(\\alpha_\\Lambda+\\xi)\\Delta T\\) (≈ 1.2 pm/µε, ≈ 10 pm/K)\n\n\nOTDR distance\n\\(z=v_gt/2\\), resolution \\(\\Delta z=v_g\\tau/2\\)\n\n\nOTDR backscatter\n\\(P_{bs}=P_0S\\alpha_s\\dfrac{v_g\\tau}{2}e^{-2\\alpha z}\\)\n\n\naveraging\nSNR \\(\\propto\\sqrt N\\) (\\(5\\log_{10}N\\) dB, one-way)\n\n\nRaman DTS\n\\(\\dfrac{P_{AS}}{P_S}=\\left(\\dfrac{\\lambda_S}{\\lambda_{AS}}\\right)^4e^{-h\\Delta\\nu/k_BT}\\)\n\n\nFabry–Perot\n\\(T=\\dfrac{1}{1+F\\sin^2(\\delta/2)}\\), \\(F=\\dfrac{4R}{(1-R)^2}\\), \\(\\delta=\\dfrac{4\\pi nd\\nu}{c}\\)\n\n\nFSR, finesse\n\\(\\mathrm{FSR}=\\dfrac{c}{2nd}\\), \\(\\ \\mathcal F=\\dfrac{\\pi\\sqrt R}{1-R}\\)\n\n\nSagnac phase\n\\(\\Delta\\phi=\\dfrac{2\\pi LD}{\\lambda c}\\Omega=\\dfrac{8\\pi NA}{\\lambda c}\\Omega\\)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html#typical-numbers-worth-remembering",
+    "href": "cheatsheet.html#typical-numbers-worth-remembering",
+    "title": "Appendix B — Formula sheet",
+    "section": "",
+    "text": "quantity\nvalue\n\n\n\n\nsilica index at 1550 nm\n\\(n\\approx1.444\\), \\(N_g\\approx1.463\\)\n\n\nzero material dispersion (silica)\n\\(\\approx1.27\\) µm\n\n\nstandard SMF (G.652)\n\\(\\lambda_0\\approx1310\\) nm, \\(D\\approx17\\) ps nm⁻¹ km⁻¹ at 1550 nm, MFD ≈ 9.2 µm (1310), \\(\\lambda_c\\le1260\\) nm\n\n\nloss of standard SMF\n≈ 0.33 dB/km (1310 nm), ≈ 0.18–0.2 dB/km (1550 nm)\n\n\nRayleigh limit of silica at 1550 nm\n≈ 0.14 dB/km\n\n\nstep-index MMF intermodal spread\ntens of ns/km\n\n\noptimised GRIN MMF\ntens of ps/km\n\n\nDWDM grid\n193.1 THz anchor, 100/50 GHz spacing, C-band 1530–1565 nm\n\n\nSBS threshold (narrow laser, SMF)\na few mW",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Formula sheet</span>"
+    ]
+  }
+]
