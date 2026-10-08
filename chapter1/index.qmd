@@ -1,0 +1,60 @@
+# Preface {.unnumbered}
+
+This companion follows the slides of **Chapter 1: The Wave Nature of Light** (Basics of Optoelectronics, University of
+Trento) section by section. The slides tell the story; this book lets you **compute it**. Every figure is made by a few
+lines of Python that you can unfold ("Show the Python"), copy and modify. The **live panels** (marked with a blue bar on
+the left) recompute directly in your browser. They need no installation.
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/interactive_explorers.ipynb) &nbsp;Interactive explorers in Google Colab (no installation, Google account needed).
+
+## Where this chapter sits in the course
+
+Chapter 1 gives the toolkit for everything that follows: waveguides and fibers (Ch. 2), LEDs and semiconductor optics
+(Ch. 3), lasers and amplifiers (Ch. 4), photodetectors (Ch. 5), and polarisation and modulation (Ch. 6). The slide-9
+example of a 5G network already contains most of this chapter. Light is a wave guided by total internal reflection,
+filtered by interference, multiplexed by gratings, and reflected by Bragg mirrors.
+
+## How the book is organised
+
+| Chapter | Slides | What you can play with |
+|---|---|---|
+| [Electromagnetic waves](waves.qmd) | 11–24 | travelling wave, phase velocity, plane-wave superposition |
+| [Gaussian beams](gaussian.qmd) | 25–34, 79–84 | beam caustic, Rayleigh range, $M^2$, fiber coupling, ABCD |
+| [Irradiance and the Poynting vector](irradiance.qmd) | 70–84 | field strength in fibers and chips, Gaussian power |
+| [Refractive index](refractive.qmd) | 35–59, 155–161 | Sellmeier, Lorentz/Drude oscillator, Kramers–Kronig, complex index |
+| [Group velocity](group.qmd) | 60–69 | wave-packet beat, group index of silica |
+| [Snell's law and TIR](snell.qmd) | 85–100, 296–299 | live refraction, lateral displacement, Fermat's principle |
+| [Fresnel equations](fresnel.qmd) | 101–147 | reflection coefficients, Brewster, evanescent wave, FTIR |
+| [Thin films and AR coatings](thinfilm.qmd) | 148–154, 267–276 | thin-film designer, solar-cell AR coatings |
+| [Coherence](coherence.qmd) | 163–171 | coherence lengths, white-light interferogram, OCT |
+| [Interference and interferometers](interference.qmd) | 172–175, 259–266 | two-beam interference, Mach–Zehnder, Fabry–Perot rings |
+| [Bragg mirrors and photonic crystals](bragg.qmd) | 176–190, 289–294 | Bragg-mirror designer, photonic band gap, FBG |
+| [Fabry–Perot resonators](fabry-perot.qmd) | 191–209 | Airy function, finesse, Q, laser-diode cavity |
+| [Diffraction](diffraction.qmd) | 210–258 | slit and aperture patterns, Rayleigh criterion, gratings, Arago spot |
+| [Scattering](scattering.qmd) | 277–288 | Rayleigh $\lambda^{-4}$, Mie, Raman and Brillouin shifts |
+| [Deep dive: does an EM wave carry energy?](poynting.qmd) | 70–78 | Poynting's theorem derived step by step |
+| [Projects, toolbox and connections](ideas.qmd) | — | Python packages, mini-projects, links to other chapters |
+
+Each chapter recomputes the worked examples of the slides, then offers **Going deeper** questions, **Complements** (reading),
+and **Try it yourself** exercises. A **formula sheet** is at the end.
+
+::: {.callout-warning}
+## Sign convention (read this once)
+The slides (following Kasap) use the **engineering convention** $E\propto\exp[j(\omega t-kz)]$, which gives a complex
+index $N=n-jK$ and a relative permittivity $\varepsilon_r=\varepsilon_r'-j\varepsilon_r''$. Most physics texts (Born & Wolf,
+Saleh & Teich, Jackson) use $\exp[i(kz-\omega t)]$ and $N=n+i\kappa$. All code here follows the slide convention. Whenever you
+consult another book, check the convention first: most "wrong sign" errors in Fresnel phases, evanescent fields and
+Kramers–Kronig relations come from mixing the two.
+:::
+
+## Using the code
+
+All functions live in a small, readable module, [`optolib.py`](optolib.py), which you can import from your own notebooks:
+
+```python
+import optolib as ol
+ol.fresnel(1.0, 1.5, 0.3)          # r⊥, r∥, t⊥, t∥ at 0.3 rad
+ol.tmm([1, 1.38, 1.52], [100e-9], 550e-9)   # reflectance of a thin-film stack
+```
+
+See the appendix [Running the notebooks](running.qmd) for installation.

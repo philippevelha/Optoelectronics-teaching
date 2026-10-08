@@ -1,0 +1,822 @@
+# Deep dive: does an electromagnetic wave carry energy? {#sec-poynting}
+
+*Poynting's theorem, and why it still works where there is no current. A companion to slides 70–78 and @sec-irradiance.*
+
+::: {.callout-note}
+## About this chapter
+This is a self-contained derivation, meant for students who want to see *why* $\mathbf S=\mathbf E\times\mathbf H$ is an energy
+flux, not just use it. Unlike the rest of the book, its plane-wave section uses the physics convention
+$e^{i(\mathbf k\cdot\mathbf r-\omega t)}$ (see the note there); every physical result is the same.
+:::
+
+## The question
+
+We say that light from the Sun heats the Earth, that a radio transmitter "sends power" to a receiver, and that a laser can cut steel. All of these statements assume that **energy travels through empty space** carried by the electromagnetic field.
+
+That is not obvious. In the gap between the Sun and the Earth there are no charges and no currents. So what exactly is carrying the energy, and how can we *prove* it rather than just assert it?
+
+The plan is:
+
+1. Define energy through what it does to matter (work on charges).
+2. Derive, from Maxwell's equations alone, a conservation law: **Poynting's theorem**.
+3. Look at the vacuum case, where $\mathbf{J}=0$, and see what the theorem does and does not tell us there.
+4. Close the argument with a thought experiment: a pulse travelling between a transmitter and a receiver.
+
+::: {.callout-note}
+### What you need
+Maxwell's equations in differential form, the Lorentz force, the divergence theorem, and one vector identity (given below).
+:::
+
+## Starting point: how fields exchange energy with matter
+
+Energy, in mechanics, is defined through **work**. So we first ask: at what rate do electromagnetic fields do work on charges?
+
+A charge $q$ moving with velocity $\mathbf{v}$ feels the Lorentz force
+
+$$
+\mathbf{F} = q\left(\mathbf{E} + \mathbf{v}\times\mathbf{B}\right).
+$$
+
+The power delivered to the charge is
+
+$$
+P = \mathbf{F}\cdot\mathbf{v} = q\,\mathbf{E}\cdot\mathbf{v} + q\,(\mathbf{v}\times\mathbf{B})\cdot\mathbf{v} = q\,\mathbf{E}\cdot\mathbf{v},
+$$
+
+because $\mathbf{v}\times\mathbf{B}$ is perpendicular to $\mathbf{v}$: **the magnetic force does no work**.
+
+For a continuous distribution of charge with density $\rho$ moving with velocity $\mathbf{v}$, the current density is $\mathbf{J}=\rho\mathbf{v}$, and the power delivered per unit volume is
+
+$$
+p = \rho\,\mathbf{v}\cdot\mathbf{E} = \mathbf{J}\cdot\mathbf{E}.
+$$ {#eq-power-density}
+
+::: {.callout-important}
+### Key point 1
+$\mathbf{J}\cdot\mathbf{E}$ is the **only** place where the fields hand energy to matter (kinetic energy, heat in a resistor, charging a battery) or take it back (a generator driving an antenna). It is the bridge between "field" and "mechanical energy".
+:::
+
+## Deriving Poynting's theorem
+
+### The two curl equations
+
+$$
+\nabla\times\mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t}
+$$ {#eq-faraday}
+
+$$
+\nabla\times\mathbf{H} = \mathbf{J} + \frac{\partial\mathbf{D}}{\partial t}
+$$ {#eq-ampere}
+
+### Build a scalar equation
+
+Take the dot product of @eq-faraday with $\mathbf{H}$ and of @eq-ampere with $\mathbf{E}$:
+
+$$
+\mathbf{H}\cdot(\nabla\times\mathbf{E}) = -\mathbf{H}\cdot\frac{\partial\mathbf{B}}{\partial t}
+$$
+
+$$
+\mathbf{E}\cdot(\nabla\times\mathbf{H}) = \mathbf{E}\cdot\mathbf{J} + \mathbf{E}\cdot\frac{\partial\mathbf{D}}{\partial t}
+$$
+
+Subtract the second from the first:
+
+$$
+\mathbf{H}\cdot(\nabla\times\mathbf{E}) - \mathbf{E}\cdot(\nabla\times\mathbf{H})
+= -\mathbf{H}\cdot\frac{\partial\mathbf{B}}{\partial t} - \mathbf{E}\cdot\frac{\partial\mathbf{D}}{\partial t} - \mathbf{J}\cdot\mathbf{E}.
+$$
+
+### Use the vector identity
+
+$$
+\nabla\cdot(\mathbf{E}\times\mathbf{H}) = \mathbf{H}\cdot(\nabla\times\mathbf{E}) - \mathbf{E}\cdot(\nabla\times\mathbf{H})
+$$
+
+The left-hand side is therefore a divergence:
+
+$$
+-\nabla\cdot(\mathbf{E}\times\mathbf{H})
+= \mathbf{H}\cdot\frac{\partial\mathbf{B}}{\partial t} + \mathbf{E}\cdot\frac{\partial\mathbf{D}}{\partial t} + \mathbf{J}\cdot\mathbf{E}.
+$$ {#eq-poynting-raw}
+
+### Recognise a time derivative
+
+In a linear, isotropic, non-dispersive medium, $\mathbf{D}=\varepsilon\mathbf{E}$ and $\mathbf{B}=\mu\mathbf{H}$ with constant $\varepsilon,\mu$. Then
+
+$$
+\mathbf{E}\cdot\frac{\partial\mathbf{D}}{\partial t} = \varepsilon\,\mathbf{E}\cdot\frac{\partial\mathbf{E}}{\partial t} = \frac{\partial}{\partial t}\left(\tfrac12\varepsilon E^2\right),
+\qquad
+\mathbf{H}\cdot\frac{\partial\mathbf{B}}{\partial t} = \frac{\partial}{\partial t}\left(\tfrac12\mu H^2\right).
+$$
+
+Define
+
+$$
+u = \tfrac12\left(\mathbf{E}\cdot\mathbf{D} + \mathbf{H}\cdot\mathbf{B}\right),
+\qquad
+\mathbf{S} = \mathbf{E}\times\mathbf{H}.
+$$ {#eq-definitions}
+
+::: {.callout-note}
+### Assumption to keep in mind
+The step $\mathbf{E}\cdot\partial_t\mathbf{D} = \partial_t(\tfrac12\varepsilon E^2)$ assumes a **non-dispersive** medium. We come back to this in @sec-energy-velocity, where it changes the answer to "how fast does energy travel?".
+:::
+
+@eq-poynting-raw becomes **Poynting's theorem** in differential form:
+
+$$
+\boxed{\;\frac{\partial u}{\partial t} + \nabla\cdot\mathbf{S} = -\,\mathbf{J}\cdot\mathbf{E}\;}
+$$ {#eq-poynting-diff}
+
+### Integral form
+
+Integrate over a volume $V$ with closed surface $\partial V$ and apply the divergence theorem:
+
+$$
+\boxed{\;-\frac{d}{dt}\int_V u\,dV = \oint_{\partial V}\mathbf{S}\cdot d\mathbf{a} + \int_V \mathbf{J}\cdot\mathbf{E}\,dV\;}
+$$ {#eq-poynting-int}
+
+::: {.callout-warning}
+### So far, this is only mathematics
+@eq-poynting-diff is an identity that follows from Maxwell's equations. We *named* the quantities $u$ and $\mathbf{S}$, but naming is not proving. The physics enters only when we interpret each term.
+:::
+
+### Interpreting the terms
+
+Read @eq-poynting-int as a budget for the volume $V$:
+
+| Term | Meaning | Justified by |
+|---|---|---|
+| $\int_V \mathbf{J}\cdot\mathbf{E}\,dV$ | rate at which mechanical energy of charges in $V$ increases | Lorentz force, @eq-power-density |
+| $\dfrac{d}{dt}\int_V u\,dV$ | rate of change of something stored in $V$ | must be energy, for the budget to balance |
+| $\oint_{\partial V}\mathbf{S}\cdot d\mathbf{a}$ | rate at which that something leaves through the surface | must be energy flux, for the budget to balance |
+
+Because the first term is **certainly** energy per unit time, and all terms in one equation must have the same physical nature, the other two are energy too: $u$ is the **energy density of the field** (J/m³) and $\mathbf{S}$ is the **energy flux density** (W/m²), the *Poynting vector*.
+
+## The objection: in vacuum there is no current
+
+::: {.callout-tip}
+### The students' question
+"In a wave travelling through empty space there are no electrons. So $\mathbf{J}=0$. How can a term that needs moving charges tell us anything about the wave?"
+:::
+
+**The objection is correct.** In vacuum, $\mathbf{J}=0$, $\mathbf{D}=\varepsilon_0\mathbf{E}$, $\mathbf{B}=\mu_0\mathbf{H}$, and @eq-poynting-diff reduces to
+
+$$
+\frac{\partial u}{\partial t} + \nabla\cdot\mathbf{S} = 0,
+\qquad
+u = \tfrac12\varepsilon_0 E^2 + \frac{B^2}{2\mu_0}.
+$$ {#eq-vacuum}
+
+The resolution is to separate two different questions that are easy to mix up.
+
+### Question A: in vacuum, is something conserved and moving?
+
+Yes. @eq-vacuum has exactly the form of the continuity equation for charge,
+
+$$
+\frac{\partial\rho}{\partial t} + \nabla\cdot\mathbf{J} = 0 .
+$$
+
+It says: $u$ cannot be created or destroyed at a point; it can only **flow**, and $\mathbf{S}$ is its flux. If $u$ decreases somewhere, it is because $\mathbf{S}$ carries it to the neighbouring region.
+
+### Question B: is that "something" energy?
+
+The vacuum equation alone **cannot** answer this. A continuity equation only tells you that *some* quantity is conserved. In fact the free Maxwell equations have other locally conserved quantities built from the fields (for example the optical helicity), each with its own continuity equation. Nothing in @eq-vacuum singles out $u$ as *energy*.
+
+::: {.callout-note collapse="true"}
+### Going further (optional)
+Besides energy, momentum and angular momentum, the source-free Maxwell equations admit further conserved densities: the optical helicity, and an infinite family discovered by Lipkin (1964) that he called "zilch". They are all conserved in vacuum and obey continuity equations, yet none of them is energy. This is precisely why the vacuum equation alone is not enough.
+:::
+
+### Answer: matter tells us which conserved quantity is energy
+
+"Energy" is defined by what it can do to matter: heat an absorber, accelerate a charge, drive a current. The **only** term in the theorem that talks to matter is $\mathbf{J}\cdot\mathbf{E}$, and it only appears where there are charges.
+
+So we apply @eq-poynting-int to a volume that **contains charges**: the transmitting antenna or the absorbing receiver. There, mechanical energy lost or gained by the charges is balanced by $\mathbf{S}$ and $u$. That calibrates $u$ and $\mathbf{S}$ as energy.
+
+Crucially, $u$ and $\mathbf{S}$ are defined by the **same expressions** @eq-definitions everywhere, in the antenna and in the empty space around it. Once they are identified as energy where matter is present, they are energy everywhere.
+
+::: {.callout-important}
+### Key point 2
+$\mathbf{J}\cdot\mathbf{E}$ is not needed **where the wave is**. It is needed **where we identify what the wave carries**: at the source and at the receiver. The vacuum region only has to show that the quantity is conserved and moves, which @eq-vacuum does.
+:::
+
+::: {.callout-tip}
+### An analogy
+A ball flying through the air has no force doing work on it (ignore gravity and drag). Nothing *during the flight* tells you that $\tfrac12 mv^2$ is energy. You know it because of the throw (your muscles did work) and the impact (it can break a window). The flight only shows that the quantity is conserved and travels with the ball.
+:::
+
+## The decisive thought experiment: a pulse in flight
+
+This argument shows that the energy must be in the field, not as a matter of interpretation, but because otherwise **energy conservation would fail**.
+
+### Set-up
+
+- A transmitting antenna **T** at the origin.
+- A receiver **R** at distance $d$.
+- Empty space in between: no charges, $\mathbf{J}=0$.
+
+At $t=0$ the generator drives **T** for a short time $\tau$, then switches off. We choose $\tau \ll d/c$.
+
+We track three volumes: $V_T$ around the transmitter, $V_R$ around the receiver, and the vacuum between them.
+
+### The energy budget over time
+
+Let $W_\text{rad}$ be the energy the generator supplied and that did **not** end up as heat in the antenna wires (it is measurable: it is the work done against the radiation resistance, $\int R_\text{rad}\,I^2\,dt$).
+
+| Time interval | Mechanical energy lost by charges in T | Mechanical energy gained by charges in R | Charges between T and R | Where is $W_\text{rad}$? |
+|---|---|---|---|---|
+| $t<0$ | 0 | 0 | none | still in the generator |
+| $0<t<\tau$ | increasing up to $W_\text{rad}$ | 0 | none | leaving $V_T$ through $\oint\mathbf{S}\cdot d\mathbf{a}$ |
+| $\tau < t < d/c$ | $W_\text{rad}$ (final) | **0** (signal has not arrived) | **none** | **?** |
+| $t > d/c$ | $W_\text{rad}$ | $> 0$ | none | partly absorbed in R, the rest travels on |
+
+### The contradiction, and its only resolution
+
+Look at the third row. The transmitter has **already lost** $W_\text{rad}$: the generator is switched off and the work has been done. The receiver has **not yet gained** anything, because no signal travels faster than $c$. Between them there is **no matter at all**.
+
+If energy is only a property of matter, then during the interval $\tau < t < d/c$ the total energy of the universe is smaller by $W_\text{rad}$. Energy conservation would be violated for a finite time, and then mysteriously restored when the pulse arrives.
+
+The only way to keep energy conserved **at every instant** is that the energy is located in the fields between T and R. Poynting's theorem tells us exactly where and how much. At time $t$ the pulse occupies the spherical shell $c(t-\tau) < r < ct$, and
+
+$$
+\int_\text{shell} u\,dV = W_\text{rad}.
+$$
+
+::: {.callout-important}
+### Key point 3
+The absence of current in the vacuum is not a weakness of the argument. **It is the argument.** Because nothing material sits between transmitter and receiver while the pulse is in flight, the energy has nowhere else to be but in the field.
+:::
+
+## A common trap: the "displacement current"
+
+In vacuum @eq-ampere reads
+
+$$
+\nabla\times\mathbf{H} = \varepsilon_0\frac{\partial\mathbf{E}}{\partial t}.
+$$
+
+The right-hand side is historically called the **displacement current**. Some students conclude: "So there *is* a current in vacuum, and that is what $\mathbf{J}$ refers to." This is wrong, for two reasons.
+
+1. It involves **no moving charge**. It is simply a time-varying electric field. The name comes from Maxwell's mechanical models of the ether and is misleading.
+2. In the derivation it does **not** end up in $\mathbf{J}\cdot\mathbf{E}$. It ends up in $\mathbf{E}\cdot\partial\mathbf{D}/\partial t$, which is part of $\partial u/\partial t$: it describes a change of **stored field energy**, not work done on matter.
+
+$\mathbf{J}$ in Poynting's theorem is always the current of **real charges**.
+
+## Plane waves from Maxwell's equations {#sec-plane}
+
+Up to now we have *stated* the plane-wave fields. Here we derive them, and in particular the relation $E = vB$, which is what makes the electric and magnetic energies equal.
+
+::: {.callout-note}
+### Convention
+We use the physics convention $e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)}$. With the engineering convention $e^{j(\omega t-\mathbf{k}\cdot\mathbf{r})}$ the signs of some intermediate expressions change (for example $\varepsilon - j\sigma/\omega$ instead of $\varepsilon + i\sigma/\omega$), but every physical result is identical. Physical fields are always the real parts of the complex expressions.
+:::
+
+### Ansatz
+
+Consider a linear, homogeneous, isotropic, source-free medium ($\rho=0$, $\mathbf{J}=0$) with constant $\varepsilon$ and $\mu$. We look for solutions of the form
+
+$$
+\mathbf{E}(\mathbf{r},t) = \mathbf{E}_0\,e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)},
+\qquad
+\mathbf{B}(\mathbf{r},t) = \mathbf{B}_0\,e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)},
+$$ {#eq-ansatz}
+
+where $\mathbf{E}_0$ and $\mathbf{B}_0$ are constant vectors, possibly complex (this includes every polarization).
+
+For such fields, derivatives become multiplications:
+
+$$
+\nabla \;\to\; i\mathbf{k},
+\qquad
+\frac{\partial}{\partial t} \;\to\; -i\omega .
+$$
+
+Maxwell's four differential equations therefore become four **algebraic** vector equations.
+
+### The divergence equations: the wave is transverse
+
+$$
+\nabla\cdot\mathbf{E}=0 \;\Rightarrow\; \mathbf{k}\cdot\mathbf{E}_0 = 0,
+\qquad
+\nabla\cdot\mathbf{B}=0 \;\Rightarrow\; \mathbf{k}\cdot\mathbf{B}_0 = 0 .
+$$
+
+Both fields are perpendicular to the direction of propagation.
+
+### Faraday's law: the ratio $E/B$
+
+$$
+\nabla\times\mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t}
+\;\Rightarrow\;
+i\,\mathbf{k}\times\mathbf{E}_0 = i\omega\,\mathbf{B}_0
+\;\Rightarrow\;
+\boxed{\;\mathbf{B}_0 = \frac{\mathbf{k}\times\mathbf{E}_0}{\omega}\;}
+$$ {#eq-faraday-pw}
+
+This single line contains three results.
+
+- **Direction.** $\mathbf{B}_0$ is perpendicular to both $\mathbf{E}_0$ and $\mathbf{k}$: the vectors $(\mathbf{E},\mathbf{B},\mathbf{k})$ form a right-handed triad.
+- **Magnitude.** Since $\mathbf{k}\perp\mathbf{E}_0$, $|\mathbf{k}\times\mathbf{E}_0| = k\,|\mathbf{E}_0|$, hence
+$$
+\frac{|\mathbf{E}_0|}{|\mathbf{B}_0|} = \frac{\omega}{k} \equiv v_\varphi ,
+$$
+the **phase velocity**. This is the precise meaning of $v$ in "$E = vB$".
+- **Phase.** If $k$ is real, $\mathbf{B}$ is exactly in phase with $\mathbf{E}$: they vanish and peak at the same points and instants.
+
+::: {.callout-important}
+### Key point 4
+Faraday's law alone relates $E$ and $B$, but it does **not** tell us how fast the wave travels: $v_\varphi$ is still unknown.
+:::
+
+### Ampère–Maxwell law: a second relation
+
+$$
+\nabla\times\mathbf{H} = \frac{\partial\mathbf{D}}{\partial t}
+\;\Rightarrow\;
+i\,\mathbf{k}\times\frac{\mathbf{B}_0}{\mu} = -i\omega\varepsilon\,\mathbf{E}_0
+\;\Rightarrow\;
+\mathbf{E}_0 = -\frac{\mathbf{k}\times\mathbf{B}_0}{\omega\mu\varepsilon} .
+$$ {#eq-ampere-pw}
+
+### Consistency: the dispersion relation
+
+Insert @eq-faraday-pw into @eq-ampere-pw:
+
+$$
+\mathbf{E}_0 = -\frac{\mathbf{k}\times(\mathbf{k}\times\mathbf{E}_0)}{\omega^2\mu\varepsilon} .
+$$
+
+With $\mathbf{a}\times(\mathbf{b}\times\mathbf{c}) = \mathbf{b}(\mathbf{a}\cdot\mathbf{c}) - \mathbf{c}(\mathbf{a}\cdot\mathbf{b})$ and $\mathbf{k}\cdot\mathbf{E}_0 = 0$,
+
+$$
+\mathbf{k}\times(\mathbf{k}\times\mathbf{E}_0) = \mathbf{k}\,(\mathbf{k}\cdot\mathbf{E}_0) - k^2\,\mathbf{E}_0 = -k^2\,\mathbf{E}_0 ,
+$$
+
+so
+
+$$
+\mathbf{E}_0 = \frac{k^2}{\omega^2\mu\varepsilon}\,\mathbf{E}_0
+\quad\Rightarrow\quad
+\boxed{\;k^2 = \omega^2\mu\varepsilon\;}
+\quad\Rightarrow\quad
+v_\varphi = \frac{\omega}{k} = \frac{1}{\sqrt{\mu\varepsilon}} .
+$$ {#eq-dispersion}
+
+In vacuum $v_\varphi = 1/\sqrt{\mu_0\varepsilon_0} = c$, and therefore $E = cB$.
+
+::: {.callout-important}
+### Key point 5
+Faraday says $E/B = \omega/k$. Ampère–Maxwell says $E/B = k/(\omega\mu\varepsilon)$. **Both can be true only if the wave travels at $1/\sqrt{\mu\varepsilon}$.** Neither equation alone predicts light; their mutual consistency does.
+:::
+
+### Back to real fields
+
+Take $\mathbf{k} = k\,\hat{\mathbf{z}}$ and $\mathbf{E}_0 = E_0\,\hat{\mathbf{x}}$ with $E_0$ real. Then $\mathbf{k}\times\mathbf{E}_0 = kE_0\,\hat{\mathbf{y}}$, and the real parts are
+
+$$
+\mathbf{E} = E_0\cos(kz-\omega t)\,\hat{\mathbf{x}},
+\qquad
+\mathbf{B} = \frac{E_0}{v_\varphi}\cos(kz-\omega t)\,\hat{\mathbf{y}} .
+$$ {#eq-real-pw}
+
+Because @eq-faraday-pw is linear, the same holds for any polarization. For circular polarization, $\mathbf{E}_0 = E_0(\hat{\mathbf{x}} + i\hat{\mathbf{y}})/\sqrt2$: $\mathbf{B}$ rotates together with $\mathbf{E}$, always at $90^\circ$ from it, with $|\mathbf{E}| = v_\varphi|\mathbf{B}|$ at every instant.
+
+### Energy of the plane wave
+
+With $H = B/\mu$ and $E = v_\varphi B$:
+
+$$
+u_B = \frac{B^2}{2\mu} = \frac{E^2}{2\mu v_\varphi^2} = \tfrac12\varepsilon E^2 = u_E,
+\qquad
+\frac{E}{H} = \mu v_\varphi = \sqrt{\frac{\mu}{\varepsilon}} \equiv \eta ,
+$$
+
+where $\eta$ is the **wave impedance** ($\eta_0 \approx 377\ \Omega$ in vacuum). The electric and magnetic energy densities are equal, and $u = \varepsilon E^2$.
+
+The Poynting vector points along $\mathbf{k}$ (right-handed triad):
+
+$$
+\mathbf{S} = \mathbf{E}\times\mathbf{H} = \frac{E^2}{\eta}\,\hat{\mathbf{k}} = v_\varphi\,u\,\hat{\mathbf{k}} .
+$$
+
+Time averages, using phasors and $\langle\cos^2\rangle = \tfrac12$:
+
+$$
+\langle\mathbf{S}\rangle = \tfrac12\,\mathrm{Re}\!\left(\mathbf{E}_0\times\mathbf{H}_0^*\right) = \frac{|\mathbf{E}_0|^2}{2\eta}\,\hat{\mathbf{k}},
+\qquad
+\langle u\rangle = \tfrac12\varepsilon\,|\mathbf{E}_0|^2,
+\qquad
+\langle S\rangle = v_\varphi\,\langle u\rangle .
+$$ {#eq-pw-energy}
+
+In vacuum the energy flows at $c$. You can check directly that @eq-real-pw satisfies @eq-vacuum.
+
+::: {.callout-warning}
+### Hold on
+In a non-dispersive medium the energy moves at the phase velocity. We will see in @sec-energy-velocity that this is **not** true in dispersive media: there, energy moves at the *group* velocity.
+:::
+
+## Plane waves in a lossy medium {#sec-lossy}
+
+We now put charges back in: a medium with conductivity $\sigma$, so that $\mathbf{J} = \sigma\mathbf{E}$. This is exactly the situation of the **receiver** (the absorber) in the pulse thought experiment, and it is where $\mathbf{J}\cdot\mathbf{E}$ becomes non-zero.
+
+### Complex permittivity and complex wave number
+
+Ampère–Maxwell now reads
+
+$$
+i\,\mathbf{k}\times\mathbf{H}_0 = \sigma\mathbf{E}_0 - i\omega\varepsilon\,\mathbf{E}_0 = -i\omega\,\varepsilon_c\,\mathbf{E}_0,
+\qquad
+\varepsilon_c \equiv \varepsilon + i\frac{\sigma}{\omega} .
+$$ {#eq-epsc}
+
+The conduction current is absorbed into a **complex permittivity** $\varepsilon_c$. Faraday's law is unchanged, so every step of @sec-plane goes through with $\varepsilon \to \varepsilon_c$:
+
+$$
+k^2 = \omega^2\mu\,\varepsilon_c .
+$$
+
+The wave number is now complex. For a wave travelling along $z$ we write
+
+$$
+k = \beta + i\alpha,
+\qquad
+\beta^2 - \alpha^2 = \omega^2\mu\varepsilon,
+\qquad
+2\alpha\beta = \omega\mu\sigma ,
+$$ {#eq-alpha-beta}
+
+which gives
+
+$$
+\beta = \omega\sqrt{\frac{\mu\varepsilon}{2}}\left[\sqrt{1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2}+1\right]^{1/2},
+\qquad
+\alpha = \omega\sqrt{\frac{\mu\varepsilon}{2}}\left[\sqrt{1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2}-1\right]^{1/2}.
+$$
+
+The dimensionless ratio $\sigma/(\omega\varepsilon)$ (conduction current over displacement current) decides the regime.
+
+### The fields
+
+With $\mathbf{E}_0 = E_0\hat{\mathbf{x}}$, $E_0$ real:
+
+$$
+\mathbf{E} = E_0\,e^{-\alpha z}\cos(\beta z - \omega t)\,\hat{\mathbf{x}} .
+$$
+
+Faraday still gives $\mathbf{B}_0 = \mathbf{k}\times\mathbf{E}_0/\omega$, but now $k$ is complex:
+
+$$
+B_0 = \frac{\beta + i\alpha}{\omega}\,E_0 = \frac{|k|}{\omega}\,E_0\,e^{i\phi},
+\qquad
+\phi = \arctan\frac{\alpha}{\beta},
+$$
+
+$$
+\mathbf{B} = \frac{|k|}{\omega}\,E_0\,e^{-\alpha z}\cos(\beta z - \omega t + \phi)\,\hat{\mathbf{y}} .
+$$
+
+Three things change with respect to the lossless case:
+
+1. **The wave decays** as $e^{-\alpha z}$; the intensity decays as $e^{-2\alpha z}$.
+2. **$\mathbf{B}$ lags $\mathbf{E}$ in time** by $\phi/\omega$.
+3. **The simple relation fails:** $|E|/|B| = \omega/|k|$, which is neither $\omega/\beta$ (the phase velocity) nor $1/\sqrt{\mu\varepsilon}$.
+
+### Limiting case: a good conductor
+
+For $\sigma \gg \omega\varepsilon$:
+
+$$
+\alpha \simeq \beta \simeq \sqrt{\frac{\omega\mu\sigma}{2}} \equiv \frac{1}{\delta},
+\qquad
+\phi \simeq 45^\circ ,
+$$
+
+where $\delta$ is the **skin depth**. The ratio of magnetic to electric energy is
+
+$$
+\frac{\langle u_B\rangle}{\langle u_E\rangle} = \frac{|B_0|^2/\mu}{\varepsilon|E_0|^2} = \frac{|k|^2}{\omega^2\mu\varepsilon} = \sqrt{1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2} \gg 1 :
+$$
+
+inside a good conductor the field energy is almost entirely **magnetic**, and $|E|/|H| = \sqrt{\omega\mu/\sigma} \ll \eta_0$.
+
+### Poynting's theorem with $\mathbf{J}\ne 0$: the absorber's energy budget
+
+This is the case the pulse argument needs: the field hands its energy to matter. We check @eq-poynting-diff explicitly.
+
+With $\mathbf{H}_0 = \mathbf{B}_0/\mu = (\beta + i\alpha)E_0/(\omega\mu)\,\hat{\mathbf{y}}$, the time-averaged Poynting vector is
+
+$$
+\langle S_z\rangle = \tfrac12\mathrm{Re}\!\left(E_0 H_0^*\right)e^{-2\alpha z}
+= \frac{\beta\,E_0^2}{2\omega\mu}\,e^{-2\alpha z} .
+$$
+
+In steady state $\langle \partial u/\partial t\rangle = 0$, so the time-averaged theorem reads $-\,d\langle S_z\rangle/dz = \langle\mathbf{J}\cdot\mathbf{E}\rangle$. Both sides:
+
+$$
+-\frac{d\langle S_z\rangle}{dz} = \frac{\alpha\beta}{\omega\mu}\,E_0^2\,e^{-2\alpha z},
+\qquad
+\langle\mathbf{J}\cdot\mathbf{E}\rangle = \langle\sigma E^2\rangle = \tfrac12\sigma E_0^2\,e^{-2\alpha z} .
+$$
+
+They are equal because $2\alpha\beta = \omega\mu\sigma$ (@eq-alpha-beta). ✓
+
+Integrating the Joule heating over the whole half-space $z>0$:
+
+$$
+\int_0^\infty \tfrac12\sigma E_0^2\,e^{-2\alpha z}\,dz = \frac{\sigma E_0^2}{4\alpha} = \frac{\beta E_0^2}{2\omega\mu} = \langle S_z(0)\rangle .
+$$
+
+::: {.callout-important}
+### Key point 6
+**All the power that enters the surface of the absorber is converted into heat**, and Poynting's theorem accounts for it point by point. The decrease of $\mathbf{S}$ with depth is exactly the work $\mathbf{J}\cdot\mathbf{E}$ done on the conduction electrons. This is the "receiver" end of the pulse argument, now made quantitative.
+:::
+
+(Here $E_0$ is the field just inside the surface; the reflection at the interface is a separate problem.)
+
+## Energy velocity and group velocity in dispersive media {#sec-energy-velocity}
+
+### The problem
+
+Real materials are **dispersive**: $\varepsilon$ and $\mu$ depend on frequency. Glass, silicon, lithium niobate: the refractive index $n(\omega)$ is never exactly constant.
+
+Two things then go wrong with what we did so far.
+
+1. In the derivation of Poynting's theorem we wrote $\mathbf{E}\cdot\partial\mathbf{D}/\partial t = \partial_t(\tfrac12\varepsilon E^2)$. This requires $\mathbf{D}(t) = \varepsilon\,\mathbf{E}(t)$ **at the same instant**. In a dispersive medium $\mathbf{D}(t)$ depends on $\mathbf{E}$ at earlier times, so $u = \tfrac12(\mathbf{E}\cdot\mathbf{D} + \mathbf{H}\cdot\mathbf{B})$ is no longer the stored energy.
+2. A pulse does not travel at the phase velocity $\omega/k$ but at the **group velocity**
+
+$$
+v_g = \frac{d\omega}{dk} = \frac{c}{n + \omega\,\dfrac{dn}{d\omega}} \equiv \frac{c}{n_g},
+$$
+
+where $n_g$ is the **group index**. In silicon waveguides, for example, $n_g$ is typically much larger than the effective index.
+
+We define the **energy velocity** as the ratio of time-averaged energy flux to time-averaged energy density:
+
+$$
+v_E \equiv \frac{\langle S\rangle}{\langle u\rangle} .
+$$ {#eq-vE-def}
+
+In @eq-pw-energy we found $v_E = v_\varphi$, but that used the non-dispersive $u$. The goal of this section is to find the correct $\langle u\rangle$ and prove that
+
+$$
+\boxed{\;v_E = v_g\;}
+$$
+
+for any **lossless** (or weakly lossy) dispersive medium.
+
+### Step 1: the stored energy in a dispersive medium (Brillouin)
+
+#### Quasi-monochromatic field
+
+Energy density only makes sense for a field that is switched on and evolves, so consider a carrier at frequency $\omega$ with a **slowly varying complex envelope** $\tilde{\mathbf{E}}(t)$:
+
+$$
+\mathbf{E}(t) = \mathrm{Re}\!\left[\tilde{\mathbf{E}}(t)\,e^{-i\omega t}\right],
+\qquad
+\left|\frac{d\tilde{\mathbf{E}}}{dt}\right| \ll \omega\,|\tilde{\mathbf{E}}| .
+$$
+
+"Slowly varying" means the envelope changes little during one optical period, i.e. the spectrum of $\tilde{\mathbf{E}}$ is concentrated in a narrow band $\Omega \ll \omega$ around the carrier.
+
+#### The response of the medium
+
+Write the envelope as a superposition of small frequency offsets, $\tilde{\mathbf{E}}(t) = \int \tilde{\mathbf{E}}(\Omega)\,e^{-i\Omega t}\,d\Omega$. Each component at $\omega+\Omega$ is multiplied by $\varepsilon(\omega+\Omega)$. Expanding to first order,
+
+$$
+\varepsilon(\omega+\Omega) \simeq \varepsilon(\omega) + \Omega\,\frac{d\varepsilon}{d\omega} .
+$$
+
+Since $\Omega\,e^{-i\Omega t} = i\,\dfrac{d}{dt}e^{-i\Omega t}$, the factor $\Omega$ becomes $i\,d/dt$ acting on the envelope:
+
+$$
+\tilde{\mathbf{D}}(t) \simeq \varepsilon\,\tilde{\mathbf{E}} + i\,\frac{d\varepsilon}{d\omega}\,\frac{d\tilde{\mathbf{E}}}{dt} ,
+\qquad
+\mathbf{D}(t) = \mathrm{Re}\!\left[\tilde{\mathbf{D}}(t)\,e^{-i\omega t}\right].
+$$ {#eq-D-envelope}
+
+#### Averaging over one period
+
+$$
+\frac{\partial\mathbf{D}}{\partial t} = \mathrm{Re}\!\left[\left(\frac{d\tilde{\mathbf{D}}}{dt} - i\omega\tilde{\mathbf{D}}\right)e^{-i\omega t}\right].
+$$
+
+For two slowly varying phasors, $\langle \mathrm{Re}[\mathbf{a}\,e^{-i\omega t}]\cdot\mathrm{Re}[\mathbf{b}\,e^{-i\omega t}]\rangle = \tfrac12\mathrm{Re}(\mathbf{a}^*\cdot\mathbf{b})$. Keeping terms to first order in $d/dt$, using @eq-D-envelope:
+
+$$
+\frac{d\tilde{\mathbf{D}}}{dt} - i\omega\tilde{\mathbf{D}}
+\simeq -i\omega\varepsilon\,\tilde{\mathbf{E}} + \left(\varepsilon + \omega\frac{d\varepsilon}{d\omega}\right)\frac{d\tilde{\mathbf{E}}}{dt} .
+$$
+
+Therefore
+
+$$
+\left\langle \mathbf{E}\cdot\frac{\partial\mathbf{D}}{\partial t}\right\rangle
+= \tfrac12\,\mathrm{Re}\!\left[-i\omega\varepsilon\,|\tilde{\mathbf{E}}|^2\right]
++ \tfrac12\,\frac{d(\omega\varepsilon)}{d\omega}\,\mathrm{Re}\!\left[\tilde{\mathbf{E}}^*\cdot\frac{d\tilde{\mathbf{E}}}{dt}\right].
+$$
+
+- **If $\varepsilon$ is real** (lossless), the first term vanishes.
+- In the second term, $\mathrm{Re}[\tilde{\mathbf{E}}^*\cdot d\tilde{\mathbf{E}}/dt] = \tfrac12\,d|\tilde{\mathbf{E}}|^2/dt$.
+
+So
+
+$$
+\left\langle \mathbf{E}\cdot\frac{\partial\mathbf{D}}{\partial t}\right\rangle = \frac{d}{dt}\left[\frac14\,\frac{d(\omega\varepsilon)}{d\omega}\,|\tilde{\mathbf{E}}|^2\right],
+$$
+
+and identically for the magnetic term. The time-averaged stored energy density is the **Brillouin formula**:
+
+$$
+\boxed{\;\langle u\rangle = \frac14\left[\frac{d(\omega\varepsilon)}{d\omega}\,|\tilde{\mathbf{E}}|^2 + \frac{d(\omega\mu)}{d\omega}\,|\tilde{\mathbf{H}}|^2\right]\;}
+$$ {#eq-brillouin}
+
+For a non-dispersive medium, $d(\omega\varepsilon)/d\omega = \varepsilon$ and we recover $\langle u\rangle = \tfrac14(\varepsilon|E|^2 + \mu|H|^2)$, consistent with @eq-pw-energy.
+
+::: {.callout-note}
+### What about losses?
+If $\varepsilon = \varepsilon_R + i\varepsilon_I$, the first term no longer vanishes and gives $\tfrac12\omega\varepsilon_I|\tilde{\mathbf{E}}|^2$, which is **not** a time derivative. It is a dissipation term, identical to $\langle\mathbf{J}\cdot\mathbf{E}\rangle$ with an effective conductivity $\sigma = \omega\varepsilon_I$, exactly as in @eq-epsc. The Brillouin formula is meaningful when $\varepsilon_I \ll \varepsilon_R$, i.e. away from absorption lines.
+:::
+
+### Step 2: what the extra energy is (a check with the Lorentz model)
+
+Why should the stored energy contain $d\varepsilon/d\omega$? Because in a material, part of the energy is **mechanical energy of the bound charges**. The polarization current $\partial\mathbf{P}/\partial t$ is a current of real (bound) charges, so it does work $\mathbf{E}\cdot\partial\mathbf{P}/\partial t$: this is the $\mathbf{J}\cdot\mathbf{E}$ idea again, now hidden inside $\mathbf{D}$.
+
+Take the lossless Lorentz model: $N$ oscillators per unit volume, charge $q$, mass $m$, resonance $\omega_r$,
+
+$$
+m\ddot{x} = -m\omega_r^2 x + qE
+\quad\Rightarrow\quad
+x_0 = \frac{q E_0}{m(\omega_r^2-\omega^2)},
+\qquad
+\varepsilon(\omega) = \varepsilon_0\left[1 + \frac{\omega_p^2}{\omega_r^2-\omega^2}\right],
+\qquad
+\omega_p^2 = \frac{Nq^2}{m\varepsilon_0}.
+$$
+
+**Mechanical energy of the oscillators**, time-averaged:
+
+$$
+\langle u_\text{mech}\rangle = N\left\langle \tfrac12 m\dot{x}^2 + \tfrac12 m\omega_r^2 x^2\right\rangle
+= \frac14 N m(\omega^2+\omega_r^2)\,|x_0|^2
+= \frac14\,\varepsilon_0\,\omega_p^2\,\frac{\omega_r^2+\omega^2}{(\omega_r^2-\omega^2)^2}\,|E_0|^2 .
+$$
+
+**Brillouin electric term:**
+
+$$
+\frac{d(\omega\varepsilon)}{d\omega} = \varepsilon_0\left[1 + \omega_p^2\,\frac{\omega_r^2+\omega^2}{(\omega_r^2-\omega^2)^2}\right]
+\quad\Rightarrow\quad
+\frac14\,\frac{d(\omega\varepsilon)}{d\omega}\,|E_0|^2
+= \underbrace{\frac14\varepsilon_0|E_0|^2}_{\text{vacuum field}} + \underbrace{\langle u_\text{mech}\rangle}_{\text{bound charges}} .
+$$
+
+::: {.callout-important}
+### Key point 7
+The Brillouin energy density is **vacuum field energy plus the kinetic and potential energy of the bound charges** that the wave sets in motion. The naive expression $\tfrac14\varepsilon|E|^2$ misses the latter; it can even become negative where $\varepsilon<0$, which is physically meaningless. For a passive lossless medium $d(\omega\varepsilon)/d\omega > 0$ always (the electromagnetic analogue of Foster's reactance theorem), so the Brillouin energy is always positive.
+:::
+
+### Step 3: proof that $v_E = v_g$
+
+Take a plane wave in a lossless medium with real $\varepsilon(\omega)$ and $\mu(\omega)$. We use the prime for $d/d\omega$ in this subsection only.
+
+**Energy flux.** With $|H_0| = |E_0|/\eta$ and $\eta = \sqrt{\mu/\varepsilon}$:
+
+$$
+\langle S\rangle = \frac{|E_0|^2}{2\eta} = \frac12\sqrt{\frac{\varepsilon}{\mu}}\,|E_0|^2 .
+$$
+
+**Energy density.** From @eq-brillouin, with $|H_0|^2 = (\varepsilon/\mu)|E_0|^2$:
+
+$$
+\langle u\rangle = \frac14|E_0|^2\left[(\varepsilon + \omega\varepsilon') + \frac{\varepsilon}{\mu}(\mu + \omega\mu')\right]
+= \frac{\varepsilon}{4}|E_0|^2\left[2 + \omega\frac{\varepsilon'}{\varepsilon} + \omega\frac{\mu'}{\mu}\right].
+$$
+
+**Inverse group velocity.** From $k = \omega\sqrt{\mu\varepsilon}$:
+
+$$
+\frac{dk}{d\omega} = \sqrt{\mu\varepsilon} + \omega\,\frac{\mu\varepsilon' + \varepsilon\mu'}{2\sqrt{\mu\varepsilon}}
+= \frac{\sqrt{\mu\varepsilon}}{2}\left[2 + \omega\frac{\varepsilon'}{\varepsilon} + \omega\frac{\mu'}{\mu}\right].
+$$
+
+**Compare.** The same bracket appears in both. Eliminating it:
+
+$$
+\langle u\rangle = \frac{\varepsilon}{4}|E_0|^2\cdot\frac{2}{\sqrt{\mu\varepsilon}}\,\frac{dk}{d\omega}
+= \frac12\sqrt{\frac{\varepsilon}{\mu}}\,|E_0|^2\,\frac{dk}{d\omega}
+= \langle S\rangle\,\frac{dk}{d\omega} .
+$$
+
+Hence
+
+$$
+\boxed{\;v_E = \frac{\langle S\rangle}{\langle u\rangle} = \frac{d\omega}{dk} = v_g\;}
+$$ {#eq-vE-vg}
+
+::: {.callout-important}
+### Key point 8
+In a dispersive, lossless medium, energy is transported at the **group velocity**, not at the phase velocity. The extra term $\omega\,d\varepsilon/d\omega$ in the stored energy (the energy parked in the bound charges) is exactly what slows the energy down from $v_\varphi$ to $v_g$. In a non-dispersive medium the two coincide, which is why @eq-pw-energy gave $v_\varphi$.
+:::
+
+### How general is this?
+
+The result is not limited to isotropic plane waves. For **lossless** systems it also holds for:
+
+- **Anisotropic media.** The energy velocity is the vector $\mathbf{v}_E = \nabla_{\mathbf{k}}\,\omega(\mathbf{k})$, which in general is **not** parallel to $\mathbf{k}$. This is why the ray direction and the wave-vector direction differ in birefringent crystals.
+- **Waveguides.** With $\beta(\omega)$ the propagation constant of a mode, the ratio of guided power to energy per unit length equals $d\omega/d\beta$, both in metallic waveguides and in dielectric (photonic) waveguides, where the dispersion comes from both material and geometry.
+- **Periodic structures** (photonic crystals, gratings). For Bloch modes, with flux and energy averaged over one unit cell, the energy velocity equals $\nabla_{\mathbf{k}}\,\omega$ of the band. Near a band edge $v_g\to 0$, which is the basis of **slow-light** devices.
+- **Negative-index media.** $v_g$ is antiparallel to $\mathbf{k}$, but $\langle\mathbf{S}\rangle$ is antiparallel too: the equality still holds.
+
+### When it fails: the "weird cases"
+
+The identification $v_E = v_g$ rests on two assumptions: **negligible loss** and **a first-order Taylor expansion of $\varepsilon(\omega)$ over the pulse bandwidth**. It breaks down when either fails.
+
+1. **Near an absorption line (anomalous dispersion).** There $dn/d\omega < 0$, and $v_g = c/n_g$ can exceed $c$, become infinite or even negative. This does not violate causality: the medium reshapes the pulse by absorbing more of its trailing part, so the *peak* appears to advance, but no energy or information travels faster than $c$. A proper energy velocity that includes the energy stored in and dissipated by the oscillators stays below $c$ (Loudon, 1970). The front of a signal always travels at $c$ (Sommerfeld and Brillouin).
+2. **Strong higher-order dispersion.** If $\varepsilon(\omega)$ curves significantly over the pulse bandwidth, the pulse distorts and "the velocity of the pulse" is no longer well defined. The equality $v_E = v_g$ still holds frequency by frequency, but $v_g$ at the carrier no longer describes where the energy of the whole pulse is.
+3. **Evanescent waves and tunnelling.** When $k$ is imaginary, $d\omega/dk$ loses its meaning as a velocity; apparent superluminal tunnelling times (the Hartman effect) are another manifestation.
+
+::: {.callout-tip}
+### For a classroom
+A good conceptual summary: **phase velocity** is how fast the crests move, **group velocity** is how fast the envelope moves, and in a transparent medium **the energy rides with the envelope**. The "weird cases" are all situations where the medium is not transparent, or where the envelope itself stops being a well-defined object.
+:::
+
+## Radiation: energy that never comes back
+
+For a localised oscillating source (an antenna), the fields far away decrease as $1/r$. Then $|\mathbf{S}|\propto 1/r^2$, and the power through a sphere of radius $r$,
+
+$$
+P = \oint_{r}\mathbf{S}\cdot d\mathbf{a} \;\propto\; \frac{1}{r^2}\cdot r^2 = \text{constant},
+$$
+
+does not depend on $r$. The same power crosses every sphere, however large: energy leaves the source and never returns. This is what distinguishes a **radiated wave** from the near-field terms, which decrease faster than $1/r$ and only exchange energy back and forth with the source.
+
+## Experimental confirmation
+
+The argument above is theoretical. Experiments confirm it in two independent ways.
+
+- **Heating.** An absorber (bolometer, thermopile, optical power meter) placed in a beam warms up. Its temperature rise gives the absorbed power, and it matches $\oint\mathbf{S}\cdot d\mathbf{a}$.
+- **Radiation pressure.** The field also carries momentum, with density $\mathbf{S}/c^2$. A beam of power $P$ exerts a force $P/c$ on an absorber and $2P/c$ on a mirror. This was measured by Lebedev (1900) and by Nichols and Hull (1901 to 1903).
+
+## Summary
+
+::: {.callout-important}
+### The logic in seven steps
+1. **Energy is defined by work on matter.** The fields do work on charges at the rate $\mathbf{J}\cdot\mathbf{E}$ per unit volume.
+2. **Maxwell's equations imply Poynting's theorem**, $\partial_t u + \nabla\cdot\mathbf{S} = -\mathbf{J}\cdot\mathbf{E}$. Where charges are present, the budget identifies $u$ and $\mathbf{S}$ as energy density and energy flux.
+3. **In vacuum**, $\mathbf{J}=0$ and the theorem becomes a continuity equation: the same quantity $u$ is conserved and flows with flux $\mathbf{S}$. It is energy because it is the *same* $u$ that was identified at the source.
+4. **Pulse argument.** While a pulse is between transmitter and receiver, the transmitter has lost energy and the receiver has gained none. Energy conservation at every instant requires the energy to be in the field.
+5. **Plane waves.** Faraday gives $E/B = \omega/k$ and Ampère–Maxwell fixes $\omega/k = 1/\sqrt{\mu\varepsilon}$; electric and magnetic energies are equal.
+6. **Absorbers.** In a lossy medium, the decrease of $\mathbf{S}$ with depth equals the Joule heating $\mathbf{J}\cdot\mathbf{E}$: the field's energy is handed over to matter.
+7. **Dispersive media.** The stored energy includes the energy of the bound charges (Brillouin), and energy travels at the group velocity, $v_E = d\omega/dk$, except near absorption lines and in other strongly non-transparent situations.
+:::
+
+## Questions for discussion
+
+::: {.callout-tip collapse="true"}
+### Q1. Why does the magnetic field never appear in the power delivered to charges?
+Because $q(\mathbf{v}\times\mathbf{B})\cdot\mathbf{v}=0$: the magnetic force is always perpendicular to the velocity. The magnetic field still stores energy ($B^2/2\mu_0$) and contributes to $\mathbf{S}$, but it transfers energy to matter only indirectly, through the electric field it induces.
+:::
+
+::: {.callout-tip collapse="true"}
+### Q2. In vacuum $\mathbf{J}=0$. Does Poynting's theorem become useless there?
+No. It becomes a continuity equation, which shows that $u$ is conserved locally and flows with flux $\mathbf{S}$. What it cannot do by itself is tell us that $u$ is energy; that identification comes from regions with charges.
+:::
+
+::: {.callout-tip collapse="true"}
+### Q3. Is the displacement current $\varepsilon_0\,\partial\mathbf{E}/\partial t$ part of $\mathbf{J}$?
+No. It contains no moving charges and contributes to $\partial u/\partial t$ (change of stored field energy), not to $\mathbf{J}\cdot\mathbf{E}$ (work on matter).
+:::
+
+::: {.callout-tip collapse="true"}
+### Q4. In the pulse experiment, why is it important that $\tau \ll d/c$?
+So that there is a finite time interval in which the transmitter has completely stopped and the receiver has not yet been reached. During that interval no matter anywhere holds the missing energy, which makes the contradiction unavoidable.
+:::
+
+::: {.callout-tip collapse="true"}
+### Q5. For a plane wave, show that $\langle S\rangle = c\langle u\rangle$. What does this ratio mean physically?
+See @sec-plane. The ratio of flux to density has dimensions of velocity: it is the speed at which energy is transported, here $c$.
+:::
+
+::: {.callout-tip collapse="true"}
+### Q6. In a good conductor, is the field energy mainly electric or magnetic? Why?
+Mainly magnetic: $\langle u_B\rangle/\langle u_E\rangle = \sqrt{1+(\sigma/\omega\varepsilon)^2} \gg 1$. The conduction current $\sigma E$ is much larger than the displacement current, so a small $E$ sustains a large $H$ through Ampère's law.
+:::
+
+::: {.callout-tip collapse="true"}
+### Q7. Why does $\tfrac12\varepsilon E^2$ fail as an energy density in a dispersive medium?
+Because $\mathbf{D}(t)$ depends on the past values of $\mathbf{E}$, so $\mathbf{E}\cdot\partial_t\mathbf{D}$ is not the time derivative of $\tfrac12\varepsilon E^2$. Physically, the formula ignores the kinetic and potential energy of the bound charges driven by the wave (@sec-energy-velocity).
+:::
+
+::: {.callout-tip collapse="true"}
+### Q8. A hollow metallic waveguide has $\beta = \sqrt{\omega^2/c^2 - \omega_c^2/c^2}$. Compute $v_\varphi$ and $v_g$. Which one can exceed $c$, and which one carries the energy?
+$v_\varphi = \omega/\beta = c/\sqrt{1-\omega_c^2/\omega^2} > c$ and $v_g = d\omega/d\beta = c\sqrt{1-\omega_c^2/\omega^2} < c$, with $v_\varphi v_g = c^2$. The energy travels at $v_g$; the phase velocity exceeding $c$ carries no energy or information.
+:::
+
+::: {.callout-tip collapse="true"}
+### Q9. Near an absorption line the group velocity can exceed $c$. Does energy travel faster than light?
+No. The medium absorbs the trailing part of the pulse more strongly, which moves the peak forward without any energy getting ahead of the front. The assumptions behind $v_E = v_g$ (negligible loss, slowly varying $\varepsilon$ over the bandwidth) fail there.
+:::

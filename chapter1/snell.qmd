@@ -1,0 +1,171 @@
+# Snell's law, total internal reflection and Fermat's principle {#sec-snell}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/snell.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import optimize
+import optolib as ol
+ol.use_style()
+c0 = ol.c0
+```
+
+*Slides 85–100 (Snell–Descartes law from phase matching, critical angle, total internal reflection, prisms, lateral
+displacement, light guiding in fibers and water jets) and slides 296–299 (Fermat's principle).*
+
+## Key relations
+
+At a boundary, the incident, reflected and transmitted waves must stay in phase along the interface. This gives
+$\theta_r=\theta_i$ (slide 88) and, because the wavefront travels $v_1\Delta t$ in medium 1 while it travels $v_2\Delta t$ in
+medium 2, **Snell's law** (slides 89–90):
+
+$$
+n_1\sin\theta_i=n_2\sin\theta_t ,\qquad \sin\theta_c=\frac{n_2}{n_1}\quad(n_1>n_2).
+$$
+
+Beyond the critical angle there is no transmitted wave: **total internal reflection** (TIR, slides 91–93), with an evanescent
+field in medium 2 (@sec-fresnel). Snell's law is equivalent to conservation of the tangential wave vector,
+$k_1\sin\theta_i=k_2\sin\theta_t$.
+
+### Refraction and TIR, live
+
+```{ojs}
+//| echo: false
+viewof sn = Inputs.form({
+  n1: Inputs.range([1, 4], {value: 1.5, step: 0.01, label: "upper medium n₁"}),
+  n2: Inputs.range([1, 4], {value: 1.0, step: 0.01, label: "lower medium n₂"}),
+  th: Inputs.range([0, 89.9], {value: 35, step: 0.1, label: "incidence angle θᵢ (deg)"})
+})
+```
+
+```{ojs}
+//| echo: false
+snOut = {
+  const ti = sn.th * Math.PI / 180, s = sn.n1 * Math.sin(ti) / sn.n2;
+  const tir = s > 1, tt = tir ? null : Math.asin(s);
+  const thc = sn.n1 > sn.n2 ? Math.asin(sn.n2 / sn.n1) * 180 / Math.PI : null;
+  // Fresnel reflectance (unpolarised) for display
+  let R = 1;
+  if (!tir) {
+    const ci = Math.cos(ti), ct = Math.cos(tt);
+    const rs = (sn.n1*ci - sn.n2*ct) / (sn.n1*ci + sn.n2*ct), rp = (sn.n2*ci - sn.n1*ct) / (sn.n2*ci + sn.n1*ct);
+    R = (rs*rs + rp*rp) / 2;
+  }
+  return {ti, tt, tir, thc, R};
+}
+Plot.plot({
+  width: Math.min(width, 700), height: 380, x: {domain: [-1.2, 1.2], axis: null}, y: {domain: [-1.1, 1.1], axis: null},
+  marks: [
+    Plot.rect([{x1: -1.2, x2: 1.2, y1: 0, y2: 1.1}], {x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: "#2a78d6", fillOpacity: 0.04 + 0.05*(sn.n1 - 1)}),
+    Plot.rect([{x1: -1.2, x2: 1.2, y1: -1.1, y2: 0}], {x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: "#2a78d6", fillOpacity: 0.04 + 0.05*(sn.n2 - 1)}),
+    Plot.ruleY([0], {stroke: "#52514e"}),
+    Plot.ruleX([0], {stroke: "#b9b8b2", strokeDasharray: "3,3"}),
+    Plot.arrow([{x1: -Math.sin(snOut.ti), y1: Math.cos(snOut.ti), x2: 0, y2: 0}], {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#0b0b0b", strokeWidth: 2.5}),
+    Plot.arrow([{x1: 0, y1: 0, x2: Math.sin(snOut.ti), y2: Math.cos(snOut.ti)}], {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#eb6834", strokeWidth: 1 + 3*snOut.R}),
+    snOut.tir ? Plot.text([{x: 0.5, y: -0.5}], {x: "x", y: "y", text: () => "total internal reflection\n(evanescent wave only)", fill: "#e34948", fontSize: 13}) :
+      Plot.arrow([{x1: 0, y1: 0, x2: Math.sin(snOut.tt), y2: -Math.cos(snOut.tt)}], {x1: "x1", y1: "y1", x2: "x2", y2: "y2", stroke: "#2a78d6", strokeWidth: 1 + 3*(1 - snOut.R)}),
+    Plot.text([{x: -1.1, y: 1.0, t: `n₁ = ${sn.n1.toFixed(2)}`}, {x: -1.1, y: -1.0, t: `n₂ = ${sn.n2.toFixed(2)}`}], {x: "x", y: "y", text: "t", textAnchor: "start", fontSize: 13})
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">θᵢ = ${sn.th.toFixed(1)}° → ${snOut.tir ? "<b>TIR</b>" : `θₜ = <b>${(snOut.tt*180/Math.PI).toFixed(2)}°</b>`}
+ · critical angle ${snOut.thc === null ? "none (n₁ ≤ n₂)" : `θc = ${snOut.thc.toFixed(2)}°`}
+ · reflected fraction (unpolarised) R = ${(100*snOut.R).toFixed(1)} % (line widths ∝ power)</div>`
+```
+
+## Worked example: lateral displacement through a plate (slides 95–98)
+
+> Find the lateral displacement $d$ of a beam crossing a glass plate of index $n=1.600$ and thickness $L=10$ mm at 45°.
+
+The emerging beam is parallel to the incident one but shifted by
+
+$$
+d=L\sin\theta_i\left[1-\frac{\cos\theta_i}{\sqrt{n^2-\sin^2\theta_i}}\right].
+$$
+
+```{python}
+#| label: fig-lateral
+#| fig-cap: "Lateral displacement of a beam through a 10 mm plate versus incidence angle, for three glass indices. The dot is the slide example."
+th = np.radians(np.linspace(0, 89, 300))
+fig, ax = plt.subplots()
+for k, n_ in enumerate((1.45, 1.6, 2.0)):
+    ax.plot(np.degrees(th), ol.lateral_displacement(10e-3, n_, th)*1e3, color=ol.PALETTE[k], label=f"n = {n_}")
+d45 = ol.lateral_displacement(10e-3, 1.6, np.radians(45))
+ax.plot(45, d45*1e3, "o", color=ol.INK, ms=8)
+ax.set(xlabel="incidence angle θᵢ (deg)", ylabel="displacement d (mm)"); ax.legend()
+plt.show()
+print(f"Slide 98: d = {d45*1e3:.3f} mm")
+```
+
+Tilted plane-parallel plates are used as fine beam steerers in fiber-coupling setups: a small tilt gives a precise, small shift.
+
+```{python}
+for ti_deg in (5, 10, 20):
+    print(f"1 mm glass plate (n = 1.5) tilted {ti_deg:2d}° -> lateral shift {ol.lateral_displacement(1e-3, 1.5, np.radians(ti_deg))*1e6:6.1f} µm")
+```
+
+## Worked example: acceptance angle of a fiber (slide 99)
+
+TIR at the core–cladding interface only guides rays inside an acceptance cone,
+$\mathrm{NA}=n_0\sin\theta_a=\sqrt{n_1^2-n_2^2}$ (more in Chapter 2).
+
+```{python}
+for name, n1, n2 in (("SMF-28-like (Δ ≈ 0.36 %)", 1.4504, 1.4447),
+                     ("multimode POF (PMMA)", 1.49, 1.41),
+                     ("water jet in air (slide 100)", 1.33, 1.00)):
+    NA = min(np.sqrt(n1**2 - n2**2), 1.0)
+    print(f"{name:28s} θc = {np.degrees(np.arcsin(n2/n1)):.2f}°, NA = {NA:.3f}, "
+          f"acceptance half-angle = {np.degrees(np.arcsin(NA)):.1f}°")
+```
+
+The indices of the SMF-like fiber are representative values chosen to give NA ≈ 0.13. Check the datasheet of the fiber used in the lab.
+
+## Worked example: Snell's law from Fermat's principle (slides 296–299)
+
+Light travelling from A to B takes the path of **least time**. Minimise the travel time across an interface numerically and
+check that the optimum satisfies $n_1\sin\theta_1=n_2\sin\theta_2$:
+
+```{python}
+#| label: fig-fermat
+#| fig-cap: "Travel time from A to B as a function of the crossing point x. The minimum (dot) is exactly where Snell's law holds."
+n1, n2 = 1.0, 1.5
+A, B = (0.0, 1.0), (2.0, -1.5)
+t = lambda x: (n1*np.hypot(x - A[0], A[1]) + n2*np.hypot(B[0] - x, B[1])) / c0
+x_opt = optimize.minimize_scalar(t, bounds=(A[0], B[0]), method="bounded").x
+th1 = np.arctan2(x_opt - A[0], A[1]); th2 = np.arctan2(B[0] - x_opt, -B[1])
+xs = np.linspace(0, 2, 300)
+fig, ax = plt.subplots(figsize=(7, 3.4))
+ax.plot(xs, t(xs)*1e9); ax.plot(x_opt, t(x_opt)*1e9, "o", color=ol.INK, ms=8)
+ax.set(xlabel="crossing point x (m)", ylabel="travel time (ns)"); plt.show()
+print(f"n1 sinθ1 = {n1*np.sin(th1):.6f},  n2 sinθ2 = {n2*np.sin(th2):.6f}")
+```
+
+::: {.callout-tip collapse="true"}
+## Going deeper
+- Fermat's principle is a *stationary*-time principle, not always a minimum. Find a geometry (for example an elliptical mirror)
+  where the actual path is a maximum.
+- Snell's law is conservation of the tangential wave vector $k_\parallel$. Use this viewpoint to derive the grating equation
+  (@sec-diffraction) and the phase-matching condition of a grating coupler.
+- Generalised Snell's law for metasurfaces: a phase gradient $d\phi/dx$ at the interface adds to $k_\parallel$
+  (Yu *et al.*, *Science* 334, 333 (2011)).
+- Ray optics in graded-index media: the eikonal equation. How do GRIN lenses and graded-index fibers follow from it? (Chapter 2.)
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Hecht, *Optics*: chapter on the propagation of light (Fermat, Snell, TIR) with many experimental photographs.
+- Saleh & Teich: chapter "Ray Optics" (graded-index optics, matrix optics).
+:::
+
+## Try it yourself
+
+1. A light ray goes from water ($n=1.33$) to air. Above which angle is it trapped? How does this explain the "Snell's window"
+   seen by a diver?
+2. Compute the deviation of a ray through a 60° prism of $n=1.5$ (slide 94) as a function of the incidence angle, and find the
+   minimum deviation.
+3. Show that the lateral displacement formula reduces to $d\approx L\theta_i(n-1)/n$ for small angles.

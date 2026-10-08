@@ -1,0 +1,83 @@
+# Projects, toolbox and connections {#sec-ideas}
+
+
+## How Chapter 1 feeds the rest of the course
+
+| Chapter 1 concept | Where it comes back |
+|---|---|
+| TIR, evanescent wave, Goos–Hänchen shift, Gaussian mode | Ch. 2: waveguide modes, $V$-number, directional couplers, mode-field diameter |
+| Group index, material dispersion | Ch. 2: waveguide and chromatic dispersion, pulse spreading |
+| Complex index, absorption coefficient | Ch. 3 and 5: band-to-band absorption, LEDs, photodiodes, image sensors |
+| Fabry–Perot resonator, Bragg mirror, facet reflectance | Ch. 3–4: laser threshold, DFB/DBR lasers, VCSELs, SOAs with AR facets |
+| Coherence | Ch. 3–4: LED versus laser linewidth; Ch. 5: coherent detection |
+| Raman and Brillouin scattering | Ch. 4: Raman amplification; distributed sensing |
+| Interference, MZI, anisotropy | Ch. 6: polarisation, electro-optic and MZI modulators |
+| Diffraction, gratings | Ch. 2 and 6: grating couplers, AWGs, acousto-optic modulators |
+
+: Where Chapter 1 concepts reappear in the course. {#tbl-links tbl-colwidths="[45,55]"}
+
+## Mini-projects
+
+For students who want to go further. Each reuses `optolib.py` and can be done in one to three weeks.
+
+| # | project | skills | difficulty |
+|---|---|---|---|
+| 1 | **Thin-film design tool**: extend `ol.tmm` with a merit function and optimise a broadband AR coating or a band-pass filter for 1550 nm | optimisation, TMM | ★★ |
+| 2 | **Measure $M^2$** of a lab laser with a webcam and `laserbeamsize`; compare with the datasheet | experiment, fitting | ★ |
+| 3 | **Grating coupler**: find the phase-matching condition with the grating equation, then check it with `grcwa` or Meep | diffraction, RCWA | ★★★ |
+| 4 | **Fabry–Perot laser-diode spectrum**: combine facet reflectance (Fresnel), cavity modes and a Gaussian gain curve | resonators | ★★ |
+| 5 | **OTDR event detection** on the toy trace of @sec-scattering, then on a real trace from the lab | signal processing | ★★ |
+| 6 | **Swanepoel's method**: recover $n(\lambda)$ and the thickness of a film from its transmission fringes | thin films, inverse problems | ★★ |
+| 7 | **Kramers–Kronig from measured data**: compute $n(\lambda)$ of a semiconductor from its absorption spectrum and compare with the database | causality, numerics | ★★★ |
+| 8 | **Talbot and Arago in the lab**: photograph the Arago spot or Talbot self-images and compare with `ol.asm_propagate` | diffraction, experiment | ★★ |
+
+## Python toolbox
+
+All worked examples run with the scientific core only. The packages below extend them; the "Sections" column points to where each
+one is most useful.
+
+| Package | Install | What it is good for | Sections |
+|---|---|---|---|
+| `numpy`, `scipy`, `matplotlib`, `pandas` | `pip install ...` | core numerics, FFTs, special functions (Bessel $J_1$), optimisation, tables | all |
+| `sympy` | `pip install sympy` | symbolic derivations: Fresnel coefficients, Brewster angle, Stokes relations, Lorentz model | [-@sec-fresnel], [-@sec-index] |
+| `pint` | `pip install pint` | unit-aware calculations (avoids nm/µm/m mistakes in exercises) | all |
+| `refractiveindex` | `pip install refractiveindex` | refractiveindex.info database ($n$, $K$ of Si, Ge, GaN, InP, SiO₂, …) | [-@sec-index], [-@sec-thinfilm] |
+| `tmm` | `pip install tmm` | validated transfer-matrix code: oblique incidence, coherent + incoherent layers, absorption profiles | [-@sec-fresnel], [-@sec-thinfilm], [-@sec-bragg] |
+| `laserbeamsize` | `pip install laserbeamsize` | ISO 11146 beam diameters from camera images, $M^2$ fitting | [-@sec-gauss] |
+| `miepython` | `pip install miepython` | Mie scattering of spheres; Rayleigh limit | [-@sec-scattering] |
+| `LightPipes` | `pip install LightPipes` | scalar Fourier-optics propagation: apertures, lenses, Fresnel/Fraunhofer, Gaussian and higher-order beams | [-@sec-gauss], [-@sec-diffraction] |
+| `diffractsim` | `pip install diffractsim` | visual diffraction simulator (angular spectrum), polychromatic sources and colour rendering | [-@sec-diffraction], [-@sec-coherence] |
+| `poppy`, `prysm` | `pip install poppy prysm` | physical-optics propagation through imaging systems, PSFs, aberrations | [-@sec-diffraction] |
+| `finesse` | `pip install finesse` | interferometers and optical cavities with Hermite–Gauss beams | [-@sec-gauss], [-@sec-interference], [-@sec-fp] |
+| `rayoptics`, `optiland` | `pip install rayoptics optiland` | sequential ray tracing, lens design, paraxial (ABCD) analysis | [-@sec-snell], [-@sec-gauss] |
+| `grcwa` | `pip install grcwa` | rigorous coupled-wave analysis of gratings and metasurfaces | [-@sec-diffraction], [-@sec-bragg] |
+| Meep / MPB | `conda install -c conda-forge pymeep` | FDTD (Meep) and photonic band structures (MPB) | [-@sec-fresnel], [-@sec-bragg], [-@sec-fp] |
+| `legume-gme` | `pip install legume-gme` | guided-mode expansion for photonic-crystal slabs | [-@sec-bragg] |
+| `colour-science` | `pip install colour-science` | spectrum → CIE colour; colours of thin films | [-@sec-em], [-@sec-thinfilm] |
+| `gdsfactory`, `femwell`, `sax` | `pip install gdsfactory femwell sax` | photonic-IC layout, FEM mode solving, circuit simulation of MZIs, rings, gratings | [-@sec-interference], [-@sec-fp] |
+
+: Optional Python packages for Chapter 1. {#tbl-toolbox tbl-colwidths="[18,24,44,14]"}
+
+## Improvements to the course
+
+1. **Live figures instead of screenshots.** Many slides show plots from the textbook (Fresnel coefficients, Bragg-mirror spectra,
+   Airy functions, diffraction patterns). Every one is regenerated here by a few lines of code that students can change.
+2. **"Predict, then compute."** Before moving a slider, ask the class to predict the outcome (*"What happens to the Brewster angle
+   for internal reflection?"*, *"Does a thicker slit give a wider or narrower pattern?"*). It is quick, engaging and suited to peer
+   instruction.
+3. **One running example through the chapter.** For instance, a silicon photonics chip: phase shifter (@sec-em), fiber coupling
+   (@sec-gauss), Si/Ge absorption (@sec-index), MZI (@sec-interference), grating coupler (@sec-diffraction).
+4. **Lab connection.** The three mandatory labs can reuse these notebooks to analyse their data: $M^2$ fitting, Fabry–Perot spectra,
+   grating dispersion.
+
+## Notes for the instructor: checks on the slides
+
+While recomputing the examples, everything matched the slides except these points:
+
+- **Slide 161 (CdTe):** with $n=4$, $K=6$ the reflectance formula gives $45/61=73.8\,\%$, not 72 %.
+- **Slides 185–187 (Bragg mirror):** the Ta₂O₅/SiO₂ values for $N=4$ and 12 are not printed; the formula gives 40.0 % and 90.6 %. The
+  TiO₂ values (94.0 % and ≈ 100 %), the interchanged stack (80.8 %) and the bandwidth (74.8 nm) match.
+- **Slides 168–169:** the sodium lamp appears with two different widths (5×10¹¹ Hz and 1 GHz). Both are legitimate, but students may
+  find the difference confusing; see @sec-coherence.
+- **Slide numbering:** this companion uses the slide numbers of `Chapter1_2026.pptx`. Some numbers in the first draft
+  (`ch1_companion.qmd`) were off by one, probably from an older version of the deck.

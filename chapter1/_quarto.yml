@@ -1,0 +1,78 @@
+project:
+  type: book
+  output-dir: _book
+  resources:
+    - optolib.py
+    - notebooks/*.ipynb
+
+book:
+  title: "The Wave Nature of Light"
+  subtitle: "An interactive companion to Chapter 1 — Basics of Optoelectronics"
+  author: "Philippe Velha"
+  date: today
+  search: true
+  site-url: https://philippevelha.github.io/Optoelectronics-teaching/chapter1/
+  repo-url: https://github.com/philippevelha/Optoelectronics-teaching
+  repo-subdir: chapter1
+  repo-actions: [source, issue]
+  downloads: []
+  chapters:
+    - index.qmd
+    - part: "Light as a wave"
+      chapters:
+        - waves.qmd
+        - gaussian.qmd
+        - irradiance.qmd
+    - part: "Light in matter"
+      chapters:
+        - refractive.qmd
+        - group.qmd
+    - part: "Interfaces"
+      chapters:
+        - snell.qmd
+        - fresnel.qmd
+        - thinfilm.qmd
+    - part: "Coherence and interference"
+      chapters:
+        - coherence.qmd
+        - interference.qmd
+        - bragg.qmd
+        - fabry-perot.qmd
+    - part: "Diffraction and scattering"
+      chapters:
+        - diffraction.qmd
+        - scattering.qmd
+    - part: "Deep dive"
+      chapters:
+        - poynting.qmd
+    - ideas.qmd
+  appendices:
+    - running.qmd
+    - cheatsheet.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles.scss]
+      dark: [darkly, styles.scss]
+    grid:
+      body-width: 1100px
+      sidebar-width: 260px
+      margin-width: 220px
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-summary: "Show the Python"
+    code-tools: true
+    code-copy: true
+    fig-align: center
+    html-math-method: mathjax
+    crossref:
+      chapters: true
+
+execute:
+  freeze: auto
+  warning: false
+
+jupyter: python3

@@ -1,0 +1,11 @@
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+pandas>=2.0
+jupyter
+ipywidgets>=8
+# optional packages used in some cells (real material data, Mie scattering, M2 fitting, thin films)
+refractiveindex
+miepython
+laserbeamsize
+tmm

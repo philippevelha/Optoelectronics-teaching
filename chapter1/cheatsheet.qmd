@@ -1,0 +1,200 @@
+# Formula sheet {#sec-cheatsheet}
+
+All the key relations of Chapter 1 on one page. Each block links to the chapter where the formula is derived and used.
+SI units; engineering convention $e^{j(\omega t-kz)}$, $N=n-jK$. Use your browser's *Print → Save as PDF* for a paper copy.
+
+::: {.callout-note collapse="false"}
+## Symbols
+$\lambda$ vacuum wavelength · $k=2\pi/\lambda$ · $\nu$ frequency · $\omega=2\pi\nu$ · $n$ refractive index · $N=n-jK$ complex index ·
+$\varepsilon_r$ relative permittivity · $c$ speed of light · $\theta_i,\theta_t$ incidence and transmission angles (from the normal) ·
+$R,T$ reflectance and transmittance (power) · $r,t$ amplitude coefficients
+:::
+
+::::: {.grid}
+
+:::: {.g-col-12 .g-col-lg-6}
+## Waves (@sec-em)
+
+| | |
+|---|---|
+| plane wave | $E_x=E_0\cos(\omega t-kz+\phi_0)$ |
+| wave vector form | $E=E_0\cos(\omega t-\mathbf k\cdot\mathbf r+\phi_0)$ |
+| phase velocity | $v=\omega/k=\nu\lambda=c/n$ |
+| phase change over $\Delta z$ | $\Delta\phi=k\,\Delta z=2\pi\Delta z/\lambda$ |
+| in a medium | $\lambda_\text{medium}=\lambda/n$, $\ k_\text{medium}=nk$ |
+| photon energy | $E=h\nu=hc/\lambda$ ($1.24/\lambda[\mu\text{m}]$ eV) |
+| spectral width | $\Delta\lambda=\lambda^2\Delta\nu/c$ (100 GHz ↔ 0.8 nm at 1550 nm) |
+| spherical wave | amplitude $\propto1/r$, irradiance $\propto1/r^2$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Gaussian beams (@sec-gauss)
+
+| | |
+|---|---|
+| irradiance | $I(r,z)=\dfrac{2P}{\pi w^2}e^{-2r^2/w^2}$ |
+| beam radius | $w(z)=w_0\sqrt{1+(z/z_0)^2}$ |
+| Rayleigh range | $z_0=\pi w_0^2n/\lambda$ |
+| divergence | $\theta=\lambda/(\pi w_0)$; real beams $2\theta=M^2\dfrac{4\lambda}{\pi(2w_0)}$ |
+| wavefront radius | $R(z)=z[1+(z_0/z)^2]$ |
+| power inside $r=w$ | $1-e^{-2}\approx86\,\%$ |
+| ABCD law | $q=z+jz_0$, $\ q'=\dfrac{Aq+B}{Cq+D}$ |
+| Gaussian coupling | $\eta=\left(\dfrac{2w_1w_2}{w_1^2+w_2^2}\right)^2e^{-2d^2/(w_1^2+w_2^2)}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Irradiance (@sec-irradiance)
+
+| | |
+|---|---|
+| magnetic field | $B=E/v$ |
+| energy density | $u=\varepsilon_0\varepsilon_rE^2$ |
+| Poynting vector | $\mathbf S=v^2\varepsilon_0\varepsilon_r\,\mathbf E\times\mathbf B$ |
+| average irradiance | $I=\tfrac12c\,\varepsilon_0nE_0^2$ |
+| Gaussian peak | $I_0=2P/(\pi w_0^2)$ |
+| isotropic source | $I=P/(4\pi r^2)$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Refractive index and absorption (@sec-index)
+
+| | |
+|---|---|
+| index | $n=\sqrt{\varepsilon_r}$ (at the optical frequency) |
+| Sellmeier | $n^2=1+\sum_i\dfrac{A_i\lambda^2}{\lambda^2-\lambda_i^2}$ |
+| Lorentz oscillator | $\varepsilon_r=1+\dfrac{\omega_p^2}{\omega_0^2-\omega^2+j\gamma\omega}$, $\ \omega_p^2=\dfrac{Ne^2}{\varepsilon_0m}$ |
+| Drude (metals) | Lorentz with $\omega_0=0$ |
+| complex index | $N=n-jK$, $\ n^2-K^2=\varepsilon_r'$, $\ 2nK=\varepsilon_r''$ |
+| absorption | $\alpha=4\pi K/\lambda$, $\ I=I_0e^{-\alpha z}$ |
+| reflectance | $R=\dfrac{(n-1)^2+K^2}{(n+1)^2+K^2}$ |
+| Kramers–Kronig | $\varepsilon_r'-1=\dfrac2\pi\mathcal P\!\int_0^\infty\dfrac{\omega'\varepsilon_r''(\omega')}{\omega'^2-\omega^2}d\omega'$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Group velocity (@sec-group)
+
+| | |
+|---|---|
+| group velocity | $v_g=d\omega/dk=c/N_g$ |
+| group index | $N_g=n-\lambda\,dn/d\lambda$ |
+| beat of two waves | $E=2E_0\cos(\delta\omega t-\delta kz)\cos(\omega t-kz)$ |
+| group delay | $\tau_g=LN_g/c$ |
+| material dispersion | $D=-\dfrac{\lambda}{c}\dfrac{d^2n}{d\lambda^2}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Snell's law and TIR (@sec-snell)
+
+| | |
+|---|---|
+| reflection | $\theta_r=\theta_i$ |
+| Snell | $n_1\sin\theta_i=n_2\sin\theta_t$ |
+| critical angle | $\sin\theta_c=n_2/n_1$ ($n_1>n_2$) |
+| lateral displacement | $d=L\sin\theta_i\left[1-\dfrac{\cos\theta_i}{\sqrt{n^2-\sin^2\theta_i}}\right]$ |
+| numerical aperture | $\mathrm{NA}=n_0\sin\theta_a=\sqrt{n_1^2-n_2^2}$ |
+| Fermat | the actual path makes the travel time stationary |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Fresnel equations (@sec-fresnel)
+
+| | |
+|---|---|
+| $r_\perp$ | $\dfrac{\cos\theta_i-\sqrt{n^2-\sin^2\theta_i}}{\cos\theta_i+\sqrt{n^2-\sin^2\theta_i}}$, $\ n=n_2/n_1$ |
+| $r_\parallel$ | $\dfrac{\sqrt{n^2-\sin^2\theta_i}-n^2\cos\theta_i}{\sqrt{n^2-\sin^2\theta_i}+n^2\cos\theta_i}$ |
+| $t$ relations | $t_\perp=1+r_\perp$, $\ r_\parallel+nt_\parallel=1$ |
+| normal incidence | $R=\left(\dfrac{n_1-n_2}{n_1+n_2}\right)^2$ (glass: 4 %) |
+| Brewster | $\tan\theta_p=n_2/n_1$ ($r_\parallel=0$) |
+| TIR phase ⊥ | $\tan(\phi_\perp/2)=\sqrt{\sin^2\theta_i-n^2}/\cos\theta_i$ |
+| TIR phase ∥ | $\tan(\phi_\parallel/2+\pi/2)=\sqrt{\sin^2\theta_i-n^2}/(n^2\cos\theta_i)$ |
+| evanescent decay | $\alpha_2=\dfrac{2\pi n_2}{\lambda}\sqrt{\dfrac{n_1^2}{n_2^2}\sin^2\theta_i-1}$, $\ \delta=1/\alpha_2$ |
+| Goos–Hänchen | $\Delta z\approx2\delta\tan\theta_i$ |
+| transmittance | $T=\dfrac{n_2\cos\theta_t}{n_1\cos\theta_i}\lvert t\rvert^2=1-R$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Thin films (@sec-thinfilm)
+
+| | |
+|---|---|
+| round-trip phase | $\phi=2\cdot\dfrac{2\pi}{\lambda}n_2d$ |
+| film reflection | $r=\dfrac{r_{12}+r_{23}e^{-j\phi}}{1+r_{12}r_{23}e^{-j\phi}}$ |
+| AR coating | $d=m\dfrac{\lambda}{4n_2}$ ($m$ odd), $\ n_2=\sqrt{n_1n_3}$ |
+| $R_\text{min}$ ($n_1<n_2<n_3$) | $\left(\dfrac{n_1n_3-n_2^2}{n_1n_3+n_2^2}\right)^2$ at $\phi=$ odd $\pi$ |
+| $R_\text{max}$ ($n_1<n_2<n_3$) | $\left(\dfrac{n_3-n_1}{n_3+n_1}\right)^2$ at $\phi=$ even $\pi$ |
+| incoherent plate | $T=(1-R)/(1+R)$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Coherence and interference (@sec-coherence, @sec-interference)
+
+| | |
+|---|---|
+| coherence time | $\Delta t\approx1/\Delta\nu$ |
+| coherence length | $l_c=c\Delta t=\lambda^2/\Delta\lambda$ |
+| Gaussian pulse | $\Delta t\,\Delta\nu\approx0.44$ (FWHM) |
+| two-beam interference | $I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta$ |
+| phase difference | $\delta=k(r_2-r_1)+(\phi_2-\phi_1)$ |
+| visibility | $V=\dfrac{2\sqrt{I_1I_2}}{I_1+I_2}$ |
+| Mach–Zehnder | $I\propto\cos^2(\Phi/2)$; quadrature at $\Phi=\pi/2$ |
+| unbalanced MZI | $\mathrm{FSR}=\lambda^2/(N_g\Delta L)$ |
+| etalon rings | $2nL\cos\theta=m\lambda$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Bragg mirrors (@sec-bragg)
+
+| | |
+|---|---|
+| Bragg condition | $n_1d_1+n_2d_2=m\lambda/2$ |
+| quarter-wave stack | $d_1=\lambda/4n_1$, $\ d_2=\lambda/4n_2$ |
+| peak reflectance | $R_N=\left[\dfrac{n_0n_2^{2N}-n_3n_1^{2N}}{n_0n_2^{2N}+n_3n_1^{2N}}\right]^2$ |
+| stop band | $\Delta\lambda\approx\dfrac{4\lambda_0}{\pi}\arcsin\dfrac{n_1-n_2}{n_1+n_2}$ |
+| penetration depth | $L_\text{pen}=-\tfrac12\,d\phi/dk\approx\lambda/(4\Delta n)$ |
+| 1D band structure | $\cos K\Lambda=\cos k_1d_1\cos k_2d_2-\tfrac12\left(\tfrac{n_1}{n_2}+\tfrac{n_2}{n_1}\right)\sin k_1d_1\sin k_2d_2$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Fabry–Perot (@sec-fp)
+
+| | |
+|---|---|
+| modes | $m\lambda_m/2=nL$, $\ \nu_m=mc/(2nL)$ |
+| free spectral range | $\nu_f=c/(2nL)$, $\ \Delta\lambda=\lambda^2/(2nL)$ |
+| finesse | $\mathcal F=\dfrac{\pi\sqrt R}{1-R}$ |
+| linewidth | $\delta\nu_m=\nu_f/\mathcal F$ |
+| quality factor | $Q=\nu_m/\delta\nu_m=m\mathcal F$ |
+| Airy transmission | $T=\dfrac{(1-R)^2}{(1-R)^2+4R\sin^2(2\pi nL/\lambda)}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Diffraction and scattering (@sec-diffraction, @sec-scattering)
+
+| | |
+|---|---|
+| Fraunhofer regime | $z\gg D$ and $z\gg\pi D^2/\lambda$ |
+| single slit | $I=I_0\,\mathrm{sinc}^2\beta$, $\ \beta=\pi a\sin\theta/\lambda$; zeros $\sin\theta=m\lambda/a$ |
+| circular aperture | $I=I_0[2J_1(\gamma)/\gamma]^2$, $\ \gamma=\tfrac12kD\sin\theta$ |
+| Rayleigh criterion | $\sin\Delta\theta_\text{min}=1.22\lambda/D$ |
+| grating | $d(\sin\theta_m-\sin\theta_i)=m\lambda$ |
+| blaze | $2\gamma=\theta_m-\theta_i$ |
+| resolving power | $\lambda/\Delta\lambda=mN$ |
+| Rayleigh scattering | $\alpha_R\propto\lambda^{-4}$, pattern $\propto1+\cos^2\theta$ |
+| Brillouin shift | $\nu_B=2nv_a/\lambda$ |
+::::
+
+:::::
+
+## Typical numbers worth remembering
+
+| quantity | value |
+|---|---|
+| glass–air reflectance (normal incidence) | ≈ 4 % per surface |
+| Si–air reflectance | ≈ 30 % |
+| Brewster angle air → glass | 56.3° |
+| critical angle glass → air | ≈ 42° |
+| silica at 1550 nm | $n\approx1.444$, $N_g\approx1.463$ |
+| optical period at 1550 nm | ≈ 5.2 fs |
+| He-Ne laser (multimode) coherence length | ≈ 20 cm |
+| LED (1550 nm, 150 nm wide) coherence length | ≈ 16 µm |
+| human eye angular resolution | ≈ 1 arcmin |

@@ -1,0 +1,55 @@
+# Running the notebooks {#sec-running}
+
+## Three ways to use this companion
+
+1. **Read the website.** The live panels run in the browser with no installation.
+2. **Run the code in Google Colab.** Every chapter starts with an **Open in Colab** button. Colab is free and runs in the browser;
+   you only need a Google account. Use *File → Save a copy in Drive* to keep your changes.
+3. **Run it on your computer** with Jupyter, or rebuild the whole book with Quarto.
+
+## Installation
+
+```bash
+pip install -r requirements.txt     # numpy scipy matplotlib pandas jupyter ipywidgets (+ optional packages)
+quarto preview                      # live preview while editing
+quarto render                       # builds _book/ (HTML)
+```
+
+Rendering executes every Python cell once. Results are cached in `_freeze/` (`freeze: auto`), so later builds only re-run the
+chapters you changed.
+
+## Publishing the website (GitHub Pages)
+
+The source lives at <https://github.com/{{< var github_user >}}/{{< var repo >}}> (folder `{{< var subdir >}}/`) and the site at
+<https://{{< var github_user >}}.github.io/{{< var repo >}}/{{< var subdir >}}/>. After editing a chapter:
+
+```bash
+cd notebooks && python build_notebooks.py && cd ..         # refresh the notebooks (Colab buttons point to them)
+git add -A && git commit -m "Update chapter 1" && git push   # update the source on GitHub
+bash ../publish.sh                                         # render and update the website
+```
+
+## Regenerating the notebooks
+
+```bash
+cd notebooks
+python build_notebooks.py
+```
+
+The script converts every chapter, adds a setup cell that works both locally and in Colab (it downloads `optolib.py` from
+GitHub when running in Colab), and rebuilds `interactive_explorers.ipynb`.
+
+## The `optolib` module
+
+| function | purpose |
+|---|---|
+| `photon_energy_eV`, `dlam_from_dnu` | unit conversions |
+| `gaussian_w`, `q_from_w0`, `w_from_q`, `abcd`, `free`, `lens` | Gaussian beams and ABCD matrices |
+| `n_silica`, `group_index_silica`, `lorentz_eps`, `drude_eps`, `n_K`, `kramers_kronig` | refractive index models |
+| `fresnel`, `critical_angle`, `brewster`, `penetration_depth`, `lateral_displacement` | interfaces |
+| `tmm`, `qw_stack`, `bragg_R_max`, `bragg_bandwidth` | thin films and Bragg mirrors |
+| `fp_summary`, `airy_T` | Fabry–Perot resonators |
+| `coherence_length`, `interferogram` | coherence |
+| `grating_orders`, `asm_propagate` | diffraction |
+
+Every function was checked against the worked examples of the slides (see the "worked example" sections).

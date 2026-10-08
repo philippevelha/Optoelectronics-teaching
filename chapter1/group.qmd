@@ -1,0 +1,125 @@
+# Group velocity and group index {#sec-group}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/group.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import optolib as ol
+ol.use_style()
+c0, nm = ol.c0, ol.nm
+```
+
+*Slides 60–69: wave packets, beat of two waves, group velocity $v_g=d\omega/dk$, group index $N_g=n-\lambda\,dn/d\lambda$.*
+
+## Key relations
+
+There are no perfectly monochromatic waves (slide 60). Two waves at $\omega\pm\delta\omega$ with wave vectors $k\pm\delta k$
+add up to (slides 64–65)
+
+$$
+E_x=2E_0\cos(\delta\omega\,t-\delta k\,z)\cos(\omega t-kz),
+$$
+
+a carrier at $\omega$ modulated by a slow envelope. The envelope, which carries energy and information, travels at the
+**group velocity** (slides 61, 66–68):
+
+$$
+v_g=\frac{d\omega}{dk}=\frac{c}{N_g},\qquad N_g=n-\lambda\frac{dn}{d\lambda}.
+$$
+
+In a dispersive medium ($n$ depends on $\lambda$), $v_g\neq v$. For silica in the near IR, $N_g\approx1.46$ while $n\approx1.44$ (slide 69).
+
+### Carrier and envelope, live
+
+The red dot rides on a crest of the carrier (phase velocity). The orange dot rides on the maximum of the envelope (group
+velocity). Change their ratio to see normal ($v_g<v$), no ($v_g=v$) and anomalous ($v_g>v$) dispersion.
+
+```{ojs}
+//| echo: false
+viewof gv = Inputs.form({
+  t:  Inputs.range([0, 40], {value: 0, step: 0.1, label: "time (carrier periods)"}),
+  r:  Inputs.range([0.3, 1.7], {value: 0.7, step: 0.01, label: "v_g / v_phase"}),
+  dw: Inputs.range([0.02, 0.2], {value: 0.08, step: 0.005, label: "δω / ω"})
+})
+```
+
+```{ojs}
+//| echo: false
+{
+  const k = 2*Math.PI, w = 2*Math.PI;           // carrier: λ = 1, period = 1, v = 1
+  const dw = gv.dw * w, dk = dw / gv.r;         // v_g = dω/dk = r
+  const t = gv.t, zs = d3.range(0, 30.0001, 0.01);
+  const E = zs.map(z => ({z, E: 2*Math.cos(dw*t - dk*z)*Math.cos(w*t - k*z), part: "field"}));
+  const env = zs.map(z => ({z, E: 2*Math.abs(Math.cos(dw*t - dk*z)), part: "envelope"}));
+  const Lenv = Math.PI / dk;                      // distance between envelope maxima
+  const zg = (gv.r * t) % Lenv, zp = t % 1;
+  return Plot.plot({
+    width: Math.min(width, 1050), height: 280, x: {label: "z (carrier wavelengths)", domain: [0, 30]}, y: {label: "Eₓ", domain: [-2.3, 2.6]},
+    marks: [Plot.line(env, {x: "z", y: "E", stroke: "#eb6834", strokeDasharray: "4,3"}),
+            Plot.line(E, {x: "z", y: "E", stroke: "#2a78d6", strokeWidth: 1.2}),
+            Plot.dot([{z: zg, E: 2}], {x: "z", y: "E", r: 6, fill: "#eb6834"}),
+            Plot.dot([{z: zp, E: 2*Math.cos(dw*t - dk*zp)}], {x: "z", y: "E", r: 6, fill: "#e34948"})]
+  });
+}
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">${gv.r < 0.99 ? "Normal dispersion: the envelope lags behind the carrier crests (v<sub>g</sub> &lt; v)." :
+ gv.r > 1.01 ? "Anomalous dispersion: the envelope outruns the carrier crests (v<sub>g</sub> &gt; v), as near an absorption line." :
+ "No dispersion: carrier and envelope move together."} After ${gv.t} periods the carrier has moved ${gv.t.toFixed(1)} λ and the envelope ${(gv.r*gv.t).toFixed(1)} λ.</div>`
+```
+
+## Worked example: group delay in a fiber link
+
+```{python}
+#| label: fig-beat
+#| fig-cap: "Two waves 1 % apart in frequency in a dispersive medium: the carrier moves at v_ph, the envelope at v_g = v_ph/2."
+z = np.linspace(0, 400, 4000)
+k1, k2, w1, w2 = 1.0, 1.02, 1.0, 1.01         # v_g = Δω/Δk = 0.5, v_ph ≈ 1
+fig, ax = plt.subplots(figsize=(9, 3))
+for k, t in enumerate((0, 60)):
+    E = np.cos(w1*t - k1*z) + np.cos(w2*t - k2*z)
+    ax.plot(z, E + 4.5*k, color=ol.PALETTE[k], lw=0.8, label=f"t = {t}")
+ax.set(xlabel="z", yticks=[], title="envelope moves by v_g·t = 30, carrier by v_ph·t ≈ 60")
+ax.legend(loc="upper right"); plt.show()
+```
+
+```{python}
+Lf = 1e3
+for lam_nm in (1310, 1550):
+    l = nm(lam_nm)
+    print(f"{lam_nm} nm, 1 km of silica: phase delay L·n/c = {Lf*ol.n_silica(l)/c0*1e6:.4f} µs, "
+          f"group delay L·Ng/c = {Lf*ol.group_index_silica(l)/c0*1e6:.4f} µs")
+D = 22                                               # ps/(nm km), bulk silica at 1550 nm (see @sec-index)
+dlam_sig = ol.dlam_from_dnu(10e9, nm(1550))*1e9      # 10 Gb/s signal ≈ 10 GHz wide, in nm
+print(f"10 Gb/s signal (Δλ ≈ {dlam_sig:.2f} nm) over 80 km: spread ≈ {D*dlam_sig*80:.0f} ps")
+print(f"walk-off between channels 0.8 nm apart over 80 km ≈ {D*0.8*80:.0f} ps")
+```
+
+A 10 Gb/s bit slot is 100 ps. The dispersive spread over a single 80 km span is already comparable to the bit period, which is
+why dispersion compensation or coherent DSP is needed (Chapter 2).
+
+::: {.callout-tip collapse="true"}
+## Going deeper
+- Group velocity can exceed $c$ near an absorption line (anomalous dispersion). Why does this not violate causality? Look up
+  "front velocity" and Brillouin–Sommerfeld precursors, and see the deep-dive chapter, @sec-poynting.
+- In a microring or Fabry–Perot resonator the free spectral range is set by $N_g$, not $n$: $\Delta\nu=c/(N_gL_{rt})$. Measure $N_g$
+  of a silicon waveguide from a ring spectrum (typically $N_g\approx4$ versus $n_\text{eff}\approx2.4$).
+- Slow light: photonic-crystal waveguides reach $N_g>30$. What limits the usable bandwidth? (Links to @sec-bragg.)
+- Write the Taylor expansion of $k(\omega)$ and relate the second-order term $\beta_2$ to the dispersion coefficient $D$.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- G. P. Agrawal, *Fiber-Optic Communication Systems*: chapter on dispersion in single-mode fibers.
+- Saleh & Teich: sections on pulse propagation in dispersive media.
+:::
+
+## Try it yourself
+
+1. Derive $N_g=n-\lambda\,dn/d\lambda$ from $v_g=d\omega/dk$ with $\omega=2\pi c/\lambda$ and $k=2\pi n/\lambda$ (slides 66–67).
+2. Using `ol.n_silica`, find the wavelength where $N_g$ is minimum. Why is that wavelength special?
+3. A GPS-like timing signal travels 100 km in fiber. How much later does it arrive than the same signal in vacuum?
