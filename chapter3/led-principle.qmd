@@ -1,0 +1,211 @@
+# LED principle, heterojunctions and materials {#sec-led}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/led-principle.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import semilib as sl
+sl.use_style()
+```
+
+*Slides 81–97 (band diagrams under bias, basic LED principle, LED examples, heterojunctions, Np and pP junctions,
+quasi-Fermi levels) and 114–119 (LED materials, bandgap versus lattice constant, typical structures, III-nitrides, UV LEDs).*
+
+## Key relations
+
+Forward bias a pn⁺ junction and the barrier drops, so electrons from the n⁺ side are injected into the p side. They recombine
+within a diffusion length of the junction and, in a direct-gap semiconductor, emit photons of energy close to the gap (slides
+86–87):
+
+$$
+h\nu\approx E_g,\qquad \lambda\,[\mu\text{m}]\approx\frac{1.24}{E_g\,[\text{eV}]}.
+$$
+
+Under bias the single Fermi level splits into two **quasi-Fermi levels**, $E_{Fn}$ for electrons and $E_{Fp}$ for holes, whose
+separation equals $eV$ (slide 87c). The emission colour is set by **bandgap engineering**: alloying binaries such as GaAs and
+AlAs or GaN and InN shifts $E_g$ (slides 114–115). The alloy must keep the lattice constant of its substrate, otherwise
+dislocations form and kill the radiative efficiency. Vegard's law interpolates the lattice constant,
+$a(x)=xa_1+(1-x)a_2$, while the bandgap often bows, $E_g(x)=xE_1+(1-x)E_2-bx(1-x)$.
+
+A **heterojunction** joins two different semiconductors (slides 93–96). Its band edges jump by $\Delta E_c$ and $\Delta E_v$. In a
+**double heterostructure** (DH) a thin narrow-gap active layer sits between wide-gap cladding layers. The offsets trap the
+injected carriers in the active layer, which raises the recombination rate. The cladding is also transparent to the emitted
+photons and has a lower refractive index, so it guides the light. This is the planar waveguide of Chapter 2.
+
+## Alloy colour picker
+
+```{ojs}
+//| echo: false
+alloys = ({
+  "AlxGa1-xAs on GaAs":            {Eg: x => Math.min(1.424 + 1.247*x, 1.900 + 0.125*x + 0.143*x*x), dir: x => 1.424 + 1.247*x <= 1.900 + 0.125*x + 0.143*x*x, a: x => 0.56611*x + 0.56533*(1 - x), sub: 0.56533, lab: "Al fraction x"},
+  "GaAs1-yPy (on GaAs/GaP)":       {Eg: y => Math.min(1.424 + 1.150*y + 0.176*y*y, 1.900 + 0.144*y + 0.211*y*y), dir: y => 1.424 + 1.150*y + 0.176*y*y <= 1.900 + 0.144*y + 0.211*y*y, a: y => 0.54505*y + 0.56533*(1 - y), sub: 0.56533, lab: "P fraction y"},
+  "(AlxGa1-x)0.5In0.5P on GaAs":   {Eg: x => Math.min(1.91 + 0.61*x, 2.19 + 0.085*x), dir: x => 1.91 + 0.61*x <= 2.19 + 0.085*x, a: x => 0.5653, sub: 0.56533, lab: "Al fraction x"},
+  "In(1-x)Ga(x)As(y)P(1-y) on InP": {Eg: y => 1.35 - 0.72*y + 0.12*y*y, dir: y => true, a: y => 0.58687, sub: 0.58687, lab: "As fraction y (lattice-matched, x ≈ 0.47y)"},
+  "InxGa1-xN on GaN":              {Eg: x => 3.42*(1 - x) + 0.77*x - 1.43*x*(1 - x), dir: x => true, a: x => 0.3545*x + 0.3189*(1 - x), sub: 0.3189, lab: "In fraction x"},
+  "AlxGa1-xN on GaN":              {Eg: x => 3.42*(1 - x) + 6.05*x - 1.0*x*(1 - x), dir: x => true, a: x => 0.3112*x + 0.3189*(1 - x), sub: 0.3189, lab: "Al fraction x"}
+})
+viewof al = Inputs.form({
+  name: Inputs.select(Object.keys(alloys), {value: "InxGa1-xN on GaN", label: "alloy"}),
+  x: Inputs.range([0, 1], {value: 0.15, step: 0.005, label: "composition"})
+})
+```
+
+```{ojs}
+//| echo: false
+alOut = {
+  const A = alloys[al.name], data = [];
+  for (let i = 0; i <= 200; i++) { const x = i/200; data.push({x, Eg: A.Eg(x), lam: 1239.84/A.Eg(x), direct: A.dir(x)}); }
+  const Eg = A.Eg(al.x), lam = 1239.84/Eg, a = A.a(al.x);
+  // Bruton's wavelength to RGB (indicative)
+  const rgb = (w) => { let r = 0, g = 0, b = 0;
+    if (w >= 380 && w < 440) { r = (440 - w)/60; b = 1; } else if (w < 490 && w >= 440) { g = (w - 440)/50; b = 1; }
+    else if (w < 510 && w >= 490) { g = 1; b = (510 - w)/20; } else if (w < 580 && w >= 510) { r = (w - 510)/70; g = 1; }
+    else if (w < 645 && w >= 580) { r = 1; g = (645 - w)/65; } else if (w <= 780 && w >= 645) { r = 1; }
+    else return "rgb(90,90,90)";
+    const f = w < 420 ? 0.3 + 0.7*(w - 380)/40 : w > 700 ? 0.3 + 0.7*(780 - w)/80 : 1;
+    return `rgb(${[r, g, b].map(c => Math.round(255*(f*c)**0.8)).join(",")})`; };
+  return {data, Eg, lam, a, mis: (a - A.sub)/A.sub*100, color: rgb(lam), direct: A.dir(al.x), lab: A.lab};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 300, x: {label: alOut.lab, domain: [0, 1]},
+  y: {label: "emission wavelength hc/E_g (nm)", grid: true},
+  marks: [
+    Plot.line(alOut.data, {x: "x", y: "lam", stroke: "#2a78d6", strokeWidth: 2}),
+    Plot.dot(alOut.data.filter(d => !d.direct), {x: "x", y: "lam", r: 2, fill: "#e34948"}),
+    Plot.dot([{x: al.x, y: alOut.lam}], {x: "x", y: "y", r: 9, fill: alOut.color, stroke: "#0b0b0b", strokeWidth: 1.5}),
+    Plot.ruleY([380, 780], {stroke: "#52514e", strokeDasharray: "3,3"})
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box" style="display:flex;gap:1rem;align-items:center"><div style="width:56px;height:56px;border-radius:8px;background:${alOut.color};border:1px solid #888"></div>
+<div>E<sub>g</sub> = <b>${alOut.Eg.toFixed(3)} eV</b> · λ ≈ <b>${alOut.lam.toFixed(0)} nm</b> (${alOut.lam < 380 ? "ultraviolet" : alOut.lam > 780 ? "infrared" : "visible"}) ·
+${alOut.direct ? "direct gap" : html`<b style="color:#e34948">indirect gap: poor emitter</b>`}<br>
+lattice constant a = ${alOut.a.toFixed(4)} nm · mismatch to substrate = <b>${alOut.mis.toFixed(2)} %</b>
+${Math.abs(alOut.mis) > 1 ? " (strained: only thin layers possible)" : ""}</div></div>`
+```
+
+The red dots mark compositions with an **indirect** gap (AlGaAs above $x\approx0.45$, GaAsP above $y\approx0.45$): the material
+still absorbs, but emits poorly (@sec-direct). Note the InGaN curve: a modest In fraction (15–30 %) covers violet to green. This
+is why the blue LED (Nobel Prize 2014) was a materials breakthrough. Very high In content is hard to grow because of the 11 %
+lattice mismatch with GaN.
+
+## Bandgap versus lattice constant (slide 115)
+
+```{python}
+#| label: fig-eg-a
+#| fig-cap: "Bandgap versus lattice constant of III–V compounds (slide 115). Lines are ternary alloys; dashed segments are indirect. The vertical bands are the GaAs and InP lattice constants: AlGaAs is lattice-matched to GaAs for any x, and InGaAsP covers 0.75–1.35 eV (1.65–0.92 µm) on InP, the telecom range."
+L = sl.LATTICE
+binaries = {"GaAs": 1.424, "AlAs": 2.16, "InAs": 0.354, "GaP": 2.26, "InP": 1.344, "AlP": 2.45, "GaSb": 0.73, "InSb": 0.17, "AlSb": 1.62}
+direct = {"GaAs", "InAs", "InP", "GaSb", "InSb"}
+fig, ax = plt.subplots(figsize=(8, 5))
+x = np.linspace(0, 1, 101)
+# (direct Γ gap, indirect gap or None) as functions of the fraction x of the FIRST binary
+lines = {("AlAs", "GaAs"): (lambda x: 1.424 + 1.247*x, lambda x: 1.900 + 0.125*x + 0.143*x**2),
+         ("GaP", "GaAs"):  (lambda x: 1.424 + 1.150*x + 0.176*x**2, lambda x: 1.900 + 0.144*x + 0.211*x**2),
+         ("GaAs", "InAs"): (lambda x: 0.354*(1 - x) + 1.424*x - 0.477*x*(1 - x), None),
+         ("InP", "InAs"):  (lambda x: 0.354*(1 - x) + 1.344*x - 0.10*x*(1 - x), None),
+         ("GaP", "InP"):   (lambda x: 1.344*(1 - x) + 2.78*x - 0.65*x*(1 - x), lambda x: 2.21 + 0.05*x),
+         ("AlAs", "InAs"): (lambda x: 0.354*(1 - x) + 3.0*x - 0.70*x*(1 - x), lambda x: 1.43*(1 - x) + 2.16*x)}
+for (b1, b2), (fG, fX) in lines.items():
+    a = sl.vegard(L[b1], L[b2], x)
+    EG = fG(x); EX = fX(x) if fX else np.full_like(x, np.inf)
+    Eg = np.minimum(EG, EX)
+    ax.plot(a, np.where(EG <= EX, Eg, np.nan), color=sl.PALETTE[0], lw=1.6)
+    ax.plot(a, np.where(EG > EX, Eg, np.nan), color=sl.PALETTE[0], lw=1.3, ls="--")
+for b, Eg in binaries.items():
+    ax.plot(L[b], Eg, "o", ms=7, color=sl.PALETTE[1] if b in direct else sl.INK2, zorder=5)
+    ax.annotate(b, (L[b], Eg), textcoords="offset points", xytext=(6, 4), fontsize=9)
+for b in ("GaAs", "InP"): ax.axvspan(L[b] - 0.0008, L[b] + 0.0008, color=sl.PALETTE[2], alpha=0.25)
+sec = ax.secondary_yaxis("right", functions=(lambda E: 1.24/np.maximum(E, 0.05), lambda l: 1.24/np.maximum(l, 0.05)))
+sec.set_ylabel("λ_g (µm)")
+ax.set(xlabel="lattice constant a (nm)", ylabel="E_g (eV)", xlim=(0.54, 0.655), ylim=(0, 2.7))
+ax.plot([], [], "o", color=sl.PALETTE[1], label="direct binary"); ax.plot([], [], "o", color=sl.INK2, label="indirect binary")
+ax.legend(fontsize=8, loc="upper right"); plt.show()
+```
+
+The ternary bowing parameters are representative textbook values (Vurgaftman *et al.*, 2001). For quantitative design use the
+full direct and indirect gap parameters of that review.
+
+## LED materials and colours (slide 114)
+
+```{python}
+#| label: tbl-led-materials
+#| tbl-cap: "Representative LED materials, their emission wavelengths and substrates (slides 114–119). The colour column uses the photopic sensitivity V(λ) of @sec-efficiency."
+leds = [("GaN/InGaN MQW", "sapphire, SiC, Si", 1239.84/405, "violet / UV-A"),
+        ("InGaN MQW", "sapphire, SiC", 1239.84/460, "blue"),
+        ("InGaN MQW", "sapphire, SiC", 1239.84/525, "green"),
+        ("AlGaInP", "GaAs", 1239.84/590, "amber"),
+        ("AlGaInP", "GaAs", 1239.84/625, "red"),
+        ("GaAs₀.₆P₀.₄", "GaAs", 1239.84/650, "red (early LEDs)"),
+        ("Al₀.₃Ga₀.₇As", "GaAs", 1239.84/820, "near IR"),
+        ("GaAs", "GaAs", 1239.84/870, "IR remote controls"),
+        ("InGaAsP", "InP", 1239.84/1310, "fiber, O band"),
+        ("InGaAsP", "InP", 1239.84/1550, "fiber, C band"),
+        ("AlGaN", "sapphire, AlN", 1239.84/280, "UV-C, disinfection")]
+pd.DataFrame([{"active material": m, "substrate": s, "E_g (eV)": round(E, 2), "λ (nm)": round(1239.84/E),
+               "V(λ)": f"{float(sl.V_photopic(1239.84/E*1e-9)):.3g}", "use": u} for m, s, E, u in leds])
+```
+
+## Heterojunctions: carrier and photon confinement (slides 93–97)
+
+Two numbers show why every modern LED is a heterostructure. The fraction of injected electrons that spill over a barrier
+$\Delta E_c$ is about $\exp(-\Delta E_c/k_BT)$. The fraction of the guided light that overlaps the active layer is the
+**optical confinement factor** $\Gamma$ of the slab waveguide formed by the index step:
+
+```{python}
+#| label: fig-dh
+#| fig-cap: "AlGaAs/GaAs double heterostructure (λ ≈ 870 nm). Left: band offset ΔEc = 0.67 ΔEg and the Boltzmann leakage factor exp(−ΔEc/kT) versus cladding Al fraction. Right: confinement factor Γ of the fundamental TE mode of the active layer (slab waveguide, Botez approximation Γ ≈ D²/(2 + D²) with D = k₀d(n₁² − n₂²)^½)."
+x = np.linspace(0.05, 0.45, 100)
+dEc = 0.67*1.247*x
+nGaAs = 3.59; n_cl = 3.59 - 0.53*x                      # index at 870 nm decreases with Al (approx.)
+fig, ax = plt.subplots(1, 2, figsize=(10, 3.8))
+ax[0].plot(x, dEc*1e3, label="ΔE_c (meV)")
+a2 = ax[0].twinx(); a2.semilogy(x, np.exp(-dEc/sl.kT(300)), color=sl.PALETTE[1], label="leakage, 300 K")
+a2.semilogy(x, np.exp(-dEc/sl.kT(400)), "--", color=sl.PALETTE[1], label="leakage, 400 K")
+a2.set_ylabel("exp(−ΔE_c/kT)", color=sl.PALETTE[1]); a2.spines["right"].set_visible(True); a2.grid(False); a2.legend(fontsize=8)
+ax[0].set(xlabel="Al fraction of the cladding", ylabel="ΔE_c (meV)")
+for d in (0.05e-6, 0.1e-6, 0.2e-6, 0.5e-6):
+    V = 2*np.pi*d/870e-9*np.sqrt(nGaAs**2 - n_cl**2)   # Botez normalised thickness k0 d NA
+    ax[1].plot(x, V**2/(2 + V**2), label=f"d = {d*1e6:.2f} µm")
+ax[1].set(xlabel="Al fraction of the cladding", ylabel="confinement factor Γ"); ax[1].legend(fontsize=8)
+plt.tight_layout(); plt.show()
+```
+
+With $x=0.3$ cladding, $\Delta E_c\approx0.25$ eV and the leakage is below $10^{-4}$. A 0.1–0.2 µm active layer confines
+20–60 % of the guided light. Edge-emitting LEDs (@sec-drive) and laser diodes (Ch. 4) exploit both effects. The Np and pP
+heterojunction band diagrams of slides 95–96 follow the same rule as homojunctions: flat $E_F$ at equilibrium, bands bent by the
+space charge, plus the offsets $\Delta E_c$ and $\Delta E_v$ at the interface.
+
+::: {.callout-tip collapse="true"}
+## Going deeper
+- **Anderson's rule** predicts $\Delta E_c=\chi_1-\chi_2$. Use the electron affinities of Table 3.1 for GaAs/AlAs and compare with
+  the measured 65:35 split of $\Delta E_g$. Why does the rule fail?
+- **Critical thickness.** A strained layer can grow without dislocations only up to the Matthews–Blakeslee thickness. Estimate it
+  for In$_{0.2}$Ga$_{0.8}$N on GaN (mismatch ~2.2 %).
+- **The green gap.** Plot the EQE of commercial LEDs against wavelength: it drops between 530 and 600 nm, where neither InGaN nor
+  AlGaInP works well. Find the physical reasons for each side.
+- **Polarisation fields.** Wurtzite InGaN quantum wells carry MV/cm piezoelectric fields that tilt the well, shift the emission
+  to the red and separate electrons from holes (quantum-confined Stark effect). Connect with @sec-qw.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, *Optoelectronics and Photonics*, sec. 3.8–3.12; E. F. Schubert, *Light-Emitting Diodes*, 3rd ed. (2018), ch. 4, 12–16.
+- I. Vurgaftman, J. R. Meyer, L. R. Ram-Mohan, "Band parameters for III–V compound semiconductors and their alloys",
+  *J. Appl. Phys.* 89, 5815 (2001).
+- H. Kroemer, "Quasi-electric fields and band offsets", *Rev. Mod. Phys.* 73, 783 (2001) (slide 93); S. Nakamura, Nobel lecture
+  (2014) (slide 117).
+:::
+
+## Try it yourself
+
+1. Which In fraction of InGaN emits at 450 nm? At 530 nm? What lattice mismatch to GaN does each imply?
+2. Find the composition of In$_{1-x}$Ga$_x$As$_y$P$_{1-y}$ on InP that emits at 1310 nm.
+3. Why is AlGaAs with $x>0.45$ used as a cladding but never as an active layer?
+4. Using `sl.vegard`, find the Ga fraction of In$_{1-x}$Ga$_x$As lattice-matched to InP, and its emission wavelength.

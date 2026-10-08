@@ -1,0 +1,26 @@
+/*-- scss:defaults --*/
+$font-size-root: 16px;
+
+/*-- scss:rules --*/
+.callout-tip .callout-title-container::after { content: ""; }
+
+// Interactive OJS panels get a soft frame so students spot them
+.cell-output-display .observablehq:has(form),
+.ojs-panel {
+  border-left: 3px solid #2a78d6;
+  padding-left: .8rem;
+}
+
+.result-box {
+  font-family: var(--bs-font-monospace);
+  background: rgba(42, 120, 214, .07);
+  border-radius: 6px;
+  padding: .6rem .9rem;
+  margin: .4rem 0 1rem 0;
+  line-height: 1.6;
+}
+
+table.compact td, table.compact th { padding: .2rem .6rem; }
+
+// Observable Plot readable in dark mode
+.quarto-dark svg[class^="plot"] { color: #e6e6e6; background: transparent; }

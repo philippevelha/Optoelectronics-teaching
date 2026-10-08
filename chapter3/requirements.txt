@@ -1,0 +1,8 @@
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+pandas>=2.0
+jupyter
+ipywidgets>=8
+# optional: colour science (CIE colour matching, CCT of white LEDs)
+colour-science

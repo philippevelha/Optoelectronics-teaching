@@ -1,0 +1,90 @@
+# Projects, toolbox and connections {#sec-ideas}
+
+## How Chapter 3 connects to the rest of the course
+
+| Chapter 3 concept | Where it comes from / where it goes |
+|---|---|
+| Photon energy $E_g=h\nu$, absorption edge | Ch. 1: complex index and absorption; Ch. 5: photodetector cut-off wavelength |
+| Escape cone, Fresnel transmittance at the chip surface | Ch. 1: TIR and Fresnel equations; extraction is Snell's law in disguise |
+| Double heterostructure, optical confinement factor | Ch. 2: planar dielectric waveguide ($V$-number, confinement) |
+| DBR LED, resonant-cavity LED | Ch. 1: Bragg mirrors and Fabry–Perot cavities |
+| LED linewidth $\Delta\lambda\approx3k_BT\lambda^2/hc$ | Ch. 1: coherence length; Ch. 2: chromatic dispersion limits the bit rate of LED links |
+| Coupling into fibers, NA² | Ch. 2: numerical aperture, multimode and plastic fibers |
+| Quasi-Fermi levels, injection, QWs | Ch. 4: population inversion and optical gain in laser diodes ($E_{Fn}-E_{Fp}>h\nu$) |
+| pn junction under reverse bias, generation current, $C_\text{dep}$ | Ch. 5: pin and avalanche photodiodes, dark current, RC bandwidth |
+| Carrier lifetime and modulation bandwidth | Ch. 4: relaxation oscillations of lasers; Ch. 6: modulators |
+| Quantum-confined Stark effect | Ch. 6: electro-absorption modulators |
+
+: Where Chapter 3 concepts come from and where they reappear. {#tbl-links tbl-colwidths="[45,55]"}
+
+## Mini-projects
+
+For students who want to go further. Each reuses `semilib.py` and can be done in one to three weeks.
+
+| # | project | skills | difficulty |
+|---|---|---|---|
+| 1 | **Characterise a real LED**: measure I–V (source-meter), fit $I_o$, $\eta$, $R_s$ with `sl.diode_iv_rs`; measure the spectrum at two currents and estimate the junction temperature from the peak shift (@sec-spectrum) | experiment, fitting | ★ |
+| 2 | **1D drift–diffusion simulator**: extend `poisson_pn` (@sec-poisson) with quasi-Fermi levels and Scharfetter–Gummel currents; compute the I–V curve and compare with the Shockley equation | numerics, device physics | ★★★ |
+| 3 | **Schrödinger solver for heterostructures**: finite differences for arbitrary potentials (graded wells, coupled wells, superlattices); compare with `sl.qw_finite` and the Kronig–Penney model | quantum mechanics, linear algebra | ★★ |
+| 4 | **Monte Carlo light extraction**: ray-trace photons in a cuboid chip with absorption, Fresnel reflection, textured top surface and photon recycling; reproduce the 1.6 % bare-chip value and find how texturing improves it | ray optics, statistics | ★★ |
+| 5 | **White-LED designer**: optimise blue fraction and phosphor peak for maximum efficacy at a given CRI and CCT with `colour-science` | photometry, optimisation | ★★ |
+| 6 | **Efficiency droop**: fit the ABC model to published EQE–current curves of blue LEDs; discuss Auger recombination versus carrier leakage | data analysis, physics | ★★ |
+| 7 | **Visible-light communication link**: simulate an LED (first-order response), a photodiode and noise; compare OOK with OFDM bit loading, then test with a lab LED and an oscilloscope | signal processing | ★★★ |
+| 8 | **Band structure from first principles**: download Si and GaAs band structures from the Materials Project (`mp-api`) and extract $E_g$, $k_0$ and the effective masses | databases, materials science | ★★ |
+
+## Python toolbox
+
+All worked examples run with the scientific core only. The packages below extend them.
+
+| Package | Install | What it is good for | Sections |
+|---|---|---|---|
+| `numpy`, `scipy`, `matplotlib`, `pandas` | `pip install ...` | core numerics, root finding (`brentq`), sparse Newton solvers, Lambert W | all |
+| `colour-science` | `pip install colour-science` | CIE colour matching, chromaticity, CCT and CRI of LED spectra | [-@sec-efficiency], [-@sec-led] |
+| `solcore` | `pip install solcore` | semiconductor materials database, Poisson–drift–diffusion and QW solvers (built for solar cells, works for LEDs) | [-@sec-junction], [-@sec-diode], [-@sec-qw] |
+| `devsim` | `pip install devsim` | open-source TCAD: drift–diffusion device simulation in 1D/2D/3D | [-@sec-junction], [-@sec-diode] |
+| `aestimo` | from GitHub | self-consistent Schrödinger–Poisson solver for heterostructures | [-@sec-qw] |
+| `lmfit` | `pip install lmfit` | robust curve fitting with parameter bounds (diode I–V, Arrhenius plots, spectra) | [-@sec-diode], [-@sec-spectrum] |
+| `pint` | `pip install pint` | unit-aware calculations (cm⁻³ vs m⁻³ mistakes) | all |
+| `mp-api`, `pymatgen` | `pip install mp-api pymatgen` | band structures and properties from the Materials Project | [-@sec-bands] |
+| `PySpice` | `pip install PySpice` | SPICE simulation of LED driver circuits and speed-up capacitors | [-@sec-drive] |
+| `rayflare` | `pip install rayflare` | ray tracing and TMM for textured surfaces (light extraction) | [-@sec-efficiency] |
+| Meep | `conda install -c conda-forge pymeep` | FDTD simulation of extraction from photonic-crystal and textured LEDs | [-@sec-efficiency] |
+| `tmm` (or `optolib.tmm` of Ch. 1) | `pip install tmm` | DBR mirrors and resonant-cavity LEDs | [-@sec-efficiency] |
+
+: Optional Python packages for Chapter 3. {#tbl-toolbox tbl-colwidths="[18,24,44,14]"}
+
+## Improvements to the course
+
+1. **From band diagram to device in one model.** The exact Poisson solver (@sec-poisson) shows students that the depletion
+   approximation, the law of the junction and the built-in voltage are the same physics. It is worth five minutes of class time.
+2. **"Predict, then compute."** Before moving a slider, ask: *"If I double the lifetime, does the crossover voltage between η = 2 and
+   η = 1 go up or down?"*, *"Which side of a p⁺n junction holds the depletion region?"*, *"Does a thinner quantum well emit bluer or
+   redder light?"*.
+3. **One running device.** Follow a single GaAs LED through the chapter: doping and Fermi levels → junction → I–V (slides 75–80)
+   → spectrum (slides 107–108) → extraction (slides 122–123) → bandwidth. All the numbers are already in the companion.
+4. **Lab connection.** A cheap lab (an LED, a resistor, a USB spectrometer and a multimeter) covers I–V fitting, ideality factor,
+   spectrum versus temperature, Varshni shift and luminous flux.
+5. **Modern content.** The slides stop at 2014-era devices. Possible updates: microLED displays, efficiency droop, UV-C LEDs for
+   disinfection, Li-Fi (IEEE 802.11bb, 2023), perovskite and quantum-dot LEDs.
+
+## Notes for the instructor: checks on the slides
+
+While recomputing the examples, everything matched the slides except these points:
+
+- **Slide numbering:** the PDF export (`Chapter3_2024pptx.pdf`) omits the empty slide 2, so PDF page = slide − 1 from slide 3 on. The
+  companion uses the `.pptx` numbers.
+- **Slide 22:** titled "Extrinsic Semiconductors: n-Type" and writes "p ≈ Nd"; it describes p-type doping with $p\approx N_a$.
+- **Slide 25 (Table 3.1):** $N_v$ of Ge is printed as $6.0\times10^{19}$ cm⁻³. The mass action law with $n_i=2.3\times10^{13}$ cm⁻³
+  requires $6.0\times10^{18}$ cm⁻³ (the value of Kasap's book).
+- **Slides 65–66:** the ideality factor symbol η is rendered as a missing glyph ("□ is an ideality factor", "e/(□k_BT)").
+- **Slide 69:** the model with Varshni $E_g(T)$ gives Arrhenius slopes of about 0.86 and 0.40 eV, higher than the measured 0.63 and
+  0.33 eV. The factor of two is reproduced. A good discussion point (@sec-diode).
+- **Slide 99:** "Fermi-Direct function" should be "Fermi–Dirac".
+- **Slide 107:** the absolute wavelengths (864.2 and 852.4 nm) are 0.9 nm too long because of rounded constants ($hc/e=1.2409$ instead
+  of 1.2398 eV µm). The shift of 11.8 nm is correct.
+- **Slide 112:** "d = 12×10⁻⁹ nm" should read 12×10⁻⁹ m. The finite-well values quoted (0.022, 0.088, 0.186 eV) are about 15 % below
+  a direct solution with $m^*=0.067m_e$ (0.026, 0.101, 0.216 eV); they correspond to $m^*\approx0.08m_e$ (@sec-qw).
+- **Slide 133:** the formula is written with "633 lm W⁻¹"; the numbers use the correct 683 lm W⁻¹.
+- **Slide 146:** the caption sentence "At $f_c$, $[I_\text{ph}(f)/I_\text{ph}(0)]^2$ is 0.5. However, it is 0.707 at a lower frequency $f_c$"
+  is confusing. Suggested wording: "At $f_c$ the optical power is 0.707 of its low-frequency value and the detected electrical
+  power is 0.5; the optical power reaches 0.5 at the higher frequency $f_\text{op}=\sqrt3f_c$."

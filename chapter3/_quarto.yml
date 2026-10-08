@@ -1,0 +1,68 @@
+project:
+  type: book
+  output-dir: _book
+  resources:
+    - semilib.py
+    - notebooks/*.ipynb
+
+book:
+  title: "Semiconductor Science and Light-Emitting Diodes"
+  subtitle: "An interactive companion to Chapter 3 — Basics of Optoelectronics"
+  author: "Philippe Velha"
+  date: today
+  search: true
+  site-url: https://philippevelha.github.io/Optoelectronics-teaching/chapter3/
+  repo-url: https://github.com/philippevelha/Optoelectronics-teaching
+  repo-subdir: chapter3
+  repo-actions: [source, issue]
+  downloads: []
+  chapters:
+    - index.qmd
+    - part: "Semiconductor science"
+      chapters:
+        - bands.qmd
+        - statistics.qmd
+        - doping.qmd
+    - part: "The pn junction"
+      chapters:
+        - junction.qmd
+        - diode.qmd
+        - smallsignal.qmd
+    - part: "Light-emitting diodes"
+      chapters:
+        - led-principle.qmd
+        - spectrum.qmd
+        - quantum-wells.qmd
+        - efficiency.qmd
+        - led-drive.qmd
+    - ideas.qmd
+  appendices:
+    - running.qmd
+    - cheatsheet.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles.scss]
+      dark: [darkly, styles.scss]
+    grid:
+      body-width: 1100px
+      sidebar-width: 260px
+      margin-width: 220px
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-summary: "Show the Python"
+    code-tools: true
+    code-copy: true
+    fig-align: center
+    html-math-method: mathjax
+    crossref:
+      chapters: true
+
+execute:
+  freeze: auto
+  warning: false
+
+jupyter: python3

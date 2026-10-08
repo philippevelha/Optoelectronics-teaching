@@ -4,7 +4,7 @@
 # Usage (from the repository root):  bash publish.sh
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-CHAPTERS="chapter1 chapter2"
+CHAPTERS="chapter1 chapter2 chapter3"
 SITE="$ROOT/.gh-pages"
 
 for ch in $CHAPTERS; do

@@ -1,0 +1,155 @@
+# Formula sheet {#sec-cheatsheet}
+
+All the key relations of Chapter 3 on one page. Each block links to the chapter where the formula is derived and used.
+Energies in eV, concentrations as written on the slides (cm⁻³) unless stated. Use your browser's *Print → Save as PDF* for a
+paper copy.
+
+::: {.callout-note collapse="false"}
+## Symbols and constants
+$E_c,E_v$ band edges · $E_g=E_c-E_v$ · $E_F$ Fermi level ($E_{Fi}$ intrinsic, $E_{Fn},E_{Fp}$ n/p side or quasi-Fermi levels) ·
+$m_e^*,m_h^*$ effective masses · $N_d,N_a$ donor/acceptor concentrations · $n,p$ electron/hole concentrations · $\mu$ drift
+mobility · $D$ diffusion coefficient · $\tau$ lifetime · $L$ diffusion length · $\varepsilon=\varepsilon_0\varepsilon_r$ ·
+$V$ applied voltage (> 0 forward) · $V_\text{th}=V_T=k_BT/e$
+
+$k_BT=25.85$ meV at 300 K · $hc=1.2398$ eV µm · $e=1.602\times10^{-19}$ C · $\varepsilon_0=8.854\times10^{-12}$ F/m ·
+$n_i$ (300 K): Si $1\times10^{10}$, GaAs $2.1\times10^6$, Ge $2.3\times10^{13}$ cm⁻³
+:::
+
+::::: {.grid}
+
+:::: {.g-col-12 .g-col-lg-6}
+## Bands and statistics (@sec-bands, @sec-stats)
+
+| | |
+|---|---|
+| density of states | $g(E)=\dfrac{8\sqrt2\,\pi m^{*3/2}}{h^3}(E-E_c)^{1/2}$ |
+| Fermi–Dirac | $f(E)=\dfrac{1}{1+e^{(E-E_F)/k_BT}}$ |
+| Fermi energy of a metal | $E_{F0}=\dfrac{h^2}{8m_e}\left(\dfrac{3n}{\pi}\right)^{2/3}$ |
+| electrons in CB | $n=N_ce^{-(E_c-E_F)/k_BT}$ |
+| holes in VB | $p=N_ve^{-(E_F-E_v)/k_BT}$ |
+| effective DOS | $N_{c,v}=2\left(\dfrac{2\pi m^*_{e,h}k_BT}{h^2}\right)^{3/2}$ |
+| mass action law | $np=n_i^2=N_cN_ve^{-E_g/k_BT}$ |
+| intrinsic Fermi level | $E_{Fi}=E_v+\tfrac12E_g-\tfrac34k_BT\ln(m_e^*/m_h^*)$ |
+| mean electron KE in CB | $\tfrac32k_BT$ |
+| validity (non-degenerate) | $E_F$ more than $3k_BT$ from the band edges |
+| crystal momentum | $\psi_k=U_k(x)e^{jkx}$, $F=d(\hbar k)/dt$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Doping and transport (@sec-doping)
+
+| | |
+|---|---|
+| n-type ($N_d\gg n_i$) | $n=N_d$, $p=n_i^2/N_d$ |
+| p-type ($N_a\gg n_i$) | $p=N_a$, $n=n_i^2/N_a$ |
+| compensation ($N_d>N_a$) | $n=N_d-N_a$, $p=n_i^2/(N_d-N_a)$ |
+| general neutrality | $n=\tfrac{N_d-N_a}{2}+\sqrt{\left(\tfrac{N_d-N_a}{2}\right)^2+n_i^2}$ |
+| Fermi level shift | $E_{Fn}-E_{Fi}=k_BT\ln(n/n_i)$, $E_{Fp}-E_{Fi}=-k_BT\ln(p/n_i)$ |
+| drift velocity | $v_d=\mu E$ |
+| conductivity | $\sigma=en\mu_e+ep\mu_h$ |
+| Einstein relation | $D=\mu k_BT/e$ |
+| applied voltage | $\Delta E_F=eV$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## pn junction at equilibrium (@sec-junction)
+
+| | |
+|---|---|
+| Poisson | $d^2V/dx^2=-\rho_\text{net}/\varepsilon$ |
+| charge balance | $N_aW_p=N_dW_n$ |
+| built-in voltage | $V_o=\dfrac{k_BT}{e}\ln\dfrac{N_aN_d}{n_i^2}$ |
+| depletion width | $W=\left[\dfrac{2\varepsilon(N_a+N_d)(V_o-V)}{eN_aN_d}\right]^{1/2}$ |
+| peak field | $E_o=-eN_dW_n/\varepsilon=-2(V_o-V)/W$ |
+| law of the junction | $p_{no}/p_{po}=n_{po}/n_{no}=e^{-eV_o/k_BT}$ |
+| from work functions | $eV_o=\Phi_p-\Phi_n=E_{Fn}-E_{Fp}$ (before contact) |
+| Debye length | $L_D=\sqrt{\varepsilon k_BT/e^2N}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Diode currents (@sec-diode)
+
+| | |
+|---|---|
+| injection | $p_n(0)=p_{no}e^{eV/k_BT}$, $n_p(0)=n_{po}e^{eV/k_BT}$ |
+| excess profile (long) | $\Delta p_n(x')=\Delta p_n(0)e^{-x'/L_h}$, $L_h=\sqrt{D_h\tau_h}$ |
+| Shockley equation | $J=J_{so}\left[e^{eV/k_BT}-1\right]$ |
+| saturation current | $J_{so}=\left(\dfrac{eD_h}{L_hN_d}+\dfrac{eD_e}{L_eN_a}\right)n_i^2$ |
+| short diode | $L_h\to\ell_n$, $L_e\to\ell_p$; transit time $\tau_t=\ell_n^2/2D_h$ |
+| SCL recombination | $J_\text{rec}=J_{ro}\left[e^{eV/2k_BT}-1\right]$, $J_{ro}=\dfrac{en_i}{2}\left(\dfrac{W_p}{\tau_e}+\dfrac{W_n}{\tau_h}\right)$ |
+| general diode equation | $J=J_o\left[e^{eV/\eta k_BT}-1\right]$, $\eta=1$ (diffusion) to 2 (recombination) |
+| reverse current | $J_\text{rev}=J_{so}+en_iW/\tau_g$ |
+| direct-gap lifetime | $\tau=1/(BN)$ (weak injection) |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Small-signal model (@sec-smallsignal)
+
+| | |
+|---|---|
+| depletion capacitance | $C_\text{dep}=\dfrac{\varepsilon A}{W}=\dfrac{A}{(V_o-V)^{1/2}}\left[\dfrac{e\varepsilon N_aN_d}{2(N_a+N_d)}\right]^{1/2}$ |
+| p⁺n junction | $C_\text{dep}=A\left[\dfrac{e\varepsilon N_d}{2(V_o-V)}\right]^{1/2}$ |
+| Mott–Schottky | $N_d=-\dfrac{2}{e\varepsilon A^2}\left[\dfrac{d(1/C^2)}{dV}\right]^{-1}$ |
+| dynamic resistance | $r_d=\eta V_\text{th}/I$ |
+| diffusion capacitance | long (ac): $\dfrac{\tau_hI}{2V_\text{th}}=\dfrac{\tau_h}{2r_d}$; short: $\dfrac{\tau_tI}{V_\text{th}}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## LED emission (@sec-led, @sec-spectrum)
+
+| | |
+|---|---|
+| photon energy | $h\nu\approx E_g$, $\lambda[\mu\text{m}]=1.24/E_g[\text{eV}]$ |
+| spectrum | $I(h\nu)\propto(h\nu-E_g)^{1/2}e^{-(h\nu-E_g)/k_BT}$ |
+| peak | $h\nu_\text{peak}=E_g+\tfrac12k_BT$ |
+| width | $\Delta(h\nu)\approx1.8k_BT$ (ideal) to $3k_BT$ |
+| linewidth | $\Delta\lambda\approx\lambda_o^2\,\dfrac{3k_BT}{hc}$ (107 nm at 1310 nm) |
+| Varshni | $E_g(T)=E_{go}-\dfrac{AT^2}{B+T}$ (GaAs: ≈ 0.24 nm/K) |
+| degenerate junction | $\Delta(h\nu)\approx\Delta E_{Fn}+1.5k_BT$ |
+| Vegard / bowing | $a=xa_1+(1-x)a_2$, $E_g=xE_1+(1-x)E_2-bx(1-x)$ |
+| heterojunction leakage | $\propto e^{-\Delta E_c/k_BT}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Quantum wells (@sec-qw)
+
+| | |
+|---|---|
+| infinite well | $\Delta E_n=\dfrac{h^2n^2}{8m^*d^2}$ |
+| in-plane motion | $E=E_c+\Delta E_n+\dfrac{\hbar^2(k_y^2+k_z^2)}{2m^*}$ |
+| 2D DOS (per sub-band) | $g_{2D}=\dfrac{m^*}{\pi\hbar^2}$ per unit area |
+| finite well, even | $\dfrac{k}{m_w}\tan\dfrac{kd}{2}=\dfrac{\kappa}{m_b}$ |
+| finite well, odd | $-\dfrac{k}{m_w}\cot\dfrac{kd}{2}=\dfrac{\kappa}{m_b}$ |
+| emission | $h\nu=E_{g1}+E_1+E_1'$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Efficiency and photometry (@sec-efficiency)
+
+| | |
+|---|---|
+| escape cone | $\sin\theta_c=n_a/n_s$ |
+| extraction (one face) | $\eta\approx\tfrac12(1-\cos\theta_c)\dfrac{4n_sn_a}{(n_s+n_a)^2}$ |
+| internal QE | $\eta_\text{IQE}=\dfrac{\tau_r^{-1}}{\tau_r^{-1}+\tau_{nr}^{-1}}$ |
+| output power | $P_o=\eta_\text{EE}\eta_\text{IQE}h\nu\,(I/e)$ |
+| external QE | $\eta_\text{EQE}=\dfrac{P_o/h\nu}{I/e}$ |
+| power conversion | $\eta_\text{PCE}=\dfrac{P_o}{IV}\approx\eta_\text{EQE}\dfrac{E_g}{eV}$ |
+| luminous flux | $\Phi_v=683\ \text{lm/W}\times P_oV(\lambda)$ |
+| luminous efficacy | $\eta_\text{LE}=\Phi_v/(IV)$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Drive and speed (@sec-drive)
+
+| | |
+|---|---|
+| resistor drive | $I_F=(V-V_F)/R$ |
+| net lifetime | $1/\tau=1/\tau_r+1/\tau_{nr}$ |
+| modulation response | $P_o(\omega)/P_o(0)=1/\sqrt{1+(\omega\tau)^2}$ |
+| electrical bandwidth | $f_c=1/(2\pi\tau)$ |
+| optical bandwidth | $f_\text{op}=\sqrt3/(2\pi\tau)$ |
+| rise / fall time | $\tau_R=\tau_F=2.2\tau$ |
+| fiber coupling (Lambertian) | $\eta_c\approx\text{NA}^2\times\min[1,(a/r_s)^2]$ |
+::::
+
+:::::

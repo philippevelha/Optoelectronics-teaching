@@ -1,0 +1,62 @@
+# Preface {.unnumbered}
+
+This companion follows the slides of **Chapter 3: Semiconductor Science and Light-Emitting Diodes** (Basics of
+Optoelectronics, University of Trento) section by section. The slides tell the story; this book lets you **compute it**. Every
+figure is made by a few lines of Python that you can unfold ("Show the Python"), copy and modify. The **live panels** (marked
+with a blue bar on the left) recompute directly in your browser. They need no installation.
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/interactive_explorers.ipynb) &nbsp;Interactive explorers in Google Colab (no installation, Google account needed).
+
+## Where this chapter sits in the course
+
+Chapter 1 described light as a wave and Chapter 2 guided it in fibers. Chapter 3 builds the **source**. It starts from the band
+picture of a crystal, counts electrons and holes, assembles a pn junction, and ends with the light-emitting diode: its
+spectrum, its efficiency and how fast it can be switched. The same physics (bands, quasi-Fermi levels, injection,
+recombination) is the basis of laser diodes (Ch. 4) and photodetectors (Ch. 5), which are pn junctions run in the other
+direction.
+
+## How the book is organised
+
+| Chapter | Slides | What you can play with |
+|---|---|---|
+| [Energy bands and holes](bands.qmd) | 3–9, 33–39 | Kronig–Penney bands, Fermi energy of metals, direct vs indirect gaps |
+| [Carrier statistics](statistics.qmd) | 10–17, 25 | $g(E)f(E)$ in the bands, $N_c$, $N_v$, $n_i(T)$, intrinsic Fermi level |
+| [Doping, Fermi level and conductivity](doping.qmd) | 18–32 | doping explorer, compensation, degeneracy, mobility, freeze-out |
+| [The pn junction at equilibrium](junction.qmd) | 40–47, 82–85 | charge, field, potential and band diagram; exact Poisson solution |
+| [The diode: forward and reverse bias](diode.qmd) | 48–69, 75–80 | Shockley and recombination currents, ideality factor, GaAs example |
+| [Capacitance and small-signal model](smallsignal.qmd) | 70–74 | $C_\text{dep}(V)$, $r_d$, $C_\text{diff}$, Mott–Schottky doping profiling |
+| [LED principle, heterojunctions and materials](led-principle.qmd) | 81–97, 114–119 | bandgap engineering, alloy colour picker, lattice matching |
+| [Emission spectrum](spectrum.qmd) | 98–109 | spectrum vs temperature, $3k_BT$ linewidth, Varshni shift |
+| [Quantum wells](quantum-wells.qmd) | 110–113 | finite-well solver, wavefunctions, 2D density of states |
+| [Efficiency, brightness and white LEDs](efficiency.qmd) | 120–133, 139–143 | escape cone, IQE/EQE/PCE chain, lumens, white-LED spectrum |
+| [LED types, drive circuits and speed](led-drive.qmd) | 134–138, 144–151 | fiber coupling, bias resistor, modulation bandwidth, rise time |
+| [Projects, toolbox and connections](ideas.qmd) | — | Python packages, mini-projects, links to other chapters |
+
+Each chapter recomputes the worked examples of the slides, then offers **Going deeper** questions, **Complements** (reading),
+and **Try it yourself** exercises. A **formula sheet** is at the end.
+
+::: {.callout-note}
+## Units in the code
+The slides quote concentrations in cm$^{-3}$ and mobilities in cm$^2$ V$^{-1}$ s$^{-1}$, as most semiconductor texts do. The
+code works in **SI units** (m$^{-3}$, m$^2$ V$^{-1}$ s$^{-1}$) to avoid factor-of-$10^6$ mistakes in $\varepsilon$, $e$ and
+$h$. Energies are in **eV**. Two constants convert: `sl.CM3 = 1e6` (cm$^{-3}$ → m$^{-3}$) and `sl.CM2 = 1e-4`
+(cm$^2$ → m$^2$). At 300 K, $k_BT = 25.85$ meV.
+:::
+
+::: {.callout-tip}
+## Slide numbers
+Slide numbers refer to `Chapter3_2024pptx.pptx`. The PDF export omits the empty slide 2, so **PDF page = slide − 1** from
+slide 3 onwards.
+:::
+
+## Using the code
+
+All functions live in a small, readable module, [`semilib.py`](semilib.py), which you can import from your own notebooks:
+
+```python
+import semilib as sl
+sl.carriers(1e16*sl.CM3, 0, sl.MATERIALS["Si"]["ni"])   # n, p of n-type Si (m^-3)
+sl.qw_finite(12e-9, 0.30, 0.067)                        # bound levels of a GaAs quantum well (eV)
+```
+
+See the appendix [Running the notebooks](running.qmd) for installation.
