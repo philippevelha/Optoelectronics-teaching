@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Appendix B — Formula sheet – The Wave Nature of Light</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./running.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./running.html">Appendices</a></li><li class="breadcrumb-item"><a href="./cheatsheet.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">The Wave Nature of Light</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter1/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Light as a wave</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./waves.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Electromagnetic waves</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gaussian.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Gaussian beams</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./irradiance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Irradiance and the Poynting vector</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Light in matter</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./refractive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Refractive index, dispersion and absorption</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./group.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Group velocity and group index</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Interfaces</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./snell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Snell’s law, total internal reflection and Fermat’s principle</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fresnel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Fresnel equations, Brewster angle and evanescent waves</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./thinfilm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Antireflection coatings and thin-film optics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Coherence and interference</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./coherence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Coherence</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./interference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Interference and interferometers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bragg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bragg mirrors and photonic crystals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fabry-perot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Optical resonators: the Fabry–Perot cavity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Diffraction and scattering</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diffraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Diffraction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scattering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Scattering</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Deep dive</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./poynting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Deep dive: does an electromagnetic wave carry energy?</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#typical-numbers-worth-remembering" id="toc-typical-numbers-worth-remembering" class="nav-link active" data-scroll-target="#typical-numbers-worth-remembering"><span class="header-section-number">B.13</span> Typical numbers worth remembering</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter1/cheatsheet.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./running.html">Appendices</a></li><li class="breadcrumb-item"><a href="./cheatsheet.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-cheatsheet" class="quarto-section-identifier">Appendix B — Formula sheet</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>All the key relations of Chapter 1 on one page. Each block links to the chapter where the formula is derived and used. SI units; engineering convention <span class="math inline">\(e^{j(\omega t-kz)}\)</span>, <span class="math inline">\(N=n-jK\)</span>. Use your browser’s <em>Print → Save as PDF</em> for a paper copy.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Symbols
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\lambda\)</span> vacuum wavelength · <span class="math inline">\(k=2\pi/\lambda\)</span> · <span class="math inline">\(\nu\)</span> frequency · <span class="math inline">\(\omega=2\pi\nu\)</span> · <span class="math inline">\(n\)</span> refractive index · <span class="math inline">\(N=n-jK\)</span> complex index · <span class="math inline">\(\varepsilon_r\)</span> relative permittivity · <span class="math inline">\(c\)</span> speed of light · <span class="math inline">\(\theta_i,\theta_t\)</span> incidence and transmission angles (from the normal) · <span class="math inline">\(R,T\)</span> reflectance and transmittance (power) · <span class="math inline">\(r,t\)</span> amplitude coefficients</p>
+</div>
+</div>
+</div>
+<div class="grid">
+<section id="waves-sec-em" class="level2 g-col-12 g-col-lg-6" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="waves-sec-em"><span class="header-section-number">B.1</span> Waves (<a href="waves.html" class="quarto-xref"><span>Chapter 1</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>plane wave</td>
+<td><span class="math inline">\(E_x=E_0\cos(\omega t-kz+\phi_0)\)</span></td>
+</tr>
+<tr class="even">
+<td>wave vector form</td>
+<td><span class="math inline">\(E=E_0\cos(\omega t-\mathbf k\cdot\mathbf r+\phi_0)\)</span></td>
+</tr>
+<tr class="odd">
+<td>phase velocity</td>
+<td><span class="math inline">\(v=\omega/k=\nu\lambda=c/n\)</span></td>
+</tr>
+<tr class="even">
+<td>phase change over <span class="math inline">\(\Delta z\)</span></td>
+<td><span class="math inline">\(\Delta\phi=k\,\Delta z=2\pi\Delta z/\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td>in a medium</td>
+<td><span class="math inline">\(\lambda_\text{medium}=\lambda/n\)</span>, <span class="math inline">\(\ k_\text{medium}=nk\)</span></td>
+</tr>
+<tr class="even">
+<td>photon energy</td>
+<td><span class="math inline">\(E=h\nu=hc/\lambda\)</span> (<span class="math inline">\(1.24/\lambda[\mu\text{m}]\)</span> eV)</td>
+</tr>
+<tr class="odd">
+<td>spectral width</td>
+<td><span class="math inline">\(\Delta\lambda=\lambda^2\Delta\nu/c\)</span> (100 GHz ↔︎ 0.8 nm at 1550 nm)</td>
+</tr>
+<tr class="even">
+<td>spherical wave</td>
+<td>amplitude <span class="math inline">\(\propto1/r\)</span>, irradiance <span class="math inline">\(\propto1/r^2\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="gaussian-beams-sec-gauss" class="level2 g-col-12 g-col-lg-6" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="gaussian-beams-sec-gauss"><span class="header-section-number">B.2</span> Gaussian beams (<a href="gaussian.html" class="quarto-xref"><span>Chapter 2</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>irradiance</td>
+<td><span class="math inline">\(I(r,z)=\dfrac{2P}{\pi w^2}e^{-2r^2/w^2}\)</span></td>
+</tr>
+<tr class="even">
+<td>beam radius</td>
+<td><span class="math inline">\(w(z)=w_0\sqrt{1+(z/z_0)^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Rayleigh range</td>
+<td><span class="math inline">\(z_0=\pi w_0^2n/\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td>divergence</td>
+<td><span class="math inline">\(\theta=\lambda/(\pi w_0)\)</span>; real beams <span class="math inline">\(2\theta=M^2\dfrac{4\lambda}{\pi(2w_0)}\)</span></td>
+</tr>
+<tr class="odd">
+<td>wavefront radius</td>
+<td><span class="math inline">\(R(z)=z[1+(z_0/z)^2]\)</span></td>
+</tr>
+<tr class="even">
+<td>power inside <span class="math inline">\(r=w\)</span></td>
+<td><span class="math inline">\(1-e^{-2}\approx86\,\%\)</span></td>
+</tr>
+<tr class="odd">
+<td>ABCD law</td>
+<td><span class="math inline">\(q=z+jz_0\)</span>, <span class="math inline">\(\ q'=\dfrac{Aq+B}{Cq+D}\)</span></td>
+</tr>
+<tr class="even">
+<td>Gaussian coupling</td>
+<td><span class="math inline">\(\eta=\left(\dfrac{2w_1w_2}{w_1^2+w_2^2}\right)^2e^{-2d^2/(w_1^2+w_2^2)}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="irradiance-sec-irradiance" class="level2 g-col-12 g-col-lg-6" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="irradiance-sec-irradiance"><span class="header-section-number">B.3</span> Irradiance (<a href="irradiance.html" class="quarto-xref"><span>Chapter 3</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>magnetic field</td>
+<td><span class="math inline">\(B=E/v\)</span></td>
+</tr>
+<tr class="even">
+<td>energy density</td>
+<td><span class="math inline">\(u=\varepsilon_0\varepsilon_rE^2\)</span></td>
+</tr>
+<tr class="odd">
+<td>Poynting vector</td>
+<td><span class="math inline">\(\mathbf S=v^2\varepsilon_0\varepsilon_r\,\mathbf E\times\mathbf B\)</span></td>
+</tr>
+<tr class="even">
+<td>average irradiance</td>
+<td><span class="math inline">\(I=\tfrac12c\,\varepsilon_0nE_0^2\)</span></td>
+</tr>
+<tr class="odd">
+<td>Gaussian peak</td>
+<td><span class="math inline">\(I_0=2P/(\pi w_0^2)\)</span></td>
+</tr>
+<tr class="even">
+<td>isotropic source</td>
+<td><span class="math inline">\(I=P/(4\pi r^2)\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="refractive-index-and-absorption-sec-index" class="level2 g-col-12 g-col-lg-6" data-number="B.4">
+<h2 data-number="B.4" class="anchored" data-anchor-id="refractive-index-and-absorption-sec-index"><span class="header-section-number">B.4</span> Refractive index and absorption (<a href="refractive.html" class="quarto-xref"><span>Chapter 4</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>index</td>
+<td><span class="math inline">\(n=\sqrt{\varepsilon_r}\)</span> (at the optical frequency)</td>
+</tr>
+<tr class="even">
+<td>Sellmeier</td>
+<td><span class="math inline">\(n^2=1+\sum_i\dfrac{A_i\lambda^2}{\lambda^2-\lambda_i^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Lorentz oscillator</td>
+<td><span class="math inline">\(\varepsilon_r=1+\dfrac{\omega_p^2}{\omega_0^2-\omega^2+j\gamma\omega}\)</span>, <span class="math inline">\(\ \omega_p^2=\dfrac{Ne^2}{\varepsilon_0m}\)</span></td>
+</tr>
+<tr class="even">
+<td>Drude (metals)</td>
+<td>Lorentz with <span class="math inline">\(\omega_0=0\)</span></td>
+</tr>
+<tr class="odd">
+<td>complex index</td>
+<td><span class="math inline">\(N=n-jK\)</span>, <span class="math inline">\(\ n^2-K^2=\varepsilon_r'\)</span>, <span class="math inline">\(\ 2nK=\varepsilon_r''\)</span></td>
+</tr>
+<tr class="even">
+<td>absorption</td>
+<td><span class="math inline">\(\alpha=4\pi K/\lambda\)</span>, <span class="math inline">\(\ I=I_0e^{-\alpha z}\)</span></td>
+</tr>
+<tr class="odd">
+<td>reflectance</td>
+<td><span class="math inline">\(R=\dfrac{(n-1)^2+K^2}{(n+1)^2+K^2}\)</span></td>
+</tr>
+<tr class="even">
+<td>Kramers–Kronig</td>
+<td><span class="math inline">\(\varepsilon_r'-1=\dfrac2\pi\mathcal P\!\int_0^\infty\dfrac{\omega'\varepsilon_r''(\omega')}{\omega'^2-\omega^2}d\omega'\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="group-velocity-sec-group" class="level2 g-col-12 g-col-lg-6" data-number="B.5">
+<h2 data-number="B.5" class="anchored" data-anchor-id="group-velocity-sec-group"><span class="header-section-number">B.5</span> Group velocity (<a href="group.html" class="quarto-xref"><span>Chapter 5</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>group velocity</td>
+<td><span class="math inline">\(v_g=d\omega/dk=c/N_g\)</span></td>
+</tr>
+<tr class="even">
+<td>group index</td>
+<td><span class="math inline">\(N_g=n-\lambda\,dn/d\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td>beat of two waves</td>
+<td><span class="math inline">\(E=2E_0\cos(\delta\omega t-\delta kz)\cos(\omega t-kz)\)</span></td>
+</tr>
+<tr class="even">
+<td>group delay</td>
+<td><span class="math inline">\(\tau_g=LN_g/c\)</span></td>
+</tr>
+<tr class="odd">
+<td>material dispersion</td>
+<td><span class="math inline">\(D=-\dfrac{\lambda}{c}\dfrac{d^2n}{d\lambda^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="snells-law-and-tir-sec-snell" class="level2 g-col-12 g-col-lg-6" data-number="B.6">
+<h2 data-number="B.6" class="anchored" data-anchor-id="snells-law-and-tir-sec-snell"><span class="header-section-number">B.6</span> Snell’s law and TIR (<a href="snell.html" class="quarto-xref"><span>Chapter 6</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>reflection</td>
+<td><span class="math inline">\(\theta_r=\theta_i\)</span></td>
+</tr>
+<tr class="even">
+<td>Snell</td>
+<td><span class="math inline">\(n_1\sin\theta_i=n_2\sin\theta_t\)</span></td>
+</tr>
+<tr class="odd">
+<td>critical angle</td>
+<td><span class="math inline">\(\sin\theta_c=n_2/n_1\)</span> (<span class="math inline">\(n_1&gt;n_2\)</span>)</td>
+</tr>
+<tr class="even">
+<td>lateral displacement</td>
+<td><span class="math inline">\(d=L\sin\theta_i\left[1-\dfrac{\cos\theta_i}{\sqrt{n^2-\sin^2\theta_i}}\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td>numerical aperture</td>
+<td><span class="math inline">\(\mathrm{NA}=n_0\sin\theta_a=\sqrt{n_1^2-n_2^2}\)</span></td>
+</tr>
+<tr class="even">
+<td>Fermat</td>
+<td>the actual path makes the travel time stationary</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fresnel-equations-sec-fresnel" class="level2 g-col-12 g-col-lg-6" data-number="B.7">
+<h2 data-number="B.7" class="anchored" data-anchor-id="fresnel-equations-sec-fresnel"><span class="header-section-number">B.7</span> Fresnel equations (<a href="fresnel.html" class="quarto-xref"><span>Chapter 7</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(r_\perp\)</span></td>
+<td><span class="math inline">\(\dfrac{\cos\theta_i-\sqrt{n^2-\sin^2\theta_i}}{\cos\theta_i+\sqrt{n^2-\sin^2\theta_i}}\)</span>, <span class="math inline">\(\ n=n_2/n_1\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(r_\parallel\)</span></td>
+<td><span class="math inline">\(\dfrac{\sqrt{n^2-\sin^2\theta_i}-n^2\cos\theta_i}{\sqrt{n^2-\sin^2\theta_i}+n^2\cos\theta_i}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(t\)</span> relations</td>
+<td><span class="math inline">\(t_\perp=1+r_\perp\)</span>, <span class="math inline">\(\ r_\parallel+nt_\parallel=1\)</span></td>
+</tr>
+<tr class="even">
+<td>normal incidence</td>
+<td><span class="math inline">\(R=\left(\dfrac{n_1-n_2}{n_1+n_2}\right)^2\)</span> (glass: 4 %)</td>
+</tr>
+<tr class="odd">
+<td>Brewster</td>
+<td><span class="math inline">\(\tan\theta_p=n_2/n_1\)</span> (<span class="math inline">\(r_\parallel=0\)</span>)</td>
+</tr>
+<tr class="even">
+<td>TIR phase ⊥</td>
+<td><span class="math inline">\(\tan(\phi_\perp/2)=\sqrt{\sin^2\theta_i-n^2}/\cos\theta_i\)</span></td>
+</tr>
+<tr class="odd">
+<td>TIR phase ∥</td>
+<td><span class="math inline">\(\tan(\phi_\parallel/2+\pi/2)=\sqrt{\sin^2\theta_i-n^2}/(n^2\cos\theta_i)\)</span></td>
+</tr>
+<tr class="even">
+<td>evanescent decay</td>
+<td><span class="math inline">\(\alpha_2=\dfrac{2\pi n_2}{\lambda}\sqrt{\dfrac{n_1^2}{n_2^2}\sin^2\theta_i-1}\)</span>, <span class="math inline">\(\ \delta=1/\alpha_2\)</span></td>
+</tr>
+<tr class="odd">
+<td>Goos–Hänchen</td>
+<td><span class="math inline">\(\Delta z\approx2\delta\tan\theta_i\)</span></td>
+</tr>
+<tr class="even">
+<td>transmittance</td>
+<td><span class="math inline">\(T=\dfrac{n_2\cos\theta_t}{n_1\cos\theta_i}\lvert t\rvert^2=1-R\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="thin-films-sec-thinfilm" class="level2 g-col-12 g-col-lg-6" data-number="B.8">
+<h2 data-number="B.8" class="anchored" data-anchor-id="thin-films-sec-thinfilm"><span class="header-section-number">B.8</span> Thin films (<a href="thinfilm.html" class="quarto-xref"><span>Chapter 8</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>round-trip phase</td>
+<td><span class="math inline">\(\phi=2\cdot\dfrac{2\pi}{\lambda}n_2d\)</span></td>
+</tr>
+<tr class="even">
+<td>film reflection</td>
+<td><span class="math inline">\(r=\dfrac{r_{12}+r_{23}e^{-j\phi}}{1+r_{12}r_{23}e^{-j\phi}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>AR coating</td>
+<td><span class="math inline">\(d=m\dfrac{\lambda}{4n_2}\)</span> (<span class="math inline">\(m\)</span> odd), <span class="math inline">\(\ n_2=\sqrt{n_1n_3}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(R_\text{min}\)</span> (<span class="math inline">\(n_1&lt;n_2&lt;n_3\)</span>)</td>
+<td><span class="math inline">\(\left(\dfrac{n_1n_3-n_2^2}{n_1n_3+n_2^2}\right)^2\)</span> at <span class="math inline">\(\phi=\)</span> odd <span class="math inline">\(\pi\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(R_\text{max}\)</span> (<span class="math inline">\(n_1&lt;n_2&lt;n_3\)</span>)</td>
+<td><span class="math inline">\(\left(\dfrac{n_3-n_1}{n_3+n_1}\right)^2\)</span> at <span class="math inline">\(\phi=\)</span> even <span class="math inline">\(\pi\)</span></td>
+</tr>
+<tr class="even">
+<td>incoherent plate</td>
+<td><span class="math inline">\(T=(1-R)/(1+R)\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coherence-and-interference-sec-coherence-sec-interference" class="level2 g-col-12 g-col-lg-6" data-number="B.9">
+<h2 data-number="B.9" class="anchored" data-anchor-id="coherence-and-interference-sec-coherence-sec-interference"><span class="header-section-number">B.9</span> Coherence and interference (<a href="coherence.html" class="quarto-xref"><span>Chapter 9</span></a>, <a href="interference.html" class="quarto-xref"><span>Chapter 10</span></a>)</h2>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>coherence time</td>
+<td><span class="math inline">\(\Delta t\approx1/\Delta\nu\)</span></td>
+</tr>
+<tr class="even">
+<td>coherence length</td>
+<td><span class="math inline">\(l_c=c\Delta t=\lambda^2/\Delta\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td>Gaussian pulse</td>
+<td><span class="math inline">\(\Delta t\,\Delta\nu\approx0.44\)</span> (FWHM)</td>
+</tr>
+<tr class="even">
+<td>two-beam interference</td>
+<td><span class="math inline">\(I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta\)</span></td>
+</tr>
+<tr class="odd">
+<td>phase difference</td>
+<td><span class="math inline">\(\delta=k(r_2-r_1)+(\phi_2-\phi_1)\)</span></td>
+</tr>
+<tr class="even">
+<td>visibility</td>
+<td><span class="math inline">\(V=\dfrac{2\sqrt{I_1I_2}}{I_1+I_2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Mach–Zehnder</td>
+<td><span class="math inline">\(I\propto\cos^2(\Phi/2)\)</span>; quadrature at <span class="math inline">\(\Phi=\pi/2\)</span></td>
+</tr>
+<tr class="even">
+<td>unbalanced MZI</td>
+<td><span class="math inline">\(\mathrm{FSR}=\lambda^2/(N_g\Delta L)\)</span></td>
+</tr>
+<tr class="odd">
+<td>etalon rings</td>
+<td><span class="math inline">\(2nL\cos\theta=m\lambda\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bragg-mirrors-sec-bragg" class="level2 g-col-12 g-col-lg-6" data-number="B.10">
+<h2 data-number="B.10" class="anchored" data-anchor-id="bragg-mirrors-sec-bragg"><span class="header-section-number">B.10</span> Bragg mirrors (<a href="bragg.html" class="quarto-xref"><span>Chapter 11</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Bragg condition</td>
+<td><span class="math inline">\(n_1d_1+n_2d_2=m\lambda/2\)</span></td>
+</tr>
+<tr class="even">
+<td>quarter-wave stack</td>
+<td><span class="math inline">\(d_1=\lambda/4n_1\)</span>, <span class="math inline">\(\ d_2=\lambda/4n_2\)</span></td>
+</tr>
+<tr class="odd">
+<td>peak reflectance</td>
+<td><span class="math inline">\(R_N=\left[\dfrac{n_0n_2^{2N}-n_3n_1^{2N}}{n_0n_2^{2N}+n_3n_1^{2N}}\right]^2\)</span></td>
+</tr>
+<tr class="even">
+<td>stop band</td>
+<td><span class="math inline">\(\Delta\lambda\approx\dfrac{4\lambda_0}{\pi}\arcsin\dfrac{n_1-n_2}{n_1+n_2}\)</span></td>
+</tr>
+<tr class="odd">
+<td>penetration depth</td>
+<td><span class="math inline">\(L_\text{pen}=-\tfrac12\,d\phi/dk\approx\lambda/(4\Delta n)\)</span></td>
+</tr>
+<tr class="even">
+<td>1D band structure</td>
+<td><span class="math inline">\(\cos K\Lambda=\cos k_1d_1\cos k_2d_2-\tfrac12\left(\tfrac{n_1}{n_2}+\tfrac{n_2}{n_1}\right)\sin k_1d_1\sin k_2d_2\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fabryperot-sec-fp" class="level2 g-col-12 g-col-lg-6" data-number="B.11">
+<h2 data-number="B.11" class="anchored" data-anchor-id="fabryperot-sec-fp"><span class="header-section-number">B.11</span> Fabry–Perot (<a href="fabry-perot.html" class="quarto-xref"><span>Chapter 12</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>modes</td>
+<td><span class="math inline">\(m\lambda_m/2=nL\)</span>, <span class="math inline">\(\ \nu_m=mc/(2nL)\)</span></td>
+</tr>
+<tr class="even">
+<td>free spectral range</td>
+<td><span class="math inline">\(\nu_f=c/(2nL)\)</span>, <span class="math inline">\(\ \Delta\lambda=\lambda^2/(2nL)\)</span></td>
+</tr>
+<tr class="odd">
+<td>finesse</td>
+<td><span class="math inline">\(\mathcal F=\dfrac{\pi\sqrt R}{1-R}\)</span></td>
+</tr>
+<tr class="even">
+<td>linewidth</td>
+<td><span class="math inline">\(\delta\nu_m=\nu_f/\mathcal F\)</span></td>
+</tr>
+<tr class="odd">
+<td>quality factor</td>
+<td><span class="math inline">\(Q=\nu_m/\delta\nu_m=m\mathcal F\)</span></td>
+</tr>
+<tr class="even">
+<td>Airy transmission</td>
+<td><span class="math inline">\(T=\dfrac{(1-R)^2}{(1-R)^2+4R\sin^2(2\pi nL/\lambda)}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="diffraction-and-scattering-sec-diffraction-sec-scattering" class="level2 g-col-12 g-col-lg-6" data-number="B.12">
+<h2 data-number="B.12" class="anchored" data-anchor-id="diffraction-and-scattering-sec-diffraction-sec-scattering"><span class="header-section-number">B.12</span> Diffraction and scattering (<a href="diffraction.html" class="quarto-xref"><span>Chapter 13</span></a>, <a href="scattering.html" class="quarto-xref"><span>Chapter 14</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Fraunhofer regime</td>
+<td><span class="math inline">\(z\gg D\)</span> and <span class="math inline">\(z\gg\pi D^2/\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td>single slit</td>
+<td><span class="math inline">\(I=I_0\,\mathrm{sinc}^2\beta\)</span>, <span class="math inline">\(\ \beta=\pi a\sin\theta/\lambda\)</span>; zeros <span class="math inline">\(\sin\theta=m\lambda/a\)</span></td>
+</tr>
+<tr class="odd">
+<td>circular aperture</td>
+<td><span class="math inline">\(I=I_0[2J_1(\gamma)/\gamma]^2\)</span>, <span class="math inline">\(\ \gamma=\tfrac12kD\sin\theta\)</span></td>
+</tr>
+<tr class="even">
+<td>Rayleigh criterion</td>
+<td><span class="math inline">\(\sin\Delta\theta_\text{min}=1.22\lambda/D\)</span></td>
+</tr>
+<tr class="odd">
+<td>grating</td>
+<td><span class="math inline">\(d(\sin\theta_m-\sin\theta_i)=m\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td>blaze</td>
+<td><span class="math inline">\(2\gamma=\theta_m-\theta_i\)</span></td>
+</tr>
+<tr class="odd">
+<td>resolving power</td>
+<td><span class="math inline">\(\lambda/\Delta\lambda=mN\)</span></td>
+</tr>
+<tr class="even">
+<td>Rayleigh scattering</td>
+<td><span class="math inline">\(\alpha_R\propto\lambda^{-4}\)</span>, pattern <span class="math inline">\(\propto1+\cos^2\theta\)</span></td>
+</tr>
+<tr class="odd">
+<td>Brillouin shift</td>
+<td><span class="math inline">\(\nu_B=2nv_a/\lambda\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+<section id="typical-numbers-worth-remembering" class="level2" data-number="B.13">
+<h2 data-number="B.13" class="anchored" data-anchor-id="typical-numbers-worth-remembering"><span class="header-section-number">B.13</span> Typical numbers worth remembering</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>quantity</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>glass–air reflectance (normal incidence)</td>
+<td>≈ 4 % per surface</td>
+</tr>
+<tr class="even">
+<td>Si–air reflectance</td>
+<td>≈ 30 %</td>
+</tr>
+<tr class="odd">
+<td>Brewster angle air → glass</td>
+<td>56.3°</td>
+</tr>
+<tr class="even">
+<td>critical angle glass → air</td>
+<td>≈ 42°</td>
+</tr>
+<tr class="odd">
+<td>silica at 1550 nm</td>
+<td><span class="math inline">\(n\approx1.444\)</span>, <span class="math inline">\(N_g\approx1.463\)</span></td>
+</tr>
+<tr class="even">
+<td>optical period at 1550 nm</td>
+<td>≈ 5.2 fs</td>
+</tr>
+<tr class="odd">
+<td>He-Ne laser (multimode) coherence length</td>
+<td>≈ 20 cm</td>
+</tr>
+<tr class="even">
+<td>LED (1550 nm, 150 nm wide) coherence length</td>
+<td>≈ 16 µm</td>
+</tr>
+<tr class="odd">
+<td>human eye angular resolution</td>
+<td>≈ 1 arcmin</td>
+</tr>
+</tbody>
+</table>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter1\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./running.html" class="pagination-link" aria-label="Running the notebooks">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Formula sheet {#sec-cheatsheet}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>All the key relations of Chapter 1 on one page. Each block links to the chapter where the formula is derived and used.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>SI units; engineering convention $e^{j(\omega t-kz)}$, $N=n-jK$. Use your browser's *Print → Save as PDF* for a paper copy.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="false"}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Symbols</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>$\lambda$ vacuum wavelength · $k=2\pi/\lambda$ · $\nu$ frequency · $\omega=2\pi\nu$ · $n$ refractive index · $N=n-jK$ complex index ·</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>$\varepsilon_r$ relative permittivity · $c$ speed of light · $\theta_i,\theta_t$ incidence and transmission angles (from the normal) ·</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>$R,T$ reflectance and transmittance (power) · $r,t$ amplitude coefficients</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>::::: {.grid}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Waves (@sec-em)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> plane wave <span class="pp">|</span> $E_x=E_0\cos(\omega t-kz+\phi_0)$ <span class="pp">|</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> wave vector form <span class="pp">|</span> $E=E_0\cos(\omega t-\mathbf k\cdot\mathbf r+\phi_0)$ <span class="pp">|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> phase velocity <span class="pp">|</span> $v=\omega/k=\nu\lambda=c/n$ <span class="pp">|</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> phase change over $\Delta z$ <span class="pp">|</span> $\Delta\phi=k\,\Delta z=2\pi\Delta z/\lambda$ <span class="pp">|</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> in a medium <span class="pp">|</span> $\lambda_\text{medium}=\lambda/n$, $\ k_\text{medium}=nk$ <span class="pp">|</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> photon energy <span class="pp">|</span> $E=h\nu=hc/\lambda$ ($1.24/\lambda<span class="co">[</span><span class="ot">\mu\text{m}</span><span class="co">]</span>$ eV) <span class="pp">|</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> spectral width <span class="pp">|</span> $\Delta\lambda=\lambda^2\Delta\nu/c$ (100 GHz ↔ 0.8 nm at 1550 nm) <span class="pp">|</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> spherical wave <span class="pp">|</span> amplitude $\propto1/r$, irradiance $\propto1/r^2$ <span class="pp">|</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gaussian beams (@sec-gauss)</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> irradiance <span class="pp">|</span> $I(r,z)=\dfrac{2P}{\pi w^2}e^{-2r^2/w^2}$ <span class="pp">|</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> beam radius <span class="pp">|</span> $w(z)=w_0\sqrt{1+(z/z_0)^2}$ <span class="pp">|</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rayleigh range <span class="pp">|</span> $z_0=\pi w_0^2n/\lambda$ <span class="pp">|</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> divergence <span class="pp">|</span> $\theta=\lambda/(\pi w_0)$; real beams $2\theta=M^2\dfrac{4\lambda}{\pi(2w_0)}$ <span class="pp">|</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> wavefront radius <span class="pp">|</span> $R(z)=z<span class="co">[</span><span class="ot">1+(z_0/z)^2</span><span class="co">]</span>$ <span class="pp">|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> power inside $r=w$ <span class="pp">|</span> $1-e^{-2}\approx86\,\%$ <span class="pp">|</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ABCD law <span class="pp">|</span> $q=z+jz_0$, $\ q'=\dfrac{Aq+B}{Cq+D}$ <span class="pp">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gaussian coupling <span class="pp">|</span> $\eta=\left(\dfrac{2w_1w_2}{w_1^2+w_2^2}\right)^2e^{-2d^2/(w_1^2+w_2^2)}$ <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Irradiance (@sec-irradiance)</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> magnetic field <span class="pp">|</span> $B=E/v$ <span class="pp">|</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> energy density <span class="pp">|</span> $u=\varepsilon_0\varepsilon_rE^2$ <span class="pp">|</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Poynting vector <span class="pp">|</span> $\mathbf S=v^2\varepsilon_0\varepsilon_r\,\mathbf E\times\mathbf B$ <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> average irradiance <span class="pp">|</span> $I=\tfrac12c\,\varepsilon_0nE_0^2$ <span class="pp">|</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gaussian peak <span class="pp">|</span> $I_0=2P/(\pi w_0^2)$ <span class="pp">|</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> isotropic source <span class="pp">|</span> $I=P/(4\pi r^2)$ <span class="pp">|</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Refractive index and absorption (@sec-index)</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> index <span class="pp">|</span> $n=\sqrt{\varepsilon_r}$ (at the optical frequency) <span class="pp">|</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sellmeier <span class="pp">|</span> $n^2=1+\sum_i\dfrac{A_i\lambda^2}{\lambda^2-\lambda_i^2}$ <span class="pp">|</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lorentz oscillator <span class="pp">|</span> $\varepsilon_r=1+\dfrac{\omega_p^2}{\omega_0^2-\omega^2+j\gamma\omega}$, $\ \omega_p^2=\dfrac{Ne^2}{\varepsilon_0m}$ <span class="pp">|</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Drude (metals) <span class="pp">|</span> Lorentz with $\omega_0=0$ <span class="pp">|</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> complex index <span class="pp">|</span> $N=n-jK$, $\ n^2-K^2=\varepsilon_r'$, $\ 2nK=\varepsilon_r''$ <span class="pp">|</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> absorption <span class="pp">|</span> $\alpha=4\pi K/\lambda$, $\ I=I_0e^{-\alpha z}$ <span class="pp">|</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> reflectance <span class="pp">|</span> $R=\dfrac{(n-1)^2+K^2}{(n+1)^2+K^2}$ <span class="pp">|</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kramers–Kronig <span class="pp">|</span> $\varepsilon_r'-1=\dfrac2\pi\mathcal P<span class="sc">\!</span>\int_0^\infty\dfrac{\omega'\varepsilon_r''(\omega')}{\omega'^2-\omega^2}d\omega'$ <span class="pp">|</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Group velocity (@sec-group)</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> group velocity <span class="pp">|</span> $v_g=d\omega/dk=c/N_g$ <span class="pp">|</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> group index <span class="pp">|</span> $N_g=n-\lambda\,dn/d\lambda$ <span class="pp">|</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> beat of two waves <span class="pp">|</span> $E=2E_0\cos(\delta\omega t-\delta kz)\cos(\omega t-kz)$ <span class="pp">|</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> group delay <span class="pp">|</span> $\tau_g=LN_g/c$ <span class="pp">|</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> material dispersion <span class="pp">|</span> $D=-\dfrac{\lambda}{c}\dfrac{d^2n}{d\lambda^2}$ <span class="pp">|</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Snell's law and TIR (@sec-snell)</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> reflection <span class="pp">|</span> $\theta_r=\theta_i$ <span class="pp">|</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Snell <span class="pp">|</span> $n_1\sin\theta_i=n_2\sin\theta_t$ <span class="pp">|</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> critical angle <span class="pp">|</span> $\sin\theta_c=n_2/n_1$ ($n_1&gt;n_2$) <span class="pp">|</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> lateral displacement <span class="pp">|</span> $d=L\sin\theta_i\left<span class="co">[</span><span class="ot">1-\dfrac{\cos\theta_i}{\sqrt{n^2-\sin^2\theta_i}}\right</span><span class="co">]</span>$ <span class="pp">|</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> numerical aperture <span class="pp">|</span> $\mathrm{NA}=n_0\sin\theta_a=\sqrt{n_1^2-n_2^2}$ <span class="pp">|</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fermat <span class="pp">|</span> the actual path makes the travel time stationary <span class="pp">|</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fresnel equations (@sec-fresnel)</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r_\perp$ <span class="pp">|</span> $\dfrac{\cos\theta_i-\sqrt{n^2-\sin^2\theta_i}}{\cos\theta_i+\sqrt{n^2-\sin^2\theta_i}}$, $\ n=n_2/n_1$ <span class="pp">|</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r_\parallel$ <span class="pp">|</span> $\dfrac{\sqrt{n^2-\sin^2\theta_i}-n^2\cos\theta_i}{\sqrt{n^2-\sin^2\theta_i}+n^2\cos\theta_i}$ <span class="pp">|</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $t$ relations <span class="pp">|</span> $t_\perp=1+r_\perp$, $\ r_\parallel+nt_\parallel=1$ <span class="pp">|</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> normal incidence <span class="pp">|</span> $R=\left(\dfrac{n_1-n_2}{n_1+n_2}\right)^2$ (glass: 4 %) <span class="pp">|</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Brewster <span class="pp">|</span> $\tan\theta_p=n_2/n_1$ ($r_\parallel=0$) <span class="pp">|</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TIR phase ⊥ <span class="pp">|</span> $\tan(\phi_\perp/2)=\sqrt{\sin^2\theta_i-n^2}/\cos\theta_i$ <span class="pp">|</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TIR phase ∥ <span class="pp">|</span> $\tan(\phi_\parallel/2+\pi/2)=\sqrt{\sin^2\theta_i-n^2}/(n^2\cos\theta_i)$ <span class="pp">|</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> evanescent decay <span class="pp">|</span> $\alpha_2=\dfrac{2\pi n_2}{\lambda}\sqrt{\dfrac{n_1^2}{n_2^2}\sin^2\theta_i-1}$, $\ \delta=1/\alpha_2$ <span class="pp">|</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Goos–Hänchen <span class="pp">|</span> $\Delta z\approx2\delta\tan\theta_i$ <span class="pp">|</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> transmittance <span class="pp">|</span> $T=\dfrac{n_2\cos\theta_t}{n_1\cos\theta_i}\lvert t\rvert^2=1-R$ <span class="pp">|</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## Thin films (@sec-thinfilm)</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> round-trip phase <span class="pp">|</span> $\phi=2\cdot\dfrac{2\pi}{\lambda}n_2d$ <span class="pp">|</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> film reflection <span class="pp">|</span> $r=\dfrac{r_{12}+r_{23}e^{-j\phi}}{1+r_{12}r_{23}e^{-j\phi}}$ <span class="pp">|</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> AR coating <span class="pp">|</span> $d=m\dfrac{\lambda}{4n_2}$ ($m$ odd), $\ n_2=\sqrt{n_1n_3}$ <span class="pp">|</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $R_\text{min}$ ($n_1&lt;n_2&lt;n_3$) <span class="pp">|</span> $\left(\dfrac{n_1n_3-n_2^2}{n_1n_3+n_2^2}\right)^2$ at $\phi=$ odd $\pi$ <span class="pp">|</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $R_\text{max}$ ($n_1&lt;n_2&lt;n_3$) <span class="pp">|</span> $\left(\dfrac{n_3-n_1}{n_3+n_1}\right)^2$ at $\phi=$ even $\pi$ <span class="pp">|</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> incoherent plate <span class="pp">|</span> $T=(1-R)/(1+R)$ <span class="pp">|</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coherence and interference (@sec-coherence, @sec-interference)</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> coherence time <span class="pp">|</span> $\Delta t\approx1/\Delta\nu$ <span class="pp">|</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> coherence length <span class="pp">|</span> $l_c=c\Delta t=\lambda^2/\Delta\lambda$ <span class="pp">|</span></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gaussian pulse <span class="pp">|</span> $\Delta t\,\Delta\nu\approx0.44$ (FWHM) <span class="pp">|</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> two-beam interference <span class="pp">|</span> $I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta$ <span class="pp">|</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> phase difference <span class="pp">|</span> $\delta=k(r_2-r_1)+(\phi_2-\phi_1)$ <span class="pp">|</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> visibility <span class="pp">|</span> $V=\dfrac{2\sqrt{I_1I_2}}{I_1+I_2}$ <span class="pp">|</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mach–Zehnder <span class="pp">|</span> $I\propto\cos^2(\Phi/2)$; quadrature at $\Phi=\pi/2$ <span class="pp">|</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> unbalanced MZI <span class="pp">|</span> $\mathrm{FSR}=\lambda^2/(N_g\Delta L)$ <span class="pp">|</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> etalon rings <span class="pp">|</span> $2nL\cos\theta=m\lambda$ <span class="pp">|</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bragg mirrors (@sec-bragg)</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bragg condition <span class="pp">|</span> $n_1d_1+n_2d_2=m\lambda/2$ <span class="pp">|</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> quarter-wave stack <span class="pp">|</span> $d_1=\lambda/4n_1$, $\ d_2=\lambda/4n_2$ <span class="pp">|</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> peak reflectance <span class="pp">|</span> $R_N=\left<span class="co">[</span><span class="ot">\dfrac{n_0n_2^{2N}-n_3n_1^{2N}}{n_0n_2^{2N}+n_3n_1^{2N}}\right</span><span class="co">]</span>^2$ <span class="pp">|</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> stop band <span class="pp">|</span> $\Delta\lambda\approx\dfrac{4\lambda_0}{\pi}\arcsin\dfrac{n_1-n_2}{n_1+n_2}$ <span class="pp">|</span></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> penetration depth <span class="pp">|</span> $L_\text{pen}=-\tfrac12\,d\phi/dk\approx\lambda/(4\Delta n)$ <span class="pp">|</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1D band structure <span class="pp">|</span> $\cos K\Lambda=\cos k_1d_1\cos k_2d_2-\tfrac12\left(\tfrac{n_1}{n_2}+\tfrac{n_2}{n_1}\right)\sin k_1d_1\sin k_2d_2$ <span class="pp">|</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fabry–Perot (@sec-fp)</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> modes <span class="pp">|</span> $m\lambda_m/2=nL$, $\ \nu_m=mc/(2nL)$ <span class="pp">|</span></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> free spectral range <span class="pp">|</span> $\nu_f=c/(2nL)$, $\ \Delta\lambda=\lambda^2/(2nL)$ <span class="pp">|</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> finesse <span class="pp">|</span> $\mathcal F=\dfrac{\pi\sqrt R}{1-R}$ <span class="pp">|</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> linewidth <span class="pp">|</span> $\delta\nu_m=\nu_f/\mathcal F$ <span class="pp">|</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> quality factor <span class="pp">|</span> $Q=\nu_m/\delta\nu_m=m\mathcal F$ <span class="pp">|</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Airy transmission <span class="pp">|</span> $T=\dfrac{(1-R)^2}{(1-R)^2+4R\sin^2(2\pi nL/\lambda)}$ <span class="pp">|</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## Diffraction and scattering (@sec-diffraction, @sec-scattering)</span></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fraunhofer regime <span class="pp">|</span> $z\gg D$ and $z\gg\pi D^2/\lambda$ <span class="pp">|</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> single slit <span class="pp">|</span> $I=I_0\,\mathrm{sinc}^2\beta$, $\ \beta=\pi a\sin\theta/\lambda$; zeros $\sin\theta=m\lambda/a$ <span class="pp">|</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> circular aperture <span class="pp">|</span> $I=I_0<span class="co">[</span><span class="ot">2J_1(\gamma)/\gamma</span><span class="co">]</span>^2$, $\ \gamma=\tfrac12kD\sin\theta$ <span class="pp">|</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rayleigh criterion <span class="pp">|</span> $\sin\Delta\theta_\text{min}=1.22\lambda/D$ <span class="pp">|</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> grating <span class="pp">|</span> $d(\sin\theta_m-\sin\theta_i)=m\lambda$ <span class="pp">|</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> blaze <span class="pp">|</span> $2\gamma=\theta_m-\theta_i$ <span class="pp">|</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> resolving power <span class="pp">|</span> $\lambda/\Delta\lambda=mN$ <span class="pp">|</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Rayleigh scattering <span class="pp">|</span> $\alpha_R\propto\lambda^{-4}$, pattern $\propto1+\cos^2\theta$ <span class="pp">|</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Brillouin shift <span class="pp">|</span> $\nu_B=2nv_a/\lambda$ <span class="pp">|</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Typical numbers worth remembering</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> quantity <span class="pp">|</span> value <span class="pp">|</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> glass–air reflectance (normal incidence) <span class="pp">|</span> ≈ 4 % per surface <span class="pp">|</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Si–air reflectance <span class="pp">|</span> ≈ 30 % <span class="pp">|</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Brewster angle air → glass <span class="pp">|</span> 56.3° <span class="pp">|</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> critical angle glass → air <span class="pp">|</span> ≈ 42° <span class="pp">|</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> silica at 1550 nm <span class="pp">|</span> $n\approx1.444$, $N_g\approx1.463$ <span class="pp">|</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> optical period at 1550 nm <span class="pp">|</span> ≈ 5.2 fs <span class="pp">|</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> He-Ne laser (multimode) coherence length <span class="pp">|</span> ≈ 20 cm <span class="pp">|</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> LED (1550 nm, 150 nm wide) coherence length <span class="pp">|</span> ≈ 16 µm <span class="pp">|</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> human eye angular resolution <span class="pp">|</span> ≈ 1 arcmin <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter1/cheatsheet.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
