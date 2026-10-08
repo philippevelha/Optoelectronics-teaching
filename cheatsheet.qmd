@@ -1,0 +1,179 @@
+# Formula sheet {#sec-cheatsheet}
+
+All the key relations of Chapter 2 on one page. Each block links to the chapter where the formula is derived and used.
+SI units unless stated otherwise. Use your browser's *Print → Save as PDF* to get a paper copy.
+
+::: {.callout-note collapse="false"}
+## Symbols
+$n_1, n_2$ core / cladding index · $a$ half-thickness (slab) or core radius (fiber) · $\lambda$ vacuum wavelength ·
+$k=k_0=2\pi/\lambda$ · $k_1=n_1k$ · $\beta$ propagation constant · $c$ speed of light · $L$ length ·
+$\omega=2\pi c/\lambda$ · $\Delta\lambda_{1/2}$ source linewidth (FWHM) · $\sigma$ rms pulse width · $B$ bit rate
+:::
+
+::::: {.grid}
+
+:::: {.g-col-12 .g-col-lg-6}
+## Planar waveguide (@sec-planar)
+
+| | |
+|---|---|
+| waveguide condition | $\dfrac{2\pi n_1(2a)}{\lambda}\cos\theta_m-\phi_m=m\pi$ |
+| TIR phase (TE) | $\tan\dfrac{\phi_m}{2}=\dfrac{\sqrt{\sin^2\theta_m-(n_2/n_1)^2}}{\cos\theta_m}$ |
+| TIR phase (TM) | $\tan\dfrac{\phi_m}{2}=\dfrac{\sqrt{\sin^2\theta_m-(n_2/n_1)^2}}{(n_2/n_1)^2\cos\theta_m}$ |
+| propagation constants | $\beta_m=k_1\sin\theta_m,\quad \kappa_m=k_1\cos\theta_m$ |
+| effective index | $n_\text{eff}=n_1\sin\theta_m,\quad n_2<n_\text{eff}<n_1$ |
+| critical angle | $\sin\theta_c=n_2/n_1$ |
+| V-number | $V=\dfrac{2\pi a}{\lambda}\sqrt{n_1^2-n_2^2}$ |
+| single mode | $V<\pi/2,\quad \lambda_c=4a\sqrt{n_1^2-n_2^2}$ |
+| number of modes | $M=\lfloor 2V/\pi\rfloor+1$ |
+| penetration depth | $\delta_m=1/\alpha_m,\ \ \alpha_m=\dfrac{2\pi n_2}{\lambda}\sqrt{\dfrac{n_1^2}{n_2^2}\sin^2\theta_m-1}$ |
+| mode field width | $2w_0=2a+2\delta\approx 2a\,\dfrac{V+1}{V}$ |
+| group velocity | $v_g=d\omega/d\beta$, between $c/n_1$ and $c/n_2$ |
+| intermodal spread | $\dfrac{\Delta\tau}{L}\approx\dfrac{n_1-n_2}{c}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Step-index fiber (@sec-fibers)
+
+| | |
+|---|---|
+| index difference | $\Delta=\dfrac{n_1^2-n_2^2}{2n_1^2}\approx\dfrac{n_1-n_2}{n_1}$ |
+| numerical aperture | $\mathrm{NA}=\sqrt{n_1^2-n_2^2}\approx n_1\sqrt{2\Delta}$ |
+| acceptance angle | $\sin\alpha_\text{max}=\mathrm{NA}/n_0$, total $2\alpha_\text{max}$ |
+| V-number | $V=\dfrac{2\pi a}{\lambda}\,\mathrm{NA}$ |
+| single mode | $V<2.405\ \Leftrightarrow\ \lambda>\lambda_c=\dfrac{2\pi a\,\mathrm{NA}}{2.405}$ |
+| number of modes | $M\approx V^2/2\quad(V\gg1)$ |
+| LP eigenvalue eq. | $\dfrac{uJ_{l-1}(u)}{J_l(u)}=-\dfrac{wK_{l-1}(w)}{K_l(w)},\ \ u^2+w^2=V^2$ |
+| normalized prop. const. | $b=\dfrac{(\beta/k)^2-n_2^2}{n_1^2-n_2^2}=\dfrac{w^2}{V^2}$ |
+| LP₀₁ approximation | $b\approx(1.1428-0.996/V)^2,\ \ 1.5<V<2.5$ |
+| propagation constant | $\beta\approx n_2k\,(1+b\Delta)$ |
+| MFD (Marcuse) | $\dfrac{2w}{2a}\approx0.65+1.619V^{-3/2}+2.879V^{-6}$ |
+| MFD (simple) | $2w\approx 2a\,(2.6/V)$ |
+| power inside $r<w$ | $1-e^{-2}\approx86\,\%$ |
+| LP cut-offs | LP₀ₘ: zeros of $J_1$; LPₗₘ ($l\ge1$): zeros of $J_{l-1}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Dispersion (@sec-dispersion)
+
+| | |
+|---|---|
+| group delay | $\tau_g=L/v_g,\quad v_g=d\omega/d\beta$ |
+| group index | $N_g=n-\lambda\,\dfrac{dn}{d\lambda}$ |
+| dispersion coefficient | $D=\dfrac1L\dfrac{d\tau_g}{d\lambda}$ [ps nm⁻¹ km⁻¹] |
+| chromatic spread | $\Delta\tau_{1/2}=\lvert D_{ch}\rvert\,L\,\Delta\lambda_{1/2}$ |
+| material dispersion | $D_m=-\dfrac{\lambda}{c}\dfrac{d^2n}{d\lambda^2}$ |
+| waveguide dispersion | $D_w\approx-\dfrac{n_2\Delta}{c\lambda}\left[0.080+0.549(2.834-V)^2\right]$ |
+| total (chromatic) | $D_{ch}=D_m+D_w+D_p$ |
+| slope formula (ITU) | $D(\lambda)=\dfrac{S_0}{4}\left(\lambda-\dfrac{\lambda_0^4}{\lambda^3}\right)$ |
+| link to $\beta_2$ | $\beta_2=-\dfrac{\lambda^2}{2\pi c}D$ |
+| Sellmeier | $n^2=1+\sum_i\dfrac{B_i\lambda^2}{\lambda^2-\lambda_i^2}$ |
+| PMD | $\sigma_\text{PMD}\approx D_\text{PMD}\sqrt L$, $D_\text{PMD}\approx0.1$–$0.5$ ps km⁻¹ᐟ² |
+| total rms spread | $\sigma^2=\sigma_\text{inter}^2+\sigma_\text{intra}^2+\sigma_\text{PMD}^2$ |
+| compensation | $D_tL_t+D_cL_c\approx0$ |
+| SPM | $n'=n+CI$ (or $n_0+n_2I$), $\ \Delta\tau/L=\Delta n/c$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Bit rate and capacity (@sec-bitrate)
+
+| | |
+|---|---|
+| Gaussian pulse widths | $\Delta\tau_{1/2}=2.355\,\sigma,\quad\sigma\approx0.425\,\Delta\tau_{1/2}$ |
+| max bit rate (RZ) | $B\approx\dfrac{0.25}{\sigma}=\dfrac{0.59}{\Delta\tau_{1/2}}$ |
+| NRZ | $B_\text{NRZ}\approx2B_\text{RZ}$ |
+| bit rate × distance | $BL\approx\dfrac{0.59}{\lvert D\rvert\,\Delta\lambda_{1/2}}$ (RZ, Gaussian) |
+| narrow source | $B^2L\lesssim\dfrac{c}{\lvert D\rvert\lambda^2}$ |
+| optical bandwidth | $f_{op}\approx0.75B$ (Gaussian), $0.99B$ (triangle), $0.69B$ (rect.) |
+| electrical bandwidth | $f_{el}\approx0.70f_{op}$ |
+| triangular pulse | $\sigma=\Delta\tau_{1/2}/\sqrt6$ |
+| Nyquist | $R_\text{max}=2B$ symbols/s |
+| Shannon | $C=B\log_2(1+S/N)$ |
+| decibels | $S/N\,[\text{dB}]=10\log_{10}(S/N)$; $P[\text{dBm}]=10\log_{10}(P/1\,\text{mW})$ |
+| Q factor | $Q=\dfrac{\mu_1-\mu_0}{\sigma_1+\sigma_0}$, $\ \text{BER}=\tfrac12\operatorname{erfc}(Q/\sqrt2)$ |
+| reference points | $Q=6\Rightarrow\text{BER}\approx10^{-9}$; $\ Q=7\Rightarrow10^{-12}$ |
+| IM/DD power fading | $\lvert H(f)\rvert=\lvert\cos(2\pi^2\beta_2Lf^2)\rvert$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Graded-index fiber (@sec-grin)
+
+| | |
+|---|---|
+| index profile | $n(r)=n_1\left[1-2\Delta(r/a)^\gamma\right]^{1/2}\ (r<a)$ |
+| optimum profile | $\gamma_\text{opt}\approx2-\tfrac{12}{5}\Delta\ (\approx2)$ |
+| minimum spread | $\dfrac{\sigma_\text{inter}}{L}\approx\dfrac{n_1\Delta^2}{20\sqrt3\,c}$ |
+| step-index (comparison) | $\dfrac{\Delta\tau}{L}\approx\dfrac{n_1\Delta}{c},\ \ \sigma\approx0.29\,\Delta\tau$ |
+| number of modes | $M\approx\dfrac{\gamma}{\gamma+2}\dfrac{V^2}{2}\ \ (\gamma=2:\ V^2/4)$ |
+| ray invariant | $\tilde\beta=n(r)\cos\theta(r)=\text{const.}$ |
+| GRIN rod pitch | $P=\dfrac{2\pi a}{\sqrt{2\Delta}}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Attenuation and bending (@sec-attenuation)
+
+| | |
+|---|---|
+| exponential decay | $P_\text{out}=P_\text{in}e^{-\alpha L}$ |
+| in dB | $\alpha_\text{dB}=\dfrac{10}{L}\log_{10}\dfrac{P_\text{in}}{P_\text{out}}=4.34\,\alpha$ |
+| Rayleigh (physics) | $\alpha_R\approx\dfrac{8\pi^3}{3\lambda^4}(n^2-1)^2\beta_Tk_BT_f$ |
+| Rayleigh (empirical) | $\alpha_R=A_R/\lambda^4$, $A_R\approx0.9$ dB km⁻¹ µm⁴ |
+| doping dependence | $A_R\approx0.63+2.06\,\mathrm{NA}$ (step), $0.63+1.75\,\mathrm{NA}$ (GRIN) |
+| IR lattice absorption | $\alpha_{FIR}=A\,e^{-B/\lambda}$, $A=7.81\times10^{11}$ dB/km, $B=48.48$ µm |
+| bending loss | $\alpha_B=A\,e^{-R/R_c}$ |
+| MAC number | $N_\text{MAC}=\mathrm{MFD}/\lambda_c$ (typically 6–8) |
+| microbending scaling | $R_c\propto\Delta^{-3/2}$ |
+| power budget | $P_{rx}=P_{tx}-\alpha L-\sum\text{(splices, connectors)}-\text{margin}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## WDM, couplers, nonlinearity (@sec-wdm)
+
+| | |
+|---|---|
+| channel spacing | $\Delta\lambda=\dfrac{\lambda^2}{c}\Delta\nu$ (100 GHz ↔ 0.8 nm at 1550 nm) |
+| directional coupler | $P_1=P_0\cos^2(\kappa z),\ \ P_2=P_0\sin^2(\kappa z)$ |
+| coupler figures | split ratio $\dfrac{P_2}{P_1+P_2}$; excess loss $10\log\dfrac{P_0}{P_1+P_2}$; insertion loss $10\log\dfrac{P_0}{P_j}$ |
+| N×N star coupler | $\dfrac N2\log_2N$ 3 dB couplers, splitting loss $10\log_{10}N$ |
+| four-wave mixing | $\nu_{ijk}=\nu_i+\nu_j-\nu_k$, $\ N^2(N-1)/2$ products |
+| SPM chirp | $\phi_{NL}=\gamma PL_\text{eff}$, $\ \delta\omega=-d\phi_{NL}/dt$ |
+| effective length | $L_\text{eff}=(1-e^{-\alpha L})/\alpha$ |
+| SBS threshold | $P_\text{th}\approx21\dfrac{A_\text{eff}}{g_BL_\text{eff}}\left(1+\dfrac{\Delta\nu_s}{\Delta\nu_B}\right)$ |
+| Brillouin shift | $\nu_B=2nv_a/\lambda\approx11$ GHz at 1550 nm |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Gratings, interferometers, sensors (@sec-special, @sec-sensors)
+
+| | |
+|---|---|
+| Bragg fiber / mirror | $n_1d_1+n_2d_2=m\lambda/2$, quarter wave: $n_1d_1=n_2d_2=\lambda/4$ |
+| Bragg wavelength | $\lambda_B=2n_\text{eff}\Lambda$ |
+| FBG coupling | $\kappa=\pi\Delta n/\lambda$; strong if $\kappa L>1$ |
+| FBG peak reflectance | $R_\text{max}=\tanh^2(\kappa L)$ |
+| FBG bandwidth | $\Delta\lambda_0=\dfrac{\lambda_B^2}{\pi n_\text{eff}L}\sqrt{(\kappa L)^2+\pi^2}$ |
+| FBG sensing | $\dfrac{\Delta\lambda_B}{\lambda_B}=(1-p_e)\varepsilon+(\alpha_\Lambda+\xi)\Delta T$ (≈ 1.2 pm/µε, ≈ 10 pm/K) |
+| OTDR distance | $z=v_gt/2$, resolution $\Delta z=v_g\tau/2$ |
+| OTDR backscatter | $P_{bs}=P_0S\alpha_s\dfrac{v_g\tau}{2}e^{-2\alpha z}$ |
+| averaging | SNR $\propto\sqrt N$ ($5\log_{10}N$ dB, one-way) |
+| Raman DTS | $\dfrac{P_{AS}}{P_S}=\left(\dfrac{\lambda_S}{\lambda_{AS}}\right)^4e^{-h\Delta\nu/k_BT}$ |
+| Fabry–Perot | $T=\dfrac{1}{1+F\sin^2(\delta/2)}$, $F=\dfrac{4R}{(1-R)^2}$, $\delta=\dfrac{4\pi nd\nu}{c}$ |
+| FSR, finesse | $\mathrm{FSR}=\dfrac{c}{2nd}$, $\ \mathcal F=\dfrac{\pi\sqrt R}{1-R}$ |
+| Sagnac phase | $\Delta\phi=\dfrac{2\pi LD}{\lambda c}\Omega=\dfrac{8\pi NA}{\lambda c}\Omega$ |
+::::
+
+:::::
+
+## Typical numbers worth remembering
+
+| quantity | value |
+|---|---|
+| silica index at 1550 nm | $n\approx1.444$, $N_g\approx1.463$ |
+| zero material dispersion (silica) | $\approx1.27$ µm |
+| standard SMF (G.652) | $\lambda_0\approx1310$ nm, $D\approx17$ ps nm⁻¹ km⁻¹ at 1550 nm, MFD ≈ 9.2 µm (1310), $\lambda_c\le1260$ nm |
+| loss of standard SMF | ≈ 0.33 dB/km (1310 nm), ≈ 0.18–0.2 dB/km (1550 nm) |
+| Rayleigh limit of silica at 1550 nm | ≈ 0.14 dB/km |
+| step-index MMF intermodal spread | tens of ns/km |
+| optimised GRIN MMF | tens of ps/km |
+| DWDM grid | 193.1 THz anchor, 100/50 GHz spacing, C-band 1530–1565 nm |
+| SBS threshold (narrow laser, SMF) | a few mW |

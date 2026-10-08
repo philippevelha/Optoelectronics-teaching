@@ -1,0 +1,67 @@
+project:
+  type: book
+  output-dir: _book
+  resources:
+    - fiberlib.py
+    - notebooks/*.ipynb
+
+book:
+  title: "Dielectric Waveguides and Optical Fibers"
+  subtitle: "An interactive companion to Chapter 2 — Optoelectronics"
+  author: "Philippe Velha"
+  date: today
+  search: true
+  site-url: https://philippevelha.github.io/optoelectronics-ch2/
+  repo-url: https://github.com/philippevelha/optoelectronics-ch2
+  repo-actions: [source, issue]
+  downloads: []
+  chapters:
+    - index.qmd
+    - part: "Guiding light"
+      chapters:
+        - planar.qmd
+        - fibers.qmd
+    - part: "Spreading and losing light"
+      chapters:
+        - dispersion.qmd
+        - grin.qmd
+        - attenuation.qmd
+    - part: "From fibers to systems"
+      chapters:
+        - bitrate.qmd
+        - wdm.qmd
+    - part: "Beyond telecom"
+      chapters:
+        - special-fbg.qmd
+        - sensors.qmd
+    - ideas.qmd
+  appendices:
+    - running.qmd
+    - cheatsheet.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles.scss]
+      dark: [darkly, styles.scss]
+    grid:
+      body-width: 1100px      # text column (Quarto default: 800px)
+      sidebar-width: 260px
+      margin-width: 220px
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-summary: "Show the Python"
+    code-tools: true
+    code-copy: true
+    fig-align: center
+    html-math-method: mathjax
+    crossref:
+      chapters: true
+
+execute:
+  freeze: auto
+  warning: false
+
+jupyter: python3

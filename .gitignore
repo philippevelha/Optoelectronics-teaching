@@ -1,0 +1,9 @@
+_book/
+.quarto/
+__pycache__/
+*.quarto_ipynb
+.ipynb_checkpoints/
+/.luarc.json
+
+/.quarto/
+**/*.quarto_ipynb

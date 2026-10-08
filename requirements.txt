@@ -1,0 +1,8 @@
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+pandas>=2.0
+jupyter
+ipywidgets>=8
+# optional: the OptiCommPy cross-check in the bit-rate chapter
+OptiCommPy>=0.10
