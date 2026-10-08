@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; The LED emission spectrum – Semiconductor Science and Light-Emitting Diodes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./quantum-wells.html" rel="next">
+<link href="./led-principle.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./led-principle.html">Light-emitting diodes</a></li><li class="breadcrumb-item"><a href="./spectrum.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Semiconductor Science and Light-Emitting Diodes</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter3/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor science</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Energy bands, holes and E–k diagrams</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Carrier statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./doping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Doping, Fermi level and conductivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">The pn junction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./junction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The pn junction at equilibrium</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The diode: forward and reverse bias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smallsignal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capacitance and the small-signal model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Light-emitting diodes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./led-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spectrum.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quantum-wells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./led-drive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">8.1</span> Key relations</a></li>
+  <li><a href="#spectrum-explorer" id="toc-spectrum-explorer" class="nav-link" data-scroll-target="#spectrum-explorer"><span class="header-section-number">8.2</span> Spectrum explorer</a></li>
+  <li><a href="#the-ideal-spectrum-peak-and-width" id="toc-the-ideal-spectrum-peak-and-width" class="nav-link" data-scroll-target="#the-ideal-spectrum-peak-and-width"><span class="header-section-number">8.3</span> The ideal spectrum: peak and width</a></li>
+  <li><a href="#worked-examples-slides-103108-recomputed" id="toc-worked-examples-slides-103108-recomputed" class="nav-link" data-scroll-target="#worked-examples-slides-103108-recomputed"><span class="header-section-number">8.4</span> Worked examples (slides 103–108), recomputed</a></li>
+  <li><a href="#temperature-dependence-slides-101102" id="toc-temperature-dependence-slides-101102" class="nav-link" data-scroll-target="#temperature-dependence-slides-101102"><span class="header-section-number">8.5</span> Temperature dependence (slides 101–102)</a></li>
+  <li><a href="#degenerately-doped-junctions-slide-109" id="toc-degenerately-doped-junctions-slide-109" class="nav-link" data-scroll-target="#degenerately-doped-junctions-slide-109"><span class="header-section-number">8.6</span> Degenerately doped junctions (slide 109)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">8.7</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/spectrum.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./led-principle.html">Light-emitting diodes</a></li><li class="breadcrumb-item"><a href="./spectrum.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-spectrum" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter3/notebooks/spectrum.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 98–109: energy distribution of carriers, emission spectrum, temperature dependence, worked examples on the linewidth and on the Varshni shift, degenerately doped junctions.</em></p>
+<section id="key-relations" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">8.1</span> Key relations</h2>
+<p>Electrons in the CB are spread over a few <span class="math inline">\(k_BT\)</span> above <span class="math inline">\(E_c\)</span>, holes a few <span class="math inline">\(k_BT\)</span> below <span class="math inline">\(E_v\)</span> (slide 99). The photon energy is <span class="math inline">\(h\nu=E_g+(\text{electron KE})+(\text{hole KE})\)</span>, so the spectrum follows the joint density of states times the Boltzmann tail:</p>
+<p><span class="math display">\[
+I(h\nu)\propto(h\nu-E_g)^{1/2}\exp\!\left[-\frac{h\nu-E_g}{k_BT}\right],
+\qquad h\nu_\text{peak}=E_g+\tfrac12k_BT,\qquad \Delta(h\nu)\approx1.8\,k_BT\text{ to }3\,k_BT .
+\]</span></p>
+<p>Converting the energy width to wavelength with <span class="math inline">\(|d\lambda/d(h\nu)|=\lambda^2/hc\)</span> gives the <strong>LED linewidth</strong> (slides 103–104):</p>
+<p><span class="math display">\[
+\Delta\lambda\approx\lambda_o^2\,\frac{3k_BT}{hc}.
+\]</span></p>
+<p>The bandgap shrinks with temperature (Varshni law, slide 107): <span class="math inline">\(E_g(T)=E_{go}-AT^2/(B+T)\)</span>. The peak moves to longer wavelengths and the line broadens as the LED warms up.</p>
+</section>
+<section id="spectrum-explorer" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="spectrum-explorer"><span class="header-section-number">8.2</span> Spectrum explorer</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="41" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 40;"><span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>vars <span class="op">=</span> ({</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GaAs (870 nm)"</span><span class="op">:</span>          {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.519</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">5.41e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">204</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Al0.06Ga0.94As (≈ 822 nm, slide 101)"</span><span class="op">:</span> {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.519</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">5.41e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">204</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="fl">0.072</span>}<span class="op">,</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="st">"InP (≈ 920 nm)"</span><span class="op">:</span>         {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.421</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">4.9e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">327</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="st">"InGaAsP (≈ 1310 nm)"</span><span class="op">:</span>    {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.421</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">4.9e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">327</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.40</span>}<span class="op">,</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="st">"InGaAsP (≈ 1550 nm)"</span><span class="op">:</span>    {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.421</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">4.9e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">327</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.545</span>}</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>viewof sp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mat</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(vars)<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"GaAs (870 nm)"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"active material"</span>})<span class="op">,</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TC</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">60</span><span class="op">,</span> <span class="dv">150</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"junction temperature (°C)"</span>})<span class="op">,</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sig</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"extra (alloy/inhomogeneous) broadening σ (meV)"</span>})</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="57" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 56;"><span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>spOut <span class="op">=</span> {</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> v <span class="op">=</span> vars[sp<span class="op">.</span><span class="at">mat</span>]<span class="op">;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> curve <span class="op">=</span> (TC<span class="op">,</span> sig) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> T <span class="op">=</span> TC <span class="op">+</span> <span class="fl">273.15</span><span class="op">,</span> kT <span class="op">=</span> <span class="fl">8.617333e-5</span><span class="op">*</span>T<span class="op">,</span> Eg <span class="op">=</span> v<span class="op">.</span><span class="at">Eg0</span> <span class="op">-</span> v<span class="op">.</span><span class="at">A</span><span class="op">*</span>T<span class="op">*</span>T<span class="op">/</span>(v<span class="op">.</span><span class="at">B</span> <span class="op">+</span> T) <span class="op">+</span> v<span class="op">.</span><span class="at">off</span><span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> []<span class="op">,</span> I <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">500</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> e <span class="op">=</span> Eg <span class="op">-</span> <span class="fl">0.08</span> <span class="op">+</span> (<span class="dv">12</span><span class="op">*</span>kT <span class="op">+</span> <span class="fl">0.16</span>)<span class="op">*</span>i<span class="op">/</span><span class="dv">500</span><span class="op">;</span> <span class="cn">E</span><span class="op">.</span><span class="fu">push</span>(e)<span class="op">;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> x <span class="op">=</span> (e <span class="op">-</span> Eg)<span class="op">/</span>kT<span class="op">;</span> I<span class="op">.</span><span class="fu">push</span>(x <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(x)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x) <span class="op">:</span> <span class="dv">0</span>)<span class="op">;</span> }</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> J <span class="op">=</span> I<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (sig <span class="op">&gt;</span> <span class="dv">0</span>) { <span class="kw">const</span> s <span class="op">=</span> sig<span class="op">/</span><span class="dv">1000</span><span class="op">;</span> J <span class="op">=</span> <span class="cn">E</span><span class="op">.</span><span class="fu">map</span>((e<span class="op">,</span> i) <span class="kw">=&gt;</span> { <span class="kw">let</span> acc <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> w <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="cn">E</span><span class="op">.</span><span class="at">length</span><span class="op">;</span> j<span class="op">++</span>) { <span class="kw">const</span> g <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>((<span class="cn">E</span>[j] <span class="op">-</span> e)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>s<span class="op">*</span>s))<span class="op">;</span> acc <span class="op">+=</span> g<span class="op">*</span>I[j]<span class="op">;</span> w <span class="op">+=</span> g<span class="op">;</span> } <span class="cf">return</span> acc<span class="op">/</span>w<span class="op">;</span> })<span class="op">;</span> }</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> pts <span class="op">=</span> <span class="cn">E</span><span class="op">.</span><span class="fu">map</span>((e<span class="op">,</span> i) <span class="kw">=&gt;</span> ({<span class="dt">lam</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>e<span class="op">,</span> <span class="dt">I</span><span class="op">:</span> J[i]}))<span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="co">// FWHM in wavelength</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mx <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>J)<span class="op">,</span> half <span class="op">=</span> pts<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">I</span> <span class="op">&gt;=</span> mx<span class="op">/</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> lams <span class="op">=</span> half<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">lam</span>)<span class="op">,</span> peak <span class="op">=</span> pts[J<span class="op">.</span><span class="fu">indexOf</span>(mx)]<span class="op">.</span><span class="at">lam</span><span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {pts<span class="op">,</span> mx<span class="op">,</span> peak<span class="op">,</span> <span class="dt">fwhm</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>lams) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="op">...</span>lams)<span class="op">,</span> Eg<span class="op">,</span> kT}<span class="op">;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ref <span class="op">=</span> <span class="fu">curve</span>(<span class="dv">25</span><span class="op">,</span> sp<span class="op">.</span><span class="at">sig</span>)<span class="op">,</span> now <span class="op">=</span> <span class="fu">curve</span>(sp<span class="op">.</span><span class="at">TC</span><span class="op">,</span> sp<span class="op">.</span><span class="at">sig</span>)<span class="op">;</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> norm <span class="op">=</span> ref<span class="op">.</span><span class="at">mx</span><span class="op">;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">ref</span><span class="op">:</span> ref<span class="op">.</span><span class="at">pts</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">I</span><span class="op">:</span> d<span class="op">.</span><span class="at">I</span><span class="op">/</span>norm<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="st">"25 °C"</span>}))<span class="op">,</span> <span class="dt">now</span><span class="op">:</span> now<span class="op">.</span><span class="at">pts</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">I</span><span class="op">:</span> d<span class="op">.</span><span class="at">I</span><span class="op">/</span>norm<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>sp<span class="op">.</span><span class="at">TC</span><span class="sc">}</span><span class="vs"> °C`</span>}))<span class="op">,</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>          <span class="dt">peak</span><span class="op">:</span> now<span class="op">.</span><span class="at">peak</span><span class="op">,</span> <span class="dt">fwhm</span><span class="op">:</span> now<span class="op">.</span><span class="at">fwhm</span><span class="op">,</span> <span class="dt">Eg</span><span class="op">:</span> now<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> <span class="dt">kT</span><span class="op">:</span> now<span class="op">.</span><span class="at">kT</span><span class="op">,</span> <span class="dt">dpeak</span><span class="op">:</span> now<span class="op">.</span><span class="at">peak</span> <span class="op">-</span> ref<span class="op">.</span><span class="at">peak</span>}<span class="op">;</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"λ (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"relative intensity (25 °C peak = 1)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(spOut<span class="op">.</span><span class="at">ref</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.4</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span>})<span class="op">,</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(spOut<span class="op">.</span><span class="at">now</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.2</span>})<span class="op">,</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(spOut<span class="op">.</span><span class="at">now</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.2</span>})<span class="op">,</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">tip</span>(spOut<span class="op">.</span><span class="at">now</span><span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerX</span>({<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`λ = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">lam</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm</span><span class="sc">\n</span><span class="vs">I = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">I</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">`</span>}))</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="90" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 89;"><span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;E&lt;sub&gt;g&lt;/sub&gt;(T) = </span><span class="sc">${</span>spOut<span class="op">.</span><span class="at">Eg</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs"> eV · peak λ&lt;sub&gt;o&lt;/sub&gt; = &lt;b&gt;</span><span class="sc">${</span>spOut<span class="op">.</span><span class="at">peak</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt;</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="vs">(</span><span class="sc">${</span>spOut<span class="op">.</span><span class="at">dpeak</span> <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"+"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}${</span>spOut<span class="op">.</span><span class="at">dpeak</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm vs 25 °C) · FWHM = &lt;b&gt;</span><span class="sc">${</span>spOut<span class="op">.</span><span class="at">fwhm</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt; ·</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="vs">3k&lt;sub&gt;B&lt;/sub&gt;T estimate λ&lt;sub&gt;o&lt;/sub&gt;²·3kT/hc = </span><span class="sc">${</span>(spOut<span class="op">.</span><span class="at">peak</span><span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span><span class="op">*</span>spOut<span class="op">.</span><span class="at">kT</span><span class="op">/</span><span class="fl">1239.84</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Dashed: the same LED at 25 °C. Without extra broadening the ideal spectrum has a FWHM of <span class="math inline">\(1.8k_BT\)</span>, narrower than the <span class="math inline">\(3k_BT\)</span> rule of the slides. Real LEDs are broader because of alloy fluctuations, band tails and heating. Add 10–20 meV of broadening to reach the measured widths.</p>
+</section>
+<section id="the-ideal-spectrum-peak-and-width" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="the-ideal-spectrum-peak-and-width"><span class="header-section-number">8.3</span> The ideal spectrum: peak and width</h2>
+<div id="cell-fig-ideal" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">8</span>, <span class="dv">80001</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> np.sqrt(x)<span class="op">*</span>np.exp(<span class="op">-</span>x)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>xp <span class="op">=</span> x[np.argmax(I)]<span class="op">;</span> above <span class="op">=</span> x[I <span class="op">&gt;=</span> I.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.3</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax.plot(x, I<span class="op">/</span>I.<span class="bu">max</span>())<span class="op">;</span> ax.axvline(xp, ls<span class="op">=</span><span class="st">":"</span>, color<span class="op">=</span>sl.INK2, lw<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.5</span>, above[<span class="dv">0</span>], above[<span class="op">-</span><span class="dv">1</span>], color<span class="op">=</span>sl.PALETTE[<span class="dv">1</span>], lw<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span> ax.text(above[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="ss">f"FWHM = </span><span class="sc">{</span>above[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> above[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> kT"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"(hν − E_g)/k_BT"</span>, ylabel<span class="op">=</span><span class="st">"relative intensity"</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"peak at </span><span class="sc">{</span>xp<span class="sc">:.3f}</span><span class="ss"> kT, half-maximum points </span><span class="sc">{</span>above[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> and </span><span class="sc">{</span>above[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss"> kT, FWHM </span><span class="sc">{</span>above[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> above[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> kT"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-ideal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="spectrum_files/figure-html/fig-ideal-output-1.png" width="719" height="349" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ideal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Ideal LED spectrum in reduced units x = (hν − E_g)/k_BT. Peak at x = 1/2, half-intensity points at x = 0.05 and 1.85, so FWHM = 1.80 k_BT (slide 99).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>peak at 0.500 kT, half-maximum points 0.051 and 1.846 kT, FWHM 1.795 kT</code></pre>
+</div>
+</div>
+</section>
+<section id="worked-examples-slides-103108-recomputed" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="worked-examples-slides-103108-recomputed"><span class="header-section-number">8.4</span> Worked examples (slides 103–108), recomputed</h2>
+<blockquote class="blockquote">
+<p><strong>Slides 103–104.</strong> Linewidth of a 1310 nm LED at 300 K with <span class="math inline">\(\Delta(h\nu)=3k_BT\)</span>. <strong>Slides 105–106.</strong> An AlGaAs LED has <span class="math inline">\(\lambda_o\)</span> = 804, 822, 837 nm and <span class="math inline">\(\Delta\lambda\)</span> = 30, 40, 48 nm at −40, 25 and 85 °C. Plot <span class="math inline">\(\Delta\lambda/\lambda_o^2\)</span> against <span class="math inline">\(T\)</span> and find <span class="math inline">\(m\)</span> in <span class="math inline">\(\Delta(h\nu)=mk_BT\)</span>. <strong>Slides 107–108.</strong> Shift of the peak of a GaAs LED cooled from 25 °C to −25 °C (Varshni: <span class="math inline">\(E_{go}=1.519\)</span> eV, <span class="math inline">\(A=5.41\times10^{-4}\)</span> eV/K, <span class="math inline">\(B=204\)</span> K).</p>
+</blockquote>
+<div id="cell-fig-m" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">40</span>, <span class="dv">25</span>, <span class="dv">85</span>]) <span class="op">+</span> <span class="fl">273.15</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lam0 <span class="op">=</span> np.array([<span class="dv">804</span>, <span class="dv">822</span>, <span class="dv">837</span>])<span class="op">*</span><span class="fl">1e-9</span><span class="op">;</span> dlam <span class="op">=</span> np.array([<span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">48</span>])<span class="op">*</span><span class="fl">1e-9</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> dlam<span class="op">/</span>lam0<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> np.<span class="bu">sum</span>(y<span class="op">*</span>T)<span class="op">/</span>np.<span class="bu">sum</span>(T<span class="op">**</span><span class="dv">2</span>)                       <span class="co"># least squares through the origin</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> slope<span class="op">*</span>sl.h<span class="op">*</span>sl.c0<span class="op">/</span>sl.kB</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">3.4</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.plot(T, y<span class="op">*</span><span class="fl">1e-4</span>, <span class="st">"o"</span>, ms<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">"slide 106 data"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Tl <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">400</span>, <span class="dv">10</span>)<span class="op">;</span> ax.plot(Tl, slope<span class="op">*</span>Tl<span class="op">*</span><span class="fl">1e-4</span>, label<span class="op">=</span><span class="ss">f"slope </span><span class="sc">{</span>slope<span class="sc">:.0f}</span><span class="ss"> m⁻¹ K⁻¹  →  m = </span><span class="sc">{</span>m<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"T (K)"</span>, ylabel<span class="op">=</span><span class="st">"10⁻⁴ × Δλ/λo² (m⁻¹)"</span>, xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">400</span>), ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">8</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-m" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-m-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="spectrum_files/figure-html/fig-m-output-1.png" width="676" height="363" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-m-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Slides 105–106: Δλ/λo² against T for the AlGaAs LED, with the best line forced through the origin. The slope gives m ≈ 2.8.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Eg298, Eg248 <span class="op">=</span> sl.varshni(<span class="dv">298</span>, <span class="op">*</span>sl.VARSHNI[<span class="st">"GaAs"</span>]), sl.varshni(<span class="dv">248</span>, <span class="op">*</span>sl.VARSHNI[<span class="st">"GaAs"</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>l298 <span class="op">=</span> sl.wavelength_from_eV(Eg298 <span class="op">+</span> sl.kT(<span class="dv">298</span>)<span class="op">/</span><span class="dv">2</span>)<span class="op">;</span> l248 <span class="op">=</span> sl.wavelength_from_eV(Eg248 <span class="op">+</span> sl.kT(<span class="dv">248</span>)<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>hc_slide <span class="op">=</span> <span class="fl">3e8</span><span class="op">*</span><span class="fl">6.626e-34</span><span class="op">/</span><span class="fl">1.602e-19</span>                     <span class="co"># constants used on slide 107</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">"value"</span>: {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Δλ of a 1310 nm LED at 300 K, m = 3 (slide 104)"</span>: <span class="ss">f"</span><span class="sc">{</span>sl<span class="sc">.</span>led_linewidth(<span class="fl">1310e-9</span>)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"same with the ideal width m = 1.8"</span>: <span class="ss">f"</span><span class="sc">{</span>sl<span class="sc">.</span>led_linewidth(<span class="fl">1310e-9</span>, m<span class="op">=</span><span class="fl">1.8</span>)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"m from the AlGaAs data (slide 105)"</span>: <span class="ss">f"</span><span class="sc">{</span>m<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E_g(298 K) of GaAs"</span>: <span class="ss">f"</span><span class="sc">{</span>Eg298<span class="sc">:.4f}</span><span class="ss"> eV"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"λo at 298 K, hc/(E_g + kT/2)"</span>: <span class="ss">f"</span><span class="sc">{</span>l298<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm  (slide constants: </span><span class="sc">{</span>hc_slide<span class="op">/</span>(Eg298 <span class="op">+</span> sl.kT(<span class="dv">298</span>)<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm)"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E_g(248 K)"</span>: <span class="ss">f"</span><span class="sc">{</span>Eg248<span class="sc">:.4f}</span><span class="ss"> eV"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"λo at 248 K"</span>: <span class="ss">f"</span><span class="sc">{</span>l248<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm  (slide constants: </span><span class="sc">{</span>hc_slide<span class="op">/</span>(Eg248 <span class="op">+</span> sl.kT(<span class="dv">248</span>)<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm)"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"shift for −50 K"</span>: <span class="ss">f"</span><span class="sc">{</span>(l298 <span class="op">-</span> l248)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm = </span><span class="sc">{</span>(l298 <span class="op">-</span> l248)<span class="op">*</span><span class="fl">1e9</span><span class="op">/</span><span class="dv">50</span><span class="sc">:.2f}</span><span class="ss"> nm/K"</span>}})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-spectrum-ex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-spectrum-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.1: Slides 103–108 recomputed with CODATA constants. The slide values are 107 nm, m = 2.81, 864.2 nm, 852.4 nm and 11.8 nm.
+</figcaption>
+<div aria-describedby="tbl-spectrum-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Δλ of a 1310 nm LED at 300 K, m = 3 (slide 104)</th>
+<td>107.3 nm</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">same with the ideal width m = 1.8</th>
+<td>64.4 nm</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">m from the AlGaAs data (slide 105)</th>
+<td>2.81</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">E_g(298 K) of GaAs</th>
+<td>1.4233 eV</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">λo at 298 K, hc/(E_g + kT/2)</th>
+<td>863.3 nm (slide constants: 864.0 nm)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">E_g(248 K)</th>
+<td>1.4454 eV</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">λo at 248 K</th>
+<td>851.5 nm (slide constants: 852.2 nm)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">shift for −50 K</th>
+<td>11.8 nm = 0.24 nm/K</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The 0.9 nm offset in the absolute wavelengths comes from the rounded constants on slide 107 (<span class="math inline">\(c=3\times10^8\)</span> m/s and <span class="math inline">\(h=6.626\times10^{-34}\)</span> J s give <span class="math inline">\(hc/e=1.2409\)</span> eV µm instead of 1.2398). The shift of 0.24 nm/K is unaffected. Measuring this shift is a practical way to monitor the <strong>junction temperature</strong> of a power LED.</p>
+</section>
+<section id="temperature-dependence-slides-101102" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="temperature-dependence-slides-101102"><span class="header-section-number">8.5</span> Temperature dependence (slides 101–102)</h2>
+<div class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.linspace(<span class="fl">1.35</span>, <span class="fl">1.75</span>, <span class="dv">3000</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spectrum(TC, sigma<span class="op">=</span><span class="fl">0.020</span>, off<span class="op">=</span><span class="fl">0.059</span>):           <span class="co"># off: Al-induced gap increase, puts the 25 °C peak at 822 nm</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> TC <span class="op">+</span> <span class="fl">273.15</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    Eg <span class="op">=</span> sl.varshni(T, <span class="op">*</span>sl.VARSHNI[<span class="st">"GaAs"</span>]) <span class="op">+</span> off</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> sl.led_spectrum(E, Eg, T)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> np.exp(<span class="op">-</span>((E <span class="op">-</span> E.mean())<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))<span class="op">;</span> S <span class="op">=</span> np.convolve(S, g<span class="op">/</span>g.<span class="bu">sum</span>(), mode<span class="op">=</span><span class="st">"same"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> S<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.005</span><span class="op">*</span>(TC <span class="op">-</span> <span class="dv">25</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ref <span class="op">=</span> spectrum(<span class="dv">25</span>).<span class="bu">max</span>()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> {}</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> TC <span class="kw">in</span> (<span class="op">-</span><span class="dv">40</span>, <span class="dv">25</span>, <span class="dv">85</span>):</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> spectrum(TC)<span class="op">/</span>ref<span class="op">;</span> lam <span class="op">=</span> sl.wavelength_from_eV(E)<span class="op">*</span><span class="fl">1e9</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    ax.plot(lam, S, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>TC<span class="sc">}</span><span class="ss"> °C"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    half <span class="op">=</span> lam[S <span class="op">&gt;=</span> S.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    rows[<span class="ss">f"</span><span class="sc">{</span>TC<span class="sc">}</span><span class="ss"> °C"</span>] <span class="op">=</span> {<span class="st">"λo (nm)"</span>: <span class="bu">round</span>(lam[np.argmax(S)], <span class="dv">1</span>), <span class="st">"Δλ FWHM (nm)"</span>: <span class="bu">round</span>(half.<span class="bu">max</span>() <span class="op">-</span> half.<span class="bu">min</span>(), <span class="dv">1</span>)}</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"λ (nm)"</span>, ylabel<span class="op">=</span><span class="st">"relative intensity"</span>, xlim<span class="op">=</span>(<span class="dv">760</span>, <span class="dv">900</span>))<span class="op">;</span> ax.legend()<span class="op">;</span> plt.show()</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-spectra-t" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spectra-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<div id="fig-spectra-t-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-spectra-t-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="spectrum_files/figure-html/fig-spectra-t-output-1.png" data-ref-parent="fig-spectra-t" width="734" height="392" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-spectra-t-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Model spectra of an Al₀.₀₅Ga₀.₉₅As LED at −40, 25 and 85 °C (ideal shape, Varshni gap, 20 meV Gaussian broadening, intensity scaled by a typical −0.5 %/K efficiency drop), normalised to the 25 °C peak as in slide 101.
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="fig-spectra-t-2" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-spectra-t-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">-40 °C</th>
+<th data-quarto-table-cell-role="th">25 °C</th>
+<th data-quarto-table-cell-role="th">85 °C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">λo (nm)</th>
+<td>809.1</td>
+<td>822.3</td>
+<td>836.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Δλ FWHM (nm)</th>
+<td>33.7</td>
+<td>38.3</td>
+<td>43.3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-spectra-t-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-spectra-t-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3
+</figcaption>
+</figure>
+</div>
+</div>
+<p>The model reproduces the trend of slide 101: about +0.25 nm/K in peak wavelength and a width that grows roughly as <span class="math inline">\(T\)</span> (the measured 30–48 nm also include alloy broadening).</p>
+</section>
+<section id="degenerately-doped-junctions-slide-109" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="degenerately-doped-junctions-slide-109"><span class="header-section-number">8.6</span> Degenerately doped junctions (slide 109)</h2>
+<p>In a heavily doped n⁺ region <span class="math inline">\(E_{Fn}\)</span> lies inside the CB. All states up to <span class="math inline">\(E_{Fn}\)</span> can recombine, the spectrum widens to about <span class="math inline">\(\Delta E_{Fn}+1.5k_BT\)</span>, and the effective gap shrinks (band-gap narrowing):</p>
+<div id="cell-fig-degenerate" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>kT <span class="op">=</span> sl.kT(<span class="dv">300</span>)<span class="op">;</span> x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="dv">3000</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dEF <span class="kw">in</span> (<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">0.0</span>, <span class="fl">0.05</span>, <span class="fl">0.10</span>):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> np.sqrt(x)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> np.exp((x <span class="op">-</span> dEF)<span class="op">/</span>kT))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    half <span class="op">=</span> x[I <span class="op">&gt;=</span> I.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(x<span class="op">*</span><span class="fl">1e3</span>, I<span class="op">/</span>I.<span class="bu">max</span>(), label<span class="op">=</span><span class="ss">f"ΔE_Fn = </span><span class="sc">{</span>dEF<span class="op">*</span><span class="fl">1e3</span><span class="sc">:+.0f}</span><span class="ss"> meV, FWHM = </span><span class="sc">{</span>(half.<span class="bu">max</span>() <span class="op">-</span> half.<span class="bu">min</span>())<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.0f}</span><span class="ss"> meV"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"hν − E_g′ (meV)"</span>, ylabel<span class="op">=</span><span class="st">"relative intensity"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-degenerate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-degenerate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="spectrum_files/figure-html/fig-degenerate-output-1.png" width="719" height="375" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-degenerate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.4: Emission from a degenerately doped n⁺ region (holes non-degenerate): I(hν) ∝ (hν − E_g′)^{1/2} f_n(E). As E_Fn moves into the band (ΔE_Fn = E_Fn − E_c′), the spectrum becomes a flat-topped band of width ≈ ΔE_Fn + 1.5kT.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going deeper
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Van Roosbroeck–Shockley.</strong> Derive the spontaneous emission spectrum from the absorption coefficient <span class="math inline">\(\alpha(h\nu)\)</span> and detailed balance. With <span class="math inline">\(\alpha\propto\sqrt{h\nu-E_g}\)</span> you recover the shape used here, multiplied by <span class="math inline">\(\nu^2\)</span>.</li>
+<li><strong>Coherence length.</strong> Combine the LED linewidth with Chapter 1: <span class="math inline">\(l_c=\lambda^2/\Delta\lambda\)</span>. Compute it for the 1310 nm LED and explain why LEDs are used in OCT (superluminescent diodes) but not in long-haul links.</li>
+<li><strong>Chromatic dispersion.</strong> A 1310 nm LED with <span class="math inline">\(\Delta\lambda=107\)</span> nm launched into a fiber with <span class="math inline">\(D=2\)</span> ps/(nm km) spreads by 0.2 ns/km. Use the Chapter 2 link simulator to find the maximum bit rate.</li>
+<li><strong>Urbach tail.</strong> Real absorption edges have an exponential tail <span class="math inline">\(\exp[(h\nu-E_g)/E_U]\)</span>. Add it to the model and fit the measured spectrum of a lab LED.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, <em>Optoelectronics and Photonics</em>, sec.&nbsp;3.11; Schubert, <em>Light-Emitting Diodes</em>, ch.&nbsp;5 (spontaneous emission), ch.&nbsp;6 (spectrum).</li>
+<li>Y. P. Varshni, “Temperature dependence of the energy gap in semiconductors”, <em>Physica</em> 34, 149 (1967).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">8.7</span> Try it yourself</h2>
+<ol type="1">
+<li>What is the linewidth of a 460 nm InGaN LED at 300 K according to the <span class="math inline">\(3k_BT\)</span> rule? Compare with a typical datasheet (~20 nm).</li>
+<li>Use the explorer to find the temperature rise that shifts a GaAs LED by 5 nm.</li>
+<li>Redo the fit of slides 105–106 without forcing the line through the origin. What does the intercept mean physically?</li>
+<li>Estimate the energy shift of the peak for a degenerate n⁺ region with <span class="math inline">\(\Delta E_{Fn}=50\)</span> meV.</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZhcnMgPSAoe1xuICBcIkdhQXMgKDg3MCBubSlcIjogICAgICAgICAge0VnMDogMS41MTksIEE6IDUuNDFlLTQsIEI6IDIwNCwgb2ZmOiAwfSxcbiAgXCJBbDAuMDZHYTAuOTRBcyAo4omIIDgyMiBubSwgc2xpZGUgMTAxKVwiOiB7RWcwOiAxLjUxOSwgQTogNS40MWUtNCwgQjogMjA0LCBvZmY6IDAuMDcyfSxcbiAgXCJJblAgKOKJiCA5MjAgbm0pXCI6ICAgICAgICAge0VnMDogMS40MjEsIEE6IDQuOWUtNCwgQjogMzI3LCBvZmY6IDB9LFxuICBcIkluR2FBc1AgKOKJiCAxMzEwIG5tKVwiOiAgICB7RWcwOiAxLjQyMSwgQTogNC45ZS00LCBCOiAzMjcsIG9mZjogLTAuNDB9LFxuICBcIkluR2FBc1AgKOKJiCAxNTUwIG5tKVwiOiAgICB7RWcwOiAxLjQyMSwgQTogNC45ZS00LCBCOiAzMjcsIG9mZjogLTAuNTQ1fVxufSlcbnZpZXdvZiBzcCA9IElucHV0cy5mb3JtKHtcbiAgbWF0OiBJbnB1dHMuc2VsZWN0KE9iamVjdC5rZXlzKHZhcnMpLCB7dmFsdWU6IFwiR2FBcyAoODcwIG5tKVwiLCBsYWJlbDogXCJhY3RpdmUgbWF0ZXJpYWxcIn0pLFxuICBUQzogSW5wdXRzLnJhbmdlKFstNjAsIDE1MF0sIHt2YWx1ZTogMjUsIHN0ZXA6IDEsIGxhYmVsOiBcImp1bmN0aW9uIHRlbXBlcmF0dXJlICjCsEMpXCJ9KSxcbiAgc2lnOiBJbnB1dHMucmFuZ2UoWzAsIDQwXSwge3ZhbHVlOiAwLCBzdGVwOiAxLCBsYWJlbDogXCJleHRyYSAoYWxsb3kvaW5ob21vZ2VuZW91cykgYnJvYWRlbmluZyDPgyAobWVWKVwifSlcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJzcE91dCA9IHtcbiAgY29uc3QgdiA9IHZhcnNbc3AubWF0XTtcbiAgY29uc3QgY3VydmUgPSAoVEMsIHNpZykgPT4ge1xuICAgIGNvbnN0IFQgPSBUQyArIDI3My4xNSwga1QgPSA4LjYxNzMzM2UtNSpULCBFZyA9IHYuRWcwIC0gdi5BKlQqVC8odi5CICsgVCkgKyB2Lm9mZjtcbiAgICBjb25zdCBFID0gW10sIEkgPSBbXTtcbiAgICBmb3IgKGxldCBpID0gMDsgaSA8PSA1MDA7IGkrKykgeyBjb25zdCBlID0gRWcgLSAwLjA4ICsgKDEyKmtUICsgMC4xNikqaS81MDA7IEUucHVzaChlKTtcbiAgICAgIGNvbnN0IHggPSAoZSAtIEVnKS9rVDsgSS5wdXNoKHggPiAwID8gTWF0aC5zcXJ0KHgpKk1hdGguZXhwKC14KSA6IDApOyB9XG4gICAgbGV0IEogPSBJO1xuICAgIGlmIChzaWcgPiAwKSB7IGNvbnN0IHMgPSBzaWcvMTAwMDsgSiA9IEUubWFwKChlLCBpKSA9PiB7IGxldCBhY2MgPSAwLCB3ID0gMDtcbiAgICAgIGZvciAobGV0IGogPSAwOyBqIDwgRS5sZW5ndGg7IGorKykgeyBjb25zdCBnID0gTWF0aC5leHAoLSgoRVtqXSAtIGUpKioyKS8oMipzKnMpKTsgYWNjICs9IGcqSVtqXTsgdyArPSBnOyB9IHJldHVybiBhY2MvdzsgfSk7IH1cbiAgICBjb25zdCBwdHMgPSBFLm1hcCgoZSwgaSkgPT4gKHtsYW06IDEyMzkuODQvZSwgSTogSltpXX0pKTtcbiAgICAvLyBGV0hNIGluIHdhdmVsZW5ndGhcbiAgICBjb25zdCBteCA9IE1hdGgubWF4KC4uLkopLCBoYWxmID0gcHRzLmZpbHRlcihkID0+IGQuSSA+PSBteC8yKTtcbiAgICBjb25zdCBsYW1zID0gaGFsZi5tYXAoZCA9PiBkLmxhbSksIHBlYWsgPSBwdHNbSi5pbmRleE9mKG14KV0ubGFtO1xuICAgIHJldHVybiB7cHRzLCBteCwgcGVhaywgZndobTogTWF0aC5tYXgoLi4ubGFtcykgLSBNYXRoLm1pbiguLi5sYW1zKSwgRWcsIGtUfTtcbiAgfTtcbiAgY29uc3QgcmVmID0gY3VydmUoMjUsIHNwLnNpZyksIG5vdyA9IGN1cnZlKHNwLlRDLCBzcC5zaWcpO1xuICBjb25zdCBub3JtID0gcmVmLm14O1xuICByZXR1cm4ge3JlZjogcmVmLnB0cy5tYXAoZCA9PiAoey4uLmQsIEk6IGQuSS9ub3JtLCBUOiBcIjI1IMKwQ1wifSkpLCBub3c6IG5vdy5wdHMubWFwKGQgPT4gKHsuLi5kLCBJOiBkLkkvbm9ybSwgVDogYCR7c3AuVEN9IMKwQ2B9KSksXG4gICAgICAgICAgcGVhazogbm93LnBlYWssIGZ3aG06IG5vdy5md2htLCBFZzogbm93LkVnLCBrVDogbm93LmtULCBkcGVhazogbm93LnBlYWsgLSByZWYucGVha307XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDEwNTApLCBoZWlnaHQ6IDMyMCwgeDoge2xhYmVsOiBcIs67IChubSlcIn0sIHk6IHtsYWJlbDogXCJyZWxhdGl2ZSBpbnRlbnNpdHkgKDI1IMKwQyBwZWFrID0gMSlcIiwgZ3JpZDogdHJ1ZX0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKHNwT3V0LnJlZiwge3g6IFwibGFtXCIsIHk6IFwiSVwiLCBzdHJva2U6IFwiIzUyNTE0ZVwiLCBzdHJva2VXaWR0aDogMS40LCBzdHJva2VEYXNoYXJyYXk6IFwiNSw0XCJ9KSxcbiAgICBQbG90LmFyZWFZKHNwT3V0Lm5vdywge3g6IFwibGFtXCIsIHk6IFwiSVwiLCBmaWxsOiBcIiMyYTc4ZDZcIiwgZmlsbE9wYWNpdHk6IDAuMn0pLFxuICAgIFBsb3QubGluZShzcE91dC5ub3csIHt4OiBcImxhbVwiLCB5OiBcIklcIiwgc3Ryb2tlOiBcIiMyYTc4ZDZcIiwgc3Ryb2tlV2lkdGg6IDIuMn0pLFxuICAgIFBsb3QudGlwKHNwT3V0Lm5vdywgUGxvdC5wb2ludGVyWCh7eDogXCJsYW1cIiwgeTogXCJJXCIsIHRpdGxlOiBkID0+IGDOuyA9ICR7ZC5sYW0udG9GaXhlZCgxKX0gbm1cXG5JID0gJHtkLkkudG9GaXhlZCgzKX1gfSkpXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+RTxzdWI+Zzwvc3ViPihUKSA9ICR7c3BPdXQuRWcudG9GaXhlZCg0KX0gZVYgwrcgcGVhayDOuzxzdWI+bzwvc3ViPiA9IDxiPiR7c3BPdXQucGVhay50b0ZpeGVkKDEpfSBubTwvYj5cbigke3NwT3V0LmRwZWFrID49IDAgPyBcIitcIiA6IFwiXCJ9JHtzcE91dC5kcGVhay50b0ZpeGVkKDEpfSBubSB2cyAyNSDCsEMpIMK3IEZXSE0gPSA8Yj4ke3NwT3V0LmZ3aG0udG9GaXhlZCgxKX0gbm08L2I+IMK3XG4zazxzdWI+Qjwvc3ViPlQgZXN0aW1hdGUgzrs8c3ViPm88L3N1Yj7CssK3M2tUL2hjID0gJHsoc3BPdXQucGVhayoqMiozKnNwT3V0LmtULzEyMzkuODQpLnRvRml4ZWQoMSl9IG5tPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzcCcpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter3\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./led-principle.html" class="pagination-link" aria-label="LED principle, heterojunctions and materials">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./quantum-wells.html" class="pagination-link" aria-label="Quantum wells">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># The LED emission spectrum {#sec-spectrum}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/spectrum.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> semilib <span class="im">as</span> sl</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>sl.use_style()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>*Slides 98–109: energy distribution of carriers, emission spectrum, temperature dependence, worked examples on the</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>linewidth and on the Varshni shift, degenerately doped junctions.*</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>Electrons in the CB are spread over a few $k_BT$ above $E_c$, holes a few $k_BT$ below $E_v$ (slide 99). The photon energy is</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>$h\nu=E_g+(\text{electron KE})+(\text{hole KE})$, so the spectrum follows the joint density of states times the Boltzmann tail:</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>I(h\nu)\propto(h\nu-E_g)^{1/2}\exp<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">-\frac{h\nu-E_g}{k_BT}\right</span><span class="co">]</span>,</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>\qquad h\nu_\text{peak}=E_g+\tfrac12k_BT,\qquad \Delta(h\nu)\approx1.8\,k_BT\text{ to }3\,k_BT .</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>Converting the energy width to wavelength with $|d\lambda/d(h\nu)|=\lambda^2/hc$ gives the **LED linewidth** (slides</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>103–104):</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>\Delta\lambda\approx\lambda_o^2\,\frac{3k_BT}{hc}.</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>The bandgap shrinks with temperature (Varshni law, slide 107): $E_g(T)=E_{go}-AT^2/(B+T)$. The peak moves to longer</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>wavelengths and the line broadens as the LED warms up.</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Spectrum explorer</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>vars <span class="op">=</span> ({</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GaAs (870 nm)"</span><span class="op">:</span>          {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.519</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">5.41e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">204</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Al0.06Ga0.94As (≈ 822 nm, slide 101)"</span><span class="op">:</span> {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.519</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">5.41e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">204</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="fl">0.072</span>}<span class="op">,</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>  <span class="st">"InP (≈ 920 nm)"</span><span class="op">:</span>         {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.421</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">4.9e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">327</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>  <span class="st">"InGaAsP (≈ 1310 nm)"</span><span class="op">:</span>    {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.421</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">4.9e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">327</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.40</span>}<span class="op">,</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>  <span class="st">"InGaAsP (≈ 1550 nm)"</span><span class="op">:</span>    {<span class="dt">Eg0</span><span class="op">:</span> <span class="fl">1.421</span><span class="op">,</span> <span class="dt">A</span><span class="op">:</span> <span class="fl">4.9e-4</span><span class="op">,</span> <span class="dt">B</span><span class="op">:</span> <span class="dv">327</span><span class="op">,</span> <span class="dt">off</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.545</span>}</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>viewof sp <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mat</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(vars)<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"GaAs (870 nm)"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"active material"</span>})<span class="op">,</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">TC</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">60</span><span class="op">,</span> <span class="dv">150</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"junction temperature (°C)"</span>})<span class="op">,</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sig</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"extra (alloy/inhomogeneous) broadening σ (meV)"</span>})</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>spOut <span class="op">=</span> {</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> v <span class="op">=</span> vars[sp<span class="op">.</span><span class="at">mat</span>]<span class="op">;</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> curve <span class="op">=</span> (TC<span class="op">,</span> sig) <span class="kw">=&gt;</span> {</span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> T <span class="op">=</span> TC <span class="op">+</span> <span class="fl">273.15</span><span class="op">,</span> kT <span class="op">=</span> <span class="fl">8.617333e-5</span><span class="op">*</span>T<span class="op">,</span> Eg <span class="op">=</span> v<span class="op">.</span><span class="at">Eg0</span> <span class="op">-</span> v<span class="op">.</span><span class="at">A</span><span class="op">*</span>T<span class="op">*</span>T<span class="op">/</span>(v<span class="op">.</span><span class="at">B</span> <span class="op">+</span> T) <span class="op">+</span> v<span class="op">.</span><span class="at">off</span><span class="op">;</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> []<span class="op">,</span> I <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">500</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> e <span class="op">=</span> Eg <span class="op">-</span> <span class="fl">0.08</span> <span class="op">+</span> (<span class="dv">12</span><span class="op">*</span>kT <span class="op">+</span> <span class="fl">0.16</span>)<span class="op">*</span>i<span class="op">/</span><span class="dv">500</span><span class="op">;</span> <span class="cn">E</span><span class="op">.</span><span class="fu">push</span>(e)<span class="op">;</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> x <span class="op">=</span> (e <span class="op">-</span> Eg)<span class="op">/</span>kT<span class="op">;</span> I<span class="op">.</span><span class="fu">push</span>(x <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(x)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>x) <span class="op">:</span> <span class="dv">0</span>)<span class="op">;</span> }</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> J <span class="op">=</span> I<span class="op">;</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (sig <span class="op">&gt;</span> <span class="dv">0</span>) { <span class="kw">const</span> s <span class="op">=</span> sig<span class="op">/</span><span class="dv">1000</span><span class="op">;</span> J <span class="op">=</span> <span class="cn">E</span><span class="op">.</span><span class="fu">map</span>((e<span class="op">,</span> i) <span class="kw">=&gt;</span> { <span class="kw">let</span> acc <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> w <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="cn">E</span><span class="op">.</span><span class="at">length</span><span class="op">;</span> j<span class="op">++</span>) { <span class="kw">const</span> g <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>((<span class="cn">E</span>[j] <span class="op">-</span> e)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>s<span class="op">*</span>s))<span class="op">;</span> acc <span class="op">+=</span> g<span class="op">*</span>I[j]<span class="op">;</span> w <span class="op">+=</span> g<span class="op">;</span> } <span class="cf">return</span> acc<span class="op">/</span>w<span class="op">;</span> })<span class="op">;</span> }</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> pts <span class="op">=</span> <span class="cn">E</span><span class="op">.</span><span class="fu">map</span>((e<span class="op">,</span> i) <span class="kw">=&gt;</span> ({<span class="dt">lam</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>e<span class="op">,</span> <span class="dt">I</span><span class="op">:</span> J[i]}))<span class="op">;</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>    <span class="co">// FWHM in wavelength</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mx <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>J)<span class="op">,</span> half <span class="op">=</span> pts<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">I</span> <span class="op">&gt;=</span> mx<span class="op">/</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> lams <span class="op">=</span> half<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">lam</span>)<span class="op">,</span> peak <span class="op">=</span> pts[J<span class="op">.</span><span class="fu">indexOf</span>(mx)]<span class="op">.</span><span class="at">lam</span><span class="op">;</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {pts<span class="op">,</span> mx<span class="op">,</span> peak<span class="op">,</span> <span class="dt">fwhm</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>lams) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="op">...</span>lams)<span class="op">,</span> Eg<span class="op">,</span> kT}<span class="op">;</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ref <span class="op">=</span> <span class="fu">curve</span>(<span class="dv">25</span><span class="op">,</span> sp<span class="op">.</span><span class="at">sig</span>)<span class="op">,</span> now <span class="op">=</span> <span class="fu">curve</span>(sp<span class="op">.</span><span class="at">TC</span><span class="op">,</span> sp<span class="op">.</span><span class="at">sig</span>)<span class="op">;</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> norm <span class="op">=</span> ref<span class="op">.</span><span class="at">mx</span><span class="op">;</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">ref</span><span class="op">:</span> ref<span class="op">.</span><span class="at">pts</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">I</span><span class="op">:</span> d<span class="op">.</span><span class="at">I</span><span class="op">/</span>norm<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="st">"25 °C"</span>}))<span class="op">,</span> <span class="dt">now</span><span class="op">:</span> now<span class="op">.</span><span class="at">pts</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">I</span><span class="op">:</span> d<span class="op">.</span><span class="at">I</span><span class="op">/</span>norm<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>sp<span class="op">.</span><span class="at">TC</span><span class="sc">}</span><span class="vs"> °C`</span>}))<span class="op">,</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>          <span class="dt">peak</span><span class="op">:</span> now<span class="op">.</span><span class="at">peak</span><span class="op">,</span> <span class="dt">fwhm</span><span class="op">:</span> now<span class="op">.</span><span class="at">fwhm</span><span class="op">,</span> <span class="dt">Eg</span><span class="op">:</span> now<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> <span class="dt">kT</span><span class="op">:</span> now<span class="op">.</span><span class="at">kT</span><span class="op">,</span> <span class="dt">dpeak</span><span class="op">:</span> now<span class="op">.</span><span class="at">peak</span> <span class="op">-</span> ref<span class="op">.</span><span class="at">peak</span>}<span class="op">;</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"λ (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"relative intensity (25 °C peak = 1)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(spOut<span class="op">.</span><span class="at">ref</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.4</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span>})<span class="op">,</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(spOut<span class="op">.</span><span class="at">now</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.2</span>})<span class="op">,</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(spOut<span class="op">.</span><span class="at">now</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.2</span>})<span class="op">,</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">tip</span>(spOut<span class="op">.</span><span class="at">now</span><span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerX</span>({<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`λ = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">lam</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm</span><span class="sc">\n</span><span class="vs">I = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">I</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">`</span>}))</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;E&lt;sub&gt;g&lt;/sub&gt;(T) = </span><span class="sc">${</span>spOut<span class="op">.</span><span class="at">Eg</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs"> eV · peak λ&lt;sub&gt;o&lt;/sub&gt; = &lt;b&gt;</span><span class="sc">${</span>spOut<span class="op">.</span><span class="at">peak</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt;</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="vs">(</span><span class="sc">${</span>spOut<span class="op">.</span><span class="at">dpeak</span> <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"+"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}${</span>spOut<span class="op">.</span><span class="at">dpeak</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm vs 25 °C) · FWHM = &lt;b&gt;</span><span class="sc">${</span>spOut<span class="op">.</span><span class="at">fwhm</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt; ·</span></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="vs">3k&lt;sub&gt;B&lt;/sub&gt;T estimate λ&lt;sub&gt;o&lt;/sub&gt;²·3kT/hc = </span><span class="sc">${</span>(spOut<span class="op">.</span><span class="at">peak</span><span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span><span class="op">*</span>spOut<span class="op">.</span><span class="at">kT</span><span class="op">/</span><span class="fl">1239.84</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/div&gt;`</span></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>Dashed: the same LED at 25 °C. Without extra broadening the ideal spectrum has a FWHM of $1.8k_BT$, narrower than the</span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>$3k_BT$ rule of the slides. Real LEDs are broader because of alloy fluctuations, band tails and heating. Add 10–20 meV of</span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>broadening to reach the measured widths.</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## The ideal spectrum: peak and width</span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ideal</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Ideal LED spectrum in reduced units x = (hν − E_g)/k_BT. Peak at x = 1/2, half-intensity points at x = 0.05 and 1.85, so FWHM = 1.80 k_BT (slide 99)."</span></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">8</span>, <span class="dv">80001</span>)</span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> np.sqrt(x)<span class="op">*</span>np.exp(<span class="op">-</span>x)</span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>xp <span class="op">=</span> x[np.argmax(I)]<span class="op">;</span> above <span class="op">=</span> x[I <span class="op">&gt;=</span> I.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>]</span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.3</span>))</span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a>ax.plot(x, I<span class="op">/</span>I.<span class="bu">max</span>())<span class="op">;</span> ax.axvline(xp, ls<span class="op">=</span><span class="st">":"</span>, color<span class="op">=</span>sl.INK2, lw<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>ax.hlines(<span class="fl">0.5</span>, above[<span class="dv">0</span>], above[<span class="op">-</span><span class="dv">1</span>], color<span class="op">=</span>sl.PALETTE[<span class="dv">1</span>], lw<span class="op">=</span><span class="dv">2</span>)<span class="op">;</span> ax.text(above[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="ss">f"FWHM = </span><span class="sc">{</span>above[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> above[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> kT"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"(hν − E_g)/k_BT"</span>, ylabel<span class="op">=</span><span class="st">"relative intensity"</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"peak at </span><span class="sc">{</span>xp<span class="sc">:.3f}</span><span class="ss"> kT, half-maximum points </span><span class="sc">{</span>above[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> and </span><span class="sc">{</span>above[<span class="op">-</span><span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss"> kT, FWHM </span><span class="sc">{</span>above[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> above[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> kT"</span>)</span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked examples (slides 103–108), recomputed</span></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Slides 103–104.** Linewidth of a 1310 nm LED at 300 K with $\Delta(h\nu)=3k_BT$.</span></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Slides 105–106.** An AlGaAs LED has $\lambda_o$ = 804, 822, 837 nm and $\Delta\lambda$ = 30, 40, 48 nm at −40, 25 and 85 °C.</span></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Plot $\Delta\lambda/\lambda_o^2$ against $T$ and find $m$ in $\Delta(h\nu)=mk_BT$.</span></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Slides 107–108.** Shift of the peak of a GaAs LED cooled from 25 °C to −25 °C (Varshni: $E_{go}=1.519$ eV,</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; $A=5.41\times10^{-4}$ eV/K, $B=204$ K).</span></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-m</span></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Slides 105–106: Δλ/λo² against T for the AlGaAs LED, with the best line forced through the origin. The slope gives m ≈ 2.8."</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">40</span>, <span class="dv">25</span>, <span class="dv">85</span>]) <span class="op">+</span> <span class="fl">273.15</span></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>lam0 <span class="op">=</span> np.array([<span class="dv">804</span>, <span class="dv">822</span>, <span class="dv">837</span>])<span class="op">*</span><span class="fl">1e-9</span><span class="op">;</span> dlam <span class="op">=</span> np.array([<span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">48</span>])<span class="op">*</span><span class="fl">1e-9</span></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> dlam<span class="op">/</span>lam0<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> np.<span class="bu">sum</span>(y<span class="op">*</span>T)<span class="op">/</span>np.<span class="bu">sum</span>(T<span class="op">**</span><span class="dv">2</span>)                       <span class="co"># least squares through the origin</span></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> slope<span class="op">*</span>sl.h<span class="op">*</span>sl.c0<span class="op">/</span>sl.kB</span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">3.4</span>))</span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>ax.plot(T, y<span class="op">*</span><span class="fl">1e-4</span>, <span class="st">"o"</span>, ms<span class="op">=</span><span class="dv">8</span>, label<span class="op">=</span><span class="st">"slide 106 data"</span>)</span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>Tl <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">400</span>, <span class="dv">10</span>)<span class="op">;</span> ax.plot(Tl, slope<span class="op">*</span>Tl<span class="op">*</span><span class="fl">1e-4</span>, label<span class="op">=</span><span class="ss">f"slope </span><span class="sc">{</span>slope<span class="sc">:.0f}</span><span class="ss"> m⁻¹ K⁻¹  →  m = </span><span class="sc">{</span>m<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"T (K)"</span>, ylabel<span class="op">=</span><span class="st">"10⁻⁴ × Δλ/λo² (m⁻¹)"</span>, xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">400</span>), ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">8</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-spectrum-ex</span></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Slides 103–108 recomputed with CODATA constants. The slide values are 107 nm, m = 2.81, 864.2 nm, 852.4 nm and 11.8 nm."</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>Eg298, Eg248 <span class="op">=</span> sl.varshni(<span class="dv">298</span>, <span class="op">*</span>sl.VARSHNI[<span class="st">"GaAs"</span>]), sl.varshni(<span class="dv">248</span>, <span class="op">*</span>sl.VARSHNI[<span class="st">"GaAs"</span>])</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>l298 <span class="op">=</span> sl.wavelength_from_eV(Eg298 <span class="op">+</span> sl.kT(<span class="dv">298</span>)<span class="op">/</span><span class="dv">2</span>)<span class="op">;</span> l248 <span class="op">=</span> sl.wavelength_from_eV(Eg248 <span class="op">+</span> sl.kT(<span class="dv">248</span>)<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>hc_slide <span class="op">=</span> <span class="fl">3e8</span><span class="op">*</span><span class="fl">6.626e-34</span><span class="op">/</span><span class="fl">1.602e-19</span>                     <span class="co"># constants used on slide 107</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">"value"</span>: {</span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Δλ of a 1310 nm LED at 300 K, m = 3 (slide 104)"</span>: <span class="ss">f"</span><span class="sc">{</span>sl<span class="sc">.</span>led_linewidth(<span class="fl">1310e-9</span>)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>,</span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a>    <span class="st">"same with the ideal width m = 1.8"</span>: <span class="ss">f"</span><span class="sc">{</span>sl<span class="sc">.</span>led_linewidth(<span class="fl">1310e-9</span>, m<span class="op">=</span><span class="fl">1.8</span>)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm"</span>,</span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a>    <span class="st">"m from the AlGaAs data (slide 105)"</span>: <span class="ss">f"</span><span class="sc">{</span>m<span class="sc">:.2f}</span><span class="ss">"</span>,</span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E_g(298 K) of GaAs"</span>: <span class="ss">f"</span><span class="sc">{</span>Eg298<span class="sc">:.4f}</span><span class="ss"> eV"</span>,</span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>    <span class="st">"λo at 298 K, hc/(E_g + kT/2)"</span>: <span class="ss">f"</span><span class="sc">{</span>l298<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm  (slide constants: </span><span class="sc">{</span>hc_slide<span class="op">/</span>(Eg298 <span class="op">+</span> sl.kT(<span class="dv">298</span>)<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm)"</span>,</span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a>    <span class="st">"E_g(248 K)"</span>: <span class="ss">f"</span><span class="sc">{</span>Eg248<span class="sc">:.4f}</span><span class="ss"> eV"</span>,</span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>    <span class="st">"λo at 248 K"</span>: <span class="ss">f"</span><span class="sc">{</span>l248<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm  (slide constants: </span><span class="sc">{</span>hc_slide<span class="op">/</span>(Eg248 <span class="op">+</span> sl.kT(<span class="dv">248</span>)<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm)"</span>,</span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a>    <span class="st">"shift for −50 K"</span>: <span class="ss">f"</span><span class="sc">{</span>(l298 <span class="op">-</span> l248)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nm = </span><span class="sc">{</span>(l298 <span class="op">-</span> l248)<span class="op">*</span><span class="fl">1e9</span><span class="op">/</span><span class="dv">50</span><span class="sc">:.2f}</span><span class="ss"> nm/K"</span>}})</span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>The 0.9 nm offset in the absolute wavelengths comes from the rounded constants on slide 107 ($c=3\times10^8$ m/s and</span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a>$h=6.626\times10^{-34}$ J s give $hc/e=1.2409$ eV µm instead of 1.2398). The shift of 0.24 nm/K is unaffected. Measuring this</span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a>shift is a practical way to monitor the **junction temperature** of a power LED.</span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature dependence (slides 101–102)</span></span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-spectra-T</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Model spectra of an Al₀.₀₅Ga₀.₉₅As LED at −40, 25 and 85 °C (ideal shape, Varshni gap, 20 meV Gaussian broadening, intensity scaled by a typical −0.5 %/K efficiency drop), normalised to the 25 °C peak as in slide 101."</span></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.linspace(<span class="fl">1.35</span>, <span class="fl">1.75</span>, <span class="dv">3000</span>)</span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spectrum(TC, sigma<span class="op">=</span><span class="fl">0.020</span>, off<span class="op">=</span><span class="fl">0.059</span>):           <span class="co"># off: Al-induced gap increase, puts the 25 °C peak at 822 nm</span></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> TC <span class="op">+</span> <span class="fl">273.15</span></span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>    Eg <span class="op">=</span> sl.varshni(T, <span class="op">*</span>sl.VARSHNI[<span class="st">"GaAs"</span>]) <span class="op">+</span> off</span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> sl.led_spectrum(E, Eg, T)</span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> np.exp(<span class="op">-</span>((E <span class="op">-</span> E.mean())<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>))<span class="op">;</span> S <span class="op">=</span> np.convolve(S, g<span class="op">/</span>g.<span class="bu">sum</span>(), mode<span class="op">=</span><span class="st">"same"</span>)</span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> S<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> <span class="fl">0.005</span><span class="op">*</span>(TC <span class="op">-</span> <span class="dv">25</span>))</span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>ref <span class="op">=</span> spectrum(<span class="dv">25</span>).<span class="bu">max</span>()</span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> {}</span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> TC <span class="kw">in</span> (<span class="op">-</span><span class="dv">40</span>, <span class="dv">25</span>, <span class="dv">85</span>):</span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> spectrum(TC)<span class="op">/</span>ref<span class="op">;</span> lam <span class="op">=</span> sl.wavelength_from_eV(E)<span class="op">*</span><span class="fl">1e9</span></span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>    ax.plot(lam, S, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>TC<span class="sc">}</span><span class="ss"> °C"</span>)</span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a>    half <span class="op">=</span> lam[S <span class="op">&gt;=</span> S.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>]</span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a>    rows[<span class="ss">f"</span><span class="sc">{</span>TC<span class="sc">}</span><span class="ss"> °C"</span>] <span class="op">=</span> {<span class="st">"λo (nm)"</span>: <span class="bu">round</span>(lam[np.argmax(S)], <span class="dv">1</span>), <span class="st">"Δλ FWHM (nm)"</span>: <span class="bu">round</span>(half.<span class="bu">max</span>() <span class="op">-</span> half.<span class="bu">min</span>(), <span class="dv">1</span>)}</span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"λ (nm)"</span>, ylabel<span class="op">=</span><span class="st">"relative intensity"</span>, xlim<span class="op">=</span>(<span class="dv">760</span>, <span class="dv">900</span>))<span class="op">;</span> ax.legend()<span class="op">;</span> plt.show()</span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a>The model reproduces the trend of slide 101: about +0.25 nm/K in peak wavelength and a width that grows roughly as $T$ (the</span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a>measured 30–48 nm also include alloy broadening).</span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## Degenerately doped junctions (slide 109)</span></span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a>In a heavily doped n⁺ region $E_{Fn}$ lies inside the CB. All states up to $E_{Fn}$ can recombine, the spectrum widens to about</span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>$\Delta E_{Fn}+1.5k_BT$, and the effective gap shrinks (band-gap narrowing):</span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-degenerate</span></span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Emission from a degenerately doped n⁺ region (holes non-degenerate): I(hν) ∝ (hν − E_g′)^{1/2} f_n(E). As E_Fn moves into the band (ΔE_Fn = E_Fn − E_c′), the spectrum becomes a flat-topped band of width ≈ ΔE_Fn + 1.5kT."</span></span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a>kT <span class="op">=</span> sl.kT(<span class="dv">300</span>)<span class="op">;</span> x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="dv">3000</span>)</span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dEF <span class="kw">in</span> (<span class="op">-</span><span class="fl">0.05</span>, <span class="fl">0.0</span>, <span class="fl">0.05</span>, <span class="fl">0.10</span>):</span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> np.sqrt(x)<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> np.exp((x <span class="op">-</span> dEF)<span class="op">/</span>kT))</span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>    half <span class="op">=</span> x[I <span class="op">&gt;=</span> I.<span class="bu">max</span>()<span class="op">/</span><span class="dv">2</span>]</span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a>    ax.plot(x<span class="op">*</span><span class="fl">1e3</span>, I<span class="op">/</span>I.<span class="bu">max</span>(), label<span class="op">=</span><span class="ss">f"ΔE_Fn = </span><span class="sc">{</span>dEF<span class="op">*</span><span class="fl">1e3</span><span class="sc">:+.0f}</span><span class="ss"> meV, FWHM = </span><span class="sc">{</span>(half.<span class="bu">max</span>() <span class="op">-</span> half.<span class="bu">min</span>())<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.0f}</span><span class="ss"> meV"</span>)</span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"hν − E_g′ (meV)"</span>, ylabel<span class="op">=</span><span class="st">"relative intensity"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going deeper</span></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Van Roosbroeck–Shockley.** Derive the spontaneous emission spectrum from the absorption coefficient $\alpha(h\nu)$ and detailed</span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a>  balance. With $\alpha\propto\sqrt{h\nu-E_g}$ you recover the shape used here, multiplied by $\nu^2$.</span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Coherence length.** Combine the LED linewidth with Chapter 1: $l_c=\lambda^2/\Delta\lambda$. Compute it for the 1310 nm LED and</span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a>  explain why LEDs are used in OCT (superluminescent diodes) but not in long-haul links.</span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Chromatic dispersion.** A 1310 nm LED with $\Delta\lambda=107$ nm launched into a fiber with $D=2$ ps/(nm km) spreads by 0.2 ns/km.</span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a>  Use the Chapter 2 link simulator to find the maximum bit rate.</span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Urbach tail.** Real absorption edges have an exponential tail $\exp<span class="co">[</span><span class="ot">(h\nu-E_g)/E_U</span><span class="co">]</span>$. Add it to the model and fit the measured</span>
+<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a>  spectrum of a lab LED.</span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, *Optoelectronics and Photonics*, sec. 3.11; Schubert, *Light-Emitting Diodes*, ch. 5 (spontaneous emission), ch. 6 (spectrum).</span>
+<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Y. P. Varshni, "Temperature dependence of the energy gap in semiconductors", *Physica* 34, 149 (1967).</span>
+<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>What is the linewidth of a 460 nm InGaN LED at 300 K according to the $3k_BT$ rule? Compare with a typical datasheet (~20 nm).</span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Use the explorer to find the temperature rise that shifts a GaAs LED by 5 nm.</span>
+<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Redo the fit of slides 105–106 without forcing the line through the origin. What does the intercept mean physically?</span>
+<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Estimate the energy shift of the peak for a degenerate n⁺ region with $\Delta E_{Fn}=50$ meV.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/spectrum.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

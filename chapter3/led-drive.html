@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; LED types, drive circuits and speed – Semiconductor Science and Light-Emitting Diodes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ideas.html" rel="next">
+<link href="./efficiency.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./led-principle.html">Light-emitting diodes</a></li><li class="breadcrumb-item"><a href="./led-drive.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Semiconductor Science and Light-Emitting Diodes</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter3/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor science</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Energy bands, holes and E–k diagrams</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Carrier statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./doping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Doping, Fermi level and conductivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">The pn junction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./junction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The pn junction at equilibrium</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The diode: forward and reverse bias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smallsignal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capacitance and the small-signal model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Light-emitting diodes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./led-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spectrum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quantum-wells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./led-drive.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">11.1</span> Key relations</a></li>
+  <li><a href="#modulation-explorer" id="toc-modulation-explorer" class="nav-link" data-scroll-target="#modulation-explorer"><span class="header-section-number">11.2</span> Modulation explorer</a></li>
+  <li><a href="#frequency-response-slides-146147" id="toc-frequency-response-slides-146147" class="nav-link" data-scroll-target="#frequency-response-slides-146147"><span class="header-section-number">11.3</span> Frequency response (slides 146–147)</a></li>
+  <li><a href="#rise-time-and-the-speed-up-capacitor-slides-148151" id="toc-rise-time-and-the-speed-up-capacitor-slides-148151" class="nav-link" data-scroll-target="#rise-time-and-the-speed-up-capacitor-slides-148151"><span class="header-section-number">11.4</span> Rise time and the speed-up capacitor (slides 148–151)</a></li>
+  <li><a href="#choosing-the-bias-resistor-slide-144" id="toc-choosing-the-bias-resistor-slide-144" class="nav-link" data-scroll-target="#choosing-the-bias-resistor-slide-144"><span class="header-section-number">11.5</span> Choosing the bias resistor (slide 144)</a></li>
+  <li><a href="#coupling-leds-to-fibers-slides-135138" id="toc-coupling-leds-to-fibers-slides-135138" class="nav-link" data-scroll-target="#coupling-leds-to-fibers-slides-135138"><span class="header-section-number">11.6</span> Coupling LEDs to fibers (slides 135–138)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">11.7</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/led-drive.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./led-principle.html">Light-emitting diodes</a></li><li class="breadcrumb-item"><a href="./led-drive.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-drive" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter3/notebooks/led-drive.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 134–138 (surface- and edge-emitting LEDs, coupling into fibers, pigtailed LEDs) and 144–151 (analog drive, driver modules, sinusoidal modulation and bandwidth, digital drive, rise and fall times, speed-up capacitors).</em></p>
+<section id="key-relations" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">11.1</span> Key relations</h2>
+<p>The light output follows the current, so an LED is driven by a <strong>current source</strong>. The simplest driver is a resistor in series with a voltage supply, <span class="math inline">\(I_F=(V-V_F)/R\)</span> (slide 144). For a transistor or op-amp current source <span class="math inline">\(I_F\approx V/R_F\)</span>.</p>
+<p>Modulating the current at frequency <span class="math inline">\(f\)</span> modulates the injected carrier population. Carriers disappear with the net lifetime <span class="math inline">\(\tau\)</span>, where <span class="math inline">\(1/\tau=1/\tau_r+1/\tau_{nr}\)</span>, so the LED behaves like a first-order low-pass filter (slides 146–147):</p>
+<p><span class="math display">\[
+\frac{P_o(\omega)}{P_o(0)}=\frac{1}{\sqrt{1+(\omega\tau)^2}},\qquad
+f_c=\frac{1}{2\pi\tau}\ \text{(electrical bandwidth)},\qquad f_\text{op}=\frac{\sqrt3}{2\pi\tau}\ \text{(optical bandwidth)}.
+\]</span></p>
+<p>At <span class="math inline">\(f_c\)</span> the optical power drops to 0.707, so the detected electrical power (<span class="math inline">\(\propto I_\text{ph}^2\)</span>) drops to 1/2. At <span class="math inline">\(f_\text{op}\)</span> the optical power itself drops to 1/2. For digital modulation the same time constant gives 10–90 % rise and fall times (slide 148)</p>
+<p><span class="math display">\[
+\tau_R=\tau_F=2.2\,\tau .
+\]</span></p>
+</section>
+<section id="modulation-explorer" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="modulation-explorer"><span class="header-section-number">11.2</span> Modulation explorer</h2>
+<p>A 16-bit NRZ pattern drives the LED. The <strong>speed-up capacitor</strong> of slide 151 adds a current spike at each transition that decays with the time constant <span class="math inline">\(RC\)</span>, chosen here equal to <span class="math inline">\(\tau\)</span>. Its strength <span class="math inline">\(k\)</span> is the ratio of the spike to the step.</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="45" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 44;"><span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>viewof md <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tau</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"carrier lifetime τ (ns)"</span>})<span class="op">,</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="dt">B</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"bit rate (Mb/s)"</span>})<span class="op">,</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">k</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">1.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"speed-up strength k (RC = τ)"</span>})</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="55" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 54;"><span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>mdOut <span class="op">=</span> {</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bits <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span>]<span class="op">,</span> Tb <span class="op">=</span> <span class="dv">1000</span><span class="op">/</span>md<span class="op">.</span><span class="at">B</span><span class="op">,</span> tau <span class="op">=</span> md<span class="op">.</span><span class="at">tau</span><span class="op">;</span>   <span class="co">// ns</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> N <span class="op">=</span> <span class="dv">16</span><span class="op">*</span>Tb<span class="op">,</span> dt <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(Tb<span class="op">,</span> tau)<span class="op">/</span><span class="dv">200</span><span class="op">,</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> last <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> tTr <span class="op">=</span> <span class="op">-</span><span class="fl">1e9</span><span class="op">,</span> step <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> t <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> t <span class="op">&lt;</span> N<span class="op">;</span> t <span class="op">+=</span> dt) {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> b <span class="op">=</span> bits[<span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">15</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(t<span class="op">/</span>Tb))]<span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (b <span class="op">!==</span> last) { step <span class="op">=</span> b <span class="op">-</span> last<span class="op">;</span> tTr <span class="op">=</span> t<span class="op">;</span> last <span class="op">=</span> b<span class="op">;</span> }</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> I <span class="op">=</span> b <span class="op">+</span> md<span class="op">.</span><span class="at">k</span><span class="op">*</span>step<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>(t <span class="op">-</span> tTr)<span class="op">/</span>tau)<span class="op">;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> dt<span class="op">*</span>(I <span class="op">-</span> n)<span class="op">/</span>tau<span class="op">;</span>                         <span class="co">// dN/dt = I/e − N/τ (normalised)</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (data<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">||</span> t <span class="op">-</span> data[data<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">t</span> <span class="op">&gt;</span> N<span class="op">/</span><span class="dv">1500</span>) data<span class="op">.</span><span class="fu">push</span>({t<span class="op">,</span> <span class="dt">P</span><span class="op">:</span> n<span class="op">,</span> <span class="dt">I</span><span class="op">:</span> b})<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {data<span class="op">,</span> <span class="dt">fc</span><span class="op">:</span> <span class="dv">1000</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>tau)<span class="op">,</span> <span class="dt">fop</span><span class="op">:</span> <span class="dv">1000</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">3</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>tau)<span class="op">,</span> <span class="dt">tr</span><span class="op">:</span> <span class="fl">2.2</span><span class="op">*</span>tau<span class="op">,</span> Tb}<span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"time (ns)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"normalised light output"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.1</span><span class="op">,</span> <span class="fl">1.3</span>]}<span class="op">,</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(mdOut<span class="op">.</span><span class="at">data</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span><span class="op">,</span> <span class="dt">curve</span><span class="op">:</span> <span class="st">"step-after"</span>})<span class="op">,</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(mdOut<span class="op">.</span><span class="at">data</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"P"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.2</span>})</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="78" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 77;"><span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;f&lt;sub&gt;c&lt;/sub&gt; (electrical, −3 dB) = &lt;b&gt;</span><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">fc</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> MHz&lt;/b&gt; · f&lt;sub&gt;op&lt;/sub&gt; (optical, half power) = </span><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">fop</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> MHz ·</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="vs">rise time 2.2τ = &lt;b&gt;</span><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">tr</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> ns&lt;/b&gt; · bit slot = </span><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">Tb</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> ns</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">tr</span> <span class="op">&gt;</span> <span class="fl">0.7</span><span class="op">*</span>mdOut<span class="op">.</span><span class="at">Tb</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;br&gt;&lt;b&gt;Rise time longer than ~70 % of the bit slot: the eye closes (intersymbol interference).&lt;/b&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Set <span class="math inline">\(k=1\)</span>: the spike exactly cancels the carrier pole and the optical output becomes a perfect copy of the drive pattern. In practice the cancellation is limited by the driver’s current headroom and by the junction capacitance (<a href="smallsignal.html" class="quarto-xref"><span>Chapter 6</span></a>). Too much speed-up (<span class="math inline">\(k&gt;1\)</span>) produces overshoot.</p>
+</section>
+<section id="frequency-response-slides-146147" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="frequency-response-slides-146147"><span class="header-section-number">11.3</span> Frequency response (slides 146–147)</h2>
+<div id="cell-fig-response" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">5e-9</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.logspace(<span class="dv">5</span>, <span class="fl">9.5</span>, <span class="dv">500</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> sl.led_response(f, tau)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>fc, fop <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>tau), np.sqrt(<span class="dv">3</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>tau)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.semilogx(f, R, label<span class="op">=</span><span class="st">"optical power P_o(f)/P_o(0)"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax.semilogx(f, R<span class="op">**</span><span class="dv">2</span>, <span class="st">"--"</span>, label<span class="op">=</span><span class="st">"electrical power [I_ph(f)/I_ph(0)]²"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, lab <span class="kw">in</span> ((fc, <span class="st">"f_c"</span>), (fop, <span class="st">"f_op"</span>)):</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x, color<span class="op">=</span>sl.INK2, lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">":"</span>)<span class="op">;</span> ax.text(x<span class="op">*</span><span class="fl">1.05</span>, <span class="fl">0.9</span>, <span class="ss">f"</span><span class="sc">{</span>lab<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>x<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.1f}</span><span class="ss"> MHz"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">0.5</span>, color<span class="op">=</span>sl.GRID, lw<span class="op">=</span><span class="fl">1.5</span>)<span class="op">;</span> ax.axhline(<span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>), color<span class="op">=</span>sl.GRID, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"modulation frequency (Hz)"</span>, ylabel<span class="op">=</span><span class="st">"normalised response"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">"lower left"</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-response" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-response-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="led-drive_files/figure-html/fig-response-output-1.png" width="719" height="392" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-response-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.1: LED modulation response for τ = 5 ns. Optical power (left axis) and detected electrical power ∝ I_ph² (dashed). The electrical −3 dB point f_c = 1/(2πτ) and the optical half-power point f_op = √3/(2πτ) differ by √3 (slide 146).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="ss">f"τ = </span><span class="sc">{</span>t<span class="op">*</span><span class="fl">1e9</span><span class="sc">:g}</span><span class="ss"> ns"</span>: {<span class="st">"f_c (MHz)"</span>: <span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>t)<span class="op">/</span><span class="fl">1e6</span>, <span class="st">"f_op (MHz)"</span>: np.sqrt(<span class="dv">3</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>t)<span class="op">/</span><span class="fl">1e6</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"t_r = 2.2τ (ns)"</span>: <span class="fl">2.2</span><span class="op">*</span>t<span class="op">*</span><span class="fl">1e9</span>, <span class="st">"NRZ ≈ 0.7/t_r (Mb/s)"</span>: <span class="fl">0.7</span><span class="op">/</span>(<span class="fl">2.2</span><span class="op">*</span>t)<span class="op">/</span><span class="fl">1e6</span>}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> t <span class="kw">in</span> (<span class="fl">100e-9</span>, <span class="fl">20e-9</span>, <span class="fl">5e-9</span>, <span class="fl">1e-9</span>, <span class="fl">0.3e-9</span>)}).T.<span class="bu">round</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-speed" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-speed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.1: Bandwidth and rise time for typical LED lifetimes. NRZ bit rate estimated as 0.7/t_r (a common rule of thumb).
+</figcaption>
+<div aria-describedby="tbl-speed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">f_c (MHz)</th>
+<th data-quarto-table-cell-role="th">f_op (MHz)</th>
+<th data-quarto-table-cell-role="th">t_r = 2.2τ (ns)</th>
+<th data-quarto-table-cell-role="th">NRZ ≈ 0.7/t_r (Mb/s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">τ = 100 ns</th>
+<td>1.6</td>
+<td>2.8</td>
+<td>220.0</td>
+<td>3.2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">τ = 20 ns</th>
+<td>8.0</td>
+<td>13.8</td>
+<td>44.0</td>
+<td>15.9</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">τ = 5 ns</th>
+<td>31.8</td>
+<td>55.1</td>
+<td>11.0</td>
+<td>63.6</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">τ = 1 ns</th>
+<td>159.2</td>
+<td>275.7</td>
+<td>2.2</td>
+<td>318.2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">τ = 0.3 ns</th>
+<td>530.5</td>
+<td>918.9</td>
+<td>0.7</td>
+<td>1060.6</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Visible-light LEDs (τ ≈ 10–50 ns) reach tens of MHz, enough for Li-Fi with OFDM. Heavily doped IR communication LEDs and microLEDs (τ &lt; 1 ns) reach hundreds of MHz to a few GHz, which makes them candidates for short optical interconnects.</p>
+</section>
+<section id="rise-time-and-the-speed-up-capacitor-slides-148151" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="rise-time-and-the-speed-up-capacitor-slides-148151"><span class="header-section-number">11.4</span> Rise time and the speed-up capacitor (slides 148–151)</h2>
+<div id="cell-fig-speedup" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">10e-9</span>, <span class="fl">100e-9</span>, <span class="dv">4000</span>)<span class="op">;</span> dt <span class="op">=</span> t[<span class="dv">1</span>] <span class="op">-</span> t[<span class="dv">0</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tau, t_on, t_off <span class="op">=</span> <span class="fl">5e-9</span>, <span class="fl">0.0</span>, <span class="fl">50e-9</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="fl">0.0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> ((t <span class="op">&gt;=</span> t_on) <span class="op">&amp;</span> (t <span class="op">&lt;</span> t_off)).astype(<span class="bu">float</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    I <span class="op">+=</span> k<span class="op">*</span>np.where(t <span class="op">&gt;=</span> t_on, np.exp(<span class="op">-</span>(t <span class="op">-</span> t_on)<span class="op">/</span>tau), <span class="dv">0</span>)<span class="op">*</span>(t <span class="op">&lt;</span> t_off) <span class="op">-</span> k<span class="op">*</span>np.where(t <span class="op">&gt;=</span> t_off, np.exp(<span class="op">-</span>(t <span class="op">-</span> t_off)<span class="op">/</span>tau), <span class="dv">0</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.zeros_like(t)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, t.size): n[i] <span class="op">=</span> n[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> dt<span class="op">*</span>(I[i<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> n[i<span class="op">-</span><span class="dv">1</span>])<span class="op">/</span>tau</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ax.plot(t<span class="op">*</span><span class="fl">1e9</span>, n, label<span class="op">=</span><span class="ss">f"k = </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> t[(n <span class="op">&gt;=</span> <span class="fl">0.1</span>) <span class="op">&amp;</span> (t <span class="op">&lt;</span> t_off)]<span class="op">;</span> r9 <span class="op">=</span> t[(n <span class="op">&gt;=</span> <span class="fl">0.9</span>) <span class="op">&amp;</span> (t <span class="op">&lt;</span> t_off)]</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        tr <span class="op">=</span> r9[<span class="dv">0</span>] <span class="op">-</span> r[<span class="dv">0</span>]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ax.plot(t<span class="op">*</span><span class="fl">1e9</span>, ((t <span class="op">&gt;=</span> t_on) <span class="op">&amp;</span> (t <span class="op">&lt;</span> t_off)), <span class="st">":"</span>, color<span class="op">=</span>sl.INK2, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"drive"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"t (ns)"</span>, ylabel<span class="op">=</span><span class="st">"normalised light output"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"10–90 % rise time without shaping: </span><span class="sc">{</span>tr<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> ns = </span><span class="sc">{</span>tr<span class="op">/</span>tau<span class="sc">:.2f}</span><span class="ss"> τ"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-speedup" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-speedup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="led-drive_files/figure-html/fig-speedup-output-1.png" width="719" height="391" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-speedup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11.2: Response to a 50 ns current pulse (τ = 5 ns). Without pulse shaping the 10–90 % rise time is 2.2τ = 11 ns. A speed-up capacitor with RC = τ (k = 1) cancels the pole; k = 0.5 is a partial correction.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10–90 % rise time without shaping: 10.95 ns = 2.19 τ</code></pre>
+</div>
+</div>
+</section>
+<section id="choosing-the-bias-resistor-slide-144" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="choosing-the-bias-resistor-slide-144"><span class="header-section-number">11.5</span> Choosing the bias resistor (slide 144)</h2>
+<p>The LED I–V curve is steep, so a voltage source alone would be unstable: a 50 mV change gives a large current change. The series resistor sets the operating point. With the diode model of <a href="diode.html" class="quarto-xref"><span>Chapter 5</span></a> (including series resistance) the exact current is the root of <span class="math inline">\(V_s=IR+V_F(I)\)</span>:</p>
+<div class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Io, eta, Rs, Vs <span class="op">=</span> <span class="fl">1e-18</span>, <span class="fl">2.0</span>, <span class="fl">8.0</span>, <span class="fl">5.0</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>VF <span class="op">=</span> <span class="kw">lambda</span> I: eta<span class="op">*</span>sl.kT()<span class="op">*</span>np.log(I<span class="op">/</span>Io <span class="op">+</span> <span class="dv">1</span>) <span class="op">+</span> I<span class="op">*</span>Rs</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> {}</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R <span class="kw">in</span> (<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">330</span>):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> brentq(<span class="kw">lambda</span> I: Vs <span class="op">-</span> I<span class="op">*</span>R <span class="op">-</span> VF(I), <span class="fl">1e-9</span>, Vs<span class="op">/</span>R)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    rows[<span class="ss">f"R = </span><span class="sc">{</span>R<span class="sc">}</span><span class="ss"> Ω"</span>] <span class="op">=</span> {<span class="st">"I_F (mA)"</span>: I<span class="op">*</span><span class="fl">1e3</span>, <span class="st">"V_F (V)"</span>: VF(I), <span class="st">"P_LED (mW)"</span>: I<span class="op">*</span>VF(I)<span class="op">*</span><span class="fl">1e3</span>, <span class="st">"P_R (mW)"</span>: I<span class="op">**</span><span class="dv">2</span><span class="op">*</span>R<span class="op">*</span><span class="fl">1e3</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"dI/dV_s (mA/V)"</span>: <span class="fl">1e3</span><span class="op">/</span>(R <span class="op">+</span> Rs <span class="op">+</span> eta<span class="op">*</span>sl.kT()<span class="op">/</span>I)}</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"V_F at 20 mA = </span><span class="sc">{</span>VF(<span class="fl">0.02</span>)<span class="sc">:.3f}</span><span class="ss"> V  -&gt;  R = (5 − V_F)/0.02 = </span><span class="sc">{</span>(Vs <span class="op">-</span> VF(<span class="fl">0.02</span>))<span class="op">/</span><span class="fl">0.02</span><span class="sc">:.0f}</span><span class="ss"> Ω"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).T.<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>V_F at 20 mA = 2.101 V  -&gt;  R = (5 − V_F)/0.02 = 145 Ω</code></pre>
+</div>
+<div id="tbl-resistor" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-resistor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.2: Red LED (η = 2, I_o = 10⁻¹⁸ A, R_s = 8 Ω, a typical fit to a 5 mm indicator LED) driven from 5 V. Target 20 mA: the simple formula R = (V_s − V_F)/I_F with the datasheet V_F is accurate because R ≫ r_d.
+</figcaption>
+<div aria-describedby="tbl-resistor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">I_F (mA)</th>
+<th data-quarto-table-cell-role="th">V_F (V)</th>
+<th data-quarto-table-cell-role="th">P_LED (mW)</th>
+<th data-quarto-table-cell-role="th">P_R (mW)</th>
+<th data-quarto-table-cell-role="th">dI/dV_s (mA/V)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">R = 100 Ω</th>
+<td>28.16</td>
+<td>2.18</td>
+<td>61.50</td>
+<td>79.32</td>
+<td>9.10</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">R = 150 Ω</th>
+<td>19.37</td>
+<td>2.09</td>
+<td>40.57</td>
+<td>56.30</td>
+<td>6.22</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">R = 220 Ω</th>
+<td>13.51</td>
+<td>2.03</td>
+<td>27.40</td>
+<td>40.14</td>
+<td>4.31</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">R = 330 Ω</th>
+<td>9.17</td>
+<td>1.97</td>
+<td>18.10</td>
+<td>27.75</td>
+<td>2.91</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="coupling-leds-to-fibers-slides-135138" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="coupling-leds-to-fibers-slides-135138"><span class="header-section-number">11.6</span> Coupling LEDs to fibers (slides 135–138)</h2>
+<p>A surface-emitting LED is close to a <strong>Lambertian</strong> source, <span class="math inline">\(I(\theta)\propto\cos\theta\)</span>. A fiber accepts only rays inside its numerical aperture, so the coupled fraction from a small source is <span class="math inline">\(\eta_c=\text{NA}^2\)</span>. A source larger than the core loses a further area factor <span class="math inline">\((a/r_s)^2\)</span>. Edge emitters (ELEDs) have a narrower beam in one plane and couple better.</p>
+<div class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fibers <span class="op">=</span> {<span class="st">"SMF-28 (9 µm, NA 0.14)"</span>: (<span class="dv">9</span>, <span class="fl">0.14</span>), <span class="st">"MMF 50/125 (NA 0.20)"</span>: (<span class="dv">50</span>, <span class="fl">0.20</span>),</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"MMF 62.5/125 (NA 0.275)"</span>: (<span class="fl">62.5</span>, <span class="fl">0.275</span>), <span class="st">"POF 980/1000 (NA 0.50)"</span>: (<span class="dv">980</span>, <span class="fl">0.50</span>)}</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>src <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({k: {<span class="st">"η geometric"</span>: <span class="ss">f"</span><span class="sc">{</span>NA<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="bu">min</span>(<span class="dv">1</span>, (d<span class="op">/</span>src)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss"> %"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"η with Fresnel (×0.96)"</span>: <span class="ss">f"</span><span class="sc">{</span>NA<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="bu">min</span>(<span class="dv">1</span>, (d<span class="op">/</span>src)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span><span class="fl">0.96</span><span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss"> %"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"loss (dB)"</span>: <span class="bu">round</span>(<span class="op">-</span><span class="dv">10</span><span class="op">*</span>np.log10(NA<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="bu">min</span>(<span class="dv">1</span>, (d<span class="op">/</span>src)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span><span class="fl">0.96</span>), <span class="dv">1</span>)} <span class="cf">for</span> k, (d, NA) <span class="kw">in</span> fibers.items()}).T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-coupling" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coupling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.3: Coupling efficiency of a Lambertian LED (emitting diameter 50 µm) into common fibers, η = NA² × min(1, (core/source)²), plus a Fresnel loss of a 1.5-index interface.
+</figcaption>
+<div aria-describedby="tbl-coupling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">η geometric</th>
+<th data-quarto-table-cell-role="th">η with Fresnel (×0.96)</th>
+<th data-quarto-table-cell-role="th">loss (dB)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">SMF-28 (9 µm, NA 0.14)</th>
+<td>0.06 %</td>
+<td>0.06 %</td>
+<td>32.1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">MMF 50/125 (NA 0.20)</th>
+<td>4.00 %</td>
+<td>3.84 %</td>
+<td>14.2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">MMF 62.5/125 (NA 0.275)</th>
+<td>7.56 %</td>
+<td>7.26 %</td>
+<td>11.4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">POF 980/1000 (NA 0.50)</th>
+<td>25.00 %</td>
+<td>24.00 %</td>
+<td>6.2</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A 1 mW LED puts only about 1 µW into a single-mode fiber (–30 dB), but 40 µW into a 50 µm multimode fiber and 250 µW into a plastic optical fiber. LEDs were therefore used with multimode and plastic fibers (short links, home networks, automotive), while single-mode links use lasers (Ch. 4).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going deeper
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Rate equation with carrier-dependent lifetime.</strong> With <span class="math inline">\(1/\tau=A+BN\)</span> the rise and fall become asymmetric: the turn-off tail is slower. Integrate <span class="math inline">\(dN/dt=I/eV-AN-BN^2\)</span> and compare with the linear model.</li>
+<li><strong>Bias and small-signal modulation.</strong> Driving around a DC bias <span class="math inline">\(I_0\)</span> shortens the differential lifetime <span class="math inline">\(\tau_\text{diff}=1/(A+2BN_0)\)</span>: the bandwidth grows with the bias. Plot <span class="math inline">\(f_c\)</span> against <span class="math inline">\(I_0\)</span>.</li>
+<li><strong>Visible light communication.</strong> With <span class="math inline">\(f_c\approx20\)</span> MHz, OFDM with bit loading reaches several Gb/s on a single LED. Estimate the Shannon capacity <span class="math inline">\(\int\log_2(1+\text{SNR}(f))\,df\)</span> with the first-order response and a white-noise receiver.</li>
+<li><strong>PWM dimming.</strong> Driver modules (slide 145) dim by pulse-width modulation. How fast must the PWM be to avoid visible flicker, and why is it not limited by <span class="math inline">\(\tau\)</span>?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, <em>Optoelectronics and Photonics</em>, sec.&nbsp;3.16–3.17; Schubert, <em>Light-Emitting Diodes</em>, ch.&nbsp;24 (high-speed LEDs).</li>
+<li>Texas Instruments and Analog Devices application notes on LED drivers (constant-current topologies).</li>
+<li>H. Haas <em>et al.</em>, “What is LiFi?”, <em>J. Lightwave Technol.</em> 34, 1533 (2016).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">11.7</span> Try it yourself</h2>
+<ol type="1">
+<li>An LED has <span class="math inline">\(\tau_r=20\)</span> ns and <span class="math inline">\(\tau_{nr}=80\)</span> ns. Find <span class="math inline">\(\tau\)</span>, the IQE, <span class="math inline">\(f_c\)</span> and the rise time.</li>
+<li>In the explorer, find the maximum bit rate for <span class="math inline">\(\tau=10\)</span> ns without and with a speed-up capacitor (<span class="math inline">\(k=1\)</span>).</li>
+<li>Design the bias resistor for a white LED (<span class="math inline">\(V_F=3.0\)</span> V at 30 mA) from a 5 V supply. What happens to the current if <span class="math inline">\(V_F\)</span> drops by 0.2 V when the LED warms up?</li>
+<li>A pigtailed 1310 nm InGaAsP ELED couples 50 µW into a 9 µm fiber. Compare with the surface-emitter estimate above.</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBtZCA9IElucHV0cy5mb3JtKHtcbiAgdGF1OiBJbnB1dHMucmFuZ2UoWzAuNSwgNTBdLCB7dmFsdWU6IDEwLCBzdGVwOiAwLjUsIGxhYmVsOiBcImNhcnJpZXIgbGlmZXRpbWUgz4QgKG5zKVwifSksXG4gIEI6IElucHV0cy5yYW5nZShbNSwgNTAwXSwge3ZhbHVlOiA1MCwgc3RlcDogMSwgbGFiZWw6IFwiYml0IHJhdGUgKE1iL3MpXCJ9KSxcbiAgazogSW5wdXRzLnJhbmdlKFswLCAxLjVdLCB7dmFsdWU6IDAsIHN0ZXA6IDAuMDUsIGxhYmVsOiBcInNwZWVkLXVwIHN0cmVuZ3RoIGsgKFJDID0gz4QpXCJ9KVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1kT3V0ID0ge1xuICBjb25zdCBiaXRzID0gWzAsMSwwLDEsMSwwLDAsMSwxLDEsMCwxLDAsMCwwLDFdLCBUYiA9IDEwMDAvbWQuQiwgdGF1ID0gbWQudGF1OyAgIC8vIG5zXG4gIGNvbnN0IE4gPSAxNipUYiwgZHQgPSBNYXRoLm1pbihUYiwgdGF1KS8yMDAsIGRhdGEgPSBbXTtcbiAgbGV0IG4gPSAwLCBsYXN0ID0gMCwgdFRyID0gLTFlOSwgc3RlcCA9IDA7XG4gIGZvciAobGV0IHQgPSAwOyB0IDwgTjsgdCArPSBkdCkge1xuICAgIGNvbnN0IGIgPSBiaXRzW01hdGgubWluKDE1LCBNYXRoLmZsb29yKHQvVGIpKV07XG4gICAgaWYgKGIgIT09IGxhc3QpIHsgc3RlcCA9IGIgLSBsYXN0OyB0VHIgPSB0OyBsYXN0ID0gYjsgfVxuICAgIGNvbnN0IEkgPSBiICsgbWQuaypzdGVwKk1hdGguZXhwKC0odCAtIHRUcikvdGF1KTtcbiAgICBuICs9IGR0KihJIC0gbikvdGF1OyAgICAgICAgICAgICAgICAgICAgICAgICAvLyBkTi9kdCA9IEkvZSDiiJIgTi/PhCAobm9ybWFsaXNlZClcbiAgICBpZiAoZGF0YS5sZW5ndGggPT09IDAgfHwgdCAtIGRhdGFbZGF0YS5sZW5ndGggLSAxXS50ID4gTi8xNTAwKSBkYXRhLnB1c2goe3QsIFA6IG4sIEk6IGJ9KTtcbiAgfVxuICByZXR1cm4ge2RhdGEsIGZjOiAxMDAwLygyKk1hdGguUEkqdGF1KSwgZm9wOiAxMDAwKk1hdGguc3FydCgzKS8oMipNYXRoLlBJKnRhdSksIHRyOiAyLjIqdGF1LCBUYn07XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDEwNTApLCBoZWlnaHQ6IDI4MCwgeDoge2xhYmVsOiBcInRpbWUgKG5zKVwifSwgeToge2xhYmVsOiBcIm5vcm1hbGlzZWQgbGlnaHQgb3V0cHV0XCIsIGdyaWQ6IHRydWUsIGRvbWFpbjogWy0wLjEsIDEuM119LFxuICBtYXJrczogW1xuICAgIFBsb3QubGluZShtZE91dC5kYXRhLCB7eDogXCJ0XCIsIHk6IFwiSVwiLCBzdHJva2U6IFwiIzUyNTE0ZVwiLCBzdHJva2VXaWR0aDogMS4yLCBzdHJva2VEYXNoYXJyYXk6IFwiNCwzXCIsIGN1cnZlOiBcInN0ZXAtYWZ0ZXJcIn0pLFxuICAgIFBsb3QubGluZShtZE91dC5kYXRhLCB7eDogXCJ0XCIsIHk6IFwiUFwiLCBzdHJva2U6IFwiIzJhNzhkNlwiLCBzdHJva2VXaWR0aDogMi4yfSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cInJlc3VsdC1ib3hcIj5mPHN1Yj5jPC9zdWI+IChlbGVjdHJpY2FsLCDiiJIzIGRCKSA9IDxiPiR7bWRPdXQuZmMudG9GaXhlZCgxKX0gTUh6PC9iPiDCtyBmPHN1Yj5vcDwvc3ViPiAob3B0aWNhbCwgaGFsZiBwb3dlcikgPSAke21kT3V0LmZvcC50b0ZpeGVkKDEpfSBNSHogwrdcbnJpc2UgdGltZSAyLjLPhCA9IDxiPiR7bWRPdXQudHIudG9GaXhlZCgxKX0gbnM8L2I+IMK3IGJpdCBzbG90ID0gJHttZE91dC5UYi50b0ZpeGVkKDEpfSBuc1xuJHttZE91dC50ciA+IDAuNyptZE91dC5UYiA/IGh0bWxgPGJyPjxiPlJpc2UgdGltZSBsb25nZXIgdGhhbiB+NzAgJSBvZiB0aGUgYml0IHNsb3Q6IHRoZSBleWUgY2xvc2VzIChpbnRlcnN5bWJvbCBpbnRlcmZlcmVuY2UpLjwvYj5gIDogXCJcIn08L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21kJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter3\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./efficiency.html" class="pagination-link" aria-label="Efficiency, brightness and white LEDs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ideas.html" class="pagination-link" aria-label="Projects, toolbox and connections">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># LED types, drive circuits and speed {#sec-drive}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/led-drive.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> brentq</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> semilib <span class="im">as</span> sl</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>sl.use_style()</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>*Slides 134–138 (surface- and edge-emitting LEDs, coupling into fibers, pigtailed LEDs) and 144–151 (analog drive, driver</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>modules, sinusoidal modulation and bandwidth, digital drive, rise and fall times, speed-up capacitors).*</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>The light output follows the current, so an LED is driven by a **current source**. The simplest driver is a resistor in series with</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>a voltage supply, $I_F=(V-V_F)/R$ (slide 144). For a transistor or op-amp current source $I_F\approx V/R_F$.</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>Modulating the current at frequency $f$ modulates the injected carrier population. Carriers disappear with the net lifetime</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>$\tau$, where $1/\tau=1/\tau_r+1/\tau_{nr}$, so the LED behaves like a first-order low-pass filter (slides 146–147):</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>\frac{P_o(\omega)}{P_o(0)}=\frac{1}{\sqrt{1+(\omega\tau)^2}},\qquad</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>f_c=\frac{1}{2\pi\tau}\ \text{(electrical bandwidth)},\qquad f_\text{op}=\frac{\sqrt3}{2\pi\tau}\ \text{(optical bandwidth)}.</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>At $f_c$ the optical power drops to 0.707, so the detected electrical power ($\propto I_\text{ph}^2$) drops to 1/2. At $f_\text{op}$</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>the optical power itself drops to 1/2. For digital modulation the same time constant gives 10–90 % rise and fall times</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>(slide 148)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>\tau_R=\tau_F=2.2\,\tau .</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modulation explorer</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>A 16-bit NRZ pattern drives the LED. The **speed-up capacitor** of slide 151 adds a current spike at each transition that decays</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>with the time constant $RC$, chosen here equal to $\tau$. Its strength $k$ is the ratio of the spike to the step.</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>viewof md <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tau</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"carrier lifetime τ (ns)"</span>})<span class="op">,</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">B</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"bit rate (Mb/s)"</span>})<span class="op">,</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">k</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">1.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"speed-up strength k (RC = τ)"</span>})</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>mdOut <span class="op">=</span> {</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> bits <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span>]<span class="op">,</span> Tb <span class="op">=</span> <span class="dv">1000</span><span class="op">/</span>md<span class="op">.</span><span class="at">B</span><span class="op">,</span> tau <span class="op">=</span> md<span class="op">.</span><span class="at">tau</span><span class="op">;</span>   <span class="co">// ns</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> N <span class="op">=</span> <span class="dv">16</span><span class="op">*</span>Tb<span class="op">,</span> dt <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(Tb<span class="op">,</span> tau)<span class="op">/</span><span class="dv">200</span><span class="op">,</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> last <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> tTr <span class="op">=</span> <span class="op">-</span><span class="fl">1e9</span><span class="op">,</span> step <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> t <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> t <span class="op">&lt;</span> N<span class="op">;</span> t <span class="op">+=</span> dt) {</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> b <span class="op">=</span> bits[<span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">15</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(t<span class="op">/</span>Tb))]<span class="op">;</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (b <span class="op">!==</span> last) { step <span class="op">=</span> b <span class="op">-</span> last<span class="op">;</span> tTr <span class="op">=</span> t<span class="op">;</span> last <span class="op">=</span> b<span class="op">;</span> }</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> I <span class="op">=</span> b <span class="op">+</span> md<span class="op">.</span><span class="at">k</span><span class="op">*</span>step<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>(t <span class="op">-</span> tTr)<span class="op">/</span>tau)<span class="op">;</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> dt<span class="op">*</span>(I <span class="op">-</span> n)<span class="op">/</span>tau<span class="op">;</span>                         <span class="co">// dN/dt = I/e − N/τ (normalised)</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (data<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">||</span> t <span class="op">-</span> data[data<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">t</span> <span class="op">&gt;</span> N<span class="op">/</span><span class="dv">1500</span>) data<span class="op">.</span><span class="fu">push</span>({t<span class="op">,</span> <span class="dt">P</span><span class="op">:</span> n<span class="op">,</span> <span class="dt">I</span><span class="op">:</span> b})<span class="op">;</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {data<span class="op">,</span> <span class="dt">fc</span><span class="op">:</span> <span class="dv">1000</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>tau)<span class="op">,</span> <span class="dt">fop</span><span class="op">:</span> <span class="dv">1000</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">3</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>tau)<span class="op">,</span> <span class="dt">tr</span><span class="op">:</span> <span class="fl">2.2</span><span class="op">*</span>tau<span class="op">,</span> Tb}<span class="op">;</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"time (ns)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"normalised light output"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.1</span><span class="op">,</span> <span class="fl">1.3</span>]}<span class="op">,</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(mdOut<span class="op">.</span><span class="at">data</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span><span class="op">,</span> <span class="dt">curve</span><span class="op">:</span> <span class="st">"step-after"</span>})<span class="op">,</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(mdOut<span class="op">.</span><span class="at">data</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"P"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.2</span>})</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;f&lt;sub&gt;c&lt;/sub&gt; (electrical, −3 dB) = &lt;b&gt;</span><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">fc</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> MHz&lt;/b&gt; · f&lt;sub&gt;op&lt;/sub&gt; (optical, half power) = </span><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">fop</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> MHz ·</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a><span class="vs">rise time 2.2τ = &lt;b&gt;</span><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">tr</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> ns&lt;/b&gt; · bit slot = </span><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">Tb</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> ns</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>mdOut<span class="op">.</span><span class="at">tr</span> <span class="op">&gt;</span> <span class="fl">0.7</span><span class="op">*</span>mdOut<span class="op">.</span><span class="at">Tb</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;br&gt;&lt;b&gt;Rise time longer than ~70 % of the bit slot: the eye closes (intersymbol interference).&lt;/b&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>Set $k=1$: the spike exactly cancels the carrier pole and the optical output becomes a perfect copy of the drive pattern. In</span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>practice the cancellation is limited by the driver's current headroom and by the junction capacitance (@sec-smallsignal). Too</span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>much speed-up ($k&gt;1$) produces overshoot.</span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Frequency response (slides 146–147)</span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-response</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "LED modulation response for τ = 5 ns. Optical power (left axis) and detected electrical power ∝ I_ph² (dashed). The electrical −3 dB point f_c = 1/(2πτ) and the optical half-power point f_op = √3/(2πτ) differ by √3 (slide 146)."</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">5e-9</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.logspace(<span class="dv">5</span>, <span class="fl">9.5</span>, <span class="dv">500</span>)</span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> sl.led_response(f, tau)</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>fc, fop <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>tau), np.sqrt(<span class="dv">3</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>tau)</span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>ax.semilogx(f, R, label<span class="op">=</span><span class="st">"optical power P_o(f)/P_o(0)"</span>)</span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>ax.semilogx(f, R<span class="op">**</span><span class="dv">2</span>, <span class="st">"--"</span>, label<span class="op">=</span><span class="st">"electrical power [I_ph(f)/I_ph(0)]²"</span>)</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, lab <span class="kw">in</span> ((fc, <span class="st">"f_c"</span>), (fop, <span class="st">"f_op"</span>)):</span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>    ax.axvline(x, color<span class="op">=</span>sl.INK2, lw<span class="op">=</span><span class="dv">1</span>, ls<span class="op">=</span><span class="st">":"</span>)<span class="op">;</span> ax.text(x<span class="op">*</span><span class="fl">1.05</span>, <span class="fl">0.9</span>, <span class="ss">f"</span><span class="sc">{</span>lab<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>x<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.1f}</span><span class="ss"> MHz"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">0.5</span>, color<span class="op">=</span>sl.GRID, lw<span class="op">=</span><span class="fl">1.5</span>)<span class="op">;</span> ax.axhline(<span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">2</span>), color<span class="op">=</span>sl.GRID, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"modulation frequency (Hz)"</span>, ylabel<span class="op">=</span><span class="st">"normalised response"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">"lower left"</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-speed</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Bandwidth and rise time for typical LED lifetimes. NRZ bit rate estimated as 0.7/t_r (a common rule of thumb)."</span></span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="ss">f"τ = </span><span class="sc">{</span>t<span class="op">*</span><span class="fl">1e9</span><span class="sc">:g}</span><span class="ss"> ns"</span>: {<span class="st">"f_c (MHz)"</span>: <span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>t)<span class="op">/</span><span class="fl">1e6</span>, <span class="st">"f_op (MHz)"</span>: np.sqrt(<span class="dv">3</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>t)<span class="op">/</span><span class="fl">1e6</span>,</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>              <span class="st">"t_r = 2.2τ (ns)"</span>: <span class="fl">2.2</span><span class="op">*</span>t<span class="op">*</span><span class="fl">1e9</span>, <span class="st">"NRZ ≈ 0.7/t_r (Mb/s)"</span>: <span class="fl">0.7</span><span class="op">/</span>(<span class="fl">2.2</span><span class="op">*</span>t)<span class="op">/</span><span class="fl">1e6</span>}</span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>              <span class="cf">for</span> t <span class="kw">in</span> (<span class="fl">100e-9</span>, <span class="fl">20e-9</span>, <span class="fl">5e-9</span>, <span class="fl">1e-9</span>, <span class="fl">0.3e-9</span>)}).T.<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>Visible-light LEDs (τ ≈ 10–50 ns) reach tens of MHz, enough for Li-Fi with OFDM. Heavily doped IR communication LEDs and</span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>microLEDs (τ &lt; 1 ns) reach hundreds of MHz to a few GHz, which makes them candidates for short optical interconnects.</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## Rise time and the speed-up capacitor (slides 148–151)</span></span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-speedup</span></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Response to a 50 ns current pulse (τ = 5 ns). Without pulse shaping the 10–90 % rise time is 2.2τ = 11 ns. A speed-up capacitor with RC = τ (k = 1) cancels the pole; k = 0.5 is a partial correction."</span></span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">10e-9</span>, <span class="fl">100e-9</span>, <span class="dv">4000</span>)<span class="op">;</span> dt <span class="op">=</span> t[<span class="dv">1</span>] <span class="op">-</span> t[<span class="dv">0</span>]</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>tau, t_on, t_off <span class="op">=</span> <span class="fl">5e-9</span>, <span class="fl">0.0</span>, <span class="fl">50e-9</span></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="fl">0.0</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>):</span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> ((t <span class="op">&gt;=</span> t_on) <span class="op">&amp;</span> (t <span class="op">&lt;</span> t_off)).astype(<span class="bu">float</span>)</span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>    I <span class="op">+=</span> k<span class="op">*</span>np.where(t <span class="op">&gt;=</span> t_on, np.exp(<span class="op">-</span>(t <span class="op">-</span> t_on)<span class="op">/</span>tau), <span class="dv">0</span>)<span class="op">*</span>(t <span class="op">&lt;</span> t_off) <span class="op">-</span> k<span class="op">*</span>np.where(t <span class="op">&gt;=</span> t_off, np.exp(<span class="op">-</span>(t <span class="op">-</span> t_off)<span class="op">/</span>tau), <span class="dv">0</span>)</span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.zeros_like(t)</span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, t.size): n[i] <span class="op">=</span> n[i<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> dt<span class="op">*</span>(I[i<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> n[i<span class="op">-</span><span class="dv">1</span>])<span class="op">/</span>tau</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>    ax.plot(t<span class="op">*</span><span class="fl">1e9</span>, n, label<span class="op">=</span><span class="ss">f"k = </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> t[(n <span class="op">&gt;=</span> <span class="fl">0.1</span>) <span class="op">&amp;</span> (t <span class="op">&lt;</span> t_off)]<span class="op">;</span> r9 <span class="op">=</span> t[(n <span class="op">&gt;=</span> <span class="fl">0.9</span>) <span class="op">&amp;</span> (t <span class="op">&lt;</span> t_off)]</span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a>        tr <span class="op">=</span> r9[<span class="dv">0</span>] <span class="op">-</span> r[<span class="dv">0</span>]</span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a>ax.plot(t<span class="op">*</span><span class="fl">1e9</span>, ((t <span class="op">&gt;=</span> t_on) <span class="op">&amp;</span> (t <span class="op">&lt;</span> t_off)), <span class="st">":"</span>, color<span class="op">=</span>sl.INK2, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"drive"</span>)</span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"t (ns)"</span>, ylabel<span class="op">=</span><span class="st">"normalised light output"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"10–90 % rise time without shaping: </span><span class="sc">{</span>tr<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> ns = </span><span class="sc">{</span>tr<span class="op">/</span>tau<span class="sc">:.2f}</span><span class="ss"> τ"</span>)</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a><span class="fu">## Choosing the bias resistor (slide 144)</span></span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>The LED I–V curve is steep, so a voltage source alone would be unstable: a 50 mV change gives a large current change. The</span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>series resistor sets the operating point. With the diode model of @sec-diode (including series resistance) the exact current</span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a>is the root of $V_s=IR+V_F(I)$:</span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-resistor</span></span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Red LED (η = 2, I_o = 10⁻¹⁸ A, R_s = 8 Ω, a typical fit to a 5 mm indicator LED) driven from 5 V. Target 20 mA: the simple formula R = (V_s − V_F)/I_F with the datasheet V_F is accurate because R ≫ r_d."</span></span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a>Io, eta, Rs, Vs <span class="op">=</span> <span class="fl">1e-18</span>, <span class="fl">2.0</span>, <span class="fl">8.0</span>, <span class="fl">5.0</span></span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>VF <span class="op">=</span> <span class="kw">lambda</span> I: eta<span class="op">*</span>sl.kT()<span class="op">*</span>np.log(I<span class="op">/</span>Io <span class="op">+</span> <span class="dv">1</span>) <span class="op">+</span> I<span class="op">*</span>Rs</span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> {}</span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R <span class="kw">in</span> (<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">220</span>, <span class="dv">330</span>):</span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> brentq(<span class="kw">lambda</span> I: Vs <span class="op">-</span> I<span class="op">*</span>R <span class="op">-</span> VF(I), <span class="fl">1e-9</span>, Vs<span class="op">/</span>R)</span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>    rows[<span class="ss">f"R = </span><span class="sc">{</span>R<span class="sc">}</span><span class="ss"> Ω"</span>] <span class="op">=</span> {<span class="st">"I_F (mA)"</span>: I<span class="op">*</span><span class="fl">1e3</span>, <span class="st">"V_F (V)"</span>: VF(I), <span class="st">"P_LED (mW)"</span>: I<span class="op">*</span>VF(I)<span class="op">*</span><span class="fl">1e3</span>, <span class="st">"P_R (mW)"</span>: I<span class="op">**</span><span class="dv">2</span><span class="op">*</span>R<span class="op">*</span><span class="fl">1e3</span>,</span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"dI/dV_s (mA/V)"</span>: <span class="fl">1e3</span><span class="op">/</span>(R <span class="op">+</span> Rs <span class="op">+</span> eta<span class="op">*</span>sl.kT()<span class="op">/</span>I)}</span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"V_F at 20 mA = </span><span class="sc">{</span>VF(<span class="fl">0.02</span>)<span class="sc">:.3f}</span><span class="ss"> V  -&gt;  R = (5 − V_F)/0.02 = </span><span class="sc">{</span>(Vs <span class="op">-</span> VF(<span class="fl">0.02</span>))<span class="op">/</span><span class="fl">0.02</span><span class="sc">:.0f}</span><span class="ss"> Ω"</span>)</span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).T.<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## Coupling LEDs to fibers (slides 135–138)</span></span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a>A surface-emitting LED is close to a **Lambertian** source, $I(\theta)\propto\cos\theta$. A fiber accepts only rays inside its</span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a>numerical aperture, so the coupled fraction from a small source is $\eta_c=\text{NA}^2$. A source larger than the core loses a</span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a>further area factor $(a/r_s)^2$. Edge emitters (ELEDs) have a narrower beam in one plane and couple better.</span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-coupling</span></span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Coupling efficiency of a Lambertian LED (emitting diameter 50 µm) into common fibers, η = NA² × min(1, (core/source)²), plus a Fresnel loss of a 1.5-index interface."</span></span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a>fibers <span class="op">=</span> {<span class="st">"SMF-28 (9 µm, NA 0.14)"</span>: (<span class="dv">9</span>, <span class="fl">0.14</span>), <span class="st">"MMF 50/125 (NA 0.20)"</span>: (<span class="dv">50</span>, <span class="fl">0.20</span>),</span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>          <span class="st">"MMF 62.5/125 (NA 0.275)"</span>: (<span class="fl">62.5</span>, <span class="fl">0.275</span>), <span class="st">"POF 980/1000 (NA 0.50)"</span>: (<span class="dv">980</span>, <span class="fl">0.50</span>)}</span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a>src <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({k: {<span class="st">"η geometric"</span>: <span class="ss">f"</span><span class="sc">{</span>NA<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="bu">min</span>(<span class="dv">1</span>, (d<span class="op">/</span>src)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss"> %"</span>,</span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"η with Fresnel (×0.96)"</span>: <span class="ss">f"</span><span class="sc">{</span>NA<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="bu">min</span>(<span class="dv">1</span>, (d<span class="op">/</span>src)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span><span class="fl">0.96</span><span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss"> %"</span>,</span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"loss (dB)"</span>: <span class="bu">round</span>(<span class="op">-</span><span class="dv">10</span><span class="op">*</span>np.log10(NA<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="bu">min</span>(<span class="dv">1</span>, (d<span class="op">/</span>src)<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span><span class="fl">0.96</span>), <span class="dv">1</span>)} <span class="cf">for</span> k, (d, NA) <span class="kw">in</span> fibers.items()}).T</span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a>A 1 mW LED puts only about 1 µW into a single-mode fiber (–30 dB), but 40 µW into a 50 µm multimode fiber and 250 µW into a</span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a>plastic optical fiber. LEDs were therefore used with multimode and plastic fibers (short links, home networks, automotive),</span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a>while single-mode links use lasers (Ch. 4).</span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going deeper</span></span>
+<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Rate equation with carrier-dependent lifetime.** With $1/\tau=A+BN$ the rise and fall become asymmetric: the turn-off tail is</span>
+<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a>  slower. Integrate $dN/dt=I/eV-AN-BN^2$ and compare with the linear model.</span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Bias and small-signal modulation.** Driving around a DC bias $I_0$ shortens the differential lifetime $\tau_\text{diff}=1/(A+2BN_0)$:</span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a>  the bandwidth grows with the bias. Plot $f_c$ against $I_0$.</span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Visible light communication.** With $f_c\approx20$ MHz, OFDM with bit loading reaches several Gb/s on a single LED. Estimate</span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a>  the Shannon capacity $\int\log_2(1+\text{SNR}(f))\,df$ with the first-order response and a white-noise receiver.</span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**PWM dimming.** Driver modules (slide 145) dim by pulse-width modulation. How fast must the PWM be to avoid visible flicker, and</span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a>  why is it not limited by $\tau$?</span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, *Optoelectronics and Photonics*, sec. 3.16–3.17; Schubert, *Light-Emitting Diodes*, ch. 24 (high-speed LEDs).</span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Texas Instruments and Analog Devices application notes on LED drivers (constant-current topologies).</span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>H. Haas *et al.*, "What is LiFi?", *J. Lightwave Technol.* 34, 1533 (2016).</span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>An LED has $\tau_r=20$ ns and $\tau_{nr}=80$ ns. Find $\tau$, the IQE, $f_c$ and the rise time.</span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>In the explorer, find the maximum bit rate for $\tau=10$ ns without and with a speed-up capacitor ($k=1$).</span>
+<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Design the bias resistor for a white LED ($V_F=3.0$ V at 30 mA) from a 5 V supply. What happens to the current if $V_F$ drops by</span>
+<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a>   0.2 V when the LED warms up?</span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>A pigtailed 1310 nm InGaAsP ELED couples 50 µW into a 9 µm fiber. Compare with the surface-emitter estimate above.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/led-drive.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

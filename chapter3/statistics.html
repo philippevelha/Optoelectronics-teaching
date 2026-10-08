@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Carrier statistics – Semiconductor Science and Light-Emitting Diodes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./doping.html" rel="next">
+<link href="./bands.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bands.html">Semiconductor science</a></li><li class="breadcrumb-item"><a href="./statistics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Carrier statistics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Semiconductor Science and Light-Emitting Diodes</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter3/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor science</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Energy bands, holes and E–k diagrams</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Carrier statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./doping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Doping, Fermi level and conductivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">The pn junction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./junction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The pn junction at equilibrium</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The diode: forward and reverse bias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smallsignal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capacitance and the small-signal model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Light-emitting diodes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./led-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spectrum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quantum-wells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./led-drive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">2.1</span> Key relations</a></li>
+  <li><a href="#electrons-and-holes-in-the-bands-live" id="toc-electrons-and-holes-in-the-bands-live" class="nav-link" data-scroll-target="#electrons-and-holes-in-the-bands-live"><span class="header-section-number">2.2</span> Electrons and holes in the bands, live</a></li>
+  <li><a href="#sec-table31" id="toc-sec-table31" class="nav-link" data-scroll-target="#sec-table31"><span class="header-section-number">2.3</span> Table 3.1 and the effective masses</a></li>
+  <li><a href="#average-energy-and-the-boltzmann-tail-slide-16" id="toc-average-energy-and-the-boltzmann-tail-slide-16" class="nav-link" data-scroll-target="#average-energy-and-the-boltzmann-tail-slide-16"><span class="header-section-number">2.4</span> Average energy and the Boltzmann tail (slide 16)</a></li>
+  <li><a href="#intrinsic-concentration-and-temperature" id="toc-intrinsic-concentration-and-temperature" class="nav-link" data-scroll-target="#intrinsic-concentration-and-temperature"><span class="header-section-number">2.5</span> Intrinsic concentration and temperature</a></li>
+  <li><a href="#sec-degenerate" id="toc-sec-degenerate" class="nav-link" data-scroll-target="#sec-degenerate"><span class="header-section-number">2.6</span> When Boltzmann fails</a></li>
+  <li><a href="#what-the-fermi-level-means-slide-17" id="toc-what-the-fermi-level-means-slide-17" class="nav-link" data-scroll-target="#what-the-fermi-level-means-slide-17"><span class="header-section-number">2.7</span> What the Fermi level means (slide 17)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">2.8</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/statistics.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bands.html">Semiconductor science</a></li><li class="breadcrumb-item"><a href="./statistics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Carrier statistics</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-stats" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Carrier statistics</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter3/notebooks/statistics.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 10–17 and 25: electron and hole concentrations, effective density of states, mass action law, intrinsic Fermi level, average electron energy, the meaning of <span class="math inline">\(E_F\)</span>, Table 3.1.</em></p>
+<section id="key-relations" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">2.1</span> Key relations</h2>
+<p>The electron concentration in the CB is the area under <span class="math inline">\(g_{cb}(E)f(E)\)</span> (slide 10). When <span class="math inline">\(E_c-E_F\gg k_BT\)</span> (a <strong>non-degenerate</strong> semiconductor) the Fermi–Dirac function reduces to a Boltzmann tail and the integral is analytic (slides 11–13):</p>
+<p><span class="math display">\[
+n=N_c\exp\!\left[-\frac{E_c-E_F}{k_BT}\right],\qquad p=N_v\exp\!\left[-\frac{E_F-E_v}{k_BT}\right],\qquad
+N_{c,v}=2\left(\frac{2\pi m_{e,h}^*k_BT}{h^2}\right)^{3/2}.
+\]</span></p>
+<p>Their product does not depend on <span class="math inline">\(E_F\)</span>. This is the <strong>mass action law</strong> (slide 14), valid in equilibrium and in the dark:</p>
+<p><span class="math display">\[
+np=n_i^2=N_cN_v\exp\!\left(-\frac{E_g}{k_BT}\right).
+\]</span></p>
+<p>In an intrinsic semiconductor <span class="math inline">\(n=p=n_i\)</span>, which places the Fermi level slightly off mid-gap (slide 15): <span class="math inline">\(E_{Fi}=E_v+\tfrac12E_g-\tfrac12k_BT\ln(N_c/N_v)=E_v+\tfrac12E_g-\tfrac34k_BT\ln(m_e^*/m_h^*)\)</span>. Electrons in the CB have an average energy <span class="math inline">\(E_c+\tfrac32k_BT\)</span> above the band edge, like the atoms of an ideal gas (slide 16).</p>
+</section>
+<section id="electrons-and-holes-in-the-bands-live" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="electrons-and-holes-in-the-bands-live"><span class="header-section-number">2.2</span> Electrons and holes in the bands, live</h2>
+<p>Choose a material, a temperature and a Fermi-level position. The panel integrates <span class="math inline">\(g(E)f(E)\)</span> numerically (no Boltzmann approximation) and compares the result with the formulas above. Move <span class="math inline">\(E_F\)</span> inside a band to see the Boltzmann formula fail: that is a <strong>degenerate</strong> semiconductor (<a href="#sec-degenerate" class="quarto-xref"><span>Section 2.6</span></a>).</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="47" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 46;"><span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>mats <span class="op">=</span> ({</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Ge</span><span class="op">:</span>   {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">0.66</span><span class="op">,</span> <span class="dt">Nc</span><span class="op">:</span> <span class="fl">1.04e19</span><span class="op">,</span> <span class="dt">Nv</span><span class="op">:</span> <span class="fl">6.0e18</span>}<span class="op">,</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Si</span><span class="op">:</span>   {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.11</span><span class="op">,</span> <span class="dt">Nc</span><span class="op">:</span> <span class="fl">2.8e19</span><span class="op">,</span>  <span class="dt">Nv</span><span class="op">:</span> <span class="fl">1.2e19</span>}<span class="op">,</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">InP</span><span class="op">:</span>  {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.35</span><span class="op">,</span> <span class="dt">Nc</span><span class="op">:</span> <span class="fl">5.2e17</span><span class="op">,</span>  <span class="dt">Nv</span><span class="op">:</span> <span class="fl">1.1e19</span>}<span class="op">,</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">GaAs</span><span class="op">:</span> {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.42</span><span class="op">,</span> <span class="dt">Nc</span><span class="op">:</span> <span class="fl">4.7e17</span><span class="op">,</span>  <span class="dt">Nv</span><span class="op">:</span> <span class="fl">7.0e18</span>}</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>viewof st <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mat</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(mats)<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"Si"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"material"</span>})<span class="op">,</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">T</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">50</span><span class="op">,</span> <span class="dv">600</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"temperature T (K)"</span>})<span class="op">,</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fe</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="fl">0.15</span><span class="op">,</span> <span class="fl">1.15</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.75</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.005</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"(E_F − E_v)/E_g"</span>})</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="62" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 61;"><span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>stOut <span class="op">=</span> {</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> mats[st<span class="op">.</span><span class="at">mat</span>]<span class="op">,</span> kT <span class="op">=</span> <span class="fl">8.617333e-5</span><span class="op">*</span>st<span class="op">.</span><span class="at">T</span><span class="op">,</span> Eg <span class="op">=</span> m<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> EF <span class="op">=</span> st<span class="op">.</span><span class="at">fe</span><span class="op">*</span>Eg<span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Nc <span class="op">=</span> m<span class="op">.</span><span class="at">Nc</span><span class="op">*</span>(st<span class="op">.</span><span class="at">T</span><span class="op">/</span><span class="dv">300</span>)<span class="op">**</span><span class="fl">1.5</span><span class="op">,</span> Nv <span class="op">=</span> m<span class="op">.</span><span class="at">Nv</span><span class="op">*</span>(st<span class="op">.</span><span class="at">T</span><span class="op">/</span><span class="dv">300</span>)<span class="op">**</span><span class="fl">1.5</span><span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="co">// DOS normalised so that the Boltzmann integral gives Nc: g = Nc * 2/sqrt(pi) * sqrt(x)/kT</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> f <span class="op">=</span> (<span class="cn">E</span>) <span class="kw">=&gt;</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>((<span class="cn">E</span> <span class="op">-</span> EF)<span class="op">/</span>kT))<span class="op">,</span> fh <span class="op">=</span> (<span class="cn">E</span>) <span class="kw">=&gt;</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>((EF <span class="op">-</span> <span class="cn">E</span>)<span class="op">/</span>kT))<span class="op">;</span>  <span class="co">// fh = 1 − f without cancellation</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cb <span class="op">=</span> []<span class="op">,</span> vb <span class="op">=</span> []<span class="op">;</span> <span class="kw">let</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> p <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="kw">const</span> dE <span class="op">=</span> kT<span class="op">/</span><span class="dv">200</span><span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> x <span class="op">=</span> dE<span class="op">/</span><span class="dv">2</span><span class="op">;</span> x <span class="op">&lt;</span> <span class="dv">40</span><span class="op">*</span>kT <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> EF <span class="op">-</span> Eg) <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="op">-</span>EF)<span class="op">;</span> x <span class="op">+=</span> dE) {   <span class="co">// midpoint rule</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> gc <span class="op">=</span> Nc<span class="op">*</span><span class="dv">2</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(x<span class="op">/</span>kT)<span class="op">/</span>kT<span class="op">,</span> gv <span class="op">=</span> Nv<span class="op">*</span><span class="dv">2</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(x<span class="op">/</span>kT)<span class="op">/</span>kT<span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ne <span class="op">=</span> gc<span class="op">*</span><span class="fu">f</span>(Eg <span class="op">+</span> x)<span class="op">,</span> pe <span class="op">=</span> gv<span class="op">*</span><span class="fu">fh</span>(<span class="op">-</span>x)<span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> ne<span class="op">*</span>dE<span class="op">;</span> p <span class="op">+=</span> pe<span class="op">*</span>dE<span class="op">;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="fu">push</span>({<span class="dt">E</span><span class="op">:</span> Eg <span class="op">+</span> x<span class="op">,</span> <span class="dt">d</span><span class="op">:</span> ne})<span class="op">;</span> vb<span class="op">.</span><span class="fu">push</span>({<span class="dt">E</span><span class="op">:</span> <span class="op">-</span>x<span class="op">,</span> <span class="dt">d</span><span class="op">:</span> pe})<span class="op">;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ni <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(Nc<span class="op">*</span>Nv)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>Eg<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>kT))<span class="op">;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> nB <span class="op">=</span> Nc<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>(Eg <span class="op">-</span> EF)<span class="op">/</span>kT)<span class="op">,</span> pB <span class="op">=</span> Nv<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>EF<span class="op">/</span>kT)<span class="op">;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> EFi <span class="op">=</span> Eg<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>kT<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(Nc<span class="op">/</span>Nv)<span class="op">;</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> peak <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>cb<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span>)<span class="op">,</span> <span class="op">...</span>vb<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span>))<span class="op">;</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">cb</span><span class="op">:</span> cb<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">E</span> <span class="op">&lt;</span> Eg <span class="op">+</span> <span class="dv">12</span><span class="op">*</span>kT <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> EF <span class="op">-</span> Eg))<span class="op">,</span> <span class="dt">vb</span><span class="op">:</span> vb<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">E</span> <span class="op">&gt;</span> <span class="op">-</span><span class="dv">12</span><span class="op">*</span>kT <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="op">-</span>EF))<span class="op">,</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>          n<span class="op">,</span> p<span class="op">,</span> ni<span class="op">,</span> nB<span class="op">,</span> pB<span class="op">,</span> EF<span class="op">,</span> EFi<span class="op">,</span> Eg<span class="op">,</span> peak<span class="op">,</span> kT}<span class="op">;</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">380</span><span class="op">,</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"carriers per unit energy (cm⁻³ eV⁻¹, each band scaled to its own maximum)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.05</span>]}<span class="op">,</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"E − E_v (eV)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaX</span>(stOut<span class="op">.</span><span class="at">cb</span><span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>stOut<span class="op">.</span><span class="at">cb</span><span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">d</span>))<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.35</span>})<span class="op">,</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineX</span>(stOut<span class="op">.</span><span class="at">cb</span><span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>stOut<span class="op">.</span><span class="at">cb</span><span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">d</span>))<span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaX</span>(stOut<span class="op">.</span><span class="at">vb</span><span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>stOut<span class="op">.</span><span class="at">vb</span><span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">d</span>))<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#eb6834"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.35</span>})<span class="op">,</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineX</span>(stOut<span class="op">.</span><span class="at">vb</span><span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>stOut<span class="op">.</span><span class="at">vb</span><span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">d</span>))<span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#eb6834"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span><span class="op">,</span> stOut<span class="op">.</span><span class="at">Eg</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span>})<span class="op">,</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([stOut<span class="op">.</span><span class="at">EF</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#4a3aa7"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"6,4"</span>})<span class="op">,</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([stOut<span class="op">.</span><span class="at">EFi</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"2,3"</span>})<span class="op">,</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">y</span><span class="op">:</span> stOut<span class="op">.</span><span class="at">EF</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"E_F"</span>}<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> stOut<span class="op">.</span><span class="at">EFi</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"E_Fi"</span>}<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> stOut<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"E_c"</span>}<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"E_v"</span>}]<span class="op">,</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>              {<span class="dt">x</span><span class="op">:</span> <span class="fl">1.03</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"end"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#52514e"</span>})</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="100" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 99;"><span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;n = &lt;b&gt;</span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">n</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt; cm⁻³ (Boltzmann formula: </span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">nB</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">) ·</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="vs">p = &lt;b&gt;</span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">p</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt; cm⁻³ (Boltzmann: </span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">pB</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">)&lt;br&gt;</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="vs">n&lt;sub&gt;i&lt;/sub&gt; = </span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">ni</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> cm⁻³ · np/n&lt;sub&gt;i&lt;/sub&gt;² = </span><span class="sc">${</span>(stOut<span class="op">.</span><span class="at">n</span><span class="op">*</span>stOut<span class="op">.</span><span class="at">p</span><span class="op">/</span>stOut<span class="op">.</span><span class="at">ni</span><span class="op">**</span><span class="dv">2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="vs">E&lt;sub&gt;Fi&lt;/sub&gt; − E&lt;sub&gt;v&lt;/sub&gt; = </span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">EFi</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> eV · k&lt;sub&gt;B&lt;/sub&gt;T = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>stOut<span class="op">.</span><span class="at">kT</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> meV</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(stOut<span class="op">.</span><span class="at">Eg</span> <span class="op">-</span> stOut<span class="op">.</span><span class="at">EF</span><span class="op">,</span> stOut<span class="op">.</span><span class="at">EF</span>) <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span>stOut<span class="op">.</span><span class="at">kT</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;br&gt;&lt;b&gt;E&lt;sub&gt;F&lt;/sub&gt; is within 3k&lt;sub&gt;B&lt;/sub&gt;T of a band edge: degenerate, the Boltzmann formulas fail.&lt;/b&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="sec-table31" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-table31"><span class="header-section-number">2.3</span> Table 3.1 and the effective masses</h2>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> {}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m, p <span class="kw">in</span> sl.MATERIALS.items():</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    mass <span class="op">=</span> <span class="kw">lambda</span> N: (N<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span>(<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>sl.h<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>sl.kB<span class="op">*</span><span class="dv">300</span>)<span class="op">/</span>sl.me</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    rows[m] <span class="op">=</span> {<span class="st">"a (nm)"</span>: p[<span class="st">"a"</span>]<span class="op">*</span><span class="fl">1e9</span>, <span class="st">"Eg (eV)"</span>: p[<span class="st">"Eg"</span>], <span class="st">"χ (eV)"</span>: p[<span class="st">"chi"</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Nc (cm⁻³)"</span>: <span class="ss">f"</span><span class="sc">{</span>p[<span class="st">'Nc'</span>]<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>, <span class="st">"Nv (cm⁻³)"</span>: <span class="ss">f"</span><span class="sc">{</span>p[<span class="st">'Nv'</span>]<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">"ni table (cm⁻³)"</span>: <span class="ss">f"</span><span class="sc">{</span>p[<span class="st">'ni'</span>]<span class="op">/</span>CM3<span class="sc">:.1e}</span><span class="ss">"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>               <span class="st">"ni = √(NcNv)e^(−Eg/2kT)"</span>: <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>sqrt(p[<span class="st">'Nc'</span>]<span class="op">*</span>p[<span class="st">'Nv'</span>])<span class="op">*</span>np<span class="sc">.</span>exp(<span class="op">-</span>p[<span class="st">'Eg'</span>]<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sl.kT()))<span class="op">/</span>CM3<span class="sc">:.1e}</span><span class="ss">"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>               <span class="st">"ε_r"</span>: p[<span class="st">"eps_r"</span>], <span class="st">"μe (cm²/Vs)"</span>: p[<span class="st">"mu_e"</span>]<span class="op">/</span>sl.CM2, <span class="st">"μh (cm²/Vs)"</span>: p[<span class="st">"mu_h"</span>]<span class="op">/</span>sl.CM2,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>               <span class="st">"me*/me"</span>: <span class="bu">round</span>(mass(p[<span class="st">"Nc"</span>]), <span class="dv">3</span>), <span class="st">"mh*/me"</span>: <span class="bu">round</span>(mass(p[<span class="st">"Nv"</span>]), <span class="dv">3</span>)}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-31" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-31-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Table 3.1 of the slides (300 K), with n_i recomputed from √(NcNv) exp(−Eg/2kT) and the density-of-states effective masses implied by Nc and Nv.
+</figcaption>
+<div aria-describedby="tbl-31-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a (nm)</th>
+<th data-quarto-table-cell-role="th">Eg (eV)</th>
+<th data-quarto-table-cell-role="th">χ (eV)</th>
+<th data-quarto-table-cell-role="th">Nc (cm⁻³)</th>
+<th data-quarto-table-cell-role="th">Nv (cm⁻³)</th>
+<th data-quarto-table-cell-role="th">ni table (cm⁻³)</th>
+<th data-quarto-table-cell-role="th">ni = √(NcNv)e^(−Eg/2kT)</th>
+<th data-quarto-table-cell-role="th">ε_r</th>
+<th data-quarto-table-cell-role="th">μe (cm²/Vs)</th>
+<th data-quarto-table-cell-role="th">μh (cm²/Vs)</th>
+<th data-quarto-table-cell-role="th">me*/me</th>
+<th data-quarto-table-cell-role="th">mh*/me</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Ge</th>
+<td>0.565</td>
+<td>0.66</td>
+<td>4.13</td>
+<td>1.04e+19</td>
+<td>6.00e+18</td>
+<td>2.3e+13</td>
+<td>2.3e+13</td>
+<td>16.0</td>
+<td>3900.0</td>
+<td>1900.0</td>
+<td>0.556</td>
+<td>0.385</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Si</th>
+<td>0.5431</td>
+<td>1.11</td>
+<td>4.05</td>
+<td>2.80e+19</td>
+<td>1.20e+19</td>
+<td>1.0e+10</td>
+<td>8.7e+09</td>
+<td>11.8</td>
+<td>1450.0</td>
+<td>490.0</td>
+<td>1.076</td>
+<td>0.612</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">InP</th>
+<td>0.5868</td>
+<td>1.35</td>
+<td>4.5</td>
+<td>5.20e+17</td>
+<td>1.10e+19</td>
+<td>3.0e+07</td>
+<td>1.1e+07</td>
+<td>12.6</td>
+<td>4600.0</td>
+<td>150.0</td>
+<td>0.075</td>
+<td>0.577</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">GaAs</th>
+<td>0.5653</td>
+<td>1.42</td>
+<td>4.07</td>
+<td>4.70e+17</td>
+<td>7.00e+18</td>
+<td>2.1e+06</td>
+<td>2.1e+06</td>
+<td>13.0</td>
+<td>8500.0</td>
+<td>400.0</td>
+<td>0.071</td>
+<td>0.427</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">AlAs</th>
+<td>0.5661</td>
+<td>2.17</td>
+<td>3.5</td>
+<td>1.50e+19</td>
+<td>1.70e+19</td>
+<td>1.0e+01</td>
+<td>9.5e+00</td>
+<td>10.1</td>
+<td>200.0</td>
+<td>100.0</td>
+<td>0.71</td>
+<td>0.771</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The recomputed <span class="math inline">\(n_i\)</span> agrees with the table to within the uncertainty of the data (the slide notes that <span class="math inline">\(n_i\)</span> of Si varies between books; <span class="math inline">\(9.7\times10^9\)</span> cm<span class="math inline">\(^{-3}\)</span> is the modern value). One correction: the slide prints <span class="math inline">\(N_v=6.0\times10^{19}\)</span> cm<span class="math inline">\(^{-3}\)</span> for Ge, but the textbook and the mass action law both require <span class="math inline">\(6.0\times10^{18}\)</span> cm<span class="math inline">\(^{-3}\)</span>, which is used here.</p>
+</section>
+<section id="average-energy-and-the-boltzmann-tail-slide-16" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="average-energy-and-the-boltzmann-tail-slide-16"><span class="header-section-number">2.4</span> Average energy and the Boltzmann tail (slide 16)</h2>
+<div id="cell-fig-avg" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>kT <span class="op">=</span> sl.kT(<span class="dv">300</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">12</span><span class="op">*</span>kT, <span class="dv">3000</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>nE <span class="op">=</span> np.sqrt(E)<span class="op">*</span>np.exp(<span class="op">-</span>E<span class="op">/</span>kT)                       <span class="co"># g(E) f(E) up to a constant</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> np.trapezoid(E<span class="op">*</span>nE, E)<span class="op">/</span>np.trapezoid(nE, E)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.4</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ax.fill_between(E<span class="op">*</span><span class="fl">1e3</span>, nE<span class="op">/</span>nE.<span class="bu">max</span>(), alpha<span class="op">=</span><span class="fl">0.25</span>, lw<span class="op">=</span><span class="dv">0</span>)<span class="op">;</span> ax.plot(E<span class="op">*</span><span class="fl">1e3</span>, nE<span class="op">/</span>nE.<span class="bu">max</span>())</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax.axvline(kT<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="fl">1e3</span>, color<span class="op">=</span>sl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">1.2</span>)<span class="op">;</span> ax.axvline(mean<span class="op">*</span><span class="fl">1e3</span>, color<span class="op">=</span>sl.PALETTE[<span class="dv">1</span>], ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.text(kT<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="fl">1e3</span>, <span class="fl">1.02</span>, <span class="st">" peak kT/2"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span>sl.INK2)<span class="op">;</span> ax.text(mean<span class="op">*</span><span class="fl">1e3</span>, <span class="fl">0.9</span>, <span class="ss">f" mean = </span><span class="sc">{</span>mean<span class="op">/</span>kT<span class="sc">:.3f}</span><span class="ss"> kT"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"E − E_c (meV)"</span>, ylabel<span class="op">=</span><span class="st">"n_E (normalised)"</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-avg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-avg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="statistics_files/figure-html/fig-avg-output-1.png" width="719" height="359" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-avg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Electron distribution n_E(E) in the CB of a non-degenerate semiconductor at 300 K. It peaks at E_c + kT/2 and its mean is E_c + 3kT/2, the kinetic energy of an ideal-gas atom.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="intrinsic-concentration-and-temperature" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="intrinsic-concentration-and-temperature"><span class="header-section-number">2.5</span> Intrinsic concentration and temperature</h2>
+<p><span class="math inline">\(n_i\propto T^{3/2}\exp(-E_g/2k_BT)\)</span>. The exponential dominates, so <span class="math inline">\(\ln n_i\)</span> against <span class="math inline">\(1/T\)</span> is nearly a straight line with slope <span class="math inline">\(-E_g/2k_B\)</span>. The bandgap itself shrinks as <span class="math inline">\(T\)</span> rises (Varshni law, <a href="spectrum.html" class="quarto-xref"><span>Chapter 8</span></a>), which is included below.</p>
+<div id="cell-fig-ni" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="dv">200</span>, <span class="dv">800</span>, <span class="dv">400</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> (<span class="st">"Ge"</span>, <span class="st">"Si"</span>, <span class="st">"GaAs"</span>):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    ni <span class="op">=</span> sl.n_i(m, T)<span class="op">/</span>CM3</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(<span class="dv">1000</span><span class="op">/</span>T, ni, label<span class="op">=</span>m)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    Tx <span class="op">=</span> T[np.argmin(<span class="bu">abs</span>(np.log(ni<span class="op">/</span><span class="fl">1e15</span>)))]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ni.<span class="bu">max</span>() <span class="op">&gt;</span> <span class="fl">1e15</span>: ax.plot(<span class="dv">1000</span><span class="op">/</span>Tx, <span class="fl">1e15</span>, <span class="st">"o"</span>, color<span class="op">=</span>ax.lines[<span class="op">-</span><span class="dv">1</span>].get_color(), ms<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">1e15</span>, color<span class="op">=</span>sl.INK2, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>sec <span class="op">=</span> ax.secondary_xaxis(<span class="st">"top"</span>, functions<span class="op">=</span>(<span class="kw">lambda</span> x: <span class="dv">1000</span><span class="op">/</span>x, <span class="kw">lambda</span> T: <span class="dv">1000</span><span class="op">/</span>T))<span class="op">;</span> sec.set_xlabel(<span class="st">"T (K)"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"1000/T (K⁻¹)"</span>, ylabel<span class="op">=</span><span class="st">"n_i (cm⁻³)"</span>)<span class="op">;</span> ax.legend()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-ni" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="statistics_files/figure-html/fig-ni-output-1.png" width="729" height="469" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Intrinsic carrier concentration of Ge, Si and GaAs against 1000/T (Nc, Nv ∝ T^{3/2}, Varshni bandgap). The horizontal line is a typical doping of 10¹⁵ cm⁻³: above the crossing temperature the material becomes intrinsic again.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> {}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> (<span class="st">"Ge"</span>, <span class="st">"Si"</span>, <span class="st">"GaAs"</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> sl.MATERIALS[m]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> T <span class="kw">in</span> (<span class="dv">250</span>, <span class="dv">300</span>, <span class="dv">400</span>):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        Nc, Nv <span class="op">=</span> p[<span class="st">"Nc"</span>]<span class="op">*</span>(T<span class="op">/</span><span class="dv">300</span>)<span class="op">**</span><span class="fl">1.5</span>, p[<span class="st">"Nv"</span>]<span class="op">*</span>(T<span class="op">/</span><span class="dv">300</span>)<span class="op">**</span><span class="fl">1.5</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        out[(m, T)] <span class="op">=</span> {<span class="st">"n_i (cm⁻³)"</span>: <span class="ss">f"</span><span class="sc">{</span>sl<span class="sc">.</span>n_i(m, T)<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"E_Fi − midgap (meV)"</span>: <span class="bu">round</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>sl.kT(T)<span class="op">*</span>np.log(Nc<span class="op">/</span>Nv)<span class="op">*</span><span class="fl">1e3</span>, <span class="dv">1</span>)}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(out).T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-ni" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: Intrinsic concentration and intrinsic Fermi level E_Fi − (E_v + E_g/2) at three temperatures.
+</figcaption>
+<div aria-describedby="tbl-ni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">n_i (cm⁻³)</th>
+<th data-quarto-table-cell-role="th">E_Fi − midgap (meV)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th rowspan="3" data-quarto-table-cell-role="th" data-valign="top">Ge</th>
+<th data-quarto-table-cell-role="th">250</th>
+<td>8.81e+11</td>
+<td>-5.9</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">300</th>
+<td>2.30e+13</td>
+<td>-7.1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">400</th>
+<td>1.54e+15</td>
+<td>-9.5</td>
+</tr>
+<tr class="even">
+<th rowspan="3" data-quarto-table-cell-role="th" data-valign="top">Si</th>
+<th data-quarto-table-cell-role="th">250</th>
+<td>7.84e+07</td>
+<td>-9.1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">300</th>
+<td>1.00e+10</td>
+<td>-11.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">400</th>
+<td>4.92e+12</td>
+<td>-14.6</td>
+</tr>
+<tr class="odd">
+<th rowspan="3" data-quarto-table-cell-role="th" data-valign="top">GaAs</th>
+<th data-quarto-table-cell-role="th">250</th>
+<td>3.93e+03</td>
+<td>29.1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">300</th>
+<td>2.10e+06</td>
+<td>34.9</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">400</th>
+<td>6.11e+09</td>
+<td>46.5</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>In GaAs the light electron mass (<span class="math inline">\(N_c\ll N_v\)</span>) pushes <span class="math inline">\(E_{Fi}\)</span> about 40 meV <em>above</em> mid-gap at room temperature.</p>
+</section>
+<section id="sec-degenerate" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="sec-degenerate"><span class="header-section-number">2.6</span> When Boltzmann fails</h2>
+<p>The exact result is <span class="math inline">\(n=N_c\,\mathcal F_{1/2}(\eta)\)</span> with <span class="math inline">\(\eta=(E_F-E_c)/k_BT\)</span> and the Fermi–Dirac integral <span class="math inline">\(\mathcal F_{1/2}\)</span>. The Boltzmann formula is the limit <span class="math inline">\(\mathcal F_{1/2}(\eta)\to e^\eta\)</span>:</p>
+<div id="cell-fig-fermi-int" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">241</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> sl.fermi_half(eta)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ax.semilogy(eta, F, label<span class="op">=</span><span class="st">"exact  F₁/₂(η)"</span>)<span class="op">;</span> ax.semilogy(eta, np.exp(eta), <span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Boltzmann  e^η"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="op">-</span><span class="dv">3</span>, <span class="dv">6</span>, color<span class="op">=</span>sl.PALETTE[<span class="dv">7</span>], alpha<span class="op">=</span><span class="fl">0.06</span>)<span class="op">;</span> ax.text(<span class="op">-</span><span class="fl">2.9</span>, <span class="dv">200</span>, <span class="st">"within 3kT of the band edge"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span>sl.INK2)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"η = (E_F − E_c)/k_BT"</span>, ylabel<span class="op">=</span><span class="st">"n / N_c"</span>)<span class="op">;</span> ax.legend()<span class="op">;</span> plt.show()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"error of Boltzmann at η = -3, -1, 0, +2:"</span>, [<span class="ss">f"</span><span class="sc">{</span>(np.exp(e)<span class="op">/</span>sl.fermi_half(e) <span class="op">-</span> <span class="dv">1</span>)<span class="op">*</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss"> %"</span> <span class="cf">for</span> e <span class="kw">in</span> (<span class="op">-</span><span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-fermi-int" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fermi-int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="statistics_files/figure-html/fig-fermi-int-output-1.png" width="730" height="375" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fermi-int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Exact Fermi–Dirac integral versus the Boltzmann approximation. The error is about 10 % at η ≈ −1 (E_F one kT below E_c) and explodes when E_F enters the band (degenerate semiconductor, slide 28).
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>error of Boltzmann at η = -3, -1, 0, +2: ['2 %', '12 %', '31 %', '162 %']</code></pre>
+</div>
+</div>
+</section>
+<section id="what-the-fermi-level-means-slide-17" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="what-the-fermi-level-means-slide-17"><span class="header-section-number">2.7</span> What the Fermi level means (slide 17)</h2>
+<p><span class="math inline">\(E_F\)</span> is the electrochemical potential of electrons. In equilibrium, in the dark and without applied voltage, it is <strong>flat</strong> across any system of materials in contact. An applied voltage <span class="math inline">\(V\)</span> separates the Fermi levels at the two ends by <span class="math inline">\(\Delta
+E_F=eV\)</span>. This single rule builds every band diagram in the following chapters: pn junctions (<a href="junction.html" class="quarto-xref"><span>Chapter 4</span></a>), heterojunctions (<a href="led-principle.html" class="quarto-xref"><span>Chapter 7</span></a>), and the quasi-Fermi levels of a forward-biased LED.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going deeper
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Density-of-states masses.</strong> Si has six ellipsoidal CB valleys with <span class="math inline">\(m_l=0.98\)</span>, <span class="math inline">\(m_t=0.19\)</span>. Show that <span class="math inline">\(m^*_\text{dos}=6^{2/3}(m_lm_t^2)^{1/3}=1.08\,m_e\)</span> and recover <span class="math inline">\(N_c\)</span> of Table 3.1.</li>
+<li><strong>Joyce–Dixon.</strong> Invert <span class="math inline">\(n=N_c\mathcal F_{1/2}(\eta)\)</span> to get <span class="math inline">\(E_F\)</span> for a given <span class="math inline">\(n\)</span>. Compare the Joyce–Dixon series with a numerical root (<code>scipy.optimize.brentq</code> on <code>sl.fermi_half</code>).</li>
+<li><strong>Arrhenius plots.</strong> Fit <span class="math inline">\(\ln(n_iT^{-3/2})\)</span> vs <span class="math inline">\(1/T\)</span> for Si between 250 and 500 K. Which bandgap do you get, and why does it differ from <span class="math inline">\(E_g(300\text{ K})\)</span>? (Hint: Varshni with a linear <span class="math inline">\(T\)</span> term.)</li>
+<li><strong>Two-dimensional and one-dimensional DOS.</strong> Repeat the counting of slide 4 in 2D and 1D: you get a constant and a <span class="math inline">\(1/\sqrt{E}\)</span> density of states. The 2D case is the quantum well (<a href="quantum-wells.html" class="quarto-xref"><span>Chapter 9</span></a>).</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, <em>Optoelectronics and Photonics</em>, sec.&nbsp;3.1–3.2.</li>
+<li>S. M. Sze and K. K. Ng, <em>Physics of Semiconductor Devices</em>, ch.&nbsp;1 (carrier statistics, <span class="math inline">\(\mathcal F_{1/2}\)</span> approximations).</li>
+<li>Ioffe Institute semiconductor database, <a href="https://www.ioffe.ru/SVA/NSM/Semicond/" class="uri">https://www.ioffe.ru/SVA/NSM/Semicond/</a> (band parameters, <span class="math inline">\(n_i(T)\)</span>).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">2.8</span> Try it yourself</h2>
+<ol type="1">
+<li>With the live panel, find the temperature at which intrinsic Ge has <span class="math inline">\(n_i=10^{15}\)</span> cm<span class="math inline">\(^{-3}\)</span>. Check with the figure.</li>
+<li>Compute <span class="math inline">\(N_c\)</span> for GaAs from <span class="math inline">\(m_e^*=0.067m_e\)</span> and compare with Table 3.1.</li>
+<li>Show that <span class="math inline">\(\frac{d\ln n_i}{d(1/T)}=-\frac{E_g}{2k_B}-\frac32T\)</span> and estimate how much the <span class="math inline">\(T^{3/2}\)</span> factor biases a graphical <span class="math inline">\(E_g\)</span> from 300 to 400 K.</li>
+<li>Where is <span class="math inline">\(E_{Fi}\)</span> in InP? Is the shift from mid-gap larger or smaller than <span class="math inline">\(k_BT\)</span>?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hdHMgPSAoe1xuICBHZTogICB7RWc6IDAuNjYsIE5jOiAxLjA0ZTE5LCBOdjogNi4wZTE4fSxcbiAgU2k6ICAge0VnOiAxLjExLCBOYzogMi44ZTE5LCAgTnY6IDEuMmUxOX0sXG4gIEluUDogIHtFZzogMS4zNSwgTmM6IDUuMmUxNywgIE52OiAxLjFlMTl9LFxuICBHYUFzOiB7RWc6IDEuNDIsIE5jOiA0LjdlMTcsICBOdjogNy4wZTE4fVxufSlcbnZpZXdvZiBzdCA9IElucHV0cy5mb3JtKHtcbiAgbWF0OiBJbnB1dHMuc2VsZWN0KE9iamVjdC5rZXlzKG1hdHMpLCB7dmFsdWU6IFwiU2lcIiwgbGFiZWw6IFwibWF0ZXJpYWxcIn0pLFxuICBUOiBJbnB1dHMucmFuZ2UoWzUwLCA2MDBdLCB7dmFsdWU6IDMwMCwgc3RlcDogNSwgbGFiZWw6IFwidGVtcGVyYXR1cmUgVCAoSylcIn0pLFxuICBmZTogSW5wdXRzLnJhbmdlKFstMC4xNSwgMS4xNV0sIHt2YWx1ZTogMC43NSwgc3RlcDogMC4wMDUsIGxhYmVsOiBcIihFX0Yg4oiSIEVfdikvRV9nXCJ9KVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InN0T3V0ID0ge1xuICBjb25zdCBtID0gbWF0c1tzdC5tYXRdLCBrVCA9IDguNjE3MzMzZS01KnN0LlQsIEVnID0gbS5FZywgRUYgPSBzdC5mZSpFZztcbiAgY29uc3QgTmMgPSBtLk5jKihzdC5ULzMwMCkqKjEuNSwgTnYgPSBtLk52KihzdC5ULzMwMCkqKjEuNTtcbiAgLy8gRE9TIG5vcm1hbGlzZWQgc28gdGhhdCB0aGUgQm9sdHptYW5uIGludGVncmFsIGdpdmVzIE5jOiBnID0gTmMgKiAyL3NxcnQocGkpICogc3FydCh4KS9rVFxuICBjb25zdCBmID0gKEUpID0+IDEvKDEgKyBNYXRoLmV4cCgoRSAtIEVGKS9rVCkpLCBmaCA9IChFKSA9PiAxLygxICsgTWF0aC5leHAoKEVGIC0gRSkva1QpKTsgIC8vIGZoID0gMSDiiJIgZiB3aXRob3V0IGNhbmNlbGxhdGlvblxuICBjb25zdCBjYiA9IFtdLCB2YiA9IFtdOyBsZXQgbiA9IDAsIHAgPSAwOyBjb25zdCBkRSA9IGtULzIwMDtcbiAgZm9yIChsZXQgeCA9IGRFLzI7IHggPCA0MCprVCArIE1hdGgubWF4KDAsIEVGIC0gRWcpICsgTWF0aC5tYXgoMCwgLUVGKTsgeCArPSBkRSkgeyAgIC8vIG1pZHBvaW50IHJ1bGVcbiAgICBjb25zdCBnYyA9IE5jKjIvTWF0aC5zcXJ0KE1hdGguUEkpKk1hdGguc3FydCh4L2tUKS9rVCwgZ3YgPSBOdioyL01hdGguc3FydChNYXRoLlBJKSpNYXRoLnNxcnQoeC9rVCkva1Q7XG4gICAgY29uc3QgbmUgPSBnYypmKEVnICsgeCksIHBlID0gZ3YqZmgoLXgpO1xuICAgIG4gKz0gbmUqZEU7IHAgKz0gcGUqZEU7XG4gICAgY2IucHVzaCh7RTogRWcgKyB4LCBkOiBuZX0pOyB2Yi5wdXNoKHtFOiAteCwgZDogcGV9KTtcbiAgfVxuICBjb25zdCBuaSA9IE1hdGguc3FydChOYypOdikqTWF0aC5leHAoLUVnLygyKmtUKSk7XG4gIGNvbnN0IG5CID0gTmMqTWF0aC5leHAoLShFZyAtIEVGKS9rVCksIHBCID0gTnYqTWF0aC5leHAoLUVGL2tUKTtcbiAgY29uc3QgRUZpID0gRWcvMiAtIDAuNSprVCpNYXRoLmxvZyhOYy9Odik7XG4gIGNvbnN0IHBlYWsgPSBNYXRoLm1heCguLi5jYi5tYXAoZCA9PiBkLmQpLCAuLi52Yi5tYXAoZCA9PiBkLmQpKTtcbiAgcmV0dXJuIHtjYjogY2IuZmlsdGVyKGQgPT4gZC5FIDwgRWcgKyAxMiprVCArIE1hdGgubWF4KDAsIEVGIC0gRWcpKSwgdmI6IHZiLmZpbHRlcihkID0+IGQuRSA+IC0xMiprVCAtIE1hdGgubWF4KDAsIC1FRikpLFxuICAgICAgICAgIG4sIHAsIG5pLCBuQiwgcEIsIEVGLCBFRmksIEVnLCBwZWFrLCBrVH07XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDEwNTApLCBoZWlnaHQ6IDM4MCxcbiAgeDoge2xhYmVsOiBcImNhcnJpZXJzIHBlciB1bml0IGVuZXJneSAoY23igbvCsyBlVuKBu8K5LCBlYWNoIGJhbmQgc2NhbGVkIHRvIGl0cyBvd24gbWF4aW11bSlcIiwgZG9tYWluOiBbMCwgMS4wNV19LFxuICB5OiB7bGFiZWw6IFwiRSDiiJIgRV92IChlVilcIiwgZ3JpZDogdHJ1ZX0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5hcmVhWChzdE91dC5jYiwge3k6IFwiRVwiLCB4OiBkID0+IGQuZC9NYXRoLm1heCguLi5zdE91dC5jYi5tYXAoZSA9PiBlLmQpKSwgZmlsbDogXCIjMmE3OGQ2XCIsIGZpbGxPcGFjaXR5OiAwLjM1fSksXG4gICAgUGxvdC5saW5lWChzdE91dC5jYiwge3k6IFwiRVwiLCB4OiBkID0+IGQuZC9NYXRoLm1heCguLi5zdE91dC5jYi5tYXAoZSA9PiBlLmQpKSwgc3Ryb2tlOiBcIiMyYTc4ZDZcIiwgc3Ryb2tlV2lkdGg6IDJ9KSxcbiAgICBQbG90LmFyZWFYKHN0T3V0LnZiLCB7eTogXCJFXCIsIHg6IGQgPT4gZC5kL01hdGgubWF4KC4uLnN0T3V0LnZiLm1hcChlID0+IGUuZCkpLCBmaWxsOiBcIiNlYjY4MzRcIiwgZmlsbE9wYWNpdHk6IDAuMzV9KSxcbiAgICBQbG90LmxpbmVYKHN0T3V0LnZiLCB7eTogXCJFXCIsIHg6IGQgPT4gZC5kL01hdGgubWF4KC4uLnN0T3V0LnZiLm1hcChlID0+IGUuZCkpLCBzdHJva2U6IFwiI2ViNjgzNFwiLCBzdHJva2VXaWR0aDogMn0pLFxuICAgIFBsb3QucnVsZVkoWzAsIHN0T3V0LkVnXSwge3N0cm9rZTogXCIjMGIwYjBiXCIsIHN0cm9rZVdpZHRoOiAxLjV9KSxcbiAgICBQbG90LnJ1bGVZKFtzdE91dC5FRl0sIHtzdHJva2U6IFwiIzRhM2FhN1wiLCBzdHJva2VXaWR0aDogMiwgc3Ryb2tlRGFzaGFycmF5OiBcIjYsNFwifSksXG4gICAgUGxvdC5ydWxlWShbc3RPdXQuRUZpXSwge3N0cm9rZTogXCIjNTI1MTRlXCIsIHN0cm9rZVdpZHRoOiAxLCBzdHJva2VEYXNoYXJyYXk6IFwiMiwzXCJ9KSxcbiAgICBQbG90LnRleHQoW3t5OiBzdE91dC5FRiwgdDogXCJFX0ZcIn0sIHt5OiBzdE91dC5FRmksIHQ6IFwiRV9GaVwifSwge3k6IHN0T3V0LkVnLCB0OiBcIkVfY1wifSwge3k6IDAsIHQ6IFwiRV92XCJ9XSxcbiAgICAgICAgICAgICAge3g6IDEuMDMsIHk6IFwieVwiLCB0ZXh0OiBcInRcIiwgdGV4dEFuY2hvcjogXCJlbmRcIiwgZHk6IC02LCBmaWxsOiBcIiM1MjUxNGVcIn0pXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+biA9IDxiPiR7c3RPdXQubi50b0V4cG9uZW50aWFsKDIpfTwvYj4gY23igbvCsyAoQm9sdHptYW5uIGZvcm11bGE6ICR7c3RPdXQubkIudG9FeHBvbmVudGlhbCgyKX0pIMK3XG5wID0gPGI+JHtzdE91dC5wLnRvRXhwb25lbnRpYWwoMil9PC9iPiBjbeKBu8KzIChCb2x0em1hbm46ICR7c3RPdXQucEIudG9FeHBvbmVudGlhbCgyKX0pPGJyPlxubjxzdWI+aTwvc3ViPiA9ICR7c3RPdXQubmkudG9FeHBvbmVudGlhbCgyKX0gY23igbvCsyDCtyBucC9uPHN1Yj5pPC9zdWI+wrIgPSAkeyhzdE91dC5uKnN0T3V0LnAvc3RPdXQubmkqKjIpLnRvRml4ZWQoMyl9IMK3XG5FPHN1Yj5GaTwvc3ViPiDiiJIgRTxzdWI+djwvc3ViPiA9ICR7c3RPdXQuRUZpLnRvRml4ZWQoMyl9IGVWIMK3IGs8c3ViPkI8L3N1Yj5UID0gJHsoMTAwMCpzdE91dC5rVCkudG9GaXhlZCgxKX0gbWVWXG4ke01hdGgubWluKHN0T3V0LkVnIC0gc3RPdXQuRUYsIHN0T3V0LkVGKSA8IDMqc3RPdXQua1QgPyBodG1sYDxicj48Yj5FPHN1Yj5GPC9zdWI+IGlzIHdpdGhpbiAzazxzdWI+Qjwvc3ViPlQgb2YgYSBiYW5kIGVkZ2U6IGRlZ2VuZXJhdGUsIHRoZSBCb2x0em1hbm4gZm9ybXVsYXMgZmFpbC48L2I+YCA6IFwiXCJ9PC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzdCcpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter3\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./bands.html" class="pagination-link" aria-label="Energy bands, holes and E–k diagrams">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Energy bands, holes and E–k diagrams</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./doping.html" class="pagination-link" aria-label="Doping, Fermi level and conductivity">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Doping, Fermi level and conductivity</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Carrier statistics {#sec-stats}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/statistics.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> semilib <span class="im">as</span> sl</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>sl.use_style()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>CM3 <span class="op">=</span> sl.CM3</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>*Slides 10–17 and 25: electron and hole concentrations, effective density of states, mass action law, intrinsic Fermi</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>level, average electron energy, the meaning of $E_F$, Table 3.1.*</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>The electron concentration in the CB is the area under $g_{cb}(E)f(E)$ (slide 10). When $E_c-E_F\gg k_BT$ (a</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>**non-degenerate** semiconductor) the Fermi–Dirac function reduces to a Boltzmann tail and the integral is analytic (slides</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>11–13):</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>n=N_c\exp<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">-\frac{E_c-E_F}{k_BT}\right</span><span class="co">]</span>,\qquad p=N_v\exp<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">-\frac{E_F-E_v}{k_BT}\right</span><span class="co">]</span>,\qquad</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>N_{c,v}=2\left(\frac{2\pi m_{e,h}^*k_BT}{h^2}\right)^{3/2}.</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>Their product does not depend on $E_F$. This is the **mass action law** (slide 14), valid in equilibrium and in the dark:</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>np=n_i^2=N_cN_v\exp<span class="sc">\!</span>\left(-\frac{E_g}{k_BT}\right).</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>In an intrinsic semiconductor $n=p=n_i$, which places the Fermi level slightly off mid-gap (slide 15):</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>$E_{Fi}=E_v+\tfrac12E_g-\tfrac12k_BT\ln(N_c/N_v)=E_v+\tfrac12E_g-\tfrac34k_BT\ln(m_e^*/m_h^*)$. Electrons in the CB have an</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>average energy $E_c+\tfrac32k_BT$ above the band edge, like the atoms of an ideal gas (slide 16).</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Electrons and holes in the bands, live</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>Choose a material, a temperature and a Fermi-level position. The panel integrates $g(E)f(E)$ numerically (no Boltzmann</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>approximation) and compares the result with the formulas above. Move $E_F$ inside a band to see the Boltzmann formula fail:</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>that is a **degenerate** semiconductor (@sec-degenerate).</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>mats <span class="op">=</span> ({</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Ge</span><span class="op">:</span>   {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">0.66</span><span class="op">,</span> <span class="dt">Nc</span><span class="op">:</span> <span class="fl">1.04e19</span><span class="op">,</span> <span class="dt">Nv</span><span class="op">:</span> <span class="fl">6.0e18</span>}<span class="op">,</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Si</span><span class="op">:</span>   {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.11</span><span class="op">,</span> <span class="dt">Nc</span><span class="op">:</span> <span class="fl">2.8e19</span><span class="op">,</span>  <span class="dt">Nv</span><span class="op">:</span> <span class="fl">1.2e19</span>}<span class="op">,</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">InP</span><span class="op">:</span>  {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.35</span><span class="op">,</span> <span class="dt">Nc</span><span class="op">:</span> <span class="fl">5.2e17</span><span class="op">,</span>  <span class="dt">Nv</span><span class="op">:</span> <span class="fl">1.1e19</span>}<span class="op">,</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">GaAs</span><span class="op">:</span> {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.42</span><span class="op">,</span> <span class="dt">Nc</span><span class="op">:</span> <span class="fl">4.7e17</span><span class="op">,</span>  <span class="dt">Nv</span><span class="op">:</span> <span class="fl">7.0e18</span>}</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>viewof st <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mat</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(mats)<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"Si"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"material"</span>})<span class="op">,</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">T</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">50</span><span class="op">,</span> <span class="dv">600</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"temperature T (K)"</span>})<span class="op">,</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fe</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="fl">0.15</span><span class="op">,</span> <span class="fl">1.15</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.75</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.005</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"(E_F − E_v)/E_g"</span>})</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>stOut <span class="op">=</span> {</span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> mats[st<span class="op">.</span><span class="at">mat</span>]<span class="op">,</span> kT <span class="op">=</span> <span class="fl">8.617333e-5</span><span class="op">*</span>st<span class="op">.</span><span class="at">T</span><span class="op">,</span> Eg <span class="op">=</span> m<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> EF <span class="op">=</span> st<span class="op">.</span><span class="at">fe</span><span class="op">*</span>Eg<span class="op">;</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Nc <span class="op">=</span> m<span class="op">.</span><span class="at">Nc</span><span class="op">*</span>(st<span class="op">.</span><span class="at">T</span><span class="op">/</span><span class="dv">300</span>)<span class="op">**</span><span class="fl">1.5</span><span class="op">,</span> Nv <span class="op">=</span> m<span class="op">.</span><span class="at">Nv</span><span class="op">*</span>(st<span class="op">.</span><span class="at">T</span><span class="op">/</span><span class="dv">300</span>)<span class="op">**</span><span class="fl">1.5</span><span class="op">;</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>  <span class="co">// DOS normalised so that the Boltzmann integral gives Nc: g = Nc * 2/sqrt(pi) * sqrt(x)/kT</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> f <span class="op">=</span> (<span class="cn">E</span>) <span class="kw">=&gt;</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>((<span class="cn">E</span> <span class="op">-</span> EF)<span class="op">/</span>kT))<span class="op">,</span> fh <span class="op">=</span> (<span class="cn">E</span>) <span class="kw">=&gt;</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>((EF <span class="op">-</span> <span class="cn">E</span>)<span class="op">/</span>kT))<span class="op">;</span>  <span class="co">// fh = 1 − f without cancellation</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cb <span class="op">=</span> []<span class="op">,</span> vb <span class="op">=</span> []<span class="op">;</span> <span class="kw">let</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> p <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="kw">const</span> dE <span class="op">=</span> kT<span class="op">/</span><span class="dv">200</span><span class="op">;</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> x <span class="op">=</span> dE<span class="op">/</span><span class="dv">2</span><span class="op">;</span> x <span class="op">&lt;</span> <span class="dv">40</span><span class="op">*</span>kT <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> EF <span class="op">-</span> Eg) <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="op">-</span>EF)<span class="op">;</span> x <span class="op">+=</span> dE) {   <span class="co">// midpoint rule</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> gc <span class="op">=</span> Nc<span class="op">*</span><span class="dv">2</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(x<span class="op">/</span>kT)<span class="op">/</span>kT<span class="op">,</span> gv <span class="op">=</span> Nv<span class="op">*</span><span class="dv">2</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(x<span class="op">/</span>kT)<span class="op">/</span>kT<span class="op">;</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ne <span class="op">=</span> gc<span class="op">*</span><span class="fu">f</span>(Eg <span class="op">+</span> x)<span class="op">,</span> pe <span class="op">=</span> gv<span class="op">*</span><span class="fu">fh</span>(<span class="op">-</span>x)<span class="op">;</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> ne<span class="op">*</span>dE<span class="op">;</span> p <span class="op">+=</span> pe<span class="op">*</span>dE<span class="op">;</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>    cb<span class="op">.</span><span class="fu">push</span>({<span class="dt">E</span><span class="op">:</span> Eg <span class="op">+</span> x<span class="op">,</span> <span class="dt">d</span><span class="op">:</span> ne})<span class="op">;</span> vb<span class="op">.</span><span class="fu">push</span>({<span class="dt">E</span><span class="op">:</span> <span class="op">-</span>x<span class="op">,</span> <span class="dt">d</span><span class="op">:</span> pe})<span class="op">;</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ni <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(Nc<span class="op">*</span>Nv)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>Eg<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>kT))<span class="op">;</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> nB <span class="op">=</span> Nc<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>(Eg <span class="op">-</span> EF)<span class="op">/</span>kT)<span class="op">,</span> pB <span class="op">=</span> Nv<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>EF<span class="op">/</span>kT)<span class="op">;</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> EFi <span class="op">=</span> Eg<span class="op">/</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">*</span>kT<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(Nc<span class="op">/</span>Nv)<span class="op">;</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> peak <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>cb<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span>)<span class="op">,</span> <span class="op">...</span>vb<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span>))<span class="op">;</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">cb</span><span class="op">:</span> cb<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">E</span> <span class="op">&lt;</span> Eg <span class="op">+</span> <span class="dv">12</span><span class="op">*</span>kT <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> EF <span class="op">-</span> Eg))<span class="op">,</span> <span class="dt">vb</span><span class="op">:</span> vb<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">E</span> <span class="op">&gt;</span> <span class="op">-</span><span class="dv">12</span><span class="op">*</span>kT <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="op">-</span>EF))<span class="op">,</span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>          n<span class="op">,</span> p<span class="op">,</span> ni<span class="op">,</span> nB<span class="op">,</span> pB<span class="op">,</span> EF<span class="op">,</span> EFi<span class="op">,</span> Eg<span class="op">,</span> peak<span class="op">,</span> kT}<span class="op">;</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">380</span><span class="op">,</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"carriers per unit energy (cm⁻³ eV⁻¹, each band scaled to its own maximum)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.05</span>]}<span class="op">,</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"E − E_v (eV)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaX</span>(stOut<span class="op">.</span><span class="at">cb</span><span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>stOut<span class="op">.</span><span class="at">cb</span><span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">d</span>))<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.35</span>})<span class="op">,</span></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineX</span>(stOut<span class="op">.</span><span class="at">cb</span><span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>stOut<span class="op">.</span><span class="at">cb</span><span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">d</span>))<span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaX</span>(stOut<span class="op">.</span><span class="at">vb</span><span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>stOut<span class="op">.</span><span class="at">vb</span><span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">d</span>))<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#eb6834"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.35</span>})<span class="op">,</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineX</span>(stOut<span class="op">.</span><span class="at">vb</span><span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">d</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>stOut<span class="op">.</span><span class="at">vb</span><span class="op">.</span><span class="fu">map</span>(e <span class="kw">=&gt;</span> e<span class="op">.</span><span class="at">d</span>))<span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#eb6834"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span><span class="op">,</span> stOut<span class="op">.</span><span class="at">Eg</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span>})<span class="op">,</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([stOut<span class="op">.</span><span class="at">EF</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#4a3aa7"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"6,4"</span>})<span class="op">,</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([stOut<span class="op">.</span><span class="at">EFi</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"2,3"</span>})<span class="op">,</span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">y</span><span class="op">:</span> stOut<span class="op">.</span><span class="at">EF</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"E_F"</span>}<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> stOut<span class="op">.</span><span class="at">EFi</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"E_Fi"</span>}<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> stOut<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"E_c"</span>}<span class="op">,</span> {<span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"E_v"</span>}]<span class="op">,</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>              {<span class="dt">x</span><span class="op">:</span> <span class="fl">1.03</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">textAnchor</span><span class="op">:</span> <span class="st">"end"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#52514e"</span>})</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;n = &lt;b&gt;</span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">n</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt; cm⁻³ (Boltzmann formula: </span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">nB</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">) ·</span></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="vs">p = &lt;b&gt;</span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">p</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt; cm⁻³ (Boltzmann: </span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">pB</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">)&lt;br&gt;</span></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="vs">n&lt;sub&gt;i&lt;/sub&gt; = </span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">ni</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> cm⁻³ · np/n&lt;sub&gt;i&lt;/sub&gt;² = </span><span class="sc">${</span>(stOut<span class="op">.</span><span class="at">n</span><span class="op">*</span>stOut<span class="op">.</span><span class="at">p</span><span class="op">/</span>stOut<span class="op">.</span><span class="at">ni</span><span class="op">**</span><span class="dv">2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="vs">E&lt;sub&gt;Fi&lt;/sub&gt; − E&lt;sub&gt;v&lt;/sub&gt; = </span><span class="sc">${</span>stOut<span class="op">.</span><span class="at">EFi</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> eV · k&lt;sub&gt;B&lt;/sub&gt;T = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>stOut<span class="op">.</span><span class="at">kT</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> meV</span></span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(stOut<span class="op">.</span><span class="at">Eg</span> <span class="op">-</span> stOut<span class="op">.</span><span class="at">EF</span><span class="op">,</span> stOut<span class="op">.</span><span class="at">EF</span>) <span class="op">&lt;</span> <span class="dv">3</span><span class="op">*</span>stOut<span class="op">.</span><span class="at">kT</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;br&gt;&lt;b&gt;E&lt;sub&gt;F&lt;/sub&gt; is within 3k&lt;sub&gt;B&lt;/sub&gt;T of a band edge: degenerate, the Boltzmann formulas fail.&lt;/b&gt;`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## Table 3.1 and the effective masses {#sec-table31}</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-31</span></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Table 3.1 of the slides (300 K), with n_i recomputed from √(NcNv) exp(−Eg/2kT) and the density-of-states effective masses implied by Nc and Nv."</span></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> {}</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m, p <span class="kw">in</span> sl.MATERIALS.items():</span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>    mass <span class="op">=</span> <span class="kw">lambda</span> N: (N<span class="op">/</span><span class="dv">2</span>)<span class="op">**</span>(<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>sl.h<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>sl.kB<span class="op">*</span><span class="dv">300</span>)<span class="op">/</span>sl.me</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>    rows[m] <span class="op">=</span> {<span class="st">"a (nm)"</span>: p[<span class="st">"a"</span>]<span class="op">*</span><span class="fl">1e9</span>, <span class="st">"Eg (eV)"</span>: p[<span class="st">"Eg"</span>], <span class="st">"χ (eV)"</span>: p[<span class="st">"chi"</span>],</span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Nc (cm⁻³)"</span>: <span class="ss">f"</span><span class="sc">{</span>p[<span class="st">'Nc'</span>]<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>, <span class="st">"Nv (cm⁻³)"</span>: <span class="ss">f"</span><span class="sc">{</span>p[<span class="st">'Nv'</span>]<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>,</span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>               <span class="st">"ni table (cm⁻³)"</span>: <span class="ss">f"</span><span class="sc">{</span>p[<span class="st">'ni'</span>]<span class="op">/</span>CM3<span class="sc">:.1e}</span><span class="ss">"</span>,</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>               <span class="st">"ni = √(NcNv)e^(−Eg/2kT)"</span>: <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>sqrt(p[<span class="st">'Nc'</span>]<span class="op">*</span>p[<span class="st">'Nv'</span>])<span class="op">*</span>np<span class="sc">.</span>exp(<span class="op">-</span>p[<span class="st">'Eg'</span>]<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>sl.kT()))<span class="op">/</span>CM3<span class="sc">:.1e}</span><span class="ss">"</span>,</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>               <span class="st">"ε_r"</span>: p[<span class="st">"eps_r"</span>], <span class="st">"μe (cm²/Vs)"</span>: p[<span class="st">"mu_e"</span>]<span class="op">/</span>sl.CM2, <span class="st">"μh (cm²/Vs)"</span>: p[<span class="st">"mu_h"</span>]<span class="op">/</span>sl.CM2,</span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>               <span class="st">"me*/me"</span>: <span class="bu">round</span>(mass(p[<span class="st">"Nc"</span>]), <span class="dv">3</span>), <span class="st">"mh*/me"</span>: <span class="bu">round</span>(mass(p[<span class="st">"Nv"</span>]), <span class="dv">3</span>)}</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).T</span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>The recomputed $n_i$ agrees with the table to within the uncertainty of the data (the slide notes that $n_i$ of Si varies</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a>between books; $9.7\times10^9$ cm$^{-3}$ is the modern value). One correction: the slide prints $N_v=6.0\times10^{19}$</span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>cm$^{-3}$ for Ge, but the textbook and the mass action law both require $6.0\times10^{18}$ cm$^{-3}$, which is used here.</span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## Average energy and the Boltzmann tail (slide 16)</span></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-avg</span></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Electron distribution n_E(E) in the CB of a non-degenerate semiconductor at 300 K. It peaks at E_c + kT/2 and its mean is E_c + 3kT/2, the kinetic energy of an ideal-gas atom."</span></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>kT <span class="op">=</span> sl.kT(<span class="dv">300</span>)</span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">12</span><span class="op">*</span>kT, <span class="dv">3000</span>)</span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a>nE <span class="op">=</span> np.sqrt(E)<span class="op">*</span>np.exp(<span class="op">-</span>E<span class="op">/</span>kT)                       <span class="co"># g(E) f(E) up to a constant</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> np.trapezoid(E<span class="op">*</span>nE, E)<span class="op">/</span>np.trapezoid(nE, E)</span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.4</span>))</span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a>ax.fill_between(E<span class="op">*</span><span class="fl">1e3</span>, nE<span class="op">/</span>nE.<span class="bu">max</span>(), alpha<span class="op">=</span><span class="fl">0.25</span>, lw<span class="op">=</span><span class="dv">0</span>)<span class="op">;</span> ax.plot(E<span class="op">*</span><span class="fl">1e3</span>, nE<span class="op">/</span>nE.<span class="bu">max</span>())</span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>ax.axvline(kT<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="fl">1e3</span>, color<span class="op">=</span>sl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">1.2</span>)<span class="op">;</span> ax.axvline(mean<span class="op">*</span><span class="fl">1e3</span>, color<span class="op">=</span>sl.PALETTE[<span class="dv">1</span>], ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a>ax.text(kT<span class="op">/</span><span class="dv">2</span><span class="op">*</span><span class="fl">1e3</span>, <span class="fl">1.02</span>, <span class="st">" peak kT/2"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span>sl.INK2)<span class="op">;</span> ax.text(mean<span class="op">*</span><span class="fl">1e3</span>, <span class="fl">0.9</span>, <span class="ss">f" mean = </span><span class="sc">{</span>mean<span class="op">/</span>kT<span class="sc">:.3f}</span><span class="ss"> kT"</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"E − E_c (meV)"</span>, ylabel<span class="op">=</span><span class="st">"n_E (normalised)"</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## Intrinsic concentration and temperature</span></span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a>$n_i\propto T^{3/2}\exp(-E_g/2k_BT)$. The exponential dominates, so $\ln n_i$ against $1/T$ is nearly a straight line with</span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a>slope $-E_g/2k_B$. The bandgap itself shrinks as $T$ rises (Varshni law, @sec-spectrum), which is included below.</span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ni</span></span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Intrinsic carrier concentration of Ge, Si and GaAs against 1000/T (Nc, Nv ∝ T^{3/2}, Varshni bandgap). The horizontal line is a typical doping of 10¹⁵ cm⁻³: above the crossing temperature the material becomes intrinsic again."</span></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.linspace(<span class="dv">200</span>, <span class="dv">800</span>, <span class="dv">400</span>)</span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> (<span class="st">"Ge"</span>, <span class="st">"Si"</span>, <span class="st">"GaAs"</span>):</span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a>    ni <span class="op">=</span> sl.n_i(m, T)<span class="op">/</span>CM3</span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(<span class="dv">1000</span><span class="op">/</span>T, ni, label<span class="op">=</span>m)</span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a>    Tx <span class="op">=</span> T[np.argmin(<span class="bu">abs</span>(np.log(ni<span class="op">/</span><span class="fl">1e15</span>)))]</span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ni.<span class="bu">max</span>() <span class="op">&gt;</span> <span class="fl">1e15</span>: ax.plot(<span class="dv">1000</span><span class="op">/</span>Tx, <span class="fl">1e15</span>, <span class="st">"o"</span>, color<span class="op">=</span>ax.lines[<span class="op">-</span><span class="dv">1</span>].get_color(), ms<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">1e15</span>, color<span class="op">=</span>sl.INK2, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>sec <span class="op">=</span> ax.secondary_xaxis(<span class="st">"top"</span>, functions<span class="op">=</span>(<span class="kw">lambda</span> x: <span class="dv">1000</span><span class="op">/</span>x, <span class="kw">lambda</span> T: <span class="dv">1000</span><span class="op">/</span>T))<span class="op">;</span> sec.set_xlabel(<span class="st">"T (K)"</span>)</span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"1000/T (K⁻¹)"</span>, ylabel<span class="op">=</span><span class="st">"n_i (cm⁻³)"</span>)<span class="op">;</span> ax.legend()<span class="op">;</span> plt.show()</span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ni</span></span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Intrinsic concentration and intrinsic Fermi level E_Fi − (E_v + E_g/2) at three temperatures."</span></span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> {}</span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> (<span class="st">"Ge"</span>, <span class="st">"Si"</span>, <span class="st">"GaAs"</span>):</span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> sl.MATERIALS[m]</span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> T <span class="kw">in</span> (<span class="dv">250</span>, <span class="dv">300</span>, <span class="dv">400</span>):</span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a>        Nc, Nv <span class="op">=</span> p[<span class="st">"Nc"</span>]<span class="op">*</span>(T<span class="op">/</span><span class="dv">300</span>)<span class="op">**</span><span class="fl">1.5</span>, p[<span class="st">"Nv"</span>]<span class="op">*</span>(T<span class="op">/</span><span class="dv">300</span>)<span class="op">**</span><span class="fl">1.5</span></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a>        out[(m, T)] <span class="op">=</span> {<span class="st">"n_i (cm⁻³)"</span>: <span class="ss">f"</span><span class="sc">{</span>sl<span class="sc">.</span>n_i(m, T)<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>,</span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"E_Fi − midgap (meV)"</span>: <span class="bu">round</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>sl.kT(T)<span class="op">*</span>np.log(Nc<span class="op">/</span>Nv)<span class="op">*</span><span class="fl">1e3</span>, <span class="dv">1</span>)}</span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(out).T</span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>In GaAs the light electron mass ($N_c\ll N_v$) pushes $E_{Fi}$ about 40 meV *above* mid-gap at room temperature.</span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="fu">## When Boltzmann fails {#sec-degenerate}</span></span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a>The exact result is $n=N_c\,\mathcal F_{1/2}(\eta)$ with $\eta=(E_F-E_c)/k_BT$ and the Fermi–Dirac integral</span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a>$\mathcal F_{1/2}$. The Boltzmann formula is the limit $\mathcal F_{1/2}(\eta)\to e^\eta$:</span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-fermi-int</span></span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exact Fermi–Dirac integral versus the Boltzmann approximation. The error is about 10 % at η ≈ −1 (E_F one kT below E_c) and explodes when E_F enters the band (degenerate semiconductor, slide 28)."</span></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">241</span>)</span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> sl.fermi_half(eta)</span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a>ax.semilogy(eta, F, label<span class="op">=</span><span class="st">"exact  F₁/₂(η)"</span>)<span class="op">;</span> ax.semilogy(eta, np.exp(eta), <span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Boltzmann  e^η"</span>)</span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="op">-</span><span class="dv">3</span>, <span class="dv">6</span>, color<span class="op">=</span>sl.PALETTE[<span class="dv">7</span>], alpha<span class="op">=</span><span class="fl">0.06</span>)<span class="op">;</span> ax.text(<span class="op">-</span><span class="fl">2.9</span>, <span class="dv">200</span>, <span class="st">"within 3kT of the band edge"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span>sl.INK2)</span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"η = (E_F − E_c)/k_BT"</span>, ylabel<span class="op">=</span><span class="st">"n / N_c"</span>)<span class="op">;</span> ax.legend()<span class="op">;</span> plt.show()</span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"error of Boltzmann at η = -3, -1, 0, +2:"</span>, [<span class="ss">f"</span><span class="sc">{</span>(np.exp(e)<span class="op">/</span>sl.fermi_half(e) <span class="op">-</span> <span class="dv">1</span>)<span class="op">*</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss"> %"</span> <span class="cf">for</span> e <span class="kw">in</span> (<span class="op">-</span><span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)])</span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the Fermi level means (slide 17)</span></span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a>$E_F$ is the electrochemical potential of electrons. In equilibrium, in the dark and without applied voltage, it is **flat**</span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a>across any system of materials in contact. An applied voltage $V$ separates the Fermi levels at the two ends by $\Delta</span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a>E_F=eV$. This single rule builds every band diagram in the following chapters: pn junctions (@sec-junction),</span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a>heterojunctions (@sec-led), and the quasi-Fermi levels of a forward-biased LED.</span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going deeper</span></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Density-of-states masses.** Si has six ellipsoidal CB valleys with $m_l=0.98$, $m_t=0.19$. Show that</span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a>  $m^*_\text{dos}=6^{2/3}(m_lm_t^2)^{1/3}=1.08\,m_e$ and recover $N_c$ of Table 3.1.</span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Joyce–Dixon.** Invert $n=N_c\mathcal F_{1/2}(\eta)$ to get $E_F$ for a given $n$. Compare the Joyce–Dixon series with a</span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a>  numerical root (<span class="in">`scipy.optimize.brentq`</span> on <span class="in">`sl.fermi_half`</span>).</span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Arrhenius plots.** Fit $\ln(n_iT^{-3/2})$ vs $1/T$ for Si between 250 and 500 K. Which bandgap do you get, and why does</span>
+<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a>  it differ from $E_g(300\text{ K})$? (Hint: Varshni with a linear $T$ term.)</span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Two-dimensional and one-dimensional DOS.** Repeat the counting of slide 4 in 2D and 1D: you get a constant and a</span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a>  $1/\sqrt{E}$ density of states. The 2D case is the quantum well (@sec-qw).</span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, *Optoelectronics and Photonics*, sec. 3.1–3.2.</span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>S. M. Sze and K. K. Ng, *Physics of Semiconductor Devices*, ch. 1 (carrier statistics, $\mathcal F_{1/2}$ approximations).</span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ioffe Institute semiconductor database, <span class="ot">&lt;https://www.ioffe.ru/SVA/NSM/Semicond/&gt;</span> (band parameters, $n_i(T)$).</span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>With the live panel, find the temperature at which intrinsic Ge has $n_i=10^{15}$ cm$^{-3}$. Check with the figure.</span>
+<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Compute $N_c$ for GaAs from $m_e^*=0.067m_e$ and compare with Table 3.1.</span>
+<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Show that $\frac{d\ln n_i}{d(1/T)}=-\frac{E_g}{2k_B}-\frac32T$ and estimate how much the $T^{3/2}$ factor biases a</span>
+<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a>   graphical $E_g$ from 300 to 400 K.</span>
+<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Where is $E_{Fi}$ in InP? Is the shift from mid-gap larger or smaller than $k_BT$?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/statistics.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Capacitance and the small-signal model – Semiconductor Science and Light-Emitting Diodes</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./led-principle.html" rel="next">
+<link href="./diode.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./junction.html">The pn junction</a></li><li class="breadcrumb-item"><a href="./smallsignal.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capacitance and the small-signal model</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Semiconductor Science and Light-Emitting Diodes</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter3/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor science</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Energy bands, holes and E–k diagrams</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Carrier statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./doping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Doping, Fermi level and conductivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">The pn junction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./junction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The pn junction at equilibrium</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The diode: forward and reverse bias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smallsignal.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capacitance and the small-signal model</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Light-emitting diodes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./led-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spectrum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quantum-wells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./led-drive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">6.1</span> Key relations</a></li>
+  <li><a href="#cv-explorer" id="toc-cv-explorer" class="nav-link" data-scroll-target="#cv-explorer"><span class="header-section-number">6.2</span> C–V explorer</a></li>
+  <li><a href="#slide-70b-and-mottschottky-profiling" id="toc-slide-70b-and-mottschottky-profiling" class="nav-link" data-scroll-target="#slide-70b-and-mottschottky-profiling"><span class="header-section-number">6.3</span> Slide 70(b) and Mott–Schottky profiling</a></li>
+  <li><a href="#forward-bias-r_d-and-c_textdiff-of-an-led" id="toc-forward-bias-r_d-and-c_textdiff-of-an-led" class="nav-link" data-scroll-target="#forward-bias-r_d-and-c_textdiff-of-an-led"><span class="header-section-number">6.4</span> Forward bias: <span class="math inline">\(r_d\)</span> and <span class="math inline">\(C_\text{diff}\)</span> of an LED</a></li>
+  <li><a href="#impedance-of-the-equivalent-circuit" id="toc-impedance-of-the-equivalent-circuit" class="nav-link" data-scroll-target="#impedance-of-the-equivalent-circuit"><span class="header-section-number">6.5</span> Impedance of the equivalent circuit</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">6.6</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/smallsignal.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./junction.html">The pn junction</a></li><li class="breadcrumb-item"><a href="./smallsignal.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capacitance and the small-signal model</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-smallsignal" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Capacitance and the small-signal model</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter3/notebooks/smallsignal.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 70–74: depletion capacitance, dynamic resistance, diffusion capacitance (long and short diodes), small-signal equivalent circuit.</em></p>
+<section id="key-relations" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">6.1</span> Key relations</h2>
+<p>The SCL stores charge <span class="math inline">\(\pm Q\)</span> separated by <span class="math inline">\(W\)</span>, like a parallel-plate capacitor whose gap changes with the voltage. Its incremental capacitance is the <strong>depletion capacitance</strong> (slides 70 and 74):</p>
+<p><span class="math display">\[
+C_\text{dep}=\left|\frac{dQ}{dV}\right|=\frac{\varepsilon A}{W}=\frac{A}{(V_o-V)^{1/2}}\left[\frac{e\varepsilon N_aN_d}{2(N_a+N_d)}\right]^{1/2}
+\ \xrightarrow{\ p^+n\ }\ A\left[\frac{e\varepsilon N_d}{2(V_o-V)}\right]^{1/2}.
+\]</span></p>
+<p>Under forward bias the injected minority charge <span class="math inline">\(Q=\tau_hI\)</span> also changes with <span class="math inline">\(V\)</span>. This gives a <strong>dynamic resistance</strong> and a <strong>diffusion capacitance</strong> (slides 71–73):</p>
+<p><span class="math display">\[
+r_d=\frac{dV}{dI}=\frac{\eta V_\text{th}}{I},\qquad
+C_\text{diff}=\frac{\tau_hI}{2V_\text{th}}=\frac{\tau_h}{2r_d}\ \text{(long diode, ac)},\qquad
+C_\text{diff}=\frac{\tau_tI}{V_\text{th}}\ \text{(short diode, } \tau_t=\ell_n^2/2D_h),
+\]</span></p>
+<p>with <span class="math inline">\(V_\text{th}=k_BT/e\)</span>. The small-signal equivalent circuit is a series resistance <span class="math inline">\(r_s\)</span> followed by <span class="math inline">\(r_d\)</span>, <span class="math inline">\(C_\text{diff}\)</span> and <span class="math inline">\(C_\text{dep}\)</span> in parallel (slide 71c). <span class="math inline">\(C_\text{dep}\)</span> dominates under reverse bias (photodiodes, varactors) and <span class="math inline">\(C_\text{diff}\)</span> under forward bias (LEDs).</p>
+</section>
+<section id="cv-explorer" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="cv-explorer"><span class="header-section-number">6.2</span> C–V explorer</h2>
+<p>The dashed grey curves are the three junctions of slide 70(b). Your junction is the solid line.</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="46" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 45;"><span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>viewof cv <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lNa</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">14</span><span class="op">,</span> <span class="dv">19</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">16.7</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ N_a (cm⁻³)"</span>})<span class="op">,</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lNd</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">14</span><span class="op">,</span> <span class="dv">19</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">15.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ N_d (cm⁻³)"</span>})<span class="op">,</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">er</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">16</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">11.8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"ε_r (Si 11.8, GaAs 13)"</span>})<span class="op">,</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ni</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">"Si (1e10)"</span><span class="op">,</span> <span class="fl">1e10</span>]<span class="op">,</span> [<span class="st">"GaAs (2.1e6)"</span><span class="op">,</span> <span class="fl">2.1e6</span>]<span class="op">,</span> [<span class="st">"Ge (2.3e13)"</span><span class="op">,</span> <span class="fl">2.3e13</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1e10</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"n_i"</span>})</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="57" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 56;"><span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>cvOut <span class="op">=</span> {</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> q <span class="op">=</span> <span class="fl">1.602176634e-19</span><span class="op">,</span> kT <span class="op">=</span> <span class="fl">0.025852</span><span class="op">,</span> e0 <span class="op">=</span> <span class="fl">8.8541878e-12</span><span class="op">;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> curve <span class="op">=</span> (Na<span class="op">,</span> Nd<span class="op">,</span> er<span class="op">,</span> ni<span class="op">,</span> label) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Vo <span class="op">=</span> kT<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(Na<span class="op">*</span>Nd<span class="op">/</span>ni<span class="op">**</span><span class="dv">2</span>)<span class="op">,</span> out <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> V <span class="op">=</span> <span class="op">-</span><span class="dv">10</span><span class="op">;</span> V <span class="op">&lt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="fl">0.7</span><span class="op">,</span> Vo <span class="op">-</span> <span class="fl">0.05</span>)<span class="op">;</span> V <span class="op">+=</span> <span class="fl">0.02</span>) {</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> W <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>er<span class="op">*</span>e0<span class="op">*</span>(Na <span class="op">+</span> Nd)<span class="op">*</span>(Vo <span class="op">-</span> V)<span class="op">/</span>(q<span class="op">*</span>Na<span class="op">*</span>Nd))<span class="op">;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>      out<span class="op">.</span><span class="fu">push</span>({V<span class="op">,</span> <span class="dt">C</span><span class="op">:</span> er<span class="op">*</span>e0<span class="op">*</span><span class="fl">1e-6</span><span class="op">/</span>W<span class="op">*</span><span class="fl">1e12</span><span class="op">,</span> label})<span class="op">;</span>    <span class="co">// pF per mm²</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ref <span class="op">=</span> [[<span class="fl">5e22</span><span class="op">,</span> <span class="fl">5e22</span><span class="op">,</span> <span class="st">"5e16 / 5e16"</span>]<span class="op">,</span> [<span class="fl">5e22</span><span class="op">,</span> <span class="fl">5e20</span><span class="op">,</span> <span class="st">"5e16 / 5e14"</span>]<span class="op">,</span> [<span class="fl">5e20</span><span class="op">,</span> <span class="fl">5e20</span><span class="op">,</span> <span class="st">"5e14 / 5e14"</span>]]</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">flatMap</span>(([a<span class="op">,</span> d<span class="op">,</span> l]) <span class="kw">=&gt;</span> <span class="fu">curve</span>(a<span class="op">,</span> d<span class="op">,</span> <span class="fl">11.8</span><span class="op">,</span> <span class="fl">1e16</span><span class="op">,</span> l))<span class="op">;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mine <span class="op">=</span> <span class="fu">curve</span>(<span class="dv">10</span><span class="op">**</span>cv<span class="op">.</span><span class="at">lNa</span><span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> <span class="dv">10</span><span class="op">**</span>cv<span class="op">.</span><span class="at">lNd</span><span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> cv<span class="op">.</span><span class="at">er</span><span class="op">,</span> cv<span class="op">.</span><span class="at">ni</span><span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> <span class="st">"yours"</span>)<span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {ref<span class="op">,</span> mine<span class="op">,</span> <span class="dt">Vo</span><span class="op">:</span> kT<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">10</span><span class="op">**</span>(cv<span class="op">.</span><span class="at">lNa</span> <span class="op">+</span> cv<span class="op">.</span><span class="at">lNd</span>)<span class="op">/</span>cv<span class="op">.</span><span class="at">ni</span><span class="op">**</span><span class="dv">2</span>)}<span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">330</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"V (V)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="fl">0.8</span>]}<span class="op">,</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"C_dep (pF mm⁻²)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">5</span><span class="op">,</span> <span class="dv">2000</span>]}<span class="op">,</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(cvOut<span class="op">.</span><span class="at">ref</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"C"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span>})<span class="op">,</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(cvOut<span class="op">.</span><span class="at">ref</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(d<span class="op">.</span><span class="at">V</span> <span class="op">+</span> <span class="dv">8</span>) <span class="op">&lt;</span> <span class="fl">0.011</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"C"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">8</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span>})<span class="op">,</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(cvOut<span class="op">.</span><span class="at">mine</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"C"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})<span class="op">,</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">tip</span>(cvOut<span class="op">.</span><span class="at">mine</span><span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerX</span>({<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"C"</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`V = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">V</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> V</span><span class="sc">\n</span><span class="vs">C = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">C</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> pF/mm²`</span>}))</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="85" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 84;"><span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;V&lt;sub&gt;o&lt;/sub&gt; = </span><span class="sc">${</span>cvOut<span class="op">.</span><span class="at">Vo</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> V · C&lt;sub&gt;dep&lt;/sub&gt;(0) = &lt;b&gt;</span><span class="sc">${</span>cvOut<span class="op">.</span><span class="at">mine</span><span class="op">.</span><span class="fu">find</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">V</span> <span class="op">&gt;=</span> <span class="dv">0</span>)<span class="op">?.</span><span class="at">C</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> pF/mm²&lt;/b&gt; ·</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="vs">C&lt;sub&gt;dep&lt;/sub&gt;(−5 V) = </span><span class="sc">${</span>cvOut<span class="op">.</span><span class="at">mine</span><span class="op">.</span><span class="fu">find</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">V</span> <span class="op">&gt;=</span> <span class="op">-</span><span class="dv">5</span>)<span class="op">?.</span><span class="at">C</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> pF/mm²&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>The capacitance is set by the <strong>lightly doped side</strong>: the 5×10¹⁶/5×10¹⁴ junction is almost identical to the 5×10¹⁴/5×10¹⁴ one. The curve ends near <span class="math inline">\(V_o\)</span>, where the depletion approximation breaks down (and <span class="math inline">\(C_\text{diff}\)</span> takes over).</p>
+</section>
+<section id="slide-70b-and-mottschottky-profiling" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="slide-70b-and-mottschottky-profiling"><span class="header-section-number">6.3</span> Slide 70(b) and Mott–Schottky profiling</h2>
+<div id="cell-fig-cv" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="fl">0.5</span>, <span class="dv">300</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> sl.MATERIALS[<span class="st">"Si"</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> Na, Nd <span class="kw">in</span> ((<span class="fl">5e16</span>, <span class="fl">5e16</span>), (<span class="fl">5e16</span>, <span class="fl">5e14</span>), (<span class="fl">5e14</span>, <span class="fl">5e14</span>)):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    Vo <span class="op">=</span> sl.built_in_voltage(Na<span class="op">*</span>CM3, Nd<span class="op">*</span>CM3, p[<span class="st">"ni"</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    Vv <span class="op">=</span> V[V <span class="op">&lt;</span> Vo <span class="op">-</span> <span class="fl">0.05</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].semilogy(Vv, sl.c_dep(<span class="fl">1e-6</span>, Na<span class="op">*</span>CM3, Nd<span class="op">*</span>CM3, p[<span class="st">"eps_r"</span>], Vo, Vv)<span class="op">*</span><span class="fl">1e12</span>, label<span class="op">=</span><span class="ss">f"N_a = </span><span class="sc">{</span>Na<span class="sc">:.0e}</span><span class="ss">, N_d = </span><span class="sc">{</span>Nd<span class="sc">:.0e}</span><span class="ss">"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"V (V)"</span>, ylabel<span class="op">=</span><span class="st">"C_dep (pF mm⁻²)"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># synthetic measurement on a p⁺n junction, then fit</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Na, Nd, A <span class="op">=</span> <span class="fl">1e19</span><span class="op">*</span>CM3, <span class="fl">3e15</span><span class="op">*</span>CM3, <span class="fl">1e-6</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>Vo <span class="op">=</span> sl.built_in_voltage(Na, Nd, p[<span class="st">"ni"</span>])</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>Vm <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">8</span>, <span class="fl">0.3</span>, <span class="dv">30</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Cm <span class="op">=</span> sl.c_dep(A, Na, Nd, p[<span class="st">"eps_r"</span>], Vo, Vm)<span class="op">*</span>(<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.01</span><span class="op">*</span>rng.standard_normal(Vm.size))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>slope, icpt <span class="op">=</span> np.polyfit(Vm, <span class="dv">1</span><span class="op">/</span>Cm<span class="op">**</span><span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Nd_fit <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">/</span>(sl.qe<span class="op">*</span>p[<span class="st">"eps_r"</span>]<span class="op">*</span>sl.eps0<span class="op">*</span>A<span class="op">**</span><span class="dv">2</span><span class="op">*</span>slope)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(Vm, <span class="dv">1</span><span class="op">/</span>Cm<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="fl">1e22</span>, <span class="st">"o"</span>, ms<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">"'measured'"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(Vm, np.polyval([slope, icpt], Vm)<span class="op">/</span><span class="fl">1e22</span>, label<span class="op">=</span><span class="st">"linear fit"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"V (V)"</span>, ylabel<span class="op">=</span><span class="st">"1/C² (10²² F⁻²)"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"true N_d = </span><span class="sc">{</span>Nd<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss"> cm⁻³, fitted N_d = </span><span class="sc">{</span>Nd_fit<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss"> cm⁻³;  true V_o = </span><span class="sc">{</span>Vo<span class="sc">:.3f}</span><span class="ss"> V, fitted V_o = </span><span class="sc">{</span><span class="op">-</span>icpt<span class="op">/</span>slope<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-cv" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="smallsignal_files/figure-html/fig-cv-output-1.png" width="1086" height="426" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Left: C_dep per mm² for the three Si junctions of slide 70(b). Right: 1/C² versus V is a straight line whose slope gives the doping of the light side and whose intercept gives V_o (Mott–Schottky plot), here applied to a synthetic ‘measurement’ with 1 % noise.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>true N_d = 3.00e+15 cm⁻³, fitted N_d = 3.02e+15 cm⁻³;  true V_o = 0.862 V, fitted V_o = 0.894 V</code></pre>
+</div>
+</div>
+<p>For a p⁺n junction <span class="math inline">\(1/C_\text{dep}^2=2(V_o-V)/(e\varepsilon N_dA^2)\)</span>, so <span class="math inline">\(N_d=-2/(e\varepsilon A^2\,d(1/C^2)/dV)\)</span>. Applied point by point, with <span class="math inline">\(W=\varepsilon A/C\)</span> as the depth, the same formula gives the <strong>doping profile</strong> <span class="math inline">\(N_d(W)\)</span>. This is the standard C–V characterisation of LED and photodiode wafers.</p>
+</section>
+<section id="forward-bias-r_d-and-c_textdiff-of-an-led" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="forward-bias-r_d-and-c_textdiff-of-an-led"><span class="header-section-number">6.4</span> Forward bias: <span class="math inline">\(r_d\)</span> and <span class="math inline">\(C_\text{diff}\)</span> of an LED</h2>
+<div class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> sl.MATERIALS[<span class="st">"GaAs"</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Na <span class="op">=</span> Nd <span class="op">=</span> <span class="fl">1e23</span><span class="op">;</span> A <span class="op">=</span> <span class="fl">1e-6</span><span class="op">;</span> tau <span class="op">=</span> <span class="fl">50e-9</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Vo <span class="op">=</span> sl.built_in_voltage(Na, Nd, p[<span class="st">"ni"</span>])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>gaas <span class="op">=</span> <span class="bu">dict</span>(A<span class="op">=</span>A, Na<span class="op">=</span>Na, Nd<span class="op">=</span>Nd, mat<span class="op">=</span><span class="st">"GaAs"</span>, B<span class="op">=</span><span class="fl">2e-16</span>, mu_e<span class="op">=</span><span class="dv">5000</span><span class="op">*</span>CM2, mu_h<span class="op">=</span><span class="dv">250</span><span class="op">*</span>CM2)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> {}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> V <span class="kw">in</span> (<span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">1.05</span>, <span class="fl">1.1</span>):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> sl.diode_currents(V, <span class="op">**</span>gaas)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> <span class="bu">float</span>(d[<span class="st">"I"</span>])<span class="op">;</span> dI <span class="op">=</span> <span class="bu">float</span>(sl.diode_currents(V <span class="op">+</span> <span class="fl">1e-4</span>, <span class="op">**</span>gaas)[<span class="st">"I"</span>]) <span class="op">-</span> I</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    rd <span class="op">=</span> <span class="fl">1e-4</span><span class="op">/</span>dI</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    Cd <span class="op">=</span> sl.c_diff(<span class="bu">float</span>(d[<span class="st">"I_diff"</span>]), tau)            <span class="co"># only the diffusion part stores minority charge</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    Cj <span class="op">=</span> sl.c_dep(A, Na, Nd, p[<span class="st">"eps_r"</span>], Vo, V)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    rows[<span class="ss">f"V = </span><span class="sc">{</span>V<span class="sc">}</span><span class="ss"> V"</span>] <span class="op">=</span> {<span class="st">"I (mA)"</span>: I<span class="op">*</span><span class="fl">1e3</span>, <span class="st">"r_d (Ω)"</span>: rd, <span class="st">"C_dep (pF)"</span>: Cj<span class="op">*</span><span class="fl">1e12</span>, <span class="st">"C_diff (pF)"</span>: Cd<span class="op">*</span><span class="fl">1e12</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"r_d(C_dep + C_diff) (ns)"</span>: rd<span class="op">*</span>(Cj <span class="op">+</span> Cd)<span class="op">*</span><span class="fl">1e9</span>}</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).T.<span class="bu">map</span>(<span class="kw">lambda</span> v: <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.3g}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-smallsignal" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-smallsignal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Small-signal elements of the GaAs diode of slides 75–80 (A = 1 mm², τ = 50 ns, long diode) at several forward currents. At LED operating currents C_diff exceeds C_dep by orders of magnitude, and r_d C_diff = τ/2 does not depend on the current.
+</figcaption>
+<div aria-describedby="tbl-smallsignal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">I (mA)</th>
+<th data-quarto-table-cell-role="th">r_d (Ω)</th>
+<th data-quarto-table-cell-role="th">C_dep (pF)</th>
+<th data-quarto-table-cell-role="th">C_diff (pF)</th>
+<th data-quarto-table-cell-role="th">r_d(C_dep + C_diff) (ns)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">V = 0.8 V</th>
+<td>0.00217</td>
+<td>2.37e+04</td>
+<td>989</td>
+<td>0.117</td>
+<td>2.34e+04</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">V = 1.0 V</th>
+<td>0.351</td>
+<td>83.1</td>
+<td>1.3e+03</td>
+<td>268</td>
+<td>131</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">V = 1.05 V</th>
+<td>2.09</td>
+<td>12.9</td>
+<td>1.44e+03</td>
+<td>1.85e+03</td>
+<td>42.7</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">V = 1.1 V</th>
+<td>13.7</td>
+<td>1.92</td>
+<td>1.64e+03</td>
+<td>1.28e+04</td>
+<td>27.8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>At low bias the recombination current has no stored minority charge, <span class="math inline">\(\eta=2\)</span>, and the RC product is set by <span class="math inline">\(C_\text{dep}\)</span>. At LED operating currents <span class="math inline">\(r_dC_\text{diff}\to\tau/2\)</span>: the diode cannot respond faster than its minority carrier lifetime. This is the electrical side of the LED modulation bandwidth of <a href="led-drive.html" class="quarto-xref"><span>Chapter 11</span></a>, <span class="math inline">\(f_{3\text{dB}}\propto1/\tau\)</span>.</p>
+</section>
+<section id="impedance-of-the-equivalent-circuit" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="impedance-of-the-equivalent-circuit"><span class="header-section-number">6.5</span> Impedance of the equivalent circuit</h2>
+<div id="cell-fig-impedance" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.logspace(<span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">400</span>)<span class="op">;</span> w <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>f<span class="op">;</span> rs <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> sl.diode_currents(<span class="fl">1.05</span>, <span class="op">**</span>gaas)<span class="op">;</span> I <span class="op">=</span> <span class="bu">float</span>(d[<span class="st">"I_diff"</span>] <span class="op">+</span> d[<span class="st">"I_rec"</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>rd <span class="op">=</span> sl.r_d(I)<span class="op">;</span> Cf <span class="op">=</span> sl.c_diff(<span class="bu">float</span>(d[<span class="st">"I_diff"</span>]), tau) <span class="op">+</span> sl.c_dep(A, Na, Nd, p[<span class="st">"eps_r"</span>], Vo, <span class="fl">1.05</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Cr <span class="op">=</span> sl.c_dep(A, Na, Nd, p[<span class="st">"eps_r"</span>], Vo, <span class="op">-</span><span class="dv">5</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>Zf <span class="op">=</span> rs <span class="op">+</span> rd<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>w<span class="op">*</span>rd<span class="op">*</span>Cf)<span class="op">;</span> Zr <span class="op">=</span> rs <span class="op">+</span> <span class="dv">1</span><span class="op">/</span>(<span class="ot">1j</span><span class="op">*</span>w<span class="op">*</span>Cr)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, <span class="bu">abs</span>(Zf), label<span class="op">=</span><span class="ss">f"forward, I = </span><span class="sc">{</span>I<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss"> mA (r_d = </span><span class="sc">{</span>rd<span class="sc">:.1f}</span><span class="ss"> Ω, C = </span><span class="sc">{</span>Cf<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nF)"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, <span class="bu">abs</span>(Zr), label<span class="op">=</span><span class="ss">f"reverse −5 V (C_dep = </span><span class="sc">{</span>Cr<span class="op">*</span><span class="fl">1e12</span><span class="sc">:.0f}</span><span class="ss"> pF)"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"frequency (Hz)"</span>, ylabel<span class="op">=</span><span class="st">"|Z| (Ω)"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-impedance" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-impedance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="smallsignal_files/figure-html/fig-impedance-output-1.png" width="722" height="379" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-impedance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: Magnitude of the small-signal impedance of the GaAs diode at 1.05 V (r_s = 2 Ω) and at −5 V reverse bias. Forward: r_d ∥ C_diff rolls off at f = 1/(2π r_d C) ≈ 1/(πτ). Reverse: a pure depletion capacitance.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going deeper
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Varactors.</strong> A hyperabrupt doping profile <span class="math inline">\(N_d\propto x^{-3/2}\)</span> gives <span class="math inline">\(C\propto(V_o-V)^{-2}\)</span> and a resonance frequency linear in voltage. Simulate a VCO tuning curve.</li>
+<li><strong>Why <span class="math inline">\(\tau/2\)</span> and not <span class="math inline">\(\tau\)</span>?</strong> Solve the time-dependent diffusion equation with a small sinusoidal injection: the admittance of a long diode is <span class="math inline">\(Y=(1/r_d)\sqrt{1+j\omega\tau_h}\)</span>. Expand for <span class="math inline">\(\omega\tau\ll1\)</span> to recover <span class="math inline">\(C_\text{diff}=\tau_h/2r_d\)</span>.</li>
+<li><strong>Doping profiles.</strong> Apply the point-by-point Mott–Schottky formula to a synthetic junction with a graded doping and check that you recover the profile.</li>
+<li><strong>Photodiode speed.</strong> In Chapter 5 the RC time of <span class="math inline">\(C_\text{dep}\)</span> with a 50 Ω load competes with the transit time across <span class="math inline">\(W\)</span>. Find the reverse bias that minimises the total response time of a Si pin diode.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, <em>Optoelectronics and Photonics</em>, sec.&nbsp;3.7; Sze &amp; Ng, ch.&nbsp;2 (C–V, admittance of a long diode).</li>
+<li>D. K. Schroder, <em>Semiconductor Material and Device Characterization</em>, ch.&nbsp;2 (C–V doping profiling).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">6.6</span> Try it yourself</h2>
+<ol type="1">
+<li>A Si p⁺n photodiode of 1 mm² with <span class="math inline">\(N_d=10^{14}\)</span> cm⁻³ is reverse biased at 10 V. Find <span class="math inline">\(C_\text{dep}\)</span> and the RC limit with 50 Ω.</li>
+<li>An LED driven at 20 mA has <span class="math inline">\(\tau=5\)</span> ns. Compute <span class="math inline">\(r_d\)</span> and <span class="math inline">\(C_\text{diff}\)</span>. Which driver output impedance keeps the electrical bandwidth above the optical one?</li>
+<li>Show that <span class="math inline">\(C_\text{dep}\)</span> of a p⁺n junction depends on <span class="math inline">\(N_d\)</span> only through <span class="math inline">\(\sqrt{N_d}\)</span>. How much must the doping change to halve it?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBjdiA9IElucHV0cy5mb3JtKHtcbiAgbE5hOiBJbnB1dHMucmFuZ2UoWzE0LCAxOV0sIHt2YWx1ZTogMTYuNywgc3RlcDogMC4wNSwgbGFiZWw6IFwibG9n4oKB4oKAIE5fYSAoY23igbvCsylcIn0pLFxuICBsTmQ6IElucHV0cy5yYW5nZShbMTQsIDE5XSwge3ZhbHVlOiAxNS4wLCBzdGVwOiAwLjA1LCBsYWJlbDogXCJsb2figoHigoAgTl9kIChjbeKBu8KzKVwifSksXG4gIGVyOiBJbnB1dHMucmFuZ2UoWzEwLCAxNl0sIHt2YWx1ZTogMTEuOCwgc3RlcDogMC4xLCBsYWJlbDogXCLOtV9yIChTaSAxMS44LCBHYUFzIDEzKVwifSksXG4gIG5pOiBJbnB1dHMuc2VsZWN0KG5ldyBNYXAoW1tcIlNpICgxZTEwKVwiLCAxZTEwXSwgW1wiR2FBcyAoMi4xZTYpXCIsIDIuMWU2XSwgW1wiR2UgKDIuM2UxMylcIiwgMi4zZTEzXV0pLCB7dmFsdWU6IDFlMTAsIGxhYmVsOiBcIm5faVwifSlcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjdk91dCA9IHtcbiAgY29uc3QgcSA9IDEuNjAyMTc2NjM0ZS0xOSwga1QgPSAwLjAyNTg1MiwgZTAgPSA4Ljg1NDE4NzhlLTEyO1xuICBjb25zdCBjdXJ2ZSA9IChOYSwgTmQsIGVyLCBuaSwgbGFiZWwpID0+IHtcbiAgICBjb25zdCBWbyA9IGtUKk1hdGgubG9nKE5hKk5kL25pKioyKSwgb3V0ID0gW107XG4gICAgZm9yIChsZXQgViA9IC0xMDsgViA8IE1hdGgubWluKDAuNywgVm8gLSAwLjA1KTsgViArPSAwLjAyKSB7XG4gICAgICBjb25zdCBXID0gTWF0aC5zcXJ0KDIqZXIqZTAqKE5hICsgTmQpKihWbyAtIFYpLyhxKk5hKk5kKSk7XG4gICAgICBvdXQucHVzaCh7ViwgQzogZXIqZTAqMWUtNi9XKjFlMTIsIGxhYmVsfSk7ICAgIC8vIHBGIHBlciBtbcKyXG4gICAgfVxuICAgIHJldHVybiBvdXQ7XG4gIH07XG4gIGNvbnN0IHJlZiA9IFtbNWUyMiwgNWUyMiwgXCI1ZTE2IC8gNWUxNlwiXSwgWzVlMjIsIDVlMjAsIFwiNWUxNiAvIDVlMTRcIl0sIFs1ZTIwLCA1ZTIwLCBcIjVlMTQgLyA1ZTE0XCJdXVxuICAgIC5mbGF0TWFwKChbYSwgZCwgbF0pID0+IGN1cnZlKGEsIGQsIDExLjgsIDFlMTYsIGwpKTtcbiAgY29uc3QgbWluZSA9IGN1cnZlKDEwKipjdi5sTmEqMWU2LCAxMCoqY3YubE5kKjFlNiwgY3YuZXIsIGN2Lm5pKjFlNiwgXCJ5b3Vyc1wiKTtcbiAgcmV0dXJuIHtyZWYsIG1pbmUsIFZvOiBrVCpNYXRoLmxvZygxMCoqKGN2LmxOYSArIGN2LmxOZCkvY3YubmkqKjIpfTtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMzMwLCB4OiB7bGFiZWw6IFwiViAoVilcIiwgZG9tYWluOiBbLTEwLCAwLjhdfSxcbiAgeToge3R5cGU6IFwibG9nXCIsIGxhYmVsOiBcIkNfZGVwIChwRiBtbeKBu8KyKVwiLCBncmlkOiB0cnVlLCBkb21haW46IFs1LCAyMDAwXX0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKGN2T3V0LnJlZiwge3g6IFwiVlwiLCB5OiBcIkNcIiwgejogXCJsYWJlbFwiLCBzdHJva2U6IFwiIzUyNTE0ZVwiLCBzdHJva2VXaWR0aDogMS4yLCBzdHJva2VEYXNoYXJyYXk6IFwiNSw0XCJ9KSxcbiAgICBQbG90LnRleHQoY3ZPdXQucmVmLmZpbHRlcihkID0+IE1hdGguYWJzKGQuViArIDgpIDwgMC4wMTEpLCB7eDogXCJWXCIsIHk6IFwiQ1wiLCB0ZXh0OiBcImxhYmVsXCIsIGR5OiAtOCwgZmlsbDogXCIjNTI1MTRlXCIsIGZvbnRTaXplOiAxMH0pLFxuICAgIFBsb3QubGluZShjdk91dC5taW5lLCB7eDogXCJWXCIsIHk6IFwiQ1wiLCBzdHJva2U6IFwiIzJhNzhkNlwiLCBzdHJva2VXaWR0aDogMi41fSksXG4gICAgUGxvdC50aXAoY3ZPdXQubWluZSwgUGxvdC5wb2ludGVyWCh7eDogXCJWXCIsIHk6IFwiQ1wiLCB0aXRsZTogZCA9PiBgViA9ICR7ZC5WLnRvRml4ZWQoMil9IFZcXG5DID0gJHtkLkMudG9GaXhlZCgxKX0gcEYvbW3CsmB9KSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cInJlc3VsdC1ib3hcIj5WPHN1Yj5vPC9zdWI+ID0gJHtjdk91dC5Wby50b0ZpeGVkKDMpfSBWIMK3IEM8c3ViPmRlcDwvc3ViPigwKSA9IDxiPiR7Y3ZPdXQubWluZS5maW5kKGQgPT4gZC5WID49IDApPy5DLnRvRml4ZWQoMSl9IHBGL21twrI8L2I+IMK3XG5DPHN1Yj5kZXA8L3N1Yj4o4oiSNSBWKSA9ICR7Y3ZPdXQubWluZS5maW5kKGQgPT4gZC5WID49IC01KT8uQy50b0ZpeGVkKDEpfSBwRi9tbcKyPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdjdicpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter3\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./diode.html" class="pagination-link" aria-label="The diode: forward and reverse bias">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The diode: forward and reverse bias</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./led-principle.html" class="pagination-link" aria-label="LED principle, heterojunctions and materials">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Capacitance and the small-signal model {#sec-smallsignal}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/smallsignal.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> semilib <span class="im">as</span> sl</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>sl.use_style()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>CM3, CM2 <span class="op">=</span> sl.CM3, sl.CM2</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>*Slides 70–74: depletion capacitance, dynamic resistance, diffusion capacitance (long and short diodes), small-signal</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>equivalent circuit.*</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>The SCL stores charge $\pm Q$ separated by $W$, like a parallel-plate capacitor whose gap changes with the voltage. Its</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>incremental capacitance is the **depletion capacitance** (slides 70 and 74):</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>C_\text{dep}=\left|\frac{dQ}{dV}\right|=\frac{\varepsilon A}{W}=\frac{A}{(V_o-V)^{1/2}}\left<span class="co">[</span><span class="ot">\frac{e\varepsilon N_aN_d}{2(N_a+N_d)}\right</span><span class="co">]</span>^{1/2}</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>\ \xrightarrow{\ p^+n\ }\ A\left<span class="co">[</span><span class="ot">\frac{e\varepsilon N_d}{2(V_o-V)}\right</span><span class="co">]</span>^{1/2}.</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>Under forward bias the injected minority charge $Q=\tau_hI$ also changes with $V$. This gives a **dynamic resistance** and a</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>**diffusion capacitance** (slides 71–73):</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>r_d=\frac{dV}{dI}=\frac{\eta V_\text{th}}{I},\qquad</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>C_\text{diff}=\frac{\tau_hI}{2V_\text{th}}=\frac{\tau_h}{2r_d}\ \text{(long diode, ac)},\qquad</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>C_\text{diff}=\frac{\tau_tI}{V_\text{th}}\ \text{(short diode, } \tau_t=\ell_n^2/2D_h),</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>with $V_\text{th}=k_BT/e$. The small-signal equivalent circuit is a series resistance $r_s$ followed by $r_d$, $C_\text{diff}$</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>and $C_\text{dep}$ in parallel (slide 71c). $C_\text{dep}$ dominates under reverse bias (photodiodes, varactors) and</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>$C_\text{diff}$ under forward bias (LEDs).</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## C–V explorer</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>The dashed grey curves are the three junctions of slide 70(b). Your junction is the solid line.</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>viewof cv <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lNa</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">14</span><span class="op">,</span> <span class="dv">19</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">16.7</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ N_a (cm⁻³)"</span>})<span class="op">,</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lNd</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">14</span><span class="op">,</span> <span class="dv">19</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">15.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ N_d (cm⁻³)"</span>})<span class="op">,</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">er</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">16</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">11.8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"ε_r (Si 11.8, GaAs 13)"</span>})<span class="op">,</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ni</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">"Si (1e10)"</span><span class="op">,</span> <span class="fl">1e10</span>]<span class="op">,</span> [<span class="st">"GaAs (2.1e6)"</span><span class="op">,</span> <span class="fl">2.1e6</span>]<span class="op">,</span> [<span class="st">"Ge (2.3e13)"</span><span class="op">,</span> <span class="fl">2.3e13</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1e10</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"n_i"</span>})</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>cvOut <span class="op">=</span> {</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> q <span class="op">=</span> <span class="fl">1.602176634e-19</span><span class="op">,</span> kT <span class="op">=</span> <span class="fl">0.025852</span><span class="op">,</span> e0 <span class="op">=</span> <span class="fl">8.8541878e-12</span><span class="op">;</span></span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> curve <span class="op">=</span> (Na<span class="op">,</span> Nd<span class="op">,</span> er<span class="op">,</span> ni<span class="op">,</span> label) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Vo <span class="op">=</span> kT<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(Na<span class="op">*</span>Nd<span class="op">/</span>ni<span class="op">**</span><span class="dv">2</span>)<span class="op">,</span> out <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> V <span class="op">=</span> <span class="op">-</span><span class="dv">10</span><span class="op">;</span> V <span class="op">&lt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="fl">0.7</span><span class="op">,</span> Vo <span class="op">-</span> <span class="fl">0.05</span>)<span class="op">;</span> V <span class="op">+=</span> <span class="fl">0.02</span>) {</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> W <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>er<span class="op">*</span>e0<span class="op">*</span>(Na <span class="op">+</span> Nd)<span class="op">*</span>(Vo <span class="op">-</span> V)<span class="op">/</span>(q<span class="op">*</span>Na<span class="op">*</span>Nd))<span class="op">;</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>      out<span class="op">.</span><span class="fu">push</span>({V<span class="op">,</span> <span class="dt">C</span><span class="op">:</span> er<span class="op">*</span>e0<span class="op">*</span><span class="fl">1e-6</span><span class="op">/</span>W<span class="op">*</span><span class="fl">1e12</span><span class="op">,</span> label})<span class="op">;</span>    <span class="co">// pF per mm²</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ref <span class="op">=</span> [[<span class="fl">5e22</span><span class="op">,</span> <span class="fl">5e22</span><span class="op">,</span> <span class="st">"5e16 / 5e16"</span>]<span class="op">,</span> [<span class="fl">5e22</span><span class="op">,</span> <span class="fl">5e20</span><span class="op">,</span> <span class="st">"5e16 / 5e14"</span>]<span class="op">,</span> [<span class="fl">5e20</span><span class="op">,</span> <span class="fl">5e20</span><span class="op">,</span> <span class="st">"5e14 / 5e14"</span>]]</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">flatMap</span>(([a<span class="op">,</span> d<span class="op">,</span> l]) <span class="kw">=&gt;</span> <span class="fu">curve</span>(a<span class="op">,</span> d<span class="op">,</span> <span class="fl">11.8</span><span class="op">,</span> <span class="fl">1e16</span><span class="op">,</span> l))<span class="op">;</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mine <span class="op">=</span> <span class="fu">curve</span>(<span class="dv">10</span><span class="op">**</span>cv<span class="op">.</span><span class="at">lNa</span><span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> <span class="dv">10</span><span class="op">**</span>cv<span class="op">.</span><span class="at">lNd</span><span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> cv<span class="op">.</span><span class="at">er</span><span class="op">,</span> cv<span class="op">.</span><span class="at">ni</span><span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> <span class="st">"yours"</span>)<span class="op">;</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {ref<span class="op">,</span> mine<span class="op">,</span> <span class="dt">Vo</span><span class="op">:</span> kT<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">10</span><span class="op">**</span>(cv<span class="op">.</span><span class="at">lNa</span> <span class="op">+</span> cv<span class="op">.</span><span class="at">lNd</span>)<span class="op">/</span>cv<span class="op">.</span><span class="at">ni</span><span class="op">**</span><span class="dv">2</span>)}<span class="op">;</span></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">330</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"V (V)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="fl">0.8</span>]}<span class="op">,</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"C_dep (pF mm⁻²)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">5</span><span class="op">,</span> <span class="dv">2000</span>]}<span class="op">,</span></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(cvOut<span class="op">.</span><span class="at">ref</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"C"</span><span class="op">,</span> <span class="dt">z</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span>})<span class="op">,</span></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>(cvOut<span class="op">.</span><span class="at">ref</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(d<span class="op">.</span><span class="at">V</span> <span class="op">+</span> <span class="dv">8</span>) <span class="op">&lt;</span> <span class="fl">0.011</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"C"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">8</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span>})<span class="op">,</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(cvOut<span class="op">.</span><span class="at">mine</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"C"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})<span class="op">,</span></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">tip</span>(cvOut<span class="op">.</span><span class="at">mine</span><span class="op">,</span> Plot<span class="op">.</span><span class="fu">pointerX</span>({<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"C"</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`V = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">V</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> V</span><span class="sc">\n</span><span class="vs">C = </span><span class="sc">${</span>d<span class="op">.</span><span class="at">C</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> pF/mm²`</span>}))</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;V&lt;sub&gt;o&lt;/sub&gt; = </span><span class="sc">${</span>cvOut<span class="op">.</span><span class="at">Vo</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> V · C&lt;sub&gt;dep&lt;/sub&gt;(0) = &lt;b&gt;</span><span class="sc">${</span>cvOut<span class="op">.</span><span class="at">mine</span><span class="op">.</span><span class="fu">find</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">V</span> <span class="op">&gt;=</span> <span class="dv">0</span>)<span class="op">?.</span><span class="at">C</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> pF/mm²&lt;/b&gt; ·</span></span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a><span class="vs">C&lt;sub&gt;dep&lt;/sub&gt;(−5 V) = </span><span class="sc">${</span>cvOut<span class="op">.</span><span class="at">mine</span><span class="op">.</span><span class="fu">find</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">V</span> <span class="op">&gt;=</span> <span class="op">-</span><span class="dv">5</span>)<span class="op">?.</span><span class="at">C</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> pF/mm²&lt;/div&gt;`</span></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a>The capacitance is set by the **lightly doped side**: the 5×10¹⁶/5×10¹⁴ junction is almost identical to the 5×10¹⁴/5×10¹⁴</span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>one. The curve ends near $V_o$, where the depletion approximation breaks down (and $C_\text{diff}$ takes over).</span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide 70(b) and Mott–Schottky profiling</span></span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-cv</span></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Left: C_dep per mm² for the three Si junctions of slide 70(b). Right: 1/C² versus V is a straight line whose slope gives the doping of the light side and whose intercept gives V_o (Mott–Schottky plot), here applied to a synthetic 'measurement' with 1 % noise."</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="fl">0.5</span>, <span class="dv">300</span>)</span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> sl.MATERIALS[<span class="st">"Si"</span>]</span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> Na, Nd <span class="kw">in</span> ((<span class="fl">5e16</span>, <span class="fl">5e16</span>), (<span class="fl">5e16</span>, <span class="fl">5e14</span>), (<span class="fl">5e14</span>, <span class="fl">5e14</span>)):</span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a>    Vo <span class="op">=</span> sl.built_in_voltage(Na<span class="op">*</span>CM3, Nd<span class="op">*</span>CM3, p[<span class="st">"ni"</span>])</span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a>    Vv <span class="op">=</span> V[V <span class="op">&lt;</span> Vo <span class="op">-</span> <span class="fl">0.05</span>]</span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a>    ax[<span class="dv">0</span>].semilogy(Vv, sl.c_dep(<span class="fl">1e-6</span>, Na<span class="op">*</span>CM3, Nd<span class="op">*</span>CM3, p[<span class="st">"eps_r"</span>], Vo, Vv)<span class="op">*</span><span class="fl">1e12</span>, label<span class="op">=</span><span class="ss">f"N_a = </span><span class="sc">{</span>Na<span class="sc">:.0e}</span><span class="ss">, N_d = </span><span class="sc">{</span>Nd<span class="sc">:.0e}</span><span class="ss">"</span>)</span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"V (V)"</span>, ylabel<span class="op">=</span><span class="st">"C_dep (pF mm⁻²)"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">7</span>)</span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a><span class="co"># synthetic measurement on a p⁺n junction, then fit</span></span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a>Na, Nd, A <span class="op">=</span> <span class="fl">1e19</span><span class="op">*</span>CM3, <span class="fl">3e15</span><span class="op">*</span>CM3, <span class="fl">1e-6</span></span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>Vo <span class="op">=</span> sl.built_in_voltage(Na, Nd, p[<span class="st">"ni"</span>])</span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a>Vm <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">8</span>, <span class="fl">0.3</span>, <span class="dv">30</span>)</span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>Cm <span class="op">=</span> sl.c_dep(A, Na, Nd, p[<span class="st">"eps_r"</span>], Vo, Vm)<span class="op">*</span>(<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.01</span><span class="op">*</span>rng.standard_normal(Vm.size))</span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a>slope, icpt <span class="op">=</span> np.polyfit(Vm, <span class="dv">1</span><span class="op">/</span>Cm<span class="op">**</span><span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a>Nd_fit <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">/</span>(sl.qe<span class="op">*</span>p[<span class="st">"eps_r"</span>]<span class="op">*</span>sl.eps0<span class="op">*</span>A<span class="op">**</span><span class="dv">2</span><span class="op">*</span>slope)</span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(Vm, <span class="dv">1</span><span class="op">/</span>Cm<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="fl">1e22</span>, <span class="st">"o"</span>, ms<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">"'measured'"</span>)</span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(Vm, np.polyval([slope, icpt], Vm)<span class="op">/</span><span class="fl">1e22</span>, label<span class="op">=</span><span class="st">"linear fit"</span>)</span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"V (V)"</span>, ylabel<span class="op">=</span><span class="st">"1/C² (10²² F⁻²)"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"true N_d = </span><span class="sc">{</span>Nd<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss"> cm⁻³, fitted N_d = </span><span class="sc">{</span>Nd_fit<span class="op">/</span>CM3<span class="sc">:.2e}</span><span class="ss"> cm⁻³;  true V_o = </span><span class="sc">{</span>Vo<span class="sc">:.3f}</span><span class="ss"> V, fitted V_o = </span><span class="sc">{</span><span class="op">-</span>icpt<span class="op">/</span>slope<span class="sc">:.3f}</span><span class="ss"> V"</span>)</span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a>For a p⁺n junction $1/C_\text{dep}^2=2(V_o-V)/(e\varepsilon N_dA^2)$, so $N_d=-2/(e\varepsilon A^2\,d(1/C^2)/dV)$. Applied</span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a>point by point, with $W=\varepsilon A/C$ as the depth, the same formula gives the **doping profile** $N_d(W)$. This is the</span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a>standard C–V characterisation of LED and photodiode wafers.</span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a><span class="fu">## Forward bias: $r_d$ and $C_\text{diff}$ of an LED</span></span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-smallsignal</span></span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Small-signal elements of the GaAs diode of slides 75–80 (A = 1 mm², τ = 50 ns, long diode) at several forward currents. At LED operating currents C_diff exceeds C_dep by orders of magnitude, and r_d C_diff = τ/2 does not depend on the current."</span></span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> sl.MATERIALS[<span class="st">"GaAs"</span>]</span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a>Na <span class="op">=</span> Nd <span class="op">=</span> <span class="fl">1e23</span><span class="op">;</span> A <span class="op">=</span> <span class="fl">1e-6</span><span class="op">;</span> tau <span class="op">=</span> <span class="fl">50e-9</span></span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a>Vo <span class="op">=</span> sl.built_in_voltage(Na, Nd, p[<span class="st">"ni"</span>])</span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a>gaas <span class="op">=</span> <span class="bu">dict</span>(A<span class="op">=</span>A, Na<span class="op">=</span>Na, Nd<span class="op">=</span>Nd, mat<span class="op">=</span><span class="st">"GaAs"</span>, B<span class="op">=</span><span class="fl">2e-16</span>, mu_e<span class="op">=</span><span class="dv">5000</span><span class="op">*</span>CM2, mu_h<span class="op">=</span><span class="dv">250</span><span class="op">*</span>CM2)</span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> {}</span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> V <span class="kw">in</span> (<span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">1.05</span>, <span class="fl">1.1</span>):</span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> sl.diode_currents(V, <span class="op">**</span>gaas)</span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a>    I <span class="op">=</span> <span class="bu">float</span>(d[<span class="st">"I"</span>])<span class="op">;</span> dI <span class="op">=</span> <span class="bu">float</span>(sl.diode_currents(V <span class="op">+</span> <span class="fl">1e-4</span>, <span class="op">**</span>gaas)[<span class="st">"I"</span>]) <span class="op">-</span> I</span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a>    rd <span class="op">=</span> <span class="fl">1e-4</span><span class="op">/</span>dI</span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a>    Cd <span class="op">=</span> sl.c_diff(<span class="bu">float</span>(d[<span class="st">"I_diff"</span>]), tau)            <span class="co"># only the diffusion part stores minority charge</span></span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a>    Cj <span class="op">=</span> sl.c_dep(A, Na, Nd, p[<span class="st">"eps_r"</span>], Vo, V)</span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a>    rows[<span class="ss">f"V = </span><span class="sc">{</span>V<span class="sc">}</span><span class="ss"> V"</span>] <span class="op">=</span> {<span class="st">"I (mA)"</span>: I<span class="op">*</span><span class="fl">1e3</span>, <span class="st">"r_d (Ω)"</span>: rd, <span class="st">"C_dep (pF)"</span>: Cj<span class="op">*</span><span class="fl">1e12</span>, <span class="st">"C_diff (pF)"</span>: Cd<span class="op">*</span><span class="fl">1e12</span>,</span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"r_d(C_dep + C_diff) (ns)"</span>: rd<span class="op">*</span>(Cj <span class="op">+</span> Cd)<span class="op">*</span><span class="fl">1e9</span>}</span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).T.<span class="bu">map</span>(<span class="kw">lambda</span> v: <span class="ss">f"</span><span class="sc">{</span>v<span class="sc">:.3g}</span><span class="ss">"</span>)</span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a>At low bias the recombination current has no stored minority charge, $\eta=2$, and the RC product is set by $C_\text{dep}$. At</span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a>LED operating currents $r_dC_\text{diff}\to\tau/2$: the diode cannot respond faster than its minority carrier lifetime. This</span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a>is the electrical side of the LED modulation bandwidth of @sec-drive, $f_{3\text{dB}}\propto1/\tau$.</span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Impedance of the equivalent circuit</span></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-impedance</span></span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Magnitude of the small-signal impedance of the GaAs diode at 1.05 V (r_s = 2 Ω) and at −5 V reverse bias. Forward: r_d ∥ C_diff rolls off at f = 1/(2π r_d C) ≈ 1/(πτ). Reverse: a pure depletion capacitance."</span></span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.logspace(<span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">400</span>)<span class="op">;</span> w <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>f<span class="op">;</span> rs <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> sl.diode_currents(<span class="fl">1.05</span>, <span class="op">**</span>gaas)<span class="op">;</span> I <span class="op">=</span> <span class="bu">float</span>(d[<span class="st">"I_diff"</span>] <span class="op">+</span> d[<span class="st">"I_rec"</span>])</span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a>rd <span class="op">=</span> sl.r_d(I)<span class="op">;</span> Cf <span class="op">=</span> sl.c_diff(<span class="bu">float</span>(d[<span class="st">"I_diff"</span>]), tau) <span class="op">+</span> sl.c_dep(A, Na, Nd, p[<span class="st">"eps_r"</span>], Vo, <span class="fl">1.05</span>)</span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a>Cr <span class="op">=</span> sl.c_dep(A, Na, Nd, p[<span class="st">"eps_r"</span>], Vo, <span class="op">-</span><span class="dv">5</span>)</span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a>Zf <span class="op">=</span> rs <span class="op">+</span> rd<span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> <span class="ot">1j</span><span class="op">*</span>w<span class="op">*</span>rd<span class="op">*</span>Cf)<span class="op">;</span> Zr <span class="op">=</span> rs <span class="op">+</span> <span class="dv">1</span><span class="op">/</span>(<span class="ot">1j</span><span class="op">*</span>w<span class="op">*</span>Cr)</span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, <span class="bu">abs</span>(Zf), label<span class="op">=</span><span class="ss">f"forward, I = </span><span class="sc">{</span>I<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss"> mA (r_d = </span><span class="sc">{</span>rd<span class="sc">:.1f}</span><span class="ss"> Ω, C = </span><span class="sc">{</span>Cf<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nF)"</span>)</span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, <span class="bu">abs</span>(Zr), label<span class="op">=</span><span class="ss">f"reverse −5 V (C_dep = </span><span class="sc">{</span>Cr<span class="op">*</span><span class="fl">1e12</span><span class="sc">:.0f}</span><span class="ss"> pF)"</span>)</span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"frequency (Hz)"</span>, ylabel<span class="op">=</span><span class="st">"|Z| (Ω)"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going deeper</span></span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Varactors.** A hyperabrupt doping profile $N_d\propto x^{-3/2}$ gives $C\propto(V_o-V)^{-2}$ and a resonance frequency</span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>  linear in voltage. Simulate a VCO tuning curve.</span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Why $\tau/2$ and not $\tau$?** Solve the time-dependent diffusion equation with a small sinusoidal injection: the</span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a>  admittance of a long diode is $Y=(1/r_d)\sqrt{1+j\omega\tau_h}$. Expand for $\omega\tau\ll1$ to recover $C_\text{diff}=\tau_h/2r_d$.</span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Doping profiles.** Apply the point-by-point Mott–Schottky formula to a synthetic junction with a graded doping and check that</span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a>  you recover the profile.</span>
+<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Photodiode speed.** In Chapter 5 the RC time of $C_\text{dep}$ with a 50 Ω load competes with the transit time across $W$.</span>
+<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a>  Find the reverse bias that minimises the total response time of a Si pin diode.</span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, *Optoelectronics and Photonics*, sec. 3.7; Sze &amp; Ng, ch. 2 (C–V, admittance of a long diode).</span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>D. K. Schroder, *Semiconductor Material and Device Characterization*, ch. 2 (C–V doping profiling).</span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>A Si p⁺n photodiode of 1 mm² with $N_d=10^{14}$ cm⁻³ is reverse biased at 10 V. Find $C_\text{dep}$ and the RC limit with 50 Ω.</span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>An LED driven at 20 mA has $\tau=5$ ns. Compute $r_d$ and $C_\text{diff}$. Which driver output impedance keeps the electrical</span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a>   bandwidth above the optical one?</span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Show that $C_\text{dep}$ of a p⁺n junction depends on $N_d$ only through $\sqrt{N_d}$. How much must the doping change to halve it?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/smallsignal.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
