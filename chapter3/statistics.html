@@ -81,9 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -427,32 +427,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./pn-led-sim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inside a forward-biased LED: a drift–diffusion simulator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./led-principle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quantum-wells.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./efficiency.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./led-drive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
   </div>
 </li>
       </ul>
@@ -460,7 +466,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -810,7 +816,7 @@ Figure&nbsp;2.1: Electron distribution n_E(E) in the CB of a non-degenerate semi
 </section>
 <section id="intrinsic-concentration-and-temperature" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="intrinsic-concentration-and-temperature"><span class="header-section-number">2.5</span> Intrinsic concentration and temperature</h2>
-<p><span class="math inline">\(n_i\propto T^{3/2}\exp(-E_g/2k_BT)\)</span>. The exponential dominates, so <span class="math inline">\(\ln n_i\)</span> against <span class="math inline">\(1/T\)</span> is nearly a straight line with slope <span class="math inline">\(-E_g/2k_B\)</span>. The bandgap itself shrinks as <span class="math inline">\(T\)</span> rises (Varshni law, <a href="spectrum.html" class="quarto-xref"><span>Chapter 8</span></a>), which is included below.</p>
+<p><span class="math inline">\(n_i\propto T^{3/2}\exp(-E_g/2k_BT)\)</span>. The exponential dominates, so <span class="math inline">\(\ln n_i\)</span> against <span class="math inline">\(1/T\)</span> is nearly a straight line with slope <span class="math inline">\(-E_g/2k_B\)</span>. The bandgap itself shrinks as <span class="math inline">\(T\)</span> rises (Varshni law, <a href="spectrum.html" class="quarto-xref"><span>Chapter 9</span></a>), which is included below.</p>
 <div id="cell-fig-ni" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the Python</summary>
@@ -963,7 +969,7 @@ Figure&nbsp;2.3: Exact Fermi–Dirac integral versus the Boltzmann approximation
 <section id="what-the-fermi-level-means-slide-17" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="what-the-fermi-level-means-slide-17"><span class="header-section-number">2.7</span> What the Fermi level means (slide 17)</h2>
 <p><span class="math inline">\(E_F\)</span> is the electrochemical potential of electrons. In equilibrium, in the dark and without applied voltage, it is <strong>flat</strong> across any system of materials in contact. An applied voltage <span class="math inline">\(V\)</span> separates the Fermi levels at the two ends by <span class="math inline">\(\Delta
-E_F=eV\)</span>. This single rule builds every band diagram in the following chapters: pn junctions (<a href="junction.html" class="quarto-xref"><span>Chapter 4</span></a>), heterojunctions (<a href="led-principle.html" class="quarto-xref"><span>Chapter 7</span></a>), and the quasi-Fermi levels of a forward-biased LED.</p>
+E_F=eV\)</span>. This single rule builds every band diagram in the following chapters: pn junctions (<a href="junction.html" class="quarto-xref"><span>Chapter 4</span></a>), heterojunctions (<a href="led-principle.html" class="quarto-xref"><span>Chapter 8</span></a>), and the quasi-Fermi levels of a forward-biased LED.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -980,7 +986,7 @@ E_F=eV\)</span>. This single rule builds every band diagram in the following cha
 <li><strong>Density-of-states masses.</strong> Si has six ellipsoidal CB valleys with <span class="math inline">\(m_l=0.98\)</span>, <span class="math inline">\(m_t=0.19\)</span>. Show that <span class="math inline">\(m^*_\text{dos}=6^{2/3}(m_lm_t^2)^{1/3}=1.08\,m_e\)</span> and recover <span class="math inline">\(N_c\)</span> of Table 3.1.</li>
 <li><strong>Joyce–Dixon.</strong> Invert <span class="math inline">\(n=N_c\mathcal F_{1/2}(\eta)\)</span> to get <span class="math inline">\(E_F\)</span> for a given <span class="math inline">\(n\)</span>. Compare the Joyce–Dixon series with a numerical root (<code>scipy.optimize.brentq</code> on <code>sl.fermi_half</code>).</li>
 <li><strong>Arrhenius plots.</strong> Fit <span class="math inline">\(\ln(n_iT^{-3/2})\)</span> vs <span class="math inline">\(1/T\)</span> for Si between 250 and 500 K. Which bandgap do you get, and why does it differ from <span class="math inline">\(E_g(300\text{ K})\)</span>? (Hint: Varshni with a linear <span class="math inline">\(T\)</span> term.)</li>
-<li><strong>Two-dimensional and one-dimensional DOS.</strong> Repeat the counting of slide 4 in 2D and 1D: you get a constant and a <span class="math inline">\(1/\sqrt{E}\)</span> density of states. The 2D case is the quantum well (<a href="quantum-wells.html" class="quarto-xref"><span>Chapter 9</span></a>).</li>
+<li><strong>Two-dimensional and one-dimensional DOS.</strong> Repeat the counting of slide 4 in 2D and 1D: you get a constant and a <span class="math inline">\(1/\sqrt{E}\)</span> density of states. The 2D case is the quantum well (<a href="quantum-wells.html" class="quarto-xref"><span>Chapter 10</span></a>).</li>
 </ul>
 </div>
 </div>

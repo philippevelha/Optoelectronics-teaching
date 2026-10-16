@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; LED types, drive circuits and speed – Semiconductor Science and Light-Emitting Diodes</title>
+<title>12&nbsp; LED types, drive circuits and speed – Semiconductor Science and Light-Emitting Diodes</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -81,9 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -323,7 +323,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./led-principle.html">Light-emitting diodes</a></li><li class="breadcrumb-item"><a href="./led-drive.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pn-led-sim.html">Light-emitting diodes</a></li><li class="breadcrumb-item"><a href="./led-drive.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -427,32 +427,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./pn-led-sim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inside a forward-biased LED: a drift–diffusion simulator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./led-principle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quantum-wells.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./efficiency.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./led-drive.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
   </div>
 </li>
       </ul>
@@ -460,7 +466,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -496,13 +502,13 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">11.1</span> Key relations</a></li>
-  <li><a href="#modulation-explorer" id="toc-modulation-explorer" class="nav-link" data-scroll-target="#modulation-explorer"><span class="header-section-number">11.2</span> Modulation explorer</a></li>
-  <li><a href="#frequency-response-slides-146147" id="toc-frequency-response-slides-146147" class="nav-link" data-scroll-target="#frequency-response-slides-146147"><span class="header-section-number">11.3</span> Frequency response (slides 146–147)</a></li>
-  <li><a href="#rise-time-and-the-speed-up-capacitor-slides-148151" id="toc-rise-time-and-the-speed-up-capacitor-slides-148151" class="nav-link" data-scroll-target="#rise-time-and-the-speed-up-capacitor-slides-148151"><span class="header-section-number">11.4</span> Rise time and the speed-up capacitor (slides 148–151)</a></li>
-  <li><a href="#choosing-the-bias-resistor-slide-144" id="toc-choosing-the-bias-resistor-slide-144" class="nav-link" data-scroll-target="#choosing-the-bias-resistor-slide-144"><span class="header-section-number">11.5</span> Choosing the bias resistor (slide 144)</a></li>
-  <li><a href="#coupling-leds-to-fibers-slides-135138" id="toc-coupling-leds-to-fibers-slides-135138" class="nav-link" data-scroll-target="#coupling-leds-to-fibers-slides-135138"><span class="header-section-number">11.6</span> Coupling LEDs to fibers (slides 135–138)</a></li>
-  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">11.7</span> Try it yourself</a></li>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">12.1</span> Key relations</a></li>
+  <li><a href="#modulation-explorer" id="toc-modulation-explorer" class="nav-link" data-scroll-target="#modulation-explorer"><span class="header-section-number">12.2</span> Modulation explorer</a></li>
+  <li><a href="#frequency-response-slides-146147" id="toc-frequency-response-slides-146147" class="nav-link" data-scroll-target="#frequency-response-slides-146147"><span class="header-section-number">12.3</span> Frequency response (slides 146–147)</a></li>
+  <li><a href="#rise-time-and-the-speed-up-capacitor-slides-148151" id="toc-rise-time-and-the-speed-up-capacitor-slides-148151" class="nav-link" data-scroll-target="#rise-time-and-the-speed-up-capacitor-slides-148151"><span class="header-section-number">12.4</span> Rise time and the speed-up capacitor (slides 148–151)</a></li>
+  <li><a href="#choosing-the-bias-resistor-slide-144" id="toc-choosing-the-bias-resistor-slide-144" class="nav-link" data-scroll-target="#choosing-the-bias-resistor-slide-144"><span class="header-section-number">12.5</span> Choosing the bias resistor (slide 144)</a></li>
+  <li><a href="#coupling-leds-to-fibers-slides-135138" id="toc-coupling-leds-to-fibers-slides-135138" class="nav-link" data-scroll-target="#coupling-leds-to-fibers-slides-135138"><span class="header-section-number">12.6</span> Coupling LEDs to fibers (slides 135–138)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">12.7</span> Try it yourself</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter3/led-drive.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -510,9 +516,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./led-principle.html">Light-emitting diodes</a></li><li class="breadcrumb-item"><a href="./led-drive.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pn-led-sim.html">Light-emitting diodes</a></li><li class="breadcrumb-item"><a href="./led-drive.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span id="sec-drive" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-drive" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -531,8 +537,8 @@ window.Quarto = {
 
 <p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter3/notebooks/led-drive.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
 <p><em>Slides 134–138 (surface- and edge-emitting LEDs, coupling into fibers, pigtailed LEDs) and 144–151 (analog drive, driver modules, sinusoidal modulation and bandwidth, digital drive, rise and fall times, speed-up capacitors).</em></p>
-<section id="key-relations" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">11.1</span> Key relations</h2>
+<section id="key-relations" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">12.1</span> Key relations</h2>
 <p>The light output follows the current, so an LED is driven by a <strong>current source</strong>. The simplest driver is a resistor in series with a voltage supply, <span class="math inline">\(I_F=(V-V_F)/R\)</span> (slide 144). For a transistor or op-amp current source <span class="math inline">\(I_F\approx V/R_F\)</span>.</p>
 <p>Modulating the current at frequency <span class="math inline">\(f\)</span> modulates the injected carrier population. Carriers disappear with the net lifetime <span class="math inline">\(\tau\)</span>, where <span class="math inline">\(1/\tau=1/\tau_r+1/\tau_{nr}\)</span>, so the LED behaves like a first-order low-pass filter (slides 146–147):</p>
 <p><span class="math display">\[
@@ -544,8 +550,8 @@ f_c=\frac{1}{2\pi\tau}\ \text{(electrical bandwidth)},\qquad f_\text{op}=\frac{\
 \tau_R=\tau_F=2.2\,\tau .
 \]</span></p>
 </section>
-<section id="modulation-explorer" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="modulation-explorer"><span class="header-section-number">11.2</span> Modulation explorer</h2>
+<section id="modulation-explorer" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="modulation-explorer"><span class="header-section-number">12.2</span> Modulation explorer</h2>
 <p>A 16-bit NRZ pattern drives the LED. The <strong>speed-up capacitor</strong> of slide 151 adds a current spike at each transition that decays with the time constant <span class="math inline">\(RC\)</span>, chosen here equal to <span class="math inline">\(\tau\)</span>. Its strength <span class="math inline">\(k\)</span> is the ratio of the spike to the step.</p>
 <div class="cell">
 <details class="code-fold hidden">
@@ -616,8 +622,8 @@ f_c=\frac{1}{2\pi\tau}\ \text{(electrical bandwidth)},\qquad f_\text{op}=\frac{\
 </div>
 <p>Set <span class="math inline">\(k=1\)</span>: the spike exactly cancels the carrier pole and the optical output becomes a perfect copy of the drive pattern. In practice the cancellation is limited by the driver’s current headroom and by the junction capacitance (<a href="smallsignal.html" class="quarto-xref"><span>Chapter 6</span></a>). Too much speed-up (<span class="math inline">\(k&gt;1\)</span>) produces overshoot.</p>
 </section>
-<section id="frequency-response-slides-146147" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="frequency-response-slides-146147"><span class="header-section-number">11.3</span> Frequency response (slides 146–147)</h2>
+<section id="frequency-response-slides-146147" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="frequency-response-slides-146147"><span class="header-section-number">12.3</span> Frequency response (slides 146–147)</h2>
 <div id="cell-fig-response" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the Python</summary>
@@ -640,7 +646,7 @@ f_c=\frac{1}{2\pi\tau}\ \text{(electrical bandwidth)},\qquad f_\text{op}=\frac{\
 <img src="led-drive_files/figure-html/fig-response-output-1.png" width="719" height="392" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-response-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.1: LED modulation response for τ = 5 ns. Optical power (left axis) and detected electrical power ∝ I_ph² (dashed). The electrical −3 dB point f_c = 1/(2πτ) and the optical half-power point f_op = √3/(2πτ) differ by √3 (slide 146).
+Figure&nbsp;12.1: LED modulation response for τ = 5 ns. Optical power (left axis) and detected electrical power ∝ I_ph² (dashed). The electrical −3 dB point f_c = 1/(2πτ) and the optical half-power point f_op = √3/(2πτ) differ by √3 (slide 146).
 </figcaption>
 </figure>
 </div>
@@ -656,7 +662,7 @@ Figure&nbsp;11.1: LED modulation response for τ = 5 ns. Optical power (left axi
 <div id="tbl-speed" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-speed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.1: Bandwidth and rise time for typical LED lifetimes. NRZ bit rate estimated as 0.7/t_r (a common rule of thumb).
+Table&nbsp;12.1: Bandwidth and rise time for typical LED lifetimes. NRZ bit rate estimated as 0.7/t_r (a common rule of thumb).
 </figcaption>
 <div aria-describedby="tbl-speed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -720,8 +726,8 @@ Table&nbsp;11.1: Bandwidth and rise time for typical LED lifetimes. NRZ bit rate
 </div>
 <p>Visible-light LEDs (τ ≈ 10–50 ns) reach tens of MHz, enough for Li-Fi with OFDM. Heavily doped IR communication LEDs and microLEDs (τ &lt; 1 ns) reach hundreds of MHz to a few GHz, which makes them candidates for short optical interconnects.</p>
 </section>
-<section id="rise-time-and-the-speed-up-capacitor-slides-148151" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="rise-time-and-the-speed-up-capacitor-slides-148151"><span class="header-section-number">11.4</span> Rise time and the speed-up capacitor (slides 148–151)</h2>
+<section id="rise-time-and-the-speed-up-capacitor-slides-148151" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="rise-time-and-the-speed-up-capacitor-slides-148151"><span class="header-section-number">12.4</span> Rise time and the speed-up capacitor (slides 148–151)</h2>
 <div id="cell-fig-speedup" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the Python</summary>
@@ -748,7 +754,7 @@ Table&nbsp;11.1: Bandwidth and rise time for typical LED lifetimes. NRZ bit rate
 <img src="led-drive_files/figure-html/fig-speedup-output-1.png" width="719" height="391" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-speedup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.2: Response to a 50 ns current pulse (τ = 5 ns). Without pulse shaping the 10–90 % rise time is 2.2τ = 11 ns. A speed-up capacitor with RC = τ (k = 1) cancels the pole; k = 0.5 is a partial correction.
+Figure&nbsp;12.2: Response to a 50 ns current pulse (τ = 5 ns). Without pulse shaping the 10–90 % rise time is 2.2τ = 11 ns. A speed-up capacitor with RC = τ (k = 1) cancels the pole; k = 0.5 is a partial correction.
 </figcaption>
 </figure>
 </div>
@@ -758,8 +764,8 @@ Figure&nbsp;11.2: Response to a 50 ns current pulse (τ = 5 ns). Without pulse s
 </div>
 </div>
 </section>
-<section id="choosing-the-bias-resistor-slide-144" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="choosing-the-bias-resistor-slide-144"><span class="header-section-number">11.5</span> Choosing the bias resistor (slide 144)</h2>
+<section id="choosing-the-bias-resistor-slide-144" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="choosing-the-bias-resistor-slide-144"><span class="header-section-number">12.5</span> Choosing the bias resistor (slide 144)</h2>
 <p>The LED I–V curve is steep, so a voltage source alone would be unstable: a 50 mV change gives a large current change. The series resistor sets the operating point. With the diode model of <a href="diode.html" class="quarto-xref"><span>Chapter 5</span></a> (including series resistance) the exact current is the root of <span class="math inline">\(V_s=IR+V_F(I)\)</span>:</p>
 <div class="cell" data-execution_count="5">
 <details class="code-fold">
@@ -780,7 +786,7 @@ Figure&nbsp;11.2: Response to a 50 ns current pulse (τ = 5 ns). Without pulse s
 <div id="tbl-resistor" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-resistor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.2: Red LED (η = 2, I_o = 10⁻¹⁸ A, R_s = 8 Ω, a typical fit to a 5 mm indicator LED) driven from 5 V. Target 20 mA: the simple formula R = (V_s − V_F)/I_F with the datasheet V_F is accurate because R ≫ r_d.
+Table&nbsp;12.2: Red LED (η = 2, I_o = 10⁻¹⁸ A, R_s = 8 Ω, a typical fit to a 5 mm indicator LED) driven from 5 V. Target 20 mA: the simple formula R = (V_s − V_F)/I_F with the datasheet V_F is accurate because R ≫ r_d.
 </figcaption>
 <div aria-describedby="tbl-resistor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -841,8 +847,8 @@ Table&nbsp;11.2: Red LED (η = 2, I_o = 10⁻¹⁸ A, R_s = 8 Ω, a typical fit 
 </div>
 </div>
 </section>
-<section id="coupling-leds-to-fibers-slides-135138" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="coupling-leds-to-fibers-slides-135138"><span class="header-section-number">11.6</span> Coupling LEDs to fibers (slides 135–138)</h2>
+<section id="coupling-leds-to-fibers-slides-135138" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="coupling-leds-to-fibers-slides-135138"><span class="header-section-number">12.6</span> Coupling LEDs to fibers (slides 135–138)</h2>
 <p>A surface-emitting LED is close to a <strong>Lambertian</strong> source, <span class="math inline">\(I(\theta)\propto\cos\theta\)</span>. A fiber accepts only rays inside its numerical aperture, so the coupled fraction from a small source is <span class="math inline">\(\eta_c=\text{NA}^2\)</span>. A source larger than the core loses a further area factor <span class="math inline">\((a/r_s)^2\)</span>. Edge emitters (ELEDs) have a narrower beam in one plane and couple better.</p>
 <div class="cell" data-execution_count="6">
 <details class="code-fold">
@@ -857,7 +863,7 @@ Table&nbsp;11.2: Red LED (η = 2, I_o = 10⁻¹⁸ A, R_s = 8 Ω, a typical fit 
 <div id="tbl-coupling" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="6">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-coupling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.3: Coupling efficiency of a Lambertian LED (emitting diameter 50 µm) into common fibers, η = NA² × min(1, (core/source)²), plus a Fresnel loss of a 1.5-index interface.
+Table&nbsp;12.3: Coupling efficiency of a Lambertian LED (emitting diameter 50 µm) into common fibers, η = NA² × min(1, (core/source)²), plus a Fresnel loss of a 1.5-index interface.
 </figcaption>
 <div aria-describedby="tbl-coupling-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -950,8 +956,8 @@ Table&nbsp;11.3: Coupling efficiency of a Lambertian LED (emitting diameter 50 �
 </div>
 </div>
 </section>
-<section id="try-it-yourself" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">11.7</span> Try it yourself</h2>
+<section id="try-it-yourself" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">12.7</span> Try it yourself</h2>
 <ol type="1">
 <li>An LED has <span class="math inline">\(\tau_r=20\)</span> ns and <span class="math inline">\(\tau_{nr}=80\)</span> ns. Find <span class="math inline">\(\tau\)</span>, the IQE, <span class="math inline">\(f_c\)</span> and the rise time.</li>
 <li>In the explorer, find the maximum bit rate for <span class="math inline">\(\tau=10\)</span> ns without and with a speed-up capacitor (<span class="math inline">\(k=1\)</span>).</li>
@@ -1443,12 +1449,12 @@ window._ojs.runtime.interpretFromScriptTags();
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./efficiency.html" class="pagination-link" aria-label="Efficiency, brightness and white LEDs">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./ideas.html" class="pagination-link" aria-label="Projects, toolbox and connections">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">

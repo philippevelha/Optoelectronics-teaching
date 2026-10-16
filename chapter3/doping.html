@@ -81,9 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -427,32 +427,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./pn-led-sim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inside a forward-biased LED: a drift–diffusion simulator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./led-principle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quantum-wells.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./efficiency.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./led-drive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
   </div>
 </li>
       </ul>
@@ -460,7 +466,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -847,7 +853,7 @@ Figure&nbsp;3.3: Electron concentration of Si doped with 10¹⁵ cm⁻³ phospho
 <ul>
 <li><strong>Hall effect.</strong> Combine the drift equations with the Lorentz force to get <span class="math inline">\(R_H=(p\mu_h^2-n\mu_e^2)/[e(p\mu_h+n\mu_e)^2]\)</span>. At which <span class="math inline">\(p/n\)</span> does the Hall coefficient of Si change sign?</li>
 <li><strong>Minimum conductivity.</strong> Show that <span class="math inline">\(\sigma\)</span> is minimum when <span class="math inline">\(p=n_i\sqrt{\mu_e/\mu_h}\)</span> (slightly p-type), not at intrinsic doping. Find <span class="math inline">\(\sigma_\text{min}\)</span> for Si and GaAs.</li>
-<li><strong>Bandgap narrowing.</strong> Heavy doping (&gt; 10¹⁸ cm⁻³) shrinks <span class="math inline">\(E_g\)</span> and raises the effective <span class="math inline">\(n_i\)</span>. Look up the Slotboom model and add it to <code>EF_exact</code>. This matters for the emitter of an LED (<a href="spectrum.html" class="quarto-xref"><span>Chapter 8</span></a>, degenerate junction).</li>
+<li><strong>Bandgap narrowing.</strong> Heavy doping (&gt; 10¹⁸ cm⁻³) shrinks <span class="math inline">\(E_g\)</span> and raises the effective <span class="math inline">\(n_i\)</span>. Look up the Slotboom model and add it to <code>EF_exact</code>. This matters for the emitter of an LED (<a href="spectrum.html" class="quarto-xref"><span>Chapter 9</span></a>, degenerate junction).</li>
 <li><strong>Velocity saturation.</strong> <span class="math inline">\(v=\mu E\)</span> breaks down above ~10⁴ V/cm: <span class="math inline">\(v\)</span> saturates near <span class="math inline">\(10^7\)</span> cm/s. Plot <span class="math inline">\(v(E)\)</span> with the Caughey–Thomas field model.</li>
 </ul>
 </div>

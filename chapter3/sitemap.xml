@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://philippevelha.github.io/Optoelectronics-teaching/chapter3/index.html</loc>
-    <lastmod>2026-10-08T10:21:20.392Z</lastmod>
+    <lastmod>2026-10-08T15:05:27.274Z</lastmod>
   </url>
   <url>
     <loc>https://philippevelha.github.io/Optoelectronics-teaching/chapter3/bands.html</loc>
@@ -29,8 +29,12 @@
     <lastmod>2026-10-08T10:30:05.546Z</lastmod>
   </url>
   <url>
+    <loc>https://philippevelha.github.io/Optoelectronics-teaching/chapter3/pn-led-sim.html</loc>
+    <lastmod>2026-10-16T18:21:51.897Z</lastmod>
+  </url>
+  <url>
     <loc>https://philippevelha.github.io/Optoelectronics-teaching/chapter3/led-principle.html</loc>
-    <lastmod>2026-10-08T10:32:13.672Z</lastmod>
+    <lastmod>2026-10-16T18:21:51.857Z</lastmod>
   </url>
   <url>
     <loc>https://philippevelha.github.io/Optoelectronics-teaching/chapter3/spectrum.html</loc>

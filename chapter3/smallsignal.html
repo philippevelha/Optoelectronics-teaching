@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./led-principle.html" rel="next">
+<link href="./pn-led-sim.html" rel="next">
 <link href="./diode.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -81,9 +81,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d01fa10cba9e224ba0e30883d48805e8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-48b1b11d09f63b842894741935b4343c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -427,32 +427,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./pn-led-sim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inside a forward-biased LED: a drift–diffusion simulator</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./led-principle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spectrum.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The LED emission spectrum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quantum-wells.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quantum wells</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./efficiency.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Efficiency, brightness and white LEDs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./led-drive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LED types, drive circuits and speed</span></span></a>
   </div>
 </li>
       </ul>
@@ -460,7 +466,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ideas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -751,7 +757,7 @@ Table&nbsp;6.1: Small-signal elements of the GaAs diode of slides 75–80 (A = 1
 </figure>
 </div>
 </div>
-<p>At low bias the recombination current has no stored minority charge, <span class="math inline">\(\eta=2\)</span>, and the RC product is set by <span class="math inline">\(C_\text{dep}\)</span>. At LED operating currents <span class="math inline">\(r_dC_\text{diff}\to\tau/2\)</span>: the diode cannot respond faster than its minority carrier lifetime. This is the electrical side of the LED modulation bandwidth of <a href="led-drive.html" class="quarto-xref"><span>Chapter 11</span></a>, <span class="math inline">\(f_{3\text{dB}}\propto1/\tau\)</span>.</p>
+<p>At low bias the recombination current has no stored minority charge, <span class="math inline">\(\eta=2\)</span>, and the RC product is set by <span class="math inline">\(C_\text{dep}\)</span>. At LED operating currents <span class="math inline">\(r_dC_\text{diff}\to\tau/2\)</span>: the diode cannot respond faster than its minority carrier lifetime. This is the electrical side of the LED modulation bandwidth of <a href="led-drive.html" class="quarto-xref"><span>Chapter 12</span></a>, <span class="math inline">\(f_{3\text{dB}}\propto1/\tau\)</span>.</p>
 </section>
 <section id="impedance-of-the-equivalent-circuit" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="impedance-of-the-equivalent-circuit"><span class="header-section-number">6.5</span> Impedance of the equivalent circuit</h2>
@@ -1318,8 +1324,8 @@ window._ojs.runtime.interpretFromScriptTags();
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./led-principle.html" class="pagination-link" aria-label="LED principle, heterojunctions and materials">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">LED principle, heterojunctions and materials</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./pn-led-sim.html" class="pagination-link" aria-label="Inside a forward-biased LED: a drift–diffusion simulator">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Inside a forward-biased LED: a drift–diffusion simulator</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
