@@ -9,6 +9,8 @@ Interactive companion to Chapter 3 of the Optoelectronics course (University of 
 |---|---|
 | `*.qmd` | the chapters (Quarto) |
 | `semilib.py` | the physics toolbox: carrier statistics, doping, pn junction, diode currents, LED spectrum, quantum wells, photometry |
+| `pn_led_sim.py` | 1D drift–diffusion simulator of a GaAs LED (homojunction or AlGaAs/GaAs double heterostructure); `python pn_led_sim.py --help` |
+| `pn_led_sim.js` | browser port of `pn_led_sim.py`, used by the interactive panels of `pn-led-sim.qmd` and `led-principle.qmd` |
 | `notebooks/` | one notebook per chapter + `interactive_explorers.ipynb` (ipywidgets) |
 | `_freeze/` | cached computation results (keeps re-rendering fast) |
 

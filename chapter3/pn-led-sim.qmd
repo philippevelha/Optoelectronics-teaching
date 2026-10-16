@@ -1,0 +1,397 @@
+# Inside a forward-biased LED: a drift–diffusion simulator {#sec-ddsim}
+
+*Complements slides 48–66 (injection, recombination current, ideality factor), 86–87 (LED principle, quasi-Fermi levels)
+and 124–126 (internal quantum efficiency). The panel below solves the full semiconductor equations of a GaAs pn junction in
+your browser. It is a JavaScript port of `pn_led_sim.py`, which you can also run offline (see the end of the chapter).*
+
+## Key relations
+
+The diode model of @sec-diode splits the current into a diffusion term (η = 1) and a recombination term (η = 2), each with
+its own approximations. A drift–diffusion simulation needs neither. It solves Poisson's equation and the two continuity
+equations together,
+
+$$
+\frac{d}{dx}\!\left(\varepsilon\frac{d\psi}{dx}\right)=-e\,(p-n+N_d-N_a),\qquad
+\frac{1}{e}\frac{dJ_n}{dx}=R,\qquad -\frac{1}{e}\frac{dJ_p}{dx}=R,
+$$
+
+with $n=n_ie^{(\psi-\phi_n)/V_t}$ and $p=n_ie^{(\phi_p-\psi)/V_t}$ ($V_t=k_BT/e$). The quasi-Fermi levels $E_{Fn}=-e\phi_n$
+and $E_{Fp}=-e\phi_p$ (slide 87c) give the product
+
+$$
+np=n_i^2\exp\!\left(\frac{E_{Fn}-E_{Fp}}{k_BT}\right)\;\approx\;n_i^2\exp\!\left(\frac{eV}{k_BT}\right)\ \text{in the SCL.}
+$$
+
+Three recombination channels compete. All of them vanish at equilibrium, when $np=n_i^2$:
+
+$$
+R=\underbrace{B\,(np-n_i^2)}_{\text{radiative}}
++\underbrace{(C_nn+C_pp)(np-n_i^2)}_{\text{Auger}}
++\underbrace{\frac{np-n_i^2}{\tau_p(n+n_1)+\tau_n(p+p_1)}}_{\text{SRH (traps)}},
+\qquad n_1=n_ie^{(E_t-E_i)/k_BT},\; p_1=n_ie^{-(E_t-E_i)/k_BT}.
+$$
+
+- **Radiative.** The rate goes as $B\,n\,p$, so it is the same everywhere in the SCL, where $np$ is constant, and decays into
+  the neutral regions with the minority carriers. The only channel that makes light.
+- **Shockley–Read–Hall (SRH).** Recombination through a defect level $E_t$. Its rate peaks where $\tau_pn\approx\tau_np$,
+  that is near the middle of the SCL, and is then $\approx n_ie^{eV/2k_BT}/(\tau_n+\tau_p)$ for a mid-gap trap. This peak
+  gives the $\eta=2$ current of slide 62.
+- **Auger.** The energy goes to a third carrier instead of a photon. The $C_nn+C_pp$ factor makes it grow faster than the other
+  two channels, so it matters at high injection (the "droop" of high-power LEDs).
+
+Integrating each rate over the device gives its share of the current, $J_\text{rad}=e\int R_\text{rad}\,dx$ and so on.
+The internal quantum efficiency is $\eta_\text{IQE}=J_\text{rad}/J$ (@sec-efficiency).
+
+::: {.callout-important}
+## Carriers recombine everywhere, not only in the SCL
+Every electron that crosses the junction recombines somewhere, so the whole current is recombination:
+$J=e\int R\,dx$ over the device, plus what reaches the contacts. The two terms of the diode equation are two parts of this
+integral:
+
+- the **diffusion current** (Shockley, η = 1) is the recombination in the **neutral regions**. The injected minority carriers
+  diffuse away from the SCL and recombine within a diffusion length. The name describes how they get there, not what happens
+  to them;
+- the **recombination current** (η = 2) is the **SRH** recombination **inside the SCL**.
+
+The SCL gets its own term because its rate depends differently on the voltage, not because it is the only place where carriers
+recombine. In a neutral region the majority density is fixed and the minority density goes as $e^{eV/k_BT}$, so any rate
+linear in it (radiative $Bn N_a$ or SRH $n/\tau_n$) gives η = 1. In the SCL, SRH peaks where $n\approx p\approx
+n_ie^{eV/2k_BT}$, which gives η = 2. Radiative recombination in the SCL goes as $np\propto e^{eV/k_BT}$ (η = 1) and is
+negligible over a few tens of nm, so it has no term of its own. The panel below shows all six contributions separately.
+:::
+
+## Drift–diffusion explorer
+
+The GaAs device is 30 µm long, with the junction at $x=0$ and ohmic contacts at $x=\pm15$ µm ($\mu_e=4000$,
+$\mu_h=200$ cm² V⁻¹ s⁻¹, $n_i=2.1\times10^6$ cm⁻³, 300 K). Changing a device parameter re-runs the voltage sweep from
+0 to 1.3 V (about half a second). The voltage slider only selects a step of the stored sweep, so it responds instantly. Set a
+coefficient to its minimum or untick a channel to switch that channel off.
+
+```{ojs}
+//| echo: false
+import {PNDiode} from "./pn_led_sim.js"
+```
+
+```{ojs}
+//| echo: false
+viewof dd = Inputs.form({
+  lNa: Inputs.range([16, 19], {value: 18.5, step: 0.1, label: "log₁₀ N_a, p side (cm⁻³)"}),
+  lNd: Inputs.range([16, 19], {value: 17.5, step: 0.1, label: "log₁₀ N_d, n side (cm⁻³)"}),
+  lB: Inputs.range([-12, -9], {value: -10, step: 0.1, label: "radiative: log₁₀ B (cm³ s⁻¹)"}),
+  ltn: Inputs.range([-12, -5], {value: -8, step: 0.1, label: "SRH: log₁₀ τ_n (s)"}),
+  ltp: Inputs.range([-12, -5], {value: -8, step: 0.1, label: "SRH: log₁₀ τ_p (s)"}),
+  Et: Inputs.range([-0.6, 0.6], {value: 0, step: 0.02, label: "SRH: trap level E_t − E_i (eV)"}),
+  lCn: Inputs.range([-32, -27], {value: -30, step: 0.1, label: "Auger: log₁₀ C_n (cm⁶ s⁻¹)"}),
+  lCp: Inputs.range([-32, -27], {value: -30, step: 0.1, label: "Auger: log₁₀ C_p (cm⁶ s⁻¹)"}),
+  on: Inputs.checkbox(["radiative", "SRH", "Auger"], {value: ["radiative", "SRH", "Auger"], label: "channels on"})
+})
+```
+
+```{ojs}
+//| echo: false
+ddStep = 0.025
+ddVmax = 1.3
+// voltage sweep, computed in small chunks so the page stays responsive;
+// any change of the device restarts it (the old generator is dropped)
+ddSim = {
+  const on = new Set(dd.on);
+  const dev = new PNDiode({
+    Na: 10 ** dd.lNa, Nd: 10 ** dd.lNd, Et: dd.Et,
+    B: on.has("radiative") ? 10 ** dd.lB : 0,
+    tau_n: on.has("SRH") ? 10 ** dd.ltn : Infinity, tau_p: on.has("SRH") ? 10 ** dd.ltp : Infinity,
+    Cn: on.has("Auger") ? 10 ** dd.lCn : 0, Cp: on.has("Auger") ? 10 ** dd.lCp : 0,
+    mesh: [2e-7, 3e-5, 1.1, 1e-5]          // twice coarser than pn_led_sim.py: same J within 0.1 %
+  });
+  const res = [];
+  yield Promises.delay(150, {dev, res, done: false, fail: null});   // let a dragged slider settle
+  let r = dev.solve(dev.initialGuess(), 0, {maxit: 400});
+  if (!r.ok) { yield {dev, res, done: true, fail: 0}; return; }
+  let u = r.u;
+  res.push(dev.analyse(u, 0));
+  const nV = Math.round(ddVmax / ddStep);
+  for (let k = 1; k <= nV; k++) {
+    const V = k * ddStep;
+    r = dev.solve(u, V);
+    if (!r.ok) { yield {dev, res, done: true, fail: V}; return; }
+    u = r.u;
+    res.push(dev.analyse(u, V));
+    if (k % 6 === 0 && k < nV) yield {dev, res, done: false, fail: null};
+  }
+  yield {dev, res, done: true, fail: null};
+}
+```
+
+```{ojs}
+//| echo: false
+// current breakdown, IQE and local ideality factor along the sweep
+ddIV = {
+  const {dev, res} = ddSim;
+  const rows = res.map((a) => {
+    const rad = a.rad_p + a.rad_n + a.rad_scl, srh = a.srh_p + a.srh_n + a.srh_scl, aug = a.aug_p + a.aug_n + a.aug_scl;
+    return {V: a.V, J: a.J, rad_scl: a.rad_scl, rad_neu: a.rad_p + a.rad_n, srh_scl: a.srh_scl,
+            srh_neu: a.srh_p + a.srh_n, aug, contact: a.J - rad - srh - aug,
+            IQE: a.J > 0 ? rad / a.J : NaN, radSCL: rad > 0 ? a.rad_scl / rad : NaN, W: a.W};
+  });
+  rows.forEach((d, i) => {
+    const a = rows[Math.max(i - 1, 0)], b = rows[Math.min(i + 1, rows.length - 1)];
+    d.eta = i > 0 && b.V > a.V && a.J > 0 ? (b.V - a.V) / (dev.Vt * Math.log(b.J / a.J)) : NaN;
+  });
+  return rows;
+}
+```
+
+```{ojs}
+//| echo: false
+viewof ddV = Inputs.range([0, ddVmax], {value: 1.0, step: ddStep, label: "forward voltage V (V)"})
+viewof ddView = Inputs.form({
+  xw: Inputs.range([0.1, 15], {value: 10, step: 0.1, label: "x window ± (µm)"}),
+  scale: Inputs.radio(["log", "linear"], {value: "log", label: "R(x) axis"})
+})
+```
+
+```{ojs}
+//| echo: false
+ddK = Math.min(Math.round(ddV / ddStep), ddSim.res.length - 1)
+ddCur = ddK >= 0 ? ddSim.res[ddK] : null
+ddRow = ddK >= 0 ? ddIV[ddK] : null
+ddCols = ({rad: "#1f9e6a", radL: "#8fd3ae", srh: "#eb6834", srhL: "#f5b28f", aug: "#7b4fd0", n: "#2a78d6", p: "#d63a5a"})
+// log-axis labels as powers of ten (10¹⁶ rather than 10P)
+ddPow = (d) => { const e = Math.log10(d); return Number.isInteger(e) ? "10" + String(e).split("").map((c) => "⁻⁰¹²³⁴⁵⁶⁷⁸⁹"["-0123456789".indexOf(c)]).join("") : ""; }
+{
+  const s = ddSim, fmt = (v, d = 2) => Number.isFinite(v) ? v.toExponential(d) : "–";
+  const pct = (v) => Number.isFinite(v) ? (100 * v).toFixed(1) + " %" : "–";
+  const status = !s.done
+    ? html`<i>simulating… ${s.res.length ? `reached ${s.res[s.res.length - 1].V.toFixed(2)} V` : "equilibrium"}</i><br>`
+    : s.fail !== null ? html`<b>Newton did not converge at V = ${s.fail.toFixed(3)} V; sweep stopped there.</b><br>` : "";
+  if (!ddCur) return html`<div class="result-box">${status}</div>`;
+  const pr = ddCur.profile, dev = s.dev;
+  const i0 = pr.x.findIndex((x) => x >= 0);
+  const dF = dev.Vt * (pr.fp[i0] - pr.fn[i0]);
+  return html`<div class="result-box">${status}
+  V = <b>${ddCur.V.toFixed(3)} V</b> (V<sub>bi</sub> = ${dev.Vbi.toFixed(3)} V) ·
+  J = <b>${fmt(ddCur.J)} A/cm²</b> · local η = ${Number.isFinite(ddRow.eta) ? ddRow.eta.toFixed(2) : "–"}<br>
+  IQE = J<sub>rad</sub>/J = <b>${pct(ddRow.IQE)}</b> · light from the SCL: ${pct(ddRow.radSCL)} of the radiative total ·
+  SCL width W = ${(ddCur.W * 1e7).toFixed(0)} nm<br>
+  (E<sub>Fn</sub> − E<sub>Fp</sub>)/e at x = 0: ${dF.toFixed(3)} V · n·p/n<sub>i</sub>² there = ${fmt(pr.n[i0] * pr.p[i0] / dev.ni ** 2)}</div>`;
+}
+```
+
+```{ojs}
+//| echo: false
+// spatial profiles at the selected voltage
+ddProf = {
+  if (!ddCur) return null;
+  const pr = ddCur.profile, dev = ddSim.dev, xw = ddView.xw, rows = [];
+  for (let i = 0; i < pr.x.length; i++) {
+    const x = pr.x[i] * 1e4;
+    if (Math.abs(x) > xw) continue;
+    const Ei = -dev.Vt * pr.psi[i];
+    rows.push({x, Ec: Ei + dev.Eg / 2, Ev: Ei - dev.Eg / 2, Fn: -dev.Vt * pr.fn[i], Fp: -dev.Vt * pr.fp[i],
+               n: pr.n[i], p: pr.p[i], snp: Math.sqrt(pr.n[i] * pr.p[i]),
+               rad: pr.Rrad[i], srh: pr.Rsrh[i], aug: pr.Raug[i], tot: pr.Rrad[i] + pr.Rsrh[i] + pr.Raug[i]});
+  }
+  return {rows, scl: [{x1: pr.x[pr.lo] * 1e4, x2: pr.x[pr.hi] * 1e4}]};
+}
+```
+
+```{ojs}
+//| echo: false
+ddW = Math.min(width, 1050)
+ddX = ({label: "x (µm)   ← p side | n side →", domain: [-ddView.xw, ddView.xw]})
+ddSCL = ddProf ? Plot.rect(ddProf.scl, {x1: "x1", x2: "x2", fill: "currentColor", fillOpacity: 0.08}) : null
+ddProf ? Plot.plot({
+  width: ddW, height: 230, x: ddX, y: {label: "energy (eV)", grid: true},
+  title: `Bands and quasi-Fermi levels at V = ${ddCur.V.toFixed(2)} V (shaded: SCL)`,
+  color: {legend: true, domain: ["Ec, Ev", "EFn", "EFp"], range: ["currentColor", ddCols.n, ddCols.p]},
+  marks: [
+    ddSCL,
+    Plot.line(ddProf.rows, {x: "x", y: "Ec", stroke: () => "Ec, Ev", strokeWidth: 2}),
+    Plot.line(ddProf.rows, {x: "x", y: "Ev", stroke: () => "Ec, Ev", strokeWidth: 2}),
+    Plot.line(ddProf.rows, {x: "x", y: "Fn", stroke: () => "EFn", strokeDasharray: "6,3", strokeWidth: 1.8}),
+    Plot.line(ddProf.rows, {x: "x", y: "Fp", stroke: () => "EFp", strokeDasharray: "6,3", strokeWidth: 1.8})
+  ]
+}) : html``
+```
+
+```{ojs}
+//| echo: false
+ddProf ? Plot.plot({
+  width: ddW, height: 230, x: ddX, y: {type: "log", label: "concentration (cm⁻³)", grid: true, tickFormat: ddPow},
+  title: "Carriers. Dotted: √(np), flat where the quasi-Fermi levels are flat",
+  color: {legend: true, domain: ["n", "p", "√(np)"], range: [ddCols.n, ddCols.p, "#8a8986"]},
+  marks: [
+    ddSCL,
+    Plot.line(ddProf.rows.filter((d) => d.n > 0), {x: "x", y: "n", stroke: () => "n", strokeWidth: 2}),
+    Plot.line(ddProf.rows.filter((d) => d.p > 0), {x: "x", y: "p", stroke: () => "p", strokeWidth: 2}),
+    Plot.line(ddProf.rows, {x: "x", y: "snp", stroke: () => "√(np)", strokeDasharray: "2,3", strokeWidth: 2})
+  ]
+}) : html``
+```
+
+```{ojs}
+//| echo: false
+ddProf ? (() => {
+  const on = new Set(dd.on), log = ddView.scale === "log", rows = ddProf.rows;
+  const rmax = Math.max(...rows.map((d) => d.tot));
+  const floor = log ? rmax / 1e7 : 0;
+  const keep = (k) => rows.filter((d) => d[k] > floor);
+  const chans = [["rad", "radiative B(np − nᵢ²)", "radiative"], ["srh", "SRH", "SRH"], ["aug", "Auger (Cₙn + Cₚp)(np − nᵢ²)", "Auger"]]
+    .filter((c) => on.has(c[2]));
+  if (!(rmax > 0)) return html`<p><i>No net recombination at V = 0: the device is at equilibrium.</i></p>`;
+  return Plot.plot({
+    width: ddW, height: 300, x: ddX,
+    y: log ? {type: "log", label: "R(x) (cm⁻³ s⁻¹)", grid: true, domain: [floor, rmax * 2], tickFormat: ddPow}
+           : {label: "R(x) (cm⁻³ s⁻¹)", grid: true, tickFormat: "~e"},
+    title: "Recombination rate per channel (green area: photon generation B·n·p)",
+    color: {legend: true, domain: [...chans.map((c) => c[1]), "total"], range: [...chans.map((c) => ddCols[c[0]]), "currentColor"]},
+    marks: [
+      ddSCL,
+      on.has("radiative") ? Plot.areaY(keep("rad"), {x: "x", y1: log ? floor : 0, y2: "rad", fill: ddCols.rad, fillOpacity: 0.18}) : null,
+      ...chans.map(([k, name]) => Plot.line(keep(k), {x: "x", y: k, stroke: () => name, strokeWidth: 2.2,
+                                                      strokeDasharray: k === "rad" ? null : k === "srh" ? "6,3" : "2,3"})),
+      Plot.line(keep("tot"), {x: "x", y: "tot", stroke: () => "total", strokeWidth: 1, strokeOpacity: 0.6}),
+      Plot.tip(rows, Plot.pointerX({x: "x", y: "tot", title: (d) => `x = ${(d.x * 1e3).toFixed(0)} nm\n` +
+        `radiative ${d.rad.toExponential(2)}\nSRH ${d.srh.toExponential(2)}\nAuger ${d.aug.toExponential(2)} cm⁻³ s⁻¹\n` +
+        `radiative share ${(100 * d.rad / d.tot).toFixed(1)} %`}))
+    ]
+  });
+})() : html``
+```
+
+```{ojs}
+//| echo: false
+// where the current recombines, along the sweep
+{
+  const pos = (k) => ddIV.filter((d) => d.V >= 0.2 && d[k] > 1e-14);
+  const series = [["J", "total J", "currentColor", null, 2.6], ["rad_neu", "radiative, neutral regions", ddCols.rad, null, 2],
+    ["rad_scl", "radiative, SCL", ddCols.radL, "2,3", 2], ["srh_neu", "SRH, neutral regions", ddCols.srh, null, 2],
+    ["srh_scl", "SRH, SCL", ddCols.srhL, "2,3", 2], ["aug", "Auger", ddCols.aug, null, 2],
+    ["contact", "contacts (remainder)", "#8a8986", "6,3", 1.5]];
+  return Plot.plot({
+    width: ddW, height: 320, x: {label: "forward voltage V (V)", domain: [0.2, ddVmax]},
+    y: {type: "log", label: "current density (A/cm²)", grid: true, tickFormat: ddPow},
+    title: "Where the current recombines (vertical line: selected V)",
+    color: {legend: true, domain: series.map((s) => s[1]), range: series.map((s) => s[2])},
+    marks: [
+      Plot.ruleX([ddV], {stroke: "currentColor", strokeOpacity: 0.35}),
+      ...series.map(([k, name, , dash, sw]) => Plot.line(pos(k), {x: "V", y: k, stroke: () => name, strokeDasharray: dash, strokeWidth: sw})),
+      Plot.tip(ddIV.filter((d) => d.V >= 0.2 && d.J > 0), Plot.pointerX({x: "V", y: "J", title: (d) =>
+        `V = ${d.V.toFixed(3)} V\nJ = ${d.J.toExponential(2)} A/cm²\nIQE = ${(100 * d.IQE).toFixed(1)} %`}))
+    ]
+  });
+}
+```
+
+```{ojs}
+//| echo: false
+{
+  const w = Math.max(280, Math.floor((ddW - 24) / 2)), sel = ddIV.filter((d) => d.V >= 0.3);
+  const p1 = Plot.plot({
+    width: w, height: 200, x: {label: "V (V)", domain: [0.3, ddVmax]}, y: {label: "IQE = Jrad/J (%)", grid: true, domain: [0, 100]},
+    marks: [Plot.ruleX([ddV], {stroke: "currentColor", strokeOpacity: 0.35}),
+            Plot.line(sel.filter((d) => Number.isFinite(d.IQE)), {x: "V", y: (d) => 100 * d.IQE, stroke: ddCols.rad, strokeWidth: 2.2})]
+  });
+  const p2 = Plot.plot({
+    width: w, height: 200, x: {label: "V (V)", domain: [0.3, ddVmax]}, y: {label: "local ideality η", grid: true, domain: [0.8, 2.4]},
+    marks: [Plot.ruleY([1, 2], {stroke: "currentColor", strokeOpacity: 0.4, strokeDasharray: "3,3"}),
+            Plot.ruleX([ddV], {stroke: "currentColor", strokeOpacity: 0.35}),
+            Plot.line(sel.filter((d) => d.eta > 0.8 && d.eta < 2.4), {x: "V", y: "eta", stroke: "#4a3aa7", strokeWidth: 2.2})]
+  });
+  return html`<div style="display:flex; flex-wrap:wrap; gap:24px">${p1}${p2}</div>`;
+}
+```
+
+## What to look for
+
+Start with the default device ($N_a=3\times10^{18}$, $N_d=3\times10^{17}$ cm⁻³, $B=10^{-10}$ cm³ s⁻¹, $\tau_n=\tau_p=10$ ns, mid-gap trap,
+$C_n=C_p=10^{-30}$ cm⁶ s⁻¹).
+
+1. **The B·n·p plateau.** On the log axis, the radiative rate is flat across the SCL: $n$ falls and $p$ rises, but their
+   product does not change, because the quasi-Fermi levels are flat there. Its value is $Bn_i^2e^{eV/k_BT}$, so it grows by a
+   decade every 60 mV. Outside the SCL the rate follows the minority carriers, electrons on the p side and holes on the n side. It decays only
+   over a diffusion length: at 1 V it is 3× lower at −5 µm but already 12× lower at +5 µm, because holes on the n side
+   diffuse less far than electrons on the p side. Narrow the x window to ±0.3 µm to see the plateau in the SCL.
+2. **The rate peaks in the SCL, but the light comes from the neutral regions.** The SCL is only about 60 nm wide, while the
+   injected electrons spread over several µm of the p side. The neutral regions therefore produce about 99 % of the photons.
+   Switch to the linear axis to see the area under the green curve.
+3. **SRH peaks where $\tau_pn\approx\tau_np$.** At 0.5–0.8 V the SRH rate in the SCL is orders of magnitude above B·n·p, and the
+   current follows $e^{eV/2k_BT}$ (η ≈ 2, IQE close to zero). Above about 1 V the injected carriers take over and η → 1.
+4. **Trap level.** Move $E_t-E_i$ toward a band edge. $n_1$ or $p_1$ becomes large, the SRH channel weakens at low bias and
+   the η = 2 region shrinks. Mid-gap traps are the most harmful recombination centres.
+5. **Auger.** Raise $C_n$ and $C_p$ toward $10^{-28}$ cm⁶ s⁻¹. Auger is negligible at low bias but grows as $n^2p$ and takes a
+   growing share of the current at high bias. Real LEDs show this as efficiency droop.
+6. **Switch channels off.** Without SRH the IQE is constant and η = 1 over the whole sweep. It reaches about 88 %, and the rest
+   of the current goes to the contacts: the electron diffusion length on the p side (≈ 6 µm) is not much shorter than the
+   15 µm p region.
+
+## Why a homojunction is a poor LED
+
+Radiative recombination happens everywhere, yet homojunction LEDs are inefficient. The simulation shows three of the reasons:
+
+- **The carriers are diluted.** The injected electrons spread over a diffusion length of several µm. At 10 A/cm² their density
+  on the p side is only about $10^{15}$ cm⁻³, so $np$ is small and the photon generation rate $B\,n\,p$ is low per unit volume.
+- **The IQE is fixed by the doping.** In the neutral p region each electron recombines radiatively at the rate $BN_a$ and through
+  traps at $1/\tau_n$. Both are linear in $n$, so $\eta_\text{IQE}\approx BN_a\tau_n/(1+BN_a\tau_n)$ does not improve when you
+  drive the LED harder. In the explorer the IQE stays near 40 % from 1 to 100 A/cm². A short radiative lifetime needs heavy
+  doping, and heavy doping brings defects, so in practice $\tau_n$ falls too. The model keeps $\tau_n$ fixed and is optimistic.
+- **Carriers are lost on both sides.** Holes are injected into the n side, where $BN_d$ is ten times smaller. Electrons reach the
+  contact, and at low bias SRH in the SCL takes most of the current.
+
+A fourth reason is not in the model, and it is the largest in practice. The photons are emitted with $h\nu\approx E_g$ a few
+µm deep in a material that absorbs exactly these photons ($1/\alpha\approx1$ µm near the gap). Most of them are reabsorbed
+before they reach the surface.
+
+The double heterostructure solves all four problems at once: it confines both carriers in a thin layer, so $n$ and $p$ are
+high and the IQE grows with the current, and its wide-gap claddings are transparent. The same simulator with band offsets is in
+@sec-dh-sim.
+
+::: {.callout-note collapse="true"}
+## How the solver works
+The unknowns are $\psi$, $\phi_n$ and $\phi_p$ on a non-uniform mesh: 2 nm spacing near the junction, graded up to 0.1 µm
+toward the contacts, about 650 nodes. The currents use the Scharfetter–Gummel discretisation, which handles the exponential
+carrier profiles exactly between nodes. The equations are solved by Newton's method with damping. The Jacobian is block
+tridiagonal and is built by finite differences in nine residual evaluations. The bias starts at 0 V and rises in 25 mV steps,
+each solution being the starting point of the next one.
+
+The contacts are ideal ohmic contacts with infinite surface recombination. There is no series resistance, no
+heterostructure (see @sec-dh-sim for that) and no photon recycling, so at high bias the voltage on the junction is the applied one. The current there
+exceeds what a real chip can carry.
+:::
+
+## Running the Python version
+
+`pn_led_sim.py` is the reference implementation. It uses the same equations on a mesh twice as fine, prints a summary table
+and saves a four-panel figure and the J–V breakdown as CSV:
+
+```bash
+python pn_led_sim.py                                     # default device, writes pn_led.png and pn_led_iv.csv
+python pn_led_sim.py --Na 1e19 --Nd 1e18 --tau 1e-9      # heavier doping, shorter SRH lifetime
+python pn_led_sim.py --tau-n 1e-6 --tau-p 1e-10 --Et 0.3 # asymmetric lifetimes, shallow trap
+python pn_led_sim.py --Na 3e18 --Nd 3e17 --tau 1e-7 --dh-d 100 --xal 0.3 --nact 1e17 --vmax 1.4
+                                                         # double heterostructure of @sec-dh-sim
+```
+
+The browser version reproduces its J–V curve to better than 0.1 %, and on the same mesh the two agree to all printed digits.
+Run `python pn_led_sim.py --help` for every option. When you import it, `PNDiode(tau_n=..., tau_p=..., Et=..., Cn=..., Cp=...,
+dh=dict(d=..., dEc=..., dEv=..., Nact=...))` exposes the same parameters as the panels.
+
+::: {.callout-tip collapse="true"}
+## Going deeper
+- **High injection.** At which voltage does the electron density on the p side reach $N_a/10$? Check that η rises again above
+  1 there, as in @sec-diode.
+- **Doping and IQE.** The radiative lifetime on the p side is $1/(BN_a)$. Compare it with $\tau_n$ and predict the IQE of the
+  neutral region. Check your prediction with $N_a=10^{17}$ and $10^{19}$ cm⁻³.
+- **Asymmetric lifetimes.** Set $\tau_n=1$ µs and $\tau_p=0.1$ ns. Where does the SRH peak move, and why?
+- **Band parameters.** The simulator handles heterostructures (@sec-dh-sim) by adding $\theta_n=-\Delta E_c/k_BT$ and
+  $\theta_p=-\Delta E_v/k_BT$ to the exponents of $n$ and $p$. Show that the Scharfetter–Gummel fluxes then use $\psi+\theta_n$
+  for electrons and $\psi-\theta_p$ for holes (`fluxes` in `pn_led_sim.py`). What would change with different effective
+  masses in the claddings?
+:::
+
+## Try it yourself
+
+1. Read off $J$ at 0.6 V and 0.7 V for the default device and compute η. Compare with the η = 2 prediction.
+2. Find the doping of the p side that maximises the IQE at 1.1 V. Why is there an optimum?
+3. With only the radiative channel on, the IQE stays near 88 %. Estimate $L_n=\sqrt{D_e\tau_\text{rad}}$ with
+   $\tau_\text{rad}=1/(BN_a)$, compare it with the 15 µm p region, and explain where the remaining 12 % of the current goes.
+4. By how much must $\tau_n=\tau_p$ increase to move the η = 2 → η = 1 transition down by 0.1 V?

@@ -24,3 +24,12 @@ table.compact td, table.compact th { padding: .2rem .6rem; }
 
 // Observable Plot readable in dark mode
 .quarto-dark svg[class^="plot"] { color: #e6e6e6; background: transparent; }
+
+// Observable Plot titles (figure > h2) as small captions, not section headings
+figure[class^="plot"] > h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: none;
+  margin: 1rem 0 .3rem 0;
+  padding: 0;
+}

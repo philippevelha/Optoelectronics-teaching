@@ -182,6 +182,225 @@ With $x=0.3$ cladding, $\Delta E_c\approx0.25$ eV and the leakage is below $10^{
 heterojunction band diagrams of slides 95–96 follow the same rule as homojunctions: flat $E_F$ at equilibrium, bands bent by the
 space charge, plus the offsets $\Delta E_c$ and $\Delta E_v$ at the interface.
 
+### Simulating a double heterostructure {#sec-dh-sim}
+
+The drift–diffusion simulator of @sec-ddsim showed why a homojunction is a poor LED. The injected electrons spread over a
+diffusion length of several µm, so their density stays low, and the radiative rate per electron, $BN_a$, is fixed by the
+doping. The panel below adds the band offsets. A p-GaAs active layer of thickness $d$ sits between a p-Al$_x$Ga$_{1-x}$As
+cladding ($N_a=3\times10^{18}$ cm⁻³) and an n-Al$_x$Ga$_{1-x}$As cladding ($N_d=3\times10^{17}$ cm⁻³), with
+$\Delta E_g=1.247x$ eV split 67:33 between $\Delta E_c$ and $\Delta E_v$. The **reference** is the same structure with
+$x=0$: identical doping, no offsets, so it is a homojunction. Both use $B=10^{-10}$ cm³ s⁻¹, $C_n=C_p=10^{-30}$ cm⁶ s⁻¹ and the
+SRH lifetime below, everywhere.
+
+LEDs are compared at equal **current**, not equal voltage, so the slider sets the current density $J$. The simulator picks the
+nearest computed bias point for each structure.
+
+```{ojs}
+//| echo: false
+import {PNDiode} from "./pn_led_sim.js"
+```
+
+```{ojs}
+//| echo: false
+viewof dhp = Inputs.form({
+  x: Inputs.range([0, 0.45], {value: 0.3, step: 0.01, label: "cladding Al fraction x"}),
+  d: Inputs.range([10, 1000], {value: 100, step: 10, label: "active layer thickness d (nm)"}),
+  lNa: Inputs.range([15, 19], {value: 17, step: 0.1, label: "log₁₀ active-layer doping N_a (cm⁻³)"}),
+  ltau: Inputs.range([-9, -6], {value: -7, step: 0.1, label: "log₁₀ SRH lifetime τ_n = τ_p (s)"})
+})
+```
+
+```{ojs}
+//| echo: false
+dhStep = 0.025
+dhVmax = 1.5
+dhOff = ({dEg: 1.247 * dhp.x, dEc: 0.67 * 1.247 * dhp.x, dEv: 0.33 * 1.247 * dhp.x})
+// two voltage sweeps (heterostructure and reference), computed in chunks; a change of any input restarts them
+dhSim = {
+  const mk = (x) => new PNDiode({
+    Na: 3e18, Nd: 3e17, tau_n: 10 ** dhp.ltau, tau_p: 10 ** dhp.ltau, mesh: [2e-7, 3e-5, 1.1, 1e-5],
+    dh: {d: dhp.d * 1e-7, dEc: 0.67 * 1.247 * x, dEv: 0.33 * 1.247 * x, Nact: -(10 ** dhp.lNa)}
+  });
+  const keys = ["DH", "ref"], devs = {DH: mk(dhp.x), ref: mk(0)}, res = {DH: [], ref: []}, fail = {DH: null, ref: null}, u = {};
+  yield Promises.delay(150, {devs, res, fail, done: false});
+  for (const k of keys) {
+    const r = devs[k].solve(devs[k].initialGuess(), 0, {maxit: 400});
+    if (r.ok) u[k] = r.u; else fail[k] = 0;
+  }
+  const nV = Math.round(dhVmax / dhStep);
+  for (let s = 1; s <= nV; s++) {
+    for (const k of keys) {
+      if (fail[k] !== null) continue;
+      const r = devs[k].solve(u[k], s * dhStep);
+      if (!r.ok) { fail[k] = s * dhStep; continue; }
+      u[k] = r.u;
+      res[k].push(devs[k].analyse(u[k], s * dhStep));
+    }
+    if (s % 5 === 0 && s < nV) yield {devs, res, fail, done: false};
+  }
+  yield {devs, res, fail, done: true};
+}
+```
+
+```{ojs}
+//| echo: false
+// IQE, light from the active layer and recombination outside it, along each sweep
+dhRows = {
+  const out = {};
+  for (const k of ["DH", "ref"]) out[k] = dhSim.res[k].filter((a) => a.J > 0).map((a, i) => {
+    const rad = a.rad_p + a.rad_n + a.rad_scl, act = a.rad_act + a.srh_act + a.aug_act;
+    const pr = a.profile, dev = dhSim.devs[k];
+    let nmax = 0;
+    for (let j = dev.iL; j <= dev.iR; j++) nmax = Math.max(nmax, Math.min(pr.n[j], pr.p[j]));
+    return {k, V: a.V, J: a.J, IQE: rad / a.J, radAct: rad > 0 ? a.rad_act / rad : NaN, outside: 1 - act / a.J, nmin: nmax, a};
+  });
+  return out;
+}
+viewof dhJ = Inputs.range([-2, 3], {value: 1.5, step: 0.1, label: "log₁₀ current density J (A/cm²)"})
+viewof dhXw = Inputs.range([0.1, 10], {value: 2, step: 0.1, label: "x window ± (µm)"})
+```
+
+```{ojs}
+//| echo: false
+dhSel = {
+  const pick = (rows) => rows.length ? rows.reduce((b, r) => Math.abs(Math.log10(r.J) - dhJ) < Math.abs(Math.log10(b.J) - dhJ) ? r : b) : null;
+  return {DH: pick(dhRows.DH), ref: pick(dhRows.ref)};
+}
+dhCols = ({rad: "#1f9e6a", srh: "#eb6834", aug: "#7b4fd0", n: "#2a78d6", p: "#d63a5a", ref: "#8a8986"})
+dhPow = (d) => { const e = Math.log10(d); return Number.isInteger(e) ? "10" + String(e).split("").map((c) => "⁻⁰¹²³⁴⁵⁶⁷⁸⁹"["-0123456789".indexOf(c)]).join("") : ""; }
+{
+  const s = dhSim, pct = (v) => Number.isFinite(v) ? (100 * v).toFixed(1) + " %" : "–";
+  const status = !s.done ? html`<i>simulating… ${s.res.DH.length ? `reached ${s.res.DH[s.res.DH.length - 1].V.toFixed(2)} V` : "equilibrium"}</i><br>`
+    : ["DH", "ref"].filter((k) => s.fail[k] !== null).map((k) => html`<b>${k}: Newton did not converge at ${s.fail[k].toFixed(3)} V; sweep stopped there.</b><br>`);
+  const line = (k, name) => {
+    const r = dhSel[k];
+    if (!r) return "";
+    return html`<b>${name}</b>: J = ${r.J.toExponential(2)} A/cm² at V = ${r.V.toFixed(3)} V · IQE = <b>${pct(r.IQE)}</b> ·
+      light from the active layer ${pct(r.radAct)} · recombination outside it ${pct(r.outside)} ·
+      min(n, p) in the layer up to ${r.nmin.toExponential(1)} cm⁻³<br>`;
+  };
+  return html`<div class="result-box">${status}
+    ΔE<sub>g</sub> = ${(1000 * dhOff.dEg).toFixed(0)} meV: ΔE<sub>c</sub> = ${(1000 * dhOff.dEc).toFixed(0)} meV,
+    ΔE<sub>v</sub> = ${(1000 * dhOff.dEv).toFixed(0)} meV (ΔE<sub>c</sub> = ${(dhOff.dEc / 0.02585).toFixed(1)} k<sub>B</sub>T)<br>
+    ${line("DH", "heterostructure")}${line("ref", "reference (x = 0)")}</div>`;
+}
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: Math.min(width, 1050), height: 280,
+  x: {type: "log", label: "current density J (A/cm²)", domain: [1e-2, 1e3], tickFormat: dhPow},
+  y: {label: "IQE = Jrad/J (%)", domain: [0, 100], grid: true},
+  title: "Internal quantum efficiency at equal current (vertical line: selected J)",
+  color: {legend: true, domain: ["heterostructure", "reference (x = 0)"], range: [dhCols.rad, dhCols.ref]},
+  marks: [
+    Plot.ruleX([10 ** dhJ], {stroke: "currentColor", strokeOpacity: 0.35}),
+    Plot.line(dhRows.DH.filter((d) => d.J >= 1e-2 && d.J <= 1e3), {x: "J", y: (d) => 100 * d.IQE, stroke: () => "heterostructure", strokeWidth: 2.4}),
+    Plot.line(dhRows.ref.filter((d) => d.J >= 1e-2 && d.J <= 1e3), {x: "J", y: (d) => 100 * d.IQE, stroke: () => "reference (x = 0)", strokeWidth: 2, strokeDasharray: "6,3"})
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+// spatial profiles of both structures at the selected current
+dhProf = {
+  const conv = (k) => {
+    const r = dhSel[k];
+    if (!r) return [];
+    const pr = r.a.profile, dev = dhSim.devs[k], rows = [];
+    for (let i = 0; i < pr.x.length; i++) {
+      const x = pr.x[i] * 1e4;
+      if (Math.abs(x) > dhXw) continue;
+      rows.push({x, Ec: -dev.Vt * (pr.psi[i] + pr.thn[i]) + dev.Eg / 2, Ev: -dev.Vt * (pr.psi[i] - pr.thp[i]) - dev.Eg / 2,
+                 Fn: -dev.Vt * pr.fn[i], Fp: -dev.Vt * pr.fp[i], n: pr.n[i], p: pr.p[i],
+                 rad: pr.Rrad[i], srh: pr.Rsrh[i], aug: pr.Raug[i]});
+    }
+    return rows;
+  };
+  return {DH: conv("DH"), ref: conv("ref"), act: [{x1: -dhp.d * 5e-4, x2: dhp.d * 5e-4}]};
+}
+dhX = ({label: "x (µm)   ← p cladding | active | n cladding →", domain: [-dhXw, dhXw]})
+dhAct = Plot.rect(dhProf.act, {x1: "x1", x2: "x2", fill: dhCols.rad, fillOpacity: 0.08})
+dhSel.DH ? Plot.plot({
+  width: Math.min(width, 1050), height: 250, x: dhX, y: {label: "energy (eV)", grid: true},
+  title: `Heterostructure bands and quasi-Fermi levels at J = ${dhSel.DH.J.toExponential(1)} A/cm² (shaded: active layer)`,
+  color: {legend: true, domain: ["Ec, Ev", "EFn", "EFp"], range: ["currentColor", dhCols.n, dhCols.p]},
+  marks: [
+    dhAct,
+    Plot.line(dhProf.DH, {x: "x", y: "Ec", stroke: () => "Ec, Ev", strokeWidth: 2}),
+    Plot.line(dhProf.DH, {x: "x", y: "Ev", stroke: () => "Ec, Ev", strokeWidth: 2}),
+    Plot.line(dhProf.DH, {x: "x", y: "Fn", stroke: () => "EFn", strokeDasharray: "6,3", strokeWidth: 1.8}),
+    Plot.line(dhProf.DH, {x: "x", y: "Fp", stroke: () => "EFp", strokeDasharray: "6,3", strokeWidth: 1.8})
+  ]
+}) : html``
+```
+
+```{ojs}
+//| echo: false
+dhSel.DH ? Plot.plot({
+  width: Math.min(width, 1050), height: 250, x: dhX, y: {type: "log", label: "concentration (cm⁻³)", grid: true, tickFormat: dhPow},
+  title: "Carriers at the same current: heterostructure (solid) and reference (dashed)",
+  color: {legend: true, domain: ["n", "p"], range: [dhCols.n, dhCols.p]},
+  marks: [
+    dhAct,
+    Plot.line(dhProf.ref, {x: "x", y: "n", stroke: () => "n", strokeDasharray: "4,3", strokeOpacity: 0.6}),
+    Plot.line(dhProf.ref, {x: "x", y: "p", stroke: () => "p", strokeDasharray: "4,3", strokeOpacity: 0.6}),
+    Plot.line(dhProf.DH, {x: "x", y: "n", stroke: () => "n", strokeWidth: 2}),
+    Plot.line(dhProf.DH, {x: "x", y: "p", stroke: () => "p", strokeWidth: 2})
+  ]
+}) : html``
+```
+
+```{ojs}
+//| echo: false
+dhSel.DH ? (() => {
+  const all = [...dhProf.DH, ...dhProf.ref];
+  const rmax = Math.max(...all.map((d) => Math.max(d.rad, d.srh, d.aug))), floor = rmax / 1e6;
+  const keep = (rows, k) => rows.filter((d) => d[k] > floor);
+  return Plot.plot({
+    width: Math.min(width, 1050), height: 300, x: dhX,
+    y: {type: "log", label: "R(x) (cm⁻³ s⁻¹)", grid: true, domain: [floor, rmax * 2], tickFormat: dhPow,
+        ticks: d3.range(Math.ceil(Math.log10(floor)), Math.floor(Math.log10(rmax * 2)) + 1).map((e) => 10 ** e)},
+    title: "Recombination at the same current (green area: B·n·p in the heterostructure; grey: B·n·p in the reference)",
+    color: {legend: true, domain: ["radiative", "SRH", "Auger", "radiative, reference"], range: [dhCols.rad, dhCols.srh, dhCols.aug, dhCols.ref]},
+    marks: [
+      dhAct,
+      Plot.areaY(keep(dhProf.DH, "rad"), {x: "x", y1: floor, y2: "rad", fill: dhCols.rad, fillOpacity: 0.18}),
+      Plot.line(keep(dhProf.DH, "rad"), {x: "x", y: "rad", stroke: () => "radiative", strokeWidth: 2.2}),
+      Plot.line(keep(dhProf.DH, "srh"), {x: "x", y: "srh", stroke: () => "SRH", strokeWidth: 2, strokeDasharray: "6,3"}),
+      Plot.line(keep(dhProf.DH, "aug"), {x: "x", y: "aug", stroke: () => "Auger", strokeWidth: 2, strokeDasharray: "2,3"}),
+      Plot.line(keep(dhProf.ref, "rad"), {x: "x", y: "rad", stroke: () => "radiative, reference", strokeWidth: 2})
+    ]
+  });
+})() : html``
+```
+
+What to look for, with the default structure ($x=0.3$, $d=100$ nm, $N_a=10^{17}$ cm⁻³, $\tau=100$ ns):
+
+1. **Carrier confinement.** In the band diagram, $\Delta E_c$ stops the electrons at the p-cladding side and $\Delta E_v$ stops the
+   holes at the n-cladding side. Both carriers pile up in the active layer, and essentially all the light comes from it. In the
+   carrier plot, at 30 A/cm² both $n$ and $p$ in the layer reach about $4\times10^{17}$ cm⁻³. That is several hundred times the
+   electron density injected into the p side of the reference, where the electrons spread over several µm.
+2. **The IQE grows with current.** Once $n\approx p\gg N_a$ in the layer, the radiative rate goes as $Bn^2$ while SRH goes as
+   $n/2\tau$, so $\eta_\text{IQE}\approx 2B\tau n/(1+2B\tau n)$ rises with the injection. In the reference both rates are linear
+   in the minority density and the IQE barely changes with $J$. The heterostructure wins above a few A/cm².
+3. **At low current the heterostructure is worse.** With $n\approx p$ the whole lightly doped layer behaves like the SCL of a
+   homojunction, where SRH is strongest. Raise the active doping to $10^{18}$ cm⁻³ and watch the low-current IQE recover.
+4. **Thickness.** A thinner layer gives a higher density at the same current, so the IQE rises earlier. Below about 20 nm the
+   electron levels are quantised: this is a quantum well (@sec-qw), which this classical model does not describe.
+5. **Barrier height.** Lower $x$ toward 0.05. With $\Delta E_c$ only a few $k_BT$, electrons spill into the p cladding and the
+   recombination outside the layer grows.
+6. **Lifetime.** With $\tau=10$ ns the heterostructure needs about 50 A/cm² to beat the reference. The quality of the active
+   layer and of its interfaces matters as much as the band offsets.
+
+The model leaves out the largest practical advantage of the heterostructure: the claddings are **transparent** to photons of
+energy $E_g(\text{GaAs})$. In a homojunction most photons are generated a few µm deep in GaAs, which absorbs them
+($1/\alpha\approx1$ µm near the gap), whereas here they cross the claddings unattenuated. Other simplifications: abrupt offsets
+spread over one 2 nm mesh cell (no thermionic emission), no interface recombination, and the same masses, mobilities and
+permittivity in GaAs and AlGaAs.
+
 ::: {.callout-tip collapse="true"}
 ## Going deeper
 - **Anderson's rule** predicts $\Delta E_c=\chi_1-\chi_2$. Use the electron affinities of Table 3.1 for GaAs/AlAs and compare with

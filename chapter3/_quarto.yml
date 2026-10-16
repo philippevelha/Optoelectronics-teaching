@@ -3,6 +3,8 @@ project:
   output-dir: _book
   resources:
     - semilib.py
+    - pn_led_sim.py
+    - pn_led_sim.js
     - notebooks/*.ipynb
 
 book:
@@ -30,6 +32,7 @@ book:
         - smallsignal.qmd
     - part: "Light-emitting diodes"
       chapters:
+        - pn-led-sim.qmd
         - led-principle.qmd
         - spectrum.qmd
         - quantum-wells.qmd
