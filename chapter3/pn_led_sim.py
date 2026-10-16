@@ -33,9 +33,6 @@ import argparse
 import numpy as np
 import scipy.sparse as sp
 import scipy.sparse.linalg as spla
-import matplotlib
-
-matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 q = 1.602176634e-19      # C
@@ -247,6 +244,7 @@ class PNDiode:
 
 
 def main():
+    plt.switch_backend("Agg")      # command line: write the figure to a file, no window
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--Na", type=float, default=1e18, help="acceptor doping, p side (cm^-3)")
     ap.add_argument("--Nd", type=float, default=1e17, help="donor doping, n side (cm^-3)")
