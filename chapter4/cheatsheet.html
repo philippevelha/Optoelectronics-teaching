@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Appendix B — Formula sheet – Stimulated Emission Devices: Optical Amplifiers and Lasers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./running.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./running.html">Appendices</a></li><li class="breadcrumb-item"><a href="./cheatsheet.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stimulated Emission Devices: Optical Amplifiers and Lasers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter4/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stimulated emission</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blackbody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./einstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Absorption, spontaneous and stimulated emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Three- and four-level lasers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Optical amplifiers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./edfa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Optical gain and the erbium-doped fiber amplifier</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laser oscillators</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gas-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gas lasers and longitudinal modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./threshold.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Threshold, output power and photon lifetime</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./broadening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transverse modes and line broadening</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pulsed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Q-switching and mode-locking</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor lasers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laser diode principle and optical gain</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laser diode efficiencies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-equation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The laser diode equation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qw-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./single-mode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Single-frequency lasers: DBR, DFB, external cavity, VCSEL</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./soa-sled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modulation of laser diodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./holography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Holography</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resonators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linewidth-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Going further: laser linewidth, noise and chirp</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./running.html">Appendices</a></li><li class="breadcrumb-item"><a href="./cheatsheet.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-cheatsheet" class="quarto-section-identifier">Appendix B — Formula sheet</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>All the key relations of Chapter 4 on one page. Each block links to the chapter where the formula is derived and used. Use your browser’s <em>Print → Save as PDF</em> for a paper copy.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Symbols and constants
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(N_1,N_2\)</span> lower/upper level populations · <span class="math inline">\(N_0\)</span> total ion density · <span class="math inline">\(\tau_{sp}\)</span> spontaneous lifetime · <span class="math inline">\(\rho(\nu)\)</span> energy density per unit frequency · <span class="math inline">\(\sigma_{ab},\sigma_{em}\)</span> cross sections · <span class="math inline">\(g\)</span> gain coefficient · <span class="math inline">\(\alpha_s\)</span> internal loss · <span class="math inline">\(\alpha_t\)</span> total loss · <span class="math inline">\(R_1,R_2\)</span> mirror reflectances · <span class="math inline">\(L\)</span> cavity length · <span class="math inline">\(n\)</span> (group) index · <span class="math inline">\(\Gamma\)</span> confinement factor · <span class="math inline">\(\tau_{ph}\)</span> photon lifetime · <span class="math inline">\(n_{th}\)</span>, <span class="math inline">\(I_{th}\)</span> threshold carrier density and current · <span class="math inline">\(\tau_r\)</span> radiative lifetime · <span class="math inline">\(\tau\)</span> carrier lifetime</p>
+<p><span class="math inline">\(h=6.626\times10^{-34}\)</span> J s · <span class="math inline">\(hc=1.2398\)</span> eV µm · <span class="math inline">\(k_BT=25.85\)</span> meV at 300 K · <span class="math inline">\(e=1.602\times10^{-19}\)</span> C · 1 cm⁻¹ = 100 m⁻¹</p>
+</div>
+</div>
+</div>
+<div class="grid">
+<section id="radiation-and-einstein-coefficients-sec-blackbody-sec-einstein" class="level2 g-col-12 g-col-lg-6" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="radiation-and-einstein-coefficients-sec-blackbody-sec-einstein"><span class="header-section-number">B.1</span> Radiation and Einstein coefficients (<a href="blackbody.html" class="quarto-xref"><span>Chapter 1</span></a>, <a href="einstein.html" class="quarto-xref"><span>Chapter 2</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>mode density (2 polarisations)</td>
+<td><span class="math inline">\(8\pi n^3\nu^2/c^3\)</span></td>
+</tr>
+<tr class="even">
+<td>Planck</td>
+<td><span class="math inline">\(\rho(\nu)=\dfrac{8\pi h\nu^3}{c^3}\dfrac{1}{e^{h\nu/k_BT}-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>rates</td>
+<td><span class="math inline">\(R_{12}=B_{12}N_1\rho\)</span>, <span class="math inline">\(R_{21}=A_{21}N_2+B_{21}N_2\rho\)</span></td>
+</tr>
+<tr class="even">
+<td>Einstein relations</td>
+<td><span class="math inline">\(B_{12}=B_{21}\)</span>, <span class="math inline">\(A_{21}/B_{21}=8\pi h\nu^3n^3/c^3\)</span></td>
+</tr>
+<tr class="odd">
+<td>stim./absorption</td>
+<td><span class="math inline">\(N_2/N_1\)</span> → population inversion</td>
+</tr>
+<tr class="even">
+<td>stim./spont.</td>
+<td><span class="math inline">\(c^3\rho/8\pi h\nu^3\)</span> = photons per mode → cavity</td>
+</tr>
+<tr class="odd">
+<td>spontaneous lifetime</td>
+<td><span class="math inline">\(\tau_{sp}=1/A_{21}\)</span></td>
+</tr>
+<tr class="even">
+<td>two-level, pumped</td>
+<td><span class="math inline">\(N_2/N_0=W\tau/(1+2W\tau)&lt;\tfrac12\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pumping-sec-pumping" class="level2 g-col-12 g-col-lg-6" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="pumping-sec-pumping"><span class="header-section-number">B.2</span> Pumping (<a href="pumping.html" class="quarto-xref"><span>Chapter 3</span></a>)</h2>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>3-level inversion</td>
+<td><span class="math inline">\((N_2-N_1)/N_0=(W_p\tau-1)/(W_p\tau+1)\)</span></td>
+</tr>
+<tr class="even">
+<td>4-level inversion</td>
+<td><span class="math inline">\(\approx W_p\tau_{21}\)</span></td>
+</tr>
+<tr class="odd">
+<td>min. pump, 3-level</td>
+<td><span class="math inline">\(P_{p,\min}/V=(N_0/2)h\nu_{13}/\tau_{sp}\)</span></td>
+</tr>
+<tr class="even">
+<td>quantum efficiency</td>
+<td><span class="math inline">\(\lambda_p/\lambda_\text{laser}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="gain-and-the-edfa-sec-edfa" class="level2 g-col-12 g-col-lg-6" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="gain-and-the-edfa-sec-edfa"><span class="header-section-number">B.3</span> Gain and the EDFA (<a href="edfa.html" class="quarto-xref"><span>Chapter 4</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>absorption</td>
+<td><span class="math inline">\(\alpha=\sigma_{ab}N_1\)</span></td>
+</tr>
+<tr class="even">
+<td>gain coefficient</td>
+<td><span class="math inline">\(g=\sigma_{em}N_2-\sigma_{ab}N_1=[\sigma_{em}x-\sigma_{ab}(1-x)]N_0\)</span></td>
+</tr>
+<tr class="odd">
+<td>gain</td>
+<td><span class="math inline">\(G=e^{gL}\)</span>, <span class="math inline">\(G_\text{dB}=4.343\,gL\)</span></td>
+</tr>
+<tr class="even">
+<td>power conversion</td>
+<td><span class="math inline">\(\eta_\text{PCE}=(P_{s,o}-P_{s,i})/P_p\le\lambda_p/\lambda_s\)</span></td>
+</tr>
+<tr class="odd">
+<td>gain vs PCE</td>
+<td><span class="math inline">\(G=1+\eta_\text{PCE}P_p/P_{s,i}\)</span></td>
+</tr>
+<tr class="even">
+<td>max. input</td>
+<td><span class="math inline">\(P_{s,i}&lt;(\lambda_p/\lambda_s)P_p/(G-1)\)</span></td>
+</tr>
+<tr class="odd">
+<td>pump length</td>
+<td><span class="math inline">\(\Gamma P_p\approx AN_0h\nu_pL_p/\tau_{sp}\)</span></td>
+</tr>
+<tr class="even">
+<td>inversion factor</td>
+<td><span class="math inline">\(n_{sp}=\sigma_{em}N_2/(\sigma_{em}N_2-\sigma_{ab}N_1)\)</span></td>
+</tr>
+<tr class="odd">
+<td>noise figure</td>
+<td><span class="math inline">\(\text{NF}\approx2n_{sp}(G-1)/G+1/G\ge3\)</span> dB</td>
+</tr>
+<tr class="even">
+<td>ASE power</td>
+<td><span class="math inline">\(P_\text{ASE}=2n_{sp}(G-1)h\nu B_o\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cavity-threshold-output-sec-gas-sec-threshold" class="level2 g-col-12 g-col-lg-6" data-number="B.4">
+<h2 data-number="B.4" class="anchored" data-anchor-id="cavity-threshold-output-sec-gas-sec-threshold"><span class="header-section-number">B.4</span> Cavity, threshold, output (<a href="gas-lasers.html" class="quarto-xref"><span>Chapter 5</span></a>, <a href="threshold.html" class="quarto-xref"><span>Chapter 6</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>longitudinal modes</td>
+<td><span class="math inline">\(m\lambda_m/2n=L\)</span>, <span class="math inline">\(\nu_m=mc/2nL\)</span></td>
+</tr>
+<tr class="even">
+<td>mode spacing</td>
+<td><span class="math inline">\(\Delta\nu_m=c/2nL\)</span>, <span class="math inline">\(\Delta\lambda_m\approx\lambda^2/2nL\)</span></td>
+</tr>
+<tr class="odd">
+<td>Doppler FWHM</td>
+<td><span class="math inline">\(\Delta\nu=2\nu_0\sqrt{2k_BT\ln2/Mc^2}\)</span></td>
+</tr>
+<tr class="even">
+<td>gain vs inversion</td>
+<td><span class="math inline">\(g(\nu_0)\approx(N_2-N_1)B_{21}nh\nu_0/c\Delta\nu\)</span></td>
+</tr>
+<tr class="odd">
+<td>threshold gain</td>
+<td><span class="math inline">\(g_{th}=\alpha_t=\alpha_s+\frac{1}{2L}\ln\frac{1}{R_1R_2}\)</span></td>
+</tr>
+<tr class="even">
+<td>threshold inversion</td>
+<td><span class="math inline">\((N_2-N_1)_{th}=g_{th}8\pi n^2\nu_0^2\tau_{sp}\Delta\nu/c^2\)</span></td>
+</tr>
+<tr class="odd">
+<td>photon lifetime</td>
+<td><span class="math inline">\(\tau_{ph}=\frac{2nL}{c(1-e^{-2\alpha_tL})}\approx\frac{n}{c\alpha_t}\)</span></td>
+</tr>
+<tr class="even">
+<td>output power</td>
+<td><span class="math inline">\(P_o=\frac12A(1-R_1)h\nu N_\text{ph}c/n\)</span></td>
+</tr>
+<tr class="odd">
+<td>finesse</td>
+<td><span class="math inline">\(F=\pi\sqrt R/(1-R)\)</span>, mode width <span class="math inline">\(\Delta\nu_m/F\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="line-shapes-and-pulses-sec-broadening-sec-pulsed" class="level2 g-col-12 g-col-lg-6" data-number="B.5">
+<h2 data-number="B.5" class="anchored" data-anchor-id="line-shapes-and-pulses-sec-broadening-sec-pulsed"><span class="header-section-number">B.5</span> Line shapes and pulses (<a href="broadening.html" class="quarto-xref"><span>Chapter 7</span></a>, <a href="pulsed.html" class="quarto-xref"><span>Chapter 8</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Lorentzian</td>
+<td><span class="math inline">\(g_L=\frac{\gamma/\pi}{(\nu-\nu_0)^2+\gamma^2}\)</span>, FWHM <span class="math inline">\(2\gamma\)</span></td>
+</tr>
+<tr class="even">
+<td>lifetime width</td>
+<td><span class="math inline">\(\Delta\nu=1/2\pi\tau\)</span></td>
+</tr>
+<tr class="odd">
+<td>Gaussian</td>
+<td><span class="math inline">\(g_G=\frac{1}{\sqrt\pi\Gamma}e^{-(\nu-\nu_0)^2/\Gamma^2}\)</span>, FWHM <span class="math inline">\(2\Gamma\sqrt{\ln2}\)</span></td>
+</tr>
+<tr class="even">
+<td>Q-switch extraction</td>
+<td><span class="math inline">\(r\eta=-\ln(1-\eta)\)</span>, <span class="math inline">\(r=N_i/N_{th}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Q-switch peak</td>
+<td><span class="math inline">\(\phi_\text{max}=N_{th}(r-1-\ln r)\)</span></td>
+</tr>
+<tr class="even">
+<td>mode-locked train</td>
+<td>period <span class="math inline">\(2L/c\)</span>, width <span class="math inline">\(\approx1/\Delta\nu\)</span>, peak <span class="math inline">\(\approx N\times\)</span> avg.</td>
+</tr>
+<tr class="odd">
+<td>TEM<span class="math inline">\(_{mn}\)</span></td>
+<td><span class="math inline">\(H_m(\sqrt2x/w)H_n(\sqrt2y/w)e^{-(x^2+y^2)/w^2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="semiconductor-gain-sec-ld-principle-sec-qw" class="level2 g-col-12 g-col-lg-6" data-number="B.6">
+<h2 data-number="B.6" class="anchored" data-anchor-id="semiconductor-gain-sec-ld-principle-sec-qw"><span class="header-section-number">B.6</span> Semiconductor gain (<a href="ld-principle.html" class="quarto-xref"><span>Chapter 9</span></a>, <a href="qw-lasers.html" class="quarto-xref"><span>Chapter 13</span></a>)</h2>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>inversion condition</td>
+<td><span class="math inline">\(E_g&lt;h\nu&lt;E_{Fn}-E_{Fp}=eV\)</span></td>
+</tr>
+<tr class="even">
+<td>gain spectrum</td>
+<td><span class="math inline">\(g=\alpha_0(h\nu)[f_c(E_2)-f_v(E_1)]\)</span></td>
+</tr>
+<tr class="odd">
+<td>near threshold</td>
+<td><span class="math inline">\(g\approx a(n-n_{tr})\)</span> or <span class="math inline">\(g_0\ln(n/n_{tr})\)</span></td>
+</tr>
+<tr class="even">
+<td>facet reflectance</td>
+<td><span class="math inline">\(R=[(n-1)/(n+1)]^2\approx0.32\)</span></td>
+</tr>
+<tr class="odd">
+<td>QW levels</td>
+<td><span class="math inline">\(\varepsilon_n=h^2n^2/8m^*d^2\)</span></td>
+</tr>
+<tr class="even">
+<td>QW emission</td>
+<td><span class="math inline">\(h\nu=E_g+\varepsilon_1+\varepsilon'_1\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="laser-diode-sec-ld-equation-sec-ld-efficiency-sec-ld-structures" class="level2 g-col-12 g-col-lg-6" data-number="B.7">
+<h2 data-number="B.7" class="anchored" data-anchor-id="laser-diode-sec-ld-equation-sec-ld-efficiency-sec-ld-structures"><span class="header-section-number">B.7</span> Laser diode (<a href="ld-equation.html" class="quarto-xref"><span>Chapter 12</span></a>, <a href="ld-efficiency.html" class="quarto-xref"><span>Chapter 11</span></a>, <a href="ld-structures.html" class="quarto-xref"><span>Chapter 10</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>rate equations</td>
+<td><span class="math inline">\(\frac{I}{eLWd}=\frac{n}{\tau_r}+CnN_\text{ph}\)</span>, <span class="math inline">\(\frac{N_\text{ph}}{\tau_{ph}}=CnN_\text{ph}\)</span></td>
+</tr>
+<tr class="even">
+<td>threshold</td>
+<td><span class="math inline">\(n_{th}=1/C\tau_{ph}\)</span>, <span class="math inline">\(I_{th}=eLWd\,n_{th}/\tau_r\)</span>, <span class="math inline">\(\tau_r=1/Bn_{th}\)</span></td>
+</tr>
+<tr class="odd">
+<td>threshold gain</td>
+<td><span class="math inline">\(\Gamma g_{th}=\alpha_t\)</span></td>
+</tr>
+<tr class="even">
+<td>photons</td>
+<td><span class="math inline">\(N_\text{ph}=\tau_{ph}(I-I_{th})/eLWd\)</span></td>
+</tr>
+<tr class="odd">
+<td>output</td>
+<td><span class="math inline">\(P_o=\frac{hc^2\tau_{ph}(1-R)}{2en\lambda L}(I-I_{th})\)</span></td>
+</tr>
+<tr class="even">
+<td>efficiencies</td>
+<td><span class="math inline">\(\eta_\text{slope}=\Delta P_o/\Delta I\)</span>, <span class="math inline">\(\eta_\text{EQE}=\frac{P_o/h\nu}{I/e}\)</span>, <span class="math inline">\(\eta_\text{PCE}=\frac{P_o}{IV}\)</span></td>
+</tr>
+<tr class="odd">
+<td>EDQE</td>
+<td><span class="math inline">\(\eta_\text{EDQE}=\eta_\text{EE}\eta_\text{IDQE}\)</span>, <span class="math inline">\(\eta_\text{EE}=\frac{(1/2L)\ln(1/R_1)}{\alpha_t}\)</span></td>
+</tr>
+<tr class="even">
+<td>temperature</td>
+<td><span class="math inline">\(I_{th}=Ae^{T/T_0}\)</span>, <span class="math inline">\(d\lambda_m/dT=(\lambda/n)dn/dT\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="single-frequency-lasers-and-amplifiers-sec-single-mode-sec-soa" class="level2 g-col-12 g-col-lg-6" data-number="B.8">
+<h2 data-number="B.8" class="anchored" data-anchor-id="single-frequency-lasers-and-amplifiers-sec-single-mode-sec-soa"><span class="header-section-number">B.8</span> Single-frequency lasers and amplifiers (<a href="single-mode.html" class="quarto-xref"><span>Chapter 14</span></a>, <a href="soa-sled.html" class="quarto-xref"><span>Chapter 15</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Bragg wavelength</td>
+<td><span class="math inline">\(\lambda_B=2n\Lambda/q\)</span></td>
+</tr>
+<tr class="even">
+<td>DFB modes (Kasap)</td>
+<td><span class="math inline">\(\lambda_m=\lambda_B\pm\frac{\lambda_B^2}{2nL}(m+1)\)</span></td>
+</tr>
+<tr class="odd">
+<td>grating reflectance</td>
+<td><span class="math inline">\(R=\tanh^2\kappa L\)</span>, <span class="math inline">\(\kappa=\pi\Delta n/\lambda\)</span></td>
+</tr>
+<tr class="even">
+<td>quarter-wave stack</td>
+<td><span class="math inline">\(R=\left(\frac{1-b}{1+b}\right)^2\)</span>, <span class="math inline">\(b=\frac{n_\text{in}}{n_\text{sub}}\left(\frac{n_L}{n_H}\right)^{2N}\)</span></td>
+</tr>
+<tr class="odd">
+<td>FP amplifier ripple</td>
+<td><span class="math inline">\(\left[\frac{1+\sqrt{R_1R_2}G_s}{1-\sqrt{R_1R_2}G_s}\right]^2\)</span></td>
+</tr>
+<tr class="even">
+<td>saturation</td>
+<td><span class="math inline">\(G=G_0\exp[-(G-1)P_\text{in}/P_\text{sat}]\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dynamics-linewidth-resonators-sec-modulation-sec-linewidth-sec-resonators" class="level2 g-col-12 g-col-lg-6" data-number="B.9">
+<h2 data-number="B.9" class="anchored" data-anchor-id="dynamics-linewidth-resonators-sec-modulation-sec-linewidth-sec-resonators"><span class="header-section-number">B.9</span> Dynamics, linewidth, resonators (<a href="modulation.html" class="quarto-xref"><span>Chapter 16</span></a>, <a href="linewidth-noise.html" class="quarto-xref"><span>Chapter 19</span></a>, <a href="resonators.html" class="quarto-xref"><span>Chapter 18</span></a>)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>relaxation frequency</td>
+<td><span class="math inline">\(f_r=\frac{1}{2\pi\sqrt{\tau\tau_{ph}}}\left(\frac{I_1}{I_{th}}-1\right)^{1/2}\)</span></td>
+</tr>
+<tr class="even">
+<td>turn-on delay</td>
+<td><span class="math inline">\(t_d=\tau\ln\frac{I_2-I_1}{I_2-I_{th}}\)</span></td>
+</tr>
+<tr class="odd">
+<td>linewidth</td>
+<td><span class="math inline">\(\Delta\nu=\frac{\pi h\nu\Delta\nu_c^2n_{sp}}{P}(1+\alpha_H^2)\)</span>, <span class="math inline">\(\Delta\nu_c=\frac{1}{2\pi\tau_{ph}}\)</span></td>
+</tr>
+<tr class="even">
+<td>chirp</td>
+<td><span class="math inline">\(\Delta\nu=\frac{\alpha_H}{4\pi}\frac{d\ln P}{dt}\)</span></td>
+</tr>
+<tr class="odd">
+<td>stability</td>
+<td><span class="math inline">\(0\le g_1g_2\le1\)</span>, <span class="math inline">\(g_i=1-L/R_i\)</span></td>
+</tr>
+<tr class="even">
+<td>TEM frequencies</td>
+<td><span class="math inline">\(\nu_{qmn}=\frac{c}{2nL}\left[q+(m+n+1)\frac{\arccos\sqrt{g_1g_2}}{\pi}\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td>hologram</td>
+<td><span class="math inline">\(U_rI=U_r(\lvert U_r\rvert^2+\lvert U\rvert^2)+\lvert U_r\rvert^2U+U_r^2U^*\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+
+
+<!-- -->
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter4\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./running.html" class="pagination-link" aria-label="Running the notebooks">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Formula sheet {#sec-cheatsheet}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>All the key relations of Chapter 4 on one page. Each block links to the chapter where the formula is derived and used.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Use your browser's *Print → Save as PDF* for a paper copy.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="false"}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Symbols and constants</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>$N_1,N_2$ lower/upper level populations · $N_0$ total ion density · $\tau_{sp}$ spontaneous lifetime · $\rho(\nu)$ energy density</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>per unit frequency · $\sigma_{ab},\sigma_{em}$ cross sections · $g$ gain coefficient · $\alpha_s$ internal loss · $\alpha_t$ total</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>loss · $R_1,R_2$ mirror reflectances · $L$ cavity length · $n$ (group) index · $\Gamma$ confinement factor · $\tau_{ph}$ photon</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>lifetime · $n_{th}$, $I_{th}$ threshold carrier density and current · $\tau_r$ radiative lifetime · $\tau$ carrier lifetime</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>$h=6.626\times10^{-34}$ J s · $hc=1.2398$ eV µm · $k_BT=25.85$ meV at 300 K · $e=1.602\times10^{-19}$ C · 1 cm⁻¹ = 100 m⁻¹</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>::::: {.grid}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Radiation and Einstein coefficients (@sec-blackbody, @sec-einstein)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> mode density (2 polarisations) <span class="pp">|</span> $8\pi n^3\nu^2/c^3$ <span class="pp">|</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Planck <span class="pp">|</span> $\rho(\nu)=\dfrac{8\pi h\nu^3}{c^3}\dfrac{1}{e^{h\nu/k_BT}-1}$ <span class="pp">|</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rates <span class="pp">|</span> $R_{12}=B_{12}N_1\rho$, $R_{21}=A_{21}N_2+B_{21}N_2\rho$ <span class="pp">|</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Einstein relations <span class="pp">|</span> $B_{12}=B_{21}$, $A_{21}/B_{21}=8\pi h\nu^3n^3/c^3$ <span class="pp">|</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> stim./absorption <span class="pp">|</span> $N_2/N_1$ → population inversion <span class="pp">|</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> stim./spont. <span class="pp">|</span> $c^3\rho/8\pi h\nu^3$ = photons per mode → cavity <span class="pp">|</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> spontaneous lifetime <span class="pp">|</span> $\tau_{sp}=1/A_{21}$ <span class="pp">|</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> two-level, pumped <span class="pp">|</span> $N_2/N_0=W\tau/(1+2W\tau)&lt;\tfrac12$ <span class="pp">|</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pumping (@sec-pumping)</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3-level inversion <span class="pp">|</span> $(N_2-N_1)/N_0=(W_p\tau-1)/(W_p\tau+1)$ <span class="pp">|</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4-level inversion <span class="pp">|</span> $\approx W_p\tau_{21}$ <span class="pp">|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> min. pump, 3-level <span class="pp">|</span> $P_{p,\min}/V=(N_0/2)h\nu_{13}/\tau_{sp}$ <span class="pp">|</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> quantum efficiency <span class="pp">|</span> $\lambda_p/\lambda_\text{laser}$ <span class="pp">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gain and the EDFA (@sec-edfa)</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> absorption <span class="pp">|</span> $\alpha=\sigma_{ab}N_1$ <span class="pp">|</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> gain coefficient <span class="pp">|</span> $g=\sigma_{em}N_2-\sigma_{ab}N_1=<span class="co">[</span><span class="ot">\sigma_{em}x-\sigma_{ab}(1-x)</span><span class="co">]</span>N_0$ <span class="pp">|</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> gain <span class="pp">|</span> $G=e^{gL}$, $G_\text{dB}=4.343\,gL$ <span class="pp">|</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> power conversion <span class="pp">|</span> $\eta_\text{PCE}=(P_{s,o}-P_{s,i})/P_p\le\lambda_p/\lambda_s$ <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> gain vs PCE <span class="pp">|</span> $G=1+\eta_\text{PCE}P_p/P_{s,i}$ <span class="pp">|</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> max. input <span class="pp">|</span> $P_{s,i}&lt;(\lambda_p/\lambda_s)P_p/(G-1)$ <span class="pp">|</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> pump length <span class="pp">|</span> $\Gamma P_p\approx AN_0h\nu_pL_p/\tau_{sp}$ <span class="pp">|</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> inversion factor <span class="pp">|</span> $n_{sp}=\sigma_{em}N_2/(\sigma_{em}N_2-\sigma_{ab}N_1)$ <span class="pp">|</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> noise figure <span class="pp">|</span> $\text{NF}\approx2n_{sp}(G-1)/G+1/G\ge3$ dB <span class="pp">|</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ASE power <span class="pp">|</span> $P_\text{ASE}=2n_{sp}(G-1)h\nu B_o$ <span class="pp">|</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cavity, threshold, output (@sec-gas, @sec-threshold)</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> longitudinal modes <span class="pp">|</span> $m\lambda_m/2n=L$, $\nu_m=mc/2nL$ <span class="pp">|</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> mode spacing <span class="pp">|</span> $\Delta\nu_m=c/2nL$, $\Delta\lambda_m\approx\lambda^2/2nL$ <span class="pp">|</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Doppler FWHM <span class="pp">|</span> $\Delta\nu=2\nu_0\sqrt{2k_BT\ln2/Mc^2}$ <span class="pp">|</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> gain vs inversion <span class="pp">|</span> $g(\nu_0)\approx(N_2-N_1)B_{21}nh\nu_0/c\Delta\nu$ <span class="pp">|</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> threshold gain <span class="pp">|</span> $g_{th}=\alpha_t=\alpha_s+\frac{1}{2L}\ln\frac{1}{R_1R_2}$ <span class="pp">|</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> threshold inversion <span class="pp">|</span> $(N_2-N_1)_{th}=g_{th}8\pi n^2\nu_0^2\tau_{sp}\Delta\nu/c^2$ <span class="pp">|</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> photon lifetime <span class="pp">|</span> $\tau_{ph}=\frac{2nL}{c(1-e^{-2\alpha_tL})}\approx\frac{n}{c\alpha_t}$ <span class="pp">|</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> output power <span class="pp">|</span> $P_o=\frac12A(1-R_1)h\nu N_\text{ph}c/n$ <span class="pp">|</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> finesse <span class="pp">|</span> $F=\pi\sqrt R/(1-R)$, mode width $\Delta\nu_m/F$ <span class="pp">|</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="fu">## Line shapes and pulses (@sec-broadening, @sec-pulsed)</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Lorentzian <span class="pp">|</span> $g_L=\frac{\gamma/\pi}{(\nu-\nu_0)^2+\gamma^2}$, FWHM $2\gamma$ <span class="pp">|</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> lifetime width <span class="pp">|</span> $\Delta\nu=1/2\pi\tau$ <span class="pp">|</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gaussian <span class="pp">|</span> $g_G=\frac{1}{\sqrt\pi\Gamma}e^{-(\nu-\nu_0)^2/\Gamma^2}$, FWHM $2\Gamma\sqrt{\ln2}$ <span class="pp">|</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Q-switch extraction <span class="pp">|</span> $r\eta=-\ln(1-\eta)$, $r=N_i/N_{th}$ <span class="pp">|</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Q-switch peak <span class="pp">|</span> $\phi_\text{max}=N_{th}(r-1-\ln r)$ <span class="pp">|</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> mode-locked train <span class="pp">|</span> period $2L/c$, width $\approx1/\Delta\nu$, peak $\approx N\times$ avg. <span class="pp">|</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TEM$_{mn}$ <span class="pp">|</span> $H_m(\sqrt2x/w)H_n(\sqrt2y/w)e^{-(x^2+y^2)/w^2}$ <span class="pp">|</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## Semiconductor gain (@sec-ld-principle, @sec-qw)</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> inversion condition <span class="pp">|</span> $E_g&lt;h\nu&lt;E_{Fn}-E_{Fp}=eV$ <span class="pp">|</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> gain spectrum <span class="pp">|</span> $g=\alpha_0(h\nu)<span class="co">[</span><span class="ot">f_c(E_2)-f_v(E_1)</span><span class="co">]</span>$ <span class="pp">|</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> near threshold <span class="pp">|</span> $g\approx a(n-n_{tr})$ or $g_0\ln(n/n_{tr})$ <span class="pp">|</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> facet reflectance <span class="pp">|</span> $R=<span class="co">[</span><span class="ot">(n-1)/(n+1)</span><span class="co">]</span>^2\approx0.32$ <span class="pp">|</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> QW levels <span class="pp">|</span> $\varepsilon_n=h^2n^2/8m^*d^2$ <span class="pp">|</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> QW emission <span class="pp">|</span> $h\nu=E_g+\varepsilon_1+\varepsilon'_1$ <span class="pp">|</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="fu">## Laser diode (@sec-ld-equation, @sec-ld-efficiency, @sec-ld-structures)</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> rate equations <span class="pp">|</span> $\frac{I}{eLWd}=\frac{n}{\tau_r}+CnN_\text{ph}$, $\frac{N_\text{ph}}{\tau_{ph}}=CnN_\text{ph}$ <span class="pp">|</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> threshold <span class="pp">|</span> $n_{th}=1/C\tau_{ph}$, $I_{th}=eLWd\,n_{th}/\tau_r$, $\tau_r=1/Bn_{th}$ <span class="pp">|</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> threshold gain <span class="pp">|</span> $\Gamma g_{th}=\alpha_t$ <span class="pp">|</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> photons <span class="pp">|</span> $N_\text{ph}=\tau_{ph}(I-I_{th})/eLWd$ <span class="pp">|</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> output <span class="pp">|</span> $P_o=\frac{hc^2\tau_{ph}(1-R)}{2en\lambda L}(I-I_{th})$ <span class="pp">|</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> efficiencies <span class="pp">|</span> $\eta_\text{slope}=\Delta P_o/\Delta I$, $\eta_\text{EQE}=\frac{P_o/h\nu}{I/e}$, $\eta_\text{PCE}=\frac{P_o}{IV}$ <span class="pp">|</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> EDQE <span class="pp">|</span> $\eta_\text{EDQE}=\eta_\text{EE}\eta_\text{IDQE}$, $\eta_\text{EE}=\frac{(1/2L)\ln(1/R_1)}{\alpha_t}$ <span class="pp">|</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> temperature <span class="pp">|</span> $I_{th}=Ae^{T/T_0}$, $d\lambda_m/dT=(\lambda/n)dn/dT$ <span class="pp">|</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="fu">## Single-frequency lasers and amplifiers (@sec-single-mode, @sec-soa)</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bragg wavelength <span class="pp">|</span> $\lambda_B=2n\Lambda/q$ <span class="pp">|</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> DFB modes (Kasap) <span class="pp">|</span> $\lambda_m=\lambda_B\pm\frac{\lambda_B^2}{2nL}(m+1)$ <span class="pp">|</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> grating reflectance <span class="pp">|</span> $R=\tanh^2\kappa L$, $\kappa=\pi\Delta n/\lambda$ <span class="pp">|</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> quarter-wave stack <span class="pp">|</span> $R=\left(\frac{1-b}{1+b}\right)^2$, $b=\frac{n_\text{in}}{n_\text{sub}}\left(\frac{n_L}{n_H}\right)^{2N}$ <span class="pp">|</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> FP amplifier ripple <span class="pp">|</span> $\left<span class="co">[</span><span class="ot">\frac{1+\sqrt{R_1R_2}G_s}{1-\sqrt{R_1R_2}G_s}\right</span><span class="co">]</span>^2$ <span class="pp">|</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> saturation <span class="pp">|</span> $G=G_0\exp<span class="co">[</span><span class="ot">-(G-1)P_\text{in}/P_\text{sat}</span><span class="co">]</span>$ <span class="pp">|</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>:::: {.g-col-12 .g-col-lg-6}</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dynamics, linewidth, resonators (@sec-modulation, @sec-linewidth, @sec-resonators)</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> relaxation frequency <span class="pp">|</span> $f_r=\frac{1}{2\pi\sqrt{\tau\tau_{ph}}}\left(\frac{I_1}{I_{th}}-1\right)^{1/2}$ <span class="pp">|</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> turn-on delay <span class="pp">|</span> $t_d=\tau\ln\frac{I_2-I_1}{I_2-I_{th}}$ <span class="pp">|</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> linewidth <span class="pp">|</span> $\Delta\nu=\frac{\pi h\nu\Delta\nu_c^2n_{sp}}{P}(1+\alpha_H^2)$, $\Delta\nu_c=\frac{1}{2\pi\tau_{ph}}$ <span class="pp">|</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> chirp <span class="pp">|</span> $\Delta\nu=\frac{\alpha_H}{4\pi}\frac{d\ln P}{dt}$ <span class="pp">|</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> stability <span class="pp">|</span> $0\le g_1g_2\le1$, $g_i=1-L/R_i$ <span class="pp">|</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> TEM frequencies <span class="pp">|</span> $\nu_{qmn}=\frac{c}{2nL}\left<span class="co">[</span><span class="ot">q+(m+n+1)\frac{\arccos\sqrt{g_1g_2}}{\pi}\right</span><span class="co">]</span>$ <span class="pp">|</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> hologram <span class="pp">|</span> $U_rI=U_r(\lvert U_r\rvert^2+\lvert U\rvert^2)+\lvert U_r\rvert^2U+U_r^2U^*$ <span class="pp">|</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>:::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/cheatsheet.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

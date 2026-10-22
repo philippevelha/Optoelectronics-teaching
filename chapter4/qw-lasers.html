@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>13&nbsp; Quantum-well lasers – Stimulated Emission Devices: Optical Amplifiers and Lasers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./single-mode.html" rel="next">
+<link href="./ld-equation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ld-principle.html">Semiconductor lasers</a></li><li class="breadcrumb-item"><a href="./qw-lasers.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stimulated Emission Devices: Optical Amplifiers and Lasers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter4/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stimulated emission</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blackbody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./einstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Absorption, spontaneous and stimulated emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Three- and four-level lasers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Optical amplifiers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./edfa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Optical gain and the erbium-doped fiber amplifier</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laser oscillators</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gas-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gas lasers and longitudinal modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./threshold.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Threshold, output power and photon lifetime</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./broadening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transverse modes and line broadening</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pulsed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Q-switching and mode-locking</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor lasers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laser diode principle and optical gain</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laser diode efficiencies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-equation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The laser diode equation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qw-lasers.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./single-mode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Single-frequency lasers: DBR, DFB, external cavity, VCSEL</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./soa-sled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modulation of laser diodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./holography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Holography</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resonators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linewidth-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Going further: laser linewidth, noise and chirp</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">13.1</span> Key relations</a></li>
+  <li><a href="#quantum-well-levels-and-emission-wavelength" id="toc-quantum-well-levels-and-emission-wavelength" class="nav-link" data-scroll-target="#quantum-well-levels-and-emission-wavelength"><span class="header-section-number">13.2</span> Quantum-well levels and emission wavelength</a></li>
+  <li><a href="#worked-example-slides-137139-recomputed" id="toc-worked-example-slides-137139-recomputed" class="nav-link" data-scroll-target="#worked-example-slides-137139-recomputed"><span class="header-section-number">13.3</span> Worked example (slides 137–139), recomputed</a></li>
+  <li><a href="#optical-confinement-sqw-mqw-and-sch-slides-135136" id="toc-optical-confinement-sqw-mqw-and-sch-slides-135136" class="nav-link" data-scroll-target="#optical-confinement-sqw-mqw-and-sch-slides-135136"><span class="header-section-number">13.4</span> Optical confinement: SQW, MQW and SCH (slides 135–136)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">13.5</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/qw-lasers.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ld-principle.html">Semiconductor lasers</a></li><li class="breadcrumb-item"><a href="./qw-lasers.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-qw" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter4/notebooks/qw-lasers.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 135–136 (single and multiple quantum-well lasers, step-like density of states, light confinement) and 137–139 (worked example: levels and emission wavelength of a GaAs quantum well).</em></p>
+<section id="key-relations" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">13.1</span> Key relations</h2>
+<p>When the active layer is thinner than about 20 nm, the motion of the carriers across it is quantised (Chapter 3, quantum wells). For an infinite well of width <span class="math inline">\(d\)</span> the electron and hole levels above the band edges are</p>
+<p><span class="math display">\[
+\varepsilon_n=\frac{h^2n^2}{8m_e^*d^2},\qquad \varepsilon'_{n'}=\frac{h^2n'^2}{8m_h^*d^2},
+\]</span></p>
+<p>and the radiative transitions obey the selection rule <span class="math inline">\(\Delta n=n-n'=0\)</span>. The emitted photon is therefore</p>
+<p><span class="math display">\[
+h\nu=E_g+\varepsilon_1+\varepsilon'_1 .
+\]</span></p>
+<p>The density of states becomes a staircase that is <strong>finite at the band edge</strong> (slide 135c). Carriers fill the first sub-band instead of spreading over a <span class="math inline">\(\sqrt E\)</span> band, so inversion is reached with fewer carriers, the gain spectrum is narrower and the threshold current is lower. The well is too thin to guide light: a single quantum well (SQW) overlaps only a few percent of the mode. Multiple quantum wells (MQW, slide 136) or a separate-confinement heterostructure (SCH, a wider waveguide around the well) restore the optical confinement.</p>
+</section>
+<section id="quantum-well-levels-and-emission-wavelength" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="quantum-well-levels-and-emission-wavelength"><span class="header-section-number">13.2</span> Quantum-well levels and emission wavelength</h2>
+<p>The panel solves the finite well (BenDaniel–Duke boundary conditions, same solver as Chapter 3) for electrons and heavy holes and compares with the infinite-well formula used on the slides.</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="44" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 43;"><span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>viewof qw <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="dt">d</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"well width d (nm)"</span>})<span class="op">,</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Eg</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.7</span><span class="op">,</span> <span class="fl">3.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.42</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"well bandgap E_g (eV)"</span>})<span class="op">,</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dEc</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.6</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.28</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"conduction-band offset ΔE_c (eV)"</span>})<span class="op">,</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dEv</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.4</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.16</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"valence-band offset ΔE_v (eV)"</span>})<span class="op">,</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">me</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.07</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.001</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"electron mass m_e*/m_e"</span>})<span class="op">,</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mh</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="fl">1.0</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.50</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"heavy-hole mass m_h*/m_e"</span>})</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="57" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 56;"><span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>qwOut <span class="op">=</span> {</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hbar <span class="op">=</span> <span class="fl">1.054571817e-34</span><span class="op">,</span> me0 <span class="op">=</span> <span class="fl">9.1093837e-31</span><span class="op">,</span> q <span class="op">=</span> <span class="fl">1.602176634e-19</span><span class="op">,</span> h <span class="op">=</span> <span class="fl">6.62607015e-34</span><span class="op">,</span> d <span class="op">=</span> qw<span class="op">.</span><span class="at">d</span><span class="op">*</span><span class="fl">1e-9</span><span class="op">;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> solve <span class="op">=</span> (V0<span class="op">,</span> m) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> k <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span><span class="cn">E</span><span class="op">*</span>q)<span class="op">/</span>hbar<span class="op">,</span> K <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span>(V0 <span class="op">-</span> <span class="cn">E</span>)<span class="op">*</span>q)<span class="op">/</span>hbar<span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> fs <span class="op">=</span> [<span class="cn">E</span> <span class="kw">=&gt;</span> <span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>) <span class="op">-</span> <span class="fu">K</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>)<span class="op">,</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>) <span class="op">+</span> <span class="fu">K</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>)]<span class="op">;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> lv <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> f <span class="kw">of</span> fs) { <span class="kw">const</span> N <span class="op">=</span> <span class="dv">4000</span><span class="op">;</span> <span class="kw">let</span> Ep <span class="op">=</span> V0<span class="op">*</span><span class="fl">1e-7</span><span class="op">,</span> fp <span class="op">=</span> <span class="fu">f</span>(Ep)<span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> N<span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> V0<span class="op">*</span>(<span class="fl">1e-7</span> <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> <span class="fl">2e-7</span>)<span class="op">*</span>i<span class="op">/</span>N)<span class="op">,</span> fe <span class="op">=</span> <span class="fu">f</span>(<span class="cn">E</span>)<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (fp<span class="op">*</span>fe <span class="op">&lt;</span> <span class="dv">0</span>) { <span class="kw">let</span> a <span class="op">=</span> Ep<span class="op">,</span> b <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> j<span class="op">++</span>) { <span class="kw">const</span> c <span class="op">=</span> (a <span class="op">+</span> b)<span class="op">/</span><span class="dv">2</span><span class="op">;</span> <span class="cf">if</span> (<span class="fu">f</span>(a)<span class="op">*</span><span class="fu">f</span>(c) <span class="op">&lt;=</span> <span class="dv">0</span>) b <span class="op">=</span> c<span class="op">;</span> <span class="cf">else</span> a <span class="op">=</span> c<span class="op">;</span> } lv<span class="op">.</span><span class="fu">push</span>((a <span class="op">+</span> b)<span class="op">/</span><span class="dv">2</span>)<span class="op">;</span> }</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        Ep <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> fp <span class="op">=</span> fe<span class="op">;</span> } }</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lv<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)<span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> el <span class="op">=</span> <span class="fu">solve</span>(qw<span class="op">.</span><span class="at">dEc</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span>)<span class="op">,</span> hh <span class="op">=</span> <span class="fu">solve</span>(qw<span class="op">.</span><span class="at">dEv</span><span class="op">,</span> qw<span class="op">.</span><span class="at">mh</span>)<span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> inf <span class="op">=</span> (n<span class="op">,</span> m) <span class="kw">=&gt;</span> (h<span class="op">*</span>n)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">8</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span>d<span class="op">*</span>d)<span class="op">/</span>q<span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Efin <span class="op">=</span> qw<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> el[<span class="dv">0</span>] <span class="op">+</span> hh[<span class="dv">0</span>]<span class="op">,</span> Einf <span class="op">=</span> qw<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> <span class="fu">inf</span>(<span class="dv">1</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span>) <span class="op">+</span> <span class="fu">inf</span>(<span class="dv">1</span><span class="op">,</span> qw<span class="op">.</span><span class="at">mh</span>)<span class="op">;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {el<span class="op">,</span> hh<span class="op">,</span> Efin<span class="op">,</span> Einf<span class="op">,</span> <span class="dt">lamFin</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>Efin<span class="op">,</span> <span class="dt">lamInf</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>Einf<span class="op">,</span> <span class="dt">lamBulk</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>qw<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> <span class="dt">inf1</span><span class="op">:</span> <span class="fu">inf</span>(<span class="dv">1</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span>)<span class="op">,</span> <span class="dt">inf2</span><span class="op">:</span> <span class="fu">inf</span>(<span class="dv">2</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span>)<span class="op">,</span> <span class="dt">infh</span><span class="op">:</span> <span class="fu">inf</span>(<span class="dv">1</span><span class="op">,</span> qw<span class="op">.</span><span class="at">mh</span>)}<span class="op">;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;electron levels (finite well): </span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">el</span><span class="op">.</span><span class="fu">map</span>((e<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="vs">`ε&lt;sub&gt;</span><span class="sc">${</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="vs">&lt;/sub&gt; = &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>e)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> meV&lt;/b&gt;`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="vs">infinite well: ε₁ = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>qwOut<span class="op">.</span><span class="at">inf1</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">, ε₂ = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>qwOut<span class="op">.</span><span class="at">inf2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> meV&lt;br&gt;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="vs">heavy-hole levels: </span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">hh</span><span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">4</span>)<span class="op">.</span><span class="fu">map</span>((e<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="vs">`ε'&lt;sub&gt;</span><span class="sc">${</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="vs">&lt;/sub&gt; = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>e)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}${</span>qwOut<span class="op">.</span><span class="at">hh</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">4</span> <span class="op">?</span> <span class="st">", …"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs"> meV · infinite well ε'₁ = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>qwOut<span class="op">.</span><span class="at">infh</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> meV&lt;br&gt;</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="vs">emission: bulk λ&lt;sub&gt;g&lt;/sub&gt; = &lt;b&gt;</span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">lamBulk</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt; · QW (finite) &lt;b&gt;</span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">lamFin</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt; (shift </span><span class="sc">${</span>(qwOut<span class="op">.</span><span class="at">lamBulk</span> <span class="op">-</span> qwOut<span class="op">.</span><span class="at">lamFin</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm) ·</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="vs">QW (infinite) </span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">lamInf</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm (shift </span><span class="sc">${</span>(qwOut<span class="op">.</span><span class="at">lamBulk</span> <span class="op">-</span> qwOut<span class="op">.</span><span class="at">lamInf</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm)&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="83" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 82;"><span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>qwScan <span class="op">=</span> {</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hbar <span class="op">=</span> <span class="fl">1.054571817e-34</span><span class="op">,</span> me0 <span class="op">=</span> <span class="fl">9.1093837e-31</span><span class="op">,</span> q <span class="op">=</span> <span class="fl">1.602176634e-19</span><span class="op">,</span> h <span class="op">=</span> <span class="fl">6.62607015e-34</span><span class="op">;</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> first <span class="op">=</span> (V0<span class="op">,</span> m<span class="op">,</span> d) <span class="kw">=&gt;</span> { <span class="kw">const</span> k <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span><span class="cn">E</span><span class="op">*</span>q)<span class="op">/</span>hbar<span class="op">,</span> K <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span>(V0 <span class="op">-</span> <span class="cn">E</span>)<span class="op">*</span>q)<span class="op">/</span>hbar<span class="op">;</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> f <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>) <span class="op">-</span> <span class="fu">K</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>)<span class="op">;</span> <span class="kw">let</span> a <span class="op">=</span> V0<span class="op">*</span><span class="fl">1e-7</span><span class="op">,</span> b <span class="op">=</span> V0<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> <span class="fl">1e-7</span>)<span class="op">;</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>    <span class="co">// the ground state is the first root of the even equation; bracket it by scanning</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> Ep <span class="op">=</span> a<span class="op">,</span> fp <span class="op">=</span> <span class="fu">f</span>(a)<span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">2000</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> a <span class="op">+</span> (b <span class="op">-</span> a)<span class="op">*</span>i<span class="op">/</span><span class="dv">2000</span><span class="op">,</span> fe <span class="op">=</span> <span class="fu">f</span>(<span class="cn">E</span>)<span class="op">;</span> <span class="cf">if</span> (fp<span class="op">*</span>fe <span class="op">&lt;</span> <span class="dv">0</span>) { b <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> a <span class="op">=</span> Ep<span class="op">;</span> <span class="cf">break</span><span class="op">;</span> } Ep <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> fp <span class="op">=</span> fe<span class="op">;</span> }</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> j<span class="op">++</span>) { <span class="kw">const</span> c <span class="op">=</span> (a <span class="op">+</span> b)<span class="op">/</span><span class="dv">2</span><span class="op">;</span> <span class="cf">if</span> (<span class="fu">f</span>(a)<span class="op">*</span><span class="fu">f</span>(c) <span class="op">&lt;=</span> <span class="dv">0</span>) b <span class="op">=</span> c<span class="op">;</span> <span class="cf">else</span> a <span class="op">=</span> c<span class="op">;</span> } <span class="cf">return</span> (a <span class="op">+</span> b)<span class="op">/</span><span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> w <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> w <span class="op">&lt;=</span> <span class="dv">30</span><span class="op">;</span> w <span class="op">+=</span> <span class="fl">0.5</span>) {</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> d <span class="op">=</span> w<span class="op">*</span><span class="fl">1e-9</span><span class="op">,</span> Ef <span class="op">=</span> qw<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> <span class="fu">first</span>(qw<span class="op">.</span><span class="at">dEc</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span><span class="op">,</span> d) <span class="op">+</span> <span class="fu">first</span>(qw<span class="op">.</span><span class="at">dEv</span><span class="op">,</span> qw<span class="op">.</span><span class="at">mh</span><span class="op">,</span> d)<span class="op">;</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Ei <span class="op">=</span> qw<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> (h<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">8</span><span class="op">*</span>qw<span class="op">.</span><span class="at">me</span><span class="op">*</span>me0<span class="op">*</span>d<span class="op">*</span>d) <span class="op">+</span> h<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">8</span><span class="op">*</span>qw<span class="op">.</span><span class="at">mh</span><span class="op">*</span>me0<span class="op">*</span>d<span class="op">*</span>d))<span class="op">/</span>q<span class="op">;</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>    out<span class="op">.</span><span class="fu">push</span>({w<span class="op">,</span> <span class="dt">lam</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>Ef<span class="op">,</span> <span class="dt">who</span><span class="op">:</span> <span class="st">"finite well"</span>}<span class="op">,</span> {w<span class="op">,</span> <span class="dt">lam</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>Ei<span class="op">,</span> <span class="dt">who</span><span class="op">:</span> <span class="st">"infinite well"</span>})<span class="op">;</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"well width d (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"emission wavelength (nm)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#e34948"</span>]}<span class="op">,</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(qwScan<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"who"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleY</span>([qwOut<span class="op">.</span><span class="at">lamBulk</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">ruleX</span>([qw<span class="op">.</span><span class="at">d</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"2,3"</span>})]</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p>The infinite well overestimates the confinement energy, badly so for thin wells: below 5 nm it predicts emission far below the barrier gap, which is impossible. The finite well saturates at the barrier bandgap.</p>
+</section>
+<section id="worked-example-slides-137139-recomputed" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="worked-example-slides-137139-recomputed"><span class="header-section-number">13.3</span> Worked example (slides 137–139), recomputed</h2>
+<blockquote class="blockquote">
+<p>GaAs well, <span class="math inline">\(d=10\)</span> nm, between Al₀.₃₃Ga₀.₆₇As barriers with offsets <span class="math inline">\(\Delta E_c=0.28\)</span> eV and <span class="math inline">\(\Delta E_v=0.16\)</span> eV, <span class="math inline">\(m_e^*=0.07m_e\)</span>, <span class="math inline">\(m_h^*=0.50m_e\)</span>, <span class="math inline">\(E_g=1.42\)</span> eV. Find the first two electron levels, the first hole level and the emission wavelength shift with respect to bulk GaAs (infinite well). The slide also quotes the finite-well values.</p>
+</blockquote>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">10e-9</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>e_inf <span class="op">=</span> lz.qw_infinite([<span class="dv">1</span>, <span class="dv">2</span>], d, <span class="fl">0.07</span>)<span class="op">;</span> h_inf <span class="op">=</span> lz.qw_infinite(<span class="dv">1</span>, d, <span class="fl">0.50</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>e_fin <span class="op">=</span> lz.qw_finite(d, <span class="fl">0.28</span>, <span class="fl">0.07</span>)<span class="op">;</span> h_fin <span class="op">=</span> lz.qw_finite(d, <span class="fl">0.16</span>, <span class="fl">0.50</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>lg <span class="op">=</span> lz.wavelength_from_eV(<span class="fl">1.42</span>)<span class="op">*</span><span class="fl">1e9</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>li <span class="op">=</span> lz.wavelength_from_eV(<span class="fl">1.42</span> <span class="op">+</span> e_inf[<span class="dv">0</span>] <span class="op">+</span> h_inf)<span class="op">*</span><span class="fl">1e9</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>lf <span class="op">=</span> lz.wavelength_from_eV(<span class="fl">1.42</span> <span class="op">+</span> e_fin[<span class="dv">0</span>] <span class="op">+</span> h_fin[<span class="dv">0</span>])<span class="op">*</span><span class="fl">1e9</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(<span class="st">"ε₁, ε₂ (eV)"</span>, <span class="ss">f"</span><span class="sc">{</span>e_inf[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>e_inf[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>, <span class="st">"0.0537, 0.215"</span>, <span class="ss">f"</span><span class="sc">{</span>e_fin[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>e_fin[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>, <span class="st">"0.031, 0.121"</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"ε'₁ (eV)"</span>, <span class="ss">f"</span><span class="sc">{</span>h_inf<span class="sc">:.4f}</span><span class="ss">"</span>, <span class="st">"0.0075"</span>, <span class="ss">f"</span><span class="sc">{</span>h_fin[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>, <span class="st">"0.007"</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"λ bulk (nm)"</span>, <span class="ss">f"</span><span class="sc">{</span>lg<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"874"</span>, <span class="ss">f"</span><span class="sc">{</span>lg<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"874"</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"λ QW (nm)"</span>, <span class="ss">f"</span><span class="sc">{</span>li<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"838"</span>, <span class="ss">f"</span><span class="sc">{</span>lf<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"848"</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"shift λ_g − λ_QW (nm)"</span>, <span class="ss">f"</span><span class="sc">{</span>lg <span class="op">-</span> li<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"36"</span>, <span class="ss">f"</span><span class="sc">{</span>lg <span class="op">-</span> lf<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"26"</span>)],</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"quantity"</span>, <span class="st">"infinite well"</span>, <span class="st">"slide (infinite)"</span>, <span class="st">"finite well"</span>, <span class="st">"slide (finite)"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-qw-example" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-qw-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.1: Slides 137–139 recomputed. The finite-well values of the slide (0.031, 0.121, 0.007 eV, 848 nm) are close to the direct solution.
+</figcaption>
+<div aria-describedby="tbl-qw-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">quantity</th>
+<th data-quarto-table-cell-role="th">infinite well</th>
+<th data-quarto-table-cell-role="th">slide (infinite)</th>
+<th data-quarto-table-cell-role="th">finite well</th>
+<th data-quarto-table-cell-role="th">slide (finite)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>ε₁, ε₂ (eV)</td>
+<td>0.0537, 0.2149</td>
+<td>0.0537, 0.215</td>
+<td>0.0326, 0.1260</td>
+<td>0.031, 0.121</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>ε'₁ (eV)</td>
+<td>0.0075</td>
+<td>0.0075</td>
+<td>0.0058</td>
+<td>0.007</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>λ bulk (nm)</td>
+<td>873.1</td>
+<td>874</td>
+<td>873.1</td>
+<td>874</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>λ QW (nm)</td>
+<td>837.0</td>
+<td>838</td>
+<td>850.2</td>
+<td>848</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>shift λ_g − λ_QW (nm)</td>
+<td>36.1</td>
+<td>36</td>
+<td>23.0</td>
+<td>26</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The infinite-well numbers match. The direct finite-well solution gives levels about 5 % higher than those quoted on the slide (probably a slightly heavier mass or a different matching condition) and a shift of 23 nm instead of 26 nm. The conclusion is unchanged: the well width tunes the wavelength by tens of nanometres, without changing the material.</p>
+</section>
+<section id="optical-confinement-sqw-mqw-and-sch-slides-135136" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="optical-confinement-sqw-mqw-and-sch-slides-135136"><span class="header-section-number">13.4</span> Optical confinement: SQW, MQW and SCH (slides 135–136)</h2>
+<p>The confinement factor of a thin active layer in a symmetric slab falls as <span class="math inline">\(d^2\)</span> (Botez approximation <span class="math inline">\(\Gamma\approx D^2/(2+D^2)\)</span>, <span class="math inline">\(D=k_0d\sqrt{n_a^2-n_c^2}\)</span>). A 10 nm well confines less than 1 % of the light.</p>
+<div id="cell-fig-qw-gamma" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>k0 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">850e-9</span><span class="op">;</span> na, nc <span class="op">=</span> <span class="fl">3.6</span>, <span class="fl">3.4</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dd <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">9</span> <span class="op">+</span> <span class="fl">0.7</span>, <span class="op">-</span><span class="dv">6</span>, <span class="dv">300</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> k0<span class="op">*</span>dd<span class="op">*</span>np.sqrt(na<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nc<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span> G <span class="op">=</span> D<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">+</span> D<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>G1 <span class="op">=</span> (k0<span class="op">*</span><span class="fl">10e-9</span><span class="op">*</span>np.sqrt(na<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nc<span class="op">**</span><span class="dv">2</span>))<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Gguide <span class="op">=</span> (<span class="kw">lambda</span> D: D<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">+</span> D<span class="op">**</span><span class="dv">2</span>))(k0<span class="op">*</span><span class="fl">0.2e-6</span><span class="op">*</span>np.sqrt(na<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nc<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Gsch <span class="op">=</span> Gguide<span class="op">*</span><span class="fl">10e-9</span><span class="op">/</span><span class="fl">0.2e-6</span><span class="op">*</span><span class="fl">1.5</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.loglog(dd<span class="op">*</span><span class="fl">1e9</span>, G, label<span class="op">=</span><span class="st">"bulk active layer of thickness d"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">10</span>, G1, <span class="st">"o"</span>, color<span class="op">=</span>lz.PALETTE[<span class="dv">7</span>], label<span class="op">=</span><span class="ss">f"SQW 10 nm: Γ = </span><span class="sc">{</span>G1<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">40</span>, <span class="dv">4</span><span class="op">*</span>Gsch, <span class="st">"s"</span>, color<span class="op">=</span>lz.PALETTE[<span class="dv">2</span>], label<span class="op">=</span><span class="ss">f"4 × 10 nm wells in a 0.2 µm guide: Γ ≈ </span><span class="sc">{</span><span class="dv">4</span><span class="op">*</span>Gsch<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">10</span>, Gsch, <span class="st">"D"</span>, color<span class="op">=</span>lz.PALETTE[<span class="dv">3</span>], label<span class="op">=</span><span class="ss">f"SQW in a 0.2 µm SCH guide: Γ ≈ </span><span class="sc">{</span>Gsch<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"active thickness d (nm)"</span>, ylabel<span class="op">=</span><span class="st">"confinement factor Γ"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-qw-gamma" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qw-gamma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="qw-lasers_files/figure-html/fig-qw-gamma-output-1.png" width="730" height="375" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qw-gamma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.1: Confinement factor at 850 nm of a GaAs layer (n = 3.6) in Al₀.₃Ga₀.₇As (n = 3.4) versus its total thickness (Botez approximation). Markers: a single 10 nm well, 4 wells (MQW, Γ ≈ 4 × the single-well value when the wells sit inside a guide) and a 10 nm well at the centre of a 0.2 µm separate-confinement waveguide (Γ ≈ guide confinement × d_well/d_guide × peak enhancement).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A low <span class="math inline">\(\Gamma\)</span> is not fatal: the threshold condition is <span class="math inline">\(\Gamma g_{th}=\alpha_t\)</span>. The QW gain per carrier is large and only a tiny volume has to be inverted, so the threshold <strong>current</strong> of a well-designed SCH-MQW laser is still several times lower than that of a DH laser. Modern laser diodes (slide 116: red, violet, telecom) are all quantum-well lasers.</p>
+<div class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>L, W, R, a_s, B <span class="op">=</span> <span class="fl">300e-6</span>, <span class="fl">3e-6</span>, <span class="fl">0.32</span>, <span class="fl">1e3</span>, <span class="fl">2e-16</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>at <span class="op">=</span> lz.threshold_gain(a_s, L, R)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># DH, d = 0.15 µm, Γ from Botez</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">0.15e-6</span><span class="op">;</span> Dd <span class="op">=</span> k0<span class="op">*</span>d<span class="op">*</span>np.sqrt(na<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nc<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span> Gm <span class="op">=</span> Dd<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">+</span> Dd<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>nth <span class="op">=</span> lz.n_for_gain_slide(at<span class="op">/</span>Gm<span class="op">/</span><span class="dv">100</span>)<span class="op">*</span>lz.CM3</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>rows.append((<span class="st">"DH, d = 150 nm"</span>, <span class="ss">f"</span><span class="sc">{</span>Gm<span class="sc">:.2f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>at<span class="op">/</span>Gm<span class="op">/</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>nth<span class="op">/</span>lz<span class="sc">.</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>lz<span class="sc">.</span>qe<span class="op">*</span>B<span class="op">*</span>nth<span class="op">**</span><span class="dv">2</span><span class="op">*</span>d<span class="op">*</span>L<span class="op">*</span>W<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss">"</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    Gq <span class="op">=</span> N<span class="op">*</span>Gsch</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> at<span class="op">/</span>Gq<span class="op">/</span><span class="dv">100</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    nq <span class="op">=</span> <span class="fl">1.8e18</span><span class="op">*</span>np.exp(g<span class="op">/</span><span class="dv">2000</span>)<span class="op">*</span>lz.CM3</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    rows.append((<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss"> × 10 nm QW in SCH"</span>, <span class="ss">f"</span><span class="sc">{</span>Gq<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>g<span class="sc">:.0f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>nq<span class="op">/</span>lz<span class="sc">.</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>lz<span class="sc">.</span>qe<span class="op">*</span>B<span class="op">*</span>nq<span class="op">**</span><span class="dv">2</span><span class="op">*</span>N<span class="op">*</span><span class="fl">10e-9</span><span class="op">*</span>L<span class="op">*</span>W<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss">"</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"active region"</span>, <span class="st">"Γ"</span>, <span class="st">"g_th (cm⁻¹)"</span>, <span class="st">"n_th (cm⁻³)"</span>, <span class="st">"radiative I_th (mA)"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-qw-vs-dh" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-qw-vs-dh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.2: Rough threshold comparison at equal cavity (L = 300 µm, W = 3 µm, R = 0.32, α_s = 10 cm⁻¹). The QW gain uses the textbook logarithmic law g = g₀ ln(n/n_tr) with g₀ = 2000 cm⁻¹, n_tr = 1.8×10¹⁸ cm⁻³; the DH uses the slide-130 GaAs curve. Radiative recombination with B = 2×10⁻¹⁰ cm³/s.
+</figcaption>
+<div aria-describedby="tbl-qw-vs-dh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">active region</th>
+<th data-quarto-table-cell-role="th">Γ</th>
+<th data-quarto-table-cell-role="th">g_th (cm⁻¹)</th>
+<th data-quarto-table-cell-role="th">n_th (cm⁻³)</th>
+<th data-quarto-table-cell-role="th">radiative I_th (mA)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>DH, d = 150 nm</td>
+<td>0.46</td>
+<td>104</td>
+<td>2.35e+18</td>
+<td>23.8</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1 × 10 nm QW in SCH</td>
+<td>0.045</td>
+<td>1058</td>
+<td>3.05e+18</td>
+<td>2.7</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3 × 10 nm QW in SCH</td>
+<td>0.136</td>
+<td>353</td>
+<td>2.15e+18</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>5 × 10 nm QW in SCH</td>
+<td>0.227</td>
+<td>212</td>
+<td>2.00e+18</td>
+<td>5.8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>All quantum-well designs beat the DH by a factor of 4 to 9 in threshold current, because far less material has to be inverted. Within this radiative-only model the single well even has the lowest current. But it needs a gain of 1000 cm⁻¹ at <span class="math inline">\(3\times10^{18}\)</span> cm⁻³, close to the maximum that one sub-band can provide, so any extra loss (a shorter cavity, a hotter chip) pushes it beyond reach. Three to five wells run at lower density, where Auger recombination and carrier leakage, which grow as <span class="math inline">\(n^3\)</span> and are ignored here, stay small. This margin is why practical lasers use MQWs. The numbers are indicative only: real QW gain depends on strain, well depth and temperature.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Strained quantum wells.</strong> Growing a well with a slightly different lattice constant (InGaAs on GaAs, a few % In) splits the heavy and light holes and lowers the in-plane hole mass. Transparency density and threshold drop by a further factor of two; this made 980 nm EDFA pumps practical.</li>
+<li><strong>Quantum-dot lasers.</strong> Confining in three dimensions gives delta-like densities of states: very low thresholds, high <span class="math inline">\(T_0\)</span>, and tolerance to defects that allows growth on silicon.</li>
+<li><strong>Quantum cascade lasers.</strong> Transitions <em>between sub-bands</em> of the conduction band (<span class="math inline">\(\varepsilon_2\to\varepsilon_1\)</span>) emit in the mid-infrared (3–20 µm) and THz range; the wavelength is set by layer thicknesses only. With the panel, find the well width for which <span class="math inline">\(\varepsilon_2-\varepsilon_1\)</span> of an InGaAs/AlInAs well (<span class="math inline">\(\Delta E_c=0.52\)</span> eV, <span class="math inline">\(m^*=0.043m_e\)</span>) equals 0.13 eV (≈ 9.5 µm).</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, sec.&nbsp;4.14; Coldren <em>et al.</em>, ch.&nbsp;4 (gain in QWs, strain) and app. 3.</li>
+<li>P. S. Zory (ed.), <em>Quantum Well Lasers</em> (Academic Press, 1993).</li>
+<li>J. Faist <em>et al.</em>, “Quantum cascade laser”, <em>Science</em> 264, 553 (1994).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">13.5</span> Try it yourself</h2>
+<ol type="1">
+<li>Find the well width that shifts the GaAs/Al₀.₃₃Ga₀.₆₇As emission to 780 nm (CD lasers). Is it still a practical well?</li>
+<li>Why must the transition obey <span class="math inline">\(\Delta n=0\)</span>? What happens to the <span class="math inline">\(\varepsilon_2\to\varepsilon'_1\)</span> transition in a symmetric well?</li>
+<li>Compute the 2D density of states <span class="math inline">\(m^*/(\pi\hbar^2d)\)</span> of the 10 nm GaAs well and compare with the bulk density at <span class="math inline">\(\varepsilon=k_BT\)</span> above the band edge.</li>
+<li>With the confinement figure, how many 8 nm wells give the same Γ as a 100 nm DH layer?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBxdyA9IElucHV0cy5mb3JtKHtcbiAgZDogSW5wdXRzLnJhbmdlKFsyLCAzMF0sIHt2YWx1ZTogMTAsIHN0ZXA6IDAuNSwgbGFiZWw6IFwid2VsbCB3aWR0aCBkIChubSlcIn0pLFxuICBFZzogSW5wdXRzLnJhbmdlKFswLjcsIDMuNV0sIHt2YWx1ZTogMS40Miwgc3RlcDogMC4wMSwgbGFiZWw6IFwid2VsbCBiYW5kZ2FwIEVfZyAoZVYpXCJ9KSxcbiAgZEVjOiBJbnB1dHMucmFuZ2UoWzAuMDIsIDAuNl0sIHt2YWx1ZTogMC4yOCwgc3RlcDogMC4wMSwgbGFiZWw6IFwiY29uZHVjdGlvbi1iYW5kIG9mZnNldCDOlEVfYyAoZVYpXCJ9KSxcbiAgZEV2OiBJbnB1dHMucmFuZ2UoWzAuMDIsIDAuNF0sIHt2YWx1ZTogMC4xNiwgc3RlcDogMC4wMSwgbGFiZWw6IFwidmFsZW5jZS1iYW5kIG9mZnNldCDOlEVfdiAoZVYpXCJ9KSxcbiAgbWU6IElucHV0cy5yYW5nZShbMC4wMiwgMC4zXSwge3ZhbHVlOiAwLjA3LCBzdGVwOiAwLjAwMSwgbGFiZWw6IFwiZWxlY3Ryb24gbWFzcyBtX2UqL21fZVwifSksXG4gIG1oOiBJbnB1dHMucmFuZ2UoWzAuMSwgMS4wXSwge3ZhbHVlOiAwLjUwLCBzdGVwOiAwLjAxLCBsYWJlbDogXCJoZWF2eS1ob2xlIG1hc3MgbV9oKi9tX2VcIn0pXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicXdPdXQgPSB7XG4gIGNvbnN0IGhiYXIgPSAxLjA1NDU3MTgxN2UtMzQsIG1lMCA9IDkuMTA5MzgzN2UtMzEsIHEgPSAxLjYwMjE3NjYzNGUtMTksIGggPSA2LjYyNjA3MDE1ZS0zNCwgZCA9IHF3LmQqMWUtOTtcbiAgY29uc3Qgc29sdmUgPSAoVjAsIG0pID0+IHtcbiAgICBjb25zdCBrID0gRSA9PiBNYXRoLnNxcnQoMiptKm1lMCpFKnEpL2hiYXIsIEsgPSBFID0+IE1hdGguc3FydCgyKm0qbWUwKihWMCAtIEUpKnEpL2hiYXI7XG4gICAgY29uc3QgZnMgPSBbRSA9PiBrKEUpKk1hdGguc2luKGsoRSkqZC8yKSAtIEsoRSkqTWF0aC5jb3MoayhFKSpkLzIpLCBFID0+IGsoRSkqTWF0aC5jb3MoayhFKSpkLzIpICsgSyhFKSpNYXRoLnNpbihrKEUpKmQvMildO1xuICAgIGNvbnN0IGx2ID0gW107XG4gICAgZm9yIChjb25zdCBmIG9mIGZzKSB7IGNvbnN0IE4gPSA0MDAwOyBsZXQgRXAgPSBWMCoxZS03LCBmcCA9IGYoRXApO1xuICAgICAgZm9yIChsZXQgaSA9IDE7IGkgPD0gTjsgaSsrKSB7IGNvbnN0IEUgPSBWMCooMWUtNyArICgxIC0gMmUtNykqaS9OKSwgZmUgPSBmKEUpO1xuICAgICAgICBpZiAoZnAqZmUgPCAwKSB7IGxldCBhID0gRXAsIGIgPSBFOyBmb3IgKGxldCBqID0gMDsgaiA8IDYwOyBqKyspIHsgY29uc3QgYyA9IChhICsgYikvMjsgaWYgKGYoYSkqZihjKSA8PSAwKSBiID0gYzsgZWxzZSBhID0gYzsgfSBsdi5wdXNoKChhICsgYikvMik7IH1cbiAgICAgICAgRXAgPSBFOyBmcCA9IGZlOyB9IH1cbiAgICByZXR1cm4gbHYuc29ydCgoYSwgYikgPT4gYSAtIGIpO1xuICB9O1xuICBjb25zdCBlbCA9IHNvbHZlKHF3LmRFYywgcXcubWUpLCBoaCA9IHNvbHZlKHF3LmRFdiwgcXcubWgpO1xuICBjb25zdCBpbmYgPSAobiwgbSkgPT4gKGgqbikqKjIvKDgqbSptZTAqZCpkKS9xO1xuICBjb25zdCBFZmluID0gcXcuRWcgKyBlbFswXSArIGhoWzBdLCBFaW5mID0gcXcuRWcgKyBpbmYoMSwgcXcubWUpICsgaW5mKDEsIHF3Lm1oKTtcbiAgcmV0dXJuIHtlbCwgaGgsIEVmaW4sIEVpbmYsIGxhbUZpbjogMTIzOS44NC9FZmluLCBsYW1JbmY6IDEyMzkuODQvRWluZiwgbGFtQnVsazogMTIzOS44NC9xdy5FZywgaW5mMTogaW5mKDEsIHF3Lm1lKSwgaW5mMjogaW5mKDIsIHF3Lm1lKSwgaW5maDogaW5mKDEsIHF3Lm1oKX07XG59XG5odG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+ZWxlY3Ryb24gbGV2ZWxzIChmaW5pdGUgd2VsbCk6ICR7cXdPdXQuZWwubWFwKChlLCBpKSA9PiBgzrU8c3ViPiR7aSsxfTwvc3ViPiA9IDxiPiR7KDEwMDAqZSkudG9GaXhlZCgxKX0gbWVWPC9iPmApLmpvaW4oXCIsIFwiKX0gwrdcbmluZmluaXRlIHdlbGw6IM614oKBID0gJHsoMTAwMCpxd091dC5pbmYxKS50b0ZpeGVkKDEpfSwgzrXigoIgPSAkeygxMDAwKnF3T3V0LmluZjIpLnRvRml4ZWQoMSl9IG1lVjxicj5cbmhlYXZ5LWhvbGUgbGV2ZWxzOiAke3F3T3V0LmhoLnNsaWNlKDAsIDQpLm1hcCgoZSwgaSkgPT4gYM61JzxzdWI+JHtpKzF9PC9zdWI+ID0gJHsoMTAwMCplKS50b0ZpeGVkKDEpfWApLmpvaW4oXCIsIFwiKX0ke3F3T3V0LmhoLmxlbmd0aCA+IDQgPyBcIiwg4oCmXCIgOiBcIlwifSBtZVYgwrcgaW5maW5pdGUgd2VsbCDOtSfigoEgPSAkeygxMDAwKnF3T3V0LmluZmgpLnRvRml4ZWQoMSl9IG1lVjxicj5cbmVtaXNzaW9uOiBidWxrIM67PHN1Yj5nPC9zdWI+ID0gPGI+JHtxd091dC5sYW1CdWxrLnRvRml4ZWQoMSl9IG5tPC9iPiDCtyBRVyAoZmluaXRlKSA8Yj4ke3F3T3V0LmxhbUZpbi50b0ZpeGVkKDEpfSBubTwvYj4gKHNoaWZ0ICR7KHF3T3V0LmxhbUJ1bGsgLSBxd091dC5sYW1GaW4pLnRvRml4ZWQoMSl9IG5tKSDCt1xuUVcgKGluZmluaXRlKSAke3F3T3V0LmxhbUluZi50b0ZpeGVkKDEpfSBubSAoc2hpZnQgJHsocXdPdXQubGFtQnVsayAtIHF3T3V0LmxhbUluZikudG9GaXhlZCgxKX0gbm0pPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicXdTY2FuID0ge1xuICBjb25zdCBoYmFyID0gMS4wNTQ1NzE4MTdlLTM0LCBtZTAgPSA5LjEwOTM4MzdlLTMxLCBxID0gMS42MDIxNzY2MzRlLTE5LCBoID0gNi42MjYwNzAxNWUtMzQ7XG4gIGNvbnN0IGZpcnN0ID0gKFYwLCBtLCBkKSA9PiB7IGNvbnN0IGsgPSBFID0+IE1hdGguc3FydCgyKm0qbWUwKkUqcSkvaGJhciwgSyA9IEUgPT4gTWF0aC5zcXJ0KDIqbSptZTAqKFYwIC0gRSkqcSkvaGJhcjtcbiAgICBjb25zdCBmID0gRSA9PiBrKEUpKk1hdGguc2luKGsoRSkqZC8yKSAtIEsoRSkqTWF0aC5jb3MoayhFKSpkLzIpOyBsZXQgYSA9IFYwKjFlLTcsIGIgPSBWMCooMSAtIDFlLTcpO1xuICAgIC8vIHRoZSBncm91bmQgc3RhdGUgaXMgdGhlIGZpcnN0IHJvb3Qgb2YgdGhlIGV2ZW4gZXF1YXRpb247IGJyYWNrZXQgaXQgYnkgc2Nhbm5pbmdcbiAgICBsZXQgRXAgPSBhLCBmcCA9IGYoYSk7IGZvciAobGV0IGkgPSAxOyBpIDw9IDIwMDA7IGkrKykgeyBjb25zdCBFID0gYSArIChiIC0gYSkqaS8yMDAwLCBmZSA9IGYoRSk7IGlmIChmcCpmZSA8IDApIHsgYiA9IEU7IGEgPSBFcDsgYnJlYWs7IH0gRXAgPSBFOyBmcCA9IGZlOyB9XG4gICAgZm9yIChsZXQgaiA9IDA7IGogPCA2MDsgaisrKSB7IGNvbnN0IGMgPSAoYSArIGIpLzI7IGlmIChmKGEpKmYoYykgPD0gMCkgYiA9IGM7IGVsc2UgYSA9IGM7IH0gcmV0dXJuIChhICsgYikvMjsgfTtcbiAgY29uc3Qgb3V0ID0gW107XG4gIGZvciAobGV0IHcgPSAyOyB3IDw9IDMwOyB3ICs9IDAuNSkge1xuICAgIGNvbnN0IGQgPSB3KjFlLTksIEVmID0gcXcuRWcgKyBmaXJzdChxdy5kRWMsIHF3Lm1lLCBkKSArIGZpcnN0KHF3LmRFdiwgcXcubWgsIGQpO1xuICAgIGNvbnN0IEVpID0gcXcuRWcgKyAoaCoqMi8oOCpxdy5tZSptZTAqZCpkKSArIGgqKjIvKDgqcXcubWgqbWUwKmQqZCkpL3E7XG4gICAgb3V0LnB1c2goe3csIGxhbTogMTIzOS44NC9FZiwgd2hvOiBcImZpbml0ZSB3ZWxsXCJ9LCB7dywgbGFtOiAxMjM5Ljg0L0VpLCB3aG86IFwiaW5maW5pdGUgd2VsbFwifSk7XG4gIH1cbiAgcmV0dXJuIG91dDtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMjgwLCB4OiB7bGFiZWw6IFwid2VsbCB3aWR0aCBkIChubSlcIn0sIHk6IHtsYWJlbDogXCJlbWlzc2lvbiB3YXZlbGVuZ3RoIChubSlcIiwgZ3JpZDogdHJ1ZX0sXG4gIGNvbG9yOiB7bGVnZW5kOiB0cnVlLCByYW5nZTogW1wiIzJhNzhkNlwiLCBcIiNlMzQ5NDhcIl19LFxuICBtYXJrczogW1Bsb3QubGluZShxd1NjYW4sIHt4OiBcIndcIiwgeTogXCJsYW1cIiwgc3Ryb2tlOiBcIndob1wiLCBzdHJva2VXaWR0aDogMn0pLCBQbG90LnJ1bGVZKFtxd091dC5sYW1CdWxrXSwge3N0cm9rZTogXCIjNTI1MTRlXCIsIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIn0pLFxuICAgICAgICAgIFBsb3QucnVsZVgoW3F3LmRdLCB7c3Ryb2tlOiBcIiM1MjUxNGVcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjIsM1wifSldXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdxdycpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter4\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ld-equation.html" class="pagination-link" aria-label="The laser diode equation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The laser diode equation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./single-mode.html" class="pagination-link" aria-label="Single-frequency lasers: DBR, DFB, external cavity, VCSEL">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Single-frequency lasers: DBR, DFB, external cavity, VCSEL</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Quantum-well lasers {#sec-qw}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/qw-lasers.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> laserlib <span class="im">as</span> lz</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>lz.use_style()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>*Slides 135–136 (single and multiple quantum-well lasers, step-like density of states, light confinement) and 137–139 (worked</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>example: levels and emission wavelength of a GaAs quantum well).*</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>When the active layer is thinner than about 20 nm, the motion of the carriers across it is quantised (Chapter 3, quantum wells).</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>For an infinite well of width $d$ the electron and hole levels above the band edges are</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>\varepsilon_n=\frac{h^2n^2}{8m_e^*d^2},\qquad \varepsilon'_{n'}=\frac{h^2n'^2}{8m_h^*d^2},</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>and the radiative transitions obey the selection rule $\Delta n=n-n'=0$. The emitted photon is therefore</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>h\nu=E_g+\varepsilon_1+\varepsilon'_1 .</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>The density of states becomes a staircase that is **finite at the band edge** (slide 135c). Carriers fill the first sub-band</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>instead of spreading over a $\sqrt E$ band, so inversion is reached with fewer carriers, the gain spectrum is narrower and the</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>threshold current is lower. The well is too thin to guide light: a single quantum well (SQW) overlaps only a few percent of the</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>mode. Multiple quantum wells (MQW, slide 136) or a separate-confinement heterostructure (SCH, a wider waveguide around the well)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>restore the optical confinement.</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Quantum-well levels and emission wavelength</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>The panel solves the finite well (BenDaniel–Duke boundary conditions, same solver as Chapter 3) for electrons and heavy holes and</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>compares with the infinite-well formula used on the slides.</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>viewof qw <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">d</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"well width d (nm)"</span>})<span class="op">,</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Eg</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.7</span><span class="op">,</span> <span class="fl">3.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.42</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"well bandgap E_g (eV)"</span>})<span class="op">,</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dEc</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.6</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.28</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"conduction-band offset ΔE_c (eV)"</span>})<span class="op">,</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dEv</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.4</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.16</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"valence-band offset ΔE_v (eV)"</span>})<span class="op">,</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">me</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.07</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.001</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"electron mass m_e*/m_e"</span>})<span class="op">,</span></span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mh</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="fl">1.0</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.50</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"heavy-hole mass m_h*/m_e"</span>})</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>qwOut <span class="op">=</span> {</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hbar <span class="op">=</span> <span class="fl">1.054571817e-34</span><span class="op">,</span> me0 <span class="op">=</span> <span class="fl">9.1093837e-31</span><span class="op">,</span> q <span class="op">=</span> <span class="fl">1.602176634e-19</span><span class="op">,</span> h <span class="op">=</span> <span class="fl">6.62607015e-34</span><span class="op">,</span> d <span class="op">=</span> qw<span class="op">.</span><span class="at">d</span><span class="op">*</span><span class="fl">1e-9</span><span class="op">;</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> solve <span class="op">=</span> (V0<span class="op">,</span> m) <span class="kw">=&gt;</span> {</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> k <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span><span class="cn">E</span><span class="op">*</span>q)<span class="op">/</span>hbar<span class="op">,</span> K <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span>(V0 <span class="op">-</span> <span class="cn">E</span>)<span class="op">*</span>q)<span class="op">/</span>hbar<span class="op">;</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> fs <span class="op">=</span> [<span class="cn">E</span> <span class="kw">=&gt;</span> <span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>) <span class="op">-</span> <span class="fu">K</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>)<span class="op">,</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>) <span class="op">+</span> <span class="fu">K</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>)]<span class="op">;</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> lv <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">const</span> f <span class="kw">of</span> fs) { <span class="kw">const</span> N <span class="op">=</span> <span class="dv">4000</span><span class="op">;</span> <span class="kw">let</span> Ep <span class="op">=</span> V0<span class="op">*</span><span class="fl">1e-7</span><span class="op">,</span> fp <span class="op">=</span> <span class="fu">f</span>(Ep)<span class="op">;</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> N<span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> V0<span class="op">*</span>(<span class="fl">1e-7</span> <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> <span class="fl">2e-7</span>)<span class="op">*</span>i<span class="op">/</span>N)<span class="op">,</span> fe <span class="op">=</span> <span class="fu">f</span>(<span class="cn">E</span>)<span class="op">;</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (fp<span class="op">*</span>fe <span class="op">&lt;</span> <span class="dv">0</span>) { <span class="kw">let</span> a <span class="op">=</span> Ep<span class="op">,</span> b <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> j<span class="op">++</span>) { <span class="kw">const</span> c <span class="op">=</span> (a <span class="op">+</span> b)<span class="op">/</span><span class="dv">2</span><span class="op">;</span> <span class="cf">if</span> (<span class="fu">f</span>(a)<span class="op">*</span><span class="fu">f</span>(c) <span class="op">&lt;=</span> <span class="dv">0</span>) b <span class="op">=</span> c<span class="op">;</span> <span class="cf">else</span> a <span class="op">=</span> c<span class="op">;</span> } lv<span class="op">.</span><span class="fu">push</span>((a <span class="op">+</span> b)<span class="op">/</span><span class="dv">2</span>)<span class="op">;</span> }</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>        Ep <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> fp <span class="op">=</span> fe<span class="op">;</span> } }</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lv<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)<span class="op">;</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> el <span class="op">=</span> <span class="fu">solve</span>(qw<span class="op">.</span><span class="at">dEc</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span>)<span class="op">,</span> hh <span class="op">=</span> <span class="fu">solve</span>(qw<span class="op">.</span><span class="at">dEv</span><span class="op">,</span> qw<span class="op">.</span><span class="at">mh</span>)<span class="op">;</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> inf <span class="op">=</span> (n<span class="op">,</span> m) <span class="kw">=&gt;</span> (h<span class="op">*</span>n)<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">8</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span>d<span class="op">*</span>d)<span class="op">/</span>q<span class="op">;</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Efin <span class="op">=</span> qw<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> el[<span class="dv">0</span>] <span class="op">+</span> hh[<span class="dv">0</span>]<span class="op">,</span> Einf <span class="op">=</span> qw<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> <span class="fu">inf</span>(<span class="dv">1</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span>) <span class="op">+</span> <span class="fu">inf</span>(<span class="dv">1</span><span class="op">,</span> qw<span class="op">.</span><span class="at">mh</span>)<span class="op">;</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {el<span class="op">,</span> hh<span class="op">,</span> Efin<span class="op">,</span> Einf<span class="op">,</span> <span class="dt">lamFin</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>Efin<span class="op">,</span> <span class="dt">lamInf</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>Einf<span class="op">,</span> <span class="dt">lamBulk</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>qw<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> <span class="dt">inf1</span><span class="op">:</span> <span class="fu">inf</span>(<span class="dv">1</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span>)<span class="op">,</span> <span class="dt">inf2</span><span class="op">:</span> <span class="fu">inf</span>(<span class="dv">2</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span>)<span class="op">,</span> <span class="dt">infh</span><span class="op">:</span> <span class="fu">inf</span>(<span class="dv">1</span><span class="op">,</span> qw<span class="op">.</span><span class="at">mh</span>)}<span class="op">;</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;electron levels (finite well): </span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">el</span><span class="op">.</span><span class="fu">map</span>((e<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="vs">`ε&lt;sub&gt;</span><span class="sc">${</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="vs">&lt;/sub&gt; = &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>e)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> meV&lt;/b&gt;`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="vs">infinite well: ε₁ = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>qwOut<span class="op">.</span><span class="at">inf1</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">, ε₂ = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>qwOut<span class="op">.</span><span class="at">inf2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> meV&lt;br&gt;</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a><span class="vs">heavy-hole levels: </span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">hh</span><span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">4</span>)<span class="op">.</span><span class="fu">map</span>((e<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="vs">`ε'&lt;sub&gt;</span><span class="sc">${</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="vs">&lt;/sub&gt; = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>e)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}${</span>qwOut<span class="op">.</span><span class="at">hh</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">4</span> <span class="op">?</span> <span class="st">", …"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs"> meV · infinite well ε'₁ = </span><span class="sc">${</span>(<span class="dv">1000</span><span class="op">*</span>qwOut<span class="op">.</span><span class="at">infh</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> meV&lt;br&gt;</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a><span class="vs">emission: bulk λ&lt;sub&gt;g&lt;/sub&gt; = &lt;b&gt;</span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">lamBulk</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt; · QW (finite) &lt;b&gt;</span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">lamFin</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt; (shift </span><span class="sc">${</span>(qwOut<span class="op">.</span><span class="at">lamBulk</span> <span class="op">-</span> qwOut<span class="op">.</span><span class="at">lamFin</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm) ·</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a><span class="vs">QW (infinite) </span><span class="sc">${</span>qwOut<span class="op">.</span><span class="at">lamInf</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm (shift </span><span class="sc">${</span>(qwOut<span class="op">.</span><span class="at">lamBulk</span> <span class="op">-</span> qwOut<span class="op">.</span><span class="at">lamInf</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> nm)&lt;/div&gt;`</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>qwScan <span class="op">=</span> {</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> hbar <span class="op">=</span> <span class="fl">1.054571817e-34</span><span class="op">,</span> me0 <span class="op">=</span> <span class="fl">9.1093837e-31</span><span class="op">,</span> q <span class="op">=</span> <span class="fl">1.602176634e-19</span><span class="op">,</span> h <span class="op">=</span> <span class="fl">6.62607015e-34</span><span class="op">;</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> first <span class="op">=</span> (V0<span class="op">,</span> m<span class="op">,</span> d) <span class="kw">=&gt;</span> { <span class="kw">const</span> k <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span><span class="cn">E</span><span class="op">*</span>q)<span class="op">/</span>hbar<span class="op">,</span> K <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span><span class="op">*</span>m<span class="op">*</span>me0<span class="op">*</span>(V0 <span class="op">-</span> <span class="cn">E</span>)<span class="op">*</span>q)<span class="op">/</span>hbar<span class="op">;</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> f <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>) <span class="op">-</span> <span class="fu">K</span>(<span class="cn">E</span>)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(<span class="fu">k</span>(<span class="cn">E</span>)<span class="op">*</span>d<span class="op">/</span><span class="dv">2</span>)<span class="op">;</span> <span class="kw">let</span> a <span class="op">=</span> V0<span class="op">*</span><span class="fl">1e-7</span><span class="op">,</span> b <span class="op">=</span> V0<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> <span class="fl">1e-7</span>)<span class="op">;</span></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>    <span class="co">// the ground state is the first root of the even equation; bracket it by scanning</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> Ep <span class="op">=</span> a<span class="op">,</span> fp <span class="op">=</span> <span class="fu">f</span>(a)<span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">2000</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> a <span class="op">+</span> (b <span class="op">-</span> a)<span class="op">*</span>i<span class="op">/</span><span class="dv">2000</span><span class="op">,</span> fe <span class="op">=</span> <span class="fu">f</span>(<span class="cn">E</span>)<span class="op">;</span> <span class="cf">if</span> (fp<span class="op">*</span>fe <span class="op">&lt;</span> <span class="dv">0</span>) { b <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> a <span class="op">=</span> Ep<span class="op">;</span> <span class="cf">break</span><span class="op">;</span> } Ep <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> fp <span class="op">=</span> fe<span class="op">;</span> }</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">60</span><span class="op">;</span> j<span class="op">++</span>) { <span class="kw">const</span> c <span class="op">=</span> (a <span class="op">+</span> b)<span class="op">/</span><span class="dv">2</span><span class="op">;</span> <span class="cf">if</span> (<span class="fu">f</span>(a)<span class="op">*</span><span class="fu">f</span>(c) <span class="op">&lt;=</span> <span class="dv">0</span>) b <span class="op">=</span> c<span class="op">;</span> <span class="cf">else</span> a <span class="op">=</span> c<span class="op">;</span> } <span class="cf">return</span> (a <span class="op">+</span> b)<span class="op">/</span><span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> w <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> w <span class="op">&lt;=</span> <span class="dv">30</span><span class="op">;</span> w <span class="op">+=</span> <span class="fl">0.5</span>) {</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> d <span class="op">=</span> w<span class="op">*</span><span class="fl">1e-9</span><span class="op">,</span> Ef <span class="op">=</span> qw<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> <span class="fu">first</span>(qw<span class="op">.</span><span class="at">dEc</span><span class="op">,</span> qw<span class="op">.</span><span class="at">me</span><span class="op">,</span> d) <span class="op">+</span> <span class="fu">first</span>(qw<span class="op">.</span><span class="at">dEv</span><span class="op">,</span> qw<span class="op">.</span><span class="at">mh</span><span class="op">,</span> d)<span class="op">;</span></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Ei <span class="op">=</span> qw<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> (h<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">8</span><span class="op">*</span>qw<span class="op">.</span><span class="at">me</span><span class="op">*</span>me0<span class="op">*</span>d<span class="op">*</span>d) <span class="op">+</span> h<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">8</span><span class="op">*</span>qw<span class="op">.</span><span class="at">mh</span><span class="op">*</span>me0<span class="op">*</span>d<span class="op">*</span>d))<span class="op">/</span>q<span class="op">;</span></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>    out<span class="op">.</span><span class="fu">push</span>({w<span class="op">,</span> <span class="dt">lam</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>Ef<span class="op">,</span> <span class="dt">who</span><span class="op">:</span> <span class="st">"finite well"</span>}<span class="op">,</span> {w<span class="op">,</span> <span class="dt">lam</span><span class="op">:</span> <span class="fl">1239.84</span><span class="op">/</span>Ei<span class="op">,</span> <span class="dt">who</span><span class="op">:</span> <span class="st">"infinite well"</span>})<span class="op">;</span></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"well width d (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"emission wavelength (nm)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#e34948"</span>]}<span class="op">,</span></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(qwScan<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"who"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleY</span>([qwOut<span class="op">.</span><span class="at">lamBulk</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">ruleX</span>([qw<span class="op">.</span><span class="at">d</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"2,3"</span>})]</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>The infinite well overestimates the confinement energy, badly so for thin wells: below 5 nm it predicts emission far below</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>the barrier gap, which is impossible. The finite well saturates at the barrier bandgap.</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked example (slides 137–139), recomputed</span></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; GaAs well, $d=10$ nm, between Al₀.₃₃Ga₀.₆₇As barriers with offsets $\Delta E_c=0.28$ eV and $\Delta E_v=0.16$ eV,</span></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; $m_e^*=0.07m_e$, $m_h^*=0.50m_e$, $E_g=1.42$ eV. Find the first two electron levels, the first hole level and the emission</span></span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; wavelength shift with respect to bulk GaAs (infinite well). The slide also quotes the finite-well values.</span></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-qw-example</span></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Slides 137–139 recomputed. The finite-well values of the slide (0.031, 0.121, 0.007 eV, 848 nm) are close to the direct solution."</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">10e-9</span></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>e_inf <span class="op">=</span> lz.qw_infinite([<span class="dv">1</span>, <span class="dv">2</span>], d, <span class="fl">0.07</span>)<span class="op">;</span> h_inf <span class="op">=</span> lz.qw_infinite(<span class="dv">1</span>, d, <span class="fl">0.50</span>)</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>e_fin <span class="op">=</span> lz.qw_finite(d, <span class="fl">0.28</span>, <span class="fl">0.07</span>)<span class="op">;</span> h_fin <span class="op">=</span> lz.qw_finite(d, <span class="fl">0.16</span>, <span class="fl">0.50</span>)</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a>lg <span class="op">=</span> lz.wavelength_from_eV(<span class="fl">1.42</span>)<span class="op">*</span><span class="fl">1e9</span></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>li <span class="op">=</span> lz.wavelength_from_eV(<span class="fl">1.42</span> <span class="op">+</span> e_inf[<span class="dv">0</span>] <span class="op">+</span> h_inf)<span class="op">*</span><span class="fl">1e9</span></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>lf <span class="op">=</span> lz.wavelength_from_eV(<span class="fl">1.42</span> <span class="op">+</span> e_fin[<span class="dv">0</span>] <span class="op">+</span> h_fin[<span class="dv">0</span>])<span class="op">*</span><span class="fl">1e9</span></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(<span class="st">"ε₁, ε₂ (eV)"</span>, <span class="ss">f"</span><span class="sc">{</span>e_inf[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>e_inf[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>, <span class="st">"0.0537, 0.215"</span>, <span class="ss">f"</span><span class="sc">{</span>e_fin[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>e_fin[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>, <span class="st">"0.031, 0.121"</span>),</span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"ε'₁ (eV)"</span>, <span class="ss">f"</span><span class="sc">{</span>h_inf<span class="sc">:.4f}</span><span class="ss">"</span>, <span class="st">"0.0075"</span>, <span class="ss">f"</span><span class="sc">{</span>h_fin[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">"</span>, <span class="st">"0.007"</span>),</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"λ bulk (nm)"</span>, <span class="ss">f"</span><span class="sc">{</span>lg<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"874"</span>, <span class="ss">f"</span><span class="sc">{</span>lg<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"874"</span>),</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"λ QW (nm)"</span>, <span class="ss">f"</span><span class="sc">{</span>li<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"838"</span>, <span class="ss">f"</span><span class="sc">{</span>lf<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"848"</span>),</span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"shift λ_g − λ_QW (nm)"</span>, <span class="ss">f"</span><span class="sc">{</span>lg <span class="op">-</span> li<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"36"</span>, <span class="ss">f"</span><span class="sc">{</span>lg <span class="op">-</span> lf<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"26"</span>)],</span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"quantity"</span>, <span class="st">"infinite well"</span>, <span class="st">"slide (infinite)"</span>, <span class="st">"finite well"</span>, <span class="st">"slide (finite)"</span>])</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a>The infinite-well numbers match. The direct finite-well solution gives levels about 5 % higher than those quoted on the slide</span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a>(probably a slightly heavier mass or a different matching condition) and a shift of 23 nm instead of 26 nm. The conclusion is</span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a>unchanged: the well width tunes the wavelength by tens of nanometres, without changing the material.</span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a><span class="fu">## Optical confinement: SQW, MQW and SCH (slides 135–136)</span></span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>The confinement factor of a thin active layer in a symmetric slab falls as $d^2$ (Botez approximation</span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>$\Gamma\approx D^2/(2+D^2)$, $D=k_0d\sqrt{n_a^2-n_c^2}$). A 10 nm well confines less than 1 % of the light.</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-qw-gamma</span></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Confinement factor at 850 nm of a GaAs layer (n = 3.6) in Al₀.₃Ga₀.₇As (n = 3.4) versus its total thickness (Botez approximation). Markers: a single 10 nm well, 4 wells (MQW, Γ ≈ 4 × the single-well value when the wells sit inside a guide) and a 10 nm well at the centre of a 0.2 µm separate-confinement waveguide (Γ ≈ guide confinement × d_well/d_guide × peak enhancement)."</span></span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>k0 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span><span class="fl">850e-9</span><span class="op">;</span> na, nc <span class="op">=</span> <span class="fl">3.6</span>, <span class="fl">3.4</span></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a>dd <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">9</span> <span class="op">+</span> <span class="fl">0.7</span>, <span class="op">-</span><span class="dv">6</span>, <span class="dv">300</span>)</span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> k0<span class="op">*</span>dd<span class="op">*</span>np.sqrt(na<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nc<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span> G <span class="op">=</span> D<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">+</span> D<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>G1 <span class="op">=</span> (k0<span class="op">*</span><span class="fl">10e-9</span><span class="op">*</span>np.sqrt(na<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nc<span class="op">**</span><span class="dv">2</span>))<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>Gguide <span class="op">=</span> (<span class="kw">lambda</span> D: D<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">+</span> D<span class="op">**</span><span class="dv">2</span>))(k0<span class="op">*</span><span class="fl">0.2e-6</span><span class="op">*</span>np.sqrt(na<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nc<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a>Gsch <span class="op">=</span> Gguide<span class="op">*</span><span class="fl">10e-9</span><span class="op">/</span><span class="fl">0.2e-6</span><span class="op">*</span><span class="fl">1.5</span></span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>ax.loglog(dd<span class="op">*</span><span class="fl">1e9</span>, G, label<span class="op">=</span><span class="st">"bulk active layer of thickness d"</span>)</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">10</span>, G1, <span class="st">"o"</span>, color<span class="op">=</span>lz.PALETTE[<span class="dv">7</span>], label<span class="op">=</span><span class="ss">f"SQW 10 nm: Γ = </span><span class="sc">{</span>G1<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">40</span>, <span class="dv">4</span><span class="op">*</span>Gsch, <span class="st">"s"</span>, color<span class="op">=</span>lz.PALETTE[<span class="dv">2</span>], label<span class="op">=</span><span class="ss">f"4 × 10 nm wells in a 0.2 µm guide: Γ ≈ </span><span class="sc">{</span><span class="dv">4</span><span class="op">*</span>Gsch<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">10</span>, Gsch, <span class="st">"D"</span>, color<span class="op">=</span>lz.PALETTE[<span class="dv">3</span>], label<span class="op">=</span><span class="ss">f"SQW in a 0.2 µm SCH guide: Γ ≈ </span><span class="sc">{</span>Gsch<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"active thickness d (nm)"</span>, ylabel<span class="op">=</span><span class="st">"confinement factor Γ"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>A low $\Gamma$ is not fatal: the threshold condition is $\Gamma g_{th}=\alpha_t$. The QW gain per carrier is large and only a</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>tiny volume has to be inverted, so the threshold **current** of a well-designed SCH-MQW laser is still several times lower than</span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a>that of a DH laser. Modern laser diodes (slide 116: red, violet, telecom) are all quantum-well lasers.</span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-qw-vs-dh</span></span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Rough threshold comparison at equal cavity (L = 300 µm, W = 3 µm, R = 0.32, α_s = 10 cm⁻¹). The QW gain uses the textbook logarithmic law g = g₀ ln(n/n_tr) with g₀ = 2000 cm⁻¹, n_tr = 1.8×10¹⁸ cm⁻³; the DH uses the slide-130 GaAs curve. Radiative recombination with B = 2×10⁻¹⁰ cm³/s."</span></span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a>L, W, R, a_s, B <span class="op">=</span> <span class="fl">300e-6</span>, <span class="fl">3e-6</span>, <span class="fl">0.32</span>, <span class="fl">1e3</span>, <span class="fl">2e-16</span></span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>at <span class="op">=</span> lz.threshold_gain(a_s, L, R)</span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a><span class="co"># DH, d = 0.15 µm, Γ from Botez</span></span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">0.15e-6</span><span class="op">;</span> Dd <span class="op">=</span> k0<span class="op">*</span>d<span class="op">*</span>np.sqrt(na<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> nc<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span> Gm <span class="op">=</span> Dd<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span> <span class="op">+</span> Dd<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a>nth <span class="op">=</span> lz.n_for_gain_slide(at<span class="op">/</span>Gm<span class="op">/</span><span class="dv">100</span>)<span class="op">*</span>lz.CM3</span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a>rows.append((<span class="st">"DH, d = 150 nm"</span>, <span class="ss">f"</span><span class="sc">{</span>Gm<span class="sc">:.2f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>at<span class="op">/</span>Gm<span class="op">/</span><span class="dv">100</span><span class="sc">:.0f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>nth<span class="op">/</span>lz<span class="sc">.</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>lz<span class="sc">.</span>qe<span class="op">*</span>B<span class="op">*</span>nth<span class="op">**</span><span class="dv">2</span><span class="op">*</span>d<span class="op">*</span>L<span class="op">*</span>W<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss">"</span>))</span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> (<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>):</span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a>    Gq <span class="op">=</span> N<span class="op">*</span>Gsch</span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> at<span class="op">/</span>Gq<span class="op">/</span><span class="dv">100</span></span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a>    nq <span class="op">=</span> <span class="fl">1.8e18</span><span class="op">*</span>np.exp(g<span class="op">/</span><span class="dv">2000</span>)<span class="op">*</span>lz.CM3</span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a>    rows.append((<span class="ss">f"</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss"> × 10 nm QW in SCH"</span>, <span class="ss">f"</span><span class="sc">{</span>Gq<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>g<span class="sc">:.0f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>nq<span class="op">/</span>lz<span class="sc">.</span>CM3<span class="sc">:.2e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>lz<span class="sc">.</span>qe<span class="op">*</span>B<span class="op">*</span>nq<span class="op">**</span><span class="dv">2</span><span class="op">*</span>N<span class="op">*</span><span class="fl">10e-9</span><span class="op">*</span>L<span class="op">*</span>W<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.1f}</span><span class="ss">"</span>))</span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"active region"</span>, <span class="st">"Γ"</span>, <span class="st">"g_th (cm⁻¹)"</span>, <span class="st">"n_th (cm⁻³)"</span>, <span class="st">"radiative I_th (mA)"</span>])</span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a>All quantum-well designs beat the DH by a factor of 4 to 9 in threshold current, because far less material has to be inverted.</span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a>Within this radiative-only model the single well even has the lowest current. But it needs a gain of 1000 cm⁻¹ at</span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a>$3\times10^{18}$ cm⁻³, close to the maximum that one sub-band can provide, so any extra loss (a shorter cavity, a hotter chip)</span>
+<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a>pushes it beyond reach. Three to five wells run at lower density, where Auger recombination and carrier leakage, which grow as</span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a>$n^3$ and are ignored here, stay small. This margin is why practical lasers use MQWs. The numbers are indicative only: real QW</span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a>gain depends on strain, well depth and temperature.</span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-201"><a href="#cb7-201" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb7-202"><a href="#cb7-202" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb7-203"><a href="#cb7-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Strained quantum wells.** Growing a well with a slightly different lattice constant (InGaAs on GaAs, a few % In) splits the</span>
+<span id="cb7-204"><a href="#cb7-204" aria-hidden="true" tabindex="-1"></a>  heavy and light holes and lowers the in-plane hole mass. Transparency density and threshold drop by a further factor of two;</span>
+<span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a>  this made 980 nm EDFA pumps practical.</span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Quantum-dot lasers.** Confining in three dimensions gives delta-like densities of states: very low thresholds, high $T_0$, and</span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a>  tolerance to defects that allows growth on silicon.</span>
+<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Quantum cascade lasers.** Transitions *between sub-bands* of the conduction band ($\varepsilon_2\to\varepsilon_1$) emit in the</span>
+<span id="cb7-209"><a href="#cb7-209" aria-hidden="true" tabindex="-1"></a>  mid-infrared (3–20 µm) and THz range; the wavelength is set by layer thicknesses only. With the panel, find the well width for</span>
+<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a>  which $\varepsilon_2-\varepsilon_1$ of an InGaAs/AlInAs well ($\Delta E_c=0.52$ eV, $m^*=0.043m_e$) equals 0.13 eV (≈ 9.5 µm).</span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, sec. 4.14; Coldren *et al.*, ch. 4 (gain in QWs, strain) and app. 3.</span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>P. S. Zory (ed.), *Quantum Well Lasers* (Academic Press, 1993).</span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>J. Faist *et al.*, "Quantum cascade laser", *Science* 264, 553 (1994).</span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Find the well width that shifts the GaAs/Al₀.₃₃Ga₀.₆₇As emission to 780 nm (CD lasers). Is it still a practical well?</span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Why must the transition obey $\Delta n=0$? What happens to the $\varepsilon_2\to\varepsilon'_1$ transition in a symmetric well?</span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Compute the 2D density of states $m^*/(\pi\hbar^2d)$ of the 10 nm GaAs well and compare with the bulk density at</span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a>   $\varepsilon=k_BT$ above the band edge.</span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>With the confinement figure, how many 8 nm wells give the same Γ as a 100 nm DH layer?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/qw-lasers.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

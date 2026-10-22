@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Radiation in a box – Stimulated Emission Devices: Optical Amplifiers and Lasers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./einstein.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./blackbody.html">Stimulated emission</a></li><li class="breadcrumb-item"><a href="./blackbody.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stimulated Emission Devices: Optical Amplifiers and Lasers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter4/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stimulated emission</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blackbody.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./einstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Absorption, spontaneous and stimulated emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Three- and four-level lasers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Optical amplifiers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./edfa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Optical gain and the erbium-doped fiber amplifier</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laser oscillators</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gas-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gas lasers and longitudinal modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./threshold.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Threshold, output power and photon lifetime</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./broadening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transverse modes and line broadening</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pulsed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Q-switching and mode-locking</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor lasers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laser diode principle and optical gain</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laser diode efficiencies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-equation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The laser diode equation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qw-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./single-mode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Single-frequency lasers: DBR, DFB, external cavity, VCSEL</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./soa-sled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modulation of laser diodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./holography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Holography</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resonators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linewidth-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Going further: laser linewidth, noise and chirp</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">1.1</span> Key relations</a></li>
+  <li><a href="#counting-the-modes-slides-56" id="toc-counting-the-modes-slides-56" class="nav-link" data-scroll-target="#counting-the-modes-slides-56"><span class="header-section-number">1.2</span> Counting the modes (slides 5–6)</a></li>
+  <li><a href="#the-density-of-modes-and-the-ultraviolet-catastrophe-slide-7" id="toc-the-density-of-modes-and-the-ultraviolet-catastrophe-slide-7" class="nav-link" data-scroll-target="#the-density-of-modes-and-the-ultraviolet-catastrophe-slide-7"><span class="header-section-number">1.3</span> The density of modes and the ultraviolet catastrophe (slide 7)</a></li>
+  <li><a href="#how-many-photons-per-mode" id="toc-how-many-photons-per-mode" class="nav-link" data-scroll-target="#how-many-photons-per-mode"><span class="header-section-number">1.4</span> How many photons per mode?</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">1.5</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/blackbody.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./blackbody.html">Stimulated emission</a></li><li class="breadcrumb-item"><a href="./blackbody.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-blackbody" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter4/notebooks/blackbody.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 4–7: radiation in a box at temperature <span class="math inline">\(T\)</span>, counting the modes, the density of modes, the “ultraviolet catastrophe” and Planck’s law.</em></p>
+<section id="key-relations" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">1.1</span> Key relations</h2>
+<p>A cubic box of side <span class="math inline">\(L\)</span> with conducting walls holds standing waves whose wavevector components are quantised (slide 4),</p>
+<p><span class="math display">\[
+k_x=\frac{\pi n_x}{L},\quad k_y=\frac{\pi n_y}{L},\quad k_z=\frac{\pi n_z}{L},\qquad n_x,n_y,n_z=1,2,3,\dots
+\]</span></p>
+<p>Each triplet <span class="math inline">\((n_x,n_y,n_z)\)</span> is a point of a cubic lattice in “mode space” (slide 5). A mode of frequency <span class="math inline">\(\nu\)</span> sits at the distance <span class="math inline">\(p=\sqrt{n_x^2+n_y^2+n_z^2}=2L\nu/c\)</span> from the origin. Counting the points in the positive octant of a spherical shell of radius <span class="math inline">\(p\)</span> and thickness <span class="math inline">\(dp\)</span>, and multiplying by <strong>2 for the two polarisations</strong>, gives the number of modes per unit volume per unit frequency (slides 6–7):</p>
+<p><span class="math display">\[
+\frac{dN}{L^3\,d\nu}=\frac{1}{L^3}\cdot2\cdot\frac{1}{8}\cdot4\pi p^2\frac{dp}{d\nu}=\frac{8\pi\nu^2}{c^3}.
+\]</span></p>
+<p>Classical physics gives every mode the mean energy <span class="math inline">\(k_BT\)</span>. The energy density per unit frequency is then the <strong>Rayleigh–Jeans</strong> law, <span class="math inline">\(\rho(\nu)=8\pi k_BT\nu^2/c^3\)</span>, which grows without bound at high frequency: the “disaster at high frequency” of slide 7. Planck replaced <span class="math inline">\(k_BT\)</span> by the mean energy of a quantised oscillator, <span class="math inline">\(h\nu/(e^{h\nu/k_BT}-1)\)</span>, which falls off exponentially when <span class="math inline">\(h\nu\gg k_BT\)</span>:</p>
+<p><span class="math display">\[
+\rho_\text{eq}(\nu)=\frac{8\pi h\nu^3}{c^3}\,\frac{1}{\exp(h\nu/k_BT)-1}.
+\]</span></p>
+<p>The Planck law reappears in <a href="einstein.html" class="quarto-xref"><span>Chapter 2</span></a>: Einstein used it to find the ratio of spontaneous to stimulated emission.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Two details of slides 6–7
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Slide 6 writes <span class="math inline">\(dN=4\pi\nu\,(L/c)^3d\nu\)</span>. The exponent is missing: the octant of the shell gives <span class="math inline">\(dN=4\pi\nu^2(L/c)^3d\nu\)</span> for <strong>one</strong> polarisation. Slides 6–7 then carry <span class="math inline">\(4\pi\)</span> into <span class="math inline">\(du_\nu/d\nu=4\pi k_BT\nu^2/c^3\)</span>, whereas Planck’s law on the same slide has <span class="math inline">\(8\pi\)</span>. The factor 2 is the second polarisation. With it, Planck’s law tends exactly to Rayleigh–Jeans when <span class="math inline">\(h\nu\ll k_BT\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="counting-the-modes-slides-56" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="counting-the-modes-slides-56"><span class="header-section-number">1.2</span> Counting the modes (slides 5–6)</h2>
+<p>The panel draws a two-dimensional slice of mode space (<span class="math inline">\(n_z=1\)</span>) and the shell between <span class="math inline">\(p\)</span> and <span class="math inline">\(p+dp\)</span>. The table counts the modes of the full 3D box by brute force and compares with the continuum formula <span class="math inline">\(\tfrac{\pi}{6}p^3\)</span> (one polarisation).</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="58" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 57;"><span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>viewof mc <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">p</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">4</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"shell radius p = 2Lν/c"</span>})<span class="op">,</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dp</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"shell thickness dp"</span>})</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="67" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 66;"><span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>mcOut <span class="op">=</span> {</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> []<span class="op">,</span> R <span class="op">=</span> mc<span class="op">.</span><span class="at">p</span> <span class="op">+</span> mc<span class="op">.</span><span class="at">dp</span><span class="op">,</span> N <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(R) <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> N<span class="op">;</span> i<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> N<span class="op">;</span> j<span class="op">++</span>) {</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> r <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">hypot</span>(i<span class="op">,</span> j)<span class="op">;</span> pts<span class="op">.</span><span class="fu">push</span>({<span class="dt">nx</span><span class="op">:</span> i<span class="op">,</span> <span class="dt">ny</span><span class="op">:</span> j<span class="op">,</span> <span class="dt">inShell</span><span class="op">:</span> r <span class="op">&gt;=</span> mc<span class="op">.</span><span class="at">p</span> <span class="op">&amp;&amp;</span> r <span class="op">&lt;</span> mc<span class="op">.</span><span class="at">p</span> <span class="op">+</span> mc<span class="op">.</span><span class="at">dp</span><span class="op">,</span> <span class="dt">inside</span><span class="op">:</span> r <span class="op">&lt;</span> mc<span class="op">.</span><span class="at">p</span>})<span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> shell <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>                                   <span class="co">// brute-force 3D count</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> N<span class="op">;</span> i<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> N<span class="op">;</span> j<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&lt;=</span> N<span class="op">;</span> k<span class="op">++</span>) {</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> r2 <span class="op">=</span> i<span class="op">*</span>i <span class="op">+</span> j<span class="op">*</span>j <span class="op">+</span> k<span class="op">*</span>k<span class="op">;</span> <span class="cf">if</span> (r2 <span class="op">&lt;</span> mc<span class="op">.</span><span class="at">p</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span>) count<span class="op">++;</span> <span class="cf">else</span> <span class="cf">if</span> (r2 <span class="op">&lt;</span> R<span class="op">*</span>R) shell<span class="op">++;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> arc <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">91</span>)<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> mc<span class="op">.</span><span class="at">p</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(a<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">180</span>)<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> mc<span class="op">.</span><span class="at">p</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(a<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">180</span>)}))<span class="op">;</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> arc2 <span class="op">=</span> arc<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> d<span class="op">.</span><span class="at">x</span><span class="op">*</span>R<span class="op">/</span>mc<span class="op">.</span><span class="at">p</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> d<span class="op">.</span><span class="at">y</span><span class="op">*</span>R<span class="op">/</span>mc<span class="op">.</span><span class="at">p</span>}))<span class="op">;</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {pts<span class="op">,</span> count<span class="op">,</span> shell<span class="op">,</span> arc<span class="op">,</span> arc2<span class="op">,</span> N}<span class="op">;</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">520</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">520</span>)<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"n_x"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> mcOut<span class="op">.</span><span class="at">N</span>]}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"n_y"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> mcOut<span class="op">.</span><span class="at">N</span>]}<span class="op">,</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(mcOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"nx"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"ny"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> mcOut<span class="op">.</span><span class="at">N</span> <span class="op">&gt;</span> <span class="dv">30</span> <span class="op">?</span> <span class="fl">1.5</span> <span class="op">:</span> <span class="fl">2.5</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">inShell</span> <span class="op">?</span> <span class="st">"#eb6834"</span> <span class="op">:</span> d<span class="op">.</span><span class="at">inside</span> <span class="op">?</span> <span class="st">"#2a78d6"</span> <span class="op">:</span> <span class="st">"#c3c2b7"</span>})<span class="op">,</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(mcOut<span class="op">.</span><span class="at">arc</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0b0b0b"</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">line</span>(mcOut<span class="op">.</span><span class="at">arc2</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="90" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 89;"><span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;3D box, one polarisation: &lt;b&gt;</span><span class="sc">${</span>mcOut<span class="op">.</span><span class="at">count</span><span class="sc">}</span><span class="vs">&lt;/b&gt; modes with p &amp;lt; </span><span class="sc">${</span>mc<span class="op">.</span><span class="at">p</span><span class="sc">}</span><span class="vs"> (continuum π p³/6 = </span><span class="sc">${</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span><span class="op">**</span><span class="dv">3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">,</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="vs">ratio </span><span class="sc">${</span>(mcOut<span class="op">.</span><span class="at">count</span><span class="op">/</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span><span class="op">**</span><span class="dv">3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">) · &lt;b&gt;</span><span class="sc">${</span>mcOut<span class="op">.</span><span class="at">shell</span><span class="sc">}</span><span class="vs">&lt;/b&gt; modes in the shell (continuum (π/2) p² dp ≈ </span><span class="sc">${</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span><span class="op">**</span><span class="dv">2</span><span class="op">*</span>mc<span class="op">.</span><span class="at">dp</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span><span class="op">*</span>mc<span class="op">.</span><span class="at">dp</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>mc<span class="op">.</span><span class="at">dp</span><span class="op">**</span><span class="dv">3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">)&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>For small <span class="math inline">\(p\)</span> the brute-force count falls below the continuum value. The points on the three planes <span class="math inline">\(n_i=0\)</span> are not modes (the field vanishes), and the sphere “loses” a surface layer. The relative error falls as <span class="math inline">\(1/p\)</span>. For visible light in a 1 cm box, <span class="math inline">\(p=2L\nu/c\approx4\times10^4\)</span>, so the continuum formula is exact for all practical purposes.</p>
+<div id="cell-fig-modecount" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.unique(np.<span class="bu">round</span>(np.logspace(<span class="fl">0.7</span>, <span class="fl">2.2</span>, <span class="dv">25</span>)))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ratio <span class="op">=</span> [lz.count_modes_box(<span class="fl">1.0</span>, P<span class="op">*</span>lz.c0<span class="op">/</span><span class="dv">2</span>)<span class="op">/</span>(np.pi<span class="op">/</span><span class="dv">6</span><span class="op">*</span>P<span class="op">**</span><span class="dv">3</span>) <span class="cf">for</span> P <span class="kw">in</span> p]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">3.3</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ax.semilogx(p, ratio, <span class="st">"o-"</span>, ms<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">"brute force / continuum"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax.semilogx(p, <span class="dv">1</span> <span class="op">-</span> <span class="dv">9</span><span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>p), <span class="st">"--"</span>, color<span class="op">=</span>lz.INK2, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"1 − 9/(4p) (surface correction)"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"p = 2Lν/c"</span>, ylabel<span class="op">=</span><span class="st">"ratio"</span>, ylim<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">1.05</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-modecount" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-modecount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="blackbody_files/figure-html/fig-modecount-output-1.png" width="676" height="350" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-modecount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1: Brute-force count of the modes of a cubic box (one polarisation) divided by the continuum value π p³/6. The ratio tends to 1 as 1 − 9/(4p): the three planes n_i = 0 carry no modes, a surface correction that vanishes for large p.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-density-of-modes-and-the-ultraviolet-catastrophe-slide-7" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-density-of-modes-and-the-ultraviolet-catastrophe-slide-7"><span class="header-section-number">1.3</span> The density of modes and the ultraviolet catastrophe (slide 7)</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="113" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 112;"><span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>viewof bb <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>  <span class="dt">T</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">200</span><span class="op">,</span> <span class="dv">10000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">3000</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"temperature T (K)"</span>})<span class="op">,</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scale</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"linear"</span><span class="op">,</span> <span class="st">"log"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"axes"</span>})</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="122" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 121;"><span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>bbOut <span class="op">=</span> {</span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> h <span class="op">=</span> <span class="fl">6.62607015e-34</span><span class="op">,</span> c <span class="op">=</span> <span class="dv">299792458</span><span class="op">,</span> k <span class="op">=</span> <span class="fl">1.380649e-23</span><span class="op">,</span> T <span class="op">=</span> bb<span class="op">.</span><span class="at">T</span><span class="op">,</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">400</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> lam <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> (<span class="op">-</span><span class="dv">7</span> <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>i<span class="op">/</span><span class="dv">400</span>)<span class="op">,</span> nu <span class="op">=</span> c<span class="op">/</span>lam<span class="op">;</span>                               <span class="co">// 100 nm .. 100 µm</span></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> M <span class="op">=</span> <span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>h<span class="op">*</span>c<span class="op">*</span>c<span class="op">/</span>lam<span class="op">**</span><span class="dv">5</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">expm1</span>(h<span class="op">*</span>c<span class="op">/</span>(lam<span class="op">*</span>k<span class="op">*</span>T))<span class="op">*</span><span class="fl">1e-6</span><span class="op">;</span>             <span class="co">// W m^-2 µm^-1</span></span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> MRJ <span class="op">=</span> <span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>c<span class="op">*</span>k<span class="op">*</span>T<span class="op">/</span>lam<span class="op">**</span><span class="dv">4</span><span class="op">*</span><span class="fl">1e-6</span><span class="op">;</span></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({<span class="dt">lam</span><span class="op">:</span> lam<span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> M<span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"Planck"</span>}<span class="op">,</span> {<span class="dt">lam</span><span class="op">:</span> lam<span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> <span class="dt">M</span><span class="op">:</span> MRJ<span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"Rayleigh–Jeans"</span>})<span class="op">;</span></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> peak <span class="op">=</span> <span class="fl">2.897771955e-3</span><span class="op">/</span>T<span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> total <span class="op">=</span> <span class="fl">5.670374419e-8</span><span class="op">*</span>T<span class="op">**</span><span class="dv">4</span><span class="op">;</span></span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {data<span class="op">,</span> peak<span class="op">,</span> total}<span class="op">;</span></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">330</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (µm)"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> bb<span class="op">.</span><span class="at">scale</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.1</span><span class="op">,</span> <span class="dv">100</span>]}<span class="op">,</span></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"spectral emittance M_λ (W m⁻² µm⁻¹)"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> bb<span class="op">.</span><span class="at">scale</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> bb<span class="op">.</span><span class="at">scale</span> <span class="op">===</span> <span class="st">"log"</span> <span class="op">?</span> [<span class="fl">1e-2</span><span class="op">,</span> <span class="fl">1e9</span>] <span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.3</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>bbOut<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">type</span> <span class="op">===</span> <span class="st">"Planck"</span>)<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">M</span>))]}<span class="op">,</span></span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Planck"</span><span class="op">,</span> <span class="st">"Rayleigh–Jeans"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#e34948"</span>]}<span class="op">,</span></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(bbOut<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">M</span> <span class="op">&gt;</span> <span class="fl">1e-3</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">M</span> <span class="op">&lt;</span> <span class="fl">1e10</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">clip</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">,</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">ruleX</span>([bbOut<span class="op">.</span><span class="at">peak</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"3,3"</span>})<span class="op">,</span></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">rectX</span>([{<span class="dt">x1</span><span class="op">:</span> <span class="fl">0.38</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="fl">0.78</span>}]<span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> <span class="st">"x1"</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="st">"x2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#eda100"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.12</span>})]</span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="145" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 144;"><span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;Wien peak λ&lt;sub&gt;max&lt;/sub&gt; = 2898/T = &lt;b&gt;</span><span class="sc">${</span>bbOut<span class="op">.</span><span class="at">peak</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> µm&lt;/b&gt; · total emittance σT⁴ = &lt;b&gt;</span><span class="sc">${</span>bbOut<span class="op">.</span><span class="at">total</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> W m⁻²&lt;/b&gt;</span></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a><span class="vs">(the Rayleigh–Jeans integral diverges) · shaded: visible range&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div id="cell-fig-planck" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wl <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">7</span>, np.log10(<span class="fl">3e-4</span>), <span class="dv">600</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="dv">4</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> T, c <span class="kw">in</span> <span class="bu">zip</span>((<span class="dv">8000</span>, <span class="dv">1200</span>, <span class="dv">300</span>), lz.PALETTE):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    ax.loglog(wl<span class="op">*</span><span class="fl">1e6</span>, lz.planck_emittance(wl, T)<span class="op">*</span><span class="fl">1e-6</span>, color<span class="op">=</span>c, label<span class="op">=</span><span class="ss">f"T = </span><span class="sc">{</span>T<span class="sc">}</span><span class="ss"> K"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    ax.loglog(wl<span class="op">*</span><span class="fl">1e6</span>, <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>lz.c0<span class="op">*</span>lz.kB<span class="op">*</span>T<span class="op">/</span>wl<span class="op">**</span><span class="dv">4</span><span class="op">*</span><span class="fl">1e-6</span>, <span class="st">"--"</span>, color<span class="op">=</span>c, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"wavelength (µm)"</span>, ylabel<span class="op">=</span><span class="st">"emittance (W m⁻² µm⁻¹)"</span>, ylim<span class="op">=</span>(<span class="fl">1e-2</span>, <span class="fl">1e9</span>), xlim<span class="op">=</span>(<span class="fl">0.1</span>, <span class="dv">300</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-planck" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-planck-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="blackbody_files/figure-html/fig-planck-output-1.png" width="730" height="409" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-planck-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Black-body spectral emittance at the three temperatures of slide 7 (solid) and the Rayleigh–Jeans law (dashed). The classical law agrees only at long wavelengths, where hν ≪ k_BT.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="how-many-photons-per-mode" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="how-many-photons-per-mode"><span class="header-section-number">1.4</span> How many photons per mode?</h2>
+<p>The factor <span class="math inline">\(1/(e^{h\nu/k_BT}-1)\)</span> is the mean number of photons in one mode at temperature <span class="math inline">\(T\)</span>. It is the quantity that decides whether stimulated or spontaneous emission dominates (<a href="einstein.html" class="quarto-xref"><span>Chapter 2</span></a>):</p>
+<div class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, wl <span class="kw">in</span> ((<span class="st">"microwave, 10 GHz"</span>, lz.c0<span class="op">/</span><span class="fl">10e9</span>), (<span class="st">"CO₂ laser, 10.6 µm"</span>, <span class="fl">10.6e-6</span>), (<span class="st">"telecom, 1.55 µm"</span>, <span class="fl">1.55e-6</span>),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                 (<span class="st">"He–Ne, 632.8 nm"</span>, <span class="fl">632.8e-9</span>), (<span class="st">"UV, 250 nm"</span>, <span class="fl">250e-9</span>)):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    nu <span class="op">=</span> lz.c0<span class="op">/</span>wl</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"radiation"</span>: name, <span class="st">"hν (eV)"</span>: <span class="ss">f"</span><span class="sc">{</span>lz<span class="sc">.</span>h<span class="op">*</span>nu<span class="op">/</span>lz<span class="sc">.</span>qe<span class="sc">:.3g}</span><span class="ss">"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                 <span class="op">**</span>{<span class="ss">f"n̄ at </span><span class="sc">{</span>T<span class="sc">}</span><span class="ss"> K"</span>: <span class="ss">f"</span><span class="sc">{</span>lz<span class="sc">.</span>stim_over_spont(nu, T)<span class="sc">:.2e}</span><span class="ss">"</span> <span class="cf">for</span> T <span class="kw">in</span> (<span class="dv">300</span>, <span class="dv">3000</span>, <span class="dv">6000</span>)}})</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-occupation" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-occupation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1.1: Mean photon number per mode in thermal equilibrium, n̄ = 1/(exp(hν/kT) − 1), equal to the ratio of stimulated to spontaneous emission rates (slide 17).
+</figcaption>
+<div aria-describedby="tbl-occupation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">radiation</th>
+<th data-quarto-table-cell-role="th">hν (eV)</th>
+<th data-quarto-table-cell-role="th">n̄ at 300 K</th>
+<th data-quarto-table-cell-role="th">n̄ at 3000 K</th>
+<th data-quarto-table-cell-role="th">n̄ at 6000 K</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>microwave, 10 GHz</td>
+<td>4.14e-05</td>
+<td>6.25e+02</td>
+<td>6.25e+03</td>
+<td>1.25e+04</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>CO₂ laser, 10.6 µm</td>
+<td>0.117</td>
+<td>1.10e-02</td>
+<td>1.75e+00</td>
+<td>3.94e+00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>telecom, 1.55 µm</td>
+<td>0.8</td>
+<td>3.65e-14</td>
+<td>4.75e-02</td>
+<td>2.70e-01</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>He–Ne, 632.8 nm</td>
+<td>1.96</td>
+<td>1.22e-33</td>
+<td>5.11e-04</td>
+<td>2.31e-02</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>UV, 250 nm</td>
+<td>4.96</td>
+<td>4.86e-84</td>
+<td>4.66e-09</td>
+<td>6.83e-05</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>At optical frequencies and room temperature a mode holds about <span class="math inline">\(10^{-11}\)</span> to <span class="math inline">\(10^{-30}\)</span> photons: thermal light is almost entirely spontaneous emission. A laser beam puts <span class="math inline">\(10^{10}\)</span> or more photons into a single mode. It cannot be thermal light.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Density of modes in a medium.</strong> In a medium of index <span class="math inline">\(n\)</span>, <span class="math inline">\(k=2\pi n\nu/c\)</span> and the mode density becomes <span class="math inline">\(8\pi n^3\nu^2/c^3\)</span> (or <span class="math inline">\(8\pi n^2n_g\nu^2/c^3\)</span> with dispersion). This <span class="math inline">\(n^3\)</span> enters <span class="math inline">\(A_{21}/B_{21}\)</span> and the threshold of semiconductor lasers (<a href="threshold.html" class="quarto-xref"><span>Chapter 6</span></a>).</li>
+<li><strong>Spontaneous emission is not a constant of the atom.</strong> Fermi’s golden rule makes <span class="math inline">\(A_{21}\)</span> proportional to the density of modes at <span class="math inline">\(\nu_{21}\)</span>. In a cavity of volume <span class="math inline">\(V\)</span> and quality factor <span class="math inline">\(Q\)</span> the rate is multiplied by the <strong>Purcell factor</strong> <span class="math inline">\(F_P=\frac{3}{4\pi^2}\left(\frac{\lambda}{n}\right)^3\frac{Q}{V}\)</span>. Compute <span class="math inline">\(F_P\)</span> for a micropillar with <span class="math inline">\(Q=10^4\)</span> and <span class="math inline">\(V=5(\lambda/n)^3\)</span>. This is how single-photon sources and nanolasers work.</li>
+<li><strong>Stefan–Boltzmann and Wien from Planck.</strong> Integrate <span class="math inline">\(M_\lambda\)</span> numerically (<code>scipy.integrate.quad</code>) to recover <span class="math inline">\(\sigma T^4\)</span>, and differentiate to recover <span class="math inline">\(\lambda_\text{max}T=2898\)</span> µm K. Where is the maximum when plotted versus frequency instead? Why is it different?</li>
+<li><strong>Cosmic microwave background.</strong> Fit the Planck law to the FIRAS data (2.725 K) and compare the mode occupation with that of a radio receiver.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, <em>Optoelectronics and Photonics</em>, sec.&nbsp;4.2; Saleh and Teich, <em>Fundamentals of Photonics</em>, ch.&nbsp;13 (photons in thermal equilibrium).</li>
+<li>Milonni and Eberly, <em>Laser Physics</em> (Wiley, 2010), ch.&nbsp;3: the Einstein argument and the mode density.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">1.5</span> Try it yourself</h2>
+<ol type="1">
+<li>How many modes (both polarisations) lie between 632.7 and 632.9 nm in a 1 cm³ box?</li>
+<li>Show that Planck’s law reduces to Rayleigh–Jeans when <span class="math inline">\(h\nu\ll k_BT\)</span> and to Wien’s law <span class="math inline">\(\propto\nu^3e^{-h\nu/k_BT}\)</span> when <span class="math inline">\(h\nu\gg k_BT\)</span>.</li>
+<li>At what temperature does a 1.55 µm mode hold one photon on average? Is that temperature reachable?</li>
+<li>Repeat the mode count for a 2D box (a planar microcavity). How does the density of modes depend on <span class="math inline">\(\nu\)</span>?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBtYyA9IElucHV0cy5mb3JtKHtcbiAgcDogSW5wdXRzLnJhbmdlKFs0LCA0MF0sIHt2YWx1ZTogMTAsIHN0ZXA6IDAuNSwgbGFiZWw6IFwic2hlbGwgcmFkaXVzIHAgPSAyTM69L2NcIn0pLFxuICBkcDogSW5wdXRzLnJhbmdlKFswLjUsIDVdLCB7dmFsdWU6IDEuNSwgc3RlcDogMC4xLCBsYWJlbDogXCJzaGVsbCB0aGlja25lc3MgZHBcIn0pXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibWNPdXQgPSB7XG4gIGNvbnN0IHB0cyA9IFtdLCBSID0gbWMucCArIG1jLmRwLCBOID0gTWF0aC5jZWlsKFIpICsgMTtcbiAgZm9yIChsZXQgaSA9IDE7IGkgPD0gTjsgaSsrKSBmb3IgKGxldCBqID0gMTsgaiA8PSBOOyBqKyspIHtcbiAgICBjb25zdCByID0gTWF0aC5oeXBvdChpLCBqKTsgcHRzLnB1c2goe254OiBpLCBueTogaiwgaW5TaGVsbDogciA+PSBtYy5wICYmIHIgPCBtYy5wICsgbWMuZHAsIGluc2lkZTogciA8IG1jLnB9KTtcbiAgfVxuICBsZXQgY291bnQgPSAwLCBzaGVsbCA9IDA7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAvLyBicnV0ZS1mb3JjZSAzRCBjb3VudFxuICBmb3IgKGxldCBpID0gMTsgaSA8PSBOOyBpKyspIGZvciAobGV0IGogPSAxOyBqIDw9IE47IGorKykgZm9yIChsZXQgayA9IDE7IGsgPD0gTjsgaysrKSB7XG4gICAgY29uc3QgcjIgPSBpKmkgKyBqKmogKyBrKms7IGlmIChyMiA8IG1jLnAqbWMucCkgY291bnQrKzsgZWxzZSBpZiAocjIgPCBSKlIpIHNoZWxsKys7XG4gIH1cbiAgY29uc3QgYXJjID0gZDMucmFuZ2UoMCwgOTEpLm1hcChhID0+ICh7eDogbWMucCpNYXRoLmNvcyhhKk1hdGguUEkvMTgwKSwgeTogbWMucCpNYXRoLnNpbihhKk1hdGguUEkvMTgwKX0pKTtcbiAgY29uc3QgYXJjMiA9IGFyYy5tYXAoZCA9PiAoe3g6IGQueCpSL21jLnAsIHk6IGQueSpSL21jLnB9KSk7XG4gIHJldHVybiB7cHRzLCBjb3VudCwgc2hlbGwsIGFyYywgYXJjMiwgTn07XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDUyMCksIGhlaWdodDogTWF0aC5taW4od2lkdGgsIDUyMCksIHg6IHtsYWJlbDogXCJuX3hcIiwgZG9tYWluOiBbMCwgbWNPdXQuTl19LCB5OiB7bGFiZWw6IFwibl95XCIsIGRvbWFpbjogWzAsIG1jT3V0Lk5dfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmRvdChtY091dC5wdHMsIHt4OiBcIm54XCIsIHk6IFwibnlcIiwgcjogbWNPdXQuTiA+IDMwID8gMS41IDogMi41LCBmaWxsOiBkID0+IGQuaW5TaGVsbCA/IFwiI2ViNjgzNFwiIDogZC5pbnNpZGUgPyBcIiMyYTc4ZDZcIiA6IFwiI2MzYzJiN1wifSksXG4gICAgUGxvdC5saW5lKG1jT3V0LmFyYywge3g6IFwieFwiLCB5OiBcInlcIiwgc3Ryb2tlOiBcIiMwYjBiMGJcIn0pLCBQbG90LmxpbmUobWNPdXQuYXJjMiwge3g6IFwieFwiLCB5OiBcInlcIiwgc3Ryb2tlOiBcIiMwYjBiMGJcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjQsM1wifSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cInJlc3VsdC1ib3hcIj4zRCBib3gsIG9uZSBwb2xhcmlzYXRpb246IDxiPiR7bWNPdXQuY291bnR9PC9iPiBtb2RlcyB3aXRoIHAgJmx0OyAke21jLnB9IChjb250aW51dW0gz4AgcMKzLzYgPSAkeyhNYXRoLlBJLzYqbWMucCoqMykudG9GaXhlZCgwKX0sXG5yYXRpbyAkeyhtY091dC5jb3VudC8oTWF0aC5QSS82Km1jLnAqKjMpKS50b0ZpeGVkKDMpfSkgwrcgPGI+JHttY091dC5zaGVsbH08L2I+IG1vZGVzIGluIHRoZSBzaGVsbCAoY29udGludXVtICjPgC8yKSBwwrIgZHAg4omIICR7KE1hdGguUEkvMiptYy5wKioyKm1jLmRwICsgTWF0aC5QSS8yKm1jLnAqbWMuZHAqKjIgKyBNYXRoLlBJLzYqbWMuZHAqKjMpLnRvRml4ZWQoMCl9KTwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBiYiA9IElucHV0cy5mb3JtKHtcbiAgVDogSW5wdXRzLnJhbmdlKFsyMDAsIDEwMDAwXSwge3ZhbHVlOiAzMDAwLCBzdGVwOiA1MCwgbGFiZWw6IFwidGVtcGVyYXR1cmUgVCAoSylcIn0pLFxuICBzY2FsZTogSW5wdXRzLnJhZGlvKFtcImxpbmVhclwiLCBcImxvZ1wiXSwge3ZhbHVlOiBcImxvZ1wiLCBsYWJlbDogXCJheGVzXCJ9KVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImJiT3V0ID0ge1xuICBjb25zdCBoID0gNi42MjYwNzAxNWUtMzQsIGMgPSAyOTk3OTI0NTgsIGsgPSAxLjM4MDY0OWUtMjMsIFQgPSBiYi5ULCBkYXRhID0gW107XG4gIGZvciAobGV0IGkgPSAwOyBpIDw9IDQwMDsgaSsrKSB7XG4gICAgY29uc3QgbGFtID0gMTAgKiogKC03ICsgMyppLzQwMCksIG51ID0gYy9sYW07ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC8vIDEwMCBubSAuLiAxMDAgwrVtXG4gICAgY29uc3QgTSA9IDIqTWF0aC5QSSpoKmMqYy9sYW0qKjUvTWF0aC5leHBtMShoKmMvKGxhbSprKlQpKSoxZS02OyAgICAgICAgICAgICAvLyBXIG1eLTIgwrVtXi0xXG4gICAgY29uc3QgTVJKID0gMipNYXRoLlBJKmMqaypUL2xhbSoqNCoxZS02O1xuICAgIGRhdGEucHVzaCh7bGFtOiBsYW0qMWU2LCBNLCB0eXBlOiBcIlBsYW5ja1wifSwge2xhbTogbGFtKjFlNiwgTTogTVJKLCB0eXBlOiBcIlJheWxlaWdo4oCTSmVhbnNcIn0pO1xuICB9XG4gIGNvbnN0IHBlYWsgPSAyLjg5Nzc3MTk1NWUtMy9UKjFlNiwgdG90YWwgPSA1LjY3MDM3NDQxOWUtOCpUKio0O1xuICByZXR1cm4ge2RhdGEsIHBlYWssIHRvdGFsfTtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMzMwLCB4OiB7bGFiZWw6IFwid2F2ZWxlbmd0aCAowrVtKVwiLCB0eXBlOiBiYi5zY2FsZSwgZG9tYWluOiBbMC4xLCAxMDBdfSxcbiAgeToge2xhYmVsOiBcInNwZWN0cmFsIGVtaXR0YW5jZSBNX867IChXIG3igbvCsiDCtW3igbvCuSlcIiwgdHlwZTogYmIuc2NhbGUsIGdyaWQ6IHRydWUsXG4gICAgICBkb21haW46IGJiLnNjYWxlID09PSBcImxvZ1wiID8gWzFlLTIsIDFlOV0gOiBbMCwgMS4zKk1hdGgubWF4KC4uLmJiT3V0LmRhdGEuZmlsdGVyKGQgPT4gZC50eXBlID09PSBcIlBsYW5ja1wiKS5tYXAoZCA9PiBkLk0pKV19LFxuICBjb2xvcjoge2xlZ2VuZDogdHJ1ZSwgZG9tYWluOiBbXCJQbGFuY2tcIiwgXCJSYXlsZWlnaOKAk0plYW5zXCJdLCByYW5nZTogW1wiIzJhNzhkNlwiLCBcIiNlMzQ5NDhcIl19LFxuICBtYXJrczogW1Bsb3QubGluZShiYk91dC5kYXRhLmZpbHRlcihkID0+IGQuTSA+IDFlLTMgJiYgZC5NIDwgMWUxMCksIHt4OiBcImxhbVwiLCB5OiBcIk1cIiwgc3Ryb2tlOiBcInR5cGVcIiwgc3Ryb2tlV2lkdGg6IDIsIGNsaXA6IHRydWV9KSxcbiAgICAgICAgICBQbG90LnJ1bGVYKFtiYk91dC5wZWFrXSwge3N0cm9rZTogXCIjNTI1MTRlXCIsIHN0cm9rZURhc2hhcnJheTogXCIzLDNcIn0pLFxuICAgICAgICAgIFBsb3QucmVjdFgoW3t4MTogMC4zOCwgeDI6IDAuNzh9XSwge3gxOiBcIngxXCIsIHgyOiBcIngyXCIsIGZpbGw6IFwiI2VkYTEwMFwiLCBmaWxsT3BhY2l0eTogMC4xMn0pXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cInJlc3VsdC1ib3hcIj5XaWVuIHBlYWsgzrs8c3ViPm1heDwvc3ViPiA9IDI4OTgvVCA9IDxiPiR7YmJPdXQucGVhay50b0ZpeGVkKDMpfSDCtW08L2I+IMK3IHRvdGFsIGVtaXR0YW5jZSDPg1TigbQgPSA8Yj4ke2JiT3V0LnRvdGFsLnRvRXhwb25lbnRpYWwoMyl9IFcgbeKBu8KyPC9iPlxuKHRoZSBSYXlsZWlnaOKAk0plYW5zIGludGVncmFsIGRpdmVyZ2VzKSDCtyBzaGFkZWQ6IHZpc2libGUgcmFuZ2U8L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21jJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2JiJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter4\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Preface">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./einstein.html" class="pagination-link" aria-label="Absorption, spontaneous and stimulated emission">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Absorption, spontaneous and stimulated emission</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Radiation in a box {#sec-blackbody}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/blackbody.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> laserlib <span class="im">as</span> lz</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>lz.use_style()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>*Slides 4–7: radiation in a box at temperature $T$, counting the modes, the density of modes, the "ultraviolet catastrophe"</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>and Planck's law.*</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>A cubic box of side $L$ with conducting walls holds standing waves whose wavevector components are quantised (slide 4),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>k_x=\frac{\pi n_x}{L},\quad k_y=\frac{\pi n_y}{L},\quad k_z=\frac{\pi n_z}{L},\qquad n_x,n_y,n_z=1,2,3,\dots</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>Each triplet $(n_x,n_y,n_z)$ is a point of a cubic lattice in "mode space" (slide 5). A mode of frequency $\nu$ sits at the</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>distance $p=\sqrt{n_x^2+n_y^2+n_z^2}=2L\nu/c$ from the origin. Counting the points in the positive octant of a spherical shell</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>of radius $p$ and thickness $dp$, and multiplying by **2 for the two polarisations**, gives the number of modes per unit volume</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>per unit frequency (slides 6–7):</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>\frac{dN}{L^3\,d\nu}=\frac{1}{L^3}\cdot2\cdot\frac{1}{8}\cdot4\pi p^2\frac{dp}{d\nu}=\frac{8\pi\nu^2}{c^3}.</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>Classical physics gives every mode the mean energy $k_BT$. The energy density per unit frequency is then the</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>**Rayleigh–Jeans** law, $\rho(\nu)=8\pi k_BT\nu^2/c^3$, which grows without bound at high frequency: the "disaster at high</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>frequency" of slide 7. Planck replaced $k_BT$ by the mean energy of a quantised oscillator,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>$h\nu/(e^{h\nu/k_BT}-1)$, which falls off exponentially when $h\nu\gg k_BT$:</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>\rho_\text{eq}(\nu)=\frac{8\pi h\nu^3}{c^3}\,\frac{1}{\exp(h\nu/k_BT)-1}.</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>The Planck law reappears in @sec-einstein: Einstein used it to find the ratio of spontaneous to stimulated emission.</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning collapse="true"}</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Two details of slides 6–7</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>Slide 6 writes $dN=4\pi\nu\,(L/c)^3d\nu$. The exponent is missing: the octant of the shell gives $dN=4\pi\nu^2(L/c)^3d\nu$ for</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>**one** polarisation. Slides 6–7 then carry $4\pi$ into $du_\nu/d\nu=4\pi k_BT\nu^2/c^3$, whereas Planck's law on the same slide</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>has $8\pi$. The factor 2 is the second polarisation. With it, Planck's law tends exactly to Rayleigh–Jeans when $h\nu\ll k_BT$.</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Counting the modes (slides 5–6)</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>The panel draws a two-dimensional slice of mode space ($n_z=1$) and the shell between $p$ and $p+dp$. The table counts the</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>modes of the full 3D box by brute force and compares with the continuum formula $\tfrac{\pi}{6}p^3$ (one polarisation).</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>viewof mc <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>  <span class="dt">p</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">4</span><span class="op">,</span> <span class="dv">40</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"shell radius p = 2Lν/c"</span>})<span class="op">,</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dp</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"shell thickness dp"</span>})</span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>mcOut <span class="op">=</span> {</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> []<span class="op">,</span> R <span class="op">=</span> mc<span class="op">.</span><span class="at">p</span> <span class="op">+</span> mc<span class="op">.</span><span class="at">dp</span><span class="op">,</span> N <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(R) <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> N<span class="op">;</span> i<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> N<span class="op">;</span> j<span class="op">++</span>) {</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> r <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">hypot</span>(i<span class="op">,</span> j)<span class="op">;</span> pts<span class="op">.</span><span class="fu">push</span>({<span class="dt">nx</span><span class="op">:</span> i<span class="op">,</span> <span class="dt">ny</span><span class="op">:</span> j<span class="op">,</span> <span class="dt">inShell</span><span class="op">:</span> r <span class="op">&gt;=</span> mc<span class="op">.</span><span class="at">p</span> <span class="op">&amp;&amp;</span> r <span class="op">&lt;</span> mc<span class="op">.</span><span class="at">p</span> <span class="op">+</span> mc<span class="op">.</span><span class="at">dp</span><span class="op">,</span> <span class="dt">inside</span><span class="op">:</span> r <span class="op">&lt;</span> mc<span class="op">.</span><span class="at">p</span>})<span class="op">;</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> shell <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>                                   <span class="co">// brute-force 3D count</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&lt;=</span> N<span class="op">;</span> i<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;=</span> N<span class="op">;</span> j<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> k <span class="op">&lt;=</span> N<span class="op">;</span> k<span class="op">++</span>) {</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> r2 <span class="op">=</span> i<span class="op">*</span>i <span class="op">+</span> j<span class="op">*</span>j <span class="op">+</span> k<span class="op">*</span>k<span class="op">;</span> <span class="cf">if</span> (r2 <span class="op">&lt;</span> mc<span class="op">.</span><span class="at">p</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span>) count<span class="op">++;</span> <span class="cf">else</span> <span class="cf">if</span> (r2 <span class="op">&lt;</span> R<span class="op">*</span>R) shell<span class="op">++;</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> arc <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">91</span>)<span class="op">.</span><span class="fu">map</span>(a <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> mc<span class="op">.</span><span class="at">p</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(a<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">180</span>)<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> mc<span class="op">.</span><span class="at">p</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(a<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">180</span>)}))<span class="op">;</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> arc2 <span class="op">=</span> arc<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> d<span class="op">.</span><span class="at">x</span><span class="op">*</span>R<span class="op">/</span>mc<span class="op">.</span><span class="at">p</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> d<span class="op">.</span><span class="at">y</span><span class="op">*</span>R<span class="op">/</span>mc<span class="op">.</span><span class="at">p</span>}))<span class="op">;</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {pts<span class="op">,</span> count<span class="op">,</span> shell<span class="op">,</span> arc<span class="op">,</span> arc2<span class="op">,</span> N}<span class="op">;</span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">520</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">520</span>)<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"n_x"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> mcOut<span class="op">.</span><span class="at">N</span>]}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"n_y"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> mcOut<span class="op">.</span><span class="at">N</span>]}<span class="op">,</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(mcOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"nx"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"ny"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> mcOut<span class="op">.</span><span class="at">N</span> <span class="op">&gt;</span> <span class="dv">30</span> <span class="op">?</span> <span class="fl">1.5</span> <span class="op">:</span> <span class="fl">2.5</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">inShell</span> <span class="op">?</span> <span class="st">"#eb6834"</span> <span class="op">:</span> d<span class="op">.</span><span class="at">inside</span> <span class="op">?</span> <span class="st">"#2a78d6"</span> <span class="op">:</span> <span class="st">"#c3c2b7"</span>})<span class="op">,</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(mcOut<span class="op">.</span><span class="at">arc</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0b0b0b"</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">line</span>(mcOut<span class="op">.</span><span class="at">arc2</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;3D box, one polarisation: &lt;b&gt;</span><span class="sc">${</span>mcOut<span class="op">.</span><span class="at">count</span><span class="sc">}</span><span class="vs">&lt;/b&gt; modes with p &amp;lt; </span><span class="sc">${</span>mc<span class="op">.</span><span class="at">p</span><span class="sc">}</span><span class="vs"> (continuum π p³/6 = </span><span class="sc">${</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span><span class="op">**</span><span class="dv">3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">,</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="vs">ratio </span><span class="sc">${</span>(mcOut<span class="op">.</span><span class="at">count</span><span class="op">/</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span><span class="op">**</span><span class="dv">3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">) · &lt;b&gt;</span><span class="sc">${</span>mcOut<span class="op">.</span><span class="at">shell</span><span class="sc">}</span><span class="vs">&lt;/b&gt; modes in the shell (continuum (π/2) p² dp ≈ </span><span class="sc">${</span>(<span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span><span class="op">**</span><span class="dv">2</span><span class="op">*</span>mc<span class="op">.</span><span class="at">dp</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">2</span><span class="op">*</span>mc<span class="op">.</span><span class="at">p</span><span class="op">*</span>mc<span class="op">.</span><span class="at">dp</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span>mc<span class="op">.</span><span class="at">dp</span><span class="op">**</span><span class="dv">3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">)&lt;/div&gt;`</span></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>For small $p$ the brute-force count falls below the continuum value. The points on the three planes $n_i=0$ are not modes</span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>(the field vanishes), and the sphere "loses" a surface layer. The relative error falls as $1/p$. For visible light in a 1 cm</span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>box, $p=2L\nu/c\approx4\times10^4$, so the continuum formula is exact for all practical purposes.</span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-modecount</span></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Brute-force count of the modes of a cubic box (one polarisation) divided by the continuum value π p³/6. The ratio tends to 1 as 1 − 9/(4p): the three planes n_i = 0 carry no modes, a surface correction that vanishes for large p."</span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> np.unique(np.<span class="bu">round</span>(np.logspace(<span class="fl">0.7</span>, <span class="fl">2.2</span>, <span class="dv">25</span>)))</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>ratio <span class="op">=</span> [lz.count_modes_box(<span class="fl">1.0</span>, P<span class="op">*</span>lz.c0<span class="op">/</span><span class="dv">2</span>)<span class="op">/</span>(np.pi<span class="op">/</span><span class="dv">6</span><span class="op">*</span>P<span class="op">**</span><span class="dv">3</span>) <span class="cf">for</span> P <span class="kw">in</span> p]</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="fl">3.3</span>))</span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>ax.semilogx(p, ratio, <span class="st">"o-"</span>, ms<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">"brute force / continuum"</span>)</span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>ax.semilogx(p, <span class="dv">1</span> <span class="op">-</span> <span class="dv">9</span><span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>p), <span class="st">"--"</span>, color<span class="op">=</span>lz.INK2, lw<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">"1 − 9/(4p) (surface correction)"</span>)</span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"p = 2Lν/c"</span>, ylabel<span class="op">=</span><span class="st">"ratio"</span>, ylim<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">1.05</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="fu">## The density of modes and the ultraviolet catastrophe (slide 7)</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>viewof bb <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>  <span class="dt">T</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">200</span><span class="op">,</span> <span class="dv">10000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">3000</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"temperature T (K)"</span>})<span class="op">,</span></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scale</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"linear"</span><span class="op">,</span> <span class="st">"log"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"axes"</span>})</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a>bbOut <span class="op">=</span> {</span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> h <span class="op">=</span> <span class="fl">6.62607015e-34</span><span class="op">,</span> c <span class="op">=</span> <span class="dv">299792458</span><span class="op">,</span> k <span class="op">=</span> <span class="fl">1.380649e-23</span><span class="op">,</span> T <span class="op">=</span> bb<span class="op">.</span><span class="at">T</span><span class="op">,</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">400</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> lam <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> (<span class="op">-</span><span class="dv">7</span> <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>i<span class="op">/</span><span class="dv">400</span>)<span class="op">,</span> nu <span class="op">=</span> c<span class="op">/</span>lam<span class="op">;</span>                               <span class="co">// 100 nm .. 100 µm</span></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> M <span class="op">=</span> <span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>h<span class="op">*</span>c<span class="op">*</span>c<span class="op">/</span>lam<span class="op">**</span><span class="dv">5</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">expm1</span>(h<span class="op">*</span>c<span class="op">/</span>(lam<span class="op">*</span>k<span class="op">*</span>T))<span class="op">*</span><span class="fl">1e-6</span><span class="op">;</span>             <span class="co">// W m^-2 µm^-1</span></span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> MRJ <span class="op">=</span> <span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>c<span class="op">*</span>k<span class="op">*</span>T<span class="op">/</span>lam<span class="op">**</span><span class="dv">4</span><span class="op">*</span><span class="fl">1e-6</span><span class="op">;</span></span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({<span class="dt">lam</span><span class="op">:</span> lam<span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> M<span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"Planck"</span>}<span class="op">,</span> {<span class="dt">lam</span><span class="op">:</span> lam<span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> <span class="dt">M</span><span class="op">:</span> MRJ<span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"Rayleigh–Jeans"</span>})<span class="op">;</span></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> peak <span class="op">=</span> <span class="fl">2.897771955e-3</span><span class="op">/</span>T<span class="op">*</span><span class="fl">1e6</span><span class="op">,</span> total <span class="op">=</span> <span class="fl">5.670374419e-8</span><span class="op">*</span>T<span class="op">**</span><span class="dv">4</span><span class="op">;</span></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {data<span class="op">,</span> peak<span class="op">,</span> total}<span class="op">;</span></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">330</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (µm)"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> bb<span class="op">.</span><span class="at">scale</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.1</span><span class="op">,</span> <span class="dv">100</span>]}<span class="op">,</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"spectral emittance M_λ (W m⁻² µm⁻¹)"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> bb<span class="op">.</span><span class="at">scale</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> bb<span class="op">.</span><span class="at">scale</span> <span class="op">===</span> <span class="st">"log"</span> <span class="op">?</span> [<span class="fl">1e-2</span><span class="op">,</span> <span class="fl">1e9</span>] <span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.3</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>bbOut<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">type</span> <span class="op">===</span> <span class="st">"Planck"</span>)<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">M</span>))]}<span class="op">,</span></span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Planck"</span><span class="op">,</span> <span class="st">"Rayleigh–Jeans"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#e34948"</span>]}<span class="op">,</span></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(bbOut<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">M</span> <span class="op">&gt;</span> <span class="fl">1e-3</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">M</span> <span class="op">&lt;</span> <span class="fl">1e10</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">clip</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">,</span></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">ruleX</span>([bbOut<span class="op">.</span><span class="at">peak</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"3,3"</span>})<span class="op">,</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">rectX</span>([{<span class="dt">x1</span><span class="op">:</span> <span class="fl">0.38</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="fl">0.78</span>}]<span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> <span class="st">"x1"</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="st">"x2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#eda100"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.12</span>})]</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;Wien peak λ&lt;sub&gt;max&lt;/sub&gt; = 2898/T = &lt;b&gt;</span><span class="sc">${</span>bbOut<span class="op">.</span><span class="at">peak</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> µm&lt;/b&gt; · total emittance σT⁴ = &lt;b&gt;</span><span class="sc">${</span>bbOut<span class="op">.</span><span class="at">total</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> W m⁻²&lt;/b&gt;</span></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="vs">(the Rayleigh–Jeans integral diverges) · shaded: visible range&lt;/div&gt;`</span></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-planck</span></span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Black-body spectral emittance at the three temperatures of slide 7 (solid) and the Rayleigh–Jeans law (dashed). The classical law agrees only at long wavelengths, where hν ≪ k_BT."</span></span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a>wl <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">7</span>, np.log10(<span class="fl">3e-4</span>), <span class="dv">600</span>)</span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="dv">4</span>))</span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> T, c <span class="kw">in</span> <span class="bu">zip</span>((<span class="dv">8000</span>, <span class="dv">1200</span>, <span class="dv">300</span>), lz.PALETTE):</span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>    ax.loglog(wl<span class="op">*</span><span class="fl">1e6</span>, lz.planck_emittance(wl, T)<span class="op">*</span><span class="fl">1e-6</span>, color<span class="op">=</span>c, label<span class="op">=</span><span class="ss">f"T = </span><span class="sc">{</span>T<span class="sc">}</span><span class="ss"> K"</span>)</span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>    ax.loglog(wl<span class="op">*</span><span class="fl">1e6</span>, <span class="dv">2</span><span class="op">*</span>np.pi<span class="op">*</span>lz.c0<span class="op">*</span>lz.kB<span class="op">*</span>T<span class="op">/</span>wl<span class="op">**</span><span class="dv">4</span><span class="op">*</span><span class="fl">1e-6</span>, <span class="st">"--"</span>, color<span class="op">=</span>c, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"wavelength (µm)"</span>, ylabel<span class="op">=</span><span class="st">"emittance (W m⁻² µm⁻¹)"</span>, ylim<span class="op">=</span>(<span class="fl">1e-2</span>, <span class="fl">1e9</span>), xlim<span class="op">=</span>(<span class="fl">0.1</span>, <span class="dv">300</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a><span class="fu">## How many photons per mode?</span></span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a>The factor $1/(e^{h\nu/k_BT}-1)$ is the mean number of photons in one mode at temperature $T$. It is the quantity that decides</span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a>whether stimulated or spontaneous emission dominates (@sec-einstein):</span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-occupation</span></span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Mean photon number per mode in thermal equilibrium, n̄ = 1/(exp(hν/kT) − 1), equal to the ratio of stimulated to spontaneous emission rates (slide 17)."</span></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, wl <span class="kw">in</span> ((<span class="st">"microwave, 10 GHz"</span>, lz.c0<span class="op">/</span><span class="fl">10e9</span>), (<span class="st">"CO₂ laser, 10.6 µm"</span>, <span class="fl">10.6e-6</span>), (<span class="st">"telecom, 1.55 µm"</span>, <span class="fl">1.55e-6</span>),</span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>                 (<span class="st">"He–Ne, 632.8 nm"</span>, <span class="fl">632.8e-9</span>), (<span class="st">"UV, 250 nm"</span>, <span class="fl">250e-9</span>)):</span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a>    nu <span class="op">=</span> lz.c0<span class="op">/</span>wl</span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"radiation"</span>: name, <span class="st">"hν (eV)"</span>: <span class="ss">f"</span><span class="sc">{</span>lz<span class="sc">.</span>h<span class="op">*</span>nu<span class="op">/</span>lz<span class="sc">.</span>qe<span class="sc">:.3g}</span><span class="ss">"</span>,</span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>                 <span class="op">**</span>{<span class="ss">f"n̄ at </span><span class="sc">{</span>T<span class="sc">}</span><span class="ss"> K"</span>: <span class="ss">f"</span><span class="sc">{</span>lz<span class="sc">.</span>stim_over_spont(nu, T)<span class="sc">:.2e}</span><span class="ss">"</span> <span class="cf">for</span> T <span class="kw">in</span> (<span class="dv">300</span>, <span class="dv">3000</span>, <span class="dv">6000</span>)}})</span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a>At optical frequencies and room temperature a mode holds about $10^{-11}$ to $10^{-30}$ photons: thermal light is almost</span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a>entirely spontaneous emission. A laser beam puts $10^{10}$ or more photons into a single mode. It cannot be thermal light.</span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Density of modes in a medium.** In a medium of index $n$, $k=2\pi n\nu/c$ and the mode density becomes</span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>  $8\pi n^3\nu^2/c^3$ (or $8\pi n^2n_g\nu^2/c^3$ with dispersion). This $n^3$ enters $A_{21}/B_{21}$ and the threshold of</span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a>  semiconductor lasers (@sec-threshold).</span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Spontaneous emission is not a constant of the atom.** Fermi's golden rule makes $A_{21}$ proportional to the density of</span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a>  modes at $\nu_{21}$. In a cavity of volume $V$ and quality factor $Q$ the rate is multiplied by the **Purcell factor**</span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a>  $F_P=\frac{3}{4\pi^2}\left(\frac{\lambda}{n}\right)^3\frac{Q}{V}$. Compute $F_P$ for a micropillar with $Q=10^4$ and</span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a>  $V=5(\lambda/n)^3$. This is how single-photon sources and nanolasers work.</span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Stefan–Boltzmann and Wien from Planck.** Integrate $M_\lambda$ numerically (<span class="in">`scipy.integrate.quad`</span>) to recover $\sigma T^4$, and</span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a>  differentiate to recover $\lambda_\text{max}T=2898$ µm K. Where is the maximum when plotted versus frequency instead? Why is it</span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>  different?</span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Cosmic microwave background.** Fit the Planck law to the FIRAS data (2.725 K) and compare the mode occupation with that of a</span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a>  radio receiver.</span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, *Optoelectronics and Photonics*, sec. 4.2; Saleh and Teich, *Fundamentals of Photonics*, ch. 13 (photons in</span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a>  thermal equilibrium).</span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Milonni and Eberly, *Laser Physics* (Wiley, 2010), ch. 3: the Einstein argument and the mode density.</span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>How many modes (both polarisations) lie between 632.7 and 632.9 nm in a 1 cm³ box?</span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Show that Planck's law reduces to Rayleigh–Jeans when $h\nu\ll k_BT$ and to Wien's law $\propto\nu^3e^{-h\nu/k_BT}$ when</span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a>   $h\nu\gg k_BT$.</span>
+<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>At what temperature does a 1.55 µm mode hold one photon on average? Is that temperature reachable?</span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Repeat the mode count for a 2D box (a planar microcavity). How does the density of modes depend on $\nu$?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/blackbody.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

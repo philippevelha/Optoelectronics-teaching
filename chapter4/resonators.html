@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>18&nbsp; Going further: optical resonators and Gaussian modes – Stimulated Emission Devices: Optical Amplifiers and Lasers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./linewidth-noise.html" rel="next">
+<link href="./holography.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./resonators.html">Going further</a></li><li class="breadcrumb-item"><a href="./resonators.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stimulated Emission Devices: Optical Amplifiers and Lasers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter4/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stimulated emission</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blackbody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./einstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Absorption, spontaneous and stimulated emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Three- and four-level lasers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Optical amplifiers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./edfa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Optical gain and the erbium-doped fiber amplifier</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laser oscillators</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gas-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gas lasers and longitudinal modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./threshold.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Threshold, output power and photon lifetime</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./broadening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transverse modes and line broadening</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pulsed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Q-switching and mode-locking</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor lasers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laser diode principle and optical gain</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laser diode efficiencies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-equation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The laser diode equation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qw-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./single-mode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Single-frequency lasers: DBR, DFB, external cavity, VCSEL</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./soa-sled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modulation of laser diodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./holography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Holography</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resonators.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linewidth-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Going further: laser linewidth, noise and chirp</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">18.1</span> Key relations</a></li>
+  <li><a href="#resonator-designer" id="toc-resonator-designer" class="nav-link" data-scroll-target="#resonator-designer"><span class="header-section-number">18.2</span> Resonator designer</a></li>
+  <li><a href="#why-stability-matters-for-lasers" id="toc-why-stability-matters-for-lasers" class="nav-link" data-scroll-target="#why-stability-matters-for-lasers"><span class="header-section-number">18.3</span> Why stability matters for lasers</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">18.4</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/resonators.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./resonators.html">Going further</a></li><li class="breadcrumb-item"><a href="./resonators.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-resonators" class="quarto-section-identifier"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter4/notebooks/resonators.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Not in the slides. Slide 75 shows transverse modes and slide 48 the longitudinal modes of a cavity, but the chapter never asks which mirrors make a cavity work, how large the beam is, or at which frequencies the transverse modes oscillate. This chapter answers these questions with the Gaussian beams of Chapter 1.</em></p>
+<section id="key-relations" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">18.1</span> Key relations</h2>
+<p>A Gaussian beam (Ch. 1) has a waist <span class="math inline">\(w_0\)</span> and a wavefront radius <span class="math inline">\(R(z)=z[1+(z_R/z)^2]\)</span>, with <span class="math inline">\(z_R=\pi w_0^2/\lambda\)</span>. It is a mode of a two-mirror cavity if, at each mirror, its wavefront curvature matches the mirror curvature. With the <strong>stability parameters</strong></p>
+<p><span class="math display">\[
+g_1=1-\frac{L}{R_1},\qquad g_2=1-\frac{L}{R_2}\qquad(R=\infty\text{ for a flat mirror}),
+\]</span></p>
+<p>such a beam exists only if</p>
+<p><span class="math display">\[
+0\le g_1g_2\le1 \qquad\text{(stable resonator)}.
+\]</span></p>
+<p>Its size on the mirrors and at the waist are</p>
+<p><span class="math display">\[
+w_1^2=\frac{\lambda L}{\pi}\sqrt{\frac{g_2}{g_1(1-g_1g_2)}},\quad
+w_2^2=\frac{\lambda L}{\pi}\sqrt{\frac{g_1}{g_2(1-g_1g_2)}},\quad
+w_0^2=\frac{\lambda L}{\pi}\frac{\sqrt{g_1g_2(1-g_1g_2)}}{|g_1+g_2-2g_1g_2|}.
+\]</span></p>
+<p>The Hermite–Gauss modes TEM<span class="math inline">\(_{mn}\)</span> (slide 75) accumulate an extra Gouy phase <span class="math inline">\((m+n+1)\arccos\sqrt{g_1g_2}\)</span> per pass, so their resonance frequencies are</p>
+<p><span class="math display">\[
+\nu_{qmn}=\frac{c}{2nL}\left[q+(m+n+1)\frac{\arccos(\pm\sqrt{g_1g_2})}{\pi}\right],
+\]</span></p>
+<p>with the sign of <span class="math inline">\(g_1\)</span> (and <span class="math inline">\(g_2\)</span>). Transverse modes thus add frequencies between the longitudinal modes of <a href="gas-lasers.html" class="quarto-xref"><span>Chapter 5</span></a>.</p>
+</section>
+<section id="resonator-designer" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="resonator-designer"><span class="header-section-number">18.2</span> Resonator designer</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="54" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 53;"><span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>viewof rs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">L</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mirror spacing L (cm)"</span>})<span class="op">,</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  <span class="dt">flat1</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"mirror 1 flat"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">,</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R1</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"R₁ (cm), if curved"</span>})<span class="op">,</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R2</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"R₂ (cm)"</span>})<span class="op">,</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lam</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">400</span><span class="op">,</span> <span class="dv">11000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">632.8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (nm)"</span>})</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="66" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 65;"><span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>rsOut <span class="op">=</span> {</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> L <span class="op">=</span> rs<span class="op">.</span><span class="at">L</span><span class="op">*</span><span class="fl">1e-2</span><span class="op">,</span> R1 <span class="op">=</span> rs<span class="op">.</span><span class="at">flat1</span> <span class="op">?</span> <span class="kw">Infinity</span> <span class="op">:</span> rs<span class="op">.</span><span class="at">R1</span><span class="op">*</span><span class="fl">1e-2</span><span class="op">,</span> R2 <span class="op">=</span> rs<span class="op">.</span><span class="at">R2</span><span class="op">*</span><span class="fl">1e-2</span><span class="op">,</span> lam <span class="op">=</span> rs<span class="op">.</span><span class="at">lam</span><span class="op">*</span><span class="fl">1e-9</span><span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> g1 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> L<span class="op">/</span>R1<span class="op">,</span> g2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> L<span class="op">/</span>R2<span class="op">,</span> G <span class="op">=</span> g1<span class="op">*</span>g2<span class="op">,</span> stable <span class="op">=</span> G <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> G <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>(g1 <span class="op">===</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> g2 <span class="op">!==</span> <span class="dv">0</span>) <span class="op">&amp;&amp;</span> <span class="op">!</span>(g2 <span class="op">===</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> g1 <span class="op">!==</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s <span class="op">=</span> lam<span class="op">*</span>L<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ratio <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(g1 <span class="op">-</span> g2) <span class="op">&lt;</span> <span class="fl">1e-9</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> g2<span class="op">/</span>g1<span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> w1 <span class="op">=</span> stable <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(ratio<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span> G))) <span class="op">:</span> <span class="kw">NaN</span><span class="op">,</span> w2 <span class="op">=</span> stable <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="op">/</span>(ratio<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> G)))) <span class="op">:</span> <span class="kw">NaN</span><span class="op">;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sym <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(g1 <span class="op">-</span> g2) <span class="op">&lt;</span> <span class="fl">1e-9</span><span class="op">;</span>                              <span class="co">// symmetric cavity: avoid 0/0 (confocal)</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> w0 <span class="op">=</span> <span class="op">!</span>stable <span class="op">?</span> <span class="kw">NaN</span> <span class="op">:</span> sym <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>((<span class="dv">1</span> <span class="op">+</span> g1)<span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> g1)))) <span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(G<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> G))<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(g1 <span class="op">+</span> g2 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>G))<span class="op">;</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> zw <span class="op">=</span> <span class="op">!</span>stable <span class="op">?</span> <span class="kw">NaN</span> <span class="op">:</span> sym <span class="op">?</span> L<span class="op">/</span><span class="dv">2</span> <span class="op">:</span> L<span class="op">*</span>g2<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> g1)<span class="op">/</span>(g1 <span class="op">+</span> g2 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>G)<span class="op">;</span>  <span class="co">// waist position from mirror 1</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> zR <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>w0<span class="op">*</span>w0<span class="op">/</span>lam<span class="op">,</span> beam <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (stable) <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">200</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> z <span class="op">=</span> L<span class="op">*</span>i<span class="op">/</span><span class="dv">200</span><span class="op">,</span> w <span class="op">=</span> w0<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">+</span> ((z <span class="op">-</span> zw)<span class="op">/</span>zR)<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span> beam<span class="op">.</span><span class="fu">push</span>({<span class="dt">z</span><span class="op">:</span> z<span class="op">*</span><span class="dv">100</span><span class="op">,</span> <span class="dt">w</span><span class="op">:</span> w<span class="op">*</span><span class="fl">1e3</span>}<span class="op">,</span> {<span class="dt">z</span><span class="op">:</span> z<span class="op">*</span><span class="dv">100</span><span class="op">,</span> <span class="dt">w</span><span class="op">:</span> <span class="op">-</span>w<span class="op">*</span><span class="fl">1e3</span>})<span class="op">;</span> }</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> gouy <span class="op">=</span> stable <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">acos</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">sign</span>(g1)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(G))<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">:</span> <span class="kw">NaN</span><span class="op">,</span> fsr <span class="op">=</span> <span class="dv">299792458</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>L)<span class="op">,</span> spec <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (stable) <span class="cf">for</span> (<span class="kw">let</span> q <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> q <span class="op">&lt;=</span> <span class="dv">2</span><span class="op">;</span> q<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> mn <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> mn <span class="op">&lt;=</span> <span class="dv">6</span><span class="op">;</span> mn<span class="op">++</span>) spec<span class="op">.</span><span class="fu">push</span>({<span class="dt">f</span><span class="op">:</span> (q <span class="op">+</span> (mn <span class="op">+</span> <span class="dv">1</span>)<span class="op">*</span>gouy)<span class="op">*</span>fsr<span class="op">/</span><span class="fl">1e6</span><span class="op">,</span> <span class="dt">h</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.6</span><span class="op">*</span>mn)<span class="op">,</span> <span class="dt">mn</span><span class="op">:</span> <span class="vs">`m+n = </span><span class="sc">${</span>mn<span class="sc">}</span><span class="vs">`</span>})<span class="op">;</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {g1<span class="op">,</span> g2<span class="op">,</span> G<span class="op">,</span> stable<span class="op">,</span> w1<span class="op">,</span> w2<span class="op">,</span> w0<span class="op">,</span> zw<span class="op">,</span> beam<span class="op">,</span> gouy<span class="op">,</span> fsr<span class="op">,</span> spec}<span class="op">;</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">380</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">340</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"g₁"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span>]}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"g₂"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span>]}<span class="op">,</span> <span class="dt">aspectRatio</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="fl">0.5</span><span class="op">,</span> <span class="fl">2.01</span><span class="op">,</span> <span class="fl">0.01</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({x<span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>x}))<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="st">"y1"</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"y2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1baf7a"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.25</span>})<span class="op">,</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.49</span><span class="op">,</span> <span class="fl">0.01</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({x<span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>x<span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span>}))<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="st">"y1"</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"y2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1baf7a"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.25</span>})<span class="op">,</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rect</span>([{<span class="dt">x1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">2</span>}<span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span>}]<span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> <span class="st">"x1"</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="st">"x2"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="st">"y1"</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"y2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1baf7a"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.25</span>})<span class="op">,</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="fl">0.5</span><span class="op">,</span> <span class="fl">2.01</span><span class="op">,</span> <span class="fl">0.01</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({x<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>x}))<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})<span class="op">,</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.49</span><span class="op">,</span> <span class="fl">0.01</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({x<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>x}))<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})<span class="op">,</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})<span class="op">,</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">x</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">2</span><span class="op">,</span> rsOut<span class="op">.</span><span class="at">g1</span>))<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">2</span><span class="op">,</span> rsOut<span class="op">.</span><span class="at">g2</span>))}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">7</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> <span class="st">"#2a78d6"</span> <span class="op">:</span> <span class="st">"#e34948"</span>})<span class="op">,</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">x</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"planar"</span>}<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"confocal"</span>}<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"concentric"</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span>})</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="97" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 96;"><span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">650</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">220</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"position in the cavity (cm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"beam radius w(z) (mm)"</span>}<span class="op">,</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">areaY</span>(rsOut<span class="op">.</span><span class="at">beam</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">w</span> <span class="op">&gt;</span> <span class="dv">0</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"z"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="op">-</span>d<span class="op">.</span><span class="at">w</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.25</span>})<span class="op">,</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span><span class="op">,</span> rs<span class="op">.</span><span class="at">L</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span>})]</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;b&gt;Unstable resonator&lt;/b&gt;: no Gaussian mode. The beam walks off after a few round trips.&lt;/p&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="106" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 105;"><span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"frequency (MHz, relative to an arbitrary longitudinal mode q₀)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> []}<span class="op">,</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span> <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(rsOut<span class="op">.</span><span class="at">spec</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"f"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"h"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"mn"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})]</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> <span class="fu">html</span><span class="vs">``</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="114" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 113;"><span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;g₁ = </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">g1</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">, g₂ = </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">g2</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">, g₁g₂ = &lt;b&gt;</span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">G</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt; → &lt;b&gt;</span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> <span class="st">"stable"</span> <span class="op">:</span> <span class="st">"unstable"</span><span class="sc">}</span><span class="vs">&lt;/b&gt;</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">` · w₀ = &lt;b&gt;</span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">w0</span><span class="op">*</span><span class="fl">1e3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> mm&lt;/b&gt; at </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">zw</span><span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> cm from mirror 1 · w₁ = </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">w1</span><span class="op">*</span><span class="fl">1e3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> mm, w₂ = </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">w2</span><span class="op">*</span><span class="fl">1e3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> mm&lt;br&gt;</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="vs">mode spacing c/2L = </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">fsr</span><span class="op">/</span><span class="fl">1e6</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> MHz · transverse-mode spacing = </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">gouy</span><span class="op">*</span>rsOut<span class="op">.</span><span class="at">fsr</span><span class="op">/</span><span class="fl">1e6</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> MHz (</span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">gouy</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> × c/2L)`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Try the special cases:</p>
+<ul>
+<li><strong>Confocal</strong> (<span class="math inline">\(R_1=R_2=L\)</span>, <span class="math inline">\(g_1=g_2=0\)</span>): the transverse-mode spacing is exactly <span class="math inline">\(c/4L\)</span>. Modes of different <span class="math inline">\(m+n\)</span> coincide with longitudinal modes or fall exactly halfway: the cavity is highly <strong>degenerate</strong>, the principle of the scanning Fabry–Perot spectrum analyser.</li>
+<li><strong>Hemispherical</strong> (flat + <span class="math inline">\(R_2=L\)</span>, <span class="math inline">\(g_1=1\)</span>, <span class="math inline">\(g_2=0\)</span>): the cavity sits exactly on the stability boundary and the mode would shrink to a point on the flat mirror. Shorten <span class="math inline">\(L\)</span> by 1 cm to see the tightly focused mode; lengthen it and the cavity becomes unstable.</li>
+<li><strong>He–Ne laser</strong>: flat output coupler and <span class="math inline">\(R_2\approx1\)</span> m with <span class="math inline">\(L=40\)</span> cm. The beam radius is about 0.3 mm, so a 0.8 mm tube (slide 73) acts as an aperture that suppresses higher-order modes.</li>
+</ul>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cases <span class="op">=</span> [(<span class="st">"He–Ne, flat + R = 1 m, L = 40 cm"</span>, <span class="fl">0.40</span>, np.inf, <span class="fl">1.0</span>, <span class="fl">632.8e-9</span>),</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>         (<span class="st">"He–Ne, R = R = 1 m (symmetric), L = 40 cm"</span>, <span class="fl">0.40</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">632.8e-9</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         (<span class="st">"confocal 10 cm, 1064 nm"</span>, <span class="fl">0.10</span>, <span class="fl">0.10</span>, <span class="fl">0.10</span>, <span class="fl">1064e-9</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         (<span class="st">"CO₂, flat + R = 10 m, L = 1 m"</span>, <span class="fl">1.0</span>, np.inf, <span class="fl">10.0</span>, <span class="fl">10.6e-6</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         (<span class="st">"near-concentric, R = 0.51 m, L = 1 m"</span>, <span class="fl">1.0</span>, <span class="fl">0.51</span>, <span class="fl">0.51</span>, <span class="fl">632.8e-9</span>)]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, L, R1, R2, lam <span class="kw">in</span> cases:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    g1, g2 <span class="op">=</span> lz.resonator_g(L, R1, R2)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    w0 <span class="op">=</span> lz.waist_from_resonator(L, R1, R2, lam)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"cavity"</span>: name, <span class="st">"g₁g₂"</span>: <span class="ss">f"</span><span class="sc">{</span>g1<span class="op">*</span>g2<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"w₀ (mm)"</span>: <span class="ss">f"</span><span class="sc">{</span>w0<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.3f}</span><span class="ss">"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"transverse spacing / (c/2L)"</span>: <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>arccos(np.sign(g1)<span class="op">*</span>np.sqrt(g1<span class="op">*</span>g2))<span class="op">/</span>np<span class="sc">.</span>pi<span class="sc">:.3f}</span><span class="ss">"</span>})</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-resonators" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-resonators-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.1: Fundamental-mode sizes of some cavities used in this chapter (laserlib.waist_from_resonator).
+</figcaption>
+<div aria-describedby="tbl-resonators-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cavity</th>
+<th data-quarto-table-cell-role="th">g₁g₂</th>
+<th data-quarto-table-cell-role="th">w₀ (mm)</th>
+<th data-quarto-table-cell-role="th">transverse spacing / (c/2L)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>He–Ne, flat + R = 1 m, L = 40 cm</td>
+<td>0.600</td>
+<td>0.314</td>
+<td>0.218</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>He–Ne, R = R = 1 m (symmetric), L = 40 cm</td>
+<td>0.360</td>
+<td>0.284</td>
+<td>0.295</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>confocal 10 cm, 1064 nm</td>
+<td>0.000</td>
+<td>0.130</td>
+<td>0.500</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>CO₂, flat + R = 10 m, L = 1 m</td>
+<td>0.900</td>
+<td>3.182</td>
+<td>0.102</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>near-concentric, R = 0.51 m, L = 1 m</td>
+<td>0.923</td>
+<td>0.119</td>
+<td>0.911</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="why-stability-matters-for-lasers" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="why-stability-matters-for-lasers"><span class="header-section-number">18.3</span> Why stability matters for lasers</h2>
+<p>The mode volume <span class="math inline">\(\approx\pi w_0^2L/2\)</span> decides how many atoms contribute to the gain, and the mode size on the mirrors decides how much light is clipped by the apertures. Near the stability edges (<span class="math inline">\(g_1g_2\to0\)</span> or <span class="math inline">\(1\)</span>) the mode becomes very small or very large and sensitive to misalignment. Most lasers are designed well inside the stable region. High-power lasers with large-volume, high-gain media sometimes use <strong>unstable</strong> resonators on purpose: the beam fills the medium, and the output leaves around the edge of a small mirror.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>ABCD matrices.</strong> Write the round-trip matrix <span class="math inline">\(M\)</span> of the cavity (propagation, mirror, propagation, mirror). Stability is <span class="math inline">\(|A+D|/2\le1\)</span>, and the self-consistent <span class="math inline">\(q\)</span> parameter solves <span class="math inline">\(q=(Aq+B)/(Cq+D)\)</span>. Check that this reproduces <span class="math inline">\(w_1\)</span> above, then add a thermal lens (<a href="pumping.html" class="quarto-xref"><span>Chapter 3</span></a>) inside the cavity.</li>
+<li><strong>Laser diodes.</strong> Edge-emitter waveguides guide the mode, so the stability analysis is replaced by the waveguide modes of Ch. 2. In an external-cavity laser (<a href="single-mode.html" class="quarto-xref"><span>Chapter 14</span></a>), the lens and grating form an ABCD system again.</li>
+<li><strong>Fox–Li iteration.</strong> Propagate an arbitrary field back and forth between two finite mirrors with the angular-spectrum method (the holography code of <a href="holography.html" class="quarto-xref"><span>Chapter 17</span></a>) and watch it converge to TEM<span class="math inline">\(_{00}\)</span>, with a diffraction loss per pass that depends on the Fresnel number <span class="math inline">\(a^2/\lambda L\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>H. Kogelnik and T. Li, “Laser beams and resonators”, <em>Appl. Opt.</em> 5, 1550 (1966): still the best introduction.</li>
+<li>Siegman, <em>Lasers</em>, ch.&nbsp;19–21; Saleh and Teich, ch.&nbsp;11 (resonator optics).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">18.4</span> Try it yourself</h2>
+<ol type="1">
+<li>Find the range of <span class="math inline">\(L\)</span> for which a cavity with <span class="math inline">\(R_1=R_2=50\)</span> cm is stable.</li>
+<li>For the He–Ne laser, compute the frequency of the TEM<span class="math inline">\(_{01}\)</span> mode relative to TEM<span class="math inline">\(_{00}\)</span>. Could it fall inside the 1.5 GHz Doppler gain curve?</li>
+<li>Show that the confocal cavity has the smallest mirror spot sizes for a given <span class="math inline">\(L\)</span> among symmetric cavities.</li>
+<li>A 1 m CO₂ laser has a 6 mm bore. Which mirror radius gives a TEM<span class="math inline">\(_{00}\)</span> mode that fills 2/3 of the bore at the curved mirror?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBycyA9IElucHV0cy5mb3JtKHtcbiAgTDogSW5wdXRzLnJhbmdlKFsxLCAyMDBdLCB7dmFsdWU6IDQwLCBzdGVwOiAxLCBsYWJlbDogXCJtaXJyb3Igc3BhY2luZyBMIChjbSlcIn0pLFxuICBmbGF0MTogSW5wdXRzLnRvZ2dsZSh7bGFiZWw6IFwibWlycm9yIDEgZmxhdFwiLCB2YWx1ZTogdHJ1ZX0pLFxuICBSMTogSW5wdXRzLnJhbmdlKFs1LCA1MDBdLCB7dmFsdWU6IDEwMCwgc3RlcDogMSwgbGFiZWw6IFwiUuKCgSAoY20pLCBpZiBjdXJ2ZWRcIn0pLFxuICBSMjogSW5wdXRzLnJhbmdlKFs1LCA1MDBdLCB7dmFsdWU6IDEwMCwgc3RlcDogMSwgbGFiZWw6IFwiUuKCgiAoY20pXCJ9KSxcbiAgbGFtOiBJbnB1dHMucmFuZ2UoWzQwMCwgMTEwMDBdLCB7dmFsdWU6IDYzMi44LCBzdGVwOiAwLjEsIGxhYmVsOiBcIndhdmVsZW5ndGggKG5tKVwifSlcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyc091dCA9IHtcbiAgY29uc3QgTCA9IHJzLkwqMWUtMiwgUjEgPSBycy5mbGF0MSA/IEluZmluaXR5IDogcnMuUjEqMWUtMiwgUjIgPSBycy5SMioxZS0yLCBsYW0gPSBycy5sYW0qMWUtOTtcbiAgY29uc3QgZzEgPSAxIC0gTC9SMSwgZzIgPSAxIC0gTC9SMiwgRyA9IGcxKmcyLCBzdGFibGUgPSBHID49IDAgJiYgRyA8IDEgJiYgIShnMSA9PT0gMCAmJiBnMiAhPT0gMCkgJiYgIShnMiA9PT0gMCAmJiBnMSAhPT0gMCk7XG4gIGNvbnN0IHMgPSBsYW0qTC9NYXRoLlBJO1xuICBjb25zdCByYXRpbyA9IE1hdGguYWJzKGcxIC0gZzIpIDwgMWUtOSA/IDEgOiBnMi9nMTtcbiAgY29uc3QgdzEgPSBzdGFibGUgPyBNYXRoLnNxcnQocypNYXRoLnNxcnQocmF0aW8vKDEgLSBHKSkpIDogTmFOLCB3MiA9IHN0YWJsZSA/IE1hdGguc3FydChzKk1hdGguc3FydCgxLyhyYXRpbyooMSAtIEcpKSkpIDogTmFOO1xuICBjb25zdCBzeW0gPSBNYXRoLmFicyhnMSAtIGcyKSA8IDFlLTk7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLy8gc3ltbWV0cmljIGNhdml0eTogYXZvaWQgMC8wIChjb25mb2NhbClcbiAgY29uc3QgdzAgPSAhc3RhYmxlID8gTmFOIDogc3ltID8gTWF0aC5zcXJ0KHMqTWF0aC5zcXJ0KCgxICsgZzEpLyg0KigxIC0gZzEpKSkpIDogTWF0aC5zcXJ0KHMqTWF0aC5zcXJ0KEcqKDEgLSBHKSkvTWF0aC5hYnMoZzEgKyBnMiAtIDIqRykpO1xuICBjb25zdCB6dyA9ICFzdGFibGUgPyBOYU4gOiBzeW0gPyBMLzIgOiBMKmcyKigxIC0gZzEpLyhnMSArIGcyIC0gMipHKTsgIC8vIHdhaXN0IHBvc2l0aW9uIGZyb20gbWlycm9yIDFcbiAgY29uc3QgelIgPSBNYXRoLlBJKncwKncwL2xhbSwgYmVhbSA9IFtdO1xuICBpZiAoc3RhYmxlKSBmb3IgKGxldCBpID0gMDsgaSA8PSAyMDA7IGkrKykgeyBjb25zdCB6ID0gTCppLzIwMCwgdyA9IHcwKk1hdGguc3FydCgxICsgKCh6IC0gencpL3pSKSoqMik7IGJlYW0ucHVzaCh7ejogeioxMDAsIHc6IHcqMWUzfSwge3o6IHoqMTAwLCB3OiAtdyoxZTN9KTsgfVxuICBjb25zdCBnb3V5ID0gc3RhYmxlID8gTWF0aC5hY29zKE1hdGguc2lnbihnMSkqTWF0aC5zcXJ0KEcpKS9NYXRoLlBJIDogTmFOLCBmc3IgPSAyOTk3OTI0NTgvKDIqTCksIHNwZWMgPSBbXTtcbiAgaWYgKHN0YWJsZSkgZm9yIChsZXQgcSA9IDA7IHEgPD0gMjsgcSsrKSBmb3IgKGxldCBtbiA9IDA7IG1uIDw9IDY7IG1uKyspIHNwZWMucHVzaCh7ZjogKHEgKyAobW4gKyAxKSpnb3V5KSpmc3IvMWU2LCBoOiAxLygxICsgMC42Km1uKSwgbW46IGBtK24gPSAke21ufWB9KTtcbiAgcmV0dXJuIHtnMSwgZzIsIEcsIHN0YWJsZSwgdzEsIHcyLCB3MCwgencsIGJlYW0sIGdvdXksIGZzciwgc3BlY307XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDM4MCksIGhlaWdodDogMzQwLCB4OiB7bGFiZWw6IFwiZ+KCgVwiLCBkb21haW46IFstMiwgMl19LCB5OiB7bGFiZWw6IFwiZ+KCglwiLCBkb21haW46IFstMiwgMl19LCBhc3BlY3RSYXRpbzogMSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmFyZWFZKGQzLnJhbmdlKDAuNSwgMi4wMSwgMC4wMSkubWFwKHggPT4gKHt4LCB5MTogMCwgeTI6IDEveH0pKSwge3g6IFwieFwiLCB5MTogXCJ5MVwiLCB5MjogXCJ5MlwiLCBmaWxsOiBcIiMxYmFmN2FcIiwgZmlsbE9wYWNpdHk6IDAuMjV9KSxcbiAgICBQbG90LmFyZWFZKGQzLnJhbmdlKC0yLCAtMC40OSwgMC4wMSkubWFwKHggPT4gKHt4LCB5MTogMS94LCB5MjogMH0pKSwge3g6IFwieFwiLCB5MTogXCJ5MVwiLCB5MjogXCJ5MlwiLCBmaWxsOiBcIiMxYmFmN2FcIiwgZmlsbE9wYWNpdHk6IDAuMjV9KSxcbiAgICBQbG90LnJlY3QoW3t4MTogMCwgeDI6IDAuNSwgeTE6IDAsIHkyOiAyfSwge3gxOiAtMC41LCB4MjogMCwgeTE6IC0yLCB5MjogMH1dLCB7eDE6IFwieDFcIiwgeDI6IFwieDJcIiwgeTE6IFwieTFcIiwgeTI6IFwieTJcIiwgZmlsbDogXCIjMWJhZjdhXCIsIGZpbGxPcGFjaXR5OiAwLjI1fSksXG4gICAgUGxvdC5saW5lKGQzLnJhbmdlKDAuNSwgMi4wMSwgMC4wMSkubWFwKHggPT4gKHt4LCB5OiAxL3h9KSksIHt4OiBcInhcIiwgeTogXCJ5XCIsIHN0cm9rZTogXCIjNTI1MTRlXCJ9KSxcbiAgICBQbG90LmxpbmUoZDMucmFuZ2UoLTIsIC0wLjQ5LCAwLjAxKS5tYXAoeCA9PiAoe3gsIHk6IDEveH0pKSwge3g6IFwieFwiLCB5OiBcInlcIiwgc3Ryb2tlOiBcIiM1MjUxNGVcIn0pLFxuICAgIFBsb3QucnVsZVgoWzBdLCB7c3Ryb2tlOiBcIiM1MjUxNGVcIn0pLCBQbG90LnJ1bGVZKFswXSwge3N0cm9rZTogXCIjNTI1MTRlXCJ9KSxcbiAgICBQbG90LmRvdChbe3g6IE1hdGgubWF4KC0yLCBNYXRoLm1pbigyLCByc091dC5nMSkpLCB5OiBNYXRoLm1heCgtMiwgTWF0aC5taW4oMiwgcnNPdXQuZzIpKX1dLCB7eDogXCJ4XCIsIHk6IFwieVwiLCByOiA3LCBmaWxsOiByc091dC5zdGFibGUgPyBcIiMyYTc4ZDZcIiA6IFwiI2UzNDk0OFwifSksXG4gICAgUGxvdC50ZXh0KFt7eDogMSwgeTogMSwgdDogXCJwbGFuYXJcIn0sIHt4OiAwLCB5OiAwLCB0OiBcImNvbmZvY2FsXCJ9LCB7eDogLTEsIHk6IC0xLCB0OiBcImNvbmNlbnRyaWNcIn1dLCB7eDogXCJ4XCIsIHk6IFwieVwiLCB0ZXh0OiBcInRcIiwgZHk6IC0xMCwgZm9udFNpemU6IDEwfSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InJzT3V0LnN0YWJsZSA/IFBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgNjUwKSwgaGVpZ2h0OiAyMjAsIHg6IHtsYWJlbDogXCJwb3NpdGlvbiBpbiB0aGUgY2F2aXR5IChjbSlcIn0sIHk6IHtsYWJlbDogXCJiZWFtIHJhZGl1cyB3KHopIChtbSlcIn0sXG4gIG1hcmtzOiBbUGxvdC5hcmVhWShyc091dC5iZWFtLmZpbHRlcihkID0+IGQudyA+IDApLCB7eDogXCJ6XCIsIHkxOiBkID0+IC1kLncsIHkyOiBcIndcIiwgZmlsbDogXCIjZTM0OTQ4XCIsIGZpbGxPcGFjaXR5OiAwLjI1fSksXG4gICAgICAgICAgUGxvdC5ydWxlWChbMCwgcnMuTF0sIHtzdHJva2U6IFwiIzBiMGIwYlwiLCBzdHJva2VXaWR0aDogM30pXVxufSkgOiBodG1sYDxwPjxiPlVuc3RhYmxlIHJlc29uYXRvcjwvYj46IG5vIEdhdXNzaWFuIG1vZGUuIFRoZSBiZWFtIHdhbGtzIG9mZiBhZnRlciBhIGZldyByb3VuZCB0cmlwcy48L3A+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicnNPdXQuc3RhYmxlID8gUGxvdC5wbG90KHtcbiAgd2lkdGg6IE1hdGgubWluKHdpZHRoLCAxMDUwKSwgaGVpZ2h0OiAyMDAsIHg6IHtsYWJlbDogXCJmcmVxdWVuY3kgKE1IeiwgcmVsYXRpdmUgdG8gYW4gYXJiaXRyYXJ5IGxvbmdpdHVkaW5hbCBtb2RlIHHigoApXCJ9LCB5OiB7bGFiZWw6IFwiXCIsIHRpY2tzOiBbXX0sXG4gIGNvbG9yOiB7bGVnZW5kOiB0cnVlfSwgbWFya3M6IFtQbG90LnJ1bGVYKHJzT3V0LnNwZWMsIHt4OiBcImZcIiwgeTE6IDAsIHkyOiBcImhcIiwgc3Ryb2tlOiBcIm1uXCIsIHN0cm9rZVdpZHRoOiAyLjV9KV1cbn0pIDogaHRtbGBgXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+Z+KCgSA9ICR7cnNPdXQuZzEudG9GaXhlZCgzKX0sIGfigoIgPSAke3JzT3V0LmcyLnRvRml4ZWQoMyl9LCBn4oKBZ+KCgiA9IDxiPiR7cnNPdXQuRy50b0ZpeGVkKDMpfTwvYj4g4oaSIDxiPiR7cnNPdXQuc3RhYmxlID8gXCJzdGFibGVcIiA6IFwidW5zdGFibGVcIn08L2I+XG4ke3JzT3V0LnN0YWJsZSA/IGh0bWxgIMK3IHfigoAgPSA8Yj4keyhyc091dC53MCoxZTMpLnRvRml4ZWQoMyl9IG1tPC9iPiBhdCAkeyhyc091dC56dyoxMDApLnRvRml4ZWQoMSl9IGNtIGZyb20gbWlycm9yIDEgwrcgd+KCgSA9ICR7KHJzT3V0LncxKjFlMykudG9GaXhlZCgzKX0gbW0sIHfigoIgPSAkeyhyc091dC53MioxZTMpLnRvRml4ZWQoMyl9IG1tPGJyPlxubW9kZSBzcGFjaW5nIGMvMkwgPSAkeyhyc091dC5mc3IvMWU2KS50b0ZpeGVkKDEpfSBNSHogwrcgdHJhbnN2ZXJzZS1tb2RlIHNwYWNpbmcgPSAkeyhyc091dC5nb3V5KnJzT3V0LmZzci8xZTYpLnRvRml4ZWQoMSl9IE1IeiAoJHtyc091dC5nb3V5LnRvRml4ZWQoMyl9IMOXIGMvMkwpYCA6IFwiXCJ9PC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdycycpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter4\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./holography.html" class="pagination-link" aria-label="Holography">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Holography</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./linewidth-noise.html" class="pagination-link" aria-label="Going further: laser linewidth, noise and chirp">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Going further: laser linewidth, noise and chirp</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Going further: optical resonators and Gaussian modes {#sec-resonators}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/resonators.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> laserlib <span class="im">as</span> lz</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>lz.use_style()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>*Not in the slides. Slide 75 shows transverse modes and slide 48 the longitudinal modes of a cavity, but the chapter never asks</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>which mirrors make a cavity work, how large the beam is, or at which frequencies the transverse modes oscillate. This chapter</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>answers these questions with the Gaussian beams of Chapter 1.*</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>A Gaussian beam (Ch. 1) has a waist $w_0$ and a wavefront radius $R(z)=z<span class="co">[</span><span class="ot">1+(z_R/z)^2</span><span class="co">]</span>$, with $z_R=\pi w_0^2/\lambda$. It is a</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>mode of a two-mirror cavity if, at each mirror, its wavefront curvature matches the mirror curvature. With the **stability</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>parameters**</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>g_1=1-\frac{L}{R_1},\qquad g_2=1-\frac{L}{R_2}\qquad(R=\infty\text{ for a flat mirror}),</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>such a beam exists only if</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>0\le g_1g_2\le1 \qquad\text{(stable resonator)}.</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>Its size on the mirrors and at the waist are</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>w_1^2=\frac{\lambda L}{\pi}\sqrt{\frac{g_2}{g_1(1-g_1g_2)}},\quad</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>w_2^2=\frac{\lambda L}{\pi}\sqrt{\frac{g_1}{g_2(1-g_1g_2)}},\quad</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>w_0^2=\frac{\lambda L}{\pi}\frac{\sqrt{g_1g_2(1-g_1g_2)}}{|g_1+g_2-2g_1g_2|}.</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>The Hermite–Gauss modes TEM$_{mn}$ (slide 75) accumulate an extra Gouy phase $(m+n+1)\arccos\sqrt{g_1g_2}$ per pass, so their</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>resonance frequencies are</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>\nu_{qmn}=\frac{c}{2nL}\left<span class="co">[</span><span class="ot">q+(m+n+1)\frac{\arccos(\pm\sqrt{g_1g_2})}{\pi}\right</span><span class="co">]</span>,</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>with the sign of $g_1$ (and $g_2$). Transverse modes thus add frequencies between the longitudinal modes of @sec-gas.</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resonator designer</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>viewof rs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">L</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mirror spacing L (cm)"</span>})<span class="op">,</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>  <span class="dt">flat1</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"mirror 1 flat"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">,</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R1</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"R₁ (cm), if curved"</span>})<span class="op">,</span></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>  <span class="dt">R2</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"R₂ (cm)"</span>})<span class="op">,</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lam</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">400</span><span class="op">,</span> <span class="dv">11000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">632.8</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (nm)"</span>})</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>rsOut <span class="op">=</span> {</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> L <span class="op">=</span> rs<span class="op">.</span><span class="at">L</span><span class="op">*</span><span class="fl">1e-2</span><span class="op">,</span> R1 <span class="op">=</span> rs<span class="op">.</span><span class="at">flat1</span> <span class="op">?</span> <span class="kw">Infinity</span> <span class="op">:</span> rs<span class="op">.</span><span class="at">R1</span><span class="op">*</span><span class="fl">1e-2</span><span class="op">,</span> R2 <span class="op">=</span> rs<span class="op">.</span><span class="at">R2</span><span class="op">*</span><span class="fl">1e-2</span><span class="op">,</span> lam <span class="op">=</span> rs<span class="op">.</span><span class="at">lam</span><span class="op">*</span><span class="fl">1e-9</span><span class="op">;</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> g1 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> L<span class="op">/</span>R1<span class="op">,</span> g2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> L<span class="op">/</span>R2<span class="op">,</span> G <span class="op">=</span> g1<span class="op">*</span>g2<span class="op">,</span> stable <span class="op">=</span> G <span class="op">&gt;=</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> G <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>(g1 <span class="op">===</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> g2 <span class="op">!==</span> <span class="dv">0</span>) <span class="op">&amp;&amp;</span> <span class="op">!</span>(g2 <span class="op">===</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> g1 <span class="op">!==</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> s <span class="op">=</span> lam<span class="op">*</span>L<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">;</span></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> ratio <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(g1 <span class="op">-</span> g2) <span class="op">&lt;</span> <span class="fl">1e-9</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> g2<span class="op">/</span>g1<span class="op">;</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> w1 <span class="op">=</span> stable <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(ratio<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span> G))) <span class="op">:</span> <span class="kw">NaN</span><span class="op">,</span> w2 <span class="op">=</span> stable <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="op">/</span>(ratio<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> G)))) <span class="op">:</span> <span class="kw">NaN</span><span class="op">;</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sym <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(g1 <span class="op">-</span> g2) <span class="op">&lt;</span> <span class="fl">1e-9</span><span class="op">;</span>                              <span class="co">// symmetric cavity: avoid 0/0 (confocal)</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> w0 <span class="op">=</span> <span class="op">!</span>stable <span class="op">?</span> <span class="kw">NaN</span> <span class="op">:</span> sym <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>((<span class="dv">1</span> <span class="op">+</span> g1)<span class="op">/</span>(<span class="dv">4</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> g1)))) <span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(G<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> G))<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(g1 <span class="op">+</span> g2 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>G))<span class="op">;</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> zw <span class="op">=</span> <span class="op">!</span>stable <span class="op">?</span> <span class="kw">NaN</span> <span class="op">:</span> sym <span class="op">?</span> L<span class="op">/</span><span class="dv">2</span> <span class="op">:</span> L<span class="op">*</span>g2<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> g1)<span class="op">/</span>(g1 <span class="op">+</span> g2 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>G)<span class="op">;</span>  <span class="co">// waist position from mirror 1</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> zR <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>w0<span class="op">*</span>w0<span class="op">/</span>lam<span class="op">,</span> beam <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (stable) <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">200</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> z <span class="op">=</span> L<span class="op">*</span>i<span class="op">/</span><span class="dv">200</span><span class="op">,</span> w <span class="op">=</span> w0<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">+</span> ((z <span class="op">-</span> zw)<span class="op">/</span>zR)<span class="op">**</span><span class="dv">2</span>)<span class="op">;</span> beam<span class="op">.</span><span class="fu">push</span>({<span class="dt">z</span><span class="op">:</span> z<span class="op">*</span><span class="dv">100</span><span class="op">,</span> <span class="dt">w</span><span class="op">:</span> w<span class="op">*</span><span class="fl">1e3</span>}<span class="op">,</span> {<span class="dt">z</span><span class="op">:</span> z<span class="op">*</span><span class="dv">100</span><span class="op">,</span> <span class="dt">w</span><span class="op">:</span> <span class="op">-</span>w<span class="op">*</span><span class="fl">1e3</span>})<span class="op">;</span> }</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> gouy <span class="op">=</span> stable <span class="op">?</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">acos</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">sign</span>(g1)<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(G))<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">:</span> <span class="kw">NaN</span><span class="op">,</span> fsr <span class="op">=</span> <span class="dv">299792458</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>L)<span class="op">,</span> spec <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (stable) <span class="cf">for</span> (<span class="kw">let</span> q <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> q <span class="op">&lt;=</span> <span class="dv">2</span><span class="op">;</span> q<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> mn <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> mn <span class="op">&lt;=</span> <span class="dv">6</span><span class="op">;</span> mn<span class="op">++</span>) spec<span class="op">.</span><span class="fu">push</span>({<span class="dt">f</span><span class="op">:</span> (q <span class="op">+</span> (mn <span class="op">+</span> <span class="dv">1</span>)<span class="op">*</span>gouy)<span class="op">*</span>fsr<span class="op">/</span><span class="fl">1e6</span><span class="op">,</span> <span class="dt">h</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> <span class="fl">0.6</span><span class="op">*</span>mn)<span class="op">,</span> <span class="dt">mn</span><span class="op">:</span> <span class="vs">`m+n = </span><span class="sc">${</span>mn<span class="sc">}</span><span class="vs">`</span>})<span class="op">;</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {g1<span class="op">,</span> g2<span class="op">,</span> G<span class="op">,</span> stable<span class="op">,</span> w1<span class="op">,</span> w2<span class="op">,</span> w0<span class="op">,</span> zw<span class="op">,</span> beam<span class="op">,</span> gouy<span class="op">,</span> fsr<span class="op">,</span> spec}<span class="op">;</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">380</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">340</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"g₁"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span>]}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"g₂"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span>]}<span class="op">,</span> <span class="dt">aspectRatio</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="fl">0.5</span><span class="op">,</span> <span class="fl">2.01</span><span class="op">,</span> <span class="fl">0.01</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({x<span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>x}))<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="st">"y1"</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"y2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1baf7a"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.25</span>})<span class="op">,</span></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.49</span><span class="op">,</span> <span class="fl">0.01</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({x<span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>x<span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span>}))<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="st">"y1"</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"y2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1baf7a"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.25</span>})<span class="op">,</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rect</span>([{<span class="dt">x1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">2</span>}<span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span>}]<span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> <span class="st">"x1"</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="st">"x2"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="st">"y1"</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"y2"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1baf7a"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.25</span>})<span class="op">,</span></span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="fl">0.5</span><span class="op">,</span> <span class="fl">2.01</span><span class="op">,</span> <span class="fl">0.01</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({x<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>x}))<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})<span class="op">,</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(d3<span class="op">.</span><span class="fu">range</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.49</span><span class="op">,</span> <span class="fl">0.01</span>)<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> ({x<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>x}))<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})<span class="op">,</span></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})<span class="op">,</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">x</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">2</span><span class="op">,</span> rsOut<span class="op">.</span><span class="at">g1</span>))<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">2</span><span class="op">,</span> rsOut<span class="op">.</span><span class="at">g2</span>))}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">7</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> <span class="st">"#2a78d6"</span> <span class="op">:</span> <span class="st">"#e34948"</span>})<span class="op">,</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">x</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"planar"</span>}<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"confocal"</span>}<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dt">t</span><span class="op">:</span> <span class="st">"concentric"</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span>})</span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">650</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">220</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"position in the cavity (cm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"beam radius w(z) (mm)"</span>}<span class="op">,</span></span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">areaY</span>(rsOut<span class="op">.</span><span class="at">beam</span><span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">w</span> <span class="op">&gt;</span> <span class="dv">0</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"z"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="op">-</span>d<span class="op">.</span><span class="at">w</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"w"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.25</span>})<span class="op">,</span></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span><span class="op">,</span> rs<span class="op">.</span><span class="at">L</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span>})]</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> <span class="fu">html</span><span class="vs">`&lt;p&gt;&lt;b&gt;Unstable resonator&lt;/b&gt;: no Gaussian mode. The beam walks off after a few round trips.&lt;/p&gt;`</span></span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"frequency (MHz, relative to an arbitrary longitudinal mode q₀)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> []}<span class="op">,</span></span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span> <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(rsOut<span class="op">.</span><span class="at">spec</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"f"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"h"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"mn"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})]</span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> <span class="fu">html</span><span class="vs">``</span></span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;g₁ = </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">g1</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">, g₂ = </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">g2</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">, g₁g₂ = &lt;b&gt;</span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">G</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt; → &lt;b&gt;</span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> <span class="st">"stable"</span> <span class="op">:</span> <span class="st">"unstable"</span><span class="sc">}</span><span class="vs">&lt;/b&gt;</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">stable</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">` · w₀ = &lt;b&gt;</span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">w0</span><span class="op">*</span><span class="fl">1e3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> mm&lt;/b&gt; at </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">zw</span><span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> cm from mirror 1 · w₁ = </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">w1</span><span class="op">*</span><span class="fl">1e3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> mm, w₂ = </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">w2</span><span class="op">*</span><span class="fl">1e3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> mm&lt;br&gt;</span></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a><span class="vs">mode spacing c/2L = </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">fsr</span><span class="op">/</span><span class="fl">1e6</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> MHz · transverse-mode spacing = </span><span class="sc">${</span>(rsOut<span class="op">.</span><span class="at">gouy</span><span class="op">*</span>rsOut<span class="op">.</span><span class="at">fsr</span><span class="op">/</span><span class="fl">1e6</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> MHz (</span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">gouy</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> × c/2L)`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>Try the special cases:</span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Confocal** ($R_1=R_2=L$, $g_1=g_2=0$): the transverse-mode spacing is exactly $c/4L$. Modes of different $m+n$ coincide with</span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>  longitudinal modes or fall exactly halfway: the cavity is highly **degenerate**, the principle of the scanning Fabry–Perot</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>  spectrum analyser.</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Hemispherical** (flat + $R_2=L$, $g_1=1$, $g_2=0$): the cavity sits exactly on the stability boundary and</span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>  the mode would shrink to a point on the flat mirror. Shorten $L$ by 1 cm to see the tightly focused mode; lengthen it and the</span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a>  cavity becomes unstable.</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**He–Ne laser**: flat output coupler and $R_2\approx1$ m with $L=40$ cm. The beam radius is about 0.3 mm, so a 0.8 mm tube</span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a>  (slide 73) acts as an aperture that suppresses higher-order modes.</span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-resonators</span></span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Fundamental-mode sizes of some cavities used in this chapter (laserlib.waist_from_resonator)."</span></span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>cases <span class="op">=</span> [(<span class="st">"He–Ne, flat + R = 1 m, L = 40 cm"</span>, <span class="fl">0.40</span>, np.inf, <span class="fl">1.0</span>, <span class="fl">632.8e-9</span>),</span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>         (<span class="st">"He–Ne, R = R = 1 m (symmetric), L = 40 cm"</span>, <span class="fl">0.40</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">632.8e-9</span>),</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>         (<span class="st">"confocal 10 cm, 1064 nm"</span>, <span class="fl">0.10</span>, <span class="fl">0.10</span>, <span class="fl">0.10</span>, <span class="fl">1064e-9</span>),</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a>         (<span class="st">"CO₂, flat + R = 10 m, L = 1 m"</span>, <span class="fl">1.0</span>, np.inf, <span class="fl">10.0</span>, <span class="fl">10.6e-6</span>),</span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>         (<span class="st">"near-concentric, R = 0.51 m, L = 1 m"</span>, <span class="fl">1.0</span>, <span class="fl">0.51</span>, <span class="fl">0.51</span>, <span class="fl">632.8e-9</span>)]</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, L, R1, R2, lam <span class="kw">in</span> cases:</span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>    g1, g2 <span class="op">=</span> lz.resonator_g(L, R1, R2)</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>    w0 <span class="op">=</span> lz.waist_from_resonator(L, R1, R2, lam)</span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"cavity"</span>: name, <span class="st">"g₁g₂"</span>: <span class="ss">f"</span><span class="sc">{</span>g1<span class="op">*</span>g2<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"w₀ (mm)"</span>: <span class="ss">f"</span><span class="sc">{</span>w0<span class="op">*</span><span class="fl">1e3</span><span class="sc">:.3f}</span><span class="ss">"</span>,</span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"transverse spacing / (c/2L)"</span>: <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>arccos(np.sign(g1)<span class="op">*</span>np.sqrt(g1<span class="op">*</span>g2))<span class="op">/</span>np<span class="sc">.</span>pi<span class="sc">:.3f}</span><span class="ss">"</span>})</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why stability matters for lasers</span></span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>The mode volume $\approx\pi w_0^2L/2$ decides how many atoms contribute to the gain, and the mode size on the mirrors decides</span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>how much light is clipped by the apertures. Near the stability edges ($g_1g_2\to0$ or $1$) the mode becomes very small or</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>very large and sensitive to misalignment. Most lasers are designed well inside the stable region. High-power lasers with</span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>large-volume, high-gain media sometimes use **unstable** resonators on purpose: the beam fills the medium, and the output</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a>leaves around the edge of a small mirror.</span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**ABCD matrices.** Write the round-trip matrix $M$ of the cavity (propagation, mirror, propagation, mirror). Stability is</span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a>  $|A+D|/2\le1$, and the self-consistent $q$ parameter solves $q=(Aq+B)/(Cq+D)$. Check that this reproduces $w_1$ above, then add</span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a>  a thermal lens (@sec-pumping) inside the cavity.</span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Laser diodes.** Edge-emitter waveguides guide the mode, so the stability analysis is replaced by the waveguide modes of Ch. 2.</span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a>  In an external-cavity laser (@sec-single-mode), the lens and grating form an ABCD system again.</span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fox–Li iteration.** Propagate an arbitrary field back and forth between two finite mirrors with the angular-spectrum method</span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>  (the holography code of @sec-holography) and watch it converge to TEM$_{00}$, with a diffraction loss per pass that depends on</span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a>  the Fresnel number $a^2/\lambda L$.</span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>H. Kogelnik and T. Li, "Laser beams and resonators", *Appl. Opt.* 5, 1550 (1966): still the best introduction.</span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Siegman, *Lasers*, ch. 19–21; Saleh and Teich, ch. 11 (resonator optics).</span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Find the range of $L$ for which a cavity with $R_1=R_2=50$ cm is stable.</span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>For the He–Ne laser, compute the frequency of the TEM$_{01}$ mode relative to TEM$_{00}$. Could it fall inside the 1.5 GHz</span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a>   Doppler gain curve?</span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Show that the confocal cavity has the smallest mirror spot sizes for a given $L$ among symmetric cavities.</span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>A 1 m CO₂ laser has a 6 mm bore. Which mirror radius gives a TEM$_{00}$ mode that fills 2/3 of the bore at the curved mirror?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/resonators.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>15&nbsp; Semiconductor optical amplifiers and superluminescent LEDs – Stimulated Emission Devices: Optical Amplifiers and Lasers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./modulation.html" rel="next">
+<link href="./single-mode.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ld-principle.html">Semiconductor lasers</a></li><li class="breadcrumb-item"><a href="./soa-sled.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stimulated Emission Devices: Optical Amplifiers and Lasers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter4/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stimulated emission</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blackbody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./einstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Absorption, spontaneous and stimulated emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Three- and four-level lasers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Optical amplifiers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./edfa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Optical gain and the erbium-doped fiber amplifier</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laser oscillators</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gas-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gas lasers and longitudinal modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./threshold.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Threshold, output power and photon lifetime</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./broadening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transverse modes and line broadening</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pulsed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Q-switching and mode-locking</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor lasers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laser diode principle and optical gain</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laser diode efficiencies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-equation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The laser diode equation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qw-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./single-mode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Single-frequency lasers: DBR, DFB, external cavity, VCSEL</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./soa-sled.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modulation of laser diodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./holography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Holography</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resonators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linewidth-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Going further: laser linewidth, noise and chirp</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">15.1</span> Key relations</a></li>
+  <li><a href="#fabryperot-versus-travelling-wave-soa" id="toc-fabryperot-versus-travelling-wave-soa" class="nav-link" data-scroll-target="#fabryperot-versus-travelling-wave-soa"><span class="header-section-number">15.2</span> Fabry–Perot versus travelling-wave SOA</a></li>
+  <li><a href="#gain-saturation-slide-155c" id="toc-gain-saturation-slide-155c" class="nav-link" data-scroll-target="#gain-saturation-slide-155c"><span class="header-section-number">15.3</span> Gain saturation (slide 155c)</a></li>
+  <li><a href="#superluminescent-leds-slides-159161" id="toc-superluminescent-leds-slides-159161" class="nav-link" data-scroll-target="#superluminescent-leds-slides-159161"><span class="header-section-number">15.4</span> Superluminescent LEDs (slides 159–161)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">15.5</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/soa-sled.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ld-principle.html">Semiconductor lasers</a></li><li class="breadcrumb-item"><a href="./soa-sled.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-soa" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter4/notebooks/soa-sled.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 152–158 (semiconductor optical amplifiers: travelling-wave and Fabry–Perot types, gain saturation, polarisation-dependent gain, commercial devices) and 159–161 (superluminescent LEDs).</em></p>
+<section id="key-relations" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">15.1</span> Key relations</h2>
+<p>A laser diode below threshold is an amplifier: light that enters one facet leaves the other amplified by the single-pass gain <span class="math inline">\(G_s=e^{(\Gamma g-\alpha_s)L}\)</span>. Two versions exist (slides 155–157):</p>
+<ul>
+<li>The <strong>travelling-wave (TW) SOA</strong> has anti-reflection coated (and often angled) facets: one pass, broad and smooth gain spectrum (30–60 nm), about 20–30 dB.</li>
+<li>The <strong>Fabry–Perot (FP) SOA</strong> keeps reflecting facets: a regenerative amplifier, whose gain is enhanced at the cavity resonances and suppressed between them, <span class="math display">\[G_{FP}=\frac{(1-R_1)(1-R_2)G_s}{\left(1-\sqrt{R_1R_2}\,G_s\right)^2+4\sqrt{R_1R_2}\,G_s\sin^2\phi},\]</span> with <span class="math inline">\(\phi\)</span> the single-pass phase. The gain ripple is <span class="math inline">\(\left[(1+\sqrt{R_1R_2}G_s)/(1-\sqrt{R_1R_2}G_s)\right]^2\)</span>.</li>
+</ul>
+<p>The gain <strong>saturates</strong> when the signal depletes the carriers (slide 155c). For a homogeneously broadened medium, <span class="math inline">\(G=G_0\exp[-(G-1)P_\text{in}/P_\text{sat}]\)</span>, and the output at which the gain has dropped by 3 dB, <span class="math inline">\(P_{o,\text{sat}}\)</span>, is quoted in datasheets (slide 158). Because the carrier lifetime is ~0.1–1 ns, the SOA gain follows the bit pattern, unlike the EDFA (<a href="edfa.html" class="quarto-xref"><span>Chapter 4</span></a>): this causes cross-talk between WDM channels, but also enables all-optical wavelength conversion.</p>
+<p>A <strong>superluminescent LED</strong> (SLED, slides 159–161) is an SOA with no input: spontaneous emission generated at one end is amplified on its way out, with feedback suppressed by angled facets, an absorbing section or AR coatings. The output is bright and directional like a laser but broadband and incoherent like an LED.</p>
+</section>
+<section id="fabryperot-versus-travelling-wave-soa" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="fabryperot-versus-travelling-wave-soa"><span class="header-section-number">15.2</span> Fabry–Perot versus travelling-wave SOA</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="41" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 40;"><span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>viewof sa <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="dt">GsdB</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">35</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"single-pass gain G_s (dB)"</span>})<span class="op">,</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lR</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ facet reflectance R₁ = R₂"</span>})<span class="op">,</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="dt">L</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">200</span><span class="op">,</span> <span class="dv">2000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"chip length (µm), n_g = 3.6"</span>})</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="51" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 50;"><span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>saOut <span class="op">=</span> {</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> R <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> sa<span class="op">.</span><span class="at">lR</span><span class="op">,</span> Gs <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> (sa<span class="op">.</span><span class="at">GsdB</span><span class="op">/</span><span class="dv">10</span>)<span class="op">,</span> rr <span class="op">=</span> R<span class="op">*</span>Gs<span class="op">,</span> fsr <span class="op">=</span> <span class="dv">299792458</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="fl">3.6</span><span class="op">*</span>sa<span class="op">.</span><span class="at">L</span><span class="op">*</span><span class="fl">1e-6</span>)<span class="op">,</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">1200</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> f <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">*</span>fsr <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>fsr<span class="op">*</span>i<span class="op">/</span><span class="dv">1200</span><span class="op">,</span> phi <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>f<span class="op">/</span>fsr<span class="op">;</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({<span class="dt">f</span><span class="op">:</span> f<span class="op">/</span><span class="fl">1e9</span><span class="op">,</span> <span class="dt">G</span><span class="op">:</span> <span class="dv">10</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>((<span class="dv">1</span> <span class="op">-</span> R)<span class="op">**</span><span class="dv">2</span><span class="op">*</span>Gs<span class="op">/</span>((<span class="dv">1</span> <span class="op">-</span> rr)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>rr<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(phi)<span class="op">**</span><span class="dv">2</span>))})<span class="op">;</span> }</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {data<span class="op">,</span> R<span class="op">,</span> rr<span class="op">,</span> fsr<span class="op">,</span> <span class="dt">ripple</span><span class="op">:</span> rr <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="dv">20</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>((<span class="dv">1</span> <span class="op">+</span> rr)<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span> rr)) <span class="op">:</span> <span class="kw">Infinity</span>}<span class="op">;</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"frequency offset (GHz)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"amplifier gain (dB)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(saOut<span class="op">.</span><span class="at">data</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"f"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"G"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleY</span>([sa<span class="op">.</span><span class="at">GsdB</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#eb6834"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})]</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="64" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 63;"><span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;R G&lt;sub&gt;s&lt;/sub&gt; = &lt;b&gt;</span><span class="sc">${</span>saOut<span class="op">.</span><span class="at">rr</span><span class="op">.</span><span class="fu">toPrecision</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt; </span><span class="sc">${</span>saOut<span class="op">.</span><span class="at">rr</span> <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`≥ 1: &lt;b&gt;the device lases&lt;/b&gt; (not an amplifier)`</span> <span class="op">:</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`· gain ripple &lt;b&gt;</span><span class="sc">${</span>saOut<span class="op">.</span><span class="at">ripple</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> dB&lt;/b&gt; · resonance spacing </span><span class="sc">${</span>(saOut<span class="op">.</span><span class="at">fsr</span><span class="op">/</span><span class="fl">1e9</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> GHz · orange: travelling-wave gain G&lt;sub&gt;s&lt;/sub&gt;`</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>With cleaved facets (<span class="math inline">\(R=0.32\)</span>) the chip lases as soon as <span class="math inline">\(G_s&gt;3\)</span> (5 dB). A 25 dB TW amplifier needs <span class="math inline">\(R\lesssim10^{-4}\)</span> for a ripple below 0.5 dB, which no single AR coating achieves: practical SOAs combine AR coatings with angled waveguides (7–10°) and window regions.</p>
+<div id="cell-fig-ripple" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">300</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.2</span>, <span class="fl">3.5</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> GdB <span class="kw">in</span> (<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    rr <span class="op">=</span> R<span class="op">*</span><span class="dv">10</span><span class="op">**</span>(GdB<span class="op">/</span><span class="dv">10</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    ax.semilogx(R, np.where(rr <span class="op">&lt;</span> <span class="dv">1</span>, <span class="dv">20</span><span class="op">*</span>np.log10((<span class="dv">1</span> <span class="op">+</span> rr)<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span> rr)), np.nan), label<span class="op">=</span><span class="ss">f"G_s = </span><span class="sc">{</span>GdB<span class="sc">}</span><span class="ss"> dB"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="fl">1e-4</span>, <span class="fl">1e-3</span>, color<span class="op">=</span>lz.GRID, alpha<span class="op">=</span><span class="fl">0.6</span>, zorder<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"facet reflectance R"</span>, ylabel<span class="op">=</span><span class="st">"gain ripple (dB)"</span>, ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">15</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-ripple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ripple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="soa-sled_files/figure-html/fig-ripple-output-1.png" width="688" height="367" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ripple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.1: Peak-to-valley gain ripple of an SOA versus facet reflectance for three single-pass gains. The vertical band marks good AR coatings (10⁻⁴–10⁻³).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="gain-saturation-slide-155c" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="gain-saturation-slide-155c"><span class="header-section-number">15.3</span> Gain saturation (slide 155c)</h2>
+<div id="cell-fig-soa-sat" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Pin <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">7</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">400</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.2</span>, <span class="fl">3.6</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> G0dB, c <span class="kw">in</span> ((<span class="dv">20</span>, lz.PALETTE[<span class="dv">0</span>]), (<span class="dv">25</span>, lz.PALETTE[<span class="dv">1</span>])):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    G0 <span class="op">=</span> <span class="dv">10</span><span class="op">**</span>(G0dB<span class="op">/</span><span class="dv">10</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> lz.saturated_gain(G0, Pin, <span class="fl">10e-3</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    Pout <span class="op">=</span> G<span class="op">*</span>Pin</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(lz.dB(Pout<span class="op">/</span><span class="fl">1e-3</span>), lz.dB(G), color<span class="op">=</span>c, label<span class="op">=</span><span class="ss">f"G₀ = </span><span class="sc">{</span>G0dB<span class="sc">}</span><span class="ss"> dB"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> np.argmin(<span class="bu">abs</span>(lz.dB(G) <span class="op">-</span> (G0dB <span class="op">-</span> <span class="dv">3</span>)))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ax.plot(lz.dB(Pout[i]<span class="op">/</span><span class="fl">1e-3</span>), lz.dB(G[i]), <span class="st">"o"</span>, color<span class="op">=</span>c)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"G0 = </span><span class="sc">{</span>G0dB<span class="sc">}</span><span class="ss"> dB: P_o,sat = </span><span class="sc">{</span>lz<span class="sc">.</span>dB(Pout[i]<span class="op">/</span><span class="fl">1e-3</span>)<span class="sc">:.1f}</span><span class="ss"> dBm (formula </span><span class="sc">{</span>lz<span class="sc">.</span>dB(<span class="dv">10</span><span class="op">*</span>np.log(<span class="dv">2</span>)<span class="op">*</span>G0<span class="op">/</span>(G0 <span class="op">-</span> <span class="dv">2</span>))<span class="sc">:.1f}</span><span class="ss"> dBm)"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"output power (dBm)"</span>, ylabel<span class="op">=</span><span class="st">"gain (dB)"</span>, xlim<span class="op">=</span>(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>G0 = 20 dB: P_o,sat = 8.4 dBm (formula 8.5 dBm)
+G0 = 25 dB: P_o,sat = 8.4 dBm (formula 8.4 dBm)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="fig-soa-sat" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-soa-sat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="soa-sled_files/figure-html/fig-soa-sat-output-2.png" width="698" height="374" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soa-sat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.2: Gain versus output power of a TW SOA with small-signal gains of 20 and 25 dB (P_sat = 10 mW of the medium), the shape of slide 155c. The circles mark the 3 dB saturated output power P_o,sat ≈ P_sat ln2 · G₀/(G₀ − 2).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The saturated output power hardly depends on the small-signal gain: it is a property of the medium, <span class="math inline">\(P_\text{sat}=h\nu A/(\Gamma a\tau)\)</span> with <span class="math inline">\(a\)</span> the differential gain and <span class="math inline">\(\tau\)</span> the carrier lifetime. A large mode area and a short lifetime raise it; the 8–11 dBm of slide 158 is typical.</p>
+<div class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.DataFrame([(<span class="dv">850</span>, <span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">150</span>, <span class="fl">2.2</span>, <span class="dv">8</span>, <span class="va">None</span>, <span class="dv">7</span>), (<span class="dv">1310</span>, <span class="dv">22</span>, <span class="dv">45</span>, <span class="dv">250</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="fl">0.5</span>), (<span class="dv">1550</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">200</span>, <span class="dv">2</span>, <span class="dv">11</span>, <span class="dv">6</span>, <span class="fl">0.5</span>)],</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                 columns<span class="op">=</span>[<span class="st">"λ (nm)"</span>, <span class="st">"gain (dB)"</span>, <span class="st">"BW (nm)"</span>, <span class="st">"I_F (mA)"</span>, <span class="st">"V_F (V)"</span>, <span class="st">"P_o,sat (dBm)"</span>, <span class="st">"NF (dB)"</span>, <span class="st">"ΔG_p (dB)"</span>])</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>s[<span class="st">"BW (THz)"</span>] <span class="op">=</span> (lz.c0<span class="op">*</span>s[<span class="st">"BW (nm)"</span>]<span class="op">*</span><span class="fl">1e-9</span><span class="op">/</span>(s[<span class="st">"λ (nm)"</span>]<span class="op">*</span><span class="fl">1e-9</span>)<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="fl">1e12</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>s[<span class="st">"electrical power (mW)"</span>] <span class="op">=</span> s[<span class="st">"I_F (mA)"</span>]<span class="op">*</span>s[<span class="st">"V_F (V)"</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>s</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-soa" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-soa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;15.1: Slide 158: commercial TW SOAs. The last column converts the bandwidth to THz.
+</figcaption>
+<div aria-describedby="tbl-soa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">λ (nm)</th>
+<th data-quarto-table-cell-role="th">gain (dB)</th>
+<th data-quarto-table-cell-role="th">BW (nm)</th>
+<th data-quarto-table-cell-role="th">I_F (mA)</th>
+<th data-quarto-table-cell-role="th">V_F (V)</th>
+<th data-quarto-table-cell-role="th">P_o,sat (dBm)</th>
+<th data-quarto-table-cell-role="th">NF (dB)</th>
+<th data-quarto-table-cell-role="th">ΔG_p (dB)</th>
+<th data-quarto-table-cell-role="th">BW (THz)</th>
+<th data-quarto-table-cell-role="th">electrical power (mW)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>850</td>
+<td>25</td>
+<td>40</td>
+<td>150</td>
+<td>2.2</td>
+<td>8</td>
+<td>NaN</td>
+<td>7.0</td>
+<td>16.6</td>
+<td>330.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1310</td>
+<td>22</td>
+<td>45</td>
+<td>250</td>
+<td>2.0</td>
+<td>10</td>
+<td>7.0</td>
+<td>0.5</td>
+<td>7.9</td>
+<td>500.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1550</td>
+<td>20</td>
+<td>35</td>
+<td>200</td>
+<td>2.0</td>
+<td>11</td>
+<td>6.0</td>
+<td>0.5</td>
+<td>4.4</td>
+<td>400.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>SOAs have NF ≈ 6–7 dB, worse than EDFAs (inversion is never complete, and the input coupling loss adds directly to the NF), and they need hundreds of mW of electrical power. Their advantages are size, any wavelength from 650 to 1650 nm, and integration with lasers and modulators on InP chips.</p>
+</section>
+<section id="superluminescent-leds-slides-159161" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="superluminescent-leds-slides-159161"><span class="header-section-number">15.4</span> Superluminescent LEDs (slides 159–161)</h2>
+<p>The spontaneous emission generated near the rear of the stripe is amplified along it. Since the gain is largest at the peak, the output spectrum narrows as the gain grows (<strong>gain narrowing</strong>), but it stays far broader than a laser line.</p>
+<div id="cell-fig-sled" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> np.linspace(<span class="fl">1150e-9</span>, <span class="fl">1470e-9</span>, <span class="dv">800</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>shape <span class="op">=</span> np.exp(<span class="op">-</span><span class="dv">4</span><span class="op">*</span>np.log(<span class="dv">2</span>)<span class="op">*</span>((lam <span class="op">-</span> <span class="fl">1310e-9</span>)<span class="op">/</span><span class="fl">70e-9</span>)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> GdB <span class="kw">in</span> (<span class="fl">0.1</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>):</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    gL <span class="op">=</span> GdB<span class="op">/</span><span class="fl">4.343</span><span class="op">*</span>shape</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> shape<span class="op">*</span>np.expm1(gL)<span class="op">/</span>np.maximum(gL, <span class="fl">1e-9</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    P <span class="op">/=</span> P.<span class="bu">max</span>()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> lam[P <span class="op">&gt;=</span> <span class="fl">0.5</span>]<span class="op">;</span> fw <span class="op">=</span> w[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> w[<span class="dv">0</span>]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ax.plot(lam<span class="op">*</span><span class="fl">1e9</span>, P, label<span class="op">=</span><span class="ss">f"peak gain </span><span class="sc">{</span>GdB<span class="sc">:g}</span><span class="ss"> dB: FWHM </span><span class="sc">{</span>fw<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm, ℓ_c ≈ </span><span class="sc">{</span><span class="fl">1310e-9</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>fw<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> µm"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"wavelength (nm)"</span>, ylabel<span class="op">=</span><span class="st">"normalised power"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-sled" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="soa-sled_files/figure-html/fig-sled-output-1.png" width="719" height="374" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.3: Output spectrum of a 1310 nm SLED model: spontaneous emission (Gaussian, 70 nm FWHM) amplified by a gain spectrum of the same shape, P(λ) ∝ r_sp(λ)[G(λ) − 1]/g(λ). Increasing the peak single-pass gain narrows the spectrum; the coherence length λ²/Δλ, which sets the axial resolution of optical coherence tomography, grows accordingly.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>SLEDs are the light source of fiber-optic gyroscopes and of optical coherence tomography (OCT), where the coherence length <span class="math inline">\(\ell_c\approx\lambda^2/\Delta\lambda\)</span> (Ch. 1) sets the depth resolution: about 10–20 µm for the 40–45 nm SLEDs of slide 159.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Pattern effects and wavelength conversion.</strong> Solve <span class="math inline">\(dn/dt=I/eV-n/\tau-\Gamma a(n-n_{tr})P/(h\nu A)\)</span> for a 10 Gb/s on-off signal through an SOA with <span class="math inline">\(\tau=200\)</span> ps. The gain recovers too slowly: the “1” bits after a run of “0”s are amplified more. A continuous probe at another wavelength receives the inverted pattern: this is cross-gain-modulation wavelength conversion.</li>
+<li><strong>Polarisation-dependent gain</strong> (slide 157). Bulk active layers with a nearly square cross section, or tensile-strained QWs that add TM gain, bring <span class="math inline">\(\Delta G_p\)</span> below 0.5 dB (slide 158).</li>
+<li><strong>SOA versus EDFA noise.</strong> Add the input coupling loss (3 dB from fiber to chip) to the intrinsic <span class="math inline">\(2n_{sp}\)</span> with the Friis formula of <a href="edfa.html#sec-edfa-noise" class="quarto-xref"><span>Section 4.5</span></a>, and show why the SOA NF rarely goes below 6 dB.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>M. J. Connelly, <em>Semiconductor Optical Amplifiers</em> (Kluwer, 2002).</li>
+<li>Kasap, sec.&nbsp;4.18–4.19; Agrawal, <em>Fiber-Optic Communication Systems</em>, sec.&nbsp;7.2.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">15.5</span> Try it yourself</h2>
+<ol type="1">
+<li>A 1 mm SOA has a single-pass gain of 30 dB. What facet reflectance keeps the ripple below 1 dB?</li>
+<li>Using the saturation model, at what input power does a 25 dB SOA with <span class="math inline">\(P_\text{sat}=10\)</span> mW lose 1 dB of gain?</li>
+<li>Why does a FP SOA have a narrower optical bandwidth (per resonance) than a TW SOA, but a higher peak gain?</li>
+<li>Estimate the OCT axial resolution (in tissue, <span class="math inline">\(n=1.38\)</span>) with a 1310 nm SLED of 45 nm FWHM. What spectral width would give 3 µm?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBzYSA9IElucHV0cy5mb3JtKHtcbiAgR3NkQjogSW5wdXRzLnJhbmdlKFswLCAzNV0sIHt2YWx1ZTogMjUsIHN0ZXA6IDAuNSwgbGFiZWw6IFwic2luZ2xlLXBhc3MgZ2FpbiBHX3MgKGRCKVwifSksXG4gIGxSOiBJbnB1dHMucmFuZ2UoWy02LCAtMC41XSwge3ZhbHVlOiAtMywgc3RlcDogMC4wNSwgbGFiZWw6IFwibG9n4oKB4oKAIGZhY2V0IHJlZmxlY3RhbmNlIFLigoEgPSBS4oKCXCJ9KSxcbiAgTDogSW5wdXRzLnJhbmdlKFsyMDAsIDIwMDBdLCB7dmFsdWU6IDUwMCwgc3RlcDogNTAsIGxhYmVsOiBcImNoaXAgbGVuZ3RoICjCtW0pLCBuX2cgPSAzLjZcIn0pXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoic2FPdXQgPSB7XG4gIGNvbnN0IFIgPSAxMCAqKiBzYS5sUiwgR3MgPSAxMCAqKiAoc2EuR3NkQi8xMCksIHJyID0gUipHcywgZnNyID0gMjk5NzkyNDU4LygyKjMuNipzYS5MKjFlLTYpLCBkYXRhID0gW107XG4gIGZvciAobGV0IGkgPSAwOyBpIDw9IDEyMDA7IGkrKykgeyBjb25zdCBmID0gLTIqZnNyICsgNCpmc3IqaS8xMjAwLCBwaGkgPSBNYXRoLlBJKmYvZnNyO1xuICAgIGRhdGEucHVzaCh7ZjogZi8xZTksIEc6IDEwKk1hdGgubG9nMTAoKDEgLSBSKSoqMipHcy8oKDEgLSBycikqKjIgKyA0KnJyKk1hdGguc2luKHBoaSkqKjIpKX0pOyB9XG4gIHJldHVybiB7ZGF0YSwgUiwgcnIsIGZzciwgcmlwcGxlOiByciA8IDEgPyAyMCpNYXRoLmxvZzEwKCgxICsgcnIpLygxIC0gcnIpKSA6IEluZmluaXR5fTtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMjgwLCB4OiB7bGFiZWw6IFwiZnJlcXVlbmN5IG9mZnNldCAoR0h6KVwifSwgeToge2xhYmVsOiBcImFtcGxpZmllciBnYWluIChkQilcIiwgZ3JpZDogdHJ1ZX0sXG4gIG1hcmtzOiBbUGxvdC5saW5lKHNhT3V0LmRhdGEsIHt4OiBcImZcIiwgeTogXCJHXCIsIHN0cm9rZTogXCIjMmE3OGQ2XCIsIHN0cm9rZVdpZHRoOiAyfSksIFBsb3QucnVsZVkoW3NhLkdzZEJdLCB7c3Ryb2tlOiBcIiNlYjY4MzRcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjQsM1wifSldXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGA8ZGl2IGNsYXNzPVwicmVzdWx0LWJveFwiPlIgRzxzdWI+czwvc3ViPiA9IDxiPiR7c2FPdXQucnIudG9QcmVjaXNpb24oMyl9PC9iPiAke3NhT3V0LnJyID49IDEgPyBodG1sYOKJpSAxOiA8Yj50aGUgZGV2aWNlIGxhc2VzPC9iPiAobm90IGFuIGFtcGxpZmllcilgIDpcbmh0bWxgwrcgZ2FpbiByaXBwbGUgPGI+JHtzYU91dC5yaXBwbGUudG9GaXhlZCgyKX0gZEI8L2I+IMK3IHJlc29uYW5jZSBzcGFjaW5nICR7KHNhT3V0LmZzci8xZTkpLnRvRml4ZWQoMSl9IEdIeiDCtyBvcmFuZ2U6IHRyYXZlbGxpbmctd2F2ZSBnYWluIEc8c3ViPnM8L3N1Yj5gfTwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2EnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter4\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./single-mode.html" class="pagination-link" aria-label="Single-frequency lasers: DBR, DFB, external cavity, VCSEL">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Single-frequency lasers: DBR, DFB, external cavity, VCSEL</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./modulation.html" class="pagination-link" aria-label="Modulation of laser diodes">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modulation of laser diodes</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Semiconductor optical amplifiers and superluminescent LEDs {#sec-soa}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/soa-sled.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> laserlib <span class="im">as</span> lz</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>lz.use_style()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>*Slides 152–158 (semiconductor optical amplifiers: travelling-wave and Fabry–Perot types, gain saturation, polarisation-dependent</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>gain, commercial devices) and 159–161 (superluminescent LEDs).*</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>A laser diode below threshold is an amplifier: light that enters one facet leaves the other amplified by the single-pass gain</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>$G_s=e^{(\Gamma g-\alpha_s)L}$. Two versions exist (slides 155–157):</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The **travelling-wave (TW) SOA** has anti-reflection coated (and often angled) facets: one pass, broad and smooth gain</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  spectrum (30–60 nm), about 20–30 dB.</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The **Fabry–Perot (FP) SOA** keeps reflecting facets: a regenerative amplifier, whose gain is enhanced at the cavity resonances</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  and suppressed between them,</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  $$G_{FP}=\frac{(1-R_1)(1-R_2)G_s}{\left(1-\sqrt{R_1R_2}\,G_s\right)^2+4\sqrt{R_1R_2}\,G_s\sin^2\phi},$$</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  with $\phi$ the single-pass phase. The gain ripple is $\left<span class="co">[</span><span class="ot">(1+\sqrt{R_1R_2}G_s)/(1-\sqrt{R_1R_2}G_s)\right</span><span class="co">]</span>^2$.</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>The gain **saturates** when the signal depletes the carriers (slide 155c). For a homogeneously broadened medium,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>$G=G_0\exp<span class="co">[</span><span class="ot">-(G-1)P_\text{in}/P_\text{sat}</span><span class="co">]</span>$, and the output at which the gain has dropped by 3 dB, $P_{o,\text{sat}}$, is</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>quoted in datasheets (slide 158). Because the carrier lifetime is ~0.1–1 ns, the SOA gain follows the bit pattern, unlike the</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>EDFA (@sec-edfa): this causes cross-talk between WDM channels, but also enables all-optical wavelength conversion.</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>A **superluminescent LED** (SLED, slides 159–161) is an SOA with no input: spontaneous emission generated at one end is amplified on</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>its way out, with feedback suppressed by angled facets, an absorbing section or AR coatings. The output is bright and directional</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>like a laser but broadband and incoherent like an LED.</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Fabry–Perot versus travelling-wave SOA</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>viewof sa <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  <span class="dt">GsdB</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">35</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"single-pass gain G_s (dB)"</span>})<span class="op">,</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lR</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">6</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ facet reflectance R₁ = R₂"</span>})<span class="op">,</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">L</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">200</span><span class="op">,</span> <span class="dv">2000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"chip length (µm), n_g = 3.6"</span>})</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>saOut <span class="op">=</span> {</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> R <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> sa<span class="op">.</span><span class="at">lR</span><span class="op">,</span> Gs <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> (sa<span class="op">.</span><span class="at">GsdB</span><span class="op">/</span><span class="dv">10</span>)<span class="op">,</span> rr <span class="op">=</span> R<span class="op">*</span>Gs<span class="op">,</span> fsr <span class="op">=</span> <span class="dv">299792458</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="fl">3.6</span><span class="op">*</span>sa<span class="op">.</span><span class="at">L</span><span class="op">*</span><span class="fl">1e-6</span>)<span class="op">,</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">1200</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> f <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">*</span>fsr <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>fsr<span class="op">*</span>i<span class="op">/</span><span class="dv">1200</span><span class="op">,</span> phi <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">*</span>f<span class="op">/</span>fsr<span class="op">;</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({<span class="dt">f</span><span class="op">:</span> f<span class="op">/</span><span class="fl">1e9</span><span class="op">,</span> <span class="dt">G</span><span class="op">:</span> <span class="dv">10</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>((<span class="dv">1</span> <span class="op">-</span> R)<span class="op">**</span><span class="dv">2</span><span class="op">*</span>Gs<span class="op">/</span>((<span class="dv">1</span> <span class="op">-</span> rr)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>rr<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(phi)<span class="op">**</span><span class="dv">2</span>))})<span class="op">;</span> }</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {data<span class="op">,</span> R<span class="op">,</span> rr<span class="op">,</span> fsr<span class="op">,</span> <span class="dt">ripple</span><span class="op">:</span> rr <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="dv">20</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>((<span class="dv">1</span> <span class="op">+</span> rr)<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span> rr)) <span class="op">:</span> <span class="kw">Infinity</span>}<span class="op">;</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"frequency offset (GHz)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"amplifier gain (dB)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(saOut<span class="op">.</span><span class="at">data</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"f"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"G"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleY</span>([sa<span class="op">.</span><span class="at">GsdB</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#eb6834"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})]</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;R G&lt;sub&gt;s&lt;/sub&gt; = &lt;b&gt;</span><span class="sc">${</span>saOut<span class="op">.</span><span class="at">rr</span><span class="op">.</span><span class="fu">toPrecision</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt; </span><span class="sc">${</span>saOut<span class="op">.</span><span class="at">rr</span> <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`≥ 1: &lt;b&gt;the device lases&lt;/b&gt; (not an amplifier)`</span> <span class="op">:</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`· gain ripple &lt;b&gt;</span><span class="sc">${</span>saOut<span class="op">.</span><span class="at">ripple</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> dB&lt;/b&gt; · resonance spacing </span><span class="sc">${</span>(saOut<span class="op">.</span><span class="at">fsr</span><span class="op">/</span><span class="fl">1e9</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> GHz · orange: travelling-wave gain G&lt;sub&gt;s&lt;/sub&gt;`</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>With cleaved facets ($R=0.32$) the chip lases as soon as $G_s&gt;3$ (5 dB). A 25 dB TW amplifier needs $R\lesssim10^{-4}$ for a</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>ripple below 0.5 dB, which no single AR coating achieves: practical SOAs combine AR coatings with angled waveguides (7–10°) and</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>window regions.</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ripple</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Peak-to-valley gain ripple of an SOA versus facet reflectance for three single-pass gains. The vertical band marks good AR coatings (10⁻⁴–10⁻³)."</span></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">300</span>)</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.2</span>, <span class="fl">3.5</span>))</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> GdB <span class="kw">in</span> (<span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">30</span>):</span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>    rr <span class="op">=</span> R<span class="op">*</span><span class="dv">10</span><span class="op">**</span>(GdB<span class="op">/</span><span class="dv">10</span>)</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>    ax.semilogx(R, np.where(rr <span class="op">&lt;</span> <span class="dv">1</span>, <span class="dv">20</span><span class="op">*</span>np.log10((<span class="dv">1</span> <span class="op">+</span> rr)<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span> rr)), np.nan), label<span class="op">=</span><span class="ss">f"G_s = </span><span class="sc">{</span>GdB<span class="sc">}</span><span class="ss"> dB"</span>)</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>ax.axvspan(<span class="fl">1e-4</span>, <span class="fl">1e-3</span>, color<span class="op">=</span>lz.GRID, alpha<span class="op">=</span><span class="fl">0.6</span>, zorder<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"facet reflectance R"</span>, ylabel<span class="op">=</span><span class="st">"gain ripple (dB)"</span>, ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">15</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gain saturation (slide 155c)</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-soa-sat</span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Gain versus output power of a TW SOA with small-signal gains of 20 and 25 dB (P_sat = 10 mW of the medium), the shape of slide 155c. The circles mark the 3 dB saturated output power P_o,sat ≈ P_sat ln2 · G₀/(G₀ − 2)."</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>Pin <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">7</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">400</span>)</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.2</span>, <span class="fl">3.6</span>))</span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> G0dB, c <span class="kw">in</span> ((<span class="dv">20</span>, lz.PALETTE[<span class="dv">0</span>]), (<span class="dv">25</span>, lz.PALETTE[<span class="dv">1</span>])):</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    G0 <span class="op">=</span> <span class="dv">10</span><span class="op">**</span>(G0dB<span class="op">/</span><span class="dv">10</span>)</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> lz.saturated_gain(G0, Pin, <span class="fl">10e-3</span>)</span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>    Pout <span class="op">=</span> G<span class="op">*</span>Pin</span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>    ax.plot(lz.dB(Pout<span class="op">/</span><span class="fl">1e-3</span>), lz.dB(G), color<span class="op">=</span>c, label<span class="op">=</span><span class="ss">f"G₀ = </span><span class="sc">{</span>G0dB<span class="sc">}</span><span class="ss"> dB"</span>)</span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> np.argmin(<span class="bu">abs</span>(lz.dB(G) <span class="op">-</span> (G0dB <span class="op">-</span> <span class="dv">3</span>)))</span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>    ax.plot(lz.dB(Pout[i]<span class="op">/</span><span class="fl">1e-3</span>), lz.dB(G[i]), <span class="st">"o"</span>, color<span class="op">=</span>c)</span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"G0 = </span><span class="sc">{</span>G0dB<span class="sc">}</span><span class="ss"> dB: P_o,sat = </span><span class="sc">{</span>lz<span class="sc">.</span>dB(Pout[i]<span class="op">/</span><span class="fl">1e-3</span>)<span class="sc">:.1f}</span><span class="ss"> dBm (formula </span><span class="sc">{</span>lz<span class="sc">.</span>dB(<span class="dv">10</span><span class="op">*</span>np.log(<span class="dv">2</span>)<span class="op">*</span>G0<span class="op">/</span>(G0 <span class="op">-</span> <span class="dv">2</span>))<span class="sc">:.1f}</span><span class="ss"> dBm)"</span>)</span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"output power (dBm)"</span>, ylabel<span class="op">=</span><span class="st">"gain (dB)"</span>, xlim<span class="op">=</span>(<span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a>The saturated output power hardly depends on the small-signal gain: it is a property of the medium,</span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>$P_\text{sat}=h\nu A/(\Gamma a\tau)$ with $a$ the differential gain and $\tau$ the carrier lifetime. A large mode area and a</span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>short lifetime raise it; the 8–11 dBm of slide 158 is typical.</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-soa</span></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Slide 158: commercial TW SOAs. The last column converts the bandwidth to THz."</span></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.DataFrame([(<span class="dv">850</span>, <span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">150</span>, <span class="fl">2.2</span>, <span class="dv">8</span>, <span class="va">None</span>, <span class="dv">7</span>), (<span class="dv">1310</span>, <span class="dv">22</span>, <span class="dv">45</span>, <span class="dv">250</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="fl">0.5</span>), (<span class="dv">1550</span>, <span class="dv">20</span>, <span class="dv">35</span>, <span class="dv">200</span>, <span class="dv">2</span>, <span class="dv">11</span>, <span class="dv">6</span>, <span class="fl">0.5</span>)],</span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>                 columns<span class="op">=</span>[<span class="st">"λ (nm)"</span>, <span class="st">"gain (dB)"</span>, <span class="st">"BW (nm)"</span>, <span class="st">"I_F (mA)"</span>, <span class="st">"V_F (V)"</span>, <span class="st">"P_o,sat (dBm)"</span>, <span class="st">"NF (dB)"</span>, <span class="st">"ΔG_p (dB)"</span>])</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>s[<span class="st">"BW (THz)"</span>] <span class="op">=</span> (lz.c0<span class="op">*</span>s[<span class="st">"BW (nm)"</span>]<span class="op">*</span><span class="fl">1e-9</span><span class="op">/</span>(s[<span class="st">"λ (nm)"</span>]<span class="op">*</span><span class="fl">1e-9</span>)<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="fl">1e12</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>s[<span class="st">"electrical power (mW)"</span>] <span class="op">=</span> s[<span class="st">"I_F (mA)"</span>]<span class="op">*</span>s[<span class="st">"V_F (V)"</span>]</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>s</span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>SOAs have NF ≈ 6–7 dB, worse than EDFAs (inversion is never complete, and the input coupling loss adds directly to the NF), and</span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>they need hundreds of mW of electrical power. Their advantages are size, any wavelength from 650 to 1650 nm, and integration with</span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>lasers and modulators on InP chips.</span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## Superluminescent LEDs (slides 159–161)</span></span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>The spontaneous emission generated near the rear of the stripe is amplified along it. Since the gain is largest at the peak, the</span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>output spectrum narrows as the gain grows (**gain narrowing**), but it stays far broader than a laser line.</span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-sled</span></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Output spectrum of a 1310 nm SLED model: spontaneous emission (Gaussian, 70 nm FWHM) amplified by a gain spectrum of the same shape, P(λ) ∝ r_sp(λ)[G(λ) − 1]/g(λ). Increasing the peak single-pass gain narrows the spectrum; the coherence length λ²/Δλ, which sets the axial resolution of optical coherence tomography, grows accordingly."</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> np.linspace(<span class="fl">1150e-9</span>, <span class="fl">1470e-9</span>, <span class="dv">800</span>)</span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>shape <span class="op">=</span> np.exp(<span class="op">-</span><span class="dv">4</span><span class="op">*</span>np.log(<span class="dv">2</span>)<span class="op">*</span>((lam <span class="op">-</span> <span class="fl">1310e-9</span>)<span class="op">/</span><span class="fl">70e-9</span>)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.6</span>))</span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> GdB <span class="kw">in</span> (<span class="fl">0.1</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>):</span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>    gL <span class="op">=</span> GdB<span class="op">/</span><span class="fl">4.343</span><span class="op">*</span>shape</span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>    P <span class="op">=</span> shape<span class="op">*</span>np.expm1(gL)<span class="op">/</span>np.maximum(gL, <span class="fl">1e-9</span>)</span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>    P <span class="op">/=</span> P.<span class="bu">max</span>()</span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> lam[P <span class="op">&gt;=</span> <span class="fl">0.5</span>]<span class="op">;</span> fw <span class="op">=</span> w[<span class="op">-</span><span class="dv">1</span>] <span class="op">-</span> w[<span class="dv">0</span>]</span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>    ax.plot(lam<span class="op">*</span><span class="fl">1e9</span>, P, label<span class="op">=</span><span class="ss">f"peak gain </span><span class="sc">{</span>GdB<span class="sc">:g}</span><span class="ss"> dB: FWHM </span><span class="sc">{</span>fw<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm, ℓ_c ≈ </span><span class="sc">{</span><span class="fl">1310e-9</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>fw<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> µm"</span>)</span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"wavelength (nm)"</span>, ylabel<span class="op">=</span><span class="st">"normalised power"</span>)<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>SLEDs are the light source of fiber-optic gyroscopes and of optical coherence tomography (OCT), where the coherence length</span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>$\ell_c\approx\lambda^2/\Delta\lambda$ (Ch. 1) sets the depth resolution: about 10–20 µm for the 40–45 nm SLEDs of slide 159.</span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Pattern effects and wavelength conversion.** Solve $dn/dt=I/eV-n/\tau-\Gamma a(n-n_{tr})P/(h\nu A)$ for a 10 Gb/s on-off signal</span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>  through an SOA with $\tau=200$ ps. The gain recovers too slowly: the "1" bits after a run of "0"s are amplified more. A continuous</span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>  probe at another wavelength receives the inverted pattern: this is cross-gain-modulation wavelength conversion.</span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Polarisation-dependent gain** (slide 157). Bulk active layers with a nearly square cross section, or tensile-strained QWs that</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a>  add TM gain, bring $\Delta G_p$ below 0.5 dB (slide 158).</span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**SOA versus EDFA noise.** Add the input coupling loss (3 dB from fiber to chip) to the intrinsic $2n_{sp}$ with the Friis formula</span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>  of @sec-edfa-noise, and show why the SOA NF rarely goes below 6 dB.</span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>M. J. Connelly, *Semiconductor Optical Amplifiers* (Kluwer, 2002).</span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, sec. 4.18–4.19; Agrawal, *Fiber-Optic Communication Systems*, sec. 7.2.</span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>A 1 mm SOA has a single-pass gain of 30 dB. What facet reflectance keeps the ripple below 1 dB?</span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Using the saturation model, at what input power does a 25 dB SOA with $P_\text{sat}=10$ mW lose 1 dB of gain?</span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Why does a FP SOA have a narrower optical bandwidth (per resonance) than a TW SOA, but a higher peak gain?</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Estimate the OCT axial resolution (in tissue, $n=1.38$) with a 1310 nm SLED of 45 nm FWHM. What spectral width would give 3 µm?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/soa-sled.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

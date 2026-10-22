@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Laser diode structures, modes and temperature – Stimulated Emission Devices: Optical Amplifiers and Lasers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ld-efficiency.html" rel="next">
+<link href="./ld-principle.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ld-principle.html">Semiconductor lasers</a></li><li class="breadcrumb-item"><a href="./ld-structures.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Stimulated Emission Devices: Optical Amplifiers and Lasers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter4/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Stimulated emission</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./blackbody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Radiation in a box</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./einstein.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Absorption, spontaneous and stimulated emission</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pumping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Three- and four-level lasers</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Optical amplifiers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./edfa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Optical gain and the erbium-doped fiber amplifier</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laser oscillators</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./gas-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Gas lasers and longitudinal modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./threshold.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Threshold, output power and photon lifetime</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./broadening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Transverse modes and line broadening</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pulsed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Q-switching and mode-locking</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Semiconductor lasers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-principle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laser diode principle and optical gain</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-structures.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-efficiency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laser diode efficiencies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ld-equation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">The laser diode equation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./qw-lasers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quantum-well lasers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./single-mode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Single-frequency lasers: DBR, DFB, external cavity, VCSEL</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./soa-sled.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Semiconductor optical amplifiers and superluminescent LEDs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Modulation of laser diodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./holography.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Holography</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./resonators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Going further: optical resonators and Gaussian modes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linewidth-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Going further: laser linewidth, noise and chirp</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">10.1</span> Key relations</a></li>
+  <li><a href="#worked-example-modes-and-cavity-length-slides-101102-recomputed" id="toc-worked-example-modes-and-cavity-length-slides-101102-recomputed" class="nav-link" data-scroll-target="#worked-example-modes-and-cavity-length-slides-101102-recomputed"><span class="header-section-number">10.2</span> Worked example: modes and cavity length (slides 101–102), recomputed</a></li>
+  <li><a href="#output-spectrum-versus-current-slides-94-104" id="toc-output-spectrum-versus-current-slides-94-104" class="nav-link" data-scroll-target="#output-spectrum-versus-current-slides-94-104"><span class="header-section-number">10.3</span> Output spectrum versus current (slides 94, 104)</a></li>
+  <li><a href="#temperature-threshold-and-mode-hops-slides-105107" id="toc-temperature-threshold-and-mode-hops-slides-105107" class="nav-link" data-scroll-target="#temperature-threshold-and-mode-hops-slides-105107"><span class="header-section-number">10.4</span> Temperature: threshold and mode hops (slides 105–107)</a></li>
+  <li><a href="#beam-divergence-slide-103" id="toc-beam-divergence-slide-103" class="nav-link" data-scroll-target="#beam-divergence-slide-103"><span class="header-section-number">10.5</span> Beam divergence (slide 103)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">10.6</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/ld-structures.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ld-principle.html">Semiconductor lasers</a></li><li class="breadcrumb-item"><a href="./ld-structures.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-ld-structures" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Laser diode structures, modes and temperature</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter4/notebooks/ld-structures.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 92–100 (homojunction laser, output characteristic, double heterostructure, stripe geometry, buried heterostructures, commercial devices), 101–102 (example: modes and cavity length) and 103–107 (beam characteristics, output spectra, temperature dependence of threshold and wavelength, example on <span class="math inline">\(d\lambda/dT\)</span>).</em></p>
+<section id="key-relations" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">10.1</span> Key relations</h2>
+<p>The first laser diodes (Hall <em>et al.</em>, 1962, slide 93) were GaAs <strong>homojunctions</strong>: a degenerately doped pn junction with two cleaved facets as mirrors (slide 92). The facets reflect <span class="math inline">\(R=[(n-1)/(n+1)]^2\approx0.32\)</span>, enough because the gain is huge. But the injected carriers spread over a diffusion length (µm) and the light is not guided, so the threshold current density was about 500 A mm⁻² at room temperature (slide 94 notes): only pulsed operation, or cryogenic cooling.</p>
+<p>The <strong>double heterostructure</strong> (DH, slides 95–96) sandwiches a thin (0.1–0.2 µm) narrow-gap active layer between wide-gap claddings. The band offsets confine the carriers, and the higher index of the active layer guides the light (the planar waveguide of Ch. 2; carrier and photon confinement were introduced for LEDs in Ch. 3 and enter the threshold through Γ in <a href="ld-equation.html" class="quarto-xref"><span>Chapter 12</span></a>). Thresholds dropped to a few A mm⁻², and in 1970 Hayashi and Panish, and Alferov’s group, obtained continuous operation at room temperature. <strong>Stripe</strong> contacts (slide 97) restrict the current to a few µm width; <strong>buried heterostructures</strong> (slides 98–99) surround the active region by low-index, wide-gap material on all sides, which also guides the light laterally and keeps one transverse mode.</p>
+<p>The cavity selects longitudinal modes (slides 101–102, as in <a href="gas-lasers.html" class="quarto-xref"><span>Chapter 5</span></a>):</p>
+<p><span class="math display">\[
+m\frac{\lambda_m}{2n}=L,\qquad \Delta\lambda_m\approx\frac{\lambda^2}{2n_gL},
+\]</span></p>
+<p>where strictly the <strong>group index</strong> <span class="math inline">\(n_g=n-\lambda\,dn/d\lambda\approx4.3\)</span> should replace <span class="math inline">\(n\)</span> (the slides use <span class="math inline">\(n=3.6\)</span>).</p>
+<p>The threshold rises exponentially with temperature (slide 105), and the wavelength drifts (slides 106–107):</p>
+<p><span class="math display">\[
+I_{th}=A\exp\!\left(\frac{T}{T_0}\right),\qquad
+\frac{d\lambda_m}{dT}\approx\frac{\lambda_m}{n}\frac{dn}{dT}\ \text{(one mode)},\qquad
+\frac{d\lambda_\text{peak}}{dT}\approx-\frac{\lambda^2}{hc}\frac{dE_g}{dT}\ \text{(gain peak)}.
+\]</span></p>
+</section>
+<section id="worked-example-modes-and-cavity-length-slides-101102-recomputed" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="worked-example-modes-and-cavity-length-slides-101102-recomputed"><span class="header-section-number">10.2</span> Worked example: modes and cavity length (slides 101–102), recomputed</h2>
+<blockquote class="blockquote">
+<p>AlGaAs laser, <span class="math inline">\(L=200\)</span> µm, peak at 870 nm, <span class="math inline">\(n=3.6\)</span>, gain FWHM 6 nm. Find the mode number, the mode spacing and the number of modes. Repeat for <span class="math inline">\(L=20\)</span> µm.</p>
+</blockquote>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> L <span class="kw">in</span> (<span class="fl">200e-6</span>, <span class="fl">20e-6</span>):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> lz.mode_number(L, <span class="fl">870e-9</span>, <span class="fl">3.6</span>)<span class="op">;</span> dl <span class="op">=</span> lz.mode_spacing(L, <span class="fl">870e-9</span>, <span class="fl">3.6</span>)[<span class="dv">1</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"L (µm)"</span>: L<span class="op">*</span><span class="fl">1e6</span>, <span class="st">"m = 2nL/λ"</span>: <span class="ss">f"</span><span class="sc">{</span>m<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"Δλ_m (nm)"</span>: <span class="ss">f"</span><span class="sc">{</span>dl<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"modes in 6 nm"</span>: <span class="ss">f"</span><span class="sc">{</span><span class="fl">6e-9</span><span class="op">/</span>dl<span class="sc">:.1f}</span><span class="ss">"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"nearest modes (nm)"</span>: <span class="st">", "</span>.join(<span class="ss">f"</span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span><span class="fl">3.6</span><span class="op">*</span>L<span class="op">/</span>k<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss">"</span> <span class="cf">for</span> k <span class="kw">in</span> (<span class="bu">int</span>(np.floor(m)), <span class="bu">int</span>(np.ceil(m)))),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Δλ_m with n_g = 4.3 (nm)"</span>: <span class="ss">f"</span><span class="sc">{</span><span class="fl">870e-9</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="fl">4.3</span><span class="op">*</span>L)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.3f}</span><span class="ss">"</span>})</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-ld-modes" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ld-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.1: Slides 101–102 recomputed, with the group-index correction in the last column (n_g = 4.3 for GaAs at 870 nm).
+</figcaption>
+<div aria-describedby="tbl-ld-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">L (µm)</th>
+<th data-quarto-table-cell-role="th">m = 2nL/λ</th>
+<th data-quarto-table-cell-role="th">Δλ_m (nm)</th>
+<th data-quarto-table-cell-role="th">modes in 6 nm</th>
+<th data-quarto-table-cell-role="th">nearest modes (nm)</th>
+<th data-quarto-table-cell-role="th">Δλ_m with n_g = 4.3 (nm)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>200.0</td>
+<td>1655.2</td>
+<td>0.526</td>
+<td>11.4</td>
+<td>870.1, 869.6</td>
+<td>0.440</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>20.0</td>
+<td>165.5</td>
+<td>5.256</td>
+<td>1.1</td>
+<td>872.7, 867.5</td>
+<td>4.401</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The slide values are reproduced: <span class="math inline">\(m=1655\)</span>, 0.526 nm and 11 modes for 200 µm; 5.26 nm and a single mode near 867.5 or 872.7 nm for 20 µm. A 20 µm cavity is too short to give enough gain for an edge emitter, but this is exactly the idea of the VCSEL (<a href="single-mode.html" class="quarto-xref"><span>Chapter 14</span></a>), whose cavity is about one wavelength long.</p>
+</section>
+<section id="output-spectrum-versus-current-slides-94-104" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="output-spectrum-versus-current-slides-94-104"><span class="header-section-number">10.3</span> Output spectrum versus current (slides 94, 104)</h2>
+<p>Below threshold a laser diode is an LED: its spectrum follows the gain curve. Above threshold the gain clamps just below the loss, <span class="math inline">\(g_{th}\)</span>. Each mode <span class="math inline">\(m\)</span> is then fed by spontaneous emission and amplified by its own net gain: its photon number is about <span class="math inline">\(S_m\propto1/(g_{th}-g_m)\)</span>. The mode at the gain peak gets closest to <span class="math inline">\(g_{th}\)</span> and takes over as the current rises.</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="77" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 76;"><span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>viewof fs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  <span class="dt">L</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">100</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">250</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"cavity length L (µm)"</span>})<span class="op">,</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ng</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">3.4</span><span class="op">,</span> <span class="fl">4.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">4.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"group index n_g"</span>})<span class="op">,</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lam</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">800</span><span class="op">,</span> <span class="dv">1600</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">870</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"gain peak (nm)"</span>})<span class="op">,</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fw</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">60</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"gain FWHM (nm)"</span>})<span class="op">,</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">off</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"comb position: nearest mode − gain peak (mode spacings)"</span>})<span class="op">,</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="dt">I</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"current I/I_th"</span>})</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="90" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 89;"><span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>fsOut <span class="op">=</span> {</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> dl <span class="op">=</span> fs<span class="op">.</span><span class="at">lam</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>fs<span class="op">.</span><span class="at">ng</span><span class="op">*</span>fs<span class="op">.</span><span class="at">L</span><span class="op">*</span><span class="fl">1e3</span>)<span class="op">,</span> half <span class="op">=</span> fs<span class="op">.</span><span class="at">fw</span><span class="op">/</span><span class="dv">2</span><span class="op">,</span> gain <span class="op">=</span> l <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">1</span> <span class="op">-</span> ((l <span class="op">-</span> fs<span class="op">.</span><span class="at">lam</span>)<span class="op">/</span>half)<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="fl">0.5</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>  <span class="co">// gain deficit of the peak below threshold: falls as 1/(I/Ith - 1) above threshold</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> delta <span class="op">=</span> fs<span class="op">.</span><span class="at">I</span> <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">-</span> fs<span class="op">.</span><span class="at">I</span><span class="op">*</span><span class="fl">0.9</span> <span class="op">:</span> <span class="fl">1e-5</span><span class="op">/</span>(fs<span class="op">.</span><span class="at">I</span> <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.003</span>)<span class="op">;</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modes <span class="op">=</span> []<span class="op">;</span> <span class="kw">const</span> off <span class="op">=</span> fs<span class="op">.</span><span class="at">off</span><span class="op">;</span>   <span class="co">// comb offset with respect to the gain peak</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="op">-</span><span class="dv">80</span><span class="op">;</span> k <span class="op">&lt;=</span> <span class="dv">80</span><span class="op">;</span> k<span class="op">++</span>) {</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> l <span class="op">=</span> fs<span class="op">.</span><span class="at">lam</span> <span class="op">+</span> (k <span class="op">+</span> off)<span class="op">*</span>dl<span class="op">;</span> <span class="cf">if</span> (<span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(l <span class="op">-</span> fs<span class="op">.</span><span class="at">lam</span>) <span class="op">&gt;</span> <span class="dv">2</span><span class="op">*</span>fs<span class="op">.</span><span class="at">fw</span>) <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> gm <span class="op">=</span> <span class="fu">gain</span>(l)<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> delta)<span class="op">,</span> S <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span> gm)<span class="op">;</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>    modes<span class="op">.</span><span class="fu">push</span>({l<span class="op">,</span> S})<span class="op">;</span></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mx <span class="op">=</span> d3<span class="op">.</span><span class="fu">max</span>(modes<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">S</span>)<span class="op">,</span> sorted <span class="op">=</span> modes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">S</span>)<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> b <span class="op">-</span> a)<span class="op">;</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">modes</span><span class="op">:</span> modes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">P</span><span class="op">:</span> d<span class="op">.</span><span class="at">S</span><span class="op">/</span>mx}))<span class="op">,</span> dl<span class="op">,</span> <span class="dt">smsr</span><span class="op">:</span> <span class="dv">10</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(sorted[<span class="dv">0</span>]<span class="op">/</span>sorted[<span class="dv">1</span>])<span class="op">,</span> <span class="dt">nm</span><span class="op">:</span> modes<span class="op">.</span><span class="at">length</span>}<span class="op">;</span></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"relative power (each spectrum normalised)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.05</span>]}<span class="op">,</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(fsOut<span class="op">.</span><span class="at">modes</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"l"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"P"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> fsOut<span class="op">.</span><span class="at">modes</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">150</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">2</span>})]</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="110" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 109;"><span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;mode spacing &lt;b&gt;</span><span class="sc">${</span>fsOut<span class="op">.</span><span class="at">dl</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt; · </span><span class="sc">${</span>fs<span class="op">.</span><span class="at">I</span> <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"below threshold: LED-like spectrum following the gain curve"</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">`side-mode suppression ratio ≈ &lt;b&gt;</span><span class="sc">${</span>fsOut<span class="op">.</span><span class="at">smsr</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dB&lt;/b&gt;`</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>With a mode close to the gain peak, the side-mode suppression grows with current to 20–30 dB, as on slide 104. Now move the comb so that two modes straddle the peak (position 0.5): their gains are equal and they share the power at any current. A small change of temperature or current moves the comb and flips the laser from one mode to the other (mode hopping, below). The suppression is limited by the tiny gain difference between neighbouring modes, <span class="math inline">\(\approx\tfrac12(\Delta\lambda_m/\text{half width})^2\)</span>. This is why Fabry–Perot lasers rarely exceed 20–30 dB, and why single-frequency lasers need an extra wavelength-selective element (<a href="single-mode.html" class="quarto-xref"><span>Chapter 14</span></a>).</p>
+</section>
+<section id="temperature-threshold-and-mode-hops-slides-105107" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="temperature-threshold-and-mode-hops-slides-105107"><span class="header-section-number">10.4</span> Temperature: threshold and mode hops (slides 105–107)</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="124" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 123;"><span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>viewof tt <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>  <span class="dt">T0</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">30</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"characteristic temperature T₀ (K)"</span>})<span class="op">,</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>  <span class="dt">T</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">80</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"case temperature (°C)"</span>})<span class="op">,</span></span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dpk</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.6</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"gain-peak shift dλ_p/dT (nm/K)"</span>})<span class="op">,</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dmd</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.15</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.048</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.001</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mode shift dλ_m/dT (nm/K)"</span>})<span class="op">,</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dl</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mode spacing (nm)"</span>})</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="136" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 135;"><span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>ttOut <span class="op">=</span> {</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Ith <span class="op">=</span> T <span class="kw">=&gt;</span> <span class="dv">20</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>((T <span class="op">-</span> <span class="dv">25</span>)<span class="op">/</span>tt<span class="op">.</span><span class="at">T0</span>)<span class="op">,</span> li <span class="op">=</span> []<span class="op">,</span> hop <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> T <span class="kw">of</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">50</span><span class="op">,</span> tt<span class="op">.</span><span class="at">T</span>]) <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">100</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> I <span class="op">=</span> <span class="dv">150</span><span class="op">*</span>i<span class="op">/</span><span class="dv">100</span><span class="op">;</span> li<span class="op">.</span><span class="fu">push</span>({I<span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">*</span>(I <span class="op">-</span> <span class="fu">Ith</span>(T)))<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>T<span class="sc">}</span><span class="vs"> °C`</span>})<span class="op">;</span> }</span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">400</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> T <span class="op">=</span> <span class="dv">80</span><span class="op">*</span>i<span class="op">/</span><span class="dv">400</span><span class="op">,</span> pk <span class="op">=</span> <span class="dv">870</span> <span class="op">+</span> tt<span class="op">.</span><span class="at">dpk</span><span class="op">*</span>(T <span class="op">-</span> <span class="dv">25</span>)<span class="op">,</span> base <span class="op">=</span> <span class="dv">870</span> <span class="op">+</span> tt<span class="op">.</span><span class="at">dmd</span><span class="op">*</span>(T <span class="op">-</span> <span class="dv">25</span>)<span class="op">;</span></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> k <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>((pk <span class="op">-</span> base)<span class="op">/</span>tt<span class="op">.</span><span class="at">dl</span>)<span class="op">;</span> hop<span class="op">.</span><span class="fu">push</span>({T<span class="op">,</span> <span class="dt">lam</span><span class="op">:</span> base <span class="op">+</span> k<span class="op">*</span>tt<span class="op">.</span><span class="at">dl</span><span class="op">,</span> pk})<span class="op">;</span></span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {li<span class="op">,</span> hop<span class="op">,</span> <span class="dt">Ith</span><span class="op">:</span> <span class="fu">Ith</span>(tt<span class="op">.</span><span class="at">T</span>)}<span class="op">;</span></span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">500</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"current (mA)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"output (mW)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]}<span class="op">,</span></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span> <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(ttOut<span class="op">.</span><span class="at">li</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"P"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})]</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="152" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 151;"><span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">520</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"temperature (°C)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (nm)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(ttOut<span class="op">.</span><span class="at">hop</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"pk"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#c3c2b7"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">line</span>(ttOut<span class="op">.</span><span class="at">hop</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">curve</span><span class="op">:</span> <span class="st">"step"</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([tt<span class="op">.</span><span class="at">T</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})]</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="161" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 160;"><span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;I&lt;sub&gt;th&lt;/sub&gt;(</span><span class="sc">${</span>tt<span class="op">.</span><span class="at">T</span><span class="sc">}</span><span class="vs"> °C) = &lt;b&gt;</span><span class="sc">${</span>ttOut<span class="op">.</span><span class="at">Ith</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> mA&lt;/b&gt; (20 mA at 25 °C; it doubles every </span><span class="sc">${</span>(tt<span class="op">.</span><span class="at">T0</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">LN2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> K) ·</span></span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a><span class="vs">red: lasing mode, which follows the mode shift (slope </span><span class="sc">${</span>tt<span class="op">.</span><span class="at">dmd</span><span class="sc">}</span><span class="vs"> nm/K) and hops by one spacing whenever the gain peak (grey, </span><span class="sc">${</span>tt<span class="op">.</span><span class="at">dpk</span><span class="sc">}</span><span class="vs"> nm/K) has moved half a spacing away&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lam, n <span class="op">=</span> <span class="fl">870e-9</span>, <span class="fl">3.6</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dn_dT, expan <span class="op">=</span> <span class="fl">2.0e-4</span>, <span class="fl">6e-6</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(<span class="st">"index change, (λ/n) dn/dT"</span>, <span class="ss">f"</span><span class="sc">{</span>lam<span class="op">/</span>n<span class="op">*</span>dn_dT<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.4f}</span><span class="ss"> nm/K"</span>, <span class="st">"0.048 nm/K"</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"thermal expansion, λ (1/L) dL/dT"</span>, <span class="ss">f"</span><span class="sc">{</span>lam<span class="op">*</span>expan<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.4f}</span><span class="ss"> nm/K"</span>, <span class="st">"much smaller (exercise)"</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"gain peak, from dE_g/dT ≈ −0.45 meV/K"</span>, <span class="ss">f"</span><span class="sc">{</span>lam<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(lz.h<span class="op">*</span>lz.c0)<span class="op">*</span><span class="fl">0.45e-3</span><span class="op">*</span>lz<span class="sc">.</span>qe<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.3f}</span><span class="ss"> nm/K"</span>, <span class="st">"≈ 0.3 nm/K, mode hops (slide 106)"</span>)],</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"mechanism"</span>, <span class="st">"dλ/dT"</span>, <span class="st">"slide"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-dldt" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dldt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.2: Slide 107 recomputed: wavelength drift of one mode of a GaAs laser at 870 nm, from the index change and (exercise of the slide) from thermal expansion.
+</figcaption>
+<div aria-describedby="tbl-dldt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mechanism</th>
+<th data-quarto-table-cell-role="th">dλ/dT</th>
+<th data-quarto-table-cell-role="th">slide</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>index change, (λ/n) dn/dT</td>
+<td>0.0483 nm/K</td>
+<td>0.048 nm/K</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>thermal expansion, λ (1/L) dL/dT</td>
+<td>0.0052 nm/K</td>
+<td>much smaller (exercise)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>gain peak, from dE_g/dT ≈ −0.45 meV/K</td>
+<td>0.275 nm/K</td>
+<td>≈ 0.3 nm/K, mode hops (slide 106)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A single mode drifts by 0.05 nm/K, while the gain peak drifts six times faster with the bandgap. Over a 20 °C range the gain peak moves by 6 nm, that is 10 mode spacings of a 250 µm laser: the laser must hop. For WDM channels spaced by 0.8 nm (Ch. 2), telecom lasers sit on a thermoelectric cooler that holds the temperature to ±0.01 K.</p>
+</section>
+<section id="beam-divergence-slide-103" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="beam-divergence-slide-103"><span class="header-section-number">10.5</span> Beam divergence (slide 103)</h2>
+<p>The near field of an edge emitter is an ellipse about 1 µm × 3 µm. Diffraction (Ch. 1) makes the far field an ellipse rotated by 90°: the beam diverges fastest in the direction where it is narrowest. For a Gaussian beam of waist <span class="math inline">\(w_0\)</span> the full angle at half intensity is <span class="math inline">\(\theta_\text{FWHM}\approx1.18\lambda/(\pi w_0)\)</span> (radians):</p>
+<div class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> <span class="fl">870e-9</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, w0 <span class="kw">in</span> ((<span class="st">"perpendicular, thin DH (w₀ = 0.4 µm)"</span>, <span class="fl">0.4e-6</span>), (<span class="st">"perpendicular, large-optical-cavity (w₀ = 0.8 µm)"</span>, <span class="fl">0.8e-6</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 (<span class="st">"parallel, narrow ridge (w₀ = 1.5 µm)"</span>, <span class="fl">1.5e-6</span>), (<span class="st">"parallel, broad stripe (w₀ = 3 µm)"</span>, <span class="fl">3e-6</span>)):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    th <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.degrees(np.arctan(np.sqrt(np.log(<span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>lam<span class="op">/</span>(np.pi<span class="op">*</span>w0)))     <span class="co"># full angle at half intensity</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"direction"</span>: name, <span class="st">"near-field FWHM (µm)"</span>: <span class="ss">f"</span><span class="sc">{</span>w0<span class="op">*</span>np<span class="sc">.</span>sqrt(<span class="dv">2</span><span class="op">*</span>np.log(<span class="dv">2</span>))<span class="sc">:.2f}</span><span class="ss">"</span>, <span class="st">"far-field FWHM"</span>: <span class="ss">f"</span><span class="sc">{</span>th<span class="sc">:.0f}</span><span class="ss">°"</span>})</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-divergence" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-divergence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10.3: Far-field divergence of a Gaussian near field (FWHM full angle) for typical mode sizes of an 870 nm edge emitter. Compare with θ⊥ ≈ 17–45° and θ∥ ≈ 8–15° on slide 116.
+</figcaption>
+<div aria-describedby="tbl-divergence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">direction</th>
+<th data-quarto-table-cell-role="th">near-field FWHM (µm)</th>
+<th data-quarto-table-cell-role="th">far-field FWHM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>perpendicular, thin DH (w₀ = 0.4 µm)</td>
+<td>0.00</td>
+<td>44°</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>perpendicular, large-optical-cavity (w₀ = 0.8 µm)</td>
+<td>0.00</td>
+<td>23°</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>parallel, narrow ridge (w₀ = 1.5 µm)</td>
+<td>0.00</td>
+<td>12°</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>parallel, broad stripe (w₀ = 3 µm)</td>
+<td>0.00</td>
+<td>6°</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A cylindrical lens or an anamorphic prism pair circularises the beam before it is coupled into a fiber (Ch. 2). VCSELs (<a href="single-mode.html" class="quarto-xref"><span>Chapter 14</span></a>) emit a circular beam directly.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Measure the group index.</strong> The FP mode spacing of a real laser gives <span class="math inline">\(n_g\)</span>, not <span class="math inline">\(n\)</span>. Below threshold the modes are visible in the spontaneous spectrum; their contrast gives the net gain (Hakki–Paoli method).</li>
+<li><strong>Why <span class="math inline">\(T_0\)</span> is low for InGaAsP.</strong> Auger recombination and carrier leakage over small band offsets grow quickly with temperature. 1.3 µm InGaAsP lasers have <span class="math inline">\(T_0\approx50\)</span>–70 K, AlGaInAs lasers 80–100 K, quantum-dot lasers more than 200 K. Compute the threshold at 85 °C (the industrial specification) for each.</li>
+<li><strong>Thermal rollover.</strong> Add self-heating <span class="math inline">\(T=T_\text{case}+R_\text{th}(IV-P_o)\)</span> to the threshold law and solve for the L–I curve. The output bends down at high current. Typical <span class="math inline">\(R_\text{th}=50\)</span>–100 K/W.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>R. N. Hall <em>et al.</em>, “Coherent light emission from GaAs junctions”, <em>Phys. Rev.&nbsp;Lett.</em> 9, 366 (1962).</li>
+<li>Zh. I. Alferov, “Nobel lecture: The double heterostructure concept and its applications”, <em>Rev.&nbsp;Mod. Phys.</em> 73, 767 (2001).</li>
+<li>Kasap, sec.&nbsp;4.10–4.11; Coldren <em>et al.</em>, ch.&nbsp;2 and 5.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">10.6</span> Try it yourself</h2>
+<ol type="1">
+<li>A 1550 nm FP laser has <span class="math inline">\(L=300\)</span> µm and <span class="math inline">\(n_g=3.7\)</span>. What is its mode spacing in nm and in GHz? How many modes fall in a 30 nm gain bandwidth?</li>
+<li>With <span class="math inline">\(T_0=60\)</span> K, by what factor does the threshold rise between 25 °C and 85 °C?</li>
+<li>Using the temperature panel, find the temperature range without mode hops for a 1 mm long laser.</li>
+<li>Why did the first homojunction lasers work at 77 K but not at room temperature?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBmcyA9IElucHV0cy5mb3JtKHtcbiAgTDogSW5wdXRzLnJhbmdlKFsxMDAsIDEwMDBdLCB7dmFsdWU6IDI1MCwgc3RlcDogMTAsIGxhYmVsOiBcImNhdml0eSBsZW5ndGggTCAowrVtKVwifSksXG4gIG5nOiBJbnB1dHMucmFuZ2UoWzMuNCwgNC41XSwge3ZhbHVlOiA0LjMsIHN0ZXA6IDAuMDUsIGxhYmVsOiBcImdyb3VwIGluZGV4IG5fZ1wifSksXG4gIGxhbTogSW5wdXRzLnJhbmdlKFs4MDAsIDE2MDBdLCB7dmFsdWU6IDg3MCwgc3RlcDogMSwgbGFiZWw6IFwiZ2FpbiBwZWFrIChubSlcIn0pLFxuICBmdzogSW5wdXRzLnJhbmdlKFs1LCA2MF0sIHt2YWx1ZTogMTAsIHN0ZXA6IDEsIGxhYmVsOiBcImdhaW4gRldITSAobm0pXCJ9KSxcbiAgb2ZmOiBJbnB1dHMucmFuZ2UoWzAsIDAuNV0sIHt2YWx1ZTogMC4xLCBzdGVwOiAwLjAxLCBsYWJlbDogXCJjb21iIHBvc2l0aW9uOiBuZWFyZXN0IG1vZGUg4oiSIGdhaW4gcGVhayAobW9kZSBzcGFjaW5ncylcIn0pLFxuICBJOiBJbnB1dHMucmFuZ2UoWzAuNSwgNV0sIHt2YWx1ZTogMS4zLCBzdGVwOiAwLjAxLCBsYWJlbDogXCJjdXJyZW50IEkvSV90aFwifSlcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJmc091dCA9IHtcbiAgY29uc3QgZGwgPSBmcy5sYW0qKjIvKDIqZnMubmcqZnMuTCoxZTMpLCBoYWxmID0gZnMuZncvMiwgZ2FpbiA9IGwgPT4gTWF0aC5tYXgoMSAtICgobCAtIGZzLmxhbSkvaGFsZikqKjIqMC41LCAwKTtcbiAgLy8gZ2FpbiBkZWZpY2l0IG9mIHRoZSBwZWFrIGJlbG93IHRocmVzaG9sZDogZmFsbHMgYXMgMS8oSS9JdGggLSAxKSBhYm92ZSB0aHJlc2hvbGRcbiAgY29uc3QgZGVsdGEgPSBmcy5JIDwgMSA/IDEgLSBmcy5JKjAuOSA6IDFlLTUvKGZzLkkgLSAxICsgMC4wMDMpO1xuICBjb25zdCBtb2RlcyA9IFtdOyBjb25zdCBvZmYgPSBmcy5vZmY7ICAgLy8gY29tYiBvZmZzZXQgd2l0aCByZXNwZWN0IHRvIHRoZSBnYWluIHBlYWtcbiAgZm9yIChsZXQgayA9IC04MDsgayA8PSA4MDsgaysrKSB7XG4gICAgY29uc3QgbCA9IGZzLmxhbSArIChrICsgb2ZmKSpkbDsgaWYgKE1hdGguYWJzKGwgLSBmcy5sYW0pID4gMipmcy5mdykgY29udGludWU7XG4gICAgY29uc3QgZ20gPSBnYWluKGwpKigxIC0gZGVsdGEpLCBTID0gMS8oMSAtIGdtKTtcbiAgICBtb2Rlcy5wdXNoKHtsLCBTfSk7XG4gIH1cbiAgY29uc3QgbXggPSBkMy5tYXgobW9kZXMsIGQgPT4gZC5TKSwgc29ydGVkID0gbW9kZXMubWFwKGQgPT4gZC5TKS5zb3J0KChhLCBiKSA9PiBiIC0gYSk7XG4gIHJldHVybiB7bW9kZXM6IG1vZGVzLm1hcChkID0+ICh7Li4uZCwgUDogZC5TL214fSkpLCBkbCwgc21zcjogMTAqTWF0aC5sb2cxMChzb3J0ZWRbMF0vc29ydGVkWzFdKSwgbm06IG1vZGVzLmxlbmd0aH07XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDEwNTApLCBoZWlnaHQ6IDI4MCwgeDoge2xhYmVsOiBcIndhdmVsZW5ndGggKG5tKVwifSwgeToge2xhYmVsOiBcInJlbGF0aXZlIHBvd2VyIChlYWNoIHNwZWN0cnVtIG5vcm1hbGlzZWQpXCIsIGdyaWQ6IHRydWUsIGRvbWFpbjogWzAsIDEuMDVdfSxcbiAgbWFya3M6IFtQbG90LnJ1bGVYKGZzT3V0Lm1vZGVzLCB7eDogXCJsXCIsIHkxOiAwLCB5MjogXCJQXCIsIHN0cm9rZTogXCIjZTM0OTQ4XCIsIHN0cm9rZVdpZHRoOiBmc091dC5tb2Rlcy5sZW5ndGggPiAxNTAgPyAxIDogMn0pXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cInJlc3VsdC1ib3hcIj5tb2RlIHNwYWNpbmcgPGI+JHtmc091dC5kbC50b0ZpeGVkKDMpfSBubTwvYj4gwrcgJHtmcy5JIDwgMSA/IFwiYmVsb3cgdGhyZXNob2xkOiBMRUQtbGlrZSBzcGVjdHJ1bSBmb2xsb3dpbmcgdGhlIGdhaW4gY3VydmVcIiA6IGh0bWxgc2lkZS1tb2RlIHN1cHByZXNzaW9uIHJhdGlvIOKJiCA8Yj4ke2ZzT3V0LnNtc3IudG9GaXhlZCgxKX0gZEI8L2I+YH08L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgdHQgPSBJbnB1dHMuZm9ybSh7XG4gIFQwOiBJbnB1dHMucmFuZ2UoWzMwLCAyMDBdLCB7dmFsdWU6IDYwLCBzdGVwOiA1LCBsYWJlbDogXCJjaGFyYWN0ZXJpc3RpYyB0ZW1wZXJhdHVyZSBU4oKAIChLKVwifSksXG4gIFQ6IElucHV0cy5yYW5nZShbMCwgODBdLCB7dmFsdWU6IDI1LCBzdGVwOiAxLCBsYWJlbDogXCJjYXNlIHRlbXBlcmF0dXJlICjCsEMpXCJ9KSxcbiAgZHBrOiBJbnB1dHMucmFuZ2UoWzAuMSwgMC42XSwge3ZhbHVlOiAwLjMsIHN0ZXA6IDAuMDEsIGxhYmVsOiBcImdhaW4tcGVhayBzaGlmdCBkzrtfcC9kVCAobm0vSylcIn0pLFxuICBkbWQ6IElucHV0cy5yYW5nZShbMC4wMiwgMC4xNV0sIHt2YWx1ZTogMC4wNDgsIHN0ZXA6IDAuMDAxLCBsYWJlbDogXCJtb2RlIHNoaWZ0IGTOu19tL2RUIChubS9LKVwifSksXG4gIGRsOiBJbnB1dHMucmFuZ2UoWzAuMSwgMl0sIHt2YWx1ZTogMC41LCBzdGVwOiAwLjA1LCBsYWJlbDogXCJtb2RlIHNwYWNpbmcgKG5tKVwifSlcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ0dE91dCA9IHtcbiAgY29uc3QgSXRoID0gVCA9PiAyMCpNYXRoLmV4cCgoVCAtIDI1KS90dC5UMCksIGxpID0gW10sIGhvcCA9IFtdO1xuICBmb3IgKGNvbnN0IFQgb2YgWzAsIDI1LCA1MCwgdHQuVF0pIGZvciAobGV0IGkgPSAwOyBpIDw9IDEwMDsgaSsrKSB7IGNvbnN0IEkgPSAxNTAqaS8xMDA7IGxpLnB1c2goe0ksIFA6IE1hdGgubWF4KDAsIDAuNSooSSAtIEl0aChUKSkpLCBUOiBgJHtUfSDCsENgfSk7IH1cbiAgZm9yIChsZXQgaSA9IDA7IGkgPD0gNDAwOyBpKyspIHtcbiAgICBjb25zdCBUID0gODAqaS80MDAsIHBrID0gODcwICsgdHQuZHBrKihUIC0gMjUpLCBiYXNlID0gODcwICsgdHQuZG1kKihUIC0gMjUpO1xuICAgIGNvbnN0IGsgPSBNYXRoLnJvdW5kKChwayAtIGJhc2UpL3R0LmRsKTsgaG9wLnB1c2goe1QsIGxhbTogYmFzZSArIGsqdHQuZGwsIHBrfSk7XG4gIH1cbiAgcmV0dXJuIHtsaSwgaG9wLCBJdGg6IEl0aCh0dC5UKX07XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDUwMCksIGhlaWdodDogMjgwLCB4OiB7bGFiZWw6IFwiY3VycmVudCAobUEpXCJ9LCB5OiB7bGFiZWw6IFwib3V0cHV0IChtVylcIiwgZ3JpZDogdHJ1ZSwgZG9tYWluOiBbMCwgMzBdfSxcbiAgY29sb3I6IHtsZWdlbmQ6IHRydWV9LCBtYXJrczogW1Bsb3QubGluZSh0dE91dC5saSwge3g6IFwiSVwiLCB5OiBcIlBcIiwgc3Ryb2tlOiBcIlRcIiwgc3Ryb2tlV2lkdGg6IDJ9KV1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDUyMCksIGhlaWdodDogMjgwLCB4OiB7bGFiZWw6IFwidGVtcGVyYXR1cmUgKMKwQylcIn0sIHk6IHtsYWJlbDogXCJ3YXZlbGVuZ3RoIChubSlcIiwgZ3JpZDogdHJ1ZX0sXG4gIG1hcmtzOiBbUGxvdC5saW5lKHR0T3V0LmhvcCwge3g6IFwiVFwiLCB5OiBcInBrXCIsIHN0cm9rZTogXCIjYzNjMmI3XCIsIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIn0pLFxuICAgICAgICAgIFBsb3QubGluZSh0dE91dC5ob3AsIHt4OiBcIlRcIiwgeTogXCJsYW1cIiwgc3Ryb2tlOiBcIiNlMzQ5NDhcIiwgc3Ryb2tlV2lkdGg6IDIsIGN1cnZlOiBcInN0ZXBcIn0pLCBQbG90LnJ1bGVYKFt0dC5UXSwge3N0cm9rZTogXCIjNTI1MTRlXCJ9KV1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTciLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+STxzdWI+dGg8L3N1Yj4oJHt0dC5UfSDCsEMpID0gPGI+JHt0dE91dC5JdGgudG9GaXhlZCgxKX0gbUE8L2I+ICgyMCBtQSBhdCAyNSDCsEM7IGl0IGRvdWJsZXMgZXZlcnkgJHsodHQuVDAqTWF0aC5MTjIpLnRvRml4ZWQoMCl9IEspIMK3XG5yZWQ6IGxhc2luZyBtb2RlLCB3aGljaCBmb2xsb3dzIHRoZSBtb2RlIHNoaWZ0IChzbG9wZSAke3R0LmRtZH0gbm0vSykgYW5kIGhvcHMgYnkgb25lIHNwYWNpbmcgd2hlbmV2ZXIgdGhlIGdhaW4gcGVhayAoZ3JleSwgJHt0dC5kcGt9IG5tL0spIGhhcyBtb3ZlZCBoYWxmIGEgc3BhY2luZyBhd2F5PC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdmcycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd0dCcpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter4\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ld-principle.html" class="pagination-link" aria-label="Laser diode principle and optical gain">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Laser diode principle and optical gain</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ld-efficiency.html" class="pagination-link" aria-label="Laser diode efficiencies">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Laser diode efficiencies</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Laser diode structures, modes and temperature {#sec-ld-structures}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/ld-structures.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> laserlib <span class="im">as</span> lz</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>lz.use_style()</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>*Slides 92–100 (homojunction laser, output characteristic, double heterostructure, stripe geometry, buried heterostructures,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>commercial devices), 101–102 (example: modes and cavity length) and 103–107 (beam characteristics, output spectra, temperature</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>dependence of threshold and wavelength, example on $d\lambda/dT$).*</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>The first laser diodes (Hall *et al.*, 1962, slide 93) were GaAs **homojunctions**: a degenerately doped pn junction with two</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>cleaved facets as mirrors (slide 92). The facets reflect $R=<span class="co">[</span><span class="ot">(n-1)/(n+1)</span><span class="co">]</span>^2\approx0.32$, enough because the gain is huge. But the</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>injected carriers spread over a diffusion length (µm) and the light is not guided, so the threshold current density was about</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>500 A mm⁻² at room temperature (slide 94 notes): only pulsed operation, or cryogenic cooling.</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>The **double heterostructure** (DH, slides 95–96) sandwiches a thin (0.1–0.2 µm) narrow-gap active layer between wide-gap</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>claddings. The band offsets confine the carriers, and the higher index of the active layer guides the light (the planar waveguide</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>of Ch. 2; carrier and photon confinement were introduced for LEDs in Ch. 3 and enter the threshold through Γ in</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>@sec-ld-equation). Thresholds dropped to a few A mm⁻², and in 1970</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>Hayashi and Panish, and Alferov's group, obtained continuous operation at room temperature. **Stripe** contacts (slide 97)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>restrict the current to a few µm width; **buried heterostructures** (slides 98–99) surround the active region by low-index,</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>wide-gap material on all sides, which also guides the light laterally and keeps one transverse mode.</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>The cavity selects longitudinal modes (slides 101–102, as in @sec-gas):</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>m\frac{\lambda_m}{2n}=L,\qquad \Delta\lambda_m\approx\frac{\lambda^2}{2n_gL},</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>where strictly the **group index** $n_g=n-\lambda\,dn/d\lambda\approx4.3$ should replace $n$ (the slides use $n=3.6$).</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>The threshold rises exponentially with temperature (slide 105), and the wavelength drifts (slides 106–107):</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>I_{th}=A\exp<span class="sc">\!</span>\left(\frac{T}{T_0}\right),\qquad</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>\frac{d\lambda_m}{dT}\approx\frac{\lambda_m}{n}\frac{dn}{dT}\ \text{(one mode)},\qquad</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>\frac{d\lambda_\text{peak}}{dT}\approx-\frac{\lambda^2}{hc}\frac{dE_g}{dT}\ \text{(gain peak)}.</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked example: modes and cavity length (slides 101–102), recomputed</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; AlGaAs laser, $L=200$ µm, peak at 870 nm, $n=3.6$, gain FWHM 6 nm. Find the mode number, the mode spacing and the number of</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; modes. Repeat for $L=20$ µm.</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ld-modes</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Slides 101–102 recomputed, with the group-index correction in the last column (n_g = 4.3 for GaAs at 870 nm)."</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> L <span class="kw">in</span> (<span class="fl">200e-6</span>, <span class="fl">20e-6</span>):</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> lz.mode_number(L, <span class="fl">870e-9</span>, <span class="fl">3.6</span>)<span class="op">;</span> dl <span class="op">=</span> lz.mode_spacing(L, <span class="fl">870e-9</span>, <span class="fl">3.6</span>)[<span class="dv">1</span>]</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"L (µm)"</span>: L<span class="op">*</span><span class="fl">1e6</span>, <span class="st">"m = 2nL/λ"</span>: <span class="ss">f"</span><span class="sc">{</span>m<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"Δλ_m (nm)"</span>: <span class="ss">f"</span><span class="sc">{</span>dl<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"modes in 6 nm"</span>: <span class="ss">f"</span><span class="sc">{</span><span class="fl">6e-9</span><span class="op">/</span>dl<span class="sc">:.1f}</span><span class="ss">"</span>,</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"nearest modes (nm)"</span>: <span class="st">", "</span>.join(<span class="ss">f"</span><span class="sc">{</span><span class="dv">2</span><span class="op">*</span><span class="fl">3.6</span><span class="op">*</span>L<span class="op">/</span>k<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss">"</span> <span class="cf">for</span> k <span class="kw">in</span> (<span class="bu">int</span>(np.floor(m)), <span class="bu">int</span>(np.ceil(m)))),</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Δλ_m with n_g = 4.3 (nm)"</span>: <span class="ss">f"</span><span class="sc">{</span><span class="fl">870e-9</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="fl">4.3</span><span class="op">*</span>L)<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.3f}</span><span class="ss">"</span>})</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>The slide values are reproduced: $m=1655$, 0.526 nm and 11 modes for 200 µm; 5.26 nm and a single mode near 867.5 or 872.7 nm</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>for 20 µm. A 20 µm cavity is too short to give enough gain for an edge emitter, but this is exactly the idea of the VCSEL</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>(@sec-single-mode), whose cavity is about one wavelength long.</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Output spectrum versus current (slides 94, 104)</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>Below threshold a laser diode is an LED: its spectrum follows the gain curve. Above threshold the gain clamps just below the</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>loss, $g_{th}$. Each mode $m$ is then fed by spontaneous emission and amplified by its own net gain: its photon number is about</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>$S_m\propto1/(g_{th}-g_m)$. The mode at the gain peak gets closest to $g_{th}$ and takes over as the current rises.</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>viewof fs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>  <span class="dt">L</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">100</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">250</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"cavity length L (µm)"</span>})<span class="op">,</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ng</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">3.4</span><span class="op">,</span> <span class="fl">4.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">4.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"group index n_g"</span>})<span class="op">,</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lam</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">800</span><span class="op">,</span> <span class="dv">1600</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">870</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"gain peak (nm)"</span>})<span class="op">,</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fw</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">60</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"gain FWHM (nm)"</span>})<span class="op">,</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>  <span class="dt">off</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"comb position: nearest mode − gain peak (mode spacings)"</span>})<span class="op">,</span></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">I</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"current I/I_th"</span>})</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>fsOut <span class="op">=</span> {</span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> dl <span class="op">=</span> fs<span class="op">.</span><span class="at">lam</span><span class="op">**</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>fs<span class="op">.</span><span class="at">ng</span><span class="op">*</span>fs<span class="op">.</span><span class="at">L</span><span class="op">*</span><span class="fl">1e3</span>)<span class="op">,</span> half <span class="op">=</span> fs<span class="op">.</span><span class="at">fw</span><span class="op">/</span><span class="dv">2</span><span class="op">,</span> gain <span class="op">=</span> l <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">1</span> <span class="op">-</span> ((l <span class="op">-</span> fs<span class="op">.</span><span class="at">lam</span>)<span class="op">/</span>half)<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="fl">0.5</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>  <span class="co">// gain deficit of the peak below threshold: falls as 1/(I/Ith - 1) above threshold</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> delta <span class="op">=</span> fs<span class="op">.</span><span class="at">I</span> <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">-</span> fs<span class="op">.</span><span class="at">I</span><span class="op">*</span><span class="fl">0.9</span> <span class="op">:</span> <span class="fl">1e-5</span><span class="op">/</span>(fs<span class="op">.</span><span class="at">I</span> <span class="op">-</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.003</span>)<span class="op">;</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> modes <span class="op">=</span> []<span class="op">;</span> <span class="kw">const</span> off <span class="op">=</span> fs<span class="op">.</span><span class="at">off</span><span class="op">;</span>   <span class="co">// comb offset with respect to the gain peak</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> k <span class="op">=</span> <span class="op">-</span><span class="dv">80</span><span class="op">;</span> k <span class="op">&lt;=</span> <span class="dv">80</span><span class="op">;</span> k<span class="op">++</span>) {</span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> l <span class="op">=</span> fs<span class="op">.</span><span class="at">lam</span> <span class="op">+</span> (k <span class="op">+</span> off)<span class="op">*</span>dl<span class="op">;</span> <span class="cf">if</span> (<span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(l <span class="op">-</span> fs<span class="op">.</span><span class="at">lam</span>) <span class="op">&gt;</span> <span class="dv">2</span><span class="op">*</span>fs<span class="op">.</span><span class="at">fw</span>) <span class="cf">continue</span><span class="op">;</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> gm <span class="op">=</span> <span class="fu">gain</span>(l)<span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> delta)<span class="op">,</span> S <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span> gm)<span class="op">;</span></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>    modes<span class="op">.</span><span class="fu">push</span>({l<span class="op">,</span> S})<span class="op">;</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mx <span class="op">=</span> d3<span class="op">.</span><span class="fu">max</span>(modes<span class="op">,</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">S</span>)<span class="op">,</span> sorted <span class="op">=</span> modes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">S</span>)<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> b <span class="op">-</span> a)<span class="op">;</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">modes</span><span class="op">:</span> modes<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">P</span><span class="op">:</span> d<span class="op">.</span><span class="at">S</span><span class="op">/</span>mx}))<span class="op">,</span> dl<span class="op">,</span> <span class="dt">smsr</span><span class="op">:</span> <span class="dv">10</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(sorted[<span class="dv">0</span>]<span class="op">/</span>sorted[<span class="dv">1</span>])<span class="op">,</span> <span class="dt">nm</span><span class="op">:</span> modes<span class="op">.</span><span class="at">length</span>}<span class="op">;</span></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"relative power (each spectrum normalised)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.05</span>]}<span class="op">,</span></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">ruleX</span>(fsOut<span class="op">.</span><span class="at">modes</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"l"</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="st">"P"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> fsOut<span class="op">.</span><span class="at">modes</span><span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">150</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">2</span>})]</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;mode spacing &lt;b&gt;</span><span class="sc">${</span>fsOut<span class="op">.</span><span class="at">dl</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> nm&lt;/b&gt; · </span><span class="sc">${</span>fs<span class="op">.</span><span class="at">I</span> <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"below threshold: LED-like spectrum following the gain curve"</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">`side-mode suppression ratio ≈ &lt;b&gt;</span><span class="sc">${</span>fsOut<span class="op">.</span><span class="at">smsr</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dB&lt;/b&gt;`</span><span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>With a mode close to the gain peak, the side-mode suppression grows with current to 20–30 dB, as on slide 104. Now move the comb</span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>so that two modes straddle the peak (position 0.5): their gains are equal and they share the power at any current. A small change</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>of temperature or current moves the comb and flips the laser from one mode to the other (mode hopping, below). The suppression is</span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>limited by the tiny gain difference between neighbouring modes, $\approx\tfrac12(\Delta\lambda_m/\text{half width})^2$. This is why</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>Fabry–Perot lasers rarely exceed 20–30 dB, and why single-frequency lasers need an extra wavelength-selective element</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a>(@sec-single-mode).</span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Temperature: threshold and mode hops (slides 105–107)</span></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>viewof tt <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a>  <span class="dt">T0</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">30</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"characteristic temperature T₀ (K)"</span>})<span class="op">,</span></span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a>  <span class="dt">T</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">80</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">25</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"case temperature (°C)"</span>})<span class="op">,</span></span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dpk</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.6</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"gain-peak shift dλ_p/dT (nm/K)"</span>})<span class="op">,</span></span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dmd</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.15</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.048</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.001</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mode shift dλ_m/dT (nm/K)"</span>})<span class="op">,</span></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>  <span class="dt">dl</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"mode spacing (nm)"</span>})</span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>ttOut <span class="op">=</span> {</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Ith <span class="op">=</span> T <span class="kw">=&gt;</span> <span class="dv">20</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>((T <span class="op">-</span> <span class="dv">25</span>)<span class="op">/</span>tt<span class="op">.</span><span class="at">T0</span>)<span class="op">,</span> li <span class="op">=</span> []<span class="op">,</span> hop <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> T <span class="kw">of</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">50</span><span class="op">,</span> tt<span class="op">.</span><span class="at">T</span>]) <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">100</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> I <span class="op">=</span> <span class="dv">150</span><span class="op">*</span>i<span class="op">/</span><span class="dv">100</span><span class="op">;</span> li<span class="op">.</span><span class="fu">push</span>({I<span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">*</span>(I <span class="op">-</span> <span class="fu">Ith</span>(T)))<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>T<span class="sc">}</span><span class="vs"> °C`</span>})<span class="op">;</span> }</span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">400</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> T <span class="op">=</span> <span class="dv">80</span><span class="op">*</span>i<span class="op">/</span><span class="dv">400</span><span class="op">,</span> pk <span class="op">=</span> <span class="dv">870</span> <span class="op">+</span> tt<span class="op">.</span><span class="at">dpk</span><span class="op">*</span>(T <span class="op">-</span> <span class="dv">25</span>)<span class="op">,</span> base <span class="op">=</span> <span class="dv">870</span> <span class="op">+</span> tt<span class="op">.</span><span class="at">dmd</span><span class="op">*</span>(T <span class="op">-</span> <span class="dv">25</span>)<span class="op">;</span></span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> k <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>((pk <span class="op">-</span> base)<span class="op">/</span>tt<span class="op">.</span><span class="at">dl</span>)<span class="op">;</span> hop<span class="op">.</span><span class="fu">push</span>({T<span class="op">,</span> <span class="dt">lam</span><span class="op">:</span> base <span class="op">+</span> k<span class="op">*</span>tt<span class="op">.</span><span class="at">dl</span><span class="op">,</span> pk})<span class="op">;</span></span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {li<span class="op">,</span> hop<span class="op">,</span> <span class="dt">Ith</span><span class="op">:</span> <span class="fu">Ith</span>(tt<span class="op">.</span><span class="at">T</span>)}<span class="op">;</span></span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">500</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"current (mA)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"output (mW)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]}<span class="op">,</span></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span> <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(ttOut<span class="op">.</span><span class="at">li</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"I"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"P"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})]</span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">520</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"temperature (°C)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (nm)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(ttOut<span class="op">.</span><span class="at">hop</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"pk"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#c3c2b7"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">line</span>(ttOut<span class="op">.</span><span class="at">hop</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lam"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">curve</span><span class="op">:</span> <span class="st">"step"</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([tt<span class="op">.</span><span class="at">T</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span>})]</span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;I&lt;sub&gt;th&lt;/sub&gt;(</span><span class="sc">${</span>tt<span class="op">.</span><span class="at">T</span><span class="sc">}</span><span class="vs"> °C) = &lt;b&gt;</span><span class="sc">${</span>ttOut<span class="op">.</span><span class="at">Ith</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> mA&lt;/b&gt; (20 mA at 25 °C; it doubles every </span><span class="sc">${</span>(tt<span class="op">.</span><span class="at">T0</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">LN2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> K) ·</span></span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a><span class="vs">red: lasing mode, which follows the mode shift (slope </span><span class="sc">${</span>tt<span class="op">.</span><span class="at">dmd</span><span class="sc">}</span><span class="vs"> nm/K) and hops by one spacing whenever the gain peak (grey, </span><span class="sc">${</span>tt<span class="op">.</span><span class="at">dpk</span><span class="sc">}</span><span class="vs"> nm/K) has moved half a spacing away&lt;/div&gt;`</span></span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-dldt</span></span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Slide 107 recomputed: wavelength drift of one mode of a GaAs laser at 870 nm, from the index change and (exercise of the slide) from thermal expansion."</span></span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>lam, n <span class="op">=</span> <span class="fl">870e-9</span>, <span class="fl">3.6</span></span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>dn_dT, expan <span class="op">=</span> <span class="fl">2.0e-4</span>, <span class="fl">6e-6</span></span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(<span class="st">"index change, (λ/n) dn/dT"</span>, <span class="ss">f"</span><span class="sc">{</span>lam<span class="op">/</span>n<span class="op">*</span>dn_dT<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.4f}</span><span class="ss"> nm/K"</span>, <span class="st">"0.048 nm/K"</span>),</span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"thermal expansion, λ (1/L) dL/dT"</span>, <span class="ss">f"</span><span class="sc">{</span>lam<span class="op">*</span>expan<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.4f}</span><span class="ss"> nm/K"</span>, <span class="st">"much smaller (exercise)"</span>),</span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"gain peak, from dE_g/dT ≈ −0.45 meV/K"</span>, <span class="ss">f"</span><span class="sc">{</span>lam<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(lz.h<span class="op">*</span>lz.c0)<span class="op">*</span><span class="fl">0.45e-3</span><span class="op">*</span>lz<span class="sc">.</span>qe<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.3f}</span><span class="ss"> nm/K"</span>, <span class="st">"≈ 0.3 nm/K, mode hops (slide 106)"</span>)],</span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"mechanism"</span>, <span class="st">"dλ/dT"</span>, <span class="st">"slide"</span>])</span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a>A single mode drifts by 0.05 nm/K, while the gain peak drifts six times faster with the bandgap. Over a 20 °C range the gain peak</span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a>moves by 6 nm, that is 10 mode spacings of a 250 µm laser: the laser must hop. For WDM channels spaced by 0.8 nm (Ch. 2),</span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a>telecom lasers sit on a thermoelectric cooler that holds the temperature to ±0.01 K.</span>
+<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## Beam divergence (slide 103)</span></span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a>The near field of an edge emitter is an ellipse about 1 µm × 3 µm. Diffraction (Ch. 1) makes the far field an ellipse rotated by</span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a>90°: the beam diverges fastest in the direction where it is narrowest. For a Gaussian beam of waist $w_0$ the full angle at half</span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a>intensity is $\theta_\text{FWHM}\approx1.18\lambda/(\pi w_0)$ (radians):</span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-divergence</span></span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Far-field divergence of a Gaussian near field (FWHM full angle) for typical mode sizes of an 870 nm edge emitter. Compare with θ⊥ ≈ 17–45° and θ∥ ≈ 8–15° on slide 116."</span></span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> <span class="fl">870e-9</span></span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, w0 <span class="kw">in</span> ((<span class="st">"perpendicular, thin DH (w₀ = 0.4 µm)"</span>, <span class="fl">0.4e-6</span>), (<span class="st">"perpendicular, large-optical-cavity (w₀ = 0.8 µm)"</span>, <span class="fl">0.8e-6</span>),</span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>                 (<span class="st">"parallel, narrow ridge (w₀ = 1.5 µm)"</span>, <span class="fl">1.5e-6</span>), (<span class="st">"parallel, broad stripe (w₀ = 3 µm)"</span>, <span class="fl">3e-6</span>)):</span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a>    th <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.degrees(np.arctan(np.sqrt(np.log(<span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>lam<span class="op">/</span>(np.pi<span class="op">*</span>w0)))     <span class="co"># full angle at half intensity</span></span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"direction"</span>: name, <span class="st">"near-field FWHM (µm)"</span>: <span class="ss">f"</span><span class="sc">{</span>w0<span class="op">*</span>np<span class="sc">.</span>sqrt(<span class="dv">2</span><span class="op">*</span>np.log(<span class="dv">2</span>))<span class="sc">:.2f}</span><span class="ss">"</span>, <span class="st">"far-field FWHM"</span>: <span class="ss">f"</span><span class="sc">{</span>th<span class="sc">:.0f}</span><span class="ss">°"</span>})</span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows)</span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a>A cylindrical lens or an anamorphic prism pair circularises the beam before it is coupled into a fiber (Ch. 2). VCSELs</span>
+<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a>(@sec-single-mode) emit a circular beam directly.</span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Measure the group index.** The FP mode spacing of a real laser gives $n_g$, not $n$. Below threshold the modes are visible in</span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a>  the spontaneous spectrum; their contrast gives the net gain (Hakki–Paoli method).</span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Why $T_0$ is low for InGaAsP.** Auger recombination and carrier leakage over small band offsets grow quickly with temperature.</span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a>  1.3 µm InGaAsP lasers have $T_0\approx50$–70 K, AlGaInAs lasers 80–100 K, quantum-dot lasers more than 200 K. Compute the threshold</span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a>  at 85 °C (the industrial specification) for each.</span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Thermal rollover.** Add self-heating $T=T_\text{case}+R_\text{th}(IV-P_o)$ to the threshold law and solve for the L–I curve.</span>
+<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a>  The output bends down at high current. Typical $R_\text{th}=50$–100 K/W.</span>
+<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R. N. Hall *et al.*, "Coherent light emission from GaAs junctions", *Phys. Rev. Lett.* 9, 366 (1962).</span>
+<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Zh. I. Alferov, "Nobel lecture: The double heterostructure concept and its applications", *Rev. Mod. Phys.* 73, 767 (2001).</span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, sec. 4.10–4.11; Coldren *et al.*, ch. 2 and 5.</span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>A 1550 nm FP laser has $L=300$ µm and $n_g=3.7$. What is its mode spacing in nm and in GHz? How many modes fall in a 30 nm</span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a>   gain bandwidth?</span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>With $T_0=60$ K, by what factor does the threshold rise between 25 °C and 85 °C?</span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Using the temperature panel, find the temperature range without mode hops for a 1 mm long laser.</span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Why did the first homojunction lasers work at 77 K but not at room temperature?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter4/ld-structures.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
