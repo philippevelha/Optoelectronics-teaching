@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Quantum efficiency and responsivity – Photodetectors and Image Sensors</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./pin.html" rel="next">
+<link href="./absorption.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pn-photodiode.html">How a photodiode works</a></li><li class="breadcrumb-item"><a href="./responsivity.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Photodetectors and Image Sensors</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter5/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">How a photodiode works</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pn-photodiode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The pn junction photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Shockley–Ramo theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./absorption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Absorption and the cut-off wavelength</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./responsivity.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Photodiode families</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The pin photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schottky.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Schottky, MSM and phototransistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./photoconductors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Photoconductive detectors</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Circuits, speed and noise</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circuits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Photodiode circuits and speed</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Noise, SNR, NEP and detectivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Noise in avalanche photodiodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Image sensors and solar cells</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./image-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solar-cells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Solar cells</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./receivers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sq-limit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">4.1</span> Key relations</a></li>
+  <li><a href="#live-panel-responsivity-from-the-device-structure-slides-27-139145" id="toc-live-panel-responsivity-from-the-device-structure-slides-27-139145" class="nav-link" data-scroll-target="#live-panel-responsivity-from-the-device-structure-slides-27-139145"><span class="header-section-number">4.2</span> Live panel: responsivity from the device structure (slides 27, 139–145)</a></li>
+  <li><a href="#worked-examples-recomputed" id="toc-worked-examples-recomputed" class="nav-link" data-scroll-target="#worked-examples-recomputed"><span class="header-section-number">4.3</span> Worked examples, recomputed</a></li>
+  <li><a href="#commercial-photodiodes-slides-33-49" id="toc-commercial-photodiodes-slides-33-49" class="nav-link" data-scroll-target="#commercial-photodiodes-slides-33-49"><span class="header-section-number">4.4</span> Commercial photodiodes (slides 33, 49)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">4.5</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/responsivity.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pn-photodiode.html">How a photodiode works</a></li><li class="breadcrumb-item"><a href="./responsivity.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-responsivity" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter5/notebooks/responsivity.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 21–26 (external quantum efficiency, responsivity, the ideal photodiode, maximum QE), 27–28 (internal quantum efficiency and the wavelength dependence of the photocurrent), 33–36 (responsivity of commercial pin photodiodes, effect of the device structure and of temperature, worked example), 139–145 (photocurrent from the device structure, p⁺n versus pin) and 149–150 (Ge photodiode).</em></p>
+<section id="key-relations" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">4.1</span> Key relations</h2>
+<p>The <strong>external quantum efficiency</strong> counts collected electrons per incident photon, and the <strong>responsivity</strong> converts it to amperes per watt (slides 21–22):</p>
+<p><span class="math display">\[
+\eta_e=\frac{I_{ph}/e}{P_o/h\nu},\qquad
+\mathcal R=\frac{I_{ph}}{P_o}=\eta_e\frac{e}{h\nu}=\eta_e\frac{e\lambda}{hc}=\eta_e\,\frac{\lambda\,[\mu\text m]}{1.24}\ \text{A/W}.
+\]</span></p>
+<p>An ideal photodiode (<span class="math inline">\(\eta_e=1\)</span>) has <span class="math inline">\(\mathcal R\)</span> growing linearly with λ up to the cut-off <span class="math inline">\(\lambda_g\)</span>, then falling to zero (slide 24). Real photodiodes lose photons by reflection at the surface (transmission <span class="math inline">\(T\)</span>), by absorption in regions from which carriers are not collected, and by transmission through the device. With the <strong>internal quantum efficiency</strong> <span class="math inline">\(\eta_i\)</span> (pairs per absorbed photon, slide 28) and the useful (collecting) region between <span class="math inline">\(x_1=\ell_p-L_e\)</span> and <span class="math inline">\(x_2=\ell_p+W+L_h\)</span> (slides 139–144):</p>
+<p><span class="math display">\[
+I_{ph}=\frac{e\eta_iTP_o}{h\nu}\left[e^{-\alpha x_1}-e^{-\alpha x_2}\right],
+\qquad \text{pin with thin p}^+:\ I_{ph}\approx\frac{e\eta_iTP_o}{h\nu}\left[1-e^{-\alpha W}\right].
+\]</span></p>
+<p>At short λ (large α) light is absorbed in the p⁺ layer and near the surface, where carriers recombine; at long λ (small α) it passes through the collecting region. The responsivity peaks in between. Because <span class="math inline">\(\eta_e=\mathcal Rhc/e\lambda\)</span>, the QE is maximum where <span class="math inline">\(d(\mathcal R/\lambda)/d\lambda=0\)</span>, i.e.&nbsp;where <span class="math inline">\(d\mathcal R/d\lambda=\mathcal R/\lambda\)</span>: <strong>the tangent to the <span class="math inline">\(\mathcal R(\lambda)\)</span> curve passes through the origin</strong> (slide 26). That point is not the peak of <span class="math inline">\(\mathcal R\)</span>.</p>
+</section>
+<section id="live-panel-responsivity-from-the-device-structure-slides-27-139145" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="live-panel-responsivity-from-the-device-structure-slides-27-139145"><span class="header-section-number">4.2</span> Live panel: responsivity from the device structure (slides 27, 139–145)</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="48" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 47;"><span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {alpha<span class="op">,</span> MATERIALS<span class="op">,</span> responsivity<span class="op">,</span> fresnelT<span class="op">,</span> structureR<span class="op">,</span> qeff} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>viewof rs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mat</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(MATERIALS)<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"Si"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"absorbing material"</span>})<span class="op">,</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lp</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"p⁺ layer ℓ_p (µm)"</span>})<span class="op">,</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Le</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"electron diffusion length in p⁺, L_e (µm)"</span>})<span class="op">,</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">W</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"depletion width W (µm)"</span>})<span class="op">,</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Lh</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"hole diffusion length in n, L_h (µm)"</span>})<span class="op">,</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ar</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"no coating (Fresnel)"</span><span class="op">,</span> <span class="st">"perfect AR coating"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"no coating (Fresnel)"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"surface"</span>})<span class="op">,</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  <span class="dt">etai</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"internal QE η_i"</span>})</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="62" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 61;"><span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>rsOut <span class="op">=</span> {</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> MATERIALS[rs<span class="op">.</span><span class="at">mat</span>]<span class="op">,</span> T <span class="op">=</span> rs<span class="op">.</span><span class="at">ar</span><span class="op">.</span><span class="fu">startsWith</span>(<span class="st">"perfect"</span>) <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="fu">fresnelT</span>(m<span class="op">.</span><span class="at">n</span>)<span class="op">,</span> lg <span class="op">=</span> <span class="fl">1.23984</span> <span class="op">/</span> m<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> pts <span class="op">=</span> []<span class="op">,</span> ideal <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> best <span class="op">=</span> {<span class="dt">eta</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span> peak <span class="op">=</span> {<span class="dt">R</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">600</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wl <span class="op">=</span> (<span class="fl">0.3</span> <span class="op">+</span> (lg <span class="op">*</span> <span class="fl">1.05</span> <span class="op">-</span> <span class="fl">0.3</span>) <span class="op">*</span> i <span class="op">/</span> <span class="dv">600</span>) <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> a <span class="op">=</span> <span class="fu">alpha</span>(rs<span class="op">.</span><span class="at">mat</span><span class="op">,</span> wl)<span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> R <span class="op">=</span> <span class="fu">structureR</span>(wl<span class="op">,</span> a<span class="op">,</span> rs<span class="op">.</span><span class="at">lp</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> rs<span class="op">.</span><span class="at">W</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> rs<span class="op">.</span><span class="at">Le</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> rs<span class="op">.</span><span class="at">Lh</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> T<span class="op">,</span> rs<span class="op">.</span><span class="at">etai</span>)<span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    pts<span class="op">.</span><span class="fu">push</span>({<span class="dt">wl</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e9</span><span class="op">,</span> R<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"this structure"</span>})<span class="op">;</span> ideal<span class="op">.</span><span class="fu">push</span>({<span class="dt">wl</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e6</span> <span class="op">&lt;=</span> lg <span class="op">?</span> <span class="fu">responsivity</span>(<span class="dv">1</span><span class="op">,</span> wl) <span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"ideal (η = 1)"</span>})<span class="op">;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> eta <span class="op">=</span> <span class="fu">qeff</span>(R<span class="op">,</span> wl)<span class="op">;</span> <span class="cf">if</span> (eta <span class="op">&gt;</span> best<span class="op">.</span><span class="at">eta</span>) best <span class="op">=</span> {eta<span class="op">,</span> <span class="dt">wl</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e9</span><span class="op">,</span> R}<span class="op">;</span> <span class="cf">if</span> (R <span class="op">&gt;</span> peak<span class="op">.</span><span class="at">R</span>) peak <span class="op">=</span> {R<span class="op">,</span> <span class="dt">wl</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e9</span>}<span class="op">;</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">pts</span><span class="op">:</span> pts<span class="op">.</span><span class="fu">concat</span>(ideal)<span class="op">,</span> best<span class="op">,</span> peak<span class="op">,</span> T<span class="op">,</span> lg}<span class="op">;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"responsivity (A/W)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.4</span>]}<span class="op">,</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"this structure"</span><span class="op">,</span> <span class="st">"ideal (η = 1)"</span><span class="op">,</span> <span class="st">"slide 24 (read off)"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#0b0b0b"</span>]}<span class="op">,</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(rsOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"wl"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"R"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"c"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">line</span>([{<span class="dt">wl</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span> {<span class="dt">wl</span><span class="op">:</span> rsOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">wl</span> <span class="op">*</span> <span class="fl">1.6</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> rsOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">R</span> <span class="op">*</span> <span class="fl">1.6</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"wl"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"R"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">dot</span>([rsOut<span class="op">.</span><span class="at">best</span>]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"wl"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"R"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1baf7a"</span>})<span class="op">,</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>          rs<span class="op">.</span><span class="at">mat</span> <span class="op">===</span> <span class="st">"Si"</span> <span class="op">?</span> Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">wl</span><span class="op">:</span> <span class="dv">450</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> <span class="fl">0.24</span>}<span class="op">,</span> {<span class="dt">wl</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> <span class="fl">0.45</span>}<span class="op">,</span> {<span class="dt">wl</span><span class="op">:</span> <span class="dv">940</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> <span class="fl">0.56</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"wl"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"R"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">symbol</span><span class="op">:</span> <span class="st">"square"</span>}) <span class="op">:</span> <span class="kw">null</span>]</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="84" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 83;"><span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;surface transmission T = </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">T</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> · λ&lt;sub&gt;g&lt;/sub&gt; = </span><span class="sc">${</span>(<span class="dv">1000</span> <span class="op">*</span> rsOut<span class="op">.</span><span class="at">lg</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> nm&lt;br&gt;</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="vs">peak responsivity &lt;b&gt;</span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">peak</span><span class="op">.</span><span class="at">R</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> A/W&lt;/b&gt; at </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">peak</span><span class="op">.</span><span class="at">wl</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> nm ·</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;span style="color:#1baf7a"&gt;●&lt;/span&gt; maximum QE &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> rsOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">eta</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> %&lt;/b&gt; at </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">wl</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> nm (tangent through the origin)&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Things to try with Si: shrink <span class="math inline">\(W\)</span> to 1 µm and <span class="math inline">\(L_h\)</span> to 10 µm (a p⁺n diode): the infrared response collapses. Make <span class="math inline">\(W=30\)</span> µm and <span class="math inline">\(L_h=0.1\)</span> µm (a pin): it recovers (slide 145). Thicken the p⁺ layer to 2 µm: the blue response disappears, the “A versus B” difference of slide 34. Add the AR coating: everything rises by <span class="math inline">\(1/T\approx1.47\)</span>. The black squares are read off the commercial curve of slide 24; a real Si photodiode also loses carriers to surface recombination, which this model only mimics with <span class="math inline">\(\ell_p\)</span>.</p>
+</section>
+<section id="worked-examples-recomputed" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="worked-examples-recomputed"><span class="header-section-number">4.3</span> Worked examples, recomputed</h2>
+<blockquote class="blockquote">
+<p><strong>Slide 25.</strong> The Si photodiode of slide 24 peaks at 940 nm with <span class="math inline">\(\mathcal R\approx0.56\)</span> A/W and has 0.24 A/W at 450 nm. QE at both wavelengths? Intensity giving 10 nA on 1 mm² at the peak? <strong>Slide 26.</strong> QE at the tangent point X (700 nm, 0.45 A/W)? <strong>Slide 36.</strong> A Si pin of 0.4 mm diameter gives 56.6 nA under 0.1 mW cm⁻² at 700 nm: responsivity and QE? <strong>Slides 149–150.</strong> A Ge photodiode (Thorlabs FDG03) has its QE maximum at 1500 nm with 0.95 A/W.</p>
+</blockquote>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Po36 <span class="op">=</span> np.pi<span class="op">*</span>(<span class="fl">0.02</span>)<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="fl">0.1e-3</span>          <span class="co"># W (cm² × W/cm²)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>R36 <span class="op">=</span> <span class="fl">56.6e-9</span><span class="op">/</span>Po36</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [(<span class="st">"s25: QE at 940 nm, R = 0.56 A/W"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(<span class="fl">0.56</span>, <span class="fl">940e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.74"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s25: QE at 450 nm, R = 0.24 A/W"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(<span class="fl">0.24</span>, <span class="fl">450e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.66"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s25: intensity for 10 nA on 1 mm²"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="fl">10e-9</span><span class="op">/</span><span class="fl">0.56</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nW/mm²"</span>, <span class="st">"18 nW/mm²"</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s26: maximum QE at X (700 nm, 0.45 A/W)"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(<span class="fl">0.45</span>, <span class="fl">700e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.80"</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s36: incident power"</span>, <span class="ss">f"</span><span class="sc">{</span>Po36<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µW"</span>, <span class="st">"0.126 µW"</span>),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s36: responsivity"</span>, <span class="ss">f"</span><span class="sc">{</span>R36<span class="sc">:.3f}</span><span class="ss"> A/W"</span>, <span class="st">"0.45 A/W"</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s36: QE"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(R36, <span class="fl">700e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.80"</span>),</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s150: maximum QE of the Ge photodiode"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(<span class="fl">0.95</span>, <span class="fl">1500e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.79"</span>)]</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"quantity"</span>, <span class="st">"computed"</span>, <span class="st">"slide"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-qe" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-qe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Worked examples of slides 25, 26, 36 and 150.
+</figcaption>
+<div aria-describedby="tbl-qe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">quantity</th>
+<th data-quarto-table-cell-role="th">computed</th>
+<th data-quarto-table-cell-role="th">slide</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>s25: QE at 940 nm, R = 0.56 A/W</td>
+<td>0.739</td>
+<td>0.74</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>s25: QE at 450 nm, R = 0.24 A/W</td>
+<td>0.661</td>
+<td>0.66</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>s25: intensity for 10 nA on 1 mm²</td>
+<td>17.9 nW/mm²</td>
+<td>18 nW/mm²</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>s26: maximum QE at X (700 nm, 0.45 A/W)</td>
+<td>0.797</td>
+<td>0.80</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>s36: incident power</td>
+<td>0.126 µW</td>
+<td>0.126 µW</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>s36: responsivity</td>
+<td>0.450 A/W</td>
+<td>0.45 A/W</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>s36: QE</td>
+<td>0.798</td>
+<td>0.80</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>s150: maximum QE of the Ge photodiode</td>
+<td>0.785</td>
+<td>0.79</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Note the apparent paradox of slide 25: at 450 nm the responsivity is less than half its peak value (0.24 versus 0.56 A/W), yet the QE is 66 %, close to the 74 % of the peak. Responsivity favours long wavelengths simply because each photon carries less energy: a watt of near-infrared light contains twice as many photons as a watt of blue light.</p>
+<blockquote class="blockquote">
+<p><strong>Slides 141–145 (Table 5.7).</strong> p⁺n and pin photodiodes with <span class="math inline">\(\ell_p=0.5\)</span> µm, <span class="math inline">\(L_e=0.1\)</span> µm, <span class="math inline">\(\alpha=10^5\)</span> m⁻¹ at 800 nm, <span class="math inline">\(\eta_i=T=1\)</span>, <span class="math inline">\(P_o=1\)</span> µW. p⁺n: <span class="math inline">\(W=1\)</span> µm, <span class="math inline">\(L_h=10\)</span> µm. pin: <span class="math inline">\(W=30\)</span> µm, <span class="math inline">\(L_h=0.1\)</span> µm.</p>
+</blockquote>
+<div class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pnI <span class="op">=</span> dl.photocurrent_structure(<span class="fl">1e-6</span>, <span class="fl">800e-9</span>, <span class="fl">1e5</span>, <span class="fl">0.5e-6</span>, <span class="fl">1e-6</span>, <span class="fl">0.1e-6</span>, <span class="fl">10e-6</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pinI <span class="op">=</span> dl.photocurrent_structure(<span class="fl">1e-6</span>, <span class="fl">800e-9</span>, <span class="fl">1e5</span>, <span class="fl">0.5e-6</span>, <span class="fl">30e-6</span>, <span class="fl">0.1e-6</span>, <span class="fl">0.1e-6</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(<span class="st">"p⁺n"</span>, <span class="ss">f"</span><span class="sc">{</span>pnI<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µA"</span>, <span class="st">"0.42 µA"</span>, <span class="ss">f"</span><span class="sc">{</span>pnI<span class="op">/</span><span class="fl">1e-6</span><span class="sc">:.3f}</span><span class="ss"> A/W"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"pin"</span>, <span class="ss">f"</span><span class="sc">{</span>pinI<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µA"</span>, <span class="st">"0.59 µA"</span>, <span class="ss">f"</span><span class="sc">{</span>pinI<span class="op">/</span><span class="fl">1e-6</span><span class="sc">:.3f}</span><span class="ss"> A/W"</span>)],</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"detector"</span>, <span class="st">"I_ph computed"</span>, <span class="st">"slide"</span>, <span class="st">"responsivity"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-575" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-575-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2: Table 5.7 of slide 145, recomputed.
+</figcaption>
+<div aria-describedby="tbl-575-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">detector</th>
+<th data-quarto-table-cell-role="th">I_ph computed</th>
+<th data-quarto-table-cell-role="th">slide</th>
+<th data-quarto-table-cell-role="th">responsivity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>p⁺n</td>
+<td>0.416 µA</td>
+<td>0.42 µA</td>
+<td>0.416 A/W</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>pin</td>
+<td>0.590 µA</td>
+<td>0.59 µA</td>
+<td>0.590 A/W</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div id="cell-fig-structures" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>wl <span class="op">=</span> np.linspace(<span class="fl">350e-9</span>, <span class="fl">1150e-9</span>, <span class="dv">800</span>)<span class="op">;</span> a <span class="op">=</span> dl.alpha(<span class="st">"Si"</span>, wl)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.plot(wl<span class="op">*</span><span class="fl">1e9</span>, dl.responsivity(<span class="dv">1</span>, wl)<span class="op">*</span>(wl <span class="op">&lt;</span> <span class="fl">1.107e-6</span>), color<span class="op">=</span>dl.INK2, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"ideal"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (lab, W, Lh), c <span class="kw">in</span> <span class="bu">zip</span>(((<span class="st">"p⁺n"</span>, <span class="fl">1e-6</span>, <span class="fl">10e-6</span>), (<span class="st">"pin"</span>, <span class="fl">30e-6</span>, <span class="fl">0.1e-6</span>)), dl.PALETTE):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> dl.photocurrent_structure(<span class="dv">1</span>, wl, a, <span class="fl">0.5e-6</span>, W, <span class="fl">0.1e-6</span>, Lh)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    lx, Rx, ex <span class="op">=</span> dl.max_qe_point(wl, R)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(wl<span class="op">*</span><span class="fl">1e9</span>, R, color<span class="op">=</span>c, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>lab<span class="sc">}</span><span class="ss">: max QE </span><span class="sc">{</span>ex<span class="sc">:.0%}</span><span class="ss"> at </span><span class="sc">{</span>lx<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="dv">0</span>, <span class="fl">1.5</span><span class="op">*</span>lx<span class="op">*</span><span class="fl">1e9</span>], [<span class="dv">0</span>, <span class="fl">1.5</span><span class="op">*</span>Rx], ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span>c)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"λ (nm)"</span>, ylabel<span class="op">=</span><span class="st">"R (A/W)"</span>, xlim<span class="op">=</span>(<span class="dv">350</span>, <span class="dv">1150</span>), ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.95</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-structures" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-structures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="responsivity_files/figure-html/fig-structures-output-1.png" width="719" height="391" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-structures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Responsivity of the two structures of Table 5.7 over the whole Si absorption band, with a perfect AR coating. The pin wins in the infrared, where the 30 µm drift region still absorbs; both lose the blue in the 0.5 µm p⁺ layer. Dashed: tangents through the origin marking the maximum QE.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="commercial-photodiodes-slides-33-49" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="commercial-photodiodes-slides-33-49"><span class="header-section-number">4.4</span> Commercial photodiodes (slides 33, 49)</h2>
+<div id="cell-fig-commercial" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wl <span class="op">=</span> np.linspace(<span class="fl">300e-9</span>, <span class="fl">1900e-9</span>, <span class="dv">1000</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> eta <span class="kw">in</span> (<span class="dv">1</span>, <span class="fl">0.75</span>, <span class="fl">0.5</span>):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    ax.plot(wl<span class="op">*</span><span class="fl">1e9</span>, dl.responsivity(eta, wl), ls<span class="op">=</span><span class="st">":"</span>, color<span class="op">=</span>dl.INK2, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="dv">1880</span>, dl.responsivity(eta, <span class="fl">1.88e-6</span>), <span class="ss">f"</span><span class="sc">{</span>eta<span class="sc">:.0%}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span>dl.INK2, va<span class="op">=</span><span class="st">"bottom"</span>, ha<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (m, W), c <span class="kw">in</span> <span class="bu">zip</span>(((<span class="st">"Si"</span>, <span class="fl">30e-6</span>), (<span class="st">"Ge"</span>, <span class="fl">10e-6</span>), (<span class="st">"In0.53Ga0.47As"</span>, <span class="fl">3e-6</span>)), dl.PALETTE):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> <span class="fl">0.05e-6</span> <span class="cf">if</span> m <span class="op">!=</span> <span class="st">"In0.53Ga0.47As"</span> <span class="cf">else</span> <span class="fl">0.0</span>       <span class="co"># InGaAs is lit through a transparent InP cap</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    ax.plot(wl<span class="op">*</span><span class="fl">1e9</span>, dl.photocurrent_structure(<span class="dv">1</span>, wl, dl.alpha(m, wl), lp, W), color<span class="op">=</span>c, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>m<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>W<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> µm"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"λ (nm)"</span>, ylabel<span class="op">=</span><span class="st">"R (A/W)"</span>, ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">1.3</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-commercial" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-commercial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="responsivity_files/figure-html/fig-commercial-output-1.png" width="719" height="457" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-commercial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Quantum-efficiency lines (dashed, slide 33) and the ideal pin responsivity of Si (30 µm), Ge (10 µm) and In₀.₅₃Ga₀.₄₇As (3 µm) absorbers with a perfect AR coating and a thin, transparent cap layer. The shapes reproduce slide 33: Si covers 400–1100 nm, InGaAs 900–1700 nm, Ge extends to 1800 nm but with a weak tail beyond its direct gap.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The InGaAs curve rises abruptly at about 920 nm in real devices (slide 33) because the light enters through an InP cap or substrate, which absorbs below 920 nm. Removing the substrate (“visible-extended InGaAs”) restores the short-wavelength response.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Surface recombination.</strong> Replace the dead layer <span class="math inline">\(\ell_p-L_e\)</span> by a proper solution of the diffusion equation in the p⁺ layer with a surface recombination velocity <span class="math inline">\(S\)</span>: solve <span class="math inline">\(Dn''-n/\tau=-G(x)\)</span> with <span class="math inline">\(Dn'(0)=Sn(0)\)</span> and <span class="math inline">\(n=0\)</span> at the depletion edge, derive the collection probability of a carrier generated at depth <span class="math inline">\(x\)</span>, and show that a passivated surface (<span class="math inline">\(S\to0\)</span>) recovers the blue response. This is what “UV-enhanced” Si photodiodes do.</li>
+<li><strong>Resonant-cavity photodiodes.</strong> Put a thin absorber (<span class="math inline">\(\alpha d\ll1\)</span>) between two Bragg mirrors (Ch. 1). At resonance the QE becomes <span class="math inline">\(\eta=\frac{(1+R_2e^{-\alpha d})(1-R_1)(1-e^{-\alpha d})}{(1-\sqrt{R_1R_2}\,e^{-\alpha d})^2}\)</span>. A 0.2 µm InGaAs layer can then absorb &gt; 90 %, decoupling QE from transit time (<a href="pin.html" class="quarto-xref"><span>Chapter 5</span></a>). What is the price?</li>
+<li><strong>Waveguide photodiodes</strong> absorb light travelling <em>along</em> the junction: the absorption length is millimetres while the drift length is 1 µm. They reach 100 GHz with <span class="math inline">\(\eta&gt;0.8\)</span> and are standard in silicon photonics (Ge-on-Si). Relate the absorption length to the confinement factor Γ of Ch. 2 and 4.</li>
+<li><strong>Quantum efficiency above 100 %.</strong> In Si at λ &lt; 300 nm one photon can create two pairs (impact ionisation by the hot carrier, <span class="math inline">\(\eta_i&gt;1\)</span>). Why does this not violate energy conservation?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, sec.&nbsp;5.3–5.4 and 5.5; Saleh &amp; Teich, sec.&nbsp;18.1.</li>
+<li>Hamamatsu, <em>Opto-semiconductor handbook</em>, ch.&nbsp;2 (Si photodiodes), free online: practical responsivity curves and their dependence on the structure.</li>
+<li>M. S. Ünlü and S. Strite, “Resonant cavity enhanced photonic devices”, <em>J. Appl. Phys.</em> 78, 607 (1995).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">4.5</span> Try it yourself</h2>
+<ol type="1">
+<li>Prove the tangent criterion of slide 26 by differentiating <span class="math inline">\(\eta_e(\lambda)=\mathcal R(\lambda)hc/e\lambda\)</span>.</li>
+<li>With the panel, design a Si pin whose responsivity at 905 nm exceeds 0.6 A/W. What is its minimum depletion width with and without an AR coating?</li>
+<li>A datasheet quotes “R = 1.0 A/W at 1550 nm” for an InGaAs photodiode. Is that physically possible? What QE does it imply?</li>
+<li>Why does the responsivity of the InAs photodiode of slide 35 <em>increase</em> towards long wavelengths before its cut-off, while the QE is nearly constant?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7YWxwaGEsIE1BVEVSSUFMUywgcmVzcG9uc2l2aXR5LCBmcmVzbmVsVCwgc3RydWN0dXJlUiwgcWVmZn0gZnJvbSBcIi4vZGV0X3NpbS5qc1wiXG52aWV3b2YgcnMgPSBJbnB1dHMuZm9ybSh7XG4gIG1hdDogSW5wdXRzLnNlbGVjdChPYmplY3Qua2V5cyhNQVRFUklBTFMpLCB7dmFsdWU6IFwiU2lcIiwgbGFiZWw6IFwiYWJzb3JiaW5nIG1hdGVyaWFsXCJ9KSxcbiAgbHA6IElucHV0cy5yYW5nZShbMC4wMSwgM10sIHt2YWx1ZTogMC41LCBzdGVwOiAwLjAxLCBsYWJlbDogXCJw4oG6IGxheWVyIOKEk19wICjCtW0pXCJ9KSxcbiAgTGU6IElucHV0cy5yYW5nZShbMCwgM10sIHt2YWx1ZTogMC4xLCBzdGVwOiAwLjAxLCBsYWJlbDogXCJlbGVjdHJvbiBkaWZmdXNpb24gbGVuZ3RoIGluIHDigbosIExfZSAowrVtKVwifSksXG4gIFc6IElucHV0cy5yYW5nZShbMC41LCAyMDBdLCB7dmFsdWU6IDMwLCBzdGVwOiAwLjUsIGxhYmVsOiBcImRlcGxldGlvbiB3aWR0aCBXICjCtW0pXCJ9KSxcbiAgTGg6IElucHV0cy5yYW5nZShbMCwgMjAwXSwge3ZhbHVlOiAxMCwgc3RlcDogMC41LCBsYWJlbDogXCJob2xlIGRpZmZ1c2lvbiBsZW5ndGggaW4gbiwgTF9oICjCtW0pXCJ9KSxcbiAgYXI6IElucHV0cy5yYWRpbyhbXCJubyBjb2F0aW5nIChGcmVzbmVsKVwiLCBcInBlcmZlY3QgQVIgY29hdGluZ1wiXSwge3ZhbHVlOiBcIm5vIGNvYXRpbmcgKEZyZXNuZWwpXCIsIGxhYmVsOiBcInN1cmZhY2VcIn0pLFxuICBldGFpOiBJbnB1dHMucmFuZ2UoWzAuNSwgMV0sIHt2YWx1ZTogMSwgc3RlcDogMC4wMSwgbGFiZWw6IFwiaW50ZXJuYWwgUUUgzrdfaVwifSlcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyc091dCA9IHtcbiAgY29uc3QgbSA9IE1BVEVSSUFMU1tycy5tYXRdLCBUID0gcnMuYXIuc3RhcnRzV2l0aChcInBlcmZlY3RcIikgPyAxIDogZnJlc25lbFQobS5uKSwgbGcgPSAxLjIzOTg0IC8gbS5FZywgcHRzID0gW10sIGlkZWFsID0gW107XG4gIGxldCBiZXN0ID0ge2V0YTogMH0sIHBlYWsgPSB7UjogMH07XG4gIGZvciAobGV0IGkgPSAwOyBpIDw9IDYwMDsgaSsrKSB7XG4gICAgY29uc3Qgd2wgPSAoMC4zICsgKGxnICogMS4wNSAtIDAuMykgKiBpIC8gNjAwKSAqIDFlLTYsIGEgPSBhbHBoYShycy5tYXQsIHdsKTtcbiAgICBjb25zdCBSID0gc3RydWN0dXJlUih3bCwgYSwgcnMubHAgKiAxZS02LCBycy5XICogMWUtNiwgcnMuTGUgKiAxZS02LCBycy5MaCAqIDFlLTYsIFQsIHJzLmV0YWkpO1xuICAgIHB0cy5wdXNoKHt3bDogd2wgKiAxZTksIFIsIGM6IFwidGhpcyBzdHJ1Y3R1cmVcIn0pOyBpZGVhbC5wdXNoKHt3bDogd2wgKiAxZTksIFI6IHdsICogMWU2IDw9IGxnID8gcmVzcG9uc2l2aXR5KDEsIHdsKSA6IDAsIGM6IFwiaWRlYWwgKM63ID0gMSlcIn0pO1xuICAgIGNvbnN0IGV0YSA9IHFlZmYoUiwgd2wpOyBpZiAoZXRhID4gYmVzdC5ldGEpIGJlc3QgPSB7ZXRhLCB3bDogd2wgKiAxZTksIFJ9OyBpZiAoUiA+IHBlYWsuUikgcGVhayA9IHtSLCB3bDogd2wgKiAxZTl9O1xuICB9XG4gIHJldHVybiB7cHRzOiBwdHMuY29uY2F0KGlkZWFsKSwgYmVzdCwgcGVhaywgVCwgbGd9O1xufVxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IE1hdGgubWluKHdpZHRoLCAxMDUwKSwgaGVpZ2h0OiAzMjAsIHg6IHtsYWJlbDogXCJ3YXZlbGVuZ3RoIChubSlcIn0sIHk6IHtsYWJlbDogXCJyZXNwb25zaXZpdHkgKEEvVylcIiwgZ3JpZDogdHJ1ZSwgZG9tYWluOiBbMCwgMS40XX0sXG4gIGNvbG9yOiB7bGVnZW5kOiB0cnVlLCBkb21haW46IFtcInRoaXMgc3RydWN0dXJlXCIsIFwiaWRlYWwgKM63ID0gMSlcIiwgXCJzbGlkZSAyNCAocmVhZCBvZmYpXCJdLCByYW5nZTogW1wiI2UzNDk0OFwiLCBcIiMyYTc4ZDZcIiwgXCIjMGIwYjBiXCJdfSxcbiAgbWFya3M6IFtQbG90LmxpbmUocnNPdXQucHRzLCB7eDogXCJ3bFwiLCB5OiBcIlJcIiwgc3Ryb2tlOiBcImNcIiwgc3Ryb2tlV2lkdGg6IDJ9KSxcbiAgICAgICAgICBQbG90LmxpbmUoW3t3bDogMCwgUjogMH0sIHt3bDogcnNPdXQuYmVzdC53bCAqIDEuNiwgUjogcnNPdXQuYmVzdC5SICogMS42fV0sIHt4OiBcIndsXCIsIHk6IFwiUlwiLCBzdHJva2U6IFwiIzUyNTE0ZVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCwzXCJ9KSxcbiAgICAgICAgICBQbG90LmRvdChbcnNPdXQuYmVzdF0sIHt4OiBcIndsXCIsIHk6IFwiUlwiLCByOiA2LCBmaWxsOiBcIiMxYmFmN2FcIn0pLFxuICAgICAgICAgIHJzLm1hdCA9PT0gXCJTaVwiID8gUGxvdC5kb3QoW3t3bDogNDUwLCBSOiAwLjI0fSwge3dsOiA3MDAsIFI6IDAuNDV9LCB7d2w6IDk0MCwgUjogMC41Nn1dLCB7eDogXCJ3bFwiLCB5OiBcIlJcIiwgcjogNCwgZmlsbDogXCIjMGIwYjBiXCIsIHN5bWJvbDogXCJzcXVhcmVcIn0pIDogbnVsbF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+c3VyZmFjZSB0cmFuc21pc3Npb24gVCA9ICR7cnNPdXQuVC50b0ZpeGVkKDMpfSDCtyDOuzxzdWI+Zzwvc3ViPiA9ICR7KDEwMDAgKiByc091dC5sZykudG9GaXhlZCgwKX0gbm08YnI+XG5wZWFrIHJlc3BvbnNpdml0eSA8Yj4ke3JzT3V0LnBlYWsuUi50b0ZpeGVkKDMpfSBBL1c8L2I+IGF0ICR7cnNPdXQucGVhay53bC50b0ZpeGVkKDApfSBubSDCt1xuPHNwYW4gc3R5bGU9XCJjb2xvcjojMWJhZjdhXCI+4pePPC9zcGFuPiBtYXhpbXVtIFFFIDxiPiR7KDEwMCAqIHJzT3V0LmJlc3QuZXRhKS50b0ZpeGVkKDEpfSAlPC9iPiBhdCAke3JzT3V0LmJlc3Qud2wudG9GaXhlZCgwKX0gbm0gKHRhbmdlbnQgdGhyb3VnaCB0aGUgb3JpZ2luKTwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncnMnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter5\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./absorption.html" class="pagination-link" aria-label="Absorption and the cut-off wavelength">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Absorption and the cut-off wavelength</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./pin.html" class="pagination-link" aria-label="The pin photodiode">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The pin photodiode</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Quantum efficiency and responsivity {#sec-responsivity}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/responsivity.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> detlib <span class="im">as</span> dl</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>dl.use_style()</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>*Slides 21–26 (external quantum efficiency, responsivity, the ideal photodiode, maximum QE), 27–28 (internal quantum</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>efficiency and the wavelength dependence of the photocurrent), 33–36 (responsivity of commercial pin photodiodes, effect of the</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>device structure and of temperature, worked example), 139–145 (photocurrent from the device structure, p⁺n versus pin) and</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>149–150 (Ge photodiode).*</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>The **external quantum efficiency** counts collected electrons per incident photon, and the **responsivity** converts it to</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>amperes per watt (slides 21–22):</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>\eta_e=\frac{I_{ph}/e}{P_o/h\nu},\qquad</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>\mathcal R=\frac{I_{ph}}{P_o}=\eta_e\frac{e}{h\nu}=\eta_e\frac{e\lambda}{hc}=\eta_e\,\frac{\lambda\,<span class="co">[</span><span class="ot">\mu\text m</span><span class="co">]</span>}{1.24}\ \text{A/W}.</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>An ideal photodiode ($\eta_e=1$) has $\mathcal R$ growing linearly with λ up to the cut-off $\lambda_g$, then falling to zero</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>(slide 24). Real photodiodes lose photons by reflection at the surface (transmission $T$), by absorption in regions from which</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>carriers are not collected, and by transmission through the device. With the **internal quantum efficiency** $\eta_i$ (pairs per</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>absorbed photon, slide 28) and the useful (collecting) region between $x_1=\ell_p-L_e$ and $x_2=\ell_p+W+L_h$ (slides 139–144):</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>I_{ph}=\frac{e\eta_iTP_o}{h\nu}\left<span class="co">[</span><span class="ot">e^{-\alpha x_1}-e^{-\alpha x_2}\right</span><span class="co">]</span>,</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>\qquad \text{pin with thin p}^+:\ I_{ph}\approx\frac{e\eta_iTP_o}{h\nu}\left<span class="co">[</span><span class="ot">1-e^{-\alpha W}\right</span><span class="co">]</span>.</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>At short λ (large α) light is absorbed in the p⁺ layer and near the surface, where carriers recombine; at long λ (small α) it</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>passes through the collecting region. The responsivity peaks in between. Because $\eta_e=\mathcal Rhc/e\lambda$, the QE is</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>maximum where $d(\mathcal R/\lambda)/d\lambda=0$, i.e. where $d\mathcal R/d\lambda=\mathcal R/\lambda$: **the tangent to the</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>$\mathcal R(\lambda)$ curve passes through the origin** (slide 26). That point is not the peak of $\mathcal R$.</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live panel: responsivity from the device structure (slides 27, 139–145)</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {alpha<span class="op">,</span> MATERIALS<span class="op">,</span> responsivity<span class="op">,</span> fresnelT<span class="op">,</span> structureR<span class="op">,</span> qeff} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>viewof rs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mat</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(MATERIALS)<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"Si"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"absorbing material"</span>})<span class="op">,</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lp</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"p⁺ layer ℓ_p (µm)"</span>})<span class="op">,</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Le</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"electron diffusion length in p⁺, L_e (µm)"</span>})<span class="op">,</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>  <span class="dt">W</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"depletion width W (µm)"</span>})<span class="op">,</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Lh</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"hole diffusion length in n, L_h (µm)"</span>})<span class="op">,</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ar</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"no coating (Fresnel)"</span><span class="op">,</span> <span class="st">"perfect AR coating"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"no coating (Fresnel)"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"surface"</span>})<span class="op">,</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">etai</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"internal QE η_i"</span>})</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>rsOut <span class="op">=</span> {</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> m <span class="op">=</span> MATERIALS[rs<span class="op">.</span><span class="at">mat</span>]<span class="op">,</span> T <span class="op">=</span> rs<span class="op">.</span><span class="at">ar</span><span class="op">.</span><span class="fu">startsWith</span>(<span class="st">"perfect"</span>) <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="fu">fresnelT</span>(m<span class="op">.</span><span class="at">n</span>)<span class="op">,</span> lg <span class="op">=</span> <span class="fl">1.23984</span> <span class="op">/</span> m<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> pts <span class="op">=</span> []<span class="op">,</span> ideal <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> best <span class="op">=</span> {<span class="dt">eta</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span> peak <span class="op">=</span> {<span class="dt">R</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">;</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">600</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> wl <span class="op">=</span> (<span class="fl">0.3</span> <span class="op">+</span> (lg <span class="op">*</span> <span class="fl">1.05</span> <span class="op">-</span> <span class="fl">0.3</span>) <span class="op">*</span> i <span class="op">/</span> <span class="dv">600</span>) <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> a <span class="op">=</span> <span class="fu">alpha</span>(rs<span class="op">.</span><span class="at">mat</span><span class="op">,</span> wl)<span class="op">;</span></span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> R <span class="op">=</span> <span class="fu">structureR</span>(wl<span class="op">,</span> a<span class="op">,</span> rs<span class="op">.</span><span class="at">lp</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> rs<span class="op">.</span><span class="at">W</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> rs<span class="op">.</span><span class="at">Le</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> rs<span class="op">.</span><span class="at">Lh</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> T<span class="op">,</span> rs<span class="op">.</span><span class="at">etai</span>)<span class="op">;</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>    pts<span class="op">.</span><span class="fu">push</span>({<span class="dt">wl</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e9</span><span class="op">,</span> R<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"this structure"</span>})<span class="op">;</span> ideal<span class="op">.</span><span class="fu">push</span>({<span class="dt">wl</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e6</span> <span class="op">&lt;=</span> lg <span class="op">?</span> <span class="fu">responsivity</span>(<span class="dv">1</span><span class="op">,</span> wl) <span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"ideal (η = 1)"</span>})<span class="op">;</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> eta <span class="op">=</span> <span class="fu">qeff</span>(R<span class="op">,</span> wl)<span class="op">;</span> <span class="cf">if</span> (eta <span class="op">&gt;</span> best<span class="op">.</span><span class="at">eta</span>) best <span class="op">=</span> {eta<span class="op">,</span> <span class="dt">wl</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e9</span><span class="op">,</span> R}<span class="op">;</span> <span class="cf">if</span> (R <span class="op">&gt;</span> peak<span class="op">.</span><span class="at">R</span>) peak <span class="op">=</span> {R<span class="op">,</span> <span class="dt">wl</span><span class="op">:</span> wl <span class="op">*</span> <span class="fl">1e9</span>}<span class="op">;</span></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">pts</span><span class="op">:</span> pts<span class="op">.</span><span class="fu">concat</span>(ideal)<span class="op">,</span> best<span class="op">,</span> peak<span class="op">,</span> T<span class="op">,</span> lg}<span class="op">;</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (nm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"responsivity (A/W)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">1.4</span>]}<span class="op">,</span></span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"this structure"</span><span class="op">,</span> <span class="st">"ideal (η = 1)"</span><span class="op">,</span> <span class="st">"slide 24 (read off)"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#0b0b0b"</span>]}<span class="op">,</span></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(rsOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"wl"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"R"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"c"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">line</span>([{<span class="dt">wl</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> <span class="dv">0</span>}<span class="op">,</span> {<span class="dt">wl</span><span class="op">:</span> rsOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">wl</span> <span class="op">*</span> <span class="fl">1.6</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> rsOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">R</span> <span class="op">*</span> <span class="fl">1.6</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"wl"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"R"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">dot</span>([rsOut<span class="op">.</span><span class="at">best</span>]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"wl"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"R"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1baf7a"</span>})<span class="op">,</span></span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>          rs<span class="op">.</span><span class="at">mat</span> <span class="op">===</span> <span class="st">"Si"</span> <span class="op">?</span> Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">wl</span><span class="op">:</span> <span class="dv">450</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> <span class="fl">0.24</span>}<span class="op">,</span> {<span class="dt">wl</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> <span class="fl">0.45</span>}<span class="op">,</span> {<span class="dt">wl</span><span class="op">:</span> <span class="dv">940</span><span class="op">,</span> <span class="dt">R</span><span class="op">:</span> <span class="fl">0.56</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"wl"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"R"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#0b0b0b"</span><span class="op">,</span> <span class="dt">symbol</span><span class="op">:</span> <span class="st">"square"</span>}) <span class="op">:</span> <span class="kw">null</span>]</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;surface transmission T = </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">T</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> · λ&lt;sub&gt;g&lt;/sub&gt; = </span><span class="sc">${</span>(<span class="dv">1000</span> <span class="op">*</span> rsOut<span class="op">.</span><span class="at">lg</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> nm&lt;br&gt;</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a><span class="vs">peak responsivity &lt;b&gt;</span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">peak</span><span class="op">.</span><span class="at">R</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> A/W&lt;/b&gt; at </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">peak</span><span class="op">.</span><span class="at">wl</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> nm ·</span></span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;span style="color:#1baf7a"&gt;●&lt;/span&gt; maximum QE &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> rsOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">eta</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> %&lt;/b&gt; at </span><span class="sc">${</span>rsOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">wl</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> nm (tangent through the origin)&lt;/div&gt;`</span></span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a>Things to try with Si: shrink $W$ to 1 µm and $L_h$ to 10 µm (a p⁺n diode): the infrared response collapses. Make $W=30$ µm</span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>and $L_h=0.1$ µm (a pin): it recovers (slide 145). Thicken the p⁺ layer to 2 µm: the blue response disappears, the "A versus B"</span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>difference of slide 34. Add the AR coating: everything rises by $1/T\approx1.47$. The black squares are read off the commercial</span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a>curve of slide 24; a real Si photodiode also loses carriers to surface recombination, which this model only mimics with $\ell_p$.</span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked examples, recomputed</span></span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Slide 25.** The Si photodiode of slide 24 peaks at 940 nm with $\mathcal R\approx0.56$ A/W and has 0.24 A/W at 450 nm. QE at</span></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; both wavelengths? Intensity giving 10 nA on 1 mm² at the peak? **Slide 26.** QE at the tangent point X (700 nm, 0.45 A/W)?</span></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Slide 36.** A Si pin of 0.4 mm diameter gives 56.6 nA under 0.1 mW cm⁻² at 700 nm: responsivity and QE?</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Slides 149–150.** A Ge photodiode (Thorlabs FDG03) has its QE maximum at 1500 nm with 0.95 A/W.</span></span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-qe</span></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Worked examples of slides 25, 26, 36 and 150."</span></span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a>Po36 <span class="op">=</span> np.pi<span class="op">*</span>(<span class="fl">0.02</span>)<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="fl">0.1e-3</span>          <span class="co"># W (cm² × W/cm²)</span></span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a>R36 <span class="op">=</span> <span class="fl">56.6e-9</span><span class="op">/</span>Po36</span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [(<span class="st">"s25: QE at 940 nm, R = 0.56 A/W"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(<span class="fl">0.56</span>, <span class="fl">940e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.74"</span>),</span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s25: QE at 450 nm, R = 0.24 A/W"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(<span class="fl">0.24</span>, <span class="fl">450e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.66"</span>),</span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s25: intensity for 10 nA on 1 mm²"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="fl">10e-9</span><span class="op">/</span><span class="fl">0.56</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nW/mm²"</span>, <span class="st">"18 nW/mm²"</span>),</span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s26: maximum QE at X (700 nm, 0.45 A/W)"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(<span class="fl">0.45</span>, <span class="fl">700e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.80"</span>),</span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s36: incident power"</span>, <span class="ss">f"</span><span class="sc">{</span>Po36<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µW"</span>, <span class="st">"0.126 µW"</span>),</span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s36: responsivity"</span>, <span class="ss">f"</span><span class="sc">{</span>R36<span class="sc">:.3f}</span><span class="ss"> A/W"</span>, <span class="st">"0.45 A/W"</span>),</span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s36: QE"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(R36, <span class="fl">700e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.80"</span>),</span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"s150: maximum QE of the Ge photodiode"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(<span class="fl">0.95</span>, <span class="fl">1500e-9</span>)<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="st">"0.79"</span>)]</span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"quantity"</span>, <span class="st">"computed"</span>, <span class="st">"slide"</span>])</span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a>Note the apparent paradox of slide 25: at 450 nm the responsivity is less than half its peak value (0.24 versus 0.56 A/W), yet</span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>the QE is 66 %, close to the 74 % of the peak. Responsivity favours long wavelengths simply because each photon carries less</span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>energy: a watt of near-infrared light contains twice as many photons as a watt of blue light.</span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Slides 141–145 (Table 5.7).** p⁺n and pin photodiodes with $\ell_p=0.5$ µm, $L_e=0.1$ µm, $\alpha=10^5$ m⁻¹ at 800 nm,</span></span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; $\eta_i=T=1$, $P_o=1$ µW. p⁺n: $W=1$ µm, $L_h=10$ µm. pin: $W=30$ µm, $L_h=0.1$ µm.</span></span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-575</span></span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Table 5.7 of slide 145, recomputed."</span></span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a>pnI <span class="op">=</span> dl.photocurrent_structure(<span class="fl">1e-6</span>, <span class="fl">800e-9</span>, <span class="fl">1e5</span>, <span class="fl">0.5e-6</span>, <span class="fl">1e-6</span>, <span class="fl">0.1e-6</span>, <span class="fl">10e-6</span>)</span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a>pinI <span class="op">=</span> dl.photocurrent_structure(<span class="fl">1e-6</span>, <span class="fl">800e-9</span>, <span class="fl">1e5</span>, <span class="fl">0.5e-6</span>, <span class="fl">30e-6</span>, <span class="fl">0.1e-6</span>, <span class="fl">0.1e-6</span>)</span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(<span class="st">"p⁺n"</span>, <span class="ss">f"</span><span class="sc">{</span>pnI<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µA"</span>, <span class="st">"0.42 µA"</span>, <span class="ss">f"</span><span class="sc">{</span>pnI<span class="op">/</span><span class="fl">1e-6</span><span class="sc">:.3f}</span><span class="ss"> A/W"</span>),</span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"pin"</span>, <span class="ss">f"</span><span class="sc">{</span>pinI<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.3f}</span><span class="ss"> µA"</span>, <span class="st">"0.59 µA"</span>, <span class="ss">f"</span><span class="sc">{</span>pinI<span class="op">/</span><span class="fl">1e-6</span><span class="sc">:.3f}</span><span class="ss"> A/W"</span>)],</span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"detector"</span>, <span class="st">"I_ph computed"</span>, <span class="st">"slide"</span>, <span class="st">"responsivity"</span>])</span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-structures</span></span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Responsivity of the two structures of Table 5.7 over the whole Si absorption band, with a perfect AR coating. The pin wins in the infrared, where the 30 µm drift region still absorbs; both lose the blue in the 0.5 µm p⁺ layer. Dashed: tangents through the origin marking the maximum QE."</span></span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a>wl <span class="op">=</span> np.linspace(<span class="fl">350e-9</span>, <span class="fl">1150e-9</span>, <span class="dv">800</span>)<span class="op">;</span> a <span class="op">=</span> dl.alpha(<span class="st">"Si"</span>, wl)</span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a>ax.plot(wl<span class="op">*</span><span class="fl">1e9</span>, dl.responsivity(<span class="dv">1</span>, wl)<span class="op">*</span>(wl <span class="op">&lt;</span> <span class="fl">1.107e-6</span>), color<span class="op">=</span>dl.INK2, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"ideal"</span>)</span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (lab, W, Lh), c <span class="kw">in</span> <span class="bu">zip</span>(((<span class="st">"p⁺n"</span>, <span class="fl">1e-6</span>, <span class="fl">10e-6</span>), (<span class="st">"pin"</span>, <span class="fl">30e-6</span>, <span class="fl">0.1e-6</span>)), dl.PALETTE):</span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> dl.photocurrent_structure(<span class="dv">1</span>, wl, a, <span class="fl">0.5e-6</span>, W, <span class="fl">0.1e-6</span>, Lh)</span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a>    lx, Rx, ex <span class="op">=</span> dl.max_qe_point(wl, R)</span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a>    ax.plot(wl<span class="op">*</span><span class="fl">1e9</span>, R, color<span class="op">=</span>c, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>lab<span class="sc">}</span><span class="ss">: max QE </span><span class="sc">{</span>ex<span class="sc">:.0%}</span><span class="ss"> at </span><span class="sc">{</span>lx<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nm"</span>)</span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="dv">0</span>, <span class="fl">1.5</span><span class="op">*</span>lx<span class="op">*</span><span class="fl">1e9</span>], [<span class="dv">0</span>, <span class="fl">1.5</span><span class="op">*</span>Rx], ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span>c)</span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"λ (nm)"</span>, ylabel<span class="op">=</span><span class="st">"R (A/W)"</span>, xlim<span class="op">=</span>(<span class="dv">350</span>, <span class="dv">1150</span>), ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">0.95</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Commercial photodiodes (slides 33, 49)</span></span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-commercial</span></span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Quantum-efficiency lines (dashed, slide 33) and the ideal pin responsivity of Si (30 µm), Ge (10 µm) and In₀.₅₃Ga₀.₄₇As (3 µm) absorbers with a perfect AR coating and a thin, transparent cap layer. The shapes reproduce slide 33: Si covers 400–1100 nm, InGaAs 900–1700 nm, Ge extends to 1800 nm but with a weak tail beyond its direct gap."</span></span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a>wl <span class="op">=</span> np.linspace(<span class="fl">300e-9</span>, <span class="fl">1900e-9</span>, <span class="dv">1000</span>)</span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> eta <span class="kw">in</span> (<span class="dv">1</span>, <span class="fl">0.75</span>, <span class="fl">0.5</span>):</span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a>    ax.plot(wl<span class="op">*</span><span class="fl">1e9</span>, dl.responsivity(eta, wl), ls<span class="op">=</span><span class="st">":"</span>, color<span class="op">=</span>dl.INK2, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a>    ax.text(<span class="dv">1880</span>, dl.responsivity(eta, <span class="fl">1.88e-6</span>), <span class="ss">f"</span><span class="sc">{</span>eta<span class="sc">:.0%}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span>dl.INK2, va<span class="op">=</span><span class="st">"bottom"</span>, ha<span class="op">=</span><span class="st">"right"</span>)</span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (m, W), c <span class="kw">in</span> <span class="bu">zip</span>(((<span class="st">"Si"</span>, <span class="fl">30e-6</span>), (<span class="st">"Ge"</span>, <span class="fl">10e-6</span>), (<span class="st">"In0.53Ga0.47As"</span>, <span class="fl">3e-6</span>)), dl.PALETTE):</span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> <span class="fl">0.05e-6</span> <span class="cf">if</span> m <span class="op">!=</span> <span class="st">"In0.53Ga0.47As"</span> <span class="cf">else</span> <span class="fl">0.0</span>       <span class="co"># InGaAs is lit through a transparent InP cap</span></span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>    ax.plot(wl<span class="op">*</span><span class="fl">1e9</span>, dl.photocurrent_structure(<span class="dv">1</span>, wl, dl.alpha(m, wl), lp, W), color<span class="op">=</span>c, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>m<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>W<span class="op">*</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> µm"</span>)</span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"λ (nm)"</span>, ylabel<span class="op">=</span><span class="st">"R (A/W)"</span>, ylim<span class="op">=</span>(<span class="dv">0</span>, <span class="fl">1.3</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a>The InGaAs curve rises abruptly at about 920 nm in real devices (slide 33) because the light enters through an InP cap or</span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a>substrate, which absorbs below 920 nm. Removing the substrate ("visible-extended InGaAs") restores the short-wavelength response.</span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Surface recombination.** Replace the dead layer $\ell_p-L_e$ by a proper solution of the diffusion equation in the p⁺ layer with</span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a>  a surface recombination velocity $S$: solve $Dn''-n/\tau=-G(x)$ with $Dn'(0)=Sn(0)$ and $n=0$ at the depletion edge, derive the</span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a>  collection probability of a carrier generated at depth $x$, and show that a passivated surface ($S\to0$) recovers the blue</span>
+<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a>  response. This is what "UV-enhanced" Si photodiodes do.</span>
+<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Resonant-cavity photodiodes.** Put a thin absorber ($\alpha d\ll1$) between two Bragg mirrors (Ch. 1). At resonance the QE becomes</span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a>  $\eta=\frac{(1+R_2e^{-\alpha d})(1-R_1)(1-e^{-\alpha d})}{(1-\sqrt{R_1R_2}\,e^{-\alpha d})^2}$. A 0.2 µm InGaAs</span>
+<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a>  layer can then absorb &gt; 90 %, decoupling QE from transit time (@sec-pin). What is the price?</span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Waveguide photodiodes** absorb light travelling *along* the junction: the absorption length is millimetres while the drift length</span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a>  is 1 µm. They reach 100 GHz with $\eta&gt;0.8$ and are standard in silicon photonics (Ge-on-Si). Relate the absorption length to the</span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a>  confinement factor Γ of Ch. 2 and 4.</span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Quantum efficiency above 100 %.** In Si at λ &lt; 300 nm one photon can create two pairs (impact ionisation by the hot carrier,</span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a>  $\eta_i&gt;1$). Why does this not violate energy conservation?</span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, sec. 5.3–5.4 and 5.5; Saleh &amp; Teich, sec. 18.1.</span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hamamatsu, *Opto-semiconductor handbook*, ch. 2 (Si photodiodes), free online: practical responsivity curves and their dependence</span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a>  on the structure.</span>
+<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>M. S. Ünlü and S. Strite, "Resonant cavity enhanced photonic devices", *J. Appl. Phys.* 78, 607 (1995).</span>
+<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Prove the tangent criterion of slide 26 by differentiating $\eta_e(\lambda)=\mathcal R(\lambda)hc/e\lambda$.</span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>With the panel, design a Si pin whose responsivity at 905 nm exceeds 0.6 A/W. What is its minimum depletion width with and without</span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a>   an AR coating?</span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>A datasheet quotes "R = 1.0 A/W at 1550 nm" for an InGaAs photodiode. Is that physically possible? What QE does it imply?</span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Why does the responsivity of the InAs photodiode of slide 35 *increase* towards long wavelengths before its cut-off, while the</span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a>   QE is nearly constant?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/responsivity.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

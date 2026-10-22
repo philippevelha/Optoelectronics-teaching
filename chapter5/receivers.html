@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; Going further: optical receivers, BER and sensitivity – Photodetectors and Image Sensors</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./sq-limit.html" rel="next">
+<link href="./solar-cells.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./receivers.html">Going further</a></li><li class="breadcrumb-item"><a href="./receivers.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Photodetectors and Image Sensors</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter5/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">How a photodiode works</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pn-photodiode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The pn junction photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Shockley–Ramo theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./absorption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Absorption and the cut-off wavelength</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./responsivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Photodiode families</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The pin photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schottky.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Schottky, MSM and phototransistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./photoconductors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Photoconductive detectors</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Circuits, speed and noise</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circuits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Photodiode circuits and speed</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Noise, SNR, NEP and detectivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Noise in avalanche photodiodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Image sensors and solar cells</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./image-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solar-cells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Solar cells</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./receivers.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sq-limit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">14.1</span> Key relations</a></li>
+  <li><a href="#live-panel-sensitivity-of-four-receivers" id="toc-live-panel-sensitivity-of-four-receivers" class="nav-link" data-scroll-target="#live-panel-sensitivity-of-four-receivers"><span class="header-section-number">14.2</span> Live panel: sensitivity of four receivers</a></li>
+  <li><a href="#worked-comparison-at-10-gbs-1550-nm" id="toc-worked-comparison-at-10-gbs-1550-nm" class="nav-link" data-scroll-target="#worked-comparison-at-10-gbs-1550-nm"><span class="header-section-number">14.3</span> Worked comparison at 10 Gb/s, 1550 nm</a></li>
+  <li><a href="#why-it-matters-the-link-budget" id="toc-why-it-matters-the-link-budget" class="nav-link" data-scroll-target="#why-it-matters-the-link-budget"><span class="header-section-number">14.4</span> Why it matters: the link budget</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">14.5</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/receivers.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./receivers.html">Going further</a></li><li class="breadcrumb-item"><a href="./receivers.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-receivers" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter5/notebooks/receivers.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>This chapter is not in the slides. It connects the noise analysis of <a href="noise.html" class="quarto-xref"><span>Chapter 10</span></a> and <a href="apd-noise.html" class="quarto-xref"><span>Chapter 11</span></a> with the bit-error rate of Ch. 2 and the optical amplifiers of Ch. 4, and answers the question every link designer asks: how many photons does one bit need?</em></p>
+<section id="key-relations" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">14.1</span> Key relations</h2>
+<p>A digital receiver decides, bit by bit, whether a “1” or a “0” was sent by comparing the photocurrent with a threshold. With on–off keying (OOK) the “1” gives a mean current <span class="math inline">\(I_1\)</span> with noise <span class="math inline">\(\sigma_1\)</span> and the “0” gives <span class="math inline">\(I_0\)</span> with noise <span class="math inline">\(\sigma_0\)</span>. For Gaussian noise and the optimum threshold, the <strong>bit-error rate</strong> depends only on the <strong>Q factor</strong> (Ch. 2):</p>
+<p><span class="math display">\[
+Q=\frac{I_1-I_0}{\sigma_1+\sigma_0},\qquad \text{BER}=\frac12\operatorname{erfc}\!\left(\frac{Q}{\sqrt2}\right),\qquad
+\text{BER}=10^{-9}\Leftrightarrow Q=6,\quad 10^{-12}\Leftrightarrow Q=7.03 .
+\]</span></p>
+<p>The <strong>sensitivity</strong> is the average optical power <span class="math inline">\(\bar P=(P_1+P_0)/2\)</span> that gives the target BER. With <span class="math inline">\(P_0=0\)</span>, a photodiode of responsivity <span class="math inline">\(\mathcal R\)</span> and an electrical bandwidth <span class="math inline">\(B_e\approx R_b/2\)</span> for a bit rate <span class="math inline">\(R_b\)</span>:</p>
+<ul>
+<li><strong>pin, thermal-noise limited</strong> (<span class="math inline">\(\sigma_0=\sigma_1=\sigma_T\)</span>, the noise of the load or TIA): <span class="math inline">\(\bar P=Q\sigma_T/\mathcal R\)</span>. It grows as <span class="math inline">\(\sqrt{B_e}\)</span> and is independent of the photon energy.</li>
+<li><strong>pin, shot-noise limited</strong> (ideal amplifier): <span class="math inline">\(\bar P=Q^2eB_e/\mathcal R\)</span>, i.e.&nbsp;<span class="math inline">\(Q^2/2\approx18\)</span> photons per bit for <span class="math inline">\(\eta=1\)</span> at BER <span class="math inline">\(10^{-9}\)</span> (with <span class="math inline">\(B_e=R_b/2\)</span>).</li>
+<li><strong>APD</strong>: the signal is multiplied by <span class="math inline">\(M\)</span>, the thermal noise is not, and the shot noise gets the excess factor <span class="math inline">\(F\)</span>; there is an optimum <span class="math inline">\(M\)</span> (<a href="apd-noise.html" class="quarto-xref"><span>Chapter 11</span></a>).</li>
+<li><strong>Optically preamplified</strong> (EDFA + pin, Ch. 4): the amplifier gain <span class="math inline">\(G\)</span> lifts the signal far above the thermal noise; the noise is now the beat between the signal and the amplified spontaneous emission, <span class="math inline">\(\sigma^2_{s\text{-}sp}=4\mathcal R^2GP_1S_{sp}B_e\)</span>, with <span class="math inline">\(S_{sp}=n_{sp}(G-1)h\nu\)</span>, plus the ASE–ASE beat in the optical bandwidth <span class="math inline">\(B_o\)</span>.</li>
+<li><strong>Quantum limit</strong>: an ideal photon counter makes an error only when a “1” produces no photoelectron at all, with probability <span class="math inline">\(e^{-N_1}\)</span>. <span class="math inline">\(\text{BER}=\frac12e^{-N_1}\)</span> gives <span class="math inline">\(N_1=20\)</span> photons in a “1”, i.e.&nbsp;<strong>10 photons per bit</strong> on average at BER <span class="math inline">\(10^{-9}\)</span>.</li>
+</ul>
+</section>
+<section id="live-panel-sensitivity-of-four-receivers" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="live-panel-sensitivity-of-four-receivers"><span class="header-section-number">14.2</span> Live panel: sensitivity of four receivers</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="47" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 46;"><span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {berQ<span class="op">,</span> qe<span class="op">,</span> h<span class="op">,</span> c0<span class="op">,</span> mcintyre} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>viewof rv <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ber</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">"10⁻³ (with FEC)"</span><span class="op">,</span> <span class="fl">1e-3</span>]<span class="op">,</span> [<span class="st">"10⁻⁹"</span><span class="op">,</span> <span class="fl">1e-9</span>]<span class="op">,</span> [<span class="st">"10⁻¹²"</span><span class="op">,</span> <span class="fl">1e-12</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1e-9</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"target BER"</span>})<span class="op">,</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">wl</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.8</span><span class="op">,</span> <span class="fl">1.6</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.55</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (µm)"</span>})<span class="op">,</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eta</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.3</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.72</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"detector QE"</span>})<span class="op">,</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">inoise</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"amplifier input noise (pA/√Hz)"</span>})<span class="op">,</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">k</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"APD ionisation ratio k"</span>})<span class="op">,</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">NF</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">3</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"EDFA noise figure (dB)"</span>})<span class="op">,</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Bo</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">12.5</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">2.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"optical filter bandwidth (GHz)"</span>})<span class="op">,</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Rb</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"bit rate (Gb/s), B_e = R_b/2"</span>})</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="62" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 61;"><span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>rvOut <span class="op">=</span> {</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Q <span class="op">=</span> (() <span class="kw">=&gt;</span> { <span class="kw">let</span> lo <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> hi <span class="op">=</span> <span class="dv">12</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">80</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> m <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> <span class="cf">if</span> (<span class="fu">berQ</span>(m) <span class="op">&gt;</span> rv<span class="op">.</span><span class="at">ber</span>) lo <span class="op">=</span> m<span class="op">;</span> <span class="cf">else</span> hi <span class="op">=</span> m<span class="op">;</span> } <span class="cf">return</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> })()<span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> wl <span class="op">=</span> rv<span class="op">.</span><span class="at">wl</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> hv <span class="op">=</span> h <span class="op">*</span> c0 <span class="op">/</span> wl<span class="op">,</span> R <span class="op">=</span> rv<span class="op">.</span><span class="at">eta</span> <span class="op">*</span> qe <span class="op">/</span> hv<span class="op">,</span> G <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sens <span class="op">=</span> (Rb) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Be <span class="op">=</span> Rb <span class="op">/</span> <span class="dv">2</span><span class="op">,</span> sT <span class="op">=</span> rv<span class="op">.</span><span class="at">inoise</span> <span class="op">*</span> <span class="fl">1e-12</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(Be)<span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> pin <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> qe <span class="op">*</span> Be <span class="op">*</span> Q <span class="op">*</span> Q <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> Q <span class="op">*</span> sT) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> R)<span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> apd <span class="op">=</span> <span class="kw">Infinity</span><span class="op">,</span> Mopt <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">300</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> M <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> (<span class="fl">2.5</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">300</span>)<span class="op">,</span> F <span class="op">=</span> <span class="fu">mcintyre</span>(M<span class="op">,</span> rv<span class="op">.</span><span class="at">k</span>)<span class="op">,</span> p <span class="op">=</span> (Q <span class="op">*</span> Q <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> qe <span class="op">*</span> F <span class="op">*</span> M <span class="op">*</span> Be <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> Q <span class="op">*</span> sT) <span class="op">/</span> (M <span class="op">*</span> R) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> <span class="cf">if</span> (p <span class="op">&lt;</span> apd) { apd <span class="op">=</span> p<span class="op">;</span> Mopt <span class="op">=</span> M<span class="op">;</span> } }</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> nsp <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> (rv<span class="op">.</span><span class="at">NF</span> <span class="op">/</span> <span class="dv">10</span>) <span class="op">*</span> G <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> (G <span class="op">-</span> <span class="dv">1</span>))<span class="op">,</span> S <span class="op">=</span> nsp <span class="op">*</span> (G <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> hv<span class="op">,</span> Bo <span class="op">=</span> rv<span class="op">.</span><span class="at">Bo</span> <span class="op">*</span> <span class="fl">1e9</span><span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> s0 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">4</span> <span class="op">*</span> R <span class="op">*</span> R <span class="op">*</span> S <span class="op">*</span> S <span class="op">*</span> Bo <span class="op">*</span> Be <span class="op">+</span> sT <span class="op">*</span> sT <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> qe <span class="op">*</span> R <span class="op">*</span> S <span class="op">*</span> Bo <span class="op">*</span> Be)<span class="op">;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> lo <span class="op">=</span> <span class="op">-</span><span class="dv">18</span><span class="op">,</span> hi <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">80</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> m <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">,</span> P1 <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> m<span class="op">,</span> I1 <span class="op">=</span> R <span class="op">*</span> G <span class="op">*</span> P1<span class="op">;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> s1 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s0 <span class="op">*</span> s0 <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> R <span class="op">*</span> R <span class="op">*</span> G <span class="op">*</span> P1 <span class="op">*</span> S <span class="op">*</span> Be <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> qe <span class="op">*</span> I1 <span class="op">*</span> Be)<span class="op">;</span> <span class="cf">if</span> (I1 <span class="op">/</span> (s1 <span class="op">+</span> s0) <span class="op">&gt;</span> Q) hi <span class="op">=</span> m<span class="op">;</span> <span class="cf">else</span> lo <span class="op">=</span> m<span class="op">;</span> }</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> pre <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> hi <span class="op">/</span> <span class="dv">2</span><span class="op">,</span> ql <span class="op">=</span> <span class="op">-</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">2</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">ber</span>) <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> hv <span class="op">*</span> Rb<span class="op">;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {Rb<span class="op">,</span> pin<span class="op">,</span> apd<span class="op">,</span> Mopt<span class="op">,</span> pre<span class="op">,</span> ql}<span class="op">;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sweep <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">61</span>)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> <span class="fu">sens</span>(<span class="fl">1e8</span> <span class="op">*</span> <span class="dv">1000</span> <span class="op">**</span> (i <span class="op">/</span> <span class="dv">60</span>)))<span class="op">;</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> sweep<span class="op">.</span><span class="fu">flatMap</span>(s <span class="kw">=&gt;</span> [{<span class="dt">Rb</span><span class="op">:</span> s<span class="op">.</span><span class="at">Rb</span> <span class="op">/</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(s<span class="op">.</span><span class="at">pin</span> <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"pin + amplifier"</span>}<span class="op">,</span> {<span class="dt">Rb</span><span class="op">:</span> s<span class="op">.</span><span class="at">Rb</span> <span class="op">/</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(s<span class="op">.</span><span class="at">apd</span> <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"APD (optimum M)"</span>}<span class="op">,</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>                                   {<span class="dt">Rb</span><span class="op">:</span> s<span class="op">.</span><span class="at">Rb</span> <span class="op">/</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(s<span class="op">.</span><span class="at">pre</span> <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"EDFA + pin"</span>}<span class="op">,</span> {<span class="dt">Rb</span><span class="op">:</span> s<span class="op">.</span><span class="at">Rb</span> <span class="op">/</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(s<span class="op">.</span><span class="at">ql</span> <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"quantum limit"</span>}])<span class="op">;</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {Q<span class="op">,</span> <span class="dt">cur</span><span class="op">:</span> <span class="fu">sens</span>(rv<span class="op">.</span><span class="at">Rb</span> <span class="op">*</span> <span class="fl">1e9</span>)<span class="op">,</span> pts<span class="op">,</span> hv}<span class="op">;</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"bit rate (Gb/s)"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"sensitivity (dBm)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"pin + amplifier"</span><span class="op">,</span> <span class="st">"APD (optimum M)"</span><span class="op">,</span> <span class="st">"EDFA + pin"</span><span class="op">,</span> <span class="st">"quantum limit"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#eda100"</span><span class="op">,</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#0b0b0b"</span>]}<span class="op">,</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(rvOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Rb"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"P"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"c"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([rv<span class="op">.</span><span class="at">Rb</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})]</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="90" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 89;"><span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;Q = </span><span class="sc">${</span>rvOut<span class="op">.</span><span class="at">Q</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> · at </span><span class="sc">${</span>rv<span class="op">.</span><span class="at">Rb</span><span class="sc">}</span><span class="vs"> Gb/s (photons per bit = P̄/(hν R&lt;sub&gt;b&lt;/sub&gt;)):&lt;br&gt;</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="vs">pin: &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">pin</span> <span class="op">/</span> <span class="fl">1e-3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dBm&lt;/b&gt; (</span><span class="sc">${</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">pin</span> <span class="op">/</span> (rvOut<span class="op">.</span><span class="at">hv</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">Rb</span> <span class="op">*</span> <span class="fl">1e9</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> photons/bit) ·</span></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="vs">APD at M = </span><span class="sc">${</span>rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">Mopt</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">: &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">apd</span> <span class="op">/</span> <span class="fl">1e-3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dBm&lt;/b&gt; (</span><span class="sc">${</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">apd</span> <span class="op">/</span> (rvOut<span class="op">.</span><span class="at">hv</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">Rb</span> <span class="op">*</span> <span class="fl">1e9</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">) ·</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="vs">EDFA + pin: &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">pre</span> <span class="op">/</span> <span class="fl">1e-3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dBm&lt;/b&gt; (</span><span class="sc">${</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">pre</span> <span class="op">/</span> (rvOut<span class="op">.</span><span class="at">hv</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">Rb</span> <span class="op">*</span> <span class="fl">1e9</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">) ·</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="vs">quantum limit </span><span class="sc">${</span>(<span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ql</span> <span class="op">/</span> <span class="fl">1e-3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dBm (</span><span class="sc">${</span>(<span class="op">-</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">2</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">ber</span>) <span class="op">/</span> <span class="dv">2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">)&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Things to try: the pin line has slope 5 dB per decade (thermal noise ∝ <span class="math inline">\(\sqrt{B_e}\)</span>), the quantum limit 10 dB per decade (fixed photons per bit). The pin receiver is 20–35 dB above the quantum limit at all rates, because the thermal noise of even a good amplifier corresponds to thousands of photons per bit. Lower the amplifier noise to 1 pA/√Hz: the pin improves by 10 dB. Set <span class="math inline">\(k=0\)</span> for the APD: it gains another 9 dB, because the gain becomes almost noiseless (<span class="math inline">\(F o2\)</span>). The preamplified receiver is within 9–14 dB of the quantum limit almost independently of the electronics; narrowing the optical filter towards the signal bandwidth helps. Lowering the BER target to <span class="math inline">\(10^{-3}\)</span> (with forward error correction, the norm today) halves Q and saves about 3 dB for the thermal-noise-limited pin.</p>
+</section>
+<section id="worked-comparison-at-10-gbs-1550-nm" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="worked-comparison-at-10-gbs-1550-nm"><span class="header-section-number">14.3</span> Worked comparison at 10 Gb/s, 1550 nm</h2>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Q, Rb, wl <span class="op">=</span> dl.q_from_ber(<span class="fl">1e-9</span>), <span class="fl">10e9</span>, <span class="fl">1.55e-6</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Be, R <span class="op">=</span> Rb<span class="op">/</span><span class="dv">2</span>, dl.responsivity(<span class="fl">0.72</span>, wl)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sT <span class="op">=</span> <span class="fl">10e-12</span><span class="op">*</span>np.sqrt(Be)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>hv <span class="op">=</span> dl.h<span class="op">*</span>dl.c0<span class="op">/</span>wl</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>pin <span class="op">=</span> dl.sensitivity_pin(Q, R, Be, i_amp<span class="op">=</span>sT)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Ms <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="fl">2.5</span>, <span class="dv">400</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>apd_all <span class="op">=</span> np.array([dl.sensitivity_apd(Q, R, Be, M, dl.excess_noise_mcintyre(M, <span class="fl">0.5</span>), i_amp<span class="op">=</span>sT) <span class="cf">for</span> M <span class="kw">in</span> Ms])</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>iapd <span class="op">=</span> np.argmin(apd_all)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>pre <span class="op">=</span> dl.sensitivity_preamp(Q, R, Be, <span class="fl">50e9</span>, <span class="dv">1000</span>, <span class="fl">5.0</span>, wl, sT)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Nql, Pql <span class="op">=</span> dl.quantum_limit(<span class="fl">1e-9</span>, wl, Rb)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>shot <span class="op">=</span> Q<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>Be<span class="op">/</span>R</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [(<span class="st">"pin + TIA (thermal + shot)"</span>, pin), (<span class="ss">f"APD, optimum M = </span><span class="sc">{</span>Ms[iapd]<span class="sc">:.0f}</span><span class="ss">"</span>, apd_all[iapd]), (<span class="st">"EDFA + pin"</span>, pre),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"ideal pin, shot noise only"</span>, shot), (<span class="st">"quantum limit (photon counting)"</span>, Pql)]</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(n, <span class="ss">f"</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(p<span class="op">/</span><span class="fl">1e-3</span>)<span class="sc">:.1f}</span><span class="ss"> dBm"</span>, <span class="ss">f"</span><span class="sc">{</span>p<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nW"</span>, <span class="ss">f"</span><span class="sc">{</span>p<span class="op">/</span>(hv<span class="op">*</span>Rb)<span class="sc">:.0f}</span><span class="ss">"</span>) <span class="cf">for</span> n, p <span class="kw">in</span> rows],</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"receiver"</span>, <span class="st">"sensitivity"</span>, <span class="st">"P̄"</span>, <span class="st">"photons per bit"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-rx" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.1: Sensitivity of 10 Gb/s receivers at BER = 10⁻⁹ (Q = 6), 1550 nm, QE = 0.72 (R = 0.9 A/W), B_e = 5 GHz, amplifier noise 10 pA/√Hz, APD with k = 0.5, EDFA with G = 30 dB, NF = 5 dB, B_o = 50 GHz.
+</figcaption>
+<div aria-describedby="tbl-rx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">receiver</th>
+<th data-quarto-table-cell-role="th">sensitivity</th>
+<th data-quarto-table-cell-role="th">P̄</th>
+<th data-quarto-table-cell-role="th">photons per bit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>pin + TIA (thermal + shot)</td>
+<td>-23.2 dBm</td>
+<td>4743.74 nW</td>
+<td>3701</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>APD, optimum M = 17</td>
+<td>-32.4 dBm</td>
+<td>580.36 nW</td>
+<td>453</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>EDFA + pin</td>
+<td>-39.5 dBm</td>
+<td>111.66 nW</td>
+<td>87</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>ideal pin, shot noise only</td>
+<td>-44.9 dBm</td>
+<td>32.02 nW</td>
+<td>25</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>quantum limit (photon counting)</td>
+<td>-48.9 dBm</td>
+<td>12.84 nW</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div id="cell-fig-ber" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">10</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">400</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> q_pin(Pa): I1 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>R<span class="op">*</span>Pa<span class="op">;</span> <span class="cf">return</span> I1<span class="op">/</span>(np.sqrt(sT<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>I1<span class="op">*</span>Be) <span class="op">+</span> sT)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> q_apd(Pa, M<span class="op">=</span>Ms[iapd]): F <span class="op">=</span> dl.excess_noise_mcintyre(M, <span class="fl">0.5</span>)<span class="op">;</span> I1 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>M<span class="op">*</span>R<span class="op">*</span>Pa<span class="op">;</span> <span class="cf">return</span> I1<span class="op">/</span>(np.sqrt(sT<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>M<span class="op">**</span><span class="dv">2</span><span class="op">*</span>F<span class="op">*</span><span class="dv">2</span><span class="op">*</span>R<span class="op">*</span>Pa<span class="op">*</span>Be) <span class="op">+</span> sT)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span> nsp <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>G<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(G <span class="op">-</span> <span class="dv">1</span>))<span class="op">;</span> S <span class="op">=</span> nsp<span class="op">*</span>(G <span class="op">-</span> <span class="dv">1</span>)<span class="op">*</span>hv</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>s0 <span class="op">=</span> np.sqrt(<span class="dv">4</span><span class="op">*</span>R<span class="op">**</span><span class="dv">2</span><span class="op">*</span>S<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="fl">50e9</span><span class="op">*</span>Be <span class="op">+</span> sT<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>R<span class="op">*</span>S<span class="op">*</span><span class="fl">50e9</span><span class="op">*</span>Be)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> q_pre(Pa): P1 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>Pa<span class="op">;</span> I1 <span class="op">=</span> R<span class="op">*</span>G<span class="op">*</span>P1<span class="op">;</span> <span class="cf">return</span> I1<span class="op">/</span>(np.sqrt(s0<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>R<span class="op">**</span><span class="dv">2</span><span class="op">*</span>G<span class="op">*</span>P1<span class="op">*</span>S<span class="op">*</span>Be <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>I1<span class="op">*</span>Be) <span class="op">+</span> s0)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f, lab <span class="kw">in</span> ((q_pin, <span class="st">"pin"</span>), (q_apd, <span class="st">"APD"</span>), (q_pre, <span class="st">"EDFA + pin"</span>)):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(<span class="dv">10</span><span class="op">*</span>np.log10(P<span class="op">/</span><span class="fl">1e-3</span>), dl.ber_from_q(f(P)), label<span class="op">=</span>lab)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> P<span class="op">/</span>(hv<span class="op">*</span>Rb)<span class="op">;</span> ax.semilogy(<span class="dv">10</span><span class="op">*</span>np.log10(P<span class="op">/</span><span class="fl">1e-3</span>), <span class="fl">0.5</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>N), <span class="st">"k--"</span>, label<span class="op">=</span><span class="st">"quantum limit ½exp(−2N̄)"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"average received power (dBm)"</span>, ylabel<span class="op">=</span><span class="st">"BER"</span>, ylim<span class="op">=</span>(<span class="fl">1e-15</span>, <span class="dv">1</span>), xlim<span class="op">=</span>(<span class="op">-</span><span class="dv">55</span>, <span class="op">-</span><span class="dv">10</span>))<span class="op">;</span> ax.axhline(<span class="fl">1e-9</span>, color<span class="op">=</span>dl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-ber" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="receivers_files/figure-html/fig-ber-output-1.png" width="755" height="391" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ber-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.1: BER versus received power at 10 Gb/s for the four receivers of the table (computed from Q(P̄)). The curves are steep: 1 dB more power lowers the BER by orders of magnitude, the ‘waterfall’ of receiver measurements.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="why-it-matters-the-link-budget" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="why-it-matters-the-link-budget"><span class="header-section-number">14.4</span> Why it matters: the link budget</h2>
+<p>Ch. 2 computed the attenuation of a fiber; Ch. 4 the launch power of a laser. The receiver sensitivity closes the budget: <span class="math inline">\(P_\text{launch}-\alpha L-\text{penalties}\ge\bar P_\text{sens}\)</span>. With 0 dBm launched, 0.2 dB/km and 3 dB of margin, the 10 Gb/s pin receiver above reaches about 100 km, the APD about 150 km, and the preamplified receiver about 180 km (before dispersion, Ch. 2, becomes the limit). Long-haul links put amplifiers every 80 km instead, and their accumulated ASE, not the receiver, sets the OSNR (Ch. 4).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Coherent detection.</strong> Mixing the signal with a strong local oscillator <span class="math inline">\(P_{LO}\)</span> on the photodiode gives a beat current <span class="math inline">\(2\mathcal R\sqrt{P_sP_{LO}}\)</span> that can be made far larger than the thermal noise; the receiver becomes shot-noise limited by the LO. Show that the SNR then approaches <span class="math inline">\(\eta P_s/(h\nu B)\)</span> and that heterodyne PSK needs about 18 photons per bit for BER <span class="math inline">\(10^{-9}\)</span>. Coherent receivers with balanced photodiodes and DSP carry 400–800 Gb/s per wavelength today.</li>
+<li><strong>Photon counting at the quantum limit.</strong> Deep-space optical links (NASA’s DSOC on Psyche, 2023) use superconducting nanowire single-photon detectors and pulse-position modulation to reach ~1 photon per bit or less. Why can PPM beat the 10 photons/bit of OOK?</li>
+<li><strong>Non-Gaussian statistics.</strong> The APD gain and the ASE beat noise are not Gaussian; the Gaussian Q approximation overestimates the required power for APDs (McIntyre distribution) by about 1 dB.</li>
+<li><strong>Extinction ratio penalty.</strong> If the “0” carries a power <span class="math inline">\(P_0=rP_1\)</span> (laser biased above threshold, Ch. 4), the thermal-limited sensitivity degrades by <span class="math inline">\((1+r)/(1-r)\)</span>. Compute the penalty for <span class="math inline">\(r=0.1\)</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>G. P. Agrawal, <em>Fiber-Optic Communication Systems</em> (Wiley, 4th ed.), ch.&nbsp;4 (receivers) and sec.&nbsp;6.5 (preamplified receivers).</li>
+<li>S. D. Personick, “Receiver design for digital fiber optic communication systems”, <em>Bell Syst. Tech. J.</em> 52, 843 (1973).</li>
+<li>K. Kikuchi, “Fundamentals of coherent optical fiber communications”, <em>J. Lightwave Technol.</em> 34, 157 (2016).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">14.5</span> Try it yourself</h2>
+<ol type="1">
+<li>Show that <span class="math inline">\(Q^2eB_e/\mathcal R\)</span> corresponds to <span class="math inline">\(Q^2/2\)</span> photons per bit when <span class="math inline">\(B_e=R_b/2\)</span> and <span class="math inline">\(\eta=1\)</span>, i.e.&nbsp;18 photons at BER <span class="math inline">\(10^{-9}\)</span>. Why is it worse than the quantum limit of 10?</li>
+<li>In the panel, at what bit rate do the pin and APD sensitivities become equal for <span class="math inline">\(k=0.5\)</span>? Explain why APDs lose their advantage at low bit rates with a quiet amplifier.</li>
+<li>A 25 Gb/s PON receiver must reach −28 dBm at BER <span class="math inline">\(10^{-3}\)</span>. Which receiver type do you need?</li>
+<li>Explain why the EDFA-preamplified receiver hardly cares about the electronic noise of the amplifier after the photodiode.</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7YmVyUSwgcWUsIGgsIGMwLCBtY2ludHlyZX0gZnJvbSBcIi4vZGV0X3NpbS5qc1wiXG52aWV3b2YgcnYgPSBJbnB1dHMuZm9ybSh7XG4gIGJlcjogSW5wdXRzLnNlbGVjdChuZXcgTWFwKFtbXCIxMOKBu8KzICh3aXRoIEZFQylcIiwgMWUtM10sIFtcIjEw4oG74oG5XCIsIDFlLTldLCBbXCIxMOKBu8K5wrJcIiwgMWUtMTJdXSksIHt2YWx1ZTogMWUtOSwgbGFiZWw6IFwidGFyZ2V0IEJFUlwifSksXG4gIHdsOiBJbnB1dHMucmFuZ2UoWzAuOCwgMS42XSwge3ZhbHVlOiAxLjU1LCBzdGVwOiAwLjAxLCBsYWJlbDogXCJ3YXZlbGVuZ3RoICjCtW0pXCJ9KSxcbiAgZXRhOiBJbnB1dHMucmFuZ2UoWzAuMywgMV0sIHt2YWx1ZTogMC43Miwgc3RlcDogMC4wMSwgbGFiZWw6IFwiZGV0ZWN0b3IgUUVcIn0pLFxuICBpbm9pc2U6IElucHV0cy5yYW5nZShbMC41LCA1MF0sIHt2YWx1ZTogMTAsIHN0ZXA6IDAuNSwgbGFiZWw6IFwiYW1wbGlmaWVyIGlucHV0IG5vaXNlIChwQS/iiJpIeilcIn0pLFxuICBrOiBJbnB1dHMucmFuZ2UoWzAsIDFdLCB7dmFsdWU6IDAuNSwgc3RlcDogMC4wMSwgbGFiZWw6IFwiQVBEIGlvbmlzYXRpb24gcmF0aW8ga1wifSksXG4gIE5GOiBJbnB1dHMucmFuZ2UoWzMsIDhdLCB7dmFsdWU6IDUsIHN0ZXA6IDAuMSwgbGFiZWw6IFwiRURGQSBub2lzZSBmaWd1cmUgKGRCKVwifSksXG4gIEJvOiBJbnB1dHMucmFuZ2UoWzEyLjUsIDIwMF0sIHt2YWx1ZTogNTAsIHN0ZXA6IDIuNSwgbGFiZWw6IFwib3B0aWNhbCBmaWx0ZXIgYmFuZHdpZHRoIChHSHopXCJ9KSxcbiAgUmI6IElucHV0cy5yYW5nZShbMC4xLCAxMDBdLCB7dmFsdWU6IDEwLCBzdGVwOiAwLjEsIGxhYmVsOiBcImJpdCByYXRlIChHYi9zKSwgQl9lID0gUl9iLzJcIn0pXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicnZPdXQgPSB7XG4gIGNvbnN0IFEgPSAoKCkgPT4geyBsZXQgbG8gPSAwLCBoaSA9IDEyOyBmb3IgKGxldCBpID0gMDsgaSA8IDgwOyBpKyspIHsgY29uc3QgbSA9IChsbyArIGhpKSAvIDI7IGlmIChiZXJRKG0pID4gcnYuYmVyKSBsbyA9IG07IGVsc2UgaGkgPSBtOyB9IHJldHVybiAobG8gKyBoaSkgLyAyOyB9KSgpO1xuICBjb25zdCB3bCA9IHJ2LndsICogMWUtNiwgaHYgPSBoICogYzAgLyB3bCwgUiA9IHJ2LmV0YSAqIHFlIC8gaHYsIEcgPSAxMDAwO1xuICBjb25zdCBzZW5zID0gKFJiKSA9PiB7XG4gICAgY29uc3QgQmUgPSBSYiAvIDIsIHNUID0gcnYuaW5vaXNlICogMWUtMTIgKiBNYXRoLnNxcnQoQmUpO1xuICAgIGNvbnN0IHBpbiA9ICgyICogcWUgKiBCZSAqIFEgKiBRICsgMiAqIFEgKiBzVCkgLyAoMiAqIFIpO1xuICAgIGxldCBhcGQgPSBJbmZpbml0eSwgTW9wdCA9IDE7XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPD0gMzAwOyBpKyspIHsgY29uc3QgTSA9IDEwICoqICgyLjUgKiBpIC8gMzAwKSwgRiA9IG1jaW50eXJlKE0sIHJ2LmspLCBwID0gKFEgKiBRICogMiAqIHFlICogRiAqIE0gKiBCZSArIDIgKiBRICogc1QpIC8gKE0gKiBSKSAvIDI7IGlmIChwIDwgYXBkKSB7IGFwZCA9IHA7IE1vcHQgPSBNOyB9IH1cbiAgICBjb25zdCBuc3AgPSAxMCAqKiAocnYuTkYgLyAxMCkgKiBHIC8gKDIgKiAoRyAtIDEpKSwgUyA9IG5zcCAqIChHIC0gMSkgKiBodiwgQm8gPSBydi5CbyAqIDFlOTtcbiAgICBjb25zdCBzMCA9IE1hdGguc3FydCg0ICogUiAqIFIgKiBTICogUyAqIEJvICogQmUgKyBzVCAqIHNUICsgMiAqIHFlICogUiAqIFMgKiBCbyAqIEJlKTtcbiAgICBsZXQgbG8gPSAtMTgsIGhpID0gLTE7IGZvciAobGV0IGkgPSAwOyBpIDwgODA7IGkrKykgeyBjb25zdCBtID0gKGxvICsgaGkpIC8gMiwgUDEgPSAxMCAqKiBtLCBJMSA9IFIgKiBHICogUDE7XG4gICAgICBjb25zdCBzMSA9IE1hdGguc3FydChzMCAqIHMwICsgNCAqIFIgKiBSICogRyAqIFAxICogUyAqIEJlICsgMiAqIHFlICogSTEgKiBCZSk7IGlmIChJMSAvIChzMSArIHMwKSA+IFEpIGhpID0gbTsgZWxzZSBsbyA9IG07IH1cbiAgICBjb25zdCBwcmUgPSAxMCAqKiBoaSAvIDIsIHFsID0gLU1hdGgubG9nKDIgKiBydi5iZXIpIC8gMiAqIGh2ICogUmI7XG4gICAgcmV0dXJuIHtSYiwgcGluLCBhcGQsIE1vcHQsIHByZSwgcWx9O1xuICB9O1xuICBjb25zdCBzd2VlcCA9IGQzLnJhbmdlKDAsIDYxKS5tYXAoaSA9PiBzZW5zKDFlOCAqIDEwMDAgKiogKGkgLyA2MCkpKTtcbiAgY29uc3QgcHRzID0gc3dlZXAuZmxhdE1hcChzID0+IFt7UmI6IHMuUmIgLyAxZTksIFA6IDEwICogTWF0aC5sb2cxMChzLnBpbiAvIDFlLTMpLCBjOiBcInBpbiArIGFtcGxpZmllclwifSwge1JiOiBzLlJiIC8gMWU5LCBQOiAxMCAqIE1hdGgubG9nMTAocy5hcGQgLyAxZS0zKSwgYzogXCJBUEQgKG9wdGltdW0gTSlcIn0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHtSYjogcy5SYiAvIDFlOSwgUDogMTAgKiBNYXRoLmxvZzEwKHMucHJlIC8gMWUtMyksIGM6IFwiRURGQSArIHBpblwifSwge1JiOiBzLlJiIC8gMWU5LCBQOiAxMCAqIE1hdGgubG9nMTAocy5xbCAvIDFlLTMpLCBjOiBcInF1YW50dW0gbGltaXRcIn1dKTtcbiAgcmV0dXJuIHtRLCBjdXI6IHNlbnMocnYuUmIgKiAxZTkpLCBwdHMsIGh2fTtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMzIwLCB4OiB7bGFiZWw6IFwiYml0IHJhdGUgKEdiL3MpXCIsIHR5cGU6IFwibG9nXCJ9LCB5OiB7bGFiZWw6IFwic2Vuc2l0aXZpdHkgKGRCbSlcIiwgZ3JpZDogdHJ1ZX0sXG4gIGNvbG9yOiB7bGVnZW5kOiB0cnVlLCBkb21haW46IFtcInBpbiArIGFtcGxpZmllclwiLCBcIkFQRCAob3B0aW11bSBNKVwiLCBcIkVERkEgKyBwaW5cIiwgXCJxdWFudHVtIGxpbWl0XCJdLCByYW5nZTogW1wiI2UzNDk0OFwiLCBcIiNlZGExMDBcIiwgXCIjMmE3OGQ2XCIsIFwiIzBiMGIwYlwiXX0sXG4gIG1hcmtzOiBbUGxvdC5saW5lKHJ2T3V0LnB0cywge3g6IFwiUmJcIiwgeTogXCJQXCIsIHN0cm9rZTogXCJjXCIsIHN0cm9rZVdpZHRoOiAyfSksIFBsb3QucnVsZVgoW3J2LlJiXSwge3N0cm9rZTogXCIjNTI1MTRlXCIsIHN0cm9rZURhc2hhcnJheTogXCI0LDNcIn0pXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cInJlc3VsdC1ib3hcIj5RID0gJHtydk91dC5RLnRvRml4ZWQoMil9IMK3IGF0ICR7cnYuUmJ9IEdiL3MgKHBob3RvbnMgcGVyIGJpdCA9IFDMhC8oaM69IFI8c3ViPmI8L3N1Yj4pKTo8YnI+XG5waW46IDxiPiR7KDEwICogTWF0aC5sb2cxMChydk91dC5jdXIucGluIC8gMWUtMykpLnRvRml4ZWQoMSl9IGRCbTwvYj4gKCR7KHJ2T3V0LmN1ci5waW4gLyAocnZPdXQuaHYgKiBydi5SYiAqIDFlOSkpLnRvRml4ZWQoMCl9IHBob3RvbnMvYml0KSDCt1xuQVBEIGF0IE0gPSAke3J2T3V0LmN1ci5Nb3B0LnRvRml4ZWQoMSl9OiA8Yj4keygxMCAqIE1hdGgubG9nMTAocnZPdXQuY3VyLmFwZCAvIDFlLTMpKS50b0ZpeGVkKDEpfSBkQm08L2I+ICgkeyhydk91dC5jdXIuYXBkIC8gKHJ2T3V0Lmh2ICogcnYuUmIgKiAxZTkpKS50b0ZpeGVkKDApfSkgwrdcbkVERkEgKyBwaW46IDxiPiR7KDEwICogTWF0aC5sb2cxMChydk91dC5jdXIucHJlIC8gMWUtMykpLnRvRml4ZWQoMSl9IGRCbTwvYj4gKCR7KHJ2T3V0LmN1ci5wcmUgLyAocnZPdXQuaHYgKiBydi5SYiAqIDFlOSkpLnRvRml4ZWQoMCl9KSDCt1xucXVhbnR1bSBsaW1pdCAkeygxMCAqIE1hdGgubG9nMTAocnZPdXQuY3VyLnFsIC8gMWUtMykpLnRvRml4ZWQoMSl9IGRCbSAoJHsoLU1hdGgubG9nKDIgKiBydi5iZXIpIC8gMikudG9GaXhlZCgxKX0pPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdydicpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter5\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./solar-cells.html" class="pagination-link" aria-label="Solar cells">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Solar cells</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./sq-limit.html" class="pagination-link" aria-label="Going further: the Shockley–Queisser limit">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Going further: optical receivers, BER and sensitivity {#sec-receivers}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/receivers.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> detlib <span class="im">as</span> dl</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>dl.use_style()</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>*This chapter is not in the slides. It connects the noise analysis of @sec-noise and @sec-apd-noise with the bit-error rate of</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>Ch. 2 and the optical amplifiers of Ch. 4, and answers the question every link designer asks: how many photons does one bit need?*</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>A digital receiver decides, bit by bit, whether a "1" or a "0" was sent by comparing the photocurrent with a threshold. With</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>on–off keying (OOK) the "1" gives a mean current $I_1$ with noise $\sigma_1$ and the "0" gives $I_0$ with noise $\sigma_0$. For</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>Gaussian noise and the optimum threshold, the **bit-error rate** depends only on the **Q factor** (Ch. 2):</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>Q=\frac{I_1-I_0}{\sigma_1+\sigma_0},\qquad \text{BER}=\frac12\operatorname{erfc}<span class="sc">\!</span>\left(\frac{Q}{\sqrt2}\right),\qquad</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>\text{BER}=10^{-9}\Leftrightarrow Q=6,\quad 10^{-12}\Leftrightarrow Q=7.03 .</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>The **sensitivity** is the average optical power $\bar P=(P_1+P_0)/2$ that gives the target BER. With $P_0=0$, a photodiode of</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>responsivity $\mathcal R$ and an electrical bandwidth $B_e\approx R_b/2$ for a bit rate $R_b$:</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**pin, thermal-noise limited** ($\sigma_0=\sigma_1=\sigma_T$, the noise of the load or TIA): $\bar P=Q\sigma_T/\mathcal R$. It grows as</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  $\sqrt{B_e}$ and is independent of the photon energy.</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**pin, shot-noise limited** (ideal amplifier): $\bar P=Q^2eB_e/\mathcal R$, i.e. $Q^2/2\approx18$ photons per bit for $\eta=1$</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  at BER $10^{-9}$ (with $B_e=R_b/2$).</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**APD**: the signal is multiplied by $M$, the thermal noise is not, and the shot noise gets the excess factor $F$; there is an optimum</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  $M$ (@sec-apd-noise).</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Optically preamplified** (EDFA + pin, Ch. 4): the amplifier gain $G$ lifts the signal far above the thermal noise; the noise is now the</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  beat between the signal and the amplified spontaneous emission, $\sigma^2_{s\text{-}sp}=4\mathcal R^2GP_1S_{sp}B_e$, with</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  $S_{sp}=n_{sp}(G-1)h\nu$, plus the ASE–ASE beat in the optical bandwidth $B_o$.</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Quantum limit**: an ideal photon counter makes an error only when a "1" produces no photoelectron at all, with probability</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  $e^{-N_1}$. $\text{BER}=\frac12e^{-N_1}$ gives $N_1=20$ photons in a "1", i.e. **10 photons per bit** on average at BER $10^{-9}$.</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live panel: sensitivity of four receivers</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {berQ<span class="op">,</span> qe<span class="op">,</span> h<span class="op">,</span> c0<span class="op">,</span> mcintyre} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>viewof rv <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">ber</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">"10⁻³ (with FEC)"</span><span class="op">,</span> <span class="fl">1e-3</span>]<span class="op">,</span> [<span class="st">"10⁻⁹"</span><span class="op">,</span> <span class="fl">1e-9</span>]<span class="op">,</span> [<span class="st">"10⁻¹²"</span><span class="op">,</span> <span class="fl">1e-12</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1e-9</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"target BER"</span>})<span class="op">,</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">wl</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.8</span><span class="op">,</span> <span class="fl">1.6</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.55</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"wavelength (µm)"</span>})<span class="op">,</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eta</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.3</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.72</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"detector QE"</span>})<span class="op">,</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  <span class="dt">inoise</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"amplifier input noise (pA/√Hz)"</span>})<span class="op">,</span></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  <span class="dt">k</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"APD ionisation ratio k"</span>})<span class="op">,</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">NF</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">3</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"EDFA noise figure (dB)"</span>})<span class="op">,</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Bo</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">12.5</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">2.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"optical filter bandwidth (GHz)"</span>})<span class="op">,</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Rb</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"bit rate (Gb/s), B_e = R_b/2"</span>})</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>rvOut <span class="op">=</span> {</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Q <span class="op">=</span> (() <span class="kw">=&gt;</span> { <span class="kw">let</span> lo <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> hi <span class="op">=</span> <span class="dv">12</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">80</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> m <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> <span class="cf">if</span> (<span class="fu">berQ</span>(m) <span class="op">&gt;</span> rv<span class="op">.</span><span class="at">ber</span>) lo <span class="op">=</span> m<span class="op">;</span> <span class="cf">else</span> hi <span class="op">=</span> m<span class="op">;</span> } <span class="cf">return</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> })()<span class="op">;</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> wl <span class="op">=</span> rv<span class="op">.</span><span class="at">wl</span> <span class="op">*</span> <span class="fl">1e-6</span><span class="op">,</span> hv <span class="op">=</span> h <span class="op">*</span> c0 <span class="op">/</span> wl<span class="op">,</span> R <span class="op">=</span> rv<span class="op">.</span><span class="at">eta</span> <span class="op">*</span> qe <span class="op">/</span> hv<span class="op">,</span> G <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sens <span class="op">=</span> (Rb) <span class="kw">=&gt;</span> {</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Be <span class="op">=</span> Rb <span class="op">/</span> <span class="dv">2</span><span class="op">,</span> sT <span class="op">=</span> rv<span class="op">.</span><span class="at">inoise</span> <span class="op">*</span> <span class="fl">1e-12</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(Be)<span class="op">;</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> pin <span class="op">=</span> (<span class="dv">2</span> <span class="op">*</span> qe <span class="op">*</span> Be <span class="op">*</span> Q <span class="op">*</span> Q <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> Q <span class="op">*</span> sT) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> R)<span class="op">;</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> apd <span class="op">=</span> <span class="kw">Infinity</span><span class="op">,</span> Mopt <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">300</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> M <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> (<span class="fl">2.5</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">300</span>)<span class="op">,</span> F <span class="op">=</span> <span class="fu">mcintyre</span>(M<span class="op">,</span> rv<span class="op">.</span><span class="at">k</span>)<span class="op">,</span> p <span class="op">=</span> (Q <span class="op">*</span> Q <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> qe <span class="op">*</span> F <span class="op">*</span> M <span class="op">*</span> Be <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> Q <span class="op">*</span> sT) <span class="op">/</span> (M <span class="op">*</span> R) <span class="op">/</span> <span class="dv">2</span><span class="op">;</span> <span class="cf">if</span> (p <span class="op">&lt;</span> apd) { apd <span class="op">=</span> p<span class="op">;</span> Mopt <span class="op">=</span> M<span class="op">;</span> } }</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> nsp <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> (rv<span class="op">.</span><span class="at">NF</span> <span class="op">/</span> <span class="dv">10</span>) <span class="op">*</span> G <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> (G <span class="op">-</span> <span class="dv">1</span>))<span class="op">,</span> S <span class="op">=</span> nsp <span class="op">*</span> (G <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> hv<span class="op">,</span> Bo <span class="op">=</span> rv<span class="op">.</span><span class="at">Bo</span> <span class="op">*</span> <span class="fl">1e9</span><span class="op">;</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> s0 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">4</span> <span class="op">*</span> R <span class="op">*</span> R <span class="op">*</span> S <span class="op">*</span> S <span class="op">*</span> Bo <span class="op">*</span> Be <span class="op">+</span> sT <span class="op">*</span> sT <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> qe <span class="op">*</span> R <span class="op">*</span> S <span class="op">*</span> Bo <span class="op">*</span> Be)<span class="op">;</span></span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> lo <span class="op">=</span> <span class="op">-</span><span class="dv">18</span><span class="op">,</span> hi <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">80</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> m <span class="op">=</span> (lo <span class="op">+</span> hi) <span class="op">/</span> <span class="dv">2</span><span class="op">,</span> P1 <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> m<span class="op">,</span> I1 <span class="op">=</span> R <span class="op">*</span> G <span class="op">*</span> P1<span class="op">;</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> s1 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(s0 <span class="op">*</span> s0 <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> R <span class="op">*</span> R <span class="op">*</span> G <span class="op">*</span> P1 <span class="op">*</span> S <span class="op">*</span> Be <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> qe <span class="op">*</span> I1 <span class="op">*</span> Be)<span class="op">;</span> <span class="cf">if</span> (I1 <span class="op">/</span> (s1 <span class="op">+</span> s0) <span class="op">&gt;</span> Q) hi <span class="op">=</span> m<span class="op">;</span> <span class="cf">else</span> lo <span class="op">=</span> m<span class="op">;</span> }</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> pre <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> hi <span class="op">/</span> <span class="dv">2</span><span class="op">,</span> ql <span class="op">=</span> <span class="op">-</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">2</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">ber</span>) <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> hv <span class="op">*</span> Rb<span class="op">;</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {Rb<span class="op">,</span> pin<span class="op">,</span> apd<span class="op">,</span> Mopt<span class="op">,</span> pre<span class="op">,</span> ql}<span class="op">;</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sweep <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">61</span>)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> <span class="fu">sens</span>(<span class="fl">1e8</span> <span class="op">*</span> <span class="dv">1000</span> <span class="op">**</span> (i <span class="op">/</span> <span class="dv">60</span>)))<span class="op">;</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> sweep<span class="op">.</span><span class="fu">flatMap</span>(s <span class="kw">=&gt;</span> [{<span class="dt">Rb</span><span class="op">:</span> s<span class="op">.</span><span class="at">Rb</span> <span class="op">/</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(s<span class="op">.</span><span class="at">pin</span> <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"pin + amplifier"</span>}<span class="op">,</span> {<span class="dt">Rb</span><span class="op">:</span> s<span class="op">.</span><span class="at">Rb</span> <span class="op">/</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(s<span class="op">.</span><span class="at">apd</span> <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"APD (optimum M)"</span>}<span class="op">,</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>                                   {<span class="dt">Rb</span><span class="op">:</span> s<span class="op">.</span><span class="at">Rb</span> <span class="op">/</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(s<span class="op">.</span><span class="at">pre</span> <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"EDFA + pin"</span>}<span class="op">,</span> {<span class="dt">Rb</span><span class="op">:</span> s<span class="op">.</span><span class="at">Rb</span> <span class="op">/</span> <span class="fl">1e9</span><span class="op">,</span> <span class="dt">P</span><span class="op">:</span> <span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(s<span class="op">.</span><span class="at">ql</span> <span class="op">/</span> <span class="fl">1e-3</span>)<span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"quantum limit"</span>}])<span class="op">;</span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {Q<span class="op">,</span> <span class="dt">cur</span><span class="op">:</span> <span class="fu">sens</span>(rv<span class="op">.</span><span class="at">Rb</span> <span class="op">*</span> <span class="fl">1e9</span>)<span class="op">,</span> pts<span class="op">,</span> hv}<span class="op">;</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"bit rate (Gb/s)"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"sensitivity (dBm)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"pin + amplifier"</span><span class="op">,</span> <span class="st">"APD (optimum M)"</span><span class="op">,</span> <span class="st">"EDFA + pin"</span><span class="op">,</span> <span class="st">"quantum limit"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#eda100"</span><span class="op">,</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="st">"#0b0b0b"</span>]}<span class="op">,</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(rvOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Rb"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"P"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"c"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([rv<span class="op">.</span><span class="at">Rb</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})]</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;Q = </span><span class="sc">${</span>rvOut<span class="op">.</span><span class="at">Q</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> · at </span><span class="sc">${</span>rv<span class="op">.</span><span class="at">Rb</span><span class="sc">}</span><span class="vs"> Gb/s (photons per bit = P̄/(hν R&lt;sub&gt;b&lt;/sub&gt;)):&lt;br&gt;</span></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="vs">pin: &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">pin</span> <span class="op">/</span> <span class="fl">1e-3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dBm&lt;/b&gt; (</span><span class="sc">${</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">pin</span> <span class="op">/</span> (rvOut<span class="op">.</span><span class="at">hv</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">Rb</span> <span class="op">*</span> <span class="fl">1e9</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> photons/bit) ·</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a><span class="vs">APD at M = </span><span class="sc">${</span>rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">Mopt</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">: &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">apd</span> <span class="op">/</span> <span class="fl">1e-3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dBm&lt;/b&gt; (</span><span class="sc">${</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">apd</span> <span class="op">/</span> (rvOut<span class="op">.</span><span class="at">hv</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">Rb</span> <span class="op">*</span> <span class="fl">1e9</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">) ·</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a><span class="vs">EDFA + pin: &lt;b&gt;</span><span class="sc">${</span>(<span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">pre</span> <span class="op">/</span> <span class="fl">1e-3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dBm&lt;/b&gt; (</span><span class="sc">${</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">pre</span> <span class="op">/</span> (rvOut<span class="op">.</span><span class="at">hv</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">Rb</span> <span class="op">*</span> <span class="fl">1e9</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">) ·</span></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a><span class="vs">quantum limit </span><span class="sc">${</span>(<span class="dv">10</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(rvOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ql</span> <span class="op">/</span> <span class="fl">1e-3</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> dBm (</span><span class="sc">${</span>(<span class="op">-</span><span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">2</span> <span class="op">*</span> rv<span class="op">.</span><span class="at">ber</span>) <span class="op">/</span> <span class="dv">2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">)&lt;/div&gt;`</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>Things to try: the pin line has slope 5 dB per decade (thermal noise ∝ $\sqrt{B_e}$), the quantum limit 10 dB per decade (fixed photons</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>per bit). The pin receiver is 20–35 dB above the quantum limit at all rates, because the thermal noise of even a good amplifier</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>corresponds to thousands of photons per bit. Lower the amplifier noise to 1 pA/√Hz: the pin improves by 10 dB.</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>Set $k=0$ for the APD: it gains another 9 dB, because the gain becomes almost noiseless ($F o2$). The preamplified receiver is</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>within 9–14 dB of the quantum limit almost independently of the electronics; narrowing the optical filter towards the signal bandwidth</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>helps. Lowering the BER target to $10^{-3}$ (with forward error correction, the norm today) halves Q and saves about 3 dB for the</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>thermal-noise-limited pin.</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked comparison at 10 Gb/s, 1550 nm</span></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-rx</span></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Sensitivity of 10 Gb/s receivers at BER = 10⁻⁹ (Q = 6), 1550 nm, QE = 0.72 (R = 0.9 A/W), B_e = 5 GHz, amplifier noise 10 pA/√Hz, APD with k = 0.5, EDFA with G = 30 dB, NF = 5 dB, B_o = 50 GHz."</span></span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>Q, Rb, wl <span class="op">=</span> dl.q_from_ber(<span class="fl">1e-9</span>), <span class="fl">10e9</span>, <span class="fl">1.55e-6</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>Be, R <span class="op">=</span> Rb<span class="op">/</span><span class="dv">2</span>, dl.responsivity(<span class="fl">0.72</span>, wl)</span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>sT <span class="op">=</span> <span class="fl">10e-12</span><span class="op">*</span>np.sqrt(Be)</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>hv <span class="op">=</span> dl.h<span class="op">*</span>dl.c0<span class="op">/</span>wl</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>pin <span class="op">=</span> dl.sensitivity_pin(Q, R, Be, i_amp<span class="op">=</span>sT)</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>Ms <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="fl">2.5</span>, <span class="dv">400</span>)</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>apd_all <span class="op">=</span> np.array([dl.sensitivity_apd(Q, R, Be, M, dl.excess_noise_mcintyre(M, <span class="fl">0.5</span>), i_amp<span class="op">=</span>sT) <span class="cf">for</span> M <span class="kw">in</span> Ms])</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>iapd <span class="op">=</span> np.argmin(apd_all)</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>pre <span class="op">=</span> dl.sensitivity_preamp(Q, R, Be, <span class="fl">50e9</span>, <span class="dv">1000</span>, <span class="fl">5.0</span>, wl, sT)</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>Nql, Pql <span class="op">=</span> dl.quantum_limit(<span class="fl">1e-9</span>, wl, Rb)</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>shot <span class="op">=</span> Q<span class="op">**</span><span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>Be<span class="op">/</span>R</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [(<span class="st">"pin + TIA (thermal + shot)"</span>, pin), (<span class="ss">f"APD, optimum M = </span><span class="sc">{</span>Ms[iapd]<span class="sc">:.0f}</span><span class="ss">"</span>, apd_all[iapd]), (<span class="st">"EDFA + pin"</span>, pre),</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"ideal pin, shot noise only"</span>, shot), (<span class="st">"quantum limit (photon counting)"</span>, Pql)]</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(n, <span class="ss">f"</span><span class="sc">{</span><span class="dv">10</span><span class="op">*</span>np<span class="sc">.</span>log10(p<span class="op">/</span><span class="fl">1e-3</span>)<span class="sc">:.1f}</span><span class="ss"> dBm"</span>, <span class="ss">f"</span><span class="sc">{</span>p<span class="op">*</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nW"</span>, <span class="ss">f"</span><span class="sc">{</span>p<span class="op">/</span>(hv<span class="op">*</span>Rb)<span class="sc">:.0f}</span><span class="ss">"</span>) <span class="cf">for</span> n, p <span class="kw">in</span> rows],</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"receiver"</span>, <span class="st">"sensitivity"</span>, <span class="st">"P̄"</span>, <span class="st">"photons per bit"</span>])</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ber</span></span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "BER versus received power at 10 Gb/s for the four receivers of the table (computed from Q(P̄)). The curves are steep: 1 dB more power lowers the BER by orders of magnitude, the 'waterfall' of receiver measurements."</span></span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">10</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">400</span>)</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> q_pin(Pa): I1 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>R<span class="op">*</span>Pa<span class="op">;</span> <span class="cf">return</span> I1<span class="op">/</span>(np.sqrt(sT<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>I1<span class="op">*</span>Be) <span class="op">+</span> sT)</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> q_apd(Pa, M<span class="op">=</span>Ms[iapd]): F <span class="op">=</span> dl.excess_noise_mcintyre(M, <span class="fl">0.5</span>)<span class="op">;</span> I1 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>M<span class="op">*</span>R<span class="op">*</span>Pa<span class="op">;</span> <span class="cf">return</span> I1<span class="op">/</span>(np.sqrt(sT<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>M<span class="op">**</span><span class="dv">2</span><span class="op">*</span>F<span class="op">*</span><span class="dv">2</span><span class="op">*</span>R<span class="op">*</span>Pa<span class="op">*</span>Be) <span class="op">+</span> sT)</span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span> nsp <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="fl">0.5</span><span class="op">*</span>G<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(G <span class="op">-</span> <span class="dv">1</span>))<span class="op">;</span> S <span class="op">=</span> nsp<span class="op">*</span>(G <span class="op">-</span> <span class="dv">1</span>)<span class="op">*</span>hv</span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>s0 <span class="op">=</span> np.sqrt(<span class="dv">4</span><span class="op">*</span>R<span class="op">**</span><span class="dv">2</span><span class="op">*</span>S<span class="op">**</span><span class="dv">2</span><span class="op">*</span><span class="fl">50e9</span><span class="op">*</span>Be <span class="op">+</span> sT<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>R<span class="op">*</span>S<span class="op">*</span><span class="fl">50e9</span><span class="op">*</span>Be)</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> q_pre(Pa): P1 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>Pa<span class="op">;</span> I1 <span class="op">=</span> R<span class="op">*</span>G<span class="op">*</span>P1<span class="op">;</span> <span class="cf">return</span> I1<span class="op">/</span>(np.sqrt(s0<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>R<span class="op">**</span><span class="dv">2</span><span class="op">*</span>G<span class="op">*</span>P1<span class="op">*</span>S<span class="op">*</span>Be <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>dl.qe<span class="op">*</span>I1<span class="op">*</span>Be) <span class="op">+</span> s0)</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f, lab <span class="kw">in</span> ((q_pin, <span class="st">"pin"</span>), (q_apd, <span class="st">"APD"</span>), (q_pre, <span class="st">"EDFA + pin"</span>)):</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>    ax.semilogy(<span class="dv">10</span><span class="op">*</span>np.log10(P<span class="op">/</span><span class="fl">1e-3</span>), dl.ber_from_q(f(P)), label<span class="op">=</span>lab)</span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> P<span class="op">/</span>(hv<span class="op">*</span>Rb)<span class="op">;</span> ax.semilogy(<span class="dv">10</span><span class="op">*</span>np.log10(P<span class="op">/</span><span class="fl">1e-3</span>), <span class="fl">0.5</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>N), <span class="st">"k--"</span>, label<span class="op">=</span><span class="st">"quantum limit ½exp(−2N̄)"</span>)</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"average received power (dBm)"</span>, ylabel<span class="op">=</span><span class="st">"BER"</span>, ylim<span class="op">=</span>(<span class="fl">1e-15</span>, <span class="dv">1</span>), xlim<span class="op">=</span>(<span class="op">-</span><span class="dv">55</span>, <span class="op">-</span><span class="dv">10</span>))<span class="op">;</span> ax.axhline(<span class="fl">1e-9</span>, color<span class="op">=</span>dl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why it matters: the link budget</span></span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>Ch. 2 computed the attenuation of a fiber; Ch. 4 the launch power of a laser. The receiver sensitivity closes the budget:</span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>$P_\text{launch}-\alpha L-\text{penalties}\ge\bar P_\text{sens}$. With 0 dBm launched, 0.2 dB/km and 3 dB of margin, the 10 Gb/s pin</span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>receiver above reaches about 100 km, the APD about 150 km, and the preamplified receiver about 180 km (before dispersion, Ch. 2, becomes</span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>the limit). Long-haul links put amplifiers every 80 km instead, and their accumulated ASE, not the receiver, sets the OSNR (Ch. 4).</span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Coherent detection.** Mixing the signal with a strong local oscillator $P_{LO}$ on the photodiode gives a beat current</span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>  $2\mathcal R\sqrt{P_sP_{LO}}$ that can be made far larger than the thermal noise; the receiver becomes shot-noise limited by the LO.</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>  Show that the SNR then approaches $\eta P_s/(h\nu B)$ and that heterodyne PSK needs about 18 photons per bit for BER $10^{-9}$.</span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>  Coherent receivers with balanced photodiodes and DSP carry 400–800 Gb/s per wavelength today.</span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Photon counting at the quantum limit.** Deep-space optical links (NASA's DSOC on Psyche, 2023) use superconducting nanowire</span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>  single-photon detectors and pulse-position modulation to reach ~1 photon per bit or less. Why can PPM beat the 10 photons/bit of</span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>  OOK?</span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Non-Gaussian statistics.** The APD gain and the ASE beat noise are not Gaussian; the Gaussian Q approximation overestimates the</span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>  required power for APDs (McIntyre distribution) by about 1 dB.</span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Extinction ratio penalty.** If the "0" carries a power $P_0=rP_1$ (laser biased above threshold, Ch. 4), the thermal-limited</span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>  sensitivity degrades by $(1+r)/(1-r)$. Compute the penalty for $r=0.1$.</span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>G. P. Agrawal, *Fiber-Optic Communication Systems* (Wiley, 4th ed.), ch. 4 (receivers) and sec. 6.5 (preamplified receivers).</span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>S. D. Personick, "Receiver design for digital fiber optic communication systems", *Bell Syst. Tech. J.* 52, 843 (1973).</span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>K. Kikuchi, "Fundamentals of coherent optical fiber communications", *J. Lightwave Technol.* 34, 157 (2016).</span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Show that $Q^2eB_e/\mathcal R$ corresponds to $Q^2/2$ photons per bit when $B_e=R_b/2$ and $\eta=1$, i.e. 18 photons at BER $10^{-9}$.</span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>   Why is it worse than the quantum limit of 10?</span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>In the panel, at what bit rate do the pin and APD sensitivities become equal for $k=0.5$? Explain why APDs lose their advantage at</span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>   low bit rates with a quiet amplifier.</span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>A 25 Gb/s PON receiver must reach −28 dBm at BER $10^{-3}$. Which receiver type do you need?</span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Explain why the EDFA-preamplified receiver hardly cares about the electronic noise of the amplifier after the photodiode.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/receivers.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

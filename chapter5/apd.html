@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Avalanche photodiodes – Photodetectors and Image Sensors</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./schottky.html" rel="next">
+<link href="./pin.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pin.html">Photodiode families</a></li><li class="breadcrumb-item"><a href="./apd.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Photodetectors and Image Sensors</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter5/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">How a photodiode works</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pn-photodiode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The pn junction photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Shockley–Ramo theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./absorption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Absorption and the cut-off wavelength</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./responsivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Photodiode families</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The pin photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schottky.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Schottky, MSM and phototransistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./photoconductors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Photoconductive detectors</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Circuits, speed and noise</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circuits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Photodiode circuits and speed</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Noise, SNR, NEP and detectivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Noise in avalanche photodiodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Image sensors and solar cells</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./image-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solar-cells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Solar cells</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./receivers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sq-limit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">6.1</span> Key relations</a></li>
+  <li><a href="#live-panel-gain-versus-field-and-breakdown-slides-5051-5859" id="toc-live-panel-gain-versus-field-and-breakdown-slides-5051-5859" class="nav-link" data-scroll-target="#live-panel-gain-versus-field-and-breakdown-slides-5051-5859"><span class="header-section-number">6.2</span> Live panel: gain versus field and breakdown (slides 50–51, 58–59)</a></li>
+  <li><a href="#worked-examples-recomputed" id="toc-worked-examples-recomputed" class="nav-link" data-scroll-target="#worked-examples-recomputed"><span class="header-section-number">6.3</span> Worked examples, recomputed</a></li>
+  <li><a href="#live-panel-why-apds-need-temperature-control-slides-47-55-81" id="toc-live-panel-why-apds-need-temperature-control-slides-47-55-81" class="nav-link" data-scroll-target="#live-panel-why-apds-need-temperature-control-slides-47-55-81"><span class="header-section-number">6.4</span> Live panel: why APDs need temperature control (slides 47, 55, 81)</a></li>
+  <li><a href="#photodiode-comparison-slide-49" id="toc-photodiode-comparison-slide-49" class="nav-link" data-scroll-target="#photodiode-comparison-slide-49"><span class="header-section-number">6.5</span> Photodiode comparison (slide 49)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">6.6</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/apd.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pin.html">Photodiode families</a></li><li class="breadcrumb-item"><a href="./apd.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-apd" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter5/notebooks/apd.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 44–48 (structure of the reach-through APD, impact ionisation, multiplication, temperature dependence, guard ring), 49 (comparison of photodiodes), 50–51 (ionisation coefficients, Chynoweth’s law, multiplication for electrons only and for both carriers), 52–55 (SAM and SAGM InGaAs/InP APDs, reach-through characteristics), 56–59 (worked examples) and 60 (superlattice APD).</em></p>
+<section id="key-relations" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">6.1</span> Key relations</h2>
+<p>In an APD a primary photocarrier is accelerated by a field of several 10⁵ V/cm until it gains enough kinetic energy (more than about <span class="math inline">\(\frac32E_g\)</span>) to excite a valence electron across the gap: <strong>impact ionisation</strong> (slide 45). Each ionisation creates a new pair, which is itself accelerated: an avalanche. The <strong>multiplication</strong> is (slide 46)</p>
+<p><span class="math display">\[
+M=\frac{I_{ph}}{I_{pho}},\qquad \mathcal R_{APD}=M\mathcal R_{M=1},\qquad
+M\approx\frac{1}{1-(V_r/V_{br})^m}\ \text{(empirical, } m\approx3\text{–}6).
+\]</span></p>
+<p>The <strong>ionisation coefficient</strong> α is the number of ionisations per unit distance. It rises steeply with the field (Chynoweth’s law, slide 50), and electrons and holes have different coefficients, with the ratio <span class="math inline">\(k\)</span>:</p>
+<p><span class="math display">\[
+\alpha_e=A\exp(-B/E),\qquad k=\frac{\alpha_h}{\alpha_e}.
+\]</span></p>
+<p>For electrons injected into a uniform avalanche region of width <span class="math inline">\(w\)</span> (slide 51):</p>
+<p><span class="math display">\[
+M_e=\exp(\alpha_ew)\ \ (\text{electrons only, }k=0),\qquad
+M=\frac{1-k}{\exp[-(1-k)\alpha_ew]-k}\ \ (\text{both carriers}).
+\]</span></p>
+<p>With <span class="math inline">\(k=0\)</span> the gain grows smoothly with the field. With <span class="math inline">\(k&gt;0\)</span> the holes created by the electrons travel backwards and ionise too: a <strong>feedback loop</strong>. When <span class="math inline">\(\exp[-(1-k)\alpha_ew]=k\)</span> the denominator vanishes and the current runs away: <strong>avalanche breakdown</strong>. A good APD material has <span class="math inline">\(k\ll1\)</span> (Si: <span class="math inline">\(k\approx0.02\)</span>–<span class="math inline">\(0.1\)</span>) and the avalanche must be started by the carrier with the larger coefficient. The same <span class="math inline">\(k\)</span> also sets the noise (<a href="apd-noise.html" class="quarto-xref"><span>Chapter 11</span></a>).</p>
+<p>Practical structures separate the two jobs. The Si <strong>reach-through</strong> APD (<span class="math inline">\(n^+p\pi p^+\)</span>, slide 44) absorbs in a wide, low-field π region and multiplies in a thin, high-field <span class="math inline">\(pn^+\)</span> region. The InGaAs/InP <strong>SAM</strong> APD (slides 52–54) absorbs in InGaAs (1.55 µm) and multiplies in InP, where the field is high but the gap wide enough to avoid tunnelling; a graded InGaAsP layer (<strong>SAGM</strong>) removes the valence-band step <span class="math inline">\(\Delta E_v\)</span> that would trap the holes at the heterointerface (slide 53).</p>
+</section>
+<section id="live-panel-gain-versus-field-and-breakdown-slides-5051-5859" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="live-panel-gain-versus-field-and-breakdown-slides-5051-5859"><span class="header-section-number">6.2</span> Live panel: gain versus field and breakdown (slides 50–51, 58–59)</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="58" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 57;"><span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {chynoweth<span class="op">,</span> apdGainUniform} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>viewof av <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mat</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"Si"</span><span class="op">,</span> <span class="st">"InP"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"Si"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"material"</span>})<span class="op">,</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>  <span class="dt">inj</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"electrons"</span><span class="op">,</span> <span class="st">"holes"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"electrons"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"injected carrier"</span>})<span class="op">,</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  <span class="dt">w</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"avalanche width w (µm)"</span>})<span class="op">,</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="dt">E</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">4.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"field E (10⁵ V/cm)"</span>})</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="69" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 68;"><span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>avOut <span class="op">=</span> {</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> w <span class="op">=</span> av<span class="op">.</span><span class="at">w</span> <span class="op">*</span> <span class="fl">1e-4</span><span class="op">,</span> gain <span class="op">=</span> (<span class="cn">E</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ae <span class="op">=</span> <span class="fu">chynoweth</span>(<span class="cn">E</span><span class="op">,</span> av<span class="op">.</span><span class="at">mat</span><span class="op">,</span> <span class="st">"e"</span>)<span class="op">,</span> ah <span class="op">=</span> <span class="fu">chynoweth</span>(<span class="cn">E</span><span class="op">,</span> av<span class="op">.</span><span class="at">mat</span><span class="op">,</span> <span class="st">"h"</span>)<span class="op">;</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> [a1<span class="op">,</span> a2] <span class="op">=</span> av<span class="op">.</span><span class="at">inj</span> <span class="op">===</span> <span class="st">"electrons"</span> <span class="op">?</span> [ae<span class="op">,</span> ah] <span class="op">:</span> [ah<span class="op">,</span> ae]<span class="op">;</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {ae<span class="op">,</span> ah<span class="op">,</span> <span class="dt">M</span><span class="op">:</span> <span class="fu">apdGainUniform</span>(a1<span class="op">,</span> a2 <span class="op">/</span> a1<span class="op">,</span> w)<span class="op">,</span> <span class="dt">M1</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(a1 <span class="op">*</span> w)}<span class="op">;</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">600</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> <span class="fl">2e5</span> <span class="op">+</span> <span class="fl">6e5</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">600</span><span class="op">,</span> g <span class="op">=</span> <span class="fu">gain</span>(<span class="cn">E</span>)<span class="op">;</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="pp">isFinite</span>(g<span class="op">.</span><span class="at">M</span>) <span class="op">&amp;&amp;</span> g<span class="op">.</span><span class="at">M</span> <span class="op">&lt;</span> <span class="fl">1e4</span>) pts<span class="op">.</span><span class="fu">push</span>({<span class="dt">E</span><span class="op">:</span> <span class="cn">E</span> <span class="op">/</span> <span class="fl">1e5</span><span class="op">,</span> <span class="dt">M</span><span class="op">:</span> g<span class="op">.</span><span class="at">M</span><span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"both carriers ionise"</span>})<span class="op">;</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (g<span class="op">.</span><span class="at">M1</span> <span class="op">&lt;</span> <span class="fl">1e4</span>) pts<span class="op">.</span><span class="fu">push</span>({<span class="dt">E</span><span class="op">:</span> <span class="cn">E</span> <span class="op">/</span> <span class="fl">1e5</span><span class="op">,</span> <span class="dt">M</span><span class="op">:</span> g<span class="op">.</span><span class="at">M1</span><span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"injected carrier only"</span>})<span class="op">;</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> Ebr <span class="op">=</span> <span class="kw">NaN</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">6000</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> <span class="fl">2e5</span> <span class="op">+</span> <span class="fl">6e5</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">6000</span><span class="op">;</span> <span class="cf">if</span> (<span class="op">!</span><span class="pp">isFinite</span>(<span class="fu">gain</span>(<span class="cn">E</span>)<span class="op">.</span><span class="at">M</span>)) { Ebr <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span> } }</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {pts<span class="op">,</span> <span class="dt">cur</span><span class="op">:</span> <span class="fu">gain</span>(av<span class="op">.</span><span class="at">E</span> <span class="op">*</span> <span class="fl">1e5</span>)<span class="op">,</span> Ebr}<span class="op">;</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"field E (10⁵ V/cm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"multiplication M"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">1</span><span class="op">,</span> <span class="fl">1e4</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"both carriers ionise"</span><span class="op">,</span> <span class="st">"injected carrier only"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#2a78d6"</span>]}<span class="op">,</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(avOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"c"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([av<span class="op">.</span><span class="at">E</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>          <span class="pp">isFinite</span>(avOut<span class="op">.</span><span class="at">Ebr</span>) <span class="op">?</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([avOut<span class="op">.</span><span class="at">Ebr</span> <span class="op">/</span> <span class="fl">1e5</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"2,2"</span>}) <span class="op">:</span> <span class="kw">null</span>]</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="93" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 92;"><span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;E = </span><span class="sc">${</span>av<span class="op">.</span><span class="at">E</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">×10⁵ V/cm: α&lt;sub&gt;e&lt;/sub&gt; = </span><span class="sc">${</span>avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ae</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> cm⁻¹, α&lt;sub&gt;h&lt;/sub&gt; = </span><span class="sc">${</span>avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ah</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> cm⁻¹,</span></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="vs">k = α&lt;sub&gt;h&lt;/sub&gt;/α&lt;sub&gt;e&lt;/sub&gt; = </span><span class="sc">${</span>(avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ah</span> <span class="op">/</span> avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ae</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">&lt;br&gt;</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;b&gt;M = </span><span class="sc">${</span><span class="pp">isFinite</span>(avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">M</span>) <span class="op">?</span> avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">M</span><span class="op">.</span><span class="fu">toPrecision</span>(<span class="dv">4</span>) <span class="op">:</span> <span class="st">"∞ (breakdown)"</span><span class="sc">}</span><span class="vs">&lt;/b&gt; · injected carrier only: </span><span class="sc">${</span>avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">M1</span><span class="op">.</span><span class="fu">toPrecision</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="vs">breakdown field </span><span class="sc">${</span>(avOut<span class="op">.</span><span class="at">Ebr</span> <span class="op">/</span> <span class="fl">1e5</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">×10⁵ V/cm → V&lt;sub&gt;br&lt;/sub&gt; ≈ </span><span class="sc">${</span>(avOut<span class="op">.</span><span class="at">Ebr</span> <span class="op">*</span> av<span class="op">.</span><span class="at">w</span> <span class="op">*</span> <span class="fl">1e-4</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> V across the avalanche region&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Things to try: with Si and electron injection the red curve turns vertical at 4.39×10⁵ V/cm for <span class="math inline">\(w=0.5\)</span> µm: a 2 % change of field takes <span class="math inline">\(M\)</span> from 60 to 650 (slide 59). Switch to <strong>hole</strong> injection in Si: the gain stays tiny until just below breakdown. In InP, <span class="math inline">\(\alpha_h&gt;\alpha_e\)</span>: holes must start the avalanche, which is why the SAM structure puts the InGaAs absorber on the side from which holes drift into the InP. Thicken the avalanche region: breakdown occurs at a lower field but a higher voltage.</p>
+</section>
+<section id="worked-examples-recomputed" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="worked-examples-recomputed"><span class="header-section-number">6.3</span> Worked examples, recomputed</h2>
+<blockquote class="blockquote">
+<p><strong>Slide 56.</strong> InGaAs APD, <span class="math inline">\(\eta_e=60\)</span> % at 1.55 µm, <span class="math inline">\(M=12\)</span>, 20 nW. <strong>Slide 57.</strong> Si APD, <span class="math inline">\(\eta_e=70\)</span> % at 830 nm, <span class="math inline">\(M=100\)</span>, 10 nW. <strong>Slides 58–59 (Table 5.3).</strong> Si, <span class="math inline">\(w=0.5\)</span> µm, fields 4.00, 4.30 and 4.38×10⁵ V/cm.</p>
+</blockquote>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>R56 <span class="op">=</span> dl.responsivity(<span class="fl">0.6</span>, <span class="fl">1.55e-6</span>)<span class="op">;</span> R57 <span class="op">=</span> dl.responsivity(<span class="fl">0.7</span>, <span class="fl">830e-9</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(<span class="st">"s56: R at M = 1"</span>, <span class="ss">f"</span><span class="sc">{</span>R56<span class="sc">:.3f}</span><span class="ss"> A/W"</span>, <span class="st">"0.75 A/W"</span>), (<span class="st">"s56: primary current"</span>, <span class="ss">f"</span><span class="sc">{</span>R56<span class="op">*</span><span class="fl">20e-9</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nA"</span>, <span class="st">"15 nA"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"s56: multiplied current"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">12</span><span class="op">*</span>R56<span class="op">*</span><span class="fl">20e-9</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nA"</span>, <span class="st">"180 nA"</span>), (<span class="st">"s56: R at M = 12"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">12</span><span class="op">*</span>R56<span class="sc">:.2f}</span><span class="ss"> A/W"</span>, <span class="st">"9.0 A/W"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"s57: R at M = 1"</span>, <span class="ss">f"</span><span class="sc">{</span>R57<span class="sc">:.3f}</span><span class="ss"> A/W"</span>, <span class="st">"0.47 A/W"</span>), (<span class="st">"s57: primary current"</span>, <span class="ss">f"</span><span class="sc">{</span>R57<span class="op">*</span><span class="fl">10e-9</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nA"</span>, <span class="st">"4.7 nA"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"s57: multiplied current"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>R57<span class="op">*</span><span class="fl">10e-9</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nA"</span>, <span class="st">"470 nA"</span>)], columns<span class="op">=</span>[<span class="st">"quantity"</span>, <span class="st">"computed"</span>, <span class="st">"slide"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-apd-ex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-apd-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Worked examples of slides 56 and 57.
+</figcaption>
+<div aria-describedby="tbl-apd-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">quantity</th>
+<th data-quarto-table-cell-role="th">computed</th>
+<th data-quarto-table-cell-role="th">slide</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>s56: R at M = 1</td>
+<td>0.750 A/W</td>
+<td>0.75 A/W</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>s56: primary current</td>
+<td>15.0 nA</td>
+<td>15 nA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>s56: multiplied current</td>
+<td>180 nA</td>
+<td>180 nA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>s56: R at M = 12</td>
+<td>9.00 A/W</td>
+<td>9.0 A/W</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>s57: R at M = 1</td>
+<td>0.469 A/W</td>
+<td>0.47 A/W</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>s57: primary current</td>
+<td>4.69 nA</td>
+<td>4.7 nA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>s57: multiplied current</td>
+<td>469 nA</td>
+<td>470 nA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="fl">0.5e-4</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>slide <span class="op">=</span> {<span class="fl">4.00e5</span>: (<span class="fl">11.8</span>, <span class="fl">7.65</span>), <span class="fl">4.30e5</span>: (<span class="fl">57.2</span>, <span class="fl">12.1</span>), <span class="fl">4.38e5</span>: (<span class="dv">647</span>, <span class="fl">13.7</span>)}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> E, (Ms, Mes) <span class="kw">in</span> slide.items():</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    ae, ah <span class="op">=</span> dl.chynoweth(E, <span class="st">"Si"</span>, <span class="st">"e"</span>), dl.chynoweth(E, <span class="st">"Si"</span>, <span class="st">"h"</span>)<span class="op">;</span> k <span class="op">=</span> ah<span class="op">/</span>ae</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    rows.append((<span class="ss">f"</span><span class="sc">{</span>E<span class="sc">:.2e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>ae<span class="sc">:.3e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>ah<span class="sc">:.3e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>k<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>apd_gain_uniform(ae, k, w)<span class="sc">:.1f}</span><span class="ss">"</span>, Ms, <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>exp(ae<span class="op">*</span>w)<span class="sc">:.2f}</span><span class="ss">"</span>, Mes))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"E (V/cm)"</span>, <span class="st">"α_e (cm⁻¹)"</span>, <span class="st">"α_h (cm⁻¹)"</span>, <span class="st">"k"</span>, <span class="st">"M"</span>, <span class="st">"M slide"</span>, <span class="st">"M_e"</span>, <span class="st">"M_e slide"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-53" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-53-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.2: Table 5.3 (slide 59) recomputed with unrounded coefficients. Close to breakdown, M is so sensitive that rounding α_e and k to three digits (as on the slide) shifts M at 4.30×10⁵ V/cm from 58.7 to 57.2.
+</figcaption>
+<div aria-describedby="tbl-53-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">E (V/cm)</th>
+<th data-quarto-table-cell-role="th">α_e (cm⁻¹)</th>
+<th data-quarto-table-cell-role="th">α_h (cm⁻¹)</th>
+<th data-quarto-table-cell-role="th">k</th>
+<th data-quarto-table-cell-role="th">M</th>
+<th data-quarto-table-cell-role="th">M slide</th>
+<th data-quarto-table-cell-role="th">M_e</th>
+<th data-quarto-table-cell-role="th">M_e slide</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>4.00e+05</td>
+<td>4.072e+04</td>
+<td>2.963e+03</td>
+<td>0.073</td>
+<td>11.8</td>
+<td>11.8</td>
+<td>7.66</td>
+<td>7.65</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>4.30e+05</td>
+<td>4.985e+04</td>
+<td>4.349e+03</td>
+<td>0.087</td>
+<td>58.7</td>
+<td>57.2</td>
+<td>12.09</td>
+<td>12.10</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>4.38e+05</td>
+<td>5.237e+04</td>
+<td>4.775e+03</td>
+<td>0.091</td>
+<td>643.6</td>
+<td>647.0</td>
+<td>13.71</td>
+<td>13.70</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div id="cell-fig-apd-gain" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.linspace(<span class="fl">2.5e5</span>, <span class="fl">5.5e5</span>, <span class="dv">2000</span>)<span class="op">;</span> w <span class="op">=</span> <span class="fl">0.5e-4</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.8</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ae, ah <span class="op">=</span> dl.chynoweth(E, <span class="st">"Si"</span>, <span class="st">"e"</span>), dl.chynoweth(E, <span class="st">"Si"</span>, <span class="st">"h"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].semilogy(E<span class="op">/</span><span class="fl">1e5</span>, dl.apd_gain_uniform(ae, ah<span class="op">/</span>ae, w), color<span class="op">=</span>dl.PALETTE[<span class="dv">7</span>], label<span class="op">=</span><span class="st">"M (both carriers)"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].semilogy(E<span class="op">/</span><span class="fl">1e5</span>, np.exp(ae<span class="op">*</span>w), color<span class="op">=</span>dl.PALETTE[<span class="dv">0</span>], label<span class="op">=</span><span class="st">"M_e = exp(α_e w)"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> slide: ax[<span class="dv">0</span>].axvline(x<span class="op">/</span><span class="fl">1e5</span>, color<span class="op">=</span>dl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"E (10⁵ V/cm)"</span>, ylabel<span class="op">=</span><span class="st">"M"</span>, ylim<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">1e4</span>), title<span class="op">=</span><span class="st">"Si, electron injection"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ae, ah <span class="op">=</span> dl.chynoweth(E, <span class="st">"InP"</span>, <span class="st">"e"</span>), dl.chynoweth(E, <span class="st">"InP"</span>, <span class="st">"h"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].semilogy(E<span class="op">/</span><span class="fl">1e5</span>, dl.apd_gain_uniform(ah, ae<span class="op">/</span>ah, w), color<span class="op">=</span>dl.PALETTE[<span class="dv">7</span>], label<span class="op">=</span><span class="st">"M (hole injection)"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].semilogy(E<span class="op">/</span><span class="fl">1e5</span>, dl.apd_gain_uniform(ae, ah<span class="op">/</span>ae, w), <span class="st">"--"</span>, color<span class="op">=</span>dl.PALETTE[<span class="dv">1</span>], label<span class="op">=</span><span class="st">"M (electron injection)"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"E (10⁵ V/cm)"</span>, ylim<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">1e4</span>), title<span class="op">=</span><span class="st">"InP"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-apd-gain" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-apd-gain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="apd_files/figure-html/fig-apd-gain-output-1.png" width="1196" height="405" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-apd-gain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: Multiplication versus field for a 0.5 µm Si avalanche region (slides 58–59). Electron-only ionisation (blue) grows exponentially; with hole feedback (red) M diverges at breakdown. Right: the same for InP with hole injection (the favourable carrier in InP), whose coefficients are much closer (k_eff ≈ 0.7): M stays small and then runs away abruptly, which makes a given gain harder to hold. Electron injection in InP (dashed) gives even less gain below breakdown.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="live-panel-why-apds-need-temperature-control-slides-47-55-81" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="live-panel-why-apds-need-temperature-control-slides-47-55-81"><span class="header-section-number">6.4</span> Live panel: why APDs need temperature control (slides 47, 55, 81)</h2>
+<p>Phonon scattering increases with temperature, so a carrier needs a higher field to reach the ionisation energy: the breakdown voltage rises by roughly 0.1–0.2 %/K in Si (slide 47 shows three temperatures). Using the empirical Miller law:</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="155" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 154;"><span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>viewof ml <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Vbr</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">20</span><span class="op">,</span> <span class="dv">400</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">160</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"breakdown voltage at 20 °C, V_br (V)"</span>})<span class="op">,</span></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a>  <span class="dt">m</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Miller exponent m"</span>})<span class="op">,</span></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tc</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.4</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"temperature coefficient of V_br (%/K)"</span>})<span class="op">,</span></span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Vr</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">20</span><span class="op">,</span> <span class="dv">400</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">150</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"operating bias V_r (V)"</span>})</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="166" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 165;"><span id="cb8-166"><a href="#cb8-166" aria-hidden="true" tabindex="-1"></a>mlOut <span class="op">=</span> {</span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> temps <span class="op">=</span> [<span class="op">-</span><span class="dv">20</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">60</span>]<span class="op">,</span> pts <span class="op">=</span> []<span class="op">,</span> cur <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> T <span class="kw">of</span> temps) {</span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Vb <span class="op">=</span> ml<span class="op">.</span><span class="at">Vbr</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> ml<span class="op">.</span><span class="at">tc</span> <span class="op">/</span> <span class="dv">100</span> <span class="op">*</span> (T <span class="op">-</span> <span class="dv">20</span>))<span class="op">;</span></span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">400</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> V <span class="op">=</span> <span class="fl">0.6</span> <span class="op">*</span> ml<span class="op">.</span><span class="at">Vbr</span> <span class="op">+</span> <span class="fl">0.45</span> <span class="op">*</span> ml<span class="op">.</span><span class="at">Vbr</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">400</span><span class="op">;</span> <span class="cf">if</span> (V <span class="op">&lt;</span> Vb) { <span class="kw">const</span> M <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> (V <span class="op">/</span> Vb) <span class="op">**</span> ml<span class="op">.</span><span class="at">m</span>)<span class="op">;</span> <span class="cf">if</span> (M <span class="op">&lt;</span> <span class="dv">500</span>) pts<span class="op">.</span><span class="fu">push</span>({V<span class="op">,</span> M<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>T<span class="sc">}</span><span class="vs"> °C`</span>})<span class="op">;</span> } }</span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a>    cur<span class="op">.</span><span class="fu">push</span>({T<span class="op">,</span> <span class="dt">M</span><span class="op">:</span> ml<span class="op">.</span><span class="at">Vr</span> <span class="op">&lt;</span> Vb <span class="op">?</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> (ml<span class="op">.</span><span class="at">Vr</span> <span class="op">/</span> Vb) <span class="op">**</span> ml<span class="op">.</span><span class="at">m</span>) <span class="op">:</span> <span class="kw">Infinity</span>})<span class="op">;</span></span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {pts<span class="op">,</span> cur}<span class="op">;</span></span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"reverse bias V_r (V)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"-20 °C"</span><span class="op">,</span> <span class="st">"20 °C"</span><span class="op">,</span> <span class="st">"60 °C"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#1baf7a"</span><span class="op">,</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#2a78d6"</span>]}<span class="op">,</span></span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(mlOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([ml<span class="op">.</span><span class="at">Vr</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})]</span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb9" data-startfrom="183" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 182;"><span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;at V&lt;sub&gt;r&lt;/sub&gt; = </span><span class="sc">${</span>ml<span class="op">.</span><span class="at">Vr</span><span class="sc">}</span><span class="vs"> V: </span><span class="sc">${</span>mlOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="fu">map</span>(c <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`M(</span><span class="sc">${</span>c<span class="op">.</span><span class="at">T</span><span class="sc">}</span><span class="vs"> °C) = &lt;b&gt;</span><span class="sc">${</span><span class="pp">isFinite</span>(c<span class="op">.</span><span class="at">M</span>) <span class="op">?</span> c<span class="op">.</span><span class="at">M</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">:</span> <span class="st">"breakdown"</span><span class="sc">}</span><span class="vs">&lt;/b&gt; · `</span>)<span class="sc">}</span></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a><span class="vs">gain change per kelvin around 20 °C ≈ </span><span class="sc">${</span><span class="pp">isFinite</span>(mlOut<span class="op">.</span><span class="at">cur</span>[<span class="dv">1</span>]<span class="op">.</span><span class="at">M</span>) <span class="op">?</span> (<span class="dv">100</span> <span class="op">*</span> (<span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> (ml<span class="op">.</span><span class="at">Vr</span> <span class="op">/</span> (ml<span class="op">.</span><span class="at">Vbr</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> ml<span class="op">.</span><span class="at">tc</span> <span class="op">/</span> <span class="dv">100</span>))) <span class="op">**</span> ml<span class="op">.</span><span class="at">m</span>)) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(mlOut<span class="op">.</span><span class="at">cur</span>[<span class="dv">1</span>]<span class="op">.</span><span class="at">M</span>)))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> %/K&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>At high gain a 1 K drift changes <span class="math inline">\(M\)</span> by several percent. Commercial APD receivers therefore either stabilise the temperature with a thermoelectric cooler and sensor (the Voxtel module of slide 81) or adjust the bias with temperature.</p>
+</section>
+<section id="photodiode-comparison-slide-49" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="photodiode-comparison-slide-49"><span class="header-section-number">6.5</span> Photodiode comparison (slide 49)</h2>
+<div class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [(<span class="st">"Si pin"</span>, <span class="dv">900</span>, <span class="fl">0.55</span>, <span class="st">"&lt;1"</span>), (<span class="st">"Si APD"</span>, <span class="dv">850</span>, <span class="fl">0.5</span>, <span class="st">"10–10³"</span>), (<span class="st">"Ge pin"</span>, <span class="dv">1550</span>, <span class="fl">0.55</span>, <span class="st">"&lt;1"</span>), (<span class="st">"Ge APD"</span>, <span class="dv">1550</span>, <span class="fl">0.6</span>, <span class="st">"10–20"</span>),</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"InGaAs pin"</span>, <span class="dv">1550</span>, <span class="fl">0.85</span>, <span class="st">"&lt;1"</span>), (<span class="st">"InGaAs APD"</span>, <span class="dv">1550</span>, <span class="fl">0.83</span>, <span class="st">"10–20"</span>), (<span class="st">"GaAs pin"</span>, <span class="dv">850</span>, <span class="fl">0.5</span>, <span class="st">"&lt;1"</span>), (<span class="st">"GaP pin"</span>, <span class="dv">450</span>, <span class="fl">0.1</span>, <span class="st">"&lt;1"</span>)]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(n, l, R, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(R, l<span class="op">*</span><span class="fl">1e-9</span>)<span class="sc">:.0%}</span><span class="ss">"</span>, g) <span class="cf">for</span> n, l, R, g <span class="kw">in</span> data],</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"photodiode"</span>, <span class="st">"λ_peak (nm)"</span>, <span class="st">"R (A/W, mid-range)"</span>, <span class="st">"implied QE"</span>, <span class="st">"gain"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-49" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="5">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-49-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.3: Slide 49, with the QE implied by the quoted peak responsivity at the peak wavelength (R × 1.24/λ[µm]). APD responsivities are at M = 1.
+</figcaption>
+<div aria-describedby="tbl-49-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">photodiode</th>
+<th data-quarto-table-cell-role="th">λ_peak (nm)</th>
+<th data-quarto-table-cell-role="th">R (A/W, mid-range)</th>
+<th data-quarto-table-cell-role="th">implied QE</th>
+<th data-quarto-table-cell-role="th">gain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Si pin</td>
+<td>900</td>
+<td>0.55</td>
+<td>76%</td>
+<td>&lt;1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Si APD</td>
+<td>850</td>
+<td>0.50</td>
+<td>73%</td>
+<td>10–10³</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Ge pin</td>
+<td>1550</td>
+<td>0.55</td>
+<td>44%</td>
+<td>&lt;1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Ge APD</td>
+<td>1550</td>
+<td>0.60</td>
+<td>48%</td>
+<td>10–20</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>InGaAs pin</td>
+<td>1550</td>
+<td>0.85</td>
+<td>68%</td>
+<td>&lt;1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>InGaAs APD</td>
+<td>1550</td>
+<td>0.83</td>
+<td>66%</td>
+<td>10–20</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>GaAs pin</td>
+<td>850</td>
+<td>0.50</td>
+<td>73%</td>
+<td>&lt;1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>GaP pin</td>
+<td>450</td>
+<td>0.10</td>
+<td>28%</td>
+<td>&lt;1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The InGaAs devices reach about 70 % QE at 1550 nm (up to 80 % at the top of their range), Ge only 40–50 % because 1550 nm is at the edge of its direct absorption, and GaP at 450 nm 28 %, because the blue light is absorbed close to the surface.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Non-uniform fields.</strong> Real avalanche regions have a triangular or trapezoidal field. Use <code>dl.apd_gain_profile(x, αe(x), αh(x))</code>, which integrates McIntyre’s general expression, for a p⁺n junction with a linear field and compare with a uniform field of the same peak value. Which carries more gain, the peak or the average?</li>
+<li><strong>Dead space.</strong> A carrier must travel a minimum distance <span class="math inline">\(d=E_i/eE\)</span> before it can ionise again. In thin (≲ 100 nm) multiplication layers this makes the ionisation positions less random, which lowers the excess noise below McIntyre’s prediction: the basis of thin InAlAs and AlInAsSb APDs.</li>
+<li><strong>Geiger mode and SPADs.</strong> Biased <em>above</em> breakdown, an APD stays quiescent until a single carrier triggers a self-sustaining avalanche, which a quenching resistor stops: a <strong>single-photon avalanche diode</strong>. Count the photons, not the current. Photon-detection efficiency, dark-count rate, dead time and after-pulsing replace QE, dark current and bandwidth. SPAD arrays are the receivers of automotive lidar and of quantum-key-distribution links.</li>
+<li><strong>The superlattice APD</strong> (slide 60): at each conduction-band step <span class="math inline">\(\Delta E_c\)</span> the electron gains energy abruptly, while holes see a smaller <span class="math inline">\(\Delta E_v\)</span>. This “staircase” enhances <span class="math inline">\(\alpha_e\)</span> and lowers <span class="math inline">\(k\)</span> artificially. Why is the valence-band step a problem?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, sec.&nbsp;5.6–5.7; Saleh &amp; Teich, sec.&nbsp;18.4.</li>
+<li>R. J. McIntyre, “Multiplication noise in uniform avalanche diodes”, <em>IEEE Trans. Electron Devices</em> ED-13, 164 (1966).</li>
+<li>J. C. Campbell, “Recent advances in avalanche photodiodes”, <em>J. Lightwave Technol.</em> 34, 278 (2016).</li>
+<li>L. W. Cook, G. E. Bulman, G. E. Stillman, “Electron and hole impact ionization coefficients in InP”, <em>Appl. Phys. Lett.</em> 40, 589 (1982): the InP coefficients used here.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">6.6</span> Try it yourself</h2>
+<ol type="1">
+<li>Show that the breakdown condition <span class="math inline">\(\exp[-(1-k)\alpha_ew]=k\)</span> is the same for electron and hole injection.</li>
+<li>Using the first panel, find the field giving <span class="math inline">\(M=10\)</span> in Si for <span class="math inline">\(w=0.2\)</span>, 0.5 and 1 µm, and the corresponding voltages across the avalanche region. Why are thin avalanche regions preferred for low-voltage operation?</li>
+<li>A Si APD has <span class="math inline">\(V_{br}=150\)</span> V and <span class="math inline">\(m=3\)</span>. At what bias is <span class="math inline">\(M=50\)</span>? How stable must the bias supply be to keep <span class="math inline">\(M\)</span> within ±5 %?</li>
+<li>The responsivity at <span class="math inline">\(M=12\)</span> in slide 56 is written “<span class="math inline">\((12)/(0.75)\)</span>”. Explain why it must be a product and check the 9.0 A/W.</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7Y2h5bm93ZXRoLCBhcGRHYWluVW5pZm9ybX0gZnJvbSBcIi4vZGV0X3NpbS5qc1wiXG52aWV3b2YgYXYgPSBJbnB1dHMuZm9ybSh7XG4gIG1hdDogSW5wdXRzLnJhZGlvKFtcIlNpXCIsIFwiSW5QXCJdLCB7dmFsdWU6IFwiU2lcIiwgbGFiZWw6IFwibWF0ZXJpYWxcIn0pLFxuICBpbmo6IElucHV0cy5yYWRpbyhbXCJlbGVjdHJvbnNcIiwgXCJob2xlc1wiXSwge3ZhbHVlOiBcImVsZWN0cm9uc1wiLCBsYWJlbDogXCJpbmplY3RlZCBjYXJyaWVyXCJ9KSxcbiAgdzogSW5wdXRzLnJhbmdlKFswLjEsIDNdLCB7dmFsdWU6IDAuNSwgc3RlcDogMC4wNSwgbGFiZWw6IFwiYXZhbGFuY2hlIHdpZHRoIHcgKMK1bSlcIn0pLFxuICBFOiBJbnB1dHMucmFuZ2UoWzIsIDhdLCB7dmFsdWU6IDQuMCwgc3RlcDogMC4wMSwgbGFiZWw6IFwiZmllbGQgRSAoMTDigbUgVi9jbSlcIn0pXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiYXZPdXQgPSB7XG4gIGNvbnN0IHcgPSBhdi53ICogMWUtNCwgZ2FpbiA9IChFKSA9PiB7XG4gICAgY29uc3QgYWUgPSBjaHlub3dldGgoRSwgYXYubWF0LCBcImVcIiksIGFoID0gY2h5bm93ZXRoKEUsIGF2Lm1hdCwgXCJoXCIpO1xuICAgIGNvbnN0IFthMSwgYTJdID0gYXYuaW5qID09PSBcImVsZWN0cm9uc1wiID8gW2FlLCBhaF0gOiBbYWgsIGFlXTtcbiAgICByZXR1cm4ge2FlLCBhaCwgTTogYXBkR2FpblVuaWZvcm0oYTEsIGEyIC8gYTEsIHcpLCBNMTogTWF0aC5leHAoYTEgKiB3KX07XG4gIH07XG4gIGNvbnN0IHB0cyA9IFtdO1xuICBmb3IgKGxldCBpID0gMDsgaSA8PSA2MDA7IGkrKykge1xuICAgIGNvbnN0IEUgPSAyZTUgKyA2ZTUgKiBpIC8gNjAwLCBnID0gZ2FpbihFKTtcbiAgICBpZiAoaXNGaW5pdGUoZy5NKSAmJiBnLk0gPCAxZTQpIHB0cy5wdXNoKHtFOiBFIC8gMWU1LCBNOiBnLk0sIGM6IFwiYm90aCBjYXJyaWVycyBpb25pc2VcIn0pO1xuICAgIGlmIChnLk0xIDwgMWU0KSBwdHMucHVzaCh7RTogRSAvIDFlNSwgTTogZy5NMSwgYzogXCJpbmplY3RlZCBjYXJyaWVyIG9ubHlcIn0pO1xuICB9XG4gIGxldCBFYnIgPSBOYU47IGZvciAobGV0IGkgPSAwOyBpIDw9IDYwMDA7IGkrKykgeyBjb25zdCBFID0gMmU1ICsgNmU1ICogaSAvIDYwMDA7IGlmICghaXNGaW5pdGUoZ2FpbihFKS5NKSkgeyBFYnIgPSBFOyBicmVhazsgfSB9XG4gIHJldHVybiB7cHRzLCBjdXI6IGdhaW4oYXYuRSAqIDFlNSksIEVicn07XG59XG5QbG90LnBsb3Qoe1xuICB3aWR0aDogTWF0aC5taW4od2lkdGgsIDEwNTApLCBoZWlnaHQ6IDMwMCwgeDoge2xhYmVsOiBcImZpZWxkIEUgKDEw4oG1IFYvY20pXCJ9LCB5OiB7bGFiZWw6IFwibXVsdGlwbGljYXRpb24gTVwiLCB0eXBlOiBcImxvZ1wiLCBkb21haW46IFsxLCAxZTRdLCBncmlkOiB0cnVlfSxcbiAgY29sb3I6IHtsZWdlbmQ6IHRydWUsIGRvbWFpbjogW1wiYm90aCBjYXJyaWVycyBpb25pc2VcIiwgXCJpbmplY3RlZCBjYXJyaWVyIG9ubHlcIl0sIHJhbmdlOiBbXCIjZTM0OTQ4XCIsIFwiIzJhNzhkNlwiXX0sXG4gIG1hcmtzOiBbUGxvdC5saW5lKGF2T3V0LnB0cywge3g6IFwiRVwiLCB5OiBcIk1cIiwgc3Ryb2tlOiBcImNcIiwgc3Ryb2tlV2lkdGg6IDJ9KSwgUGxvdC5ydWxlWChbYXYuRV0sIHtzdHJva2U6IFwiIzUyNTE0ZVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCwzXCJ9KSxcbiAgICAgICAgICBpc0Zpbml0ZShhdk91dC5FYnIpID8gUGxvdC5ydWxlWChbYXZPdXQuRWJyIC8gMWU1XSwge3N0cm9rZTogXCIjZTM0OTQ4XCIsIHN0cm9rZURhc2hhcnJheTogXCIyLDJcIn0pIDogbnVsbF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+RSA9ICR7YXYuRS50b0ZpeGVkKDIpfcOXMTDigbUgVi9jbTogzrE8c3ViPmU8L3N1Yj4gPSAke2F2T3V0LmN1ci5hZS50b0V4cG9uZW50aWFsKDMpfSBjbeKBu8K5LCDOsTxzdWI+aDwvc3ViPiA9ICR7YXZPdXQuY3VyLmFoLnRvRXhwb25lbnRpYWwoMyl9IGNt4oG7wrksXG5rID0gzrE8c3ViPmg8L3N1Yj4vzrE8c3ViPmU8L3N1Yj4gPSAkeyhhdk91dC5jdXIuYWggLyBhdk91dC5jdXIuYWUpLnRvRml4ZWQoMyl9PGJyPlxuPGI+TSA9ICR7aXNGaW5pdGUoYXZPdXQuY3VyLk0pID8gYXZPdXQuY3VyLk0udG9QcmVjaXNpb24oNCkgOiBcIuKIniAoYnJlYWtkb3duKVwifTwvYj4gwrcgaW5qZWN0ZWQgY2FycmllciBvbmx5OiAke2F2T3V0LmN1ci5NMS50b1ByZWNpc2lvbig0KX0gwrdcbmJyZWFrZG93biBmaWVsZCAkeyhhdk91dC5FYnIgLyAxZTUpLnRvRml4ZWQoMyl9w5cxMOKBtSBWL2NtIOKGkiBWPHN1Yj5icjwvc3ViPiDiiYggJHsoYXZPdXQuRWJyICogYXYudyAqIDFlLTQpLnRvRml4ZWQoMSl9IFYgYWNyb3NzIHRoZSBhdmFsYW5jaGUgcmVnaW9uPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIG1sID0gSW5wdXRzLmZvcm0oe1xuICBWYnI6IElucHV0cy5yYW5nZShbMjAsIDQwMF0sIHt2YWx1ZTogMTYwLCBzdGVwOiAxLCBsYWJlbDogXCJicmVha2Rvd24gdm9sdGFnZSBhdCAyMCDCsEMsIFZfYnIgKFYpXCJ9KSxcbiAgbTogSW5wdXRzLnJhbmdlKFsxLCA4XSwge3ZhbHVlOiAzLCBzdGVwOiAwLjEsIGxhYmVsOiBcIk1pbGxlciBleHBvbmVudCBtXCJ9KSxcbiAgdGM6IElucHV0cy5yYW5nZShbMCwgMC40XSwge3ZhbHVlOiAwLjE1LCBzdGVwOiAwLjAxLCBsYWJlbDogXCJ0ZW1wZXJhdHVyZSBjb2VmZmljaWVudCBvZiBWX2JyICglL0spXCJ9KSxcbiAgVnI6IElucHV0cy5yYW5nZShbMjAsIDQwMF0sIHt2YWx1ZTogMTUwLCBzdGVwOiAwLjUsIGxhYmVsOiBcIm9wZXJhdGluZyBiaWFzIFZfciAoVilcIn0pXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoibWxPdXQgPSB7XG4gIGNvbnN0IHRlbXBzID0gWy0yMCwgMjAsIDYwXSwgcHRzID0gW10sIGN1ciA9IFtdO1xuICBmb3IgKGNvbnN0IFQgb2YgdGVtcHMpIHtcbiAgICBjb25zdCBWYiA9IG1sLlZiciAqICgxICsgbWwudGMgLyAxMDAgKiAoVCAtIDIwKSk7XG4gICAgZm9yIChsZXQgaSA9IDA7IGkgPD0gNDAwOyBpKyspIHsgY29uc3QgViA9IDAuNiAqIG1sLlZiciArIDAuNDUgKiBtbC5WYnIgKiBpIC8gNDAwOyBpZiAoViA8IFZiKSB7IGNvbnN0IE0gPSAxIC8gKDEgLSAoViAvIFZiKSAqKiBtbC5tKTsgaWYgKE0gPCA1MDApIHB0cy5wdXNoKHtWLCBNLCBUOiBgJHtUfSDCsENgfSk7IH0gfVxuICAgIGN1ci5wdXNoKHtULCBNOiBtbC5WciA8IFZiID8gMSAvICgxIC0gKG1sLlZyIC8gVmIpICoqIG1sLm0pIDogSW5maW5pdHl9KTtcbiAgfVxuICByZXR1cm4ge3B0cywgY3VyfTtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMjgwLCB4OiB7bGFiZWw6IFwicmV2ZXJzZSBiaWFzIFZfciAoVilcIn0sIHk6IHtsYWJlbDogXCJNXCIsIHR5cGU6IFwibG9nXCIsIGdyaWQ6IHRydWV9LFxuICBjb2xvcjoge2xlZ2VuZDogdHJ1ZSwgZG9tYWluOiBbXCItMjAgwrBDXCIsIFwiMjAgwrBDXCIsIFwiNjAgwrBDXCJdLCByYW5nZTogW1wiIzFiYWY3YVwiLCBcIiNlMzQ5NDhcIiwgXCIjMmE3OGQ2XCJdfSxcbiAgbWFya3M6IFtQbG90LmxpbmUobWxPdXQucHRzLCB7eDogXCJWXCIsIHk6IFwiTVwiLCBzdHJva2U6IFwiVFwiLCBzdHJva2VXaWR0aDogMn0pLCBQbG90LnJ1bGVYKFttbC5Wcl0sIHtzdHJva2U6IFwiIzUyNTE0ZVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNCwzXCJ9KV1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+YXQgVjxzdWI+cjwvc3ViPiA9ICR7bWwuVnJ9IFY6ICR7bWxPdXQuY3VyLm1hcChjID0+IGh0bWxgTSgke2MuVH0gwrBDKSA9IDxiPiR7aXNGaW5pdGUoYy5NKSA/IGMuTS50b0ZpeGVkKDEpIDogXCJicmVha2Rvd25cIn08L2I+IMK3IGApfVxuZ2FpbiBjaGFuZ2UgcGVyIGtlbHZpbiBhcm91bmQgMjAgwrBDIOKJiCAke2lzRmluaXRlKG1sT3V0LmN1clsxXS5NKSA/ICgxMDAgKiAoTWF0aC5sb2coMSAvICgxIC0gKG1sLlZyIC8gKG1sLlZiciAqICgxICsgbWwudGMgLyAxMDApKSkgKiogbWwubSkpIC0gTWF0aC5sb2cobWxPdXQuY3VyWzFdLk0pKSkudG9GaXhlZCgxKSA6IFwi4oCTXCJ9ICUvSzwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnYXYnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnbWwnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter5\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./pin.html" class="pagination-link" aria-label="The pin photodiode">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The pin photodiode</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./schottky.html" class="pagination-link" aria-label="Schottky, MSM and phototransistors">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Schottky, MSM and phototransistors</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Avalanche photodiodes {#sec-apd}</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/apd.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> detlib <span class="im">as</span> dl</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>dl.use_style()</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>*Slides 44–48 (structure of the reach-through APD, impact ionisation, multiplication, temperature dependence, guard ring), 49</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>(comparison of photodiodes), 50–51 (ionisation coefficients, Chynoweth's law, multiplication for electrons only and for both</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>carriers), 52–55 (SAM and SAGM InGaAs/InP APDs, reach-through characteristics), 56–59 (worked examples) and 60 (superlattice</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>APD).*</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>In an APD a primary photocarrier is accelerated by a field of several 10⁵ V/cm until it gains enough kinetic energy (more than</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>about $\frac32E_g$) to excite a valence electron across the gap: **impact ionisation** (slide 45). Each ionisation creates a new</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>pair, which is itself accelerated: an avalanche. The **multiplication** is (slide 46)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>M=\frac{I_{ph}}{I_{pho}},\qquad \mathcal R_{APD}=M\mathcal R_{M=1},\qquad</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>M\approx\frac{1}{1-(V_r/V_{br})^m}\ \text{(empirical, } m\approx3\text{–}6).</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>The **ionisation coefficient** α is the number of ionisations per unit distance. It rises steeply with the field (Chynoweth's</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>law, slide 50), and electrons and holes have different coefficients, with the ratio $k$:</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>\alpha_e=A\exp(-B/E),\qquad k=\frac{\alpha_h}{\alpha_e}.</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>For electrons injected into a uniform avalanche region of width $w$ (slide 51):</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>M_e=\exp(\alpha_ew)\ \ (\text{electrons only, }k=0),\qquad</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>M=\frac{1-k}{\exp<span class="co">[</span><span class="ot">-(1-k)\alpha_ew</span><span class="co">]</span>-k}\ \ (\text{both carriers}).</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>With $k=0$ the gain grows smoothly with the field. With $k&gt;0$ the holes created by the electrons travel backwards and ionise</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>too: a **feedback loop**. When $\exp<span class="co">[</span><span class="ot">-(1-k)\alpha_ew</span><span class="co">]</span>=k$ the denominator vanishes and the current runs away: **avalanche</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>breakdown**. A good APD material has $k\ll1$ (Si: $k\approx0.02$–$0.1$) and the avalanche must be started by the carrier with</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>the larger coefficient. The same $k$ also sets the noise (@sec-apd-noise).</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>Practical structures separate the two jobs. The Si **reach-through** APD ($n^+p\pi p^+$, slide 44) absorbs in a wide, low-field</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>π region and multiplies in a thin, high-field $pn^+$ region. The InGaAs/InP **SAM** APD (slides 52–54) absorbs in InGaAs</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>(1.55 µm) and multiplies in InP, where the field is high but the gap wide enough to avoid tunnelling; a graded InGaAsP layer</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>(**SAGM**) removes the valence-band step $\Delta E_v$ that would trap the holes at the heterointerface (slide 53).</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live panel: gain versus field and breakdown (slides 50–51, 58–59)</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {chynoweth<span class="op">,</span> apdGainUniform} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>viewof av <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mat</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"Si"</span><span class="op">,</span> <span class="st">"InP"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"Si"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"material"</span>})<span class="op">,</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>  <span class="dt">inj</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"electrons"</span><span class="op">,</span> <span class="st">"holes"</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"electrons"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"injected carrier"</span>})<span class="op">,</span></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>  <span class="dt">w</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"avalanche width w (µm)"</span>})<span class="op">,</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>  <span class="dt">E</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">4.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"field E (10⁵ V/cm)"</span>})</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>avOut <span class="op">=</span> {</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> w <span class="op">=</span> av<span class="op">.</span><span class="at">w</span> <span class="op">*</span> <span class="fl">1e-4</span><span class="op">,</span> gain <span class="op">=</span> (<span class="cn">E</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ae <span class="op">=</span> <span class="fu">chynoweth</span>(<span class="cn">E</span><span class="op">,</span> av<span class="op">.</span><span class="at">mat</span><span class="op">,</span> <span class="st">"e"</span>)<span class="op">,</span> ah <span class="op">=</span> <span class="fu">chynoweth</span>(<span class="cn">E</span><span class="op">,</span> av<span class="op">.</span><span class="at">mat</span><span class="op">,</span> <span class="st">"h"</span>)<span class="op">;</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> [a1<span class="op">,</span> a2] <span class="op">=</span> av<span class="op">.</span><span class="at">inj</span> <span class="op">===</span> <span class="st">"electrons"</span> <span class="op">?</span> [ae<span class="op">,</span> ah] <span class="op">:</span> [ah<span class="op">,</span> ae]<span class="op">;</span></span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {ae<span class="op">,</span> ah<span class="op">,</span> <span class="dt">M</span><span class="op">:</span> <span class="fu">apdGainUniform</span>(a1<span class="op">,</span> a2 <span class="op">/</span> a1<span class="op">,</span> w)<span class="op">,</span> <span class="dt">M1</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(a1 <span class="op">*</span> w)}<span class="op">;</span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> pts <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">600</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> <span class="fl">2e5</span> <span class="op">+</span> <span class="fl">6e5</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">600</span><span class="op">,</span> g <span class="op">=</span> <span class="fu">gain</span>(<span class="cn">E</span>)<span class="op">;</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="pp">isFinite</span>(g<span class="op">.</span><span class="at">M</span>) <span class="op">&amp;&amp;</span> g<span class="op">.</span><span class="at">M</span> <span class="op">&lt;</span> <span class="fl">1e4</span>) pts<span class="op">.</span><span class="fu">push</span>({<span class="dt">E</span><span class="op">:</span> <span class="cn">E</span> <span class="op">/</span> <span class="fl">1e5</span><span class="op">,</span> <span class="dt">M</span><span class="op">:</span> g<span class="op">.</span><span class="at">M</span><span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"both carriers ionise"</span>})<span class="op">;</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (g<span class="op">.</span><span class="at">M1</span> <span class="op">&lt;</span> <span class="fl">1e4</span>) pts<span class="op">.</span><span class="fu">push</span>({<span class="dt">E</span><span class="op">:</span> <span class="cn">E</span> <span class="op">/</span> <span class="fl">1e5</span><span class="op">,</span> <span class="dt">M</span><span class="op">:</span> g<span class="op">.</span><span class="at">M1</span><span class="op">,</span> <span class="dt">c</span><span class="op">:</span> <span class="st">"injected carrier only"</span>})<span class="op">;</span></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> Ebr <span class="op">=</span> <span class="kw">NaN</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">6000</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> <span class="fl">2e5</span> <span class="op">+</span> <span class="fl">6e5</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">6000</span><span class="op">;</span> <span class="cf">if</span> (<span class="op">!</span><span class="pp">isFinite</span>(<span class="fu">gain</span>(<span class="cn">E</span>)<span class="op">.</span><span class="at">M</span>)) { Ebr <span class="op">=</span> <span class="cn">E</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span> } }</span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {pts<span class="op">,</span> <span class="dt">cur</span><span class="op">:</span> <span class="fu">gain</span>(av<span class="op">.</span><span class="at">E</span> <span class="op">*</span> <span class="fl">1e5</span>)<span class="op">,</span> Ebr}<span class="op">;</span></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"field E (10⁵ V/cm)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"multiplication M"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">1</span><span class="op">,</span> <span class="fl">1e4</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"both carriers ionise"</span><span class="op">,</span> <span class="st">"injected carrier only"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#2a78d6"</span>]}<span class="op">,</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(avOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"E"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"c"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([av<span class="op">.</span><span class="at">E</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})<span class="op">,</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>          <span class="pp">isFinite</span>(avOut<span class="op">.</span><span class="at">Ebr</span>) <span class="op">?</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([avOut<span class="op">.</span><span class="at">Ebr</span> <span class="op">/</span> <span class="fl">1e5</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"2,2"</span>}) <span class="op">:</span> <span class="kw">null</span>]</span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;E = </span><span class="sc">${</span>av<span class="op">.</span><span class="at">E</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">×10⁵ V/cm: α&lt;sub&gt;e&lt;/sub&gt; = </span><span class="sc">${</span>avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ae</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> cm⁻¹, α&lt;sub&gt;h&lt;/sub&gt; = </span><span class="sc">${</span>avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ah</span><span class="op">.</span><span class="fu">toExponential</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> cm⁻¹,</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a><span class="vs">k = α&lt;sub&gt;h&lt;/sub&gt;/α&lt;sub&gt;e&lt;/sub&gt; = </span><span class="sc">${</span>(avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ah</span> <span class="op">/</span> avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">ae</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">&lt;br&gt;</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;b&gt;M = </span><span class="sc">${</span><span class="pp">isFinite</span>(avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">M</span>) <span class="op">?</span> avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">M</span><span class="op">.</span><span class="fu">toPrecision</span>(<span class="dv">4</span>) <span class="op">:</span> <span class="st">"∞ (breakdown)"</span><span class="sc">}</span><span class="vs">&lt;/b&gt; · injected carrier only: </span><span class="sc">${</span>avOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="at">M1</span><span class="op">.</span><span class="fu">toPrecision</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a><span class="vs">breakdown field </span><span class="sc">${</span>(avOut<span class="op">.</span><span class="at">Ebr</span> <span class="op">/</span> <span class="fl">1e5</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">×10⁵ V/cm → V&lt;sub&gt;br&lt;/sub&gt; ≈ </span><span class="sc">${</span>(avOut<span class="op">.</span><span class="at">Ebr</span> <span class="op">*</span> av<span class="op">.</span><span class="at">w</span> <span class="op">*</span> <span class="fl">1e-4</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> V across the avalanche region&lt;/div&gt;`</span></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>Things to try: with Si and electron injection the red curve turns vertical at 4.39×10⁵ V/cm for $w=0.5$ µm: a 2 % change of field</span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>takes $M$ from 60 to 650 (slide 59). Switch to **hole** injection in Si: the gain stays tiny until just below breakdown. In InP,</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>$\alpha_h&gt;\alpha_e$: holes must start the avalanche, which is why the SAM structure puts the InGaAs absorber on the side from which</span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>holes drift into the InP. Thicken the avalanche region: breakdown occurs at a lower field but a higher voltage.</span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked examples, recomputed</span></span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Slide 56.** InGaAs APD, $\eta_e=60$ % at 1.55 µm, $M=12$, 20 nW. **Slide 57.** Si APD, $\eta_e=70$ % at 830 nm, $M=100$,</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 10 nW. **Slides 58–59 (Table 5.3).** Si, $w=0.5$ µm, fields 4.00, 4.30 and 4.38×10⁵ V/cm.</span></span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-apd-ex</span></span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Worked examples of slides 56 and 57."</span></span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>R56 <span class="op">=</span> dl.responsivity(<span class="fl">0.6</span>, <span class="fl">1.55e-6</span>)<span class="op">;</span> R57 <span class="op">=</span> dl.responsivity(<span class="fl">0.7</span>, <span class="fl">830e-9</span>)</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(<span class="st">"s56: R at M = 1"</span>, <span class="ss">f"</span><span class="sc">{</span>R56<span class="sc">:.3f}</span><span class="ss"> A/W"</span>, <span class="st">"0.75 A/W"</span>), (<span class="st">"s56: primary current"</span>, <span class="ss">f"</span><span class="sc">{</span>R56<span class="op">*</span><span class="fl">20e-9</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> nA"</span>, <span class="st">"15 nA"</span>),</span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"s56: multiplied current"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">12</span><span class="op">*</span>R56<span class="op">*</span><span class="fl">20e-9</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nA"</span>, <span class="st">"180 nA"</span>), (<span class="st">"s56: R at M = 12"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">12</span><span class="op">*</span>R56<span class="sc">:.2f}</span><span class="ss"> A/W"</span>, <span class="st">"9.0 A/W"</span>),</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"s57: R at M = 1"</span>, <span class="ss">f"</span><span class="sc">{</span>R57<span class="sc">:.3f}</span><span class="ss"> A/W"</span>, <span class="st">"0.47 A/W"</span>), (<span class="st">"s57: primary current"</span>, <span class="ss">f"</span><span class="sc">{</span>R57<span class="op">*</span><span class="fl">10e-9</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.2f}</span><span class="ss"> nA"</span>, <span class="st">"4.7 nA"</span>),</span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>              (<span class="st">"s57: multiplied current"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>R57<span class="op">*</span><span class="fl">10e-9</span><span class="op">*</span><span class="fl">1e9</span><span class="sc">:.0f}</span><span class="ss"> nA"</span>, <span class="st">"470 nA"</span>)], columns<span class="op">=</span>[<span class="st">"quantity"</span>, <span class="st">"computed"</span>, <span class="st">"slide"</span>])</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-53</span></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Table 5.3 (slide 59) recomputed with unrounded coefficients. Close to breakdown, M is so sensitive that rounding α_e and k to three digits (as on the slide) shifts M at 4.30×10⁵ V/cm from 58.7 to 57.2."</span></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="fl">0.5e-4</span></span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>slide <span class="op">=</span> {<span class="fl">4.00e5</span>: (<span class="fl">11.8</span>, <span class="fl">7.65</span>), <span class="fl">4.30e5</span>: (<span class="fl">57.2</span>, <span class="fl">12.1</span>), <span class="fl">4.38e5</span>: (<span class="dv">647</span>, <span class="fl">13.7</span>)}</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> E, (Ms, Mes) <span class="kw">in</span> slide.items():</span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a>    ae, ah <span class="op">=</span> dl.chynoweth(E, <span class="st">"Si"</span>, <span class="st">"e"</span>), dl.chynoweth(E, <span class="st">"Si"</span>, <span class="st">"h"</span>)<span class="op">;</span> k <span class="op">=</span> ah<span class="op">/</span>ae</span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>    rows.append((<span class="ss">f"</span><span class="sc">{</span>E<span class="sc">:.2e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>ae<span class="sc">:.3e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>ah<span class="sc">:.3e}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>k<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>apd_gain_uniform(ae, k, w)<span class="sc">:.1f}</span><span class="ss">"</span>, Ms, <span class="ss">f"</span><span class="sc">{</span>np<span class="sc">.</span>exp(ae<span class="op">*</span>w)<span class="sc">:.2f}</span><span class="ss">"</span>, Mes))</span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"E (V/cm)"</span>, <span class="st">"α_e (cm⁻¹)"</span>, <span class="st">"α_h (cm⁻¹)"</span>, <span class="st">"k"</span>, <span class="st">"M"</span>, <span class="st">"M slide"</span>, <span class="st">"M_e"</span>, <span class="st">"M_e slide"</span>])</span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-apd-gain</span></span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Multiplication versus field for a 0.5 µm Si avalanche region (slides 58–59). Electron-only ionisation (blue) grows exponentially; with hole feedback (red) M diverges at breakdown. Right: the same for InP with hole injection (the favourable carrier in InP), whose coefficients are much closer (k_eff ≈ 0.7): M stays small and then runs away abruptly, which makes a given gain harder to hold. Electron injection in InP (dashed) gives even less gain below breakdown."</span></span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.linspace(<span class="fl">2.5e5</span>, <span class="fl">5.5e5</span>, <span class="dv">2000</span>)<span class="op">;</span> w <span class="op">=</span> <span class="fl">0.5e-4</span></span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.8</span>))</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>ae, ah <span class="op">=</span> dl.chynoweth(E, <span class="st">"Si"</span>, <span class="st">"e"</span>), dl.chynoweth(E, <span class="st">"Si"</span>, <span class="st">"h"</span>)</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].semilogy(E<span class="op">/</span><span class="fl">1e5</span>, dl.apd_gain_uniform(ae, ah<span class="op">/</span>ae, w), color<span class="op">=</span>dl.PALETTE[<span class="dv">7</span>], label<span class="op">=</span><span class="st">"M (both carriers)"</span>)</span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].semilogy(E<span class="op">/</span><span class="fl">1e5</span>, np.exp(ae<span class="op">*</span>w), color<span class="op">=</span>dl.PALETTE[<span class="dv">0</span>], label<span class="op">=</span><span class="st">"M_e = exp(α_e w)"</span>)</span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> slide: ax[<span class="dv">0</span>].axvline(x<span class="op">/</span><span class="fl">1e5</span>, color<span class="op">=</span>dl.INK2, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"E (10⁵ V/cm)"</span>, ylabel<span class="op">=</span><span class="st">"M"</span>, ylim<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">1e4</span>), title<span class="op">=</span><span class="st">"Si, electron injection"</span>)<span class="op">;</span> ax[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a>ae, ah <span class="op">=</span> dl.chynoweth(E, <span class="st">"InP"</span>, <span class="st">"e"</span>), dl.chynoweth(E, <span class="st">"InP"</span>, <span class="st">"h"</span>)</span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].semilogy(E<span class="op">/</span><span class="fl">1e5</span>, dl.apd_gain_uniform(ah, ae<span class="op">/</span>ah, w), color<span class="op">=</span>dl.PALETTE[<span class="dv">7</span>], label<span class="op">=</span><span class="st">"M (hole injection)"</span>)</span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].semilogy(E<span class="op">/</span><span class="fl">1e5</span>, dl.apd_gain_uniform(ae, ah<span class="op">/</span>ae, w), <span class="st">"--"</span>, color<span class="op">=</span>dl.PALETTE[<span class="dv">1</span>], label<span class="op">=</span><span class="st">"M (electron injection)"</span>)</span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"E (10⁵ V/cm)"</span>, ylim<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">1e4</span>), title<span class="op">=</span><span class="st">"InP"</span>)<span class="op">;</span> ax[<span class="dv">1</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()<span class="op">;</span> plt.show()</span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live panel: why APDs need temperature control (slides 47, 55, 81)</span></span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>Phonon scattering increases with temperature, so a carrier needs a higher field to reach the ionisation energy: the breakdown</span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a>voltage rises by roughly 0.1–0.2 %/K in Si (slide 47 shows three temperatures). Using the empirical Miller law:</span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>viewof ml <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Vbr</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">20</span><span class="op">,</span> <span class="dv">400</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">160</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"breakdown voltage at 20 °C, V_br (V)"</span>})<span class="op">,</span></span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a>  <span class="dt">m</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">8</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Miller exponent m"</span>})<span class="op">,</span></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tc</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.4</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"temperature coefficient of V_br (%/K)"</span>})<span class="op">,</span></span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Vr</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">20</span><span class="op">,</span> <span class="dv">400</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">150</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"operating bias V_r (V)"</span>})</span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a>mlOut <span class="op">=</span> {</span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> temps <span class="op">=</span> [<span class="op">-</span><span class="dv">20</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">60</span>]<span class="op">,</span> pts <span class="op">=</span> []<span class="op">,</span> cur <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> T <span class="kw">of</span> temps) {</span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Vb <span class="op">=</span> ml<span class="op">.</span><span class="at">Vbr</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> ml<span class="op">.</span><span class="at">tc</span> <span class="op">/</span> <span class="dv">100</span> <span class="op">*</span> (T <span class="op">-</span> <span class="dv">20</span>))<span class="op">;</span></span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> <span class="dv">400</span><span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> V <span class="op">=</span> <span class="fl">0.6</span> <span class="op">*</span> ml<span class="op">.</span><span class="at">Vbr</span> <span class="op">+</span> <span class="fl">0.45</span> <span class="op">*</span> ml<span class="op">.</span><span class="at">Vbr</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">400</span><span class="op">;</span> <span class="cf">if</span> (V <span class="op">&lt;</span> Vb) { <span class="kw">const</span> M <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> (V <span class="op">/</span> Vb) <span class="op">**</span> ml<span class="op">.</span><span class="at">m</span>)<span class="op">;</span> <span class="cf">if</span> (M <span class="op">&lt;</span> <span class="dv">500</span>) pts<span class="op">.</span><span class="fu">push</span>({V<span class="op">,</span> M<span class="op">,</span> <span class="dt">T</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>T<span class="sc">}</span><span class="vs"> °C`</span>})<span class="op">;</span> } }</span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a>    cur<span class="op">.</span><span class="fu">push</span>({T<span class="op">,</span> <span class="dt">M</span><span class="op">:</span> ml<span class="op">.</span><span class="at">Vr</span> <span class="op">&lt;</span> Vb <span class="op">?</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> (ml<span class="op">.</span><span class="at">Vr</span> <span class="op">/</span> Vb) <span class="op">**</span> ml<span class="op">.</span><span class="at">m</span>) <span class="op">:</span> <span class="kw">Infinity</span>})<span class="op">;</span></span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {pts<span class="op">,</span> cur}<span class="op">;</span></span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"reverse bias V_r (V)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">type</span><span class="op">:</span> <span class="st">"log"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="st">"-20 °C"</span><span class="op">,</span> <span class="st">"20 °C"</span><span class="op">,</span> <span class="st">"60 °C"</span>]<span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#1baf7a"</span><span class="op">,</span> <span class="st">"#e34948"</span><span class="op">,</span> <span class="st">"#2a78d6"</span>]}<span class="op">,</span></span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(mlOut<span class="op">.</span><span class="at">pts</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"V"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"M"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"T"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span> Plot<span class="op">.</span><span class="fu">ruleX</span>([ml<span class="op">.</span><span class="at">Vr</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#52514e"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,3"</span>})]</span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;at V&lt;sub&gt;r&lt;/sub&gt; = </span><span class="sc">${</span>ml<span class="op">.</span><span class="at">Vr</span><span class="sc">}</span><span class="vs"> V: </span><span class="sc">${</span>mlOut<span class="op">.</span><span class="at">cur</span><span class="op">.</span><span class="fu">map</span>(c <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`M(</span><span class="sc">${</span>c<span class="op">.</span><span class="at">T</span><span class="sc">}</span><span class="vs"> °C) = &lt;b&gt;</span><span class="sc">${</span><span class="pp">isFinite</span>(c<span class="op">.</span><span class="at">M</span>) <span class="op">?</span> c<span class="op">.</span><span class="at">M</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">:</span> <span class="st">"breakdown"</span><span class="sc">}</span><span class="vs">&lt;/b&gt; · `</span>)<span class="sc">}</span></span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a><span class="vs">gain change per kelvin around 20 °C ≈ </span><span class="sc">${</span><span class="pp">isFinite</span>(mlOut<span class="op">.</span><span class="at">cur</span>[<span class="dv">1</span>]<span class="op">.</span><span class="at">M</span>) <span class="op">?</span> (<span class="dv">100</span> <span class="op">*</span> (<span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(<span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> (ml<span class="op">.</span><span class="at">Vr</span> <span class="op">/</span> (ml<span class="op">.</span><span class="at">Vbr</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> ml<span class="op">.</span><span class="at">tc</span> <span class="op">/</span> <span class="dv">100</span>))) <span class="op">**</span> ml<span class="op">.</span><span class="at">m</span>)) <span class="op">-</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(mlOut<span class="op">.</span><span class="at">cur</span>[<span class="dv">1</span>]<span class="op">.</span><span class="at">M</span>)))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> %/K&lt;/div&gt;`</span></span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a>At high gain a 1 K drift changes $M$ by several percent. Commercial APD receivers therefore either stabilise the temperature</span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a>with a thermoelectric cooler and sensor (the Voxtel module of slide 81) or adjust the bias with temperature.</span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Photodiode comparison (slide 49)</span></span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-49</span></span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Slide 49, with the QE implied by the quoted peak responsivity at the peak wavelength (R × 1.24/λ[µm]). APD responsivities are at M = 1."</span></span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [(<span class="st">"Si pin"</span>, <span class="dv">900</span>, <span class="fl">0.55</span>, <span class="st">"&lt;1"</span>), (<span class="st">"Si APD"</span>, <span class="dv">850</span>, <span class="fl">0.5</span>, <span class="st">"10–10³"</span>), (<span class="st">"Ge pin"</span>, <span class="dv">1550</span>, <span class="fl">0.55</span>, <span class="st">"&lt;1"</span>), (<span class="st">"Ge APD"</span>, <span class="dv">1550</span>, <span class="fl">0.6</span>, <span class="st">"10–20"</span>),</span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"InGaAs pin"</span>, <span class="dv">1550</span>, <span class="fl">0.85</span>, <span class="st">"&lt;1"</span>), (<span class="st">"InGaAs APD"</span>, <span class="dv">1550</span>, <span class="fl">0.83</span>, <span class="st">"10–20"</span>), (<span class="st">"GaAs pin"</span>, <span class="dv">850</span>, <span class="fl">0.5</span>, <span class="st">"&lt;1"</span>), (<span class="st">"GaP pin"</span>, <span class="dv">450</span>, <span class="fl">0.1</span>, <span class="st">"&lt;1"</span>)]</span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([(n, l, R, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>quantum_efficiency(R, l<span class="op">*</span><span class="fl">1e-9</span>)<span class="sc">:.0%}</span><span class="ss">"</span>, g) <span class="cf">for</span> n, l, R, g <span class="kw">in</span> data],</span>
+<span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a>             columns<span class="op">=</span>[<span class="st">"photodiode"</span>, <span class="st">"λ_peak (nm)"</span>, <span class="st">"R (A/W, mid-range)"</span>, <span class="st">"implied QE"</span>, <span class="st">"gain"</span>])</span>
+<span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a>The InGaAs devices reach about 70 % QE at 1550 nm (up to 80 % at the top of their range), Ge only 40–50 % because 1550 nm is at the</span>
+<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a>edge of its direct absorption, and GaP at 450 nm 28 %, because the blue light is absorbed close to the surface.</span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Non-uniform fields.** Real avalanche regions have a triangular or trapezoidal field. Use <span class="in">`dl.apd_gain_profile(x, αe(x), αh(x))`</span>,</span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a>  which integrates McIntyre's general expression, for a p⁺n junction with a linear field and compare with a uniform field of the</span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a>  same peak value. Which carries more gain, the peak or the average?</span>
+<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dead space.** A carrier must travel a minimum distance $d=E_i/eE$ before it can ionise again. In thin (≲ 100 nm) multiplication</span>
+<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a>  layers this makes the ionisation positions less random, which lowers the excess noise below McIntyre's prediction: the basis of</span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a>  thin InAlAs and AlInAsSb APDs.</span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Geiger mode and SPADs.** Biased *above* breakdown, an APD stays quiescent until a single carrier triggers a self-sustaining avalanche,</span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a>  which a quenching resistor stops: a **single-photon avalanche diode**. Count the photons, not the current. Photon-detection efficiency,</span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a>  dark-count rate, dead time and after-pulsing replace QE, dark current and bandwidth. SPAD arrays are the receivers of automotive</span>
+<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a>  lidar and of quantum-key-distribution links.</span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The superlattice APD** (slide 60): at each conduction-band step $\Delta E_c$ the electron gains energy abruptly, while holes see a</span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a>  smaller $\Delta E_v$. This "staircase" enhances $\alpha_e$ and lowers $k$ artificially. Why is the valence-band step a problem?</span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, sec. 5.6–5.7; Saleh &amp; Teich, sec. 18.4.</span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>R. J. McIntyre, "Multiplication noise in uniform avalanche diodes", *IEEE Trans. Electron Devices* ED-13, 164 (1966).</span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>J. C. Campbell, "Recent advances in avalanche photodiodes", *J. Lightwave Technol.* 34, 278 (2016).</span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>L. W. Cook, G. E. Bulman, G. E. Stillman, "Electron and hole impact ionization coefficients in InP", *Appl. Phys. Lett.* 40, 589</span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a>  (1982): the InP coefficients used here.</span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Show that the breakdown condition $\exp<span class="co">[</span><span class="ot">-(1-k)\alpha_ew</span><span class="co">]</span>=k$ is the same for electron and hole injection.</span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Using the first panel, find the field giving $M=10$ in Si for $w=0.2$, 0.5 and 1 µm, and the corresponding voltages across</span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a>   the avalanche region. Why are thin avalanche regions preferred for low-voltage operation?</span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>A Si APD has $V_{br}=150$ V and $m=3$. At what bias is $M=50$? How stable must the bias supply be to keep $M$ within ±5 %?</span>
+<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>The responsivity at $M=12$ in slide 56 is written "$(12)/(0.75)$". Explain why it must be a product and check the 9.0 A/W.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/apd.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

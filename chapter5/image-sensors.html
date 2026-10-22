@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; Image sensors: CCD and CMOS – Photodetectors and Image Sensors</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./solar-cells.html" rel="next">
+<link href="./apd-noise.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./image-sensors.html">Image sensors and solar cells</a></li><li class="breadcrumb-item"><a href="./image-sensors.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Photodetectors and Image Sensors</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter5/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">How a photodiode works</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pn-photodiode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The pn junction photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Shockley–Ramo theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./absorption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Absorption and the cut-off wavelength</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./responsivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Photodiode families</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The pin photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schottky.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Schottky, MSM and phototransistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./photoconductors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Photoconductive detectors</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Circuits, speed and noise</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circuits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Photodiode circuits and speed</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Noise, SNR, NEP and detectivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Noise in avalanche photodiodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Image sensors and solar cells</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./image-sensors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solar-cells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Solar cells</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./receivers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sq-limit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">12.1</span> Key relations</a></li>
+  <li><a href="#live-panel-three-phase-charge-transfer-slides-116117" id="toc-live-panel-three-phase-charge-transfer-slides-116117" class="nav-link" data-scroll-target="#live-panel-three-phase-charge-transfer-slides-116117"><span class="header-section-number">12.2</span> Live panel: three-phase charge transfer (slides 116–117)</a></li>
+  <li><a href="#live-panel-a-simulated-exposure" id="toc-live-panel-a-simulated-exposure" class="nav-link" data-scroll-target="#live-panel-a-simulated-exposure"><span class="header-section-number">12.3</span> Live panel: a simulated exposure</a></li>
+  <li><a href="#worked-example-a-professional-full-frame-ccd-slide-108" id="toc-worked-example-a-professional-full-frame-ccd-slide-108" class="nav-link" data-scroll-target="#worked-example-a-professional-full-frame-ccd-slide-108"><span class="header-section-number">12.4</span> Worked example: a professional full-frame CCD (slide 108)</a></li>
+  <li><a href="#photon-transfer-curve" id="toc-photon-transfer-curve" class="nav-link" data-scroll-target="#photon-transfer-curve"><span class="header-section-number">12.5</span> Photon transfer curve</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">12.6</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/image-sensors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./image-sensors.html">Image sensors and solar cells</a></li><li class="breadcrumb-item"><a href="./image-sensors.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-image" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter5/notebooks/image-sensors.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>Slides 108–111 (CCD and CMOS image sensors, image sensing with a pixel array, colour imaging with a Bayer filter or three CCDs), 112 (active-matrix readout), 113 (CMOS pixel, microlenses and colour filters), 114–117 (the CCD element and three-phase charge transfer) and 118–120 (full-frame, frame-transfer and interline-transfer architectures).</em></p>
+<section id="key-relations" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">12.1</span> Key relations</h2>
+<p>An image sensor is an array of photosensitive pixels, each integrating the photogenerated charge during the exposure time (slide 110). The signal of a pixel, in electrons, is</p>
+<p><span class="math display">\[
+S=\eta\,\Phi_{ph}\,A_\text{pix}\,t_\text{exp}\le N_\text{FW},
+\]</span></p>
+<p>with <span class="math inline">\(\eta\)</span> the QE (including the fill factor and the microlens), <span class="math inline">\(\Phi_{ph}\)</span> the photon flux density, and <span class="math inline">\(N_\text{FW}\)</span> the <strong>full-well capacity</strong>. The noise combines the photon shot noise of the signal, the shot noise of the dark charge <span class="math inline">\(D\)</span> and the read noise <span class="math inline">\(\sigma_r\)</span> of the output amplifier (in electrons rms):</p>
+<p><span class="math display">\[
+\text{SNR}=\frac{S}{\sqrt{S+D+\sigma_r^2}},\qquad \text{dynamic range}=\frac{N_\text{FW}}{\sigma_r}.
+\]</span></p>
+<p><strong>CCD.</strong> Each pixel is a MOS capacitor: a positive gate voltage on p-type Si creates a depletion region, a potential well that stores the photogenerated electrons (slide 115). By clocking three interleaved gate phases the wells move and the packets are shifted, without mixing, one gate at a time (slides 116–117): three clock steps move a packet by one pixel. The packets are shifted row by row into a serial register and then pixel by pixel to a single, very low-noise output amplifier (slide 118). A packet that is transferred <span class="math inline">\(N\)</span> times with a <strong>charge-transfer efficiency</strong> CTE keeps a fraction <span class="math inline">\(\text{CTE}^N\)</span>. Frame-transfer and interline architectures (slides 119–120) add a light-shielded storage area so the next exposure can start while the previous frame is read.</p>
+<p><strong>CMOS.</strong> Each pixel has its own photodiode and transistors (reset, source follower, row select: the 3T pixel of slide 113) and is addressed like a memory (row and column decoders, active matrix of slide 112). There is no charge transfer across the chip, the readout is fast and parallel, and the logic, ADCs and image processing are integrated on the same chip; the price was historically a higher read noise and fixed-pattern noise, now largely overcome. <strong>Colour</strong> is obtained with a Bayer mosaic of red, green and blue filters (twice as many green as red or blue pixels, like the eye’s sensitivity) or, in professional cameras, with three sensors behind a trichroic prism (slide 111).</p>
+</section>
+<section id="live-panel-three-phase-charge-transfer-slides-116117" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="live-panel-three-phase-charge-transfer-slides-116117"><span class="header-section-number">12.2</span> Live panel: three-phase charge transfer (slides 116–117)</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="52" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 51;"><span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>viewof ccd <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">18</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"clock step (t₁, t₂, …)"</span>})<span class="op">,</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">cte</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.9</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.99</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.001</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"charge-transfer efficiency per gate transfer"</span>})</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="61" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 60;"><span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>ccdOut <span class="op">=</span> {</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> phases <span class="op">=</span> [[<span class="dv">0</span>]<span class="op">,</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> [<span class="dv">1</span>]<span class="op">,</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> [<span class="dv">2</span>]<span class="op">,</span> [<span class="dv">2</span><span class="op">,</span> <span class="dv">0</span>]]<span class="op">,</span> s <span class="op">=</span> ccd<span class="op">.</span><span class="at">step</span><span class="op">,</span> act <span class="op">=</span> phases[s <span class="op">%</span> <span class="dv">6</span>]<span class="op">,</span> nG <span class="op">=</span> <span class="dv">15</span><span class="op">;</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> gates <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(nG)<span class="op">.</span><span class="fu">map</span>(g <span class="kw">=&gt;</span> ({g<span class="op">,</span> <span class="dt">ph</span><span class="op">:</span> g <span class="op">%</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">on</span><span class="op">:</span> act<span class="op">.</span><span class="fu">includes</span>(g <span class="op">%</span> <span class="dv">3</span>)}))<span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> shift <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">2.5</span>][s <span class="op">%</span> <span class="dv">6</span>] <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(s <span class="op">/</span> <span class="dv">6</span>)<span class="op">,</span> Q0 <span class="op">=</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">14</span>]<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> packets <span class="op">=</span> Q0<span class="op">.</span><span class="fu">map</span>((q<span class="op">,</span> k) <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> <span class="dv">3</span> <span class="op">*</span> k <span class="op">+</span> shift<span class="op">,</span> <span class="dt">q</span><span class="op">:</span> q <span class="op">*</span> ccd<span class="op">.</span><span class="at">cte</span> <span class="op">**</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>((s <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>)<span class="op">,</span> <span class="dt">lost</span><span class="op">:</span> q <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> ccd<span class="op">.</span><span class="at">cte</span> <span class="op">**</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>((s <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>))}))<span class="op">;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> table <span class="op">=</span> [<span class="st">"V₁"</span><span class="op">,</span> <span class="st">"V₂"</span><span class="op">,</span> <span class="st">"V₃"</span>]<span class="op">.</span><span class="fu">map</span>((v<span class="op">,</span> p) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>v<span class="sc">}</span><span class="vs"> = </span><span class="sc">${</span>act<span class="op">.</span><span class="fu">includes</span>(p) <span class="op">?</span> <span class="st">"+V"</span> <span class="op">:</span> <span class="st">"0"</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">" · "</span>)<span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {gates<span class="op">,</span> packets<span class="op">,</span> table}<span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">230</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"gate position"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.5</span><span class="op">,</span> <span class="fl">14.5</span>]}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"electron potential energy"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="fl">1.4</span><span class="op">,</span> <span class="fl">0.4</span>]<span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> []}<span class="op">,</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">rect</span>(ccdOut<span class="op">.</span><span class="at">gates</span><span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">g</span> <span class="op">-</span> <span class="fl">0.45</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">g</span> <span class="op">+</span> <span class="fl">0.45</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="fl">0.25</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="fl">0.35</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">on</span> <span class="op">?</span> <span class="st">"#e34948"</span> <span class="op">:</span> <span class="st">"#c3c2b7"</span>})<span class="op">,</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">text</span>(ccdOut<span class="op">.</span><span class="at">gates</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"g"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fl">0.38</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`G</span><span class="sc">${</span>d<span class="op">.</span><span class="at">g</span> <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="vs">`</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">9</span>})<span class="op">,</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">rect</span>(ccdOut<span class="op">.</span><span class="at">gates</span><span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">g</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">g</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">on</span> <span class="op">?</span> <span class="op">-</span><span class="dv">1</span> <span class="op">:</span> <span class="op">-</span><span class="fl">0.05</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.15</span>})<span class="op">,</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">dot</span>(ccdOut<span class="op">.</span><span class="at">packets</span><span class="op">.</span><span class="fu">filter</span>(p <span class="kw">=&gt;</span> p<span class="op">.</span><span class="at">x</span> <span class="op">&lt;</span> <span class="fl">14.6</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.85</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="dv">3</span> <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(d<span class="op">.</span><span class="at">q</span>)<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2a78d6"</span>})<span class="op">,</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">text</span>(ccdOut<span class="op">.</span><span class="at">packets</span><span class="op">.</span><span class="fu">filter</span>(p <span class="kw">=&gt;</span> p<span class="op">.</span><span class="at">x</span> <span class="op">&lt;</span> <span class="fl">14.6</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="op">-</span><span class="fl">1.2</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">q</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (lost </span><span class="sc">${</span>d<span class="op">.</span><span class="at">lost</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">)`</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">9</span>})]</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="80" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 79;"><span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;step t&lt;sub&gt;</span><span class="sc">${</span>ccd<span class="op">.</span><span class="at">step</span> <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="vs">&lt;/sub&gt;: </span><span class="sc">${</span>ccdOut<span class="op">.</span><span class="at">table</span><span class="sc">}</span><span class="vs"> · packets moved by </span><span class="sc">${</span>(([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">2.5</span>][ccd<span class="op">.</span><span class="at">step</span> <span class="op">%</span> <span class="dv">6</span>] <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(ccd<span class="op">.</span><span class="at">step</span> <span class="op">/</span> <span class="dv">6</span>)) <span class="op">/</span> <span class="dv">3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> pixel&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Each packet spreads under two gates when both are high (t₂, t₄, …) and is squeezed under the next one when the previous gate drops. After six steps every packet has moved by three gates, i.e.&nbsp;one pixel: the packet that started under G1 is under G4. The packets never mix because a low gate always separates them. The lost charge does not vanish: it is left behind and appears in the trailing pixels as a smear.</p>
+</section>
+<section id="live-panel-a-simulated-exposure" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="live-panel-a-simulated-exposure"><span class="header-section-number">12.3</span> Live panel: a simulated exposure</h2>
+<p>The scene below is converted into photoelectrons with Poisson statistics, the read noise is added, the full well clips bright pixels, and the CCD transfer loss smears charge along the readout direction (to the right and downward in this sketch).</p>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="96" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 95;"><span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {rng} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>viewof cam <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lph</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">5.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">2.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ photons per pixel at the brightest point"</span>})<span class="op">,</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>  <span class="dt">qe</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.6</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"quantum efficiency (incl. fill factor)"</span>})<span class="op">,</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  <span class="dt">rn</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"read noise σ_r (e⁻ rms)"</span>})<span class="op">,</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fw</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">500</span><span class="op">,</span> <span class="dv">100000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">20000</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"full-well capacity (e⁻)"</span>})<span class="op">,</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lcte</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">7</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"−log₁₀(1 − CTE)"</span>})<span class="op">,</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  <span class="dt">seed</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"noise seed"</span>})</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="109" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 108;"><span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>camOut <span class="op">=</span> {</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> N <span class="op">=</span> <span class="dv">160</span><span class="op">,</span> r <span class="op">=</span> <span class="fu">rng</span>(cam<span class="op">.</span><span class="at">seed</span>)<span class="op">,</span> cte <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> <span class="dv">10</span> <span class="op">**</span> (<span class="op">-</span>cam<span class="op">.</span><span class="at">lcte</span>)<span class="op">,</span> phMax <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> cam<span class="op">.</span><span class="at">lph</span><span class="op">,</span> scene <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(N <span class="op">*</span> N)<span class="op">;</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> y <span class="op">&lt;</span> N<span class="op">;</span> y<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> x <span class="op">&lt;</span> N<span class="op">;</span> x<span class="op">++</span>) {</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="fl">0.05</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> x <span class="op">/</span> N<span class="op">;</span>                                          <span class="co">// background gradient</span></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (((x <span class="op">/</span> <span class="dv">8</span>) <span class="op">|</span> <span class="dv">0</span>) <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> y <span class="op">&gt;</span> <span class="dv">10</span> <span class="op">&amp;&amp;</span> y <span class="op">&lt;</span> <span class="dv">50</span>) v <span class="op">=</span> <span class="fl">0.3</span> <span class="op">+</span> <span class="fl">0.7</span> <span class="op">*</span> (x <span class="op">/</span> N)<span class="op">;</span>   <span class="co">// bar target</span></span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> dx <span class="op">=</span> x <span class="op">-</span> <span class="dv">110</span><span class="op">,</span> dy <span class="op">=</span> y <span class="op">-</span> <span class="dv">105</span><span class="op">;</span> <span class="cf">if</span> (dx <span class="op">*</span> dx <span class="op">+</span> dy <span class="op">*</span> dy <span class="op">&lt;</span> <span class="dv">900</span>) v <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span>     <span class="co">// bright disc</span></span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(x <span class="op">-</span> <span class="dv">40</span>) <span class="op">&lt;</span> <span class="dv">16</span> <span class="op">&amp;&amp;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(y <span class="op">-</span> <span class="dv">110</span>) <span class="op">&lt;</span> <span class="dv">16</span>) v <span class="op">=</span> <span class="fl">0.02</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> (x <span class="op">-</span> <span class="dv">24</span>) <span class="op">/</span> <span class="dv">4</span>)<span class="op">;</span>   <span class="co">// dark ramp patch</span></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>    scene[y <span class="op">*</span> N <span class="op">+</span> x] <span class="op">=</span> v<span class="op">;</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> e <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(N <span class="op">*</span> N)<span class="op">;</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N <span class="op">*</span> N<span class="op">;</span> i<span class="op">++</span>) e[i] <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(r<span class="op">.</span><span class="fu">poisson</span>(cam<span class="op">.</span><span class="at">qe</span> <span class="op">*</span> phMax <span class="op">*</span> scene[i]) <span class="op">+</span> cam<span class="op">.</span><span class="at">rn</span> <span class="op">*</span> r<span class="op">.</span><span class="fu">gauss</span>()<span class="op">,</span> cam<span class="op">.</span><span class="at">fw</span>)<span class="op">;</span></span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>  <span class="co">// CCD transfer loss: pixel (x, y) undergoes y parallel + x serial transfers, deferred charge goes to the next pixel read</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(N <span class="op">*</span> N)<span class="op">;</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> y <span class="op">&lt;</span> N<span class="op">;</span> y<span class="op">++</span>) { <span class="kw">let</span> carry <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> x <span class="op">&lt;</span> N<span class="op">;</span> x<span class="op">++</span>) {</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> i <span class="op">=</span> y <span class="op">*</span> N <span class="op">+</span> x<span class="op">,</span> keep <span class="op">=</span> cte <span class="op">**</span> (<span class="dv">3</span> <span class="op">*</span> (x <span class="op">+</span> y <span class="op">+</span> <span class="dv">2</span>))<span class="op">;</span> out[i] <span class="op">=</span> e[i] <span class="op">*</span> keep <span class="op">+</span> carry<span class="op">;</span> carry <span class="op">=</span> e[i] <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> keep)<span class="op">;</span> } }</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> vmax <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">1</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(cam<span class="op">.</span><span class="at">fw</span><span class="op">,</span> cam<span class="op">.</span><span class="at">qe</span> <span class="op">*</span> phMax <span class="op">*</span> <span class="fl">1.05</span>))<span class="op">;</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cvs <span class="op">=</span> DOM<span class="op">.</span><span class="fu">canvas</span>(N<span class="op">,</span> N)<span class="op">,</span> ctx <span class="op">=</span> cvs<span class="op">.</span><span class="fu">getContext</span>(<span class="st">"2d"</span>)<span class="op">,</span> img <span class="op">=</span> ctx<span class="op">.</span><span class="fu">createImageData</span>(N<span class="op">,</span> N)<span class="op">;</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N <span class="op">*</span> N<span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> g <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">255</span><span class="op">,</span> <span class="dv">255</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(out[i]<span class="op">,</span> <span class="dv">0</span>) <span class="op">/</span> vmax)))<span class="op">;</span> img<span class="op">.</span><span class="at">data</span>[<span class="dv">4</span> <span class="op">*</span> i] <span class="op">=</span> img<span class="op">.</span><span class="at">data</span>[<span class="dv">4</span> <span class="op">*</span> i <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> img<span class="op">.</span><span class="at">data</span>[<span class="dv">4</span> <span class="op">*</span> i <span class="op">+</span> <span class="dv">2</span>] <span class="op">=</span> g<span class="op">;</span> img<span class="op">.</span><span class="at">data</span>[<span class="dv">4</span> <span class="op">*</span> i <span class="op">+</span> <span class="dv">3</span>] <span class="op">=</span> <span class="dv">255</span><span class="op">;</span> }</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>  ctx<span class="op">.</span><span class="fu">putImageData</span>(img<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span> cvs<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">width</span> <span class="op">=</span> <span class="st">"420px"</span><span class="op">;</span> cvs<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">imageRendering</span> <span class="op">=</span> <span class="st">"pixelated"</span><span class="op">;</span> cvs<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">border</span> <span class="op">=</span> <span class="st">"1px solid #c3c2b7"</span><span class="op">;</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> patch <span class="op">=</span> []<span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> y <span class="op">=</span> <span class="dv">55</span><span class="op">;</span> y <span class="op">&lt;</span> <span class="dv">70</span><span class="op">;</span> y<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> x <span class="op">=</span> <span class="dv">120</span><span class="op">;</span> x <span class="op">&lt;</span> <span class="dv">150</span><span class="op">;</span> x<span class="op">++</span>) patch<span class="op">.</span><span class="fu">push</span>(out[y <span class="op">*</span> N <span class="op">+</span> x])<span class="op">;</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> S <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(patch)<span class="op">,</span> sd <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(patch)<span class="op">;</span></span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {cvs<span class="op">,</span> S<span class="op">,</span> sd<span class="op">,</span> cte<span class="op">,</span> <span class="dt">theory</span><span class="op">:</span> cam<span class="op">.</span><span class="at">qe</span> <span class="op">*</span> phMax <span class="op">*</span> (<span class="fl">0.05</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> <span class="dv">135</span> <span class="op">/</span> N)}<span class="op">;</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>camOut<span class="op">.</span><span class="at">cvs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="136" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 135;"><span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;flat background patch: mean </span><span class="sc">${</span>camOut<span class="op">.</span><span class="at">S</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> e⁻, noise </span><span class="sc">${</span>camOut<span class="op">.</span><span class="at">sd</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> e⁻ rms → &lt;b&gt;SNR = </span><span class="sc">${</span>(camOut<span class="op">.</span><span class="at">S</span> <span class="op">/</span> camOut<span class="op">.</span><span class="at">sd</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt;</span></span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a><span class="vs">(prediction S/√(S + σ&lt;sub&gt;r&lt;/sub&gt;²) = </span><span class="sc">${</span>(camOut<span class="op">.</span><span class="at">theory</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(camOut<span class="op">.</span><span class="at">theory</span> <span class="op">+</span> cam<span class="op">.</span><span class="at">rn</span> <span class="op">**</span> <span class="dv">2</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">) · dynamic range N&lt;sub&gt;FW&lt;/sub&gt;/σ&lt;sub&gt;r&lt;/sub&gt; = </span><span class="sc">${</span>cam<span class="op">.</span><span class="at">rn</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> (<span class="dv">20</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(cam<span class="op">.</span><span class="at">fw</span> <span class="op">/</span> cam<span class="op">.</span><span class="at">rn</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>) <span class="op">+</span> <span class="st">" dB"</span> <span class="op">:</span> <span class="st">"∞"</span><span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a><span class="vs">CTE = </span><span class="sc">${</span>camOut<span class="op">.</span><span class="at">cte</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">7</span>)<span class="sc">}</span><span class="vs">, a corner pixel keeps </span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> camOut<span class="op">.</span><span class="at">cte</span> <span class="op">**</span> (<span class="dv">3</span> <span class="op">*</span> <span class="dv">320</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> % of its charge after </span><span class="sc">${</span><span class="dv">3</span> <span class="op">*</span> <span class="dv">320</span><span class="sc">}</span><span class="vs"> gate transfers&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Things to try: at 10 photons per pixel the image is dominated by Poisson noise and the bars are barely visible; at 10⁴ it is clean. Set the read noise to 30 e⁻: the dark patch disappears in the noise at low light, while bright parts are unaffected (read noise matters only in the shadows). Reduce the full well: the disc saturates and its edges flatten (no “blooming” is modelled). Reduce the CTE to 0.999: the bright disc smears to the right and the far corner loses most of its charge; space-qualified CCDs degrade this way under radiation damage.</p>
+</section>
+<section id="worked-example-a-professional-full-frame-ccd-slide-108" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="worked-example-a-professional-full-frame-ccd-slide-108"><span class="header-section-number">12.4</span> Worked example: a professional full-frame CCD (slide 108)</h2>
+<blockquote class="blockquote">
+<p>The Teledyne-DALSA FTF6040C has an imaging area of 36 × 24 mm² with 6 µm × 6 µm pixels. How many pixels? How many transfers does the farthest pixel undergo (three gates per pixel)? What CTE is needed to keep 99 % of its charge? How long does a readout take at 40 Mpixel/s through one output?</p>
+</blockquote>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nx, ny <span class="op">=</span> <span class="bu">round</span>(<span class="fl">36e-3</span><span class="op">/</span><span class="fl">6e-6</span>), <span class="bu">round</span>(<span class="fl">24e-3</span><span class="op">/</span><span class="fl">6e-6</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Ntr <span class="op">=</span> <span class="dv">3</span><span class="op">*</span>(nx <span class="op">+</span> ny)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>cte_needed <span class="op">=</span> <span class="fl">0.99</span><span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>Ntr)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [(<span class="st">"pixels"</span>, <span class="ss">f"</span><span class="sc">{</span>nx<span class="sc">}</span><span class="ss"> × </span><span class="sc">{</span>ny<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>nx<span class="op">*</span>ny<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> Mpixel"</span>), (<span class="st">"gate transfers of the farthest pixel"</span>, <span class="ss">f"</span><span class="sc">{</span>Ntr<span class="sc">}</span><span class="ss">"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"CTE for 99 </span><span class="sc">% r</span><span class="st">etention"</span>, <span class="ss">f"</span><span class="sc">{</span>cte_needed<span class="sc">:.7f}</span><span class="ss"> (1 − CTE = </span><span class="sc">{</span><span class="dv">1</span> <span class="op">-</span> cte_needed<span class="sc">:.1e}</span><span class="ss">)"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"retention with CTE = 0.99999"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>cte_remaining(<span class="fl">0.99999</span>, Ntr)<span class="sc">:.1%}</span><span class="ss">"</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"retention with CTE = 0.9999"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>cte_remaining(<span class="fl">0.9999</span>, Ntr)<span class="sc">:.1%}</span><span class="ss">"</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"readout time at 40 Mpixel/s (one output)"</span>, <span class="ss">f"</span><span class="sc">{</span>nx<span class="op">*</span>ny<span class="op">/</span><span class="fl">40e6</span><span class="sc">:.2f}</span><span class="ss"> s"</span>)]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"quantity"</span>, <span class="st">"value"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-ccd" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ccd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.1: Numbers behind the FTF6040C CCD of slide 108.
+</figcaption>
+<div aria-describedby="tbl-ccd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">quantity</th>
+<th data-quarto-table-cell-role="th">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>pixels</td>
+<td>6000 × 4000 = 24 Mpixel</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>gate transfers of the farthest pixel</td>
+<td>30000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>CTE for 99 % retention</td>
+<td>0.9999997 (1 − CTE = 3.4e-07)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>retention with CTE = 0.99999</td>
+<td>74.1%</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>retention with CTE = 0.9999</td>
+<td>5.0%</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>readout time at 40 Mpixel/s (one output)</td>
+<td>0.60 s</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>A CCD needs a CTE of 0.9999997 or better: 30 electrons lost per 100 million transferred. This astonishing figure is why CCDs were made in dedicated processes, and why CMOS sensors, which do not move charge across the chip, took over consumer imaging.</p>
+</section>
+<section id="photon-transfer-curve" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="photon-transfer-curve"><span class="header-section-number">12.5</span> Photon transfer curve</h2>
+<div id="cell-fig-ptc" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="fl">4.6</span>, <span class="dv">40</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> []</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> S:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    prnu <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.01</span><span class="op">*</span>rng.standard_normal(<span class="dv">20000</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> np.minimum(rng.poisson(s<span class="op">*</span>prnu) <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20000</span>), <span class="dv">20000</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    noise.append((e.mean(), e.std()))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> np.array(noise)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ax.loglog(noise[:, <span class="dv">0</span>].clip(<span class="fl">0.1</span>), noise[:, <span class="dv">1</span>], <span class="st">"o"</span>, ms<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">"simulated"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="fl">4.3</span>, <span class="dv">100</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ax.loglog(s, np.full_like(s, <span class="fl">5.0</span>), <span class="st">":"</span>, label<span class="op">=</span><span class="st">"read noise 5 e⁻"</span>)<span class="op">;</span> ax.loglog(s, np.sqrt(s), <span class="st">":"</span>, label<span class="op">=</span><span class="st">"shot noise √S"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ax.loglog(s, <span class="fl">0.01</span><span class="op">*</span>s, <span class="st">":"</span>, label<span class="op">=</span><span class="st">"PRNU 1 % × S"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"mean signal (e⁻)"</span>, ylabel<span class="op">=</span><span class="st">"noise (e⁻ rms)"</span>, ylim<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">500</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-ptc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ptc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="image-sensors_files/figure-html/fig-ptc-output-1.png" width="721" height="392" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ptc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12.1: Photon transfer curve of a simulated sensor (QE 0.6, read noise 5 e⁻, full well 20 000 e⁻, PRNU 1 %): noise versus signal. Three regimes: read-noise floor (slope 0), photon shot noise (slope 1/2), fixed-pattern noise (slope 1); the curve collapses at full well. Engineers use it to measure the gain (e⁻/DN), read noise and full well of a camera.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Pixel size and diffraction.</strong> A lens of f-number <span class="math inline">\(N\)</span> blurs a point into an Airy disc of diameter <span class="math inline">\(2.44\lambda N\)</span> (Ch. 1). For 1 µm smartphone pixels at f/1.8 and 550 nm, how many pixels does the Airy disc cover? Compare with the Nyquist condition (two pixels per resolved period). Are 200 Mpixel phone cameras resolution-limited by the pixels or by the optics?</li>
+<li><strong>Bayer demosaicing and aliasing.</strong> With one colour per pixel, each colour is under-sampled; fine patterns produce colour moiré. Simulate a Bayer mosaic of a chirped grating and interpolate it bilinearly.</li>
+<li><strong>Backside illumination, deep trench isolation, stacked sensors.</strong> Modern CMOS sensors are thinned and lit from the back so that the wiring does not shadow the photodiode (QE &gt; 80 %), separated by trenches against optical and electrical crosstalk, and bonded onto a second chip that carries the logic.</li>
+<li><strong>Single-photon imagers.</strong> Electron-multiplying CCDs (an avalanche register before the amplifier, <a href="apd-noise.html" class="quarto-xref"><span>Chapter 11</span></a>) and SPAD arrays
+<ol class="example" type="1">
+<li>reach sub-electron read noise. What excess noise factor does an EMCCD have, and why does it effectively halve the QE at high light levels?</li>
+</ol></li>
+<li><strong>Rolling shutter.</strong> CMOS sensors read row by row; fast motion is sheared. Estimate the skew of a propeller filmed with a 30 ms readout.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Kasap, sec.&nbsp;5.13; J. R. Janesick, <em>Photon Transfer</em> (SPIE Press, 2007): the bible of sensor characterisation.</li>
+<li>E. R. Fossum, “CMOS image sensors: electronic camera-on-a-chip”, <em>IEEE Trans. Electron Devices</em> 44, 1689 (1997).</li>
+<li>W. S. Boyle and G. E. Smith, <em>Bell Syst. Tech. J.</em> 49, 587 (1970) (slide 2); Nobel Prize in Physics 2009.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">12.6</span> Try it yourself</h2>
+<ol type="1">
+<li>A smartphone pixel of 1 µm² with QE 0.7 is exposed for 1/60 s to an indoor scene giving 10⁻⁴ W/m² at 550 nm on the sensor. How many electrons does it collect? What SNR can be achieved with 2 e⁻ read noise?</li>
+<li>Why are there twice as many green pixels as red or blue in a Bayer filter? (Hint: photometry, Ch. 3.)</li>
+<li>With the exposure panel, find the photon level at which read noise and shot noise contribute equally for <span class="math inline">\(\sigma_r=5\)</span> e⁻. Express it in terms of <span class="math inline">\(\sigma_r\)</span>.</li>
+<li>An interline-transfer CCD (slide 120) has a fill factor of only 30 %. How do microlenses (slide 113) restore the QE, and why do they fail for light arriving at large angles (fast lenses, image corners)?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBjY2QgPSBJbnB1dHMuZm9ybSh7XG4gIHN0ZXA6IElucHV0cy5yYW5nZShbMCwgMThdLCB7dmFsdWU6IDAsIHN0ZXA6IDEsIGxhYmVsOiBcImNsb2NrIHN0ZXAgKHTigoEsIHTigoIsIOKApilcIn0pLFxuICBjdGU6IElucHV0cy5yYW5nZShbMC45LCAxXSwge3ZhbHVlOiAwLjk5LCBzdGVwOiAwLjAwMSwgbGFiZWw6IFwiY2hhcmdlLXRyYW5zZmVyIGVmZmljaWVuY3kgcGVyIGdhdGUgdHJhbnNmZXJcIn0pXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiY2NkT3V0ID0ge1xuICBjb25zdCBwaGFzZXMgPSBbWzBdLCBbMCwgMV0sIFsxXSwgWzEsIDJdLCBbMl0sIFsyLCAwXV0sIHMgPSBjY2Quc3RlcCwgYWN0ID0gcGhhc2VzW3MgJSA2XSwgbkcgPSAxNTtcbiAgY29uc3QgZ2F0ZXMgPSBkMy5yYW5nZShuRykubWFwKGcgPT4gKHtnLCBwaDogZyAlIDMsIG9uOiBhY3QuaW5jbHVkZXMoZyAlIDMpfSkpO1xuICBjb25zdCBzaGlmdCA9IFswLCAwLjUsIDEsIDEuNSwgMiwgMi41XVtzICUgNl0gKyAzICogTWF0aC5mbG9vcihzIC8gNiksIFEwID0gWzEwLCA2LCAxNF07XG4gIGNvbnN0IHBhY2tldHMgPSBRMC5tYXAoKHEsIGspID0+ICh7eDogMyAqIGsgKyBzaGlmdCwgcTogcSAqIGNjZC5jdGUgKiogTWF0aC5mbG9vcigocyArIDEpIC8gMiksIGxvc3Q6IHEgKiAoMSAtIGNjZC5jdGUgKiogTWF0aC5mbG9vcigocyArIDEpIC8gMikpfSkpO1xuICBjb25zdCB0YWJsZSA9IFtcIlbigoFcIiwgXCJW4oKCXCIsIFwiVuKCg1wiXS5tYXAoKHYsIHApID0+IGAke3Z9ID0gJHthY3QuaW5jbHVkZXMocCkgPyBcIitWXCIgOiBcIjBcIn1gKS5qb2luKFwiIMK3IFwiKTtcbiAgcmV0dXJuIHtnYXRlcywgcGFja2V0cywgdGFibGV9O1xufVxuUGxvdC5wbG90KHtcbiAgd2lkdGg6IE1hdGgubWluKHdpZHRoLCAxMDUwKSwgaGVpZ2h0OiAyMzAsIHg6IHtsYWJlbDogXCJnYXRlIHBvc2l0aW9uXCIsIGRvbWFpbjogWy0wLjUsIDE0LjVdfSwgeToge2xhYmVsOiBcImVsZWN0cm9uIHBvdGVudGlhbCBlbmVyZ3lcIiwgZG9tYWluOiBbLTEuNCwgMC40XSwgdGlja3M6IFtdfSxcbiAgbWFya3M6IFtQbG90LnJlY3QoY2NkT3V0LmdhdGVzLCB7eDE6IGQgPT4gZC5nIC0gMC40NSwgeDI6IGQgPT4gZC5nICsgMC40NSwgeTE6IDAuMjUsIHkyOiAwLjM1LCBmaWxsOiBkID0+IGQub24gPyBcIiNlMzQ5NDhcIiA6IFwiI2MzYzJiN1wifSksXG4gICAgICAgICAgUGxvdC50ZXh0KGNjZE91dC5nYXRlcywge3g6IFwiZ1wiLCB5OiAwLjM4LCB0ZXh0OiBkID0+IGBHJHtkLmcgKyAxfWAsIGZvbnRTaXplOiA5fSksXG4gICAgICAgICAgUGxvdC5yZWN0KGNjZE91dC5nYXRlcywge3gxOiBkID0+IGQuZyAtIDAuNSwgeDI6IGQgPT4gZC5nICsgMC41LCB5MTogZCA9PiBkLm9uID8gLTEgOiAtMC4wNSwgeTI6IDAsIGZpbGw6IFwiIzJhNzhkNlwiLCBmaWxsT3BhY2l0eTogMC4xNX0pLFxuICAgICAgICAgIFBsb3QuZG90KGNjZE91dC5wYWNrZXRzLmZpbHRlcihwID0+IHAueCA8IDE0LjYpLCB7eDogXCJ4XCIsIHk6IC0wLjg1LCByOiBkID0+IDMgKyAxLjUgKiBNYXRoLnNxcnQoZC5xKSwgZmlsbDogXCIjMmE3OGQ2XCJ9KSxcbiAgICAgICAgICBQbG90LnRleHQoY2NkT3V0LnBhY2tldHMuZmlsdGVyKHAgPT4gcC54IDwgMTQuNiksIHt4OiBcInhcIiwgeTogLTEuMiwgdGV4dDogZCA9PiBgJHtkLnEudG9GaXhlZCgyKX0gKGxvc3QgJHtkLmxvc3QudG9GaXhlZCgyKX0pYCwgZm9udFNpemU6IDl9KV1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+c3RlcCB0PHN1Yj4ke2NjZC5zdGVwICsgMX08L3N1Yj46ICR7Y2NkT3V0LnRhYmxlfSDCtyBwYWNrZXRzIG1vdmVkIGJ5ICR7KChbMCwgMC41LCAxLCAxLjUsIDIsIDIuNV1bY2NkLnN0ZXAgJSA2XSArIDMgKiBNYXRoLmZsb29yKGNjZC5zdGVwIC8gNikpIC8gMykudG9GaXhlZCgyKX0gcGl4ZWw8L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJpbXBvcnQge3JuZ30gZnJvbSBcIi4vZGV0X3NpbS5qc1wiXG52aWV3b2YgY2FtID0gSW5wdXRzLmZvcm0oe1xuICBscGg6IElucHV0cy5yYW5nZShbMCwgNS41XSwge3ZhbHVlOiAyLjUsIHN0ZXA6IDAuMDUsIGxhYmVsOiBcImxvZ+KCgeKCgCBwaG90b25zIHBlciBwaXhlbCBhdCB0aGUgYnJpZ2h0ZXN0IHBvaW50XCJ9KSxcbiAgcWU6IElucHV0cy5yYW5nZShbMC4xLCAxXSwge3ZhbHVlOiAwLjYsIHN0ZXA6IDAuMDEsIGxhYmVsOiBcInF1YW50dW0gZWZmaWNpZW5jeSAoaW5jbC4gZmlsbCBmYWN0b3IpXCJ9KSxcbiAgcm46IElucHV0cy5yYW5nZShbMCwgNTBdLCB7dmFsdWU6IDUsIHN0ZXA6IDAuNSwgbGFiZWw6IFwicmVhZCBub2lzZSDPg19yIChl4oG7IHJtcylcIn0pLFxuICBmdzogSW5wdXRzLnJhbmdlKFs1MDAsIDEwMDAwMF0sIHt2YWx1ZTogMjAwMDAsIHN0ZXA6IDUwMCwgbGFiZWw6IFwiZnVsbC13ZWxsIGNhcGFjaXR5IChl4oG7KVwifSksXG4gIGxjdGU6IElucHV0cy5yYW5nZShbMiwgN10sIHt2YWx1ZTogNiwgc3RlcDogMC4xLCBsYWJlbDogXCLiiJJsb2figoHigoAoMSDiiJIgQ1RFKVwifSksXG4gIHNlZWQ6IElucHV0cy5yYW5nZShbMSwgNTBdLCB7dmFsdWU6IDEsIHN0ZXA6IDEsIGxhYmVsOiBcIm5vaXNlIHNlZWRcIn0pXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiY2FtT3V0ID0ge1xuICBjb25zdCBOID0gMTYwLCByID0gcm5nKGNhbS5zZWVkKSwgY3RlID0gMSAtIDEwICoqICgtY2FtLmxjdGUpLCBwaE1heCA9IDEwICoqIGNhbS5scGgsIHNjZW5lID0gbmV3IEZsb2F0NjRBcnJheShOICogTik7XG4gIGZvciAobGV0IHkgPSAwOyB5IDwgTjsgeSsrKSBmb3IgKGxldCB4ID0gMDsgeCA8IE47IHgrKykge1xuICAgIGxldCB2ID0gMC4wNSArIDAuMjUgKiB4IC8gTjsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAvLyBiYWNrZ3JvdW5kIGdyYWRpZW50XG4gICAgaWYgKCgoeCAvIDgpIHwgMCkgJSAyID09PSAwICYmIHkgPiAxMCAmJiB5IDwgNTApIHYgPSAwLjMgKyAwLjcgKiAoeCAvIE4pOyAgIC8vIGJhciB0YXJnZXRcbiAgICBjb25zdCBkeCA9IHggLSAxMTAsIGR5ID0geSAtIDEwNTsgaWYgKGR4ICogZHggKyBkeSAqIGR5IDwgOTAwKSB2ID0gMS4wOyAgICAgLy8gYnJpZ2h0IGRpc2NcbiAgICBpZiAoTWF0aC5hYnMoeCAtIDQwKSA8IDE2ICYmIE1hdGguYWJzKHkgLSAxMTApIDwgMTYpIHYgPSAwLjAyICogKDEgKyAoeCAtIDI0KSAvIDQpOyAgIC8vIGRhcmsgcmFtcCBwYXRjaFxuICAgIHNjZW5lW3kgKiBOICsgeF0gPSB2O1xuICB9XG4gIGNvbnN0IGUgPSBuZXcgRmxvYXQ2NEFycmF5KE4gKiBOKTtcbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBOICogTjsgaSsrKSBlW2ldID0gTWF0aC5taW4oci5wb2lzc29uKGNhbS5xZSAqIHBoTWF4ICogc2NlbmVbaV0pICsgY2FtLnJuICogci5nYXVzcygpLCBjYW0uZncpO1xuICAvLyBDQ0QgdHJhbnNmZXIgbG9zczogcGl4ZWwgKHgsIHkpIHVuZGVyZ29lcyB5IHBhcmFsbGVsICsgeCBzZXJpYWwgdHJhbnNmZXJzLCBkZWZlcnJlZCBjaGFyZ2UgZ29lcyB0byB0aGUgbmV4dCBwaXhlbCByZWFkXG4gIGNvbnN0IG91dCA9IG5ldyBGbG9hdDY0QXJyYXkoTiAqIE4pO1xuICBmb3IgKGxldCB5ID0gMDsgeSA8IE47IHkrKykgeyBsZXQgY2FycnkgPSAwOyBmb3IgKGxldCB4ID0gMDsgeCA8IE47IHgrKykge1xuICAgIGNvbnN0IGkgPSB5ICogTiArIHgsIGtlZXAgPSBjdGUgKiogKDMgKiAoeCArIHkgKyAyKSk7IG91dFtpXSA9IGVbaV0gKiBrZWVwICsgY2Fycnk7IGNhcnJ5ID0gZVtpXSAqICgxIC0ga2VlcCk7IH0gfVxuICBjb25zdCB2bWF4ID0gTWF0aC5tYXgoMSwgTWF0aC5taW4oY2FtLmZ3LCBjYW0ucWUgKiBwaE1heCAqIDEuMDUpKTtcbiAgY29uc3QgY3ZzID0gRE9NLmNhbnZhcyhOLCBOKSwgY3R4ID0gY3ZzLmdldENvbnRleHQoXCIyZFwiKSwgaW1nID0gY3R4LmNyZWF0ZUltYWdlRGF0YShOLCBOKTtcbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBOICogTjsgaSsrKSB7IGNvbnN0IGcgPSBNYXRoLm1heCgwLCBNYXRoLm1pbigyNTUsIDI1NSAqIE1hdGguc3FydChNYXRoLm1heChvdXRbaV0sIDApIC8gdm1heCkpKTsgaW1nLmRhdGFbNCAqIGldID0gaW1nLmRhdGFbNCAqIGkgKyAxXSA9IGltZy5kYXRhWzQgKiBpICsgMl0gPSBnOyBpbWcuZGF0YVs0ICogaSArIDNdID0gMjU1OyB9XG4gIGN0eC5wdXRJbWFnZURhdGEoaW1nLCAwLCAwKTsgY3ZzLnN0eWxlLndpZHRoID0gXCI0MjBweFwiOyBjdnMuc3R5bGUuaW1hZ2VSZW5kZXJpbmcgPSBcInBpeGVsYXRlZFwiOyBjdnMuc3R5bGUuYm9yZGVyID0gXCIxcHggc29saWQgI2MzYzJiN1wiO1xuICBjb25zdCBwYXRjaCA9IFtdOyBmb3IgKGxldCB5ID0gNTU7IHkgPCA3MDsgeSsrKSBmb3IgKGxldCB4ID0gMTIwOyB4IDwgMTUwOyB4KyspIHBhdGNoLnB1c2gob3V0W3kgKiBOICsgeF0pO1xuICBjb25zdCBTID0gZDMubWVhbihwYXRjaCksIHNkID0gZDMuZGV2aWF0aW9uKHBhdGNoKTtcbiAgcmV0dXJuIHtjdnMsIFMsIHNkLCBjdGUsIHRoZW9yeTogY2FtLnFlICogcGhNYXggKiAoMC4wNSArIDAuMjUgKiAxMzUgLyBOKX07XG59XG5jYW1PdXQuY3ZzXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYDxkaXYgY2xhc3M9XCJyZXN1bHQtYm94XCI+ZmxhdCBiYWNrZ3JvdW5kIHBhdGNoOiBtZWFuICR7Y2FtT3V0LlMudG9GaXhlZCgxKX0gZeKBuywgbm9pc2UgJHtjYW1PdXQuc2QudG9GaXhlZCgxKX0gZeKBuyBybXMg4oaSIDxiPlNOUiA9ICR7KGNhbU91dC5TIC8gY2FtT3V0LnNkKS50b0ZpeGVkKDEpfTwvYj5cbihwcmVkaWN0aW9uIFMv4oiaKFMgKyDPgzxzdWI+cjwvc3ViPsKyKSA9ICR7KGNhbU91dC50aGVvcnkgLyBNYXRoLnNxcnQoY2FtT3V0LnRoZW9yeSArIGNhbS5ybiAqKiAyKSkudG9GaXhlZCgxKX0pIMK3IGR5bmFtaWMgcmFuZ2UgTjxzdWI+Rlc8L3N1Yj4vz4M8c3ViPnI8L3N1Yj4gPSAke2NhbS5ybiA+IDAgPyAoMjAgKiBNYXRoLmxvZzEwKGNhbS5mdyAvIGNhbS5ybikpLnRvRml4ZWQoMCkgKyBcIiBkQlwiIDogXCLiiJ5cIn0gwrdcbkNURSA9ICR7Y2FtT3V0LmN0ZS50b0ZpeGVkKDcpfSwgYSBjb3JuZXIgcGl4ZWwga2VlcHMgJHsoMTAwICogY2FtT3V0LmN0ZSAqKiAoMyAqIDMyMCkpLnRvRml4ZWQoMSl9ICUgb2YgaXRzIGNoYXJnZSBhZnRlciAkezMgKiAzMjB9IGdhdGUgdHJhbnNmZXJzPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdjY2QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnY2FtJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter5\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./apd-noise.html" class="pagination-link" aria-label="Noise in avalanche photodiodes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Noise in avalanche photodiodes</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./solar-cells.html" class="pagination-link" aria-label="Solar cells">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Solar cells</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Image sensors: CCD and CMOS {#sec-image}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/image-sensors.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> detlib <span class="im">as</span> dl</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>dl.use_style()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>*Slides 108–111 (CCD and CMOS image sensors, image sensing with a pixel array, colour imaging with a Bayer filter or three CCDs),</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>112 (active-matrix readout), 113 (CMOS pixel, microlenses and colour filters), 114–117 (the CCD element and three-phase charge</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>transfer) and 118–120 (full-frame, frame-transfer and interline-transfer architectures).*</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>An image sensor is an array of photosensitive pixels, each integrating the photogenerated charge during the exposure time</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>(slide 110). The signal of a pixel, in electrons, is</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>S=\eta\,\Phi_{ph}\,A_\text{pix}\,t_\text{exp}\le N_\text{FW},</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>with $\eta$ the QE (including the fill factor and the microlens), $\Phi_{ph}$ the photon flux density, and $N_\text{FW}$ the</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>**full-well capacity**. The noise combines the photon shot noise of the signal, the shot noise of the dark charge $D$ and the read</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>noise $\sigma_r$ of the output amplifier (in electrons rms):</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>\text{SNR}=\frac{S}{\sqrt{S+D+\sigma_r^2}},\qquad \text{dynamic range}=\frac{N_\text{FW}}{\sigma_r}.</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>**CCD.** Each pixel is a MOS capacitor: a positive gate voltage on p-type Si creates a depletion region, a potential well that</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>stores the photogenerated electrons (slide 115). By clocking three interleaved gate phases the wells move and the packets are</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>shifted, without mixing, one gate at a time (slides 116–117): three clock steps move a packet by one pixel. The packets are shifted</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>row by row into a serial register and then pixel by pixel to a single, very low-noise output amplifier (slide 118). A packet that</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>is transferred $N$ times with a **charge-transfer efficiency** CTE keeps a fraction $\text{CTE}^N$. Frame-transfer and interline</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>architectures (slides 119–120) add a light-shielded storage area so the next exposure can start while the previous frame is read.</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>**CMOS.** Each pixel has its own photodiode and transistors (reset, source follower, row select: the 3T pixel of slide 113) and is</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>addressed like a memory (row and column decoders, active matrix of slide 112). There is no charge transfer across the chip, the</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>readout is fast and parallel, and the logic, ADCs and image processing are integrated on the same chip; the price was historically</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>a higher read noise and fixed-pattern noise, now largely overcome. **Colour** is obtained with a Bayer mosaic of red, green and blue</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>filters (twice as many green as red or blue pixels, like the eye's sensitivity) or, in professional cameras, with three sensors</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>behind a trichroic prism (slide 111).</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live panel: three-phase charge transfer (slides 116–117)</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>viewof ccd <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">18</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"clock step (t₁, t₂, …)"</span>})<span class="op">,</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">cte</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.9</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.99</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.001</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"charge-transfer efficiency per gate transfer"</span>})</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>ccdOut <span class="op">=</span> {</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> phases <span class="op">=</span> [[<span class="dv">0</span>]<span class="op">,</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> [<span class="dv">1</span>]<span class="op">,</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> [<span class="dv">2</span>]<span class="op">,</span> [<span class="dv">2</span><span class="op">,</span> <span class="dv">0</span>]]<span class="op">,</span> s <span class="op">=</span> ccd<span class="op">.</span><span class="at">step</span><span class="op">,</span> act <span class="op">=</span> phases[s <span class="op">%</span> <span class="dv">6</span>]<span class="op">,</span> nG <span class="op">=</span> <span class="dv">15</span><span class="op">;</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> gates <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(nG)<span class="op">.</span><span class="fu">map</span>(g <span class="kw">=&gt;</span> ({g<span class="op">,</span> <span class="dt">ph</span><span class="op">:</span> g <span class="op">%</span> <span class="dv">3</span><span class="op">,</span> <span class="dt">on</span><span class="op">:</span> act<span class="op">.</span><span class="fu">includes</span>(g <span class="op">%</span> <span class="dv">3</span>)}))<span class="op">;</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> shift <span class="op">=</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">2.5</span>][s <span class="op">%</span> <span class="dv">6</span>] <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(s <span class="op">/</span> <span class="dv">6</span>)<span class="op">,</span> Q0 <span class="op">=</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">14</span>]<span class="op">;</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> packets <span class="op">=</span> Q0<span class="op">.</span><span class="fu">map</span>((q<span class="op">,</span> k) <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> <span class="dv">3</span> <span class="op">*</span> k <span class="op">+</span> shift<span class="op">,</span> <span class="dt">q</span><span class="op">:</span> q <span class="op">*</span> ccd<span class="op">.</span><span class="at">cte</span> <span class="op">**</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>((s <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>)<span class="op">,</span> <span class="dt">lost</span><span class="op">:</span> q <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> ccd<span class="op">.</span><span class="at">cte</span> <span class="op">**</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>((s <span class="op">+</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>))}))<span class="op">;</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> table <span class="op">=</span> [<span class="st">"V₁"</span><span class="op">,</span> <span class="st">"V₂"</span><span class="op">,</span> <span class="st">"V₃"</span>]<span class="op">.</span><span class="fu">map</span>((v<span class="op">,</span> p) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>v<span class="sc">}</span><span class="vs"> = </span><span class="sc">${</span>act<span class="op">.</span><span class="fu">includes</span>(p) <span class="op">?</span> <span class="st">"+V"</span> <span class="op">:</span> <span class="st">"0"</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">" · "</span>)<span class="op">;</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {gates<span class="op">,</span> packets<span class="op">,</span> table}<span class="op">;</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">230</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"gate position"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.5</span><span class="op">,</span> <span class="fl">14.5</span>]}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"electron potential energy"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="fl">1.4</span><span class="op">,</span> <span class="fl">0.4</span>]<span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> []}<span class="op">,</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">rect</span>(ccdOut<span class="op">.</span><span class="at">gates</span><span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">g</span> <span class="op">-</span> <span class="fl">0.45</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">g</span> <span class="op">+</span> <span class="fl">0.45</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="fl">0.25</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="fl">0.35</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">on</span> <span class="op">?</span> <span class="st">"#e34948"</span> <span class="op">:</span> <span class="st">"#c3c2b7"</span>})<span class="op">,</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">text</span>(ccdOut<span class="op">.</span><span class="at">gates</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"g"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fl">0.38</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`G</span><span class="sc">${</span>d<span class="op">.</span><span class="at">g</span> <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="vs">`</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">9</span>})<span class="op">,</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">rect</span>(ccdOut<span class="op">.</span><span class="at">gates</span><span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">g</span> <span class="op">-</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">g</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">on</span> <span class="op">?</span> <span class="op">-</span><span class="dv">1</span> <span class="op">:</span> <span class="op">-</span><span class="fl">0.05</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.15</span>})<span class="op">,</span></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">dot</span>(ccdOut<span class="op">.</span><span class="at">packets</span><span class="op">.</span><span class="fu">filter</span>(p <span class="kw">=&gt;</span> p<span class="op">.</span><span class="at">x</span> <span class="op">&lt;</span> <span class="fl">14.6</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.85</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="dv">3</span> <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(d<span class="op">.</span><span class="at">q</span>)<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#2a78d6"</span>})<span class="op">,</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">text</span>(ccdOut<span class="op">.</span><span class="at">packets</span><span class="op">.</span><span class="fu">filter</span>(p <span class="kw">=&gt;</span> p<span class="op">.</span><span class="at">x</span> <span class="op">&lt;</span> <span class="fl">14.6</span>)<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"x"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="op">-</span><span class="fl">1.2</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">q</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (lost </span><span class="sc">${</span>d<span class="op">.</span><span class="at">lost</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">)`</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">9</span>})]</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;step t&lt;sub&gt;</span><span class="sc">${</span>ccd<span class="op">.</span><span class="at">step</span> <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="vs">&lt;/sub&gt;: </span><span class="sc">${</span>ccdOut<span class="op">.</span><span class="at">table</span><span class="sc">}</span><span class="vs"> · packets moved by </span><span class="sc">${</span>(([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="fl">2.5</span>][ccd<span class="op">.</span><span class="at">step</span> <span class="op">%</span> <span class="dv">6</span>] <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(ccd<span class="op">.</span><span class="at">step</span> <span class="op">/</span> <span class="dv">6</span>)) <span class="op">/</span> <span class="dv">3</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> pixel&lt;/div&gt;`</span></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>Each packet spreads under two gates when both are high (t₂, t₄, …) and is squeezed under the next one when the previous gate</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>drops. After six steps every packet has moved by three gates, i.e. one pixel: the packet that started under G1 is under G4. The</span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>packets never mix because a low gate always separates them. The lost charge does not vanish: it is left behind and appears in the</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>trailing pixels as a smear.</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live panel: a simulated exposure</span></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>The scene below is converted into photoelectrons with Poisson statistics, the read noise is added, the full well clips bright pixels,</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>and the CCD transfer loss smears charge along the readout direction (to the right and downward in this sketch).</span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {rng} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>viewof cam <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lph</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">5.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">2.5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ photons per pixel at the brightest point"</span>})<span class="op">,</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">qe</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.6</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"quantum efficiency (incl. fill factor)"</span>})<span class="op">,</span></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>  <span class="dt">rn</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"read noise σ_r (e⁻ rms)"</span>})<span class="op">,</span></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>  <span class="dt">fw</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">500</span><span class="op">,</span> <span class="dv">100000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">20000</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"full-well capacity (e⁻)"</span>})<span class="op">,</span></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lcte</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">7</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"−log₁₀(1 − CTE)"</span>})<span class="op">,</span></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">seed</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"noise seed"</span>})</span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>camOut <span class="op">=</span> {</span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> N <span class="op">=</span> <span class="dv">160</span><span class="op">,</span> r <span class="op">=</span> <span class="fu">rng</span>(cam<span class="op">.</span><span class="at">seed</span>)<span class="op">,</span> cte <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> <span class="dv">10</span> <span class="op">**</span> (<span class="op">-</span>cam<span class="op">.</span><span class="at">lcte</span>)<span class="op">,</span> phMax <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> cam<span class="op">.</span><span class="at">lph</span><span class="op">,</span> scene <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(N <span class="op">*</span> N)<span class="op">;</span></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> y <span class="op">&lt;</span> N<span class="op">;</span> y<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> x <span class="op">&lt;</span> N<span class="op">;</span> x<span class="op">++</span>) {</span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="fl">0.05</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> x <span class="op">/</span> N<span class="op">;</span>                                          <span class="co">// background gradient</span></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (((x <span class="op">/</span> <span class="dv">8</span>) <span class="op">|</span> <span class="dv">0</span>) <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">&amp;&amp;</span> y <span class="op">&gt;</span> <span class="dv">10</span> <span class="op">&amp;&amp;</span> y <span class="op">&lt;</span> <span class="dv">50</span>) v <span class="op">=</span> <span class="fl">0.3</span> <span class="op">+</span> <span class="fl">0.7</span> <span class="op">*</span> (x <span class="op">/</span> N)<span class="op">;</span>   <span class="co">// bar target</span></span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> dx <span class="op">=</span> x <span class="op">-</span> <span class="dv">110</span><span class="op">,</span> dy <span class="op">=</span> y <span class="op">-</span> <span class="dv">105</span><span class="op">;</span> <span class="cf">if</span> (dx <span class="op">*</span> dx <span class="op">+</span> dy <span class="op">*</span> dy <span class="op">&lt;</span> <span class="dv">900</span>) v <span class="op">=</span> <span class="fl">1.0</span><span class="op">;</span>     <span class="co">// bright disc</span></span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(x <span class="op">-</span> <span class="dv">40</span>) <span class="op">&lt;</span> <span class="dv">16</span> <span class="op">&amp;&amp;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(y <span class="op">-</span> <span class="dv">110</span>) <span class="op">&lt;</span> <span class="dv">16</span>) v <span class="op">=</span> <span class="fl">0.02</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> (x <span class="op">-</span> <span class="dv">24</span>) <span class="op">/</span> <span class="dv">4</span>)<span class="op">;</span>   <span class="co">// dark ramp patch</span></span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>    scene[y <span class="op">*</span> N <span class="op">+</span> x] <span class="op">=</span> v<span class="op">;</span></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> e <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(N <span class="op">*</span> N)<span class="op">;</span></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N <span class="op">*</span> N<span class="op">;</span> i<span class="op">++</span>) e[i] <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(r<span class="op">.</span><span class="fu">poisson</span>(cam<span class="op">.</span><span class="at">qe</span> <span class="op">*</span> phMax <span class="op">*</span> scene[i]) <span class="op">+</span> cam<span class="op">.</span><span class="at">rn</span> <span class="op">*</span> r<span class="op">.</span><span class="fu">gauss</span>()<span class="op">,</span> cam<span class="op">.</span><span class="at">fw</span>)<span class="op">;</span></span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>  <span class="co">// CCD transfer loss: pixel (x, y) undergoes y parallel + x serial transfers, deferred charge goes to the next pixel read</span></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> out <span class="op">=</span> <span class="kw">new</span> <span class="bu">Float64Array</span>(N <span class="op">*</span> N)<span class="op">;</span></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> y <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> y <span class="op">&lt;</span> N<span class="op">;</span> y<span class="op">++</span>) { <span class="kw">let</span> carry <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> x <span class="op">&lt;</span> N<span class="op">;</span> x<span class="op">++</span>) {</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> i <span class="op">=</span> y <span class="op">*</span> N <span class="op">+</span> x<span class="op">,</span> keep <span class="op">=</span> cte <span class="op">**</span> (<span class="dv">3</span> <span class="op">*</span> (x <span class="op">+</span> y <span class="op">+</span> <span class="dv">2</span>))<span class="op">;</span> out[i] <span class="op">=</span> e[i] <span class="op">*</span> keep <span class="op">+</span> carry<span class="op">;</span> carry <span class="op">=</span> e[i] <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> keep)<span class="op">;</span> } }</span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> vmax <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">1</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(cam<span class="op">.</span><span class="at">fw</span><span class="op">,</span> cam<span class="op">.</span><span class="at">qe</span> <span class="op">*</span> phMax <span class="op">*</span> <span class="fl">1.05</span>))<span class="op">;</span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cvs <span class="op">=</span> DOM<span class="op">.</span><span class="fu">canvas</span>(N<span class="op">,</span> N)<span class="op">,</span> ctx <span class="op">=</span> cvs<span class="op">.</span><span class="fu">getContext</span>(<span class="st">"2d"</span>)<span class="op">,</span> img <span class="op">=</span> ctx<span class="op">.</span><span class="fu">createImageData</span>(N<span class="op">,</span> N)<span class="op">;</span></span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> N <span class="op">*</span> N<span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> g <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">0</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">255</span><span class="op">,</span> <span class="dv">255</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(out[i]<span class="op">,</span> <span class="dv">0</span>) <span class="op">/</span> vmax)))<span class="op">;</span> img<span class="op">.</span><span class="at">data</span>[<span class="dv">4</span> <span class="op">*</span> i] <span class="op">=</span> img<span class="op">.</span><span class="at">data</span>[<span class="dv">4</span> <span class="op">*</span> i <span class="op">+</span> <span class="dv">1</span>] <span class="op">=</span> img<span class="op">.</span><span class="at">data</span>[<span class="dv">4</span> <span class="op">*</span> i <span class="op">+</span> <span class="dv">2</span>] <span class="op">=</span> g<span class="op">;</span> img<span class="op">.</span><span class="at">data</span>[<span class="dv">4</span> <span class="op">*</span> i <span class="op">+</span> <span class="dv">3</span>] <span class="op">=</span> <span class="dv">255</span><span class="op">;</span> }</span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>  ctx<span class="op">.</span><span class="fu">putImageData</span>(img<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span> cvs<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">width</span> <span class="op">=</span> <span class="st">"420px"</span><span class="op">;</span> cvs<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">imageRendering</span> <span class="op">=</span> <span class="st">"pixelated"</span><span class="op">;</span> cvs<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">border</span> <span class="op">=</span> <span class="st">"1px solid #c3c2b7"</span><span class="op">;</span></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> patch <span class="op">=</span> []<span class="op">;</span> <span class="cf">for</span> (<span class="kw">let</span> y <span class="op">=</span> <span class="dv">55</span><span class="op">;</span> y <span class="op">&lt;</span> <span class="dv">70</span><span class="op">;</span> y<span class="op">++</span>) <span class="cf">for</span> (<span class="kw">let</span> x <span class="op">=</span> <span class="dv">120</span><span class="op">;</span> x <span class="op">&lt;</span> <span class="dv">150</span><span class="op">;</span> x<span class="op">++</span>) patch<span class="op">.</span><span class="fu">push</span>(out[y <span class="op">*</span> N <span class="op">+</span> x])<span class="op">;</span></span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> S <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(patch)<span class="op">,</span> sd <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(patch)<span class="op">;</span></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {cvs<span class="op">,</span> S<span class="op">,</span> sd<span class="op">,</span> cte<span class="op">,</span> <span class="dt">theory</span><span class="op">:</span> cam<span class="op">.</span><span class="at">qe</span> <span class="op">*</span> phMax <span class="op">*</span> (<span class="fl">0.05</span> <span class="op">+</span> <span class="fl">0.25</span> <span class="op">*</span> <span class="dv">135</span> <span class="op">/</span> N)}<span class="op">;</span></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>camOut<span class="op">.</span><span class="at">cvs</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;flat background patch: mean </span><span class="sc">${</span>camOut<span class="op">.</span><span class="at">S</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> e⁻, noise </span><span class="sc">${</span>camOut<span class="op">.</span><span class="at">sd</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> e⁻ rms → &lt;b&gt;SNR = </span><span class="sc">${</span>(camOut<span class="op">.</span><span class="at">S</span> <span class="op">/</span> camOut<span class="op">.</span><span class="at">sd</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">&lt;/b&gt;</span></span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a><span class="vs">(prediction S/√(S + σ&lt;sub&gt;r&lt;/sub&gt;²) = </span><span class="sc">${</span>(camOut<span class="op">.</span><span class="at">theory</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(camOut<span class="op">.</span><span class="at">theory</span> <span class="op">+</span> cam<span class="op">.</span><span class="at">rn</span> <span class="op">**</span> <span class="dv">2</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">) · dynamic range N&lt;sub&gt;FW&lt;/sub&gt;/σ&lt;sub&gt;r&lt;/sub&gt; = </span><span class="sc">${</span>cam<span class="op">.</span><span class="at">rn</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> (<span class="dv">20</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(cam<span class="op">.</span><span class="at">fw</span> <span class="op">/</span> cam<span class="op">.</span><span class="at">rn</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>) <span class="op">+</span> <span class="st">" dB"</span> <span class="op">:</span> <span class="st">"∞"</span><span class="sc">}</span><span class="vs"> ·</span></span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a><span class="vs">CTE = </span><span class="sc">${</span>camOut<span class="op">.</span><span class="at">cte</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">7</span>)<span class="sc">}</span><span class="vs">, a corner pixel keeps </span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> camOut<span class="op">.</span><span class="at">cte</span> <span class="op">**</span> (<span class="dv">3</span> <span class="op">*</span> <span class="dv">320</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> % of its charge after </span><span class="sc">${</span><span class="dv">3</span> <span class="op">*</span> <span class="dv">320</span><span class="sc">}</span><span class="vs"> gate transfers&lt;/div&gt;`</span></span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>Things to try: at 10 photons per pixel the image is dominated by Poisson noise and the bars are barely visible; at 10⁴ it is clean.</span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>Set the read noise to 30 e⁻: the dark patch disappears in the noise at low light, while bright parts are unaffected (read noise</span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>matters only in the shadows). Reduce the full well: the disc saturates and its edges flatten (no "blooming" is modelled). Reduce</span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>the CTE to 0.999: the bright disc smears to the right and the far corner loses most of its charge; space-qualified CCDs degrade</span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>this way under radiation damage.</span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a><span class="fu">## Worked example: a professional full-frame CCD (slide 108)</span></span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The Teledyne-DALSA FTF6040C has an imaging area of 36 × 24 mm² with 6 µm × 6 µm pixels. How many pixels? How many transfers does</span></span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; the farthest pixel undergo (three gates per pixel)? What CTE is needed to keep 99 % of its charge? How long does a readout take at</span></span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; 40 Mpixel/s through one output?</span></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ccd</span></span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Numbers behind the FTF6040C CCD of slide 108."</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a>nx, ny <span class="op">=</span> <span class="bu">round</span>(<span class="fl">36e-3</span><span class="op">/</span><span class="fl">6e-6</span>), <span class="bu">round</span>(<span class="fl">24e-3</span><span class="op">/</span><span class="fl">6e-6</span>)</span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>Ntr <span class="op">=</span> <span class="dv">3</span><span class="op">*</span>(nx <span class="op">+</span> ny)</span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>cte_needed <span class="op">=</span> <span class="fl">0.99</span><span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>Ntr)</span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [(<span class="st">"pixels"</span>, <span class="ss">f"</span><span class="sc">{</span>nx<span class="sc">}</span><span class="ss"> × </span><span class="sc">{</span>ny<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>nx<span class="op">*</span>ny<span class="op">/</span><span class="fl">1e6</span><span class="sc">:.0f}</span><span class="ss"> Mpixel"</span>), (<span class="st">"gate transfers of the farthest pixel"</span>, <span class="ss">f"</span><span class="sc">{</span>Ntr<span class="sc">}</span><span class="ss">"</span>),</span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"CTE for 99 </span><span class="sc">% r</span><span class="st">etention"</span>, <span class="ss">f"</span><span class="sc">{</span>cte_needed<span class="sc">:.7f}</span><span class="ss"> (1 − CTE = </span><span class="sc">{</span><span class="dv">1</span> <span class="op">-</span> cte_needed<span class="sc">:.1e}</span><span class="ss">)"</span>),</span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"retention with CTE = 0.99999"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>cte_remaining(<span class="fl">0.99999</span>, Ntr)<span class="sc">:.1%}</span><span class="ss">"</span>),</span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"retention with CTE = 0.9999"</span>, <span class="ss">f"</span><span class="sc">{</span>dl<span class="sc">.</span>cte_remaining(<span class="fl">0.9999</span>, Ntr)<span class="sc">:.1%}</span><span class="ss">"</span>),</span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"readout time at 40 Mpixel/s (one output)"</span>, <span class="ss">f"</span><span class="sc">{</span>nx<span class="op">*</span>ny<span class="op">/</span><span class="fl">40e6</span><span class="sc">:.2f}</span><span class="ss"> s"</span>)]</span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"quantity"</span>, <span class="st">"value"</span>])</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a>A CCD needs a CTE of 0.9999997 or better: 30 electrons lost per 100 million transferred. This astonishing figure is why CCDs were</span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>made in dedicated processes, and why CMOS sensors, which do not move charge across the chip, took over consumer imaging.</span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a><span class="fu">## Photon transfer curve</span></span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ptc</span></span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Photon transfer curve of a simulated sensor (QE 0.6, read noise 5 e⁻, full well 20 000 e⁻, PRNU 1 %): noise versus signal. Three regimes: read-noise floor (slope 0), photon shot noise (slope 1/2), fixed-pattern noise (slope 1); the curve collapses at full well. Engineers use it to measure the gain (e⁻/DN), read noise and full well of a camera."</span></span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">1</span>)</span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="fl">4.6</span>, <span class="dv">40</span>)</span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> []</span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> S:</span>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a>    prnu <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.01</span><span class="op">*</span>rng.standard_normal(<span class="dv">20000</span>)</span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a>    e <span class="op">=</span> np.minimum(rng.poisson(s<span class="op">*</span>prnu) <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">20000</span>), <span class="dv">20000</span>)</span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a>    noise.append((e.mean(), e.std()))</span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> np.array(noise)</span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">7.5</span>, <span class="fl">3.8</span>))</span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a>ax.loglog(noise[:, <span class="dv">0</span>].clip(<span class="fl">0.1</span>), noise[:, <span class="dv">1</span>], <span class="st">"o"</span>, ms<span class="op">=</span><span class="dv">4</span>, label<span class="op">=</span><span class="st">"simulated"</span>)</span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="fl">4.3</span>, <span class="dv">100</span>)</span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a>ax.loglog(s, np.full_like(s, <span class="fl">5.0</span>), <span class="st">":"</span>, label<span class="op">=</span><span class="st">"read noise 5 e⁻"</span>)<span class="op">;</span> ax.loglog(s, np.sqrt(s), <span class="st">":"</span>, label<span class="op">=</span><span class="st">"shot noise √S"</span>)</span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a>ax.loglog(s, <span class="fl">0.01</span><span class="op">*</span>s, <span class="st">":"</span>, label<span class="op">=</span><span class="st">"PRNU 1 % × S"</span>)</span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"mean signal (e⁻)"</span>, ylabel<span class="op">=</span><span class="st">"noise (e⁻ rms)"</span>, ylim<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">500</span>))<span class="op">;</span> ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Pixel size and diffraction.** A lens of f-number $N$ blurs a point into an Airy disc of diameter $2.44\lambda N$ (Ch. 1). For 1 µm</span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a>  smartphone pixels at f/1.8 and 550 nm, how many pixels does the Airy disc cover? Compare with the Nyquist condition (two pixels per</span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a>  resolved period). Are 200 Mpixel phone cameras resolution-limited by the pixels or by the optics?</span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Bayer demosaicing and aliasing.** With one colour per pixel, each colour is under-sampled; fine patterns produce colour moiré.</span>
+<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a>  Simulate a Bayer mosaic of a chirped grating and interpolate it bilinearly.</span>
+<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Backside illumination, deep trench isolation, stacked sensors.** Modern CMOS sensors are thinned and lit from the back so that the</span>
+<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a>  wiring does not shadow the photodiode (QE &gt; 80 %), separated by trenches against optical and electrical crosstalk, and bonded onto</span>
+<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a>  a second chip that carries the logic.</span>
+<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Single-photon imagers.** Electron-multiplying CCDs (an avalanche register before the amplifier, @sec-apd-noise) and SPAD arrays</span>
+<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a>  (@sec-apd) reach sub-electron read noise. What excess noise factor does an EMCCD have, and why does it effectively halve the QE</span>
+<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a>  at high light levels?</span>
+<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Rolling shutter.** CMOS sensors read row by row; fast motion is sheared. Estimate the skew of a propeller filmed with a 30 ms</span>
+<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a>  readout.</span>
+<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-226"><a href="#cb9-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-227"><a href="#cb9-227" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kasap, sec. 5.13; J. R. Janesick, *Photon Transfer* (SPIE Press, 2007): the bible of sensor characterisation.</span>
+<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>E. R. Fossum, "CMOS image sensors: electronic camera-on-a-chip", *IEEE Trans. Electron Devices* 44, 1689 (1997).</span>
+<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>W. S. Boyle and G. E. Smith, *Bell Syst. Tech. J.* 49, 587 (1970) (slide 2); Nobel Prize in Physics 2009.</span>
+<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>A smartphone pixel of 1 µm² with QE 0.7 is exposed for 1/60 s to an indoor scene giving 10⁻⁴ W/m² at 550 nm on the sensor. How</span>
+<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a>   many electrons does it collect? What SNR can be achieved with 2 e⁻ read noise?</span>
+<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Why are there twice as many green pixels as red or blue in a Bayer filter? (Hint: photometry, Ch. 3.)</span>
+<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>With the exposure panel, find the photon level at which read noise and shot noise contribute equally for $\sigma_r=5$ e⁻.</span>
+<span id="cb9-240"><a href="#cb9-240" aria-hidden="true" tabindex="-1"></a>   Express it in terms of $\sigma_r$.</span>
+<span id="cb9-241"><a href="#cb9-241" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>An interline-transfer CCD (slide 120) has a fill factor of only 30 %. How do microlenses (slide 113) restore the QE, and why do</span>
+<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a>   they fail for light arriving at large angles (fast lenses, image corners)?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/image-sensors.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>15&nbsp; Going further: the Shockley–Queisser limit – Photodetectors and Image Sensors</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ideas.html" rel="next">
+<link href="./receivers.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./receivers.html">Going further</a></li><li class="breadcrumb-item"><a href="./sq-limit.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Photodetectors and Image Sensors</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter5/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">How a photodiode works</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pn-photodiode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The pn junction photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Shockley–Ramo theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./absorption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Absorption and the cut-off wavelength</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./responsivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Photodiode families</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The pin photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schottky.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Schottky, MSM and phototransistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./photoconductors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Photoconductive detectors</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Circuits, speed and noise</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circuits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Photodiode circuits and speed</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Noise, SNR, NEP and detectivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Noise in avalanche photodiodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Image sensors and solar cells</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./image-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solar-cells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Solar cells</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./receivers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sq-limit.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#key-relations" id="toc-key-relations" class="nav-link active" data-scroll-target="#key-relations"><span class="header-section-number">15.1</span> Key relations</a></li>
+  <li><a href="#live-panel-efficiency-versus-band-gap-and-where-the-energy-goes" id="toc-live-panel-efficiency-versus-band-gap-and-where-the-energy-goes" class="nav-link" data-scroll-target="#live-panel-efficiency-versus-band-gap-and-where-the-energy-goes"><span class="header-section-number">15.2</span> Live panel: efficiency versus band gap and where the energy goes</a></li>
+  <li><a href="#recomputed-the-classic-numbers" id="toc-recomputed-the-classic-numbers" class="nav-link" data-scroll-target="#recomputed-the-classic-numbers"><span class="header-section-number">15.3</span> Recomputed: the classic numbers</a></li>
+  <li><a href="#two-junctions-slide-132" id="toc-two-junctions-slide-132" class="nav-link" data-scroll-target="#two-junctions-slide-132"><span class="header-section-number">15.4</span> Two junctions (slide 132)</a></li>
+  <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself"><span class="header-section-number">15.5</span> Try it yourself</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/sq-limit.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./receivers.html">Going further</a></li><li class="breadcrumb-item"><a href="./sq-limit.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-sq" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter5/notebooks/sq-limit.ipynb" class="colab-link"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open in Colab"></a> &nbsp;Run this chapter’s code in Google Colab (no installation).</p>
+<p><em>This chapter is not in the slides. Slide 130 lists record efficiencies of 25–32 %; here we ask why no single-junction cell can do much better, using the black-body radiation and detailed balance of Ch. 4.</em></p>
+<section id="key-relations" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="key-relations"><span class="header-section-number">15.1</span> Key relations</h2>
+<p>Treat the Sun as a black body at <span class="math inline">\(T_s\approx5800\)</span> K seen under a small solid angle, and the cell as a semiconductor of band gap <span class="math inline">\(E_g\)</span> at <span class="math inline">\(T_c=300\)</span> K. Shockley and Queisser (1961) made four assumptions: every photon with <span class="math inline">\(h\nu\ge E_g\)</span> is absorbed and gives exactly one electron–hole pair; photons below <span class="math inline">\(E_g\)</span> are lost; the carriers relax to the band edges (the excess energy is lost as heat); and the only recombination is <strong>radiative</strong>, as required by detailed balance. The photon flux of a black body per unit photon energy, emitted into a hemisphere, is</p>
+<p><span class="math display">\[
+\phi_{bb}(E,T)=\frac{2\pi}{h^3c^2}\frac{E^2}{e^{E/k_BT}-1}.
+\]</span></p>
+<p>The Sun is diluted by the factor <span class="math inline">\(f=(R_\odot/d_\text{Earth})^2\approx2.16\times10^{-5}\)</span> (the solid angle of the solar disc over π), so</p>
+<p><span class="math display">\[
+J_{sc}=ef\int_{E_g}^\infty\phi_{bb}(E,T_s)\,dE,\qquad J_0=e\int_{E_g}^\infty\phi_{bb}(E,T_c)\,dE .
+\]</span></p>
+<p>In the dark the cell must emit as many photons as it absorbs from its 300 K surroundings: that radiative emission is the dark current <span class="math inline">\(J_0\)</span>, and under bias it grows as <span class="math inline">\(e^{eV/k_BT_c}\)</span>. The I–V curve is that of an ideal diode, <span class="math inline">\(J=J_{sc}-J_0(e^{eV/k_BT_c}-1)\)</span>, and the efficiency is the maximum of <span class="math inline">\(JV\)</span> divided by the incident power <span class="math inline">\(f\sigma T_s^4\approx1360\)</span> W/m². A small gap absorbs many photons but gives a low voltage; a large gap gives a high voltage but wastes most photons. The optimum, about <strong>30.5 % at <span class="math inline">\(E_g\approx1.3\)</span> eV</strong> for black-body sunlight (33.7 % for the real AM1.5 spectrum at 1.34 eV), is the Shockley–Queisser limit.</p>
+</section>
+<section id="live-panel-efficiency-versus-band-gap-and-where-the-energy-goes" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="live-panel-efficiency-versus-band-gap-and-where-the-energy-goes"><span class="header-section-number">15.2</span> Live panel: efficiency versus band gap and where the energy goes</h2>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="45" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 44;"><span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {shockleyQueisser<span class="op">,</span> kT<span class="op">,</span> qe<span class="op">,</span> h<span class="op">,</span> c0} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>viewof sq <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Eg</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.12</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"band gap E_g (eV)"</span>})<span class="op">,</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Ts</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">3000</span><span class="op">,</span> <span class="dv">7000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5778</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Sun temperature T_s (K)"</span>})<span class="op">,</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Tc</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">200</span><span class="op">,</span> <span class="dv">400</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"cell temperature T_c (K)"</span>})<span class="op">,</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lX</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">4.67</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ concentration X (max 46 200)"</span>})</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="56" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 55;"><span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>sqOut <span class="op">=</span> {</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> X <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> sq<span class="op">.</span><span class="at">lX</span><span class="op">,</span> curve <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">126</span>)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> { <span class="kw">const</span> Eg <span class="op">=</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">2.5</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">125</span><span class="op">;</span> <span class="cf">return</span> {Eg<span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">100</span> <span class="op">*</span> <span class="fu">shockleyQueisser</span>(Eg<span class="op">,</span> sq<span class="op">.</span><span class="at">Ts</span><span class="op">,</span> sq<span class="op">.</span><span class="at">Tc</span><span class="op">,</span> X)<span class="op">.</span><span class="at">eff</span>}<span class="op">;</span> })<span class="op">;</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> r <span class="op">=</span> <span class="fu">shockleyQueisser</span>(sq<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> sq<span class="op">.</span><span class="at">Ts</span><span class="op">,</span> sq<span class="op">.</span><span class="at">Tc</span><span class="op">,</span> X)<span class="op">,</span> f <span class="op">=</span> (<span class="fl">6.957e8</span> <span class="op">/</span> <span class="fl">1.496e11</span>) <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> X<span class="op">;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="co">// energy budget per unit area</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> flux <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> (h <span class="op">**</span> <span class="dv">3</span> <span class="op">*</span> c0 <span class="op">**</span> <span class="dv">2</span>) <span class="op">*</span> (<span class="cn">E</span> <span class="op">*</span> qe) <span class="op">**</span> <span class="dv">2</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">expm1</span>(<span class="cn">E</span> <span class="op">/</span> <span class="fu">kT</span>(sq<span class="op">.</span><span class="at">Ts</span>)) <span class="op">*</span> qe<span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> Nabs <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> Pabs <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="kw">const</span> n <span class="op">=</span> <span class="dv">2000</span><span class="op">,</span> Emax <span class="op">=</span> sq<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> <span class="dv">40</span> <span class="op">*</span> <span class="fu">kT</span>(sq<span class="op">.</span><span class="at">Ts</span>)<span class="op">,</span> dE <span class="op">=</span> (Emax <span class="op">-</span> sq<span class="op">.</span><span class="at">Eg</span>) <span class="op">/</span> n<span class="op">;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> sq<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> (i <span class="op">+</span> <span class="fl">0.5</span>) <span class="op">*</span> dE<span class="op">;</span> Nabs <span class="op">+=</span> f <span class="op">*</span> <span class="fu">flux</span>(<span class="cn">E</span>) <span class="op">*</span> dE<span class="op">;</span> Pabs <span class="op">+=</span> f <span class="op">*</span> <span class="fu">flux</span>(<span class="cn">E</span>) <span class="op">*</span> <span class="cn">E</span> <span class="op">*</span> qe <span class="op">*</span> dE<span class="op">;</span> }</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Pin <span class="op">=</span> r<span class="op">.</span><span class="at">Pin</span><span class="op">,</span> below <span class="op">=</span> Pin <span class="op">-</span> Pabs<span class="op">,</span> therm <span class="op">=</span> Pabs <span class="op">-</span> Nabs <span class="op">*</span> sq<span class="op">.</span><span class="at">Eg</span> <span class="op">*</span> qe<span class="op">,</span> Pout <span class="op">=</span> r<span class="op">.</span><span class="at">eff</span> <span class="op">*</span> Pin<span class="op">,</span> junction <span class="op">=</span> Nabs <span class="op">*</span> sq<span class="op">.</span><span class="at">Eg</span> <span class="op">*</span> qe <span class="op">-</span> Pout<span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> best <span class="op">=</span> curve<span class="op">.</span><span class="fu">reduce</span>((b<span class="op">,</span> c) <span class="kw">=&gt;</span> c<span class="op">.</span><span class="at">eff</span> <span class="op">&gt;</span> b<span class="op">.</span><span class="at">eff</span> <span class="op">?</span> c <span class="op">:</span> b<span class="op">,</span> curve[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> budget <span class="op">=</span> [{<span class="dt">part</span><span class="op">:</span> <span class="st">"not absorbed (hν &lt; E_g)"</span><span class="op">,</span> <span class="dt">v</span><span class="op">:</span> below}<span class="op">,</span> {<span class="dt">part</span><span class="op">:</span> <span class="st">"thermalisation (hν − E_g)"</span><span class="op">,</span> <span class="dt">v</span><span class="op">:</span> therm}<span class="op">,</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>                  {<span class="dt">part</span><span class="op">:</span> <span class="st">"voltage + fill-factor loss (E_g − eV_m)"</span><span class="op">,</span> <span class="dt">v</span><span class="op">:</span> junction}<span class="op">,</span> {<span class="dt">part</span><span class="op">:</span> <span class="st">"electrical output"</span><span class="op">,</span> <span class="dt">v</span><span class="op">:</span> Pout}]<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">100</span> <span class="op">*</span> d<span class="op">.</span><span class="at">v</span> <span class="op">/</span> Pin}))<span class="op">;</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {curve<span class="op">,</span> r<span class="op">,</span> best<span class="op">,</span> budget<span class="op">,</span> X}<span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"band gap E_g (eV)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"efficiency limit (%)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(sqOut<span class="op">.</span><span class="at">curve</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Eg"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"eff"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})<span class="op">,</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">Eg</span><span class="op">:</span> sq<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">100</span> <span class="op">*</span> sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">eff</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Eg"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"eff"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e34948"</span>})<span class="op">,</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.12</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">3</span>}<span class="op">,</span> {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.42</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">3</span>}<span class="op">,</span> {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">0.66</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">3</span>}<span class="op">,</span> {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.7</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">3</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Eg"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"eff"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> ({<span class="fl">1.12</span><span class="op">:</span> <span class="st">"Si"</span><span class="op">,</span> <span class="fl">1.42</span><span class="op">:</span> <span class="st">"GaAs"</span><span class="op">,</span> <span class="fl">0.66</span><span class="op">:</span> <span class="st">"Ge"</span><span class="op">,</span> <span class="fl">1.7</span><span class="op">:</span> <span class="st">"a-Si"</span>})[d<span class="op">.</span><span class="at">Eg</span>]<span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span>})]</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="78" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 77;"><span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">110</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"% of the incident power"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]}<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#c3c2b7"</span><span class="op">,</span> <span class="st">"#eb6834"</span><span class="op">,</span> <span class="st">"#eda100"</span><span class="op">,</span> <span class="st">"#1baf7a"</span>]}<span class="op">,</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">barX</span>(sqOut<span class="op">.</span><span class="at">budget</span><span class="op">,</span> Plot<span class="op">.</span><span class="fu">stackX</span>({<span class="dt">x</span><span class="op">:</span> <span class="st">"pct"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"part"</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">part</span><span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">pct</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> %`</span>}))]</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="86" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;E&lt;sub&gt;g&lt;/sub&gt; = </span><span class="sc">${</span>sq<span class="op">.</span><span class="at">Eg</span><span class="sc">}</span><span class="vs"> eV: J&lt;sub&gt;sc&lt;/sub&gt; = </span><span class="sc">${</span>(sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">Jsc</span> <span class="op">/</span> <span class="dv">10</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> mA/cm² · V&lt;sub&gt;oc&lt;/sub&gt; = </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">Voc</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> V</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="vs">(eV&lt;sub&gt;oc&lt;/sub&gt;/E&lt;sub&gt;g&lt;/sub&gt; = </span><span class="sc">${</span>(sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">Voc</span> <span class="op">/</span> sq<span class="op">.</span><span class="at">Eg</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">) · FF = </span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">FF</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> % · &lt;b&gt;η = </span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">eff</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> %&lt;/b&gt;&lt;br&gt;</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="vs">best band gap </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">Eg</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> eV → </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">eff</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> % · input </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">Pin</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> W/m² ·</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="vs">losses: </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">budget</span><span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">.</span><span class="fu">map</span>(b <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>b<span class="op">.</span><span class="at">part</span><span class="op">.</span><span class="fu">split</span>(<span class="st">" ("</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="vs"> </span><span class="sc">${</span>b<span class="op">.</span><span class="at">pct</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> %`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>Things to try: for Si (1.12 eV) the limit is about 30 %; the record of 27 % (2025) is remarkably close. The two big losses are complementary: below-gap photons dominate for wide gaps, thermalisation for narrow gaps. Concentrate the light (X = 1000): <span class="math inline">\(J_{sc}\)</span> grows by 1000, <span class="math inline">\(V_{oc}\)</span> by <span class="math inline">\(k_BT\ln1000=0.18\)</span> V, and the limit rises to about 37 %; at the maximum concentration (the cell sees the Sun over the full hemisphere) it reaches about 40 %. Heat the cell: <span class="math inline">\(J_0\)</span> grows, <span class="math inline">\(V_{oc}\)</span> falls.</p>
+</section>
+<section id="recomputed-the-classic-numbers" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="recomputed-the-classic-numbers"><span class="header-section-number">15.3</span> Recomputed: the classic numbers</h2>
+<div class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, Eg, rec <span class="kw">in</span> ((<span class="st">"Ge"</span>, <span class="fl">0.66</span>, <span class="va">None</span>), (<span class="st">"Si"</span>, <span class="fl">1.11</span>, <span class="fl">25.0</span>), (<span class="st">"InP"</span>, <span class="fl">1.35</span>, <span class="fl">22.1</span>), (<span class="st">"GaAs"</span>, <span class="fl">1.42</span>, <span class="fl">27.6</span>), (<span class="st">"a-Si:H"</span>, <span class="fl">1.7</span>, <span class="fl">10.1</span>)):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> dl.shockley_queisser(Eg)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    rows.append((name, Eg, <span class="ss">f"</span><span class="sc">{</span>r[<span class="st">'Jsc'</span>]<span class="op">/</span><span class="dv">10</span><span class="sc">:.1f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>r[<span class="st">'Voc'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>r[<span class="st">'FF'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>r[<span class="st">'eff'</span>]<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"–"</span> <span class="cf">if</span> rec <span class="kw">is</span> <span class="va">None</span> <span class="cf">else</span> rec))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Egs <span class="op">=</span> np.linspace(<span class="fl">0.6</span>, <span class="fl">2.5</span>, <span class="dv">300</span>)<span class="op">;</span> eff <span class="op">=</span> np.array([dl.shockley_queisser(E)[<span class="st">'eff'</span>] <span class="cf">for</span> E <span class="kw">in</span> Egs])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>rows.append((<span class="st">"optimum"</span>, <span class="bu">round</span>(Egs[eff.argmax()], <span class="dv">2</span>), <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>eff<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">""</span>))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"material"</span>, <span class="st">"E_g (eV)"</span>, <span class="st">"J_sc (mA/cm²)"</span>, <span class="st">"V_oc (V)"</span>, <span class="st">"FF"</span>, <span class="st">"SQ limit (%)"</span>, <span class="st">"record, slide 130 (%)"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-sq" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;15.1: Detailed-balance limit under 5778 K black-body sunlight (1 sun ≈ 1360 W/m²), compared with the records of slide 130. Real cells lose further voltage to non-radiative recombination (Ch. 3) and current to reflection and incomplete absorption.
+</figcaption>
+<div aria-describedby="tbl-sq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe cell caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">material</th>
+<th data-quarto-table-cell-role="th">E_g (eV)</th>
+<th data-quarto-table-cell-role="th">J_sc (mA/cm²)</th>
+<th data-quarto-table-cell-role="th">V_oc (V)</th>
+<th data-quarto-table-cell-role="th">FF</th>
+<th data-quarto-table-cell-role="th">SQ limit (%)</th>
+<th data-quarto-table-cell-role="th">record, slide 130 (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Ge</td>
+<td>0.66</td>
+<td>78.2</td>
+<td>0.458</td>
+<td>0.791</td>
+<td>20.7</td>
+<td>–</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Si</td>
+<td>1.11</td>
+<td>54.0</td>
+<td>0.872</td>
+<td>0.869</td>
+<td>30.0</td>
+<td>25.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>InP</td>
+<td>1.35</td>
+<td>42.5</td>
+<td>1.096</td>
+<td>0.890</td>
+<td>30.4</td>
+<td>22.1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>GaAs</td>
+<td>1.42</td>
+<td>39.5</td>
+<td>1.162</td>
+<td>0.895</td>
+<td>30.0</td>
+<td>27.6</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>a-Si:H</td>
+<td>1.70</td>
+<td>28.9</td>
+<td>1.425</td>
+<td>0.910</td>
+<td>27.4</td>
+<td>10.1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>optimum</td>
+<td>1.27</td>
+<td></td>
+<td></td>
+<td></td>
+<td>30.5</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>For Si the black-body spectrum gives <span class="math inline">\(J_{sc}\approx53\)</span> mA/cm²; the real AM1.5 spectrum, depleted in the infrared by water and CO₂ absorption, gives 43.8 mA/cm², very close to the 42.7 mA/cm² of the PERL record cell: crystalline Si collects almost every photon. Its voltage, 0.707 V instead of the radiative-limit 0.85–0.88 V, is where the remaining gap lies: Auger and surface recombination (Ch. 3) replace the purely radiative <span class="math inline">\(J_0\)</span> of the ideal cell.</p>
+</section>
+<section id="two-junctions-slide-132" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="two-junctions-slide-132"><span class="header-section-number">15.4</span> Two junctions (slide 132)</h2>
+<div id="cell-fig-tandem" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the Python</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cell_eff(Eg_lo, Eg_hi, Ts<span class="op">=</span><span class="fl">5778.0</span>, Tc<span class="op">=</span><span class="fl">300.0</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> (<span class="fl">6.957e8</span><span class="op">/</span><span class="fl">1.496e11</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> np.linspace(Eg_lo, Eg_hi, <span class="dv">1500</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    Jsc <span class="op">=</span> dl.qe<span class="op">*</span>f<span class="op">*</span>np.trapezoid(dl._photon_flux_bb(E, Ts), E)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    Ec <span class="op">=</span> np.linspace(Eg_lo, Eg_lo <span class="op">+</span> <span class="dv">40</span><span class="op">*</span>dl.kT(Tc), <span class="dv">1500</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    J0 <span class="op">=</span> dl.qe<span class="op">*</span>np.trapezoid(dl._photon_flux_bb(Ec, Tc), Ec)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> np.linspace(<span class="dv">0</span>, dl.kT(Tc)<span class="op">*</span>np.log(Jsc<span class="op">/</span>J0 <span class="op">+</span> <span class="dv">1</span>), <span class="dv">800</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (V<span class="op">*</span>(Jsc <span class="op">-</span> J0<span class="op">*</span>np.expm1(V<span class="op">/</span>dl.kT(Tc)))).<span class="bu">max</span>()<span class="op">/</span>(f<span class="op">*</span>dl.sigma_SB<span class="op">*</span>Ts<span class="op">**</span><span class="dv">4</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> np.linspace(<span class="fl">1.3</span>, <span class="fl">2.4</span>, <span class="dv">34</span>)<span class="op">;</span> g2 <span class="op">=</span> np.linspace(<span class="fl">0.6</span>, <span class="fl">1.5</span>, <span class="dv">28</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> np.array([[cell_eff(a, <span class="fl">6.0</span>) <span class="op">+</span> cell_eff(b, a) <span class="cf">if</span> a <span class="op">&gt;</span> b <span class="cf">else</span> np.nan <span class="cf">for</span> a <span class="kw">in</span> g1] <span class="cf">for</span> b <span class="kw">in</span> g2])</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="fl">4.4</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>cs <span class="op">=</span> ax.contourf(g1, g2, <span class="dv">100</span><span class="op">*</span>Z, levels<span class="op">=</span>np.arange(<span class="dv">28</span>, <span class="dv">47</span>, <span class="dv">1</span>), cmap<span class="op">=</span><span class="st">"viridis"</span>)<span class="op">;</span> fig.colorbar(cs, label<span class="op">=</span><span class="st">"efficiency (%)"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>i, j <span class="op">=</span> np.unravel_index(np.nanargmax(Z), Z.shape)<span class="op">;</span> ax.plot(g1[j], g2[i], <span class="st">"w*"</span>, ms<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="fl">1.95</span>, <span class="fl">1.42</span>, <span class="st">"rx"</span>, ms<span class="op">=</span><span class="dv">10</span>, mew<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"top-cell gap E_g1 (eV)"</span>, ylabel<span class="op">=</span><span class="st">"bottom-cell gap E_g2 (eV)"</span>, title<span class="op">=</span><span class="ss">f"max </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>np<span class="sc">.</span>nanmax(Z)<span class="sc">:.1f}</span><span class="ss"> % at (</span><span class="sc">{</span>g1[j]<span class="sc">:.2f}</span><span class="ss">, </span><span class="sc">{</span>g2[i]<span class="sc">:.2f}</span><span class="ss">) eV"</span>)<span class="op">;</span> plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-tandem" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tandem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="sq-limit_files/figure-html/fig-tandem-output-1.png" width="622" height="465" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tandem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.1: Detailed-balance efficiency of a four-terminal (independently connected) tandem: the top cell absorbs hν &gt; E_g1, the bottom cell E_g2 &lt; hν &lt; E_g1. The optimum near (1.8, 0.93) eV gives about 42 %. The GaInP/GaAs pair of slide 132 (1.95/1.42 eV, ×) is well off the peak: its bottom gap is too wide and wastes the infrared, which is why the triple-junction cell adds a Ge (0.66 eV) cell underneath.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Going further
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Infinite junctions.</strong> With an infinite stack of cells, each converting a narrow slice of the spectrum, the limit rises to 68 % (one sun) and 86 % (full concentration). Extend the tandem code to <span class="math inline">\(N\)</span> cells with equal photon currents.</li>
+<li><strong>Photon recycling and external luminescence.</strong> A real cell has non-radiative recombination: <span class="math inline">\(V_{oc}=V_{oc}^{SQ}+\frac{k_BT}{e}\ln\eta_\text{ext}\)</span>, where <span class="math inline">\(\eta_\text{ext}\)</span> is the external luminescence efficiency. “A great solar cell must be a great LED” (Miller, Yablonovitch, 2012): connect this with the LED efficiency of Ch. 3. GaAs record cells have <span class="math inline">\(\eta_\text{ext}\approx30\)</span> %.</li>
+<li><strong>Hot-carrier cells and singlet fission</strong> try to recover the thermalisation loss; <strong>intermediate-band cells</strong> and up-conversion try to use sub-gap photons. What do they need to beat 31 %?</li>
+<li><strong>Thermodynamic limit.</strong> Even an ideal converter is limited by Carnot (1 − 300/5800 = 95 %) and, more strictly, by the Landsberg limit (93 %). Where does the remaining loss of the SQ cell come from in thermodynamic terms (entropy of the absorbed photons, étendue expansion from the solar disc to the hemisphere)?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Complements
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>W. Shockley and H. J. Queisser, “Detailed balance limit of efficiency of p–n junction solar cells”, <em>J. Appl. Phys.</em> 32, 510 (1961).</li>
+<li>O. D. Miller, E. Yablonovitch, S. R. Kurtz, “Strong internal and external luminescence as solar cells approach the Shockley–Queisser limit”, <em>IEEE J. Photovolt.</em> 2, 303 (2012).</li>
+<li>S. Rühle, “Tabulated values of the Shockley–Queisser limit for single junction solar cells”, <em>Sol. Energy</em> 130, 139 (2016) (AM1.5 values).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-yourself" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="try-it-yourself"><span class="header-section-number">15.5</span> Try it yourself</h2>
+<ol type="1">
+<li>Show that <span class="math inline">\(J_0\)</span> for Si at 300 K is of order <span class="math inline">\(10^{-12}\)</span> A/m² in the radiative limit, and compare with the <span class="math inline">\(10^{-9}\)</span>–<span class="math inline">\(10^{-8}\)</span> A/m² of real Si cells. How many millivolts of <span class="math inline">\(V_{oc}\)</span> does that cost?</li>
+<li>Why does concentrating the light raise the efficiency limit? Where does the extra voltage come from?</li>
+<li>The limit depends on the temperature of the cell. By how much does the Si limit fall between 25 °C and 65 °C (a module on a roof in summer)?</li>
+<li>Space solar cells see the AM0 spectrum (1361 W/m², close to the black body used here) while terrestrial cells see AM1.5 with absorption bands of water and CO₂. Why is the terrestrial limit <em>higher</em> (33.7 %) than the black-body value?</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7c2hvY2tsZXlRdWVpc3Nlciwga1QsIHFlLCBoLCBjMH0gZnJvbSBcIi4vZGV0X3NpbS5qc1wiXG52aWV3b2Ygc3EgPSBJbnB1dHMuZm9ybSh7XG4gIEVnOiBJbnB1dHMucmFuZ2UoWzAuNSwgM10sIHt2YWx1ZTogMS4xMiwgc3RlcDogMC4wMSwgbGFiZWw6IFwiYmFuZCBnYXAgRV9nIChlVilcIn0pLFxuICBUczogSW5wdXRzLnJhbmdlKFszMDAwLCA3MDAwXSwge3ZhbHVlOiA1Nzc4LCBzdGVwOiAxMCwgbGFiZWw6IFwiU3VuIHRlbXBlcmF0dXJlIFRfcyAoSylcIn0pLFxuICBUYzogSW5wdXRzLnJhbmdlKFsyMDAsIDQwMF0sIHt2YWx1ZTogMzAwLCBzdGVwOiAxLCBsYWJlbDogXCJjZWxsIHRlbXBlcmF0dXJlIFRfYyAoSylcIn0pLFxuICBsWDogSW5wdXRzLnJhbmdlKFswLCA0LjY3XSwge3ZhbHVlOiAwLCBzdGVwOiAwLjAxLCBsYWJlbDogXCJsb2figoHigoAgY29uY2VudHJhdGlvbiBYIChtYXggNDYgMjAwKVwifSlcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJzcU91dCA9IHtcbiAgY29uc3QgWCA9IDEwICoqIHNxLmxYLCBjdXJ2ZSA9IGQzLnJhbmdlKDAsIDEyNikubWFwKGkgPT4geyBjb25zdCBFZyA9IDAuNSArIDIuNSAqIGkgLyAxMjU7IHJldHVybiB7RWcsIGVmZjogMTAwICogc2hvY2tsZXlRdWVpc3NlcihFZywgc3EuVHMsIHNxLlRjLCBYKS5lZmZ9OyB9KTtcbiAgY29uc3QgciA9IHNob2NrbGV5UXVlaXNzZXIoc3EuRWcsIHNxLlRzLCBzcS5UYywgWCksIGYgPSAoNi45NTdlOCAvIDEuNDk2ZTExKSAqKiAyICogWDtcbiAgLy8gZW5lcmd5IGJ1ZGdldCBwZXIgdW5pdCBhcmVhXG4gIGNvbnN0IGZsdXggPSBFID0+IDIgKiBNYXRoLlBJIC8gKGggKiogMyAqIGMwICoqIDIpICogKEUgKiBxZSkgKiogMiAvIE1hdGguZXhwbTEoRSAvIGtUKHNxLlRzKSkgKiBxZTtcbiAgbGV0IE5hYnMgPSAwLCBQYWJzID0gMDsgY29uc3QgbiA9IDIwMDAsIEVtYXggPSBzcS5FZyArIDQwICoga1Qoc3EuVHMpLCBkRSA9IChFbWF4IC0gc3EuRWcpIC8gbjtcbiAgZm9yIChsZXQgaSA9IDA7IGkgPCBuOyBpKyspIHsgY29uc3QgRSA9IHNxLkVnICsgKGkgKyAwLjUpICogZEU7IE5hYnMgKz0gZiAqIGZsdXgoRSkgKiBkRTsgUGFicyArPSBmICogZmx1eChFKSAqIEUgKiBxZSAqIGRFOyB9XG4gIGNvbnN0IFBpbiA9IHIuUGluLCBiZWxvdyA9IFBpbiAtIFBhYnMsIHRoZXJtID0gUGFicyAtIE5hYnMgKiBzcS5FZyAqIHFlLCBQb3V0ID0gci5lZmYgKiBQaW4sIGp1bmN0aW9uID0gTmFicyAqIHNxLkVnICogcWUgLSBQb3V0O1xuICBjb25zdCBiZXN0ID0gY3VydmUucmVkdWNlKChiLCBjKSA9PiBjLmVmZiA+IGIuZWZmID8gYyA6IGIsIGN1cnZlWzBdKTtcbiAgY29uc3QgYnVkZ2V0ID0gW3twYXJ0OiBcIm5vdCBhYnNvcmJlZCAoaM69IDwgRV9nKVwiLCB2OiBiZWxvd30sIHtwYXJ0OiBcInRoZXJtYWxpc2F0aW9uIChozr0g4oiSIEVfZylcIiwgdjogdGhlcm19LFxuICAgICAgICAgICAgICAgICAge3BhcnQ6IFwidm9sdGFnZSArIGZpbGwtZmFjdG9yIGxvc3MgKEVfZyDiiJIgZVZfbSlcIiwgdjoganVuY3Rpb259LCB7cGFydDogXCJlbGVjdHJpY2FsIG91dHB1dFwiLCB2OiBQb3V0fV0ubWFwKGQgPT4gKHsuLi5kLCBwY3Q6IDEwMCAqIGQudiAvIFBpbn0pKTtcbiAgcmV0dXJuIHtjdXJ2ZSwgciwgYmVzdCwgYnVkZ2V0LCBYfTtcbn1cblBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMjgwLCB4OiB7bGFiZWw6IFwiYmFuZCBnYXAgRV9nIChlVilcIn0sIHk6IHtsYWJlbDogXCJlZmZpY2llbmN5IGxpbWl0ICglKVwiLCBncmlkOiB0cnVlfSxcbiAgbWFya3M6IFtQbG90LmxpbmUoc3FPdXQuY3VydmUsIHt4OiBcIkVnXCIsIHk6IFwiZWZmXCIsIHN0cm9rZTogXCIjMmE3OGQ2XCIsIHN0cm9rZVdpZHRoOiAyLjV9KSxcbiAgICAgICAgICBQbG90LmRvdChbe0VnOiBzcS5FZywgZWZmOiAxMDAgKiBzcU91dC5yLmVmZn1dLCB7eDogXCJFZ1wiLCB5OiBcImVmZlwiLCByOiA2LCBmaWxsOiBcIiNlMzQ5NDhcIn0pLFxuICAgICAgICAgIFBsb3QudGV4dChbe0VnOiAxLjEyLCBlZmY6IDN9LCB7RWc6IDEuNDIsIGVmZjogM30sIHtFZzogMC42NiwgZWZmOiAzfSwge0VnOiAxLjcsIGVmZjogM31dLCB7eDogXCJFZ1wiLCB5OiBcImVmZlwiLCB0ZXh0OiBkID0+ICh7MS4xMjogXCJTaVwiLCAxLjQyOiBcIkdhQXNcIiwgMC42NjogXCJHZVwiLCAxLjc6IFwiYS1TaVwifSlbZC5FZ10sIGZvbnRTaXplOiAxMH0pXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIHdpZHRoOiBNYXRoLm1pbih3aWR0aCwgMTA1MCksIGhlaWdodDogMTEwLCB4OiB7bGFiZWw6IFwiJSBvZiB0aGUgaW5jaWRlbnQgcG93ZXJcIiwgZG9tYWluOiBbMCwgMTAwXX0sIGNvbG9yOiB7bGVnZW5kOiB0cnVlLCByYW5nZTogW1wiI2MzYzJiN1wiLCBcIiNlYjY4MzRcIiwgXCIjZWRhMTAwXCIsIFwiIzFiYWY3YVwiXX0sXG4gIG1hcmtzOiBbUGxvdC5iYXJYKHNxT3V0LmJ1ZGdldCwgUGxvdC5zdGFja1goe3g6IFwicGN0XCIsIGZpbGw6IFwicGFydFwiLCB0aXRsZTogZCA9PiBgJHtkLnBhcnR9OiAke2QucGN0LnRvRml4ZWQoMSl9ICVgfSkpXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBjbGFzcz1cInJlc3VsdC1ib3hcIj5FPHN1Yj5nPC9zdWI+ID0gJHtzcS5FZ30gZVY6IEo8c3ViPnNjPC9zdWI+ID0gJHsoc3FPdXQuci5Kc2MgLyAxMCkudG9GaXhlZCgxKX0gbUEvY23CsiDCtyBWPHN1Yj5vYzwvc3ViPiA9ICR7c3FPdXQuci5Wb2MudG9GaXhlZCgzKX0gVlxuKGVWPHN1Yj5vYzwvc3ViPi9FPHN1Yj5nPC9zdWI+ID0gJHsoc3FPdXQuci5Wb2MgLyBzcS5FZykudG9GaXhlZCgyKX0pIMK3IEZGID0gJHsoMTAwICogc3FPdXQuci5GRikudG9GaXhlZCgxKX0gJSDCtyA8Yj7OtyA9ICR7KDEwMCAqIHNxT3V0LnIuZWZmKS50b0ZpeGVkKDEpfSAlPC9iPjxicj5cbmJlc3QgYmFuZCBnYXAgJHtzcU91dC5iZXN0LkVnLnRvRml4ZWQoMil9IGVWIOKGkiAke3NxT3V0LmJlc3QuZWZmLnRvRml4ZWQoMSl9ICUgwrcgaW5wdXQgJHtzcU91dC5yLlBpbi50b0ZpeGVkKDApfSBXL23CsiDCt1xubG9zc2VzOiAke3NxT3V0LmJ1ZGdldC5zbGljZSgwLCAzKS5tYXAoYiA9PiBgJHtiLnBhcnQuc3BsaXQoXCIgKFwiKVswXX0gJHtiLnBjdC50b0ZpeGVkKDEpfSAlYCkuam9pbihcIiwgXCIpfTwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc3EnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter5\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./receivers.html" class="pagination-link" aria-label="Going further: optical receivers, BER and sensitivity">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./ideas.html" class="pagination-link" aria-label="Projects, toolbox and connections">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Going further: the Shockley–Queisser limit {#sec-sq}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="al">![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)</span><span class="co">](https://colab.research.google.com/github/{{&lt; var github_user &gt;}}/{{&lt; var repo &gt;}}/blob/main/{{&lt; var subdir &gt;}}/notebooks/sq-limit.ipynb)</span>{.colab-link} <span class="dv">&amp;nbsp;</span>Run this chapter's code in Google Colab (no installation).</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> detlib <span class="im">as</span> dl</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>dl.use_style()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>*This chapter is not in the slides. Slide 130 lists record efficiencies of 25–32 %; here we ask why no single-junction cell can do</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>much better, using the black-body radiation and detailed balance of Ch. 4.*</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key relations</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>Treat the Sun as a black body at $T_s\approx5800$ K seen under a small solid angle, and the cell as a semiconductor of band gap $E_g$ at</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>$T_c=300$ K. Shockley and Queisser (1961) made four assumptions: every photon with $h\nu\ge E_g$ is absorbed and gives exactly one</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>electron–hole pair; photons below $E_g$ are lost; the carriers relax to the band edges (the excess energy is lost as heat); and the only</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>recombination is **radiative**, as required by detailed balance. The photon flux of a black body per unit photon energy, emitted into a</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>hemisphere, is</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>\phi_{bb}(E,T)=\frac{2\pi}{h^3c^2}\frac{E^2}{e^{E/k_BT}-1}.</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>The Sun is diluted by the factor $f=(R_\odot/d_\text{Earth})^2\approx2.16\times10^{-5}$ (the solid angle of the solar disc over π), so</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>J_{sc}=ef\int_{E_g}^\infty\phi_{bb}(E,T_s)\,dE,\qquad J_0=e\int_{E_g}^\infty\phi_{bb}(E,T_c)\,dE .</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>In the dark the cell must emit as many photons as it absorbs from its 300 K surroundings: that radiative emission is the dark current</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>$J_0$, and under bias it grows as $e^{eV/k_BT_c}$. The I–V curve is that of an ideal diode, $J=J_{sc}-J_0(e^{eV/k_BT_c}-1)$, and the</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>efficiency is the maximum of $JV$ divided by the incident power $f\sigma T_s^4\approx1360$ W/m². A small gap absorbs many photons but</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>gives a low voltage; a large gap gives a high voltage but wastes most photons. The optimum, about **30.5 % at $E_g\approx1.3$ eV** for</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>black-body sunlight (33.7 % for the real AM1.5 spectrum at 1.34 eV), is the Shockley–Queisser limit.</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live panel: efficiency versus band gap and where the energy goes</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {shockleyQueisser<span class="op">,</span> kT<span class="op">,</span> qe<span class="op">,</span> h<span class="op">,</span> c0} <span class="im">from</span> <span class="st">"./det_sim.js"</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>viewof sq <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>({</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Eg</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.12</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"band gap E_g (eV)"</span>})<span class="op">,</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Ts</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">3000</span><span class="op">,</span> <span class="dv">7000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">5778</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Sun temperature T_s (K)"</span>})<span class="op">,</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Tc</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">200</span><span class="op">,</span> <span class="dv">400</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"cell temperature T_c (K)"</span>})<span class="op">,</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="dt">lX</span><span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">4.67</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"log₁₀ concentration X (max 46 200)"</span>})</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>sqOut <span class="op">=</span> {</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> X <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span> sq<span class="op">.</span><span class="at">lX</span><span class="op">,</span> curve <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">126</span>)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> { <span class="kw">const</span> Eg <span class="op">=</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">2.5</span> <span class="op">*</span> i <span class="op">/</span> <span class="dv">125</span><span class="op">;</span> <span class="cf">return</span> {Eg<span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">100</span> <span class="op">*</span> <span class="fu">shockleyQueisser</span>(Eg<span class="op">,</span> sq<span class="op">.</span><span class="at">Ts</span><span class="op">,</span> sq<span class="op">.</span><span class="at">Tc</span><span class="op">,</span> X)<span class="op">.</span><span class="at">eff</span>}<span class="op">;</span> })<span class="op">;</span></span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> r <span class="op">=</span> <span class="fu">shockleyQueisser</span>(sq<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> sq<span class="op">.</span><span class="at">Ts</span><span class="op">,</span> sq<span class="op">.</span><span class="at">Tc</span><span class="op">,</span> X)<span class="op">,</span> f <span class="op">=</span> (<span class="fl">6.957e8</span> <span class="op">/</span> <span class="fl">1.496e11</span>) <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> X<span class="op">;</span></span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>  <span class="co">// energy budget per unit area</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> flux <span class="op">=</span> <span class="cn">E</span> <span class="kw">=&gt;</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> (h <span class="op">**</span> <span class="dv">3</span> <span class="op">*</span> c0 <span class="op">**</span> <span class="dv">2</span>) <span class="op">*</span> (<span class="cn">E</span> <span class="op">*</span> qe) <span class="op">**</span> <span class="dv">2</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">expm1</span>(<span class="cn">E</span> <span class="op">/</span> <span class="fu">kT</span>(sq<span class="op">.</span><span class="at">Ts</span>)) <span class="op">*</span> qe<span class="op">;</span></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> Nabs <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> Pabs <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="kw">const</span> n <span class="op">=</span> <span class="dv">2000</span><span class="op">,</span> Emax <span class="op">=</span> sq<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> <span class="dv">40</span> <span class="op">*</span> <span class="fu">kT</span>(sq<span class="op">.</span><span class="at">Ts</span>)<span class="op">,</span> dE <span class="op">=</span> (Emax <span class="op">-</span> sq<span class="op">.</span><span class="at">Eg</span>) <span class="op">/</span> n<span class="op">;</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++</span>) { <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> sq<span class="op">.</span><span class="at">Eg</span> <span class="op">+</span> (i <span class="op">+</span> <span class="fl">0.5</span>) <span class="op">*</span> dE<span class="op">;</span> Nabs <span class="op">+=</span> f <span class="op">*</span> <span class="fu">flux</span>(<span class="cn">E</span>) <span class="op">*</span> dE<span class="op">;</span> Pabs <span class="op">+=</span> f <span class="op">*</span> <span class="fu">flux</span>(<span class="cn">E</span>) <span class="op">*</span> <span class="cn">E</span> <span class="op">*</span> qe <span class="op">*</span> dE<span class="op">;</span> }</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> Pin <span class="op">=</span> r<span class="op">.</span><span class="at">Pin</span><span class="op">,</span> below <span class="op">=</span> Pin <span class="op">-</span> Pabs<span class="op">,</span> therm <span class="op">=</span> Pabs <span class="op">-</span> Nabs <span class="op">*</span> sq<span class="op">.</span><span class="at">Eg</span> <span class="op">*</span> qe<span class="op">,</span> Pout <span class="op">=</span> r<span class="op">.</span><span class="at">eff</span> <span class="op">*</span> Pin<span class="op">,</span> junction <span class="op">=</span> Nabs <span class="op">*</span> sq<span class="op">.</span><span class="at">Eg</span> <span class="op">*</span> qe <span class="op">-</span> Pout<span class="op">;</span></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> best <span class="op">=</span> curve<span class="op">.</span><span class="fu">reduce</span>((b<span class="op">,</span> c) <span class="kw">=&gt;</span> c<span class="op">.</span><span class="at">eff</span> <span class="op">&gt;</span> b<span class="op">.</span><span class="at">eff</span> <span class="op">?</span> c <span class="op">:</span> b<span class="op">,</span> curve[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> budget <span class="op">=</span> [{<span class="dt">part</span><span class="op">:</span> <span class="st">"not absorbed (hν &lt; E_g)"</span><span class="op">,</span> <span class="dt">v</span><span class="op">:</span> below}<span class="op">,</span> {<span class="dt">part</span><span class="op">:</span> <span class="st">"thermalisation (hν − E_g)"</span><span class="op">,</span> <span class="dt">v</span><span class="op">:</span> therm}<span class="op">,</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>                  {<span class="dt">part</span><span class="op">:</span> <span class="st">"voltage + fill-factor loss (E_g − eV_m)"</span><span class="op">,</span> <span class="dt">v</span><span class="op">:</span> junction}<span class="op">,</span> {<span class="dt">part</span><span class="op">:</span> <span class="st">"electrical output"</span><span class="op">,</span> <span class="dt">v</span><span class="op">:</span> Pout}]<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> ({<span class="op">...</span>d<span class="op">,</span> <span class="dt">pct</span><span class="op">:</span> <span class="dv">100</span> <span class="op">*</span> d<span class="op">.</span><span class="at">v</span> <span class="op">/</span> Pin}))<span class="op">;</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {curve<span class="op">,</span> r<span class="op">,</span> best<span class="op">,</span> budget<span class="op">,</span> X}<span class="op">;</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">280</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"band gap E_g (eV)"</span>}<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"efficiency limit (%)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">line</span>(sqOut<span class="op">.</span><span class="at">curve</span><span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Eg"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"eff"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#2a78d6"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})<span class="op">,</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">Eg</span><span class="op">:</span> sq<span class="op">.</span><span class="at">Eg</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">100</span> <span class="op">*</span> sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">eff</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Eg"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"eff"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e34948"</span>})<span class="op">,</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.12</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">3</span>}<span class="op">,</span> {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.42</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">3</span>}<span class="op">,</span> {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">0.66</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">3</span>}<span class="op">,</span> {<span class="dt">Eg</span><span class="op">:</span> <span class="fl">1.7</span><span class="op">,</span> <span class="dt">eff</span><span class="op">:</span> <span class="dv">3</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"Eg"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"eff"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> ({<span class="fl">1.12</span><span class="op">:</span> <span class="st">"Si"</span><span class="op">,</span> <span class="fl">1.42</span><span class="op">:</span> <span class="st">"GaAs"</span><span class="op">,</span> <span class="fl">0.66</span><span class="op">:</span> <span class="st">"Ge"</span><span class="op">,</span> <span class="fl">1.7</span><span class="op">:</span> <span class="st">"a-Si"</span>})[d<span class="op">.</span><span class="at">Eg</span>]<span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">10</span>})]</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(width<span class="op">,</span> <span class="dv">1050</span>)<span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">110</span><span class="op">,</span> <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"% of the incident power"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]}<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> {<span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">range</span><span class="op">:</span> [<span class="st">"#c3c2b7"</span><span class="op">,</span> <span class="st">"#eb6834"</span><span class="op">,</span> <span class="st">"#eda100"</span><span class="op">,</span> <span class="st">"#1baf7a"</span>]}<span class="op">,</span></span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [Plot<span class="op">.</span><span class="fu">barX</span>(sqOut<span class="op">.</span><span class="at">budget</span><span class="op">,</span> Plot<span class="op">.</span><span class="fu">stackX</span>({<span class="dt">x</span><span class="op">:</span> <span class="st">"pct"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"part"</span><span class="op">,</span> <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>d<span class="op">.</span><span class="at">part</span><span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>d<span class="op">.</span><span class="at">pct</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> %`</span>}))]</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div class="result-box"&gt;E&lt;sub&gt;g&lt;/sub&gt; = </span><span class="sc">${</span>sq<span class="op">.</span><span class="at">Eg</span><span class="sc">}</span><span class="vs"> eV: J&lt;sub&gt;sc&lt;/sub&gt; = </span><span class="sc">${</span>(sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">Jsc</span> <span class="op">/</span> <span class="dv">10</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> mA/cm² · V&lt;sub&gt;oc&lt;/sub&gt; = </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">Voc</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> V</span></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="vs">(eV&lt;sub&gt;oc&lt;/sub&gt;/E&lt;sub&gt;g&lt;/sub&gt; = </span><span class="sc">${</span>(sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">Voc</span> <span class="op">/</span> sq<span class="op">.</span><span class="at">Eg</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">) · FF = </span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">FF</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> % · &lt;b&gt;η = </span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">eff</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> %&lt;/b&gt;&lt;br&gt;</span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="vs">best band gap </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">Eg</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> eV → </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">best</span><span class="op">.</span><span class="at">eff</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> % · input </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">r</span><span class="op">.</span><span class="at">Pin</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs"> W/m² ·</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a><span class="vs">losses: </span><span class="sc">${</span>sqOut<span class="op">.</span><span class="at">budget</span><span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">.</span><span class="fu">map</span>(b <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>b<span class="op">.</span><span class="at">part</span><span class="op">.</span><span class="fu">split</span>(<span class="st">" ("</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="vs"> </span><span class="sc">${</span>b<span class="op">.</span><span class="at">pct</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> %`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">", "</span>)<span class="sc">}</span><span class="vs">&lt;/div&gt;`</span></span>
+<span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a>Things to try: for Si (1.12 eV) the limit is about 30 %; the record of 27 % (2025) is remarkably close. The two big losses are</span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a>complementary: below-gap photons dominate for wide gaps, thermalisation for narrow gaps. Concentrate the light (X = 1000): $J_{sc}$ grows</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>by 1000, $V_{oc}$ by $k_BT\ln1000=0.18$ V, and the limit rises to about 37 %; at the maximum concentration (the cell sees the Sun over the</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>full hemisphere) it reaches about 40 %. Heat the cell: $J_0$ grows, $V_{oc}$ falls.</span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Recomputed: the classic numbers</span></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-sq</span></span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Detailed-balance limit under 5778 K black-body sunlight (1 sun ≈ 1360 W/m²), compared with the records of slide 130. Real cells lose further voltage to non-radiative recombination (Ch. 3) and current to reflection and incomplete absorption."</span></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, Eg, rec <span class="kw">in</span> ((<span class="st">"Ge"</span>, <span class="fl">0.66</span>, <span class="va">None</span>), (<span class="st">"Si"</span>, <span class="fl">1.11</span>, <span class="fl">25.0</span>), (<span class="st">"InP"</span>, <span class="fl">1.35</span>, <span class="fl">22.1</span>), (<span class="st">"GaAs"</span>, <span class="fl">1.42</span>, <span class="fl">27.6</span>), (<span class="st">"a-Si:H"</span>, <span class="fl">1.7</span>, <span class="fl">10.1</span>)):</span>
+<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> dl.shockley_queisser(Eg)</span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a>    rows.append((name, Eg, <span class="ss">f"</span><span class="sc">{</span>r[<span class="st">'Jsc'</span>]<span class="op">/</span><span class="dv">10</span><span class="sc">:.1f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>r[<span class="st">'Voc'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span>r[<span class="st">'FF'</span>]<span class="sc">:.3f}</span><span class="ss">"</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>r[<span class="st">'eff'</span>]<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">"–"</span> <span class="cf">if</span> rec <span class="kw">is</span> <span class="va">None</span> <span class="cf">else</span> rec))</span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a>Egs <span class="op">=</span> np.linspace(<span class="fl">0.6</span>, <span class="fl">2.5</span>, <span class="dv">300</span>)<span class="op">;</span> eff <span class="op">=</span> np.array([dl.shockley_queisser(E)[<span class="st">'eff'</span>] <span class="cf">for</span> E <span class="kw">in</span> Egs])</span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a>rows.append((<span class="st">"optimum"</span>, <span class="bu">round</span>(Egs[eff.argmax()], <span class="dv">2</span>), <span class="st">""</span>, <span class="st">""</span>, <span class="st">""</span>, <span class="ss">f"</span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>eff<span class="sc">.</span><span class="bu">max</span>()<span class="sc">:.1f}</span><span class="ss">"</span>, <span class="st">""</span>))</span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows, columns<span class="op">=</span>[<span class="st">"material"</span>, <span class="st">"E_g (eV)"</span>, <span class="st">"J_sc (mA/cm²)"</span>, <span class="st">"V_oc (V)"</span>, <span class="st">"FF"</span>, <span class="st">"SQ limit (%)"</span>, <span class="st">"record, slide 130 (%)"</span>])</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>For Si the black-body spectrum gives $J_{sc}\approx53$ mA/cm²; the real AM1.5 spectrum, depleted in the infrared by water and CO₂</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>absorption, gives 43.8 mA/cm², very close to the 42.7 mA/cm² of the PERL record cell: crystalline Si collects almost every photon. Its</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>voltage, 0.707 V instead of the radiative-limit 0.85–0.88 V, is where the remaining gap lies: Auger and surface recombination (Ch. 3)</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a>replace the purely radiative $J_0$ of the ideal cell.</span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## Two junctions (slide 132)</span></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-tandem</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Detailed-balance efficiency of a four-terminal (independently connected) tandem: the top cell absorbs hν &gt; E_g1, the bottom cell E_g2 &lt; hν &lt; E_g1. The optimum near (1.8, 0.93) eV gives about 42 %. The GaInP/GaAs pair of slide 132 (1.95/1.42 eV, ×) is well off the peak: its bottom gap is too wide and wastes the infrared, which is why the triple-junction cell adds a Ge (0.66 eV) cell underneath."</span></span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cell_eff(Eg_lo, Eg_hi, Ts<span class="op">=</span><span class="fl">5778.0</span>, Tc<span class="op">=</span><span class="fl">300.0</span>):</span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> (<span class="fl">6.957e8</span><span class="op">/</span><span class="fl">1.496e11</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> np.linspace(Eg_lo, Eg_hi, <span class="dv">1500</span>)</span>
+<span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a>    Jsc <span class="op">=</span> dl.qe<span class="op">*</span>f<span class="op">*</span>np.trapezoid(dl._photon_flux_bb(E, Ts), E)</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>    Ec <span class="op">=</span> np.linspace(Eg_lo, Eg_lo <span class="op">+</span> <span class="dv">40</span><span class="op">*</span>dl.kT(Tc), <span class="dv">1500</span>)</span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a>    J0 <span class="op">=</span> dl.qe<span class="op">*</span>np.trapezoid(dl._photon_flux_bb(Ec, Tc), Ec)</span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> np.linspace(<span class="dv">0</span>, dl.kT(Tc)<span class="op">*</span>np.log(Jsc<span class="op">/</span>J0 <span class="op">+</span> <span class="dv">1</span>), <span class="dv">800</span>)</span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (V<span class="op">*</span>(Jsc <span class="op">-</span> J0<span class="op">*</span>np.expm1(V<span class="op">/</span>dl.kT(Tc)))).<span class="bu">max</span>()<span class="op">/</span>(f<span class="op">*</span>dl.sigma_SB<span class="op">*</span>Ts<span class="op">**</span><span class="dv">4</span>)</span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> np.linspace(<span class="fl">1.3</span>, <span class="fl">2.4</span>, <span class="dv">34</span>)<span class="op">;</span> g2 <span class="op">=</span> np.linspace(<span class="fl">0.6</span>, <span class="fl">1.5</span>, <span class="dv">28</span>)</span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> np.array([[cell_eff(a, <span class="fl">6.0</span>) <span class="op">+</span> cell_eff(b, a) <span class="cf">if</span> a <span class="op">&gt;</span> b <span class="cf">else</span> np.nan <span class="cf">for</span> a <span class="kw">in</span> g1] <span class="cf">for</span> b <span class="kw">in</span> g2])</span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="fl">6.5</span>, <span class="fl">4.4</span>))</span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>cs <span class="op">=</span> ax.contourf(g1, g2, <span class="dv">100</span><span class="op">*</span>Z, levels<span class="op">=</span>np.arange(<span class="dv">28</span>, <span class="dv">47</span>, <span class="dv">1</span>), cmap<span class="op">=</span><span class="st">"viridis"</span>)<span class="op">;</span> fig.colorbar(cs, label<span class="op">=</span><span class="st">"efficiency (%)"</span>)</span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>i, j <span class="op">=</span> np.unravel_index(np.nanargmax(Z), Z.shape)<span class="op">;</span> ax.plot(g1[j], g2[i], <span class="st">"w*"</span>, ms<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="fl">1.95</span>, <span class="fl">1.42</span>, <span class="st">"rx"</span>, ms<span class="op">=</span><span class="dv">10</span>, mew<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"top-cell gap E_g1 (eV)"</span>, ylabel<span class="op">=</span><span class="st">"bottom-cell gap E_g2 (eV)"</span>, title<span class="op">=</span><span class="ss">f"max </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>np<span class="sc">.</span>nanmax(Z)<span class="sc">:.1f}</span><span class="ss"> % at (</span><span class="sc">{</span>g1[j]<span class="sc">:.2f}</span><span class="ss">, </span><span class="sc">{</span>g2[i]<span class="sc">:.2f}</span><span class="ss">) eV"</span>)<span class="op">;</span> plt.show()</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse="true"}</span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="fu">## Going further</span></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Infinite junctions.** With an infinite stack of cells, each converting a narrow slice of the spectrum, the limit rises to 68 % (one sun)</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>  and 86 % (full concentration). Extend the tandem code to $N$ cells with equal photon currents.</span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Photon recycling and external luminescence.** A real cell has non-radiative recombination: $V_{oc}=V_{oc}^{SQ}+\frac{k_BT}{e}\ln\eta_\text{ext}$,</span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>  where $\eta_\text{ext}$ is the external luminescence efficiency. "A great solar cell must be a great LED" (Miller, Yablonovitch, 2012):</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>  connect this with the LED efficiency of Ch. 3. GaAs record cells have $\eta_\text{ext}\approx30$ %.</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Hot-carrier cells and singlet fission** try to recover the thermalisation loss; **intermediate-band cells** and up-conversion try to use</span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a>  sub-gap photons. What do they need to beat 31 %?</span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Thermodynamic limit.** Even an ideal converter is limited by Carnot (1 − 300/5800 = 95 %) and, more strictly, by the Landsberg limit</span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>  (93 %). Where does the remaining loss of the SQ cell come from in thermodynamic terms (entropy of the absorbed photons, étendue</span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>  expansion from the solar disc to the hemisphere)?</span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a>::: {.callout-note collapse="true"}</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="fu">## Complements</span></span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>W. Shockley and H. J. Queisser, "Detailed balance limit of efficiency of p–n junction solar cells", *J. Appl. Phys.* 32, 510 (1961).</span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>O. D. Miller, E. Yablonovitch, S. R. Kurtz, "Strong internal and external luminescence as solar cells approach the Shockley–Queisser</span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>  limit", *IEEE J. Photovolt.* 2, 303 (2012).</span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>S. Rühle, "Tabulated values of the Shockley–Queisser limit for single junction solar cells", *Sol. Energy* 130, 139 (2016) (AM1.5 values).</span>
+<span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a><span class="fu">## Try it yourself</span></span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Show that $J_0$ for Si at 300 K is of order $10^{-12}$ A/m² in the radiative limit, and compare with the $10^{-9}$–$10^{-8}$ A/m² of</span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a>   real Si cells. How many millivolts of $V_{oc}$ does that cost?</span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Why does concentrating the light raise the efficiency limit? Where does the extra voltage come from?</span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>The limit depends on the temperature of the cell. By how much does the Si limit fall between 25 °C and 65 °C (a module on a roof in</span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a>   summer)?</span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Space solar cells see the AM0 spectrum (1361 W/m², close to the black body used here) while terrestrial cells see AM1.5 with absorption</span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a>   bands of water and CO₂. Why is the terrestrial limit *higher* (33.7 %) than the black-body value?</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/sq-limit.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

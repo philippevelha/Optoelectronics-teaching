@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>16&nbsp; Projects, toolbox and connections – Photodetectors and Image Sensors</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./running.html" rel="next">
+<link href="./sq-limit.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b7e9d026a7057f9c7db5de69bd565a73.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dfa48a90d809c806c7ea2d5aecd9fc66.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-c04994ab16cb856fe02be3934f6d57ac.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-b4b620214eb7f94e89729fcd6083a541.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ideas.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Photodetectors and Image Sensors</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/philippevelha/Optoelectronics-teaching/tree/main/chapter5/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">How a photodiode works</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pn-photodiode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">The pn junction photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ramo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Shockley–Ramo theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./absorption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Absorption and the cut-off wavelength</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./responsivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Quantum efficiency and responsivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Photodiode families</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The pin photodiode</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Avalanche photodiodes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schottky.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Schottky, MSM and phototransistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./photoconductors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Photoconductive detectors</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Circuits, speed and noise</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./circuits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Photodiode circuits and speed</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Noise, SNR, NEP and detectivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./apd-noise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Noise in avalanche photodiodes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Image sensors and solar cells</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./image-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Image sensors: CCD and CMOS</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solar-cells.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Solar cells</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Going further</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./receivers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Going further: optical receivers, BER and sensitivity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sq-limit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ideas.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./running.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formula sheet</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#how-chapter-5-connects-to-the-rest-of-the-course" id="toc-how-chapter-5-connects-to-the-rest-of-the-course" class="nav-link active" data-scroll-target="#how-chapter-5-connects-to-the-rest-of-the-course"><span class="header-section-number">16.1</span> How Chapter 5 connects to the rest of the course</a></li>
+  <li><a href="#mini-projects" id="toc-mini-projects" class="nav-link" data-scroll-target="#mini-projects"><span class="header-section-number">16.2</span> Mini-projects</a></li>
+  <li><a href="#python-toolbox" id="toc-python-toolbox" class="nav-link" data-scroll-target="#python-toolbox"><span class="header-section-number">16.3</span> Python toolbox</a></li>
+  <li><a href="#improvements-to-the-course" id="toc-improvements-to-the-course" class="nav-link" data-scroll-target="#improvements-to-the-course"><span class="header-section-number">16.4</span> Improvements to the course</a></li>
+  <li><a href="#notes-for-the-instructor-checks-on-the-slides" id="toc-notes-for-the-instructor-checks-on-the-slides" class="nav-link" data-scroll-target="#notes-for-the-instructor-checks-on-the-slides"><span class="header-section-number">16.5</span> Notes for the instructor: checks on the slides</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/ideas.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-ideas" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Projects, toolbox and connections</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="how-chapter-5-connects-to-the-rest-of-the-course" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="how-chapter-5-connects-to-the-rest-of-the-course"><span class="header-section-number">16.1</span> How Chapter 5 connects to the rest of the course</h2>
+<div id="tbl-links" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[45,55]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.1: Where Chapter 5 concepts come from and where they reappear.
+</figcaption>
+<div aria-describedby="tbl-links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Chapter 5 concept</th>
+<th>Where it comes from / where it goes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Photon energy, cut-off wavelength <span class="math inline">\(1.24/E_g\)</span></td>
+<td>Ch. 1: photons; Ch. 3: band gaps and LED emission wavelength</td>
+</tr>
+<tr class="even">
+<td>Absorption coefficient, direct/indirect gaps</td>
+<td>Ch. 3: E–k diagrams, why Si does not emit light; Ch. 4: gain is negative absorption</td>
+</tr>
+<tr class="odd">
+<td>pn and pin junctions, depletion width, capacitance</td>
+<td>Ch. 3: the pn junction, depletion capacitance, LED speed</td>
+</tr>
+<tr class="even">
+<td>Dark current <span class="math inline">\(I_o\)</span>, ideality factor</td>
+<td>Ch. 3: diode equation, diffusion and generation currents</td>
+</tr>
+<tr class="odd">
+<td>Fresnel reflection loss, AR coatings</td>
+<td>Ch. 1: Fresnel equations, quarter-wave coatings</td>
+</tr>
+<tr class="even">
+<td>Resonant-cavity photodiodes</td>
+<td>Ch. 1: Fabry–Perot and Bragg mirrors; Ch. 4: VCSEL mirrors</td>
+</tr>
+<tr class="odd">
+<td>Waveguide photodiodes, confinement factor</td>
+<td>Ch. 2: planar waveguides; Ch. 4: Γ in laser diodes</td>
+</tr>
+<tr class="even">
+<td>Shockley–Ramo, transit time</td>
+<td>Ch. 3: drift and diffusion, mobility, saturation velocity</td>
+</tr>
+<tr class="odd">
+<td>Bandwidth, rise time, receiver noise</td>
+<td>Ch. 2: bit rate, dispersion, rise-time budget, BER and Q factor</td>
+</tr>
+<tr class="even">
+<td>Shot noise, quantum limit</td>
+<td>Ch. 4: photon statistics of laser light, EDFA noise figure and ASE beat noise</td>
+</tr>
+<tr class="odd">
+<td>APD excess noise versus optical preamplifier</td>
+<td>Ch. 4: EDFA as a low-noise preamplifier (<a href="receivers.html" class="quarto-xref"><span>Chapter 14</span></a>)</td>
+</tr>
+<tr class="even">
+<td>Solar cells and the SQ limit</td>
+<td>Ch. 4: black-body radiation and detailed balance; Ch. 3: radiative and non-radiative recombination</td>
+</tr>
+<tr class="odd">
+<td>Image sensors, pixel size</td>
+<td>Ch. 1: diffraction and resolution (Airy disc); Ch. 3: photometry and the eye</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="mini-projects" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="mini-projects"><span class="header-section-number">16.2</span> Mini-projects</h2>
+<p>For students who want to go further. Each reuses <code>detlib.py</code> and can be done in one to three weeks.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>project</th>
+<th>skills</th>
+<th>difficulty</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>Characterise a photodiode</strong>: measure dark I–V (extract <span class="math inline">\(I_o\)</span>, η), responsivity versus λ with a monochromator or LEDs, linearity with a load resistor (load line!), and the pulse response with a fast LED driver; compare with the models of <a href="responsivity.html" class="quarto-xref"><span>Chapter 4</span></a> and <a href="circuits.html" class="quarto-xref"><span>Chapter 9</span></a></td>
+<td>experiment, fitting</td>
+<td>★</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>Design a 25 Gb/s 850 nm receiver</strong>: choose GaAs or Si, the absorber thickness and area, compute the transit/RC bandwidth and the sensitivity with a realistic TIA (include <span class="math inline">\(e_nC\)</span> noise)</td>
+<td>device design, noise</td>
+<td>★★</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>Drift–diffusion photodiode simulator</strong>: solve the 1D continuity equations (finite differences) for a pn photodiode under a light pulse; reproduce the drift + diffusion pulse of slide 85 and the internal QE of slide 145</td>
+<td>numerics, semiconductor physics</td>
+<td>★★★</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>APD Monte Carlo</strong>: simulate random impact ionisation chains in a uniform field with given <span class="math inline">\(\alpha_e\)</span>, <span class="math inline">\(\alpha_h\)</span>; build the gain distribution and compare <span class="math inline">\(F\)</span> with McIntyre; add a dead space</td>
+<td>stochastic simulation</td>
+<td>★★</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>Photon transfer of a webcam or phone camera</strong>: record flat fields with RAW output (<code>rawpy</code>), build the photon transfer curve, extract the conversion gain, read noise, full well and dark current versus exposure and temperature</td>
+<td>experiment, statistics</td>
+<td>★★</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><strong>Solar panel I–V tracer</strong>: measure a small panel with an electronic load (or a capacitor charging), extract <span class="math inline">\(I_{sc}\)</span>, <span class="math inline">\(V_{oc}\)</span>, FF, <span class="math inline">\(R_s\)</span>, <span class="math inline">\(R_p\)</span> by fitting the one-diode model, follow the MPP during a day; compare with <code>pvlib</code> irradiance models</td>
+<td>experiment, fitting</td>
+<td>★</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><strong>Lock-in amplifier in software</strong>: digitise a chopped photodiode signal with a sound card, implement the lock-in in Python and measure a signal 40 dB below the noise</td>
+<td>signal processing</td>
+<td>★★</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><strong>Single-photon statistics</strong>: with a SPAD module (or a simulated one with dead time and after-pulsing), measure the photon-number distribution of an attenuated laser and of an LED; compare with Poisson and Bose–Einstein</td>
+<td>quantum optics</td>
+<td>★★★</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="python-toolbox" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="python-toolbox"><span class="header-section-number">16.3</span> Python toolbox</h2>
+<p>All worked examples run with the scientific core only. The packages below extend them.</p>
+<div id="tbl-toolbox" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[18,24,44,14]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-toolbox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;16.2: Optional Python packages for Chapter 5.
+</figcaption>
+<div aria-describedby="tbl-toolbox-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 24%">
+<col style="width: 44%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Install</th>
+<th>What it is good for</th>
+<th>Sections</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>numpy</code>, <code>scipy</code>, <code>matplotlib</code>, <code>pandas</code></td>
+<td><code>pip install ...</code></td>
+<td>everything in this book (<code>brentq</code>, <code>lambertw</code>, <code>erfc</code>, FFT)</td>
+<td>all</td>
+</tr>
+<tr class="even">
+<td><code>solcore</code></td>
+<td><code>pip install solcore</code></td>
+<td>solar-cell modelling: detailed balance, drift–diffusion, multijunctions, optical stacks</td>
+<td><a href="solar-cells.html" class="quarto-xref"><span>13</span></a>, <a href="sq-limit.html" class="quarto-xref"><span>15</span></a></td>
+</tr>
+<tr class="odd">
+<td><code>pvlib</code></td>
+<td><code>pip install pvlib</code></td>
+<td>solar irradiance, AM1.5 spectra, module models, one-diode fitting</td>
+<td><a href="solar-cells.html" class="quarto-xref"><span>13</span></a></td>
+</tr>
+<tr class="even">
+<td><code>rawpy</code>, <code>scikit-image</code></td>
+<td><code>pip install rawpy scikit-image</code></td>
+<td>read camera RAW files, demosaicing, photon-transfer analysis</td>
+<td><a href="image-sensors.html" class="quarto-xref"><span>12</span></a></td>
+</tr>
+<tr class="odd">
+<td><code>PySpice</code></td>
+<td><code>pip install PySpice</code> (needs ngspice)</td>
+<td>photodiode equivalent circuits, TIAs, pulse response</td>
+<td><a href="circuits.html" class="quarto-xref"><span>9</span></a></td>
+</tr>
+<tr class="even">
+<td><code>devsim</code></td>
+<td><code>pip install devsim</code></td>
+<td>semiconductor device (TCAD) simulation of photodiodes</td>
+<td><a href="pin.html" class="quarto-xref"><span>5</span></a>, <a href="ramo.html" class="quarto-xref"><span>2</span></a></td>
+</tr>
+<tr class="odd">
+<td><code>tmm</code></td>
+<td><code>pip install tmm</code></td>
+<td>AR coatings and resonant-cavity photodiodes</td>
+<td><a href="responsivity.html" class="quarto-xref"><span>4</span></a></td>
+</tr>
+<tr class="even">
+<td><code>lmfit</code></td>
+<td><code>pip install lmfit</code></td>
+<td>fit I–V curves, responsivity spectra, APD gain curves</td>
+<td><a href="apd.html" class="quarto-xref"><span>6</span></a>, <a href="solar-cells.html" class="quarto-xref"><span>13</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="improvements-to-the-course" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="improvements-to-the-course"><span class="header-section-number">16.4</span> Improvements to the course</h2>
+<ol type="1">
+<li><strong>One trade-off per device.</strong> Each detector of the chapter trades something for something: thickness for speed (pin), gain for noise (APD), gain for bandwidth (photoconductor, phototransistor), fill factor for speed (MSM), voltage for current (solar cell band gap). Framing the chapter this way, with the live panels of <a href="pin.html" class="quarto-xref"><span>Chapter 5</span></a>, <a href="apd-noise.html" class="quarto-xref"><span>Chapter 11</span></a> and <a href="photoconductors.html" class="quarto-xref"><span>Chapter 8</span></a>, makes it coherent.</li>
+<li><strong>“Predict, then compute.”</strong> <em>“Does doubling the light double V_oc?”</em>, <em>“Does raising V_r make a pin faster?”</em>, <em>“Does a higher APD gain always improve the SNR?”</em>, <em>“Is a detector with R = 100 A/W better than one with R = 0.5 A/W?”</em></li>
+<li><strong>Close the link budget.</strong> The receiver chapter (<a href="receivers.html" class="quarto-xref"><span>Chapter 14</span></a>) ties Ch. 2 (BER, attenuation, dispersion), Ch. 4 (EDFA noise) and Ch. 5 (photodiode noise) into a single calculation: a good capstone exercise.</li>
+<li><strong>Lab connection.</strong> A Si photodiode, a few LEDs of different colours, a load resistor box, an oscilloscope and a small solar panel cover responsivity, the load line, the RC response and the fill factor in one afternoon.</li>
+<li><strong>Modern content.</strong> Possible updates: Ge-on-Si waveguide photodiodes for silicon photonics, SPAD arrays for lidar, SNSPDs, backside-illuminated stacked CMOS sensors, perovskite and perovskite/Si tandem solar cells, coherent receivers.</li>
+</ol>
+</section>
+<section id="notes-for-the-instructor-checks-on-the-slides" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="notes-for-the-instructor-checks-on-the-slides"><span class="header-section-number">16.5</span> Notes for the instructor: checks on the slides</h2>
+<p>While recomputing the examples, everything matched the slides (QE and responsivity examples, pin transit and diffusion times, steady-state photocurrent with and without AR coating, Table 5.7, APD responsivities, Chynoweth example, ideal-detector and NEP examples, receiver SNR, APD noise example, solar-cell load line, <span class="math inline">\(V_{oc}\)</span> versus intensity, efficiency table), except these points:</p>
+<ul>
+<li><strong>Slide numbering:</strong> the companion uses the 152 slides of <code>chapter5_ Photodetectors.ppt</code>.</li>
+<li><strong>Slide 20:</strong> the column header “<span class="math inline">\(\lambda_g\)</span> (eV)” should read “<span class="math inline">\(\lambda_g\)</span> (µm)” (<a href="absorption.html" class="quarto-xref"><span>Chapter 3</span></a>).</li>
+<li><strong>Slide 16:</strong> the In₀.₅₃Ga₀.₄₇As curve gives about <span class="math inline">\(2\times10^5\)</span> m⁻¹ at 1.55 µm, three times below literature values (<span class="math inline">\(\approx7\times10^5\)</span> m⁻¹); the companion uses the literature values for InGaAs.</li>
+<li><strong>Slide 40:</strong> “at this field the drift velocity saturates at <span class="math inline">\(10^5\)</span> m s⁻¹”: at <span class="math inline">\(3\times10^6\)</span> V/m the Caughey–Thomas model gives <span class="math inline">\(0.89\times10^5\)</span> m/s (0.22 ns instead of 0.2 ns); the conclusion is unchanged (<a href="pin.html" class="quarto-xref"><span>Chapter 5</span></a>).</li>
+<li><strong>Slide 49:</strong> the dark current of the GaP pin is printed “1 nm” (1 nA); the footnote letters are shuffled (“ᶜFGAP71” should be “ᵃ”).</li>
+<li><strong>Slide 56:</strong> “<span class="math inline">\(R=MR=(12)/(0.75)\)</span>” should be <span class="math inline">\((12)(0.75)=9.0\)</span> A/W (<a href="apd.html" class="quarto-xref"><span>Chapter 6</span></a>).</li>
+<li><strong>Slide 59 (Table 5.3):</strong> with unrounded coefficients <span class="math inline">\(M=58.7\)</span> at <span class="math inline">\(4.30\times10^5\)</span> V/cm and 644 at <span class="math inline">\(4.38\times10^5\)</span> V/cm (slide: 57.2 and 647). The difference comes from rounding <span class="math inline">\(k\)</span> to three digits and illustrates how sensitive <span class="math inline">\(M\)</span> is near breakdown.</li>
+<li><strong>Slide 97:</strong> the GaP Schottky NEP (<span class="math inline">\(5.4\times10^{-15}\)</span> W Hz⁻¹ᐟ²) is three times lower than the shot-noise value for the quoted <span class="math inline">\(I_d=10\)</span> pA; the other entries agree with <span class="math inline">\(\sqrt{2eI_d}/\mathcal R\)</span> within 20 % (<a href="noise.html" class="quarto-xref"><span>Chapter 10</span></a>).</li>
+<li><strong>Slide 102:</strong> “for a bandwidth of 1 Hz, NEP = <span class="math inline">\(2hc/\lambda\)</span>” is correct numerically, but the NEP of an ideal (quantum-noise-limited) detector grows as <span class="math inline">\(\sqrt B\)</span>; NEP is bandwidth-independent only when the noise does not depend on the signal (<a href="noise.html" class="quarto-xref"><span>Chapter 10</span></a>, warning box).</li>
+<li><strong>Slide 105:</strong> “Noise from load: <span class="math inline">\(4k_BT/R_L\)</span> = 1.29 nA” should read <span class="math inline">\([4k_BTB/R_L]^{1/2}=1.29\)</span> nA.</li>
+<li><strong>Slides 106–107:</strong> the thermal noise of the load is neglected. With a 50 Ω load at 700 MHz it is 0.48 µA rms, and about 9 times more optical power (0.2 µW) is needed for SNR = 10 (<a href="apd-noise.html" class="quarto-xref"><span>Chapter 11</span></a>). Worth a sentence on the slide, since it is the reason APDs exist.</li>
+<li><strong>Slides 133–135:</strong> the I–V curve of the 16 Ω example corresponds to an ideality factor η ≈ 2; the optimum load is 15.5 Ω and the true FF 0.727 (the slide’s 0.72 assumes the 16 Ω point is the MPP, which is very nearly true) (<a href="solar-cells.html" class="quarto-xref"><span>Chapter 13</span></a>).</li>
+<li><strong>Slide 149:</strong> NEP is printed “W Hz” (W Hz⁻¹ᐟ²). <strong>Slide 150:</strong> “0.95 W/A” should be A/W.</li>
+<li><strong>Slide 130:</strong> the a-Si:H efficiency recomputed from <span class="math inline">\(V_{oc}J_{sc}\)</span>FF is 9.9 % (slide 10.1 %, rounding in the source table).</li>
+<li><strong>Missing material</strong> added as “Going further”: transit-time frequency response and the transit/RC optimum (<a href="ramo.html" class="quarto-xref"><span>Chapter 2</span></a>, <a href="pin.html" class="quarto-xref"><span>Chapter 5</span></a>), McIntyre excess noise and the optimum APD gain (<a href="apd-noise.html" class="quarto-xref"><span>Chapter 11</span></a>), internal photoemission and MSM capacitance (<a href="schottky.html" class="quarto-xref"><span>Chapter 7</span></a>), gain–bandwidth of photoconductors and phototransistors, lock-in detection, photon transfer curve, receiver sensitivity and BER (<a href="receivers.html" class="quarto-xref"><span>Chapter 14</span></a>), and the Shockley–Queisser limit (<a href="sq-limit.html" class="quarto-xref"><span>Chapter 15</span></a>).</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/philippevelha\.github\.io\/Optoelectronics-teaching\/chapter5\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./sq-limit.html" class="pagination-link" aria-label="Going further: the Shockley–Queisser limit">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Going further: the Shockley–Queisser limit</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./running.html" class="pagination-link" aria-label="Running the notebooks">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Running the notebooks</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Projects, toolbox and connections {#sec-ideas}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## How Chapter 5 connects to the rest of the course</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Chapter 5 concept <span class="pp">|</span> Where it comes from / where it goes <span class="pp">|</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Photon energy, cut-off wavelength $1.24/E_g$ <span class="pp">|</span> Ch. 1: photons; Ch. 3: band gaps and LED emission wavelength <span class="pp">|</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Absorption coefficient, direct/indirect gaps <span class="pp">|</span> Ch. 3: E–k diagrams, why Si does not emit light; Ch. 4: gain is negative absorption <span class="pp">|</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> pn and pin junctions, depletion width, capacitance <span class="pp">|</span> Ch. 3: the pn junction, depletion capacitance, LED speed <span class="pp">|</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Dark current $I_o$, ideality factor <span class="pp">|</span> Ch. 3: diode equation, diffusion and generation currents <span class="pp">|</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Fresnel reflection loss, AR coatings <span class="pp">|</span> Ch. 1: Fresnel equations, quarter-wave coatings <span class="pp">|</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Resonant-cavity photodiodes <span class="pp">|</span> Ch. 1: Fabry–Perot and Bragg mirrors; Ch. 4: VCSEL mirrors <span class="pp">|</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Waveguide photodiodes, confinement factor <span class="pp">|</span> Ch. 2: planar waveguides; Ch. 4: Γ in laser diodes <span class="pp">|</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Shockley–Ramo, transit time <span class="pp">|</span> Ch. 3: drift and diffusion, mobility, saturation velocity <span class="pp">|</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Bandwidth, rise time, receiver noise <span class="pp">|</span> Ch. 2: bit rate, dispersion, rise-time budget, BER and Q factor <span class="pp">|</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Shot noise, quantum limit <span class="pp">|</span> Ch. 4: photon statistics of laser light, EDFA noise figure and ASE beat noise <span class="pp">|</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> APD excess noise versus optical preamplifier <span class="pp">|</span> Ch. 4: EDFA as a low-noise preamplifier (@sec-receivers) <span class="pp">|</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Solar cells and the SQ limit <span class="pp">|</span> Ch. 4: black-body radiation and detailed balance; Ch. 3: radiative and non-radiative recombination <span class="pp">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Image sensors, pixel size <span class="pp">|</span> Ch. 1: diffraction and resolution (Airy disc); Ch. 3: photometry and the eye <span class="pp">|</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>: Where Chapter 5 concepts come from and where they reappear. {#tbl-links tbl-colwidths="<span class="co">[</span><span class="ot">45,55</span><span class="co">]</span>"}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mini-projects</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>For students who want to go further. Each reuses <span class="in">`detlib.py`</span> and can be done in one to three weeks.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> # <span class="pp">|</span> project <span class="pp">|</span> skills <span class="pp">|</span> difficulty <span class="pp">|</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> **Characterise a photodiode**: measure dark I–V (extract $I_o$, η), responsivity versus λ with a monochromator or LEDs, linearity with a load resistor (load line!), and the pulse response with a fast LED driver; compare with the models of @sec-responsivity and @sec-circuits <span class="pp">|</span> experiment, fitting <span class="pp">|</span> ★ <span class="pp">|</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> **Design a 25 Gb/s 850 nm receiver**: choose GaAs or Si, the absorber thickness and area, compute the transit/RC bandwidth and the sensitivity with a realistic TIA (include $e_nC$ noise) <span class="pp">|</span> device design, noise <span class="pp">|</span> ★★ <span class="pp">|</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> **Drift–diffusion photodiode simulator**: solve the 1D continuity equations (finite differences) for a pn photodiode under a light pulse; reproduce the drift + diffusion pulse of slide 85 and the internal QE of slide 145 <span class="pp">|</span> numerics, semiconductor physics <span class="pp">|</span> ★★★ <span class="pp">|</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> **APD Monte Carlo**: simulate random impact ionisation chains in a uniform field with given $\alpha_e$, $\alpha_h$; build the gain distribution and compare $F$ with McIntyre; add a dead space <span class="pp">|</span> stochastic simulation <span class="pp">|</span> ★★ <span class="pp">|</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> **Photon transfer of a webcam or phone camera**: record flat fields with RAW output (<span class="in">`rawpy`</span>), build the photon transfer curve, extract the conversion gain, read noise, full well and dark current versus exposure and temperature <span class="pp">|</span> experiment, statistics <span class="pp">|</span> ★★ <span class="pp">|</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> **Solar panel I–V tracer**: measure a small panel with an electronic load (or a capacitor charging), extract $I_{sc}$, $V_{oc}$, FF, $R_s$, $R_p$ by fitting the one-diode model, follow the MPP during a day; compare with <span class="in">`pvlib`</span> irradiance models <span class="pp">|</span> experiment, fitting <span class="pp">|</span> ★ <span class="pp">|</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 7 <span class="pp">|</span> **Lock-in amplifier in software**: digitise a chopped photodiode signal with a sound card, implement the lock-in in Python and measure a signal 40 dB below the noise <span class="pp">|</span> signal processing <span class="pp">|</span> ★★ <span class="pp">|</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 8 <span class="pp">|</span> **Single-photon statistics**: with a SPAD module (or a simulated one with dead time and after-pulsing), measure the photon-number distribution of an attenuated laser and of an LED; compare with Poisson and Bose–Einstein <span class="pp">|</span> quantum optics <span class="pp">|</span> ★★★ <span class="pp">|</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Python toolbox</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>All worked examples run with the scientific core only. The packages below extend them.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Package <span class="pp">|</span> Install <span class="pp">|</span> What it is good for <span class="pp">|</span> Sections <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`numpy`</span>, <span class="in">`scipy`</span>, <span class="in">`matplotlib`</span>, <span class="in">`pandas`</span> <span class="pp">|</span> <span class="in">`pip install ...`</span> <span class="pp">|</span> everything in this book (<span class="in">`brentq`</span>, <span class="in">`lambertw`</span>, <span class="in">`erfc`</span>, FFT) <span class="pp">|</span> all <span class="pp">|</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`solcore`</span> <span class="pp">|</span> <span class="in">`pip install solcore`</span> <span class="pp">|</span> solar-cell modelling: detailed balance, drift–diffusion, multijunctions, optical stacks <span class="pp">|</span> <span class="co">[</span><span class="ot">-@sec-solar</span><span class="co">]</span>, <span class="co">[</span><span class="ot">-@sec-sq</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`pvlib`</span> <span class="pp">|</span> <span class="in">`pip install pvlib`</span> <span class="pp">|</span> solar irradiance, AM1.5 spectra, module models, one-diode fitting <span class="pp">|</span> <span class="co">[</span><span class="ot">-@sec-solar</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`rawpy`</span>, <span class="in">`scikit-image`</span> <span class="pp">|</span> <span class="in">`pip install rawpy scikit-image`</span> <span class="pp">|</span> read camera RAW files, demosaicing, photon-transfer analysis <span class="pp">|</span> <span class="co">[</span><span class="ot">-@sec-image</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`PySpice`</span> <span class="pp">|</span> <span class="in">`pip install PySpice`</span> (needs ngspice) <span class="pp">|</span> photodiode equivalent circuits, TIAs, pulse response <span class="pp">|</span> <span class="co">[</span><span class="ot">-@sec-circuits</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`devsim`</span> <span class="pp">|</span> <span class="in">`pip install devsim`</span> <span class="pp">|</span> semiconductor device (TCAD) simulation of photodiodes <span class="pp">|</span> <span class="co">[</span><span class="ot">-@sec-pin</span><span class="co">]</span>, <span class="co">[</span><span class="ot">-@sec-ramo</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`tmm`</span> <span class="pp">|</span> <span class="in">`pip install tmm`</span> <span class="pp">|</span> AR coatings and resonant-cavity photodiodes <span class="pp">|</span> <span class="co">[</span><span class="ot">-@sec-responsivity</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`lmfit`</span> <span class="pp">|</span> <span class="in">`pip install lmfit`</span> <span class="pp">|</span> fit I–V curves, responsivity spectra, APD gain curves <span class="pp">|</span> <span class="co">[</span><span class="ot">-@sec-apd</span><span class="co">]</span>, <span class="co">[</span><span class="ot">-@sec-solar</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>: Optional Python packages for Chapter 5. {#tbl-toolbox tbl-colwidths="<span class="co">[</span><span class="ot">18,24,44,14</span><span class="co">]</span>"}</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Improvements to the course</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**One trade-off per device.** Each detector of the chapter trades something for something: thickness for speed (pin), gain for noise</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>   (APD), gain for bandwidth (photoconductor, phototransistor), fill factor for speed (MSM), voltage for current (solar cell band gap).</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>   Framing the chapter this way, with the live panels of @sec-pin, @sec-apd-noise and @sec-photoconductors, makes it coherent.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**"Predict, then compute."** *"Does doubling the light double V_oc?"*, *"Does raising V_r make a pin faster?"*, *"Does a higher APD gain</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>   always improve the SNR?"*, *"Is a detector with R = 100 A/W better than one with R = 0.5 A/W?"*</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Close the link budget.** The receiver chapter (@sec-receivers) ties Ch. 2 (BER, attenuation, dispersion), Ch. 4 (EDFA noise) and</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>   Ch. 5 (photodiode noise) into a single calculation: a good capstone exercise.</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Lab connection.** A Si photodiode, a few LEDs of different colours, a load resistor box, an oscilloscope and a small solar panel cover</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>   responsivity, the load line, the RC response and the fill factor in one afternoon.</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Modern content.** Possible updates: Ge-on-Si waveguide photodiodes for silicon photonics, SPAD arrays for lidar, SNSPDs, backside-illuminated</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>   stacked CMOS sensors, perovskite and perovskite/Si tandem solar cells, coherent receivers.</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu">## Notes for the instructor: checks on the slides</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>While recomputing the examples, everything matched the slides (QE and responsivity examples, pin transit and diffusion times, steady-state</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>photocurrent with and without AR coating, Table 5.7, APD responsivities, Chynoweth example, ideal-detector and NEP examples, receiver SNR,</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>APD noise example, solar-cell load line, $V_{oc}$ versus intensity, efficiency table), except these points:</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide numbering:** the companion uses the 152 slides of <span class="in">`chapter5_ Photodetectors.ppt`</span>.</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 20:** the column header "$\lambda_g$ (eV)" should read "$\lambda_g$ (µm)" (@sec-absorption).</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 16:** the In₀.₅₃Ga₀.₄₇As curve gives about $2\times10^5$ m⁻¹ at 1.55 µm, three times below literature values</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  ($\approx7\times10^5$ m⁻¹); the companion uses the literature values for InGaAs.</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 40:** "at this field the drift velocity saturates at $10^5$ m s⁻¹": at $3\times10^6$ V/m the Caughey–Thomas model gives</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  $0.89\times10^5$ m/s (0.22 ns instead of 0.2 ns); the conclusion is unchanged (@sec-pin).</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 49:** the dark current of the GaP pin is printed "1 nm" (1 nA); the footnote letters are shuffled ("ᶜFGAP71" should be "ᵃ").</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 56:** "$R=MR=(12)/(0.75)$" should be $(12)(0.75)=9.0$ A/W (@sec-apd).</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 59 (Table 5.3):** with unrounded coefficients $M=58.7$ at $4.30\times10^5$ V/cm and 644 at $4.38\times10^5$ V/cm (slide: 57.2 and 647).</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>  The difference comes from rounding $k$ to three digits and illustrates how sensitive $M$ is near breakdown.</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 97:** the GaP Schottky NEP ($5.4\times10^{-15}$ W Hz⁻¹ᐟ²) is three times lower than the shot-noise value for the quoted</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  $I_d=10$ pA; the other entries agree with $\sqrt{2eI_d}/\mathcal R$ within 20 % (@sec-noise).</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 102:** "for a bandwidth of 1 Hz, NEP = $2hc/\lambda$" is correct numerically, but the NEP of an ideal (quantum-noise-limited)</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>  detector grows as $\sqrt B$; NEP is bandwidth-independent only when the noise does not depend on the signal (@sec-noise, warning box).</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 105:** "Noise from load: $4k_BT/R_L$ = 1.29 nA" should read $<span class="co">[</span><span class="ot">4k_BTB/R_L</span><span class="co">]</span>^{1/2}=1.29$ nA.</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slides 106–107:** the thermal noise of the load is neglected. With a 50 Ω load at 700 MHz it is 0.48 µA rms, and about 9 times more</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>  optical power (0.2 µW) is needed for SNR = 10 (@sec-apd-noise). Worth a sentence on the slide, since it is the reason APDs exist.</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slides 133–135:** the I–V curve of the 16 Ω example corresponds to an ideality factor η ≈ 2; the optimum load is 15.5 Ω and the</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>  true FF 0.727 (the slide's 0.72 assumes the 16 Ω point is the MPP, which is very nearly true) (@sec-solar).</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 149:** NEP is printed "W Hz" (W Hz⁻¹ᐟ²). **Slide 150:** "0.95 W/A" should be A/W.</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Slide 130:** the a-Si:H efficiency recomputed from $V_{oc}J_{sc}$FF is 9.9 % (slide 10.1 %, rounding in the source table).</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Missing material** added as "Going further": transit-time frequency response and the transit/RC optimum (@sec-ramo, @sec-pin), McIntyre</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  excess noise and the optimum APD gain (@sec-apd-noise), internal photoemission and MSM capacitance (@sec-schottky), gain–bandwidth of</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  photoconductors and phototransistors, lock-in detection, photon transfer curve, receiver sensitivity and BER (@sec-receivers), and the</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  Shockley–Queisser limit (@sec-sq).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/blob/main/chapter5/ideas.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/philippevelha/Optoelectronics-teaching/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
