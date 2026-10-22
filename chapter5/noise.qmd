@@ -1,0 +1,249 @@
+# Noise, SNR, NEP and detectivity {#sec-noise}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/noise.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import detlib as dl
+dl.use_style()
+```
+
+*Slides 86–91 (noise current, shot noise, Poisson statistics, dark-current and quantum noise), 92–93 (thermal noise of the load),
+94 (SNR), 95–98 (NEP, detectivity, noise data of commercial detectors, NEP versus dark current) and 101–105 (worked examples:
+ideal photodetector, NEP of a Si pin, SNR of a receiver).*
+
+## Key relations
+
+Under constant illumination the photocurrent is not constant: it fluctuates around its mean (slide 86). The noise is quantified by
+the RMS of the fluctuations, $i_n=\sqrt{\overline{(i-\bar\imath)^2}}$, within the measurement bandwidth $B$.
+
+**Shot noise.** Electrons cross the junction one by one, at random times: the number $N$ counted in a time $T$ follows Poisson
+statistics, $\sigma_N^2=\bar N$ (slide 87). For a current $I=e\bar N/T$ measured in a bandwidth $B=1/2T$, this gives (slides 89–90)
+
+$$
+i_{n}^2=2eIB,\qquad i_n=\left[2e(I_d+I_{ph})B\right]^{1/2}.
+$$
+
+The dark current and the photocurrent both have shot noise. The photocurrent part is called **quantum noise**: it reflects the
+random arrival of photons and cannot be removed.
+
+**Thermal (Johnson) noise.** The carriers in the load resistor have random thermal velocities (slide 88). The available noise
+power is $4k_BTB$, so the noise current of $R_L$ is (slide 92)
+
+$$
+i_\text{th}=\left[\frac{4k_BTB}{R_L}\right]^{1/2}.
+$$
+
+**Signal-to-noise ratio.** Independent noise sources add in **power** (mean squares), never in amplitude (slides 93–94):
+
+$$
+\text{SNR}=\frac{\text{signal power}}{\text{noise power}}=\frac{I_{ph}^2}{2e(I_d+I_{ph})B+4k_BTB/R_L} .
+$$
+
+**Noise equivalent power and detectivity.** The NEP is the optical power that gives SNR = 1 in a 1 Hz bandwidth (slide 95); the
+detectivity is its inverse, and the **specific detectivity** normalises by the square root of the area, because for many detectors
+the noise power scales with area (slide 96):
+
+$$
+\text{NEP}=\frac{P_1}{B^{1/2}}=\frac{1}{\mathcal R}\left[2e(I_d+I_{ph})\right]^{1/2}\ [\text{W Hz}^{-1/2}],\qquad
+D^*=\frac{A^{1/2}}{\text{NEP}}\ [\text{cm Hz}^{1/2}\text{W}^{-1}=\text{Jones}].
+$$
+
+For an **ideal** detector ($\eta=1$, $I_d=0$, no thermal noise) the minimum power for SNR = 1 is (slide 101)
+
+$$
+P_1=\frac{2hcB}{\eta\lambda}.
+$$
+
+## Live panel: shot noise is Poisson statistics (slide 87)
+
+```{ojs}
+//| echo: false
+import {rng, qe, kB} from "./det_sim.js"
+viewof sn = Inputs.form({
+  N: Inputs.range([0.5, 1000], {value: 10, step: 0.5, label: "mean number of electrons per time bin N̄"}),
+  bins: Inputs.range([100, 5000], {value: 2000, step: 100, label: "number of time bins"}),
+  seed: Inputs.range([1, 100], {value: 3, step: 1, label: "seed"})
+})
+```
+
+```{ojs}
+//| echo: false
+snOut = {
+  const r = rng(sn.seed), counts = d3.range(sn.bins).map(() => r.poisson(sn.N));
+  const mean = d3.mean(counts), v = d3.variance(counts);
+  const hist = d3.rollups(counts, g => g.length, d => d).map(([k, n]) => ({k, f: n / sn.bins}));
+  const fac = (k) => { let s = 0; for (let i = 2; i <= k; i++) s += Math.log(i); return s; };
+  const kmax = Math.ceil(sn.N + 5 * Math.sqrt(sn.N) + 3), kmin = Math.max(0, Math.floor(sn.N - 5 * Math.sqrt(sn.N)));
+  const poisson = d3.range(kmin, kmax + 1).map(k => ({k, f: Math.exp(k * Math.log(sn.N) - sn.N - fac(k))}));
+  return {counts: counts.slice(0, 300).map((c, i) => ({i, c})), hist, poisson, mean, v};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 180, x: {label: "time bin"}, y: {label: "electrons counted", grid: true},
+  marks: [Plot.line(snOut.counts, {x: "i", y: "c", stroke: "#2a78d6", strokeWidth: 1}), Plot.ruleY([sn.N], {stroke: "#e34948"})]
+})
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: Math.min(width, 1050), height: 220, x: {label: "count k"}, y: {label: "probability", grid: true},
+  marks: [Plot.rectY(snOut.hist, {x1: d => d.k - 0.4, x2: d => d.k + 0.4, y: "f", fill: "#2a78d6", fillOpacity: 0.5}),
+          Plot.line(snOut.poisson, {x: "k", y: "f", stroke: "#e34948", strokeWidth: 2}), Plot.dot(snOut.poisson, {x: "k", y: "f", fill: "#e34948", r: 2.5})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">measured mean ${snOut.mean.toFixed(3)} · measured variance ${snOut.v.toFixed(3)} (Poisson: variance = mean) ·
+relative fluctuation σ/N̄ = ${(Math.sqrt(snOut.v) / snOut.mean).toFixed(3)} (1/√N̄ = ${(1 / Math.sqrt(sn.N)).toFixed(3)}) ·
+SNR of one bin = N̄ = ${sn.N}</div>`
+```
+
+The variance equals the mean: this is the whole content of $i_n^2=2eIB$. With 10 electrons per bin the current fluctuates by
+±32 %; with 1000 by ±3 %. Weak signals are intrinsically noisy, whatever the electronics.
+
+## Live panel: SNR of a photodiode receiver (slides 93–94, 104–105)
+
+```{ojs}
+//| echo: false
+viewof rx = Inputs.form({
+  lP: Inputs.range([-12, -3], {value: -8.2, step: 0.05, label: "log₁₀ optical power P_o (W)"}),
+  R: Inputs.range([0.1, 1.1], {value: 0.85, step: 0.01, label: "responsivity (A/W)"}),
+  lId: Inputs.range([-12, -5], {value: -8.7, step: 0.05, label: "log₁₀ dark current I_d (A)"}),
+  lB: Inputs.range([0, 10.5], {value: 6, step: 0.1, label: "log₁₀ bandwidth B (Hz)"}),
+  lRL: Inputs.range([1, 9], {value: 4, step: 0.05, label: "log₁₀ load R_L (Ω)"}),
+  T: Inputs.range([77, 400], {value: 300, step: 1, label: "temperature of R_L (K)"})
+})
+```
+
+```{ojs}
+//| echo: false
+rxOut = {
+  const B = 10 ** rx.lB, RL = 10 ** rx.lRL, Id = 10 ** rx.lId, Pnow = 10 ** rx.lP;
+  const parts = (P) => { const Iph = rx.R * P; return {Iph, q: 2 * qe * Iph * B, d: 2 * qe * Id * B, th: 4 * kB * rx.T * B / RL}; };
+  const pts = [];
+  for (let i = 0; i <= 200; i++) {
+    const P = 10 ** (-13 + 10 * i / 200), p = parts(P), tot = p.q + p.d + p.th;
+    pts.push({P, v: 10 * Math.log10(p.Iph ** 2 / tot), c: "total SNR"},
+             {P, v: 10 * Math.log10(p.Iph ** 2 / p.th), c: "thermal only"},
+             {P, v: 10 * Math.log10(p.Iph ** 2 / p.q), c: "quantum only"});
+  }
+  const p = parts(Pnow), tot = p.q + p.d + p.th;
+  const P1 = (() => { let lo = -16, hi = 0; for (let k = 0; k < 80; k++) { const m = (lo + hi) / 2, q = parts(10 ** m); if (q.Iph ** 2 > q.q + q.d + q.th) hi = m; else lo = m; } return 10 ** hi; })();
+  return {pts, p, tot, snr: p.Iph ** 2 / tot, P1, B, RL};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 300, x: {label: "optical power (W)", type: "log"}, y: {label: "SNR (dB)", domain: [-30, 80], grid: true},
+  color: {legend: true, domain: ["total SNR", "thermal only", "quantum only"], range: ["#0b0b0b", "#e34948", "#2a78d6"]},
+  marks: [Plot.line(rxOut.pts, {x: "P", y: "v", stroke: "c", strokeWidth: d => d.c === "total SNR" ? 2.5 : 1.2, clip: true}),
+          Plot.ruleX([10 ** rx.lP], {stroke: "#52514e", strokeDasharray: "4,3"}), Plot.ruleY([0], {stroke: "#52514e"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">I<sub>ph</sub> = ${(rxOut.p.Iph * 1e9).toPrecision(3)} nA · noise currents: quantum ${(Math.sqrt(rxOut.p.q) * 1e12).toPrecision(3)} pA,
+dark ${(Math.sqrt(rxOut.p.d) * 1e12).toPrecision(3)} pA, thermal ${(Math.sqrt(rxOut.p.th) * 1e12).toPrecision(3)} pA rms<br>
+<b>SNR = ${rxOut.snr.toPrecision(3)} = ${(10 * Math.log10(rxOut.snr)).toFixed(1)} dB</b> · thermal noise is ${(100 * rxOut.p.th / rxOut.tot).toFixed(0)} % of the noise power ·
+power for SNR = 1: ${rxOut.P1.toExponential(2)} W → NEP = ${(rxOut.P1 / Math.sqrt(rxOut.B)).toExponential(2)} W/√Hz</div>`
+```
+
+The default is the receiver of slides 104–105 (InGaAs pin, $I_d=2$ nA, 1 MHz, 10 kΩ, $I_{ph}=5$ nA). The thermal noise of the
+10 kΩ load is 27 times larger than the shot noise: the receiver is **thermal-noise limited**, the SNR grows as $P^2$ (20 dB per
+decade). At high power the quantum noise takes over and the SNR only grows as $P$ (10 dB per decade). Raise $R_L$ to 10 MΩ or cool it:
+the thermal line moves down. That is why a high transimpedance is the first rule of sensitive receivers, and why it conflicts with
+bandwidth (@sec-circuits).
+
+## Worked examples, recomputed
+
+> **Slides 101–102.** Ideal detector at 1300 nm, $B=1$ GHz: minimum power and photocurrent for SNR = 1. **Slide 103.** Si pin with
+> NEP = 10⁻¹³ W Hz⁻¹ᐟ²: power for SNR = 1 in 1 GHz. **Slides 104–105.** InGaAs pin receiver, 10 kΩ, $I_d=2$ nA, $B=1$ MHz,
+> $I_{ph}=5$ nA.
+
+```{python}
+#| label: tbl-noise
+#| tbl-cap: "Worked examples of slides 101–105."
+P1 = dl.p_min_ideal(1.3e-6, 1e9)
+ish, ith = dl.shot_noise(7e-9, 1e6), dl.thermal_noise(1e4, 1e6)
+S = dl.snr(5e-9, 2e-9, 1e6, 1e4)
+pd.DataFrame([("s102: P₁ = 2hcB/λ", f"{P1*1e9:.3f} nW", "0.31 nW"), ("s102: I_ph = 2eB", f"{2*dl.qe*1e9*1e9:.3f} nA", "0.32 nA"),
+              ("s102: photons per second at P₁ / B", f"{P1/(dl.h*dl.c0/1.3e-6)/1e9:.2f}", "(2 photons per 1/B)"),
+              ("s103: P₁ = NEP √B", f"{1e-13*np.sqrt(1e9)*1e9:.2f} nW", "3.16 nW"),
+              ("s105: shot noise of I_d + I_ph", f"{ish*1e9:.3f} nA", "0.047 nA"),
+              ("s105: thermal noise of 10 kΩ, √(4kTB/R_L)", f"{ith*1e9:.2f} nA", "1.29 nA"),
+              ("s105: SNR", f"{S:.1f} = {10*np.log10(S):.1f} dB", "15.0 = 11.8 dB")], columns=["quantity", "computed", "slide"])
+```
+
+The slide-103 Si pin needs ten times more power than the ideal detector of slide 102 in the same bandwidth; with a thermal-noise
+limited 50 Ω front end, a real 1 GHz receiver needs about a microwatt (@sec-receivers).
+
+## NEP and detectivity of commercial detectors (slides 97–98)
+
+```{python}
+#| label: tbl-97
+#| tbl-cap: "Slide 97 checked against the shot-noise formula NEP = √(2eI_d)/R, and the active area implied by D* = √A/NEP. Responsivities estimated at the peak wavelength."
+data = [("GaP Schottky", 0.44, 10e-12, 0.12, 5.4e-15, 1e13), ("Si pin", 0.96, 0.4e-9, 0.6, 1.6e-14, 1e12),
+        ("Ge pin", 1.5, 3e-6, 0.85, 1e-12, 1e11), ("InGaAs pin", 1.55, 5e-9, 0.95, 4e-14, 5e12)]
+pd.DataFrame([(n, l, f"{Id:.0e}", f"{dl.nep(R, Id):.1e}", f"{N:.1e}", f"{(D*N)**2*100:.3f} mm²") for n, l, Id, R, N, D in data],
+             columns=["detector", "λ_peak (µm)", "I_d (A)", "NEP shot (W/√Hz)", "NEP slide", "area from D*"])
+```
+
+```{python}
+#| label: fig-nep-id
+#| fig-cap: "NEP versus dark current (cf. slide 98): the shot-noise prediction √(2eI_d)/R is a line of slope 1/2 on a log–log plot. The datasheet points of slide 97 fall on it, except GaP, whose NEP is 3 times better than its maximum dark current implies (typical I_d is lower than the quoted maximum)."
+Id = np.logspace(-12, -5, 100)
+fig, ax = plt.subplots(figsize=(7, 3.8))
+for R, c in ((0.95, dl.PALETTE[0]), (0.5, dl.PALETTE[1]), (0.12, dl.PALETTE[2])):
+    ax.loglog(Id*1e9, dl.nep(R, Id), color=c, label=f"√(2eI_d)/R, R = {R} A/W")
+for n, l, i, R, N, D in data: ax.loglog(i*1e9, N, "o", color=dl.INK); ax.annotate(n, (i*1e9, N), fontsize=8, xytext=(4, -10), textcoords="offset points")
+ax.set(xlabel="dark current (nA)", ylabel="NEP (W Hz⁻¹ᐟ²)"); ax.legend(fontsize=8); plt.show()
+```
+
+The D* and NEP columns imply detector areas from 0.03 mm² (Si) to 4 mm² (InGaAs). D* is a fair figure of merit only when the noise
+really scales as $\sqrt A$ (dark current proportional to area); it says nothing about speed.
+
+::: {.callout-warning collapse="true"}
+## Two subtleties hidden in slides 95 and 102
+- **NEP of an ideal detector is not a constant.** For an ideal detector $P_1=2hcB/\lambda$ grows *linearly* with $B$, so
+  $\text{NEP}=P_1/\sqrt B$ grows as $\sqrt B$. The statement "NEP = $2hc/\lambda$" of slide 102 is only true numerically at
+  $B=1$ Hz. The NEP is bandwidth-independent only when the noise does not depend on the signal (dark current, thermal noise): then
+  $P_1\propto\sqrt B$.
+- **The NEP formula contains $I_{ph}$.** In $\text{NEP}=[2e(I_d+I_{ph})]^{1/2}/\mathcal R$ the photocurrent is that of the power
+  $P_1$ being sought; the usual datasheet value assumes $I_{ph}\ll I_d$. It also ignores the amplifier and load, which dominate most
+  real receivers.
+:::
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Where does $2eIB$ come from?** A train of random δ-pulses of charge $e$ at rate $r$ has a flat two-sided power spectral density
+  $e^2r=eI$ (Campbell's theorem); the one-sided density is $2eI$. Verify it numerically: generate Poisson arrivals, compute the
+  periodogram with `numpy.fft`, and compare with $2eI$.
+- **The noise of a photon stream depends on the source.** Laser light far above threshold is Poissonian (coherent state); thermal
+  (chaotic) light within one mode has excess noise $\sigma_N^2=\bar N+\bar N^2$; "squeezed" light can be quieter than Poisson. Shot
+  noise is therefore a property of the light *and* of the detection.
+- **Background-limited infrared photodetectors (BLIP).** In the 3–12 µm range the detector sees the 300 K world (Planck, Ch. 4): the
+  shot noise of the background photocurrent sets $D^*_\text{BLIP}=\frac{\lambda}{hc}\sqrt{\frac{\eta}{2\Phi_B}}$. Compute $\Phi_B$ for a
+  detector with a 60° field of view and a 5 µm cut-off, and the resulting $D^*$. Why do thermal cameras use cold shields?
+- **1/f noise** dominates at low frequencies in photoconductors and in dark currents; chopping and lock-in detection
+  (@sec-photoconductors) shift the measurement above the 1/f corner.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, sec. 5.12; Saleh & Teich, sec. 18.5; Rogalski, *Infrared Detectors*, ch. 4 (figures of merit, BLIP).
+- Hamamatsu, *Opto-semiconductor handbook*, ch. 2: practical NEP, D* and shunt resistance of Si photodiodes.
+:::
+
+## Try it yourself
+
+1. In the receiver panel, at what power do the shot noise and the thermal noise of the 10 kΩ load become equal? Express it as a
+   photocurrent and show that it equals $2k_BT/(eR_L)$.
+2. A Si pin with NEP = 10⁻¹³ W Hz⁻¹ᐟ² is used with a 1 MHz bandwidth. What power gives SNR = 100 (20 dB)? Careful: does the NEP
+   still describe the noise at that power?
+3. Show that cooling the load from 300 K to 77 K improves the thermal-noise-limited sensitivity by only 2.9 dB in optical power.
+4. Two detectors have the same NEP but areas of 1 mm² and 1 cm². Which one has the higher D*? Which one would you choose for a
+   fiber receiver, and why?

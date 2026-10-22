@@ -1,0 +1,190 @@
+# Solar cells {#sec-solar}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/solar-cells.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import detlib as dl
+dl.use_style()
+```
+
+*Slides 121–124 (pn junction solar cell, I–V characteristics under illumination, short-circuit current and open-circuit voltage),
+125–126 (load line and fill factor), 127–129 (equivalent circuit, series and shunt resistance), 130–132 (efficiencies, textured
+surfaces, tandem cells) and 133–137 (worked examples).*
+
+## Key relations
+
+A solar cell is a large-area pn junction operated in the fourth quadrant of the I–V plane (slide 122): it generates a current while
+the voltage across it is positive, so it **delivers** power $P=-IV$ to a load. With the convention of slide 123,
+
+$$
+I=-I_{ph}+I_o\left[\exp\!\left(\frac{eV}{\eta k_BT}\right)-1\right],\qquad I_{ph}=K\,I_\text{light},
+$$
+
+where $K$ is a device constant and $I_\text{light}$ the light intensity (slide 124). Two limits characterise the cell:
+
+$$
+I_{sc}=-I_{ph},\qquad V_{oc}=\frac{\eta k_BT}{e}\ln\!\left(\frac{I_{ph}}{I_o}+1\right).
+$$
+
+With a load $R$ the operating point is the intersection of the cell curve with the load line $I=-V/R$ (slide 125). The power is the
+area of the rectangle $|IV|$; it is maximum at the **maximum power point** $(V_m,I_m)$, and the **fill factor** measures how
+"square" the curve is (slide 126):
+
+$$
+\text{FF}=\frac{I_mV_m}{I_{sc}V_{oc}},\qquad \text{efficiency}=\frac{I_mV_m}{P_\text{in}}=\frac{\text{FF}\,I_{sc}V_{oc}}{I_\text{light}A}.
+$$
+
+Real cells have a **series resistance** $R_s$ (finger electrodes, thin emitter, contacts) and a **shunt resistance** $R_p$ (leakage
+at edges and defects) (slides 127–128):
+
+$$
+I=-I_{ph}+I_o\left[\exp\!\left(\frac{e(V-IR_s)}{\eta k_BT}\right)-1\right]+\frac{V-IR_s}{R_p}.
+$$
+
+$R_s$ tilts the curve near $V_{oc}$ and reduces the FF and eventually $I_{sc}$ (slide 129); a small $R_p$ tilts it near $I_{sc}$.
+
+## Live panel: the solar cell and its load (slides 125–129)
+
+```{ojs}
+//| echo: false
+import {solarI, solarSummary, bisect, kT} from "./det_sim.js"
+viewof sc = Inputs.form({
+  G: Inputs.range([50, 1500], {value: 900, step: 10, label: "light intensity (W/m²)"}),
+  A: Inputs.range([0.25, 100], {value: 1, step: 0.25, label: "cell area (cm²)"}),
+  Jsc: Inputs.range([10, 45], {value: 39.4, step: 0.1, label: "|J_sc| at 1000 W/m² (mA/cm²)"}),
+  lJo: Inputs.range([-14, -4], {value: -6.66, step: 0.01, label: "log₁₀ J_o (A/cm²)"}),
+  n: Inputs.range([1, 2.5], {value: 2.0, step: 0.05, label: "ideality factor η"}),
+  Rs: Inputs.range([0, 5], {value: 0, step: 0.01, label: "series resistance R_s × A (Ω cm²)"}),
+  lRp: Inputs.range([1, 6], {value: 6, step: 0.05, label: "log₁₀ shunt resistance R_p × A (Ω cm²)"}),
+  RL: Inputs.range([1, 200], {value: 16, step: 0.5, label: "load resistance R (Ω)"}),
+  T: Inputs.range([250, 360], {value: 300, step: 1, label: "temperature (K)"})
+})
+```
+
+```{ojs}
+//| echo: false
+scOut = {
+  const Iph = sc.Jsc * 1e-3 * sc.A * sc.G / 1000, Io = 10 ** sc.lJo * sc.A, Rs = sc.Rs / sc.A, Rp = 10 ** sc.lRp / sc.A;
+  const s = solarSummary(Iph, Io, sc.n, Rs, Rp, sc.T), pts = [];
+  for (let i = 0; i <= 300; i++) { const V = -0.05 + (s.Voc + 0.1) * i / 300;
+    pts.push({V, I: 1e3 * solarI(V, Iph, Io, sc.n, Rs, Rp, sc.T), c: "illuminated"}, {V, I: 1e3 * solarI(V, 0, Io, sc.n, Rs, Rp, sc.T), c: "dark"}); }
+  const Vop = bisect(V => solarI(V, Iph, Io, sc.n, Rs, Rp, sc.T) + V / sc.RL, 0, s.Voc), Iop = -Vop / sc.RL;
+  const Pin = sc.G * sc.A * 1e-4;
+  return {s, pts, Vop, Iop, Pin, Iph};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 330, x: {label: "V (V)"}, y: {label: "I (mA)", grid: true, domain: [-1.15 * scOut.Iph * 1e3, 0.3 * scOut.Iph * 1e3]},
+  color: {legend: true, domain: ["illuminated", "dark", "load line"], range: ["#e34948", "#52514e", "#1baf7a"]},
+  marks: [Plot.ruleX([0]), Plot.ruleY([0]),
+          Plot.rect([{}], {x1: 0, x2: scOut.s.Vm, y1: -scOut.s.Im * 1e3, y2: 0, fill: "#eda100", fillOpacity: 0.15}),
+          Plot.line(scOut.pts, {x: "V", y: "I", stroke: "c", strokeWidth: 2, clip: true}),
+          Plot.line([{V: 0, I: 0}, {V: scOut.s.Voc * 1.1, I: -1e3 * scOut.s.Voc * 1.1 / sc.RL}], {x: "V", y: "I", stroke: () => "load line", strokeDasharray: "6,3", clip: true}),
+          Plot.dot([{V: scOut.Vop, I: 1e3 * scOut.Iop}], {x: "V", y: "I", r: 6, fill: "#1baf7a"}),
+          Plot.dot([{V: scOut.s.Vm, I: -1e3 * scOut.s.Im}], {x: "V", y: "I", r: 5, fill: "#eda100"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">I<sub>sc</sub> = ${(scOut.s.Isc * 1e3).toFixed(1)} mA · V<sub>oc</sub> = ${scOut.s.Voc.toFixed(3)} V ·
+maximum power ${(scOut.s.Pm * 1e3).toFixed(2)} mW at V<sub>m</sub> = ${scOut.s.Vm.toFixed(3)} V (<span style="color:#eda100">■</span>) ·
+<b>FF = ${(100 * scOut.s.FF).toFixed(1)} %</b> · best load V<sub>m</sub>/I<sub>m</sub> = ${(scOut.s.Vm / scOut.s.Im).toFixed(1)} Ω<br>
+with R = ${sc.RL} Ω: V = ${scOut.Vop.toFixed(3)} V, I = ${(-scOut.Iop * 1e3).toFixed(1)} mA, P = <b>${(-scOut.Vop * scOut.Iop * 1e3).toFixed(2)} mW</b> ·
+input ${(scOut.Pin * 1e3).toFixed(1)} mW → efficiency <b>${(100 * -scOut.Vop * scOut.Iop / scOut.Pin).toFixed(1)} %</b> (max ${(100 * scOut.s.Pm / scOut.Pin).toFixed(1)} %)</div>`
+```
+
+The default reproduces the cell of slides 133–135: 1 cm², 900 W/m², $I_{sc}=35.5$ mA, $V_{oc}=0.62$ V, 16 Ω load. An ideality factor
+$\eta\approx2$ is needed to reproduce the operating point of the slide (0.505 V, 31.5 mA); with $\eta=1$ the curve would be much squarer
+(FF 83 %). Things to try: add 2 Ω cm² of series resistance (poor fingers) and watch the FF collapse; drop the shunt resistance to
+100 Ω cm²; double the intensity and check that $V_{oc}$ increases by only $\eta k_BT\ln2$ (slides 136–137); heat the cell to 60 °C
+($J_o$ would also rise strongly in reality: increase it by a decade and see the efficiency drop).
+
+## Worked examples, recomputed
+
+> **Slides 134–135.** 1 cm² cell, 900 W/m², 16 Ω load: operating point, power, efficiency, FF (with $I_{sc}=35.5$ mA, $V_{oc}=0.62$ V).
+> **Slides 136–137.** $I_{sc}=16$ mA and $V_{oc}=0.50$ V at 500 W/m²: values at 1000 W/m² ($\eta=1$). **Slide 129.** Si cell with
+> $\eta=1.5$, $I_o=3\times10^{-6}$ mA, $I_{ph}=10$ mA: effect of $R_s=0$, 20, 50 Ω.
+
+```{python}
+#| label: tbl-solar
+#| tbl-cap: "Worked examples of slides 129 and 134–137. For slide 134, the I–V curve is modelled with η = 2 so that the 16 Ω load line crosses it at the point read on the slide."
+rows = [("s134: power into 16 Ω (slide values 31.5 mA, 0.505 V)", f"{31.5e-3*0.505*1e3:.1f} mW", "15.9 mW"),
+        ("s135: efficiency", f"{31.5e-3*0.505/0.09:.1%}", "17.7 %"),
+        ("s135: FF ≈ I V/(I_sc V_oc)", f"{31.5*0.505/(35.5*0.62):.2f}", "0.72")]
+n = 2.0; Io = 35.5e-3/np.expm1(0.62/(n*dl.kT()))
+V, I = dl.solar_operating_point(16, 35.5e-3, Io, n)
+mp = dl.solar_mpp(35.5e-3, Io, n)
+rows += [("model (η = 2): operating point with 16 Ω", f"{V:.3f} V, {-I*1e3:.1f} mA", "0.505 V, 31.5 mA"),
+         ("model (η = 2): true maximum power and FF", f"{mp['Pm']*1e3:.2f} mW, FF = {mp['FF']:.3f}", "≈ 15.9 mW, 0.72"),
+         ("model (η = 2): optimum load", f"{mp['R_opt']:.1f} Ω", "≈ 16 Ω"),
+         ("s137: I_sc at 1000 W/m²", "32 mA", "32 mA"),
+         ("s137: V_oc at 1000 W/m², η = 1", f"{0.50 + dl.kT()*np.log(2):.3f} V", "0.52 V")]
+for Rs in (0, 20, 50):
+    m = dl.solar_mpp(10e-3, 3e-9, 1.5, Rs)
+    rows.append((f"s129: R_s = {Rs} Ω → V_oc, I_sc, FF", f"{m['Voc']:.3f} V, {m['Isc']*1e3:.2f} mA, {m['FF']:.2f}", "curves of slide 129"))
+pd.DataFrame(rows, columns=["quantity", "computed", "slide"])
+```
+
+```{python}
+#| label: fig-rs
+#| fig-cap: "Effect of the series resistance on the I–V curve of the Si cell of slide 129 (η = 1.5, I_o = 3×10⁻⁶ mA, I_ph = 10 mA, R_p → ∞). V_oc does not change (no current flows through R_s at open circuit); the FF falls from 77 % to 50 % (20 Ω) and 28 % (50 Ω), and at 50 Ω even I_sc drops."
+V = np.linspace(0, 0.62, 400)
+fig, ax = plt.subplots(figsize=(7, 3.8))
+for Rs, c in zip((0, 20, 50), dl.PALETTE):
+    m = dl.solar_mpp(10e-3, 3e-9, 1.5, Rs)
+    ax.plot(V, 1e3*dl.solar_iv(V, 10e-3, 3e-9, 1.5, Rs), color=c, label=f"R_s = {Rs} Ω, FF = {m['FF']:.0%}")
+ax.set(xlabel="V (V)", ylabel="I (mA)", ylim=(-10.5, 0.5)); ax.axhline(0, color=dl.INK2, lw=0.8); ax.legend(fontsize=8); plt.show()
+```
+
+## Record cells (slides 130–132)
+
+```{python}
+#| label: tbl-130
+#| tbl-cap: "Slide 130: efficiency recomputed as FF × V_oc × J_sc / (100 mW cm⁻²) (AM1.5, 1000 W/m²), and V_oc compared with E_g/e. The tandem cells add voltages and share the current."
+cells = [("Si, single crystal (PERL)", 0.707, 42.7, 82.8, 25.0, 1.11), ("Si, polycrystalline", 0.664, 38.0, 80.9, 20.4, 1.11),
+         ("Amorphous Si:H (pin)", 0.886, 16.75, 67.0, 10.1, 1.7), ("GaAs, single crystal", 1.030, 29.8, 86.0, 26.4, 1.42),
+         ("GaAs, thin film", 1.107, 29.6, 84.1, 27.6, 1.42), ("InP, single crystal", 0.878, 29.5, 85.4, 22.1, 1.35),
+         ("GaInP/GaAs tandem", 2.488, 14.22, 85.6, 30.3, 1.95 + 1.42), ("GaInP/GaAs/Ge tandem", 2.622, 14.37, 85.0, 32.0, 1.95 + 1.42 + 0.66)]
+pd.DataFrame([(n, f"{V*J*FF/100:.1f}", eff, f"{V/Eg:.2f}") for n, V, J, FF, eff, Eg in cells],
+             columns=["cell", "FF·V_oc·J_sc/P_in (%)", "efficiency slide (%)", "eV_oc/ΣE_g"])
+```
+
+Every cell reaches only 50–80 % of its band gap in voltage. Why not 100 %? Because a cell at 300 K in equilibrium with its surroundings
+must emit as much as it absorbs (detailed balance): the Shockley–Queisser analysis of @sec-sq turns this into a fundamental efficiency
+limit of about 31–33 % for a single junction.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Temperature coefficient.** $V_{oc}$ falls by about 2 mV/K in Si because $I_o\propto n_i^2\propto T^3e^{-E_g/k_BT}$. Derive
+  $dV_{oc}/dT\approx-(E_g/e-V_{oc}+3k_BT/e)/T$ and compute the loss of a module at 65 °C.
+- **Light trapping.** The inverted pyramids of slide 131 make light travel obliquely and reflect totally at the back: the optical path
+  is enhanced up to $4n^2\approx50$ times (Yablonovitch limit). Combine with α(λ) of Si (@sec-absorption) to compute the absorbed fraction
+  at 1000 nm for a 150 µm wafer with and without trapping.
+- **Current matching in tandems.** In a series-connected tandem (slide 132) the same current flows through both cells; the top cell must
+  be thin enough or have the right gap to share photons equally. Use the SQ model of @sec-sq to find the optimum pair of gaps.
+- **Partial shading.** In a module of 60 cells in series, one shaded cell is reverse biased by the others. Why do modules have bypass
+  diodes, and what is a "hot spot"?
+- **Maximum-power-point tracking.** The optimum load changes with intensity and temperature. Write a perturb-and-observe algorithm that
+  finds the MPP on the curves of the panel.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, sec. 5.14; M. A. Green, *Solar Cells: Operating Principles, Technology and System Applications* (UNSW); J. Nelson, *The Physics
+  of Solar Cells* (Imperial College Press, 2003).
+- M. A. Green *et al.*, "Solar cell efficiency tables", *Progress in Photovoltaics*, updated twice a year (source of slide 130): in 2025 the
+  records were about 27 % (Si), 29 % (GaAs), 34 % (perovskite/Si tandem) and 47 % (multijunction under concentration).
+- NREL, "Best research-cell efficiency chart", <https://www.nrel.gov/pv/cell-efficiency.html>.
+:::
+
+## Try it yourself
+
+1. In the panel, what load maximises the power of the slide-133 cell? How much more power than the 16 Ω load does it give?
+2. Show that for $\eta=1$ the FF depends only on $v_{oc}=eV_{oc}/k_BT$ and is well approximated by $\text{FF}\approx(v_{oc}-\ln(v_{oc}+0.72))/(v_{oc}+1)$.
+   Check it for $V_{oc}=0.6$ V.
+3. A cell gives $I_{sc}=3.5$ A and $V_{oc}=0.68$ V in full sun. Estimate $I_o$ (for $\eta=1$). What are $I_{sc}$ and $V_{oc}$ at 100 W/m²?
+4. Why does the amorphous-Si cell of slide 130 have a larger $V_{oc}$ but a smaller efficiency than crystalline Si?

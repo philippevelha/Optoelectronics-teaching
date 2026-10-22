@@ -1,0 +1,236 @@
+# Avalanche photodiodes {#sec-apd}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/apd.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import detlib as dl
+dl.use_style()
+```
+
+*Slides 44–48 (structure of the reach-through APD, impact ionisation, multiplication, temperature dependence, guard ring), 49
+(comparison of photodiodes), 50–51 (ionisation coefficients, Chynoweth's law, multiplication for electrons only and for both
+carriers), 52–55 (SAM and SAGM InGaAs/InP APDs, reach-through characteristics), 56–59 (worked examples) and 60 (superlattice
+APD).*
+
+## Key relations
+
+In an APD a primary photocarrier is accelerated by a field of several 10⁵ V/cm until it gains enough kinetic energy (more than
+about $\frac32E_g$) to excite a valence electron across the gap: **impact ionisation** (slide 45). Each ionisation creates a new
+pair, which is itself accelerated: an avalanche. The **multiplication** is (slide 46)
+
+$$
+M=\frac{I_{ph}}{I_{pho}},\qquad \mathcal R_{APD}=M\mathcal R_{M=1},\qquad
+M\approx\frac{1}{1-(V_r/V_{br})^m}\ \text{(empirical, } m\approx3\text{–}6).
+$$
+
+The **ionisation coefficient** α is the number of ionisations per unit distance. It rises steeply with the field (Chynoweth's
+law, slide 50), and electrons and holes have different coefficients, with the ratio $k$:
+
+$$
+\alpha_e=A\exp(-B/E),\qquad k=\frac{\alpha_h}{\alpha_e}.
+$$
+
+For electrons injected into a uniform avalanche region of width $w$ (slide 51):
+
+$$
+M_e=\exp(\alpha_ew)\ \ (\text{electrons only, }k=0),\qquad
+M=\frac{1-k}{\exp[-(1-k)\alpha_ew]-k}\ \ (\text{both carriers}).
+$$
+
+With $k=0$ the gain grows smoothly with the field. With $k>0$ the holes created by the electrons travel backwards and ionise
+too: a **feedback loop**. When $\exp[-(1-k)\alpha_ew]=k$ the denominator vanishes and the current runs away: **avalanche
+breakdown**. A good APD material has $k\ll1$ (Si: $k\approx0.02$–$0.1$) and the avalanche must be started by the carrier with
+the larger coefficient. The same $k$ also sets the noise (@sec-apd-noise).
+
+Practical structures separate the two jobs. The Si **reach-through** APD ($n^+p\pi p^+$, slide 44) absorbs in a wide, low-field
+π region and multiplies in a thin, high-field $pn^+$ region. The InGaAs/InP **SAM** APD (slides 52–54) absorbs in InGaAs
+(1.55 µm) and multiplies in InP, where the field is high but the gap wide enough to avoid tunnelling; a graded InGaAsP layer
+(**SAGM**) removes the valence-band step $\Delta E_v$ that would trap the holes at the heterointerface (slide 53).
+
+## Live panel: gain versus field and breakdown (slides 50–51, 58–59)
+
+```{ojs}
+//| echo: false
+import {chynoweth, apdGainUniform} from "./det_sim.js"
+viewof av = Inputs.form({
+  mat: Inputs.radio(["Si", "InP"], {value: "Si", label: "material"}),
+  inj: Inputs.radio(["electrons", "holes"], {value: "electrons", label: "injected carrier"}),
+  w: Inputs.range([0.1, 3], {value: 0.5, step: 0.05, label: "avalanche width w (µm)"}),
+  E: Inputs.range([2, 8], {value: 4.0, step: 0.01, label: "field E (10⁵ V/cm)"})
+})
+```
+
+```{ojs}
+//| echo: false
+avOut = {
+  const w = av.w * 1e-4, gain = (E) => {
+    const ae = chynoweth(E, av.mat, "e"), ah = chynoweth(E, av.mat, "h");
+    const [a1, a2] = av.inj === "electrons" ? [ae, ah] : [ah, ae];
+    return {ae, ah, M: apdGainUniform(a1, a2 / a1, w), M1: Math.exp(a1 * w)};
+  };
+  const pts = [];
+  for (let i = 0; i <= 600; i++) {
+    const E = 2e5 + 6e5 * i / 600, g = gain(E);
+    if (isFinite(g.M) && g.M < 1e4) pts.push({E: E / 1e5, M: g.M, c: "both carriers ionise"});
+    if (g.M1 < 1e4) pts.push({E: E / 1e5, M: g.M1, c: "injected carrier only"});
+  }
+  let Ebr = NaN; for (let i = 0; i <= 6000; i++) { const E = 2e5 + 6e5 * i / 6000; if (!isFinite(gain(E).M)) { Ebr = E; break; } }
+  return {pts, cur: gain(av.E * 1e5), Ebr};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 300, x: {label: "field E (10⁵ V/cm)"}, y: {label: "multiplication M", type: "log", domain: [1, 1e4], grid: true},
+  color: {legend: true, domain: ["both carriers ionise", "injected carrier only"], range: ["#e34948", "#2a78d6"]},
+  marks: [Plot.line(avOut.pts, {x: "E", y: "M", stroke: "c", strokeWidth: 2}), Plot.ruleX([av.E], {stroke: "#52514e", strokeDasharray: "4,3"}),
+          isFinite(avOut.Ebr) ? Plot.ruleX([avOut.Ebr / 1e5], {stroke: "#e34948", strokeDasharray: "2,2"}) : null]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">E = ${av.E.toFixed(2)}×10⁵ V/cm: α<sub>e</sub> = ${avOut.cur.ae.toExponential(3)} cm⁻¹, α<sub>h</sub> = ${avOut.cur.ah.toExponential(3)} cm⁻¹,
+k = α<sub>h</sub>/α<sub>e</sub> = ${(avOut.cur.ah / avOut.cur.ae).toFixed(3)}<br>
+<b>M = ${isFinite(avOut.cur.M) ? avOut.cur.M.toPrecision(4) : "∞ (breakdown)"}</b> · injected carrier only: ${avOut.cur.M1.toPrecision(4)} ·
+breakdown field ${(avOut.Ebr / 1e5).toFixed(3)}×10⁵ V/cm → V<sub>br</sub> ≈ ${(avOut.Ebr * av.w * 1e-4).toFixed(1)} V across the avalanche region</div>`
+```
+
+Things to try: with Si and electron injection the red curve turns vertical at 4.39×10⁵ V/cm for $w=0.5$ µm: a 2 % change of field
+takes $M$ from 60 to 650 (slide 59). Switch to **hole** injection in Si: the gain stays tiny until just below breakdown. In InP,
+$\alpha_h>\alpha_e$: holes must start the avalanche, which is why the SAM structure puts the InGaAs absorber on the side from which
+holes drift into the InP. Thicken the avalanche region: breakdown occurs at a lower field but a higher voltage.
+
+## Worked examples, recomputed
+
+> **Slide 56.** InGaAs APD, $\eta_e=60$ % at 1.55 µm, $M=12$, 20 nW. **Slide 57.** Si APD, $\eta_e=70$ % at 830 nm, $M=100$,
+> 10 nW. **Slides 58–59 (Table 5.3).** Si, $w=0.5$ µm, fields 4.00, 4.30 and 4.38×10⁵ V/cm.
+
+```{python}
+#| label: tbl-apd-ex
+#| tbl-cap: "Worked examples of slides 56 and 57."
+R56 = dl.responsivity(0.6, 1.55e-6); R57 = dl.responsivity(0.7, 830e-9)
+pd.DataFrame([("s56: R at M = 1", f"{R56:.3f} A/W", "0.75 A/W"), ("s56: primary current", f"{R56*20e-9*1e9:.1f} nA", "15 nA"),
+              ("s56: multiplied current", f"{12*R56*20e-9*1e9:.0f} nA", "180 nA"), ("s56: R at M = 12", f"{12*R56:.2f} A/W", "9.0 A/W"),
+              ("s57: R at M = 1", f"{R57:.3f} A/W", "0.47 A/W"), ("s57: primary current", f"{R57*10e-9*1e9:.2f} nA", "4.7 nA"),
+              ("s57: multiplied current", f"{100*R57*10e-9*1e9:.0f} nA", "470 nA")], columns=["quantity", "computed", "slide"])
+```
+
+```{python}
+#| label: tbl-53
+#| tbl-cap: "Table 5.3 (slide 59) recomputed with unrounded coefficients. Close to breakdown, M is so sensitive that rounding α_e and k to three digits (as on the slide) shifts M at 4.30×10⁵ V/cm from 58.7 to 57.2."
+w = 0.5e-4
+slide = {4.00e5: (11.8, 7.65), 4.30e5: (57.2, 12.1), 4.38e5: (647, 13.7)}
+rows = []
+for E, (Ms, Mes) in slide.items():
+    ae, ah = dl.chynoweth(E, "Si", "e"), dl.chynoweth(E, "Si", "h"); k = ah/ae
+    rows.append((f"{E:.2e}", f"{ae:.3e}", f"{ah:.3e}", f"{k:.3f}", f"{dl.apd_gain_uniform(ae, k, w):.1f}", Ms, f"{np.exp(ae*w):.2f}", Mes))
+pd.DataFrame(rows, columns=["E (V/cm)", "α_e (cm⁻¹)", "α_h (cm⁻¹)", "k", "M", "M slide", "M_e", "M_e slide"])
+```
+
+```{python}
+#| label: fig-apd-gain
+#| fig-cap: "Multiplication versus field for a 0.5 µm Si avalanche region (slides 58–59). Electron-only ionisation (blue) grows exponentially; with hole feedback (red) M diverges at breakdown. Right: the same for InP with hole injection (the favourable carrier in InP), whose coefficients are much closer (k_eff ≈ 0.7): M stays small and then runs away abruptly, which makes a given gain harder to hold. Electron injection in InP (dashed) gives even less gain below breakdown."
+E = np.linspace(2.5e5, 5.5e5, 2000); w = 0.5e-4
+fig, ax = plt.subplots(1, 2, figsize=(11, 3.8))
+ae, ah = dl.chynoweth(E, "Si", "e"), dl.chynoweth(E, "Si", "h")
+ax[0].semilogy(E/1e5, dl.apd_gain_uniform(ae, ah/ae, w), color=dl.PALETTE[7], label="M (both carriers)")
+ax[0].semilogy(E/1e5, np.exp(ae*w), color=dl.PALETTE[0], label="M_e = exp(α_e w)")
+for x in slide: ax[0].axvline(x/1e5, color=dl.INK2, ls=":", lw=1)
+ax[0].set(xlabel="E (10⁵ V/cm)", ylabel="M", ylim=(1, 1e4), title="Si, electron injection"); ax[0].legend(fontsize=8)
+ae, ah = dl.chynoweth(E, "InP", "e"), dl.chynoweth(E, "InP", "h")
+ax[1].semilogy(E/1e5, dl.apd_gain_uniform(ah, ae/ah, w), color=dl.PALETTE[7], label="M (hole injection)")
+ax[1].semilogy(E/1e5, dl.apd_gain_uniform(ae, ah/ae, w), "--", color=dl.PALETTE[1], label="M (electron injection)")
+ax[1].set(xlabel="E (10⁵ V/cm)", ylim=(1, 1e4), title="InP"); ax[1].legend(fontsize=8)
+plt.tight_layout(); plt.show()
+```
+
+## Live panel: why APDs need temperature control (slides 47, 55, 81)
+
+Phonon scattering increases with temperature, so a carrier needs a higher field to reach the ionisation energy: the breakdown
+voltage rises by roughly 0.1–0.2 %/K in Si (slide 47 shows three temperatures). Using the empirical Miller law:
+
+```{ojs}
+//| echo: false
+viewof ml = Inputs.form({
+  Vbr: Inputs.range([20, 400], {value: 160, step: 1, label: "breakdown voltage at 20 °C, V_br (V)"}),
+  m: Inputs.range([1, 8], {value: 3, step: 0.1, label: "Miller exponent m"}),
+  tc: Inputs.range([0, 0.4], {value: 0.15, step: 0.01, label: "temperature coefficient of V_br (%/K)"}),
+  Vr: Inputs.range([20, 400], {value: 150, step: 0.5, label: "operating bias V_r (V)"})
+})
+```
+
+```{ojs}
+//| echo: false
+mlOut = {
+  const temps = [-20, 20, 60], pts = [], cur = [];
+  for (const T of temps) {
+    const Vb = ml.Vbr * (1 + ml.tc / 100 * (T - 20));
+    for (let i = 0; i <= 400; i++) { const V = 0.6 * ml.Vbr + 0.45 * ml.Vbr * i / 400; if (V < Vb) { const M = 1 / (1 - (V / Vb) ** ml.m); if (M < 500) pts.push({V, M, T: `${T} °C`}); } }
+    cur.push({T, M: ml.Vr < Vb ? 1 / (1 - (ml.Vr / Vb) ** ml.m) : Infinity});
+  }
+  return {pts, cur};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 280, x: {label: "reverse bias V_r (V)"}, y: {label: "M", type: "log", grid: true},
+  color: {legend: true, domain: ["-20 °C", "20 °C", "60 °C"], range: ["#1baf7a", "#e34948", "#2a78d6"]},
+  marks: [Plot.line(mlOut.pts, {x: "V", y: "M", stroke: "T", strokeWidth: 2}), Plot.ruleX([ml.Vr], {stroke: "#52514e", strokeDasharray: "4,3"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">at V<sub>r</sub> = ${ml.Vr} V: ${mlOut.cur.map(c => html`M(${c.T} °C) = <b>${isFinite(c.M) ? c.M.toFixed(1) : "breakdown"}</b> · `)}
+gain change per kelvin around 20 °C ≈ ${isFinite(mlOut.cur[1].M) ? (100 * (Math.log(1 / (1 - (ml.Vr / (ml.Vbr * (1 + ml.tc / 100))) ** ml.m)) - Math.log(mlOut.cur[1].M))).toFixed(1) : "–"} %/K</div>`
+```
+
+At high gain a 1 K drift changes $M$ by several percent. Commercial APD receivers therefore either stabilise the temperature
+with a thermoelectric cooler and sensor (the Voxtel module of slide 81) or adjust the bias with temperature.
+
+## Photodiode comparison (slide 49)
+
+```{python}
+#| label: tbl-49
+#| tbl-cap: "Slide 49, with the QE implied by the quoted peak responsivity at the peak wavelength (R × 1.24/λ[µm]). APD responsivities are at M = 1."
+data = [("Si pin", 900, 0.55, "<1"), ("Si APD", 850, 0.5, "10–10³"), ("Ge pin", 1550, 0.55, "<1"), ("Ge APD", 1550, 0.6, "10–20"),
+        ("InGaAs pin", 1550, 0.85, "<1"), ("InGaAs APD", 1550, 0.83, "10–20"), ("GaAs pin", 850, 0.5, "<1"), ("GaP pin", 450, 0.1, "<1")]
+pd.DataFrame([(n, l, R, f"{dl.quantum_efficiency(R, l*1e-9):.0%}", g) for n, l, R, g in data],
+             columns=["photodiode", "λ_peak (nm)", "R (A/W, mid-range)", "implied QE", "gain"])
+```
+
+The InGaAs devices reach about 70 % QE at 1550 nm (up to 80 % at the top of their range), Ge only 40–50 % because 1550 nm is at the
+edge of its direct absorption, and GaP at 450 nm 28 %, because the blue light is absorbed close to the surface.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Non-uniform fields.** Real avalanche regions have a triangular or trapezoidal field. Use `dl.apd_gain_profile(x, αe(x), αh(x))`,
+  which integrates McIntyre's general expression, for a p⁺n junction with a linear field and compare with a uniform field of the
+  same peak value. Which carries more gain, the peak or the average?
+- **Dead space.** A carrier must travel a minimum distance $d=E_i/eE$ before it can ionise again. In thin (≲ 100 nm) multiplication
+  layers this makes the ionisation positions less random, which lowers the excess noise below McIntyre's prediction: the basis of
+  thin InAlAs and AlInAsSb APDs.
+- **Geiger mode and SPADs.** Biased *above* breakdown, an APD stays quiescent until a single carrier triggers a self-sustaining avalanche,
+  which a quenching resistor stops: a **single-photon avalanche diode**. Count the photons, not the current. Photon-detection efficiency,
+  dark-count rate, dead time and after-pulsing replace QE, dark current and bandwidth. SPAD arrays are the receivers of automotive
+  lidar and of quantum-key-distribution links.
+- **The superlattice APD** (slide 60): at each conduction-band step $\Delta E_c$ the electron gains energy abruptly, while holes see a
+  smaller $\Delta E_v$. This "staircase" enhances $\alpha_e$ and lowers $k$ artificially. Why is the valence-band step a problem?
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, sec. 5.6–5.7; Saleh & Teich, sec. 18.4.
+- R. J. McIntyre, "Multiplication noise in uniform avalanche diodes", *IEEE Trans. Electron Devices* ED-13, 164 (1966).
+- J. C. Campbell, "Recent advances in avalanche photodiodes", *J. Lightwave Technol.* 34, 278 (2016).
+- L. W. Cook, G. E. Bulman, G. E. Stillman, "Electron and hole impact ionization coefficients in InP", *Appl. Phys. Lett.* 40, 589
+  (1982): the InP coefficients used here.
+:::
+
+## Try it yourself
+
+1. Show that the breakdown condition $\exp[-(1-k)\alpha_ew]=k$ is the same for electron and hole injection.
+2. Using the first panel, find the field giving $M=10$ in Si for $w=0.2$, 0.5 and 1 µm, and the corresponding voltages across
+   the avalanche region. Why are thin avalanche regions preferred for low-voltage operation?
+3. A Si APD has $V_{br}=150$ V and $m=3$. At what bias is $M=50$? How stable must the bias supply be to keep $M$ within ±5 %?
+4. The responsivity at $M=12$ in slide 56 is written "$(12)/(0.75)$". Explain why it must be a product and check the 9.0 A/W.

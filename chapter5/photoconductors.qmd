@@ -1,0 +1,201 @@
+# Photoconductive detectors {#sec-photoconductors}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/photoconductors.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import detlib as dl
+dl.use_style()
+```
+
+*Slides 69–71 (photoconductive detectors, ohmic contacts and gain), 72 (photoconductivity and photocurrent density), 73–74
+(photoconductive gain and transit times) and 146–148 (PbS, PbSe and InSb photoconductors, chopper and lock-in detection).*
+
+## Key relations
+
+A photoconductor is just a slab of semiconductor of length $\ell$, width $w$ and thickness $d$ with two **ohmic** contacts (slide 70).
+Light creates excess carriers $\Delta n=\Delta p$ that raise the conductivity. Under a steady photon flux the generation rate per unit
+volume is $g_{ph}=\eta_iI\lambda/(hcd)$ for an intensity $I$ absorbed in the thickness $d$, and the excess density settles at
+$\Delta n=g_{ph}\tau$, with τ the recombination lifetime (slide 72):
+
+$$
+\Delta\sigma=e\Delta n(\mu_e+\mu_h)=\frac{e\eta_iI\lambda\tau(\mu_e+\mu_h)}{hcd},\qquad J_{ph}=\Delta\sigma\frac{V}{\ell}=\Delta\sigma E .
+$$
+
+The **photoconductive gain** compares the rate of electrons flowing in the external circuit with the rate of pair generation
+(slides 73–74):
+
+$$
+G=\frac{\tau(\mu_e+\mu_h)E}{\ell}=\frac{\tau}{t_e}+\frac{\tau}{t_h}=\frac{\tau}{t_e}\left(1+\frac{\mu_h}{\mu_e}\right),\qquad
+t_e=\frac{\ell}{\mu_eE},\ t_h=\frac{\ell}{\mu_hE}.
+$$
+
+$G$ can be much larger than 1. The reason is charge neutrality with ohmic contacts (slide 71): while a slow hole (or a hole trapped at
+a defect) is still in the slab, every electron that leaves at the anode is replaced by a new one injected at the cathode. One absorbed
+photon therefore lets $\tau/t_e$ electrons circulate. The catch is speed: the photocurrent rises and decays with the lifetime τ, so the
+bandwidth is about $1/2\pi\tau$ and
+
+$$
+G\times B\approx\frac{\tau}{t_e}\cdot\frac{1}{2\pi\tau}=\frac{1}{2\pi t_e}=\frac{\mu_eV}{2\pi\ell^2}
+$$
+
+is independent of τ: **gain is bought with bandwidth**. Photoconductors (PbS, PbSe, InSb, HgCdTe, CdS light-dependent resistors)
+are used where a simple, sensitive, slow detector is enough: radiation thermometers, flame monitors, gas analysers, spectrometers in
+the 1–6 µm range (slides 69, 146).
+
+## Live panel: photoconductive gain and response time
+
+```{ojs}
+//| echo: false
+PCMAT = ({"CdS light-dependent resistor": {mue: 0.03, muh: 0.0015, tau: 1e-3, lab: "CdS"},
+          "PbS (2.4 µm IR detector)": {mue: 0.06, muh: 0.07, tau: 2e-4, lab: "PbS"},
+          "InSb (5.5 µm, cooled)": {mue: 50, muh: 0.08, tau: 1e-7, lab: "InSb"},
+          "Si (high-resistivity)": {mue: 0.135, muh: 0.048, tau: 1e-5, lab: "Si"},
+          "GaAs (semi-insulating)": {mue: 0.85, muh: 0.04, tau: 1e-9, lab: "GaAs"}})
+viewof pc = Inputs.form({
+  mat: Inputs.select(Object.keys(PCMAT), {label: "material (µ_e, µ_h, τ typical)"}),
+  ell: Inputs.range([1, 5000], {value: 1000, step: 1, label: "electrode spacing ℓ (µm)"}),
+  V: Inputs.range([0.1, 100], {value: 10, step: 0.1, label: "bias V (V)"}),
+  ltau: Inputs.range([-10, -1], {value: -3, step: 0.05, label: "log₁₀ lifetime τ (s) (moves away from the preset)"}),
+  usePreset: Inputs.toggle({label: "use the material's typical τ", value: true})
+})
+```
+
+```{ojs}
+//| echo: false
+pcOut = {
+  const m = PCMAT[pc.mat], tau = pc.usePreset ? m.tau : 10 ** pc.ltau, ell = pc.ell * 1e-6, E = pc.V / ell;
+  const te = ell / (m.mue * E), th = ell / (m.muh * E), G = tau / te + tau / th, B = 1 / (2 * Math.PI * tau);
+  const pts = d3.range(0, 401).map(i => { const t = 6 * tau * i / 400; return {t: t / tau, I: t < 3 * tau ? 1 - Math.exp(-t / tau) : (1 - Math.exp(-3)) * Math.exp(-(t - 3 * tau) / tau)}; });
+  return {tau, te, th, G, B, pts, E};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 220, x: {label: "time / τ (light on from 0 to 3τ)"}, y: {label: "photocurrent (normalised)", grid: true},
+  marks: [Plot.line(pcOut.pts, {x: "t", y: "I", stroke: "#2a78d6", strokeWidth: 2})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">E = ${pcOut.E.toExponential(2)} V/m · electron transit t<sub>e</sub> = ${pcOut.te.toExponential(2)} s · hole transit t<sub>h</sub> = ${pcOut.th.toExponential(2)} s<br>
+lifetime τ = ${pcOut.tau.toExponential(2)} s → <b>gain G = ${pcOut.G.toPrecision(3)}</b> · bandwidth 1/2πτ = <b>${pcOut.B < 1e3 ? pcOut.B.toPrecision(3) + " Hz" : pcOut.B < 1e6 ? (pcOut.B / 1e3).toPrecision(3) + " kHz" : (pcOut.B / 1e6).toPrecision(3) + " MHz"}</b> ·
+gain × bandwidth = ${(pcOut.G * pcOut.B / 1e6).toPrecision(3)} MHz (independent of τ)</div>`
+```
+
+Things to try: the CdS cell with 1 mm spacing at 10 V has $G\approx300$ but a millisecond response; it is perfect for a street-light
+switch. InSb, with its enormous electron mobility, gives a large gain-bandwidth even with a short lifetime. Change τ with the slider
+and check that $G\times B$ does not move. Shrink ℓ: since $G\propto1/\ell^2$ at fixed voltage, interdigitated electrodes (as for
+the MSM of @sec-schottky) multiply the gain.
+
+## Worked example: a CdS light-dependent resistor
+
+> A CdS photoconductor, $\ell=1$ mm, $w=5$ mm, $d=10$ µm, $\mu_e=0.03$ m² V⁻¹ s⁻¹, $\mu_h\approx0$, τ = 1 ms, biased at 10 V, absorbs
+> 10 W/m² (indoor light) at 550 nm with $\eta_i=1$. Find $\Delta\sigma$, the photocurrent, the gain and the bandwidth.
+
+```{python}
+#| label: tbl-cds
+#| tbl-cap: "Photoconductive CdS cell (slides 72–74 applied)."
+ell, w, d, mue, tau, V, I, wl = 1e-3, 5e-3, 10e-6, 0.03, 1e-3, 10.0, 10.0, 550e-9
+dsig = dl.photoconductivity(I, wl, d, tau, mue, 0.0)
+Iph = dsig*V/ell*w*d
+gen = I*wl/(dl.h*dl.c0)*w*ell                        # photons/s absorbed on the area w × ℓ
+G = dl.photoconductive_gain(tau, ell, V, mue)
+pd.DataFrame([("Δσ", f"{dsig:.3g} S/m"), ("photocurrent I_ph = Δσ(V/ℓ)wd", f"{Iph*1e3:.2f} mA"),
+              ("photons absorbed per second", f"{gen:.3g} s⁻¹"), ("gain from currents, I_ph/(e × rate)", f"{Iph/(dl.qe*gen):.0f}"),
+              ("gain from τ/t_e", f"{G:.0f}"), ("bandwidth 1/2πτ", f"{1/(2*np.pi*tau):.0f} Hz"),
+              ("responsivity I_ph/P_o", f"{Iph/(I*w*ell):.0f} A/W")], columns=["quantity", "value"])
+```
+
+A responsivity above 100 A/W looks spectacular next to the 0.3 A/W of a Si photodiode, but it comes with a 160 Hz bandwidth,
+a strong dependence on the light level (τ itself changes with the trap occupancy), and a large dark current through the slab.
+
+## Live panel: chopper and lock-in amplifier (slides 147–148)
+
+Photoconductive IR detectors are read with a chopped beam and a **lock-in amplifier** (slide 148). The chopper modulates the light
+at $f_c$; the lock-in multiplies the detector signal by a reference square wave synchronised with the chopper and averages the
+product with a time constant $T_c$. Noise at other frequencies averages to zero; only the in-phase component at $f_c$ survives.
+The equivalent noise bandwidth is about $1/(4T_c)$, which can be a fraction of a hertz.
+
+```{ojs}
+//| echo: false
+import {rng} from "./det_sim.js"
+viewof li = Inputs.form({
+  snr: Inputs.range([-40, 10], {value: -20, step: 1, label: "input SNR (signal amplitude / noise rms, dB)"}),
+  fc: Inputs.range([50, 2000], {value: 300, step: 10, label: "chopper frequency f_c (Hz)"}),
+  Tc: Inputs.range([1, 3000], {value: 300, step: 1, label: "lock-in time constant T_c (ms)"}),
+  flick: Inputs.range([0, 20], {value: 5, step: 0.5, label: "1/f (drift) noise amplitude (× signal)"}),
+  seed: Inputs.range([1, 50], {value: 7, step: 1, label: "noise seed"})
+})
+```
+
+```{ojs}
+//| echo: false
+liOut = {
+  const r = rng(li.seed), fs = 20000, Ttot = Math.max(5 * li.Tc / 1000, 0.5), N = Math.min(Math.round(fs * Ttot), 200000);
+  const A = 1, sigma = A / 10 ** (li.snr / 20), raw = [], out = [];
+  let drift = 0, y = 0, yq = 0;
+  const alphaLP = 1 / (li.Tc / 1000 * fs);
+  for (let i = 0; i < N; i++) {
+    const t = i / fs, ref = Math.sin(2 * Math.PI * li.fc * t) >= 0 ? 1 : -1, light = ref > 0 ? A : 0;
+    drift += (r.gauss() * 0.02 - drift * 0.0005);                      // slow random walk (1/f-like)
+    const v = light + sigma * r.gauss() + li.flick * A * drift;
+    y += alphaLP * (v * ref - y);                                      // phase-sensitive detection + RC low-pass
+    if (i % Math.max(1, Math.floor(N / 1500)) === 0) { raw.push({t, v}); out.push({t, y: 2 * y}); }
+  }
+  return {raw, out, final: 2 * y};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 200, x: {label: "time (s)"}, y: {label: "detector signal", grid: true},
+  marks: [Plot.line(liOut.raw, {x: "t", y: "v", stroke: "#c3c2b7", strokeWidth: 0.8})]
+})
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: Math.min(width, 1050), height: 200, x: {label: "time (s)"}, y: {label: "lock-in output", grid: true, domain: [-0.5, 1.5]},
+  marks: [Plot.line(liOut.out, {x: "t", y: "y", stroke: "#2a78d6", strokeWidth: 2}), Plot.ruleY([1], {stroke: "#e34948", strokeDasharray: "4,3"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">true signal amplitude 1 · lock-in output after ${(liOut.raw.at(-1).t).toFixed(2)} s: <b>${liOut.final.toFixed(3)}</b> ·
+noise bandwidth ≈ 1/(4T<sub>c</sub>) = ${(1000 / (4 * li.Tc)).toPrecision(3)} Hz (input noise spread over 10 kHz)</div>`
+```
+
+At −20 dB the signal is invisible in the raw trace, yet the lock-in recovers it within a few percent after a few time constants.
+The drift (1/f) noise, which would ruin a DC measurement, is rejected because the chopper moves the signal to $f_c$, away from
+low frequencies. The price is time: halving the noise requires four times longer averaging.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Generation–recombination noise.** The random generation *and* recombination of carriers gives a current noise
+  $\langle i^2\rangle=4eIGB/(1+(2\pi f\tau)^2)$, twice the shot noise of a photodiode with the same gain. Compare the NEP of a PbS
+  photoconductor with a cooled InAs photodiode at 2.4 µm.
+- **Blocking contacts.** With contacts that do not inject carriers (Schottky or pn), a carrier that leaves is not replaced and
+  $G\le1$. This is the photodiode limit; ohmic contacts are what make photoconductive gain possible.
+- **Persistent photoconductivity and traps.** If holes are trapped for a long time, τ (and $G$) becomes huge but the detector
+  "remembers" past illumination. This is the mechanism behind many record responsivities claimed for nanomaterial detectors: judge
+  them by $G\times B$ and by the noise, not by $\mathcal R$ alone.
+- **Quantum-well infrared photodetectors (QWIPs)** are photoconductors that use intersubband transitions in GaAs/AlGaAs wells to
+  detect 8–12 µm thermal radiation. Their gain $G=\tau_c/\tau_{tr}$ is usually *below* 1. Why?
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, sec. 5.10; Rogalski, *Infrared Detectors* (CRC, 2nd ed.), ch. 9 (photoconductors) and ch. 4 (figures of merit).
+- Stanford Research Systems, "About lock-in amplifiers", application note 3: the clearest practical introduction.
+:::
+
+## Try it yourself
+
+1. Show that the gain-bandwidth product of a photoconductor equals $1/2\pi t_e$. What spacing ℓ gives 1 GHz for GaAs at 5 V?
+2. In the CdS example, how does the photocurrent change if τ decreases with intensity as $\tau\propto I^{-1/2}$ (bimolecular
+   recombination)? What does that do to the linearity of a light meter?
+3. With the lock-in panel at −30 dB input SNR, what time constant is needed to measure the signal within 10 %? How long must you
+   wait?
+4. Why does slide 148 recommend coupling the photoconductor to the lock-in through a capacitor?

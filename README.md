@@ -10,6 +10,7 @@ Interactive companions to the chapters of the course (University of Trento).
 | 2. Dielectric waveguides and optical fibers | [open](https://philippevelha.github.io/Optoelectronics-teaching/chapter2/) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter2/notebooks/interactive_explorers.ipynb) |
 | 3. Semiconductor science and light-emitting diodes | [open](https://philippevelha.github.io/Optoelectronics-teaching/chapter3/) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter3/notebooks/interactive_explorers.ipynb) |
 | 4. Stimulated emission devices: optical amplifiers and lasers | [open](https://philippevelha.github.io/Optoelectronics-teaching/chapter4/) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter4/notebooks/interactive_explorers.ipynb) |
+| 5. Photodetectors and image sensors | [open](https://philippevelha.github.io/Optoelectronics-teaching/chapter5/) | [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/philippevelha/Optoelectronics-teaching/blob/main/chapter5/notebooks/interactive_explorers.ipynb) |
 
 ## Structure
 
@@ -17,6 +18,7 @@ Interactive companions to the chapters of the course (University of Trento).
 - `chapter2/`: Quarto book for Chapter 2 (chapters `*.qmd`, `fiberlib.py`, `notebooks/`)
 - `chapter3/`: Quarto book for Chapter 3 (chapters `*.qmd`, `semilib.py`, `notebooks/`)
 - `chapter4/`: Quarto book for Chapter 4 (chapters `*.qmd`, `laserlib.py`, `laser_sim.js`, `notebooks/`)
+- `chapter5/`: Quarto book for Chapter 5 (chapters `*.qmd`, `detlib.py`, `det_sim.js`, `notebooks/`)
 - `site/index.html`: landing page of the website, listing the chapters
 - `publish.sh`: renders each chapter and updates the website (`gh-pages` branch)
 

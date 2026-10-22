@@ -1,0 +1,147 @@
+# Formula sheet {#sec-cheatsheet}
+
+All the key relations of Chapter 5 on one page. Each block links to the chapter where the formula is derived and used.
+Use your browser's *Print → Save as PDF* for a paper copy.
+
+::: {.callout-note collapse="false"}
+## Symbols and constants
+$\eta_e$ external QE · $\eta_i$ internal QE · $\mathcal R$ responsivity · $I_{ph}$ photocurrent · $I_d$ dark current · $P_o$ optical
+power · α absorption coefficient · $W$ depletion (i-layer) width · $v_d$ drift velocity · $D$ diffusion coefficient · $M$ avalanche
+multiplication · $k=\alpha_h/\alpha_e$ · $F$ excess noise factor · $B$ bandwidth · $R_L$ load · $C_t$ total capacitance · FF fill factor
+
+$h=6.626\times10^{-34}$ J s · $hc=1.2398$ eV µm · $k_BT=25.85$ meV at 300 K · $e=1.602\times10^{-19}$ C · $4k_BT=1.66\times10^{-20}$ J
+at 300 K · $2e=3.2\times10^{-19}$ C
+:::
+
+::::: {.grid}
+
+:::: {.g-col-12 .g-col-lg-6}
+## Junction photodiode (@sec-pn)
+
+| | |
+|---|---|
+| illuminated diode | $I=I_o[e^{eV/\eta k_BT}-1]-I_{ph}$ |
+| short circuit | $I_{sc}=-I_{ph}$ |
+| open circuit | $V_{oc}=\frac{\eta k_BT}{e}\ln(1+I_{ph}/I_o)$ |
+| Shockley–Ramo (@sec-ramo) | $i_e=ev_e/L$ for $t<(L-l)/v_e$; $\int(i_e+i_h)dt=e$ |
+| single-carrier transit | $f_{3dB}=0.443\,v/W$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Absorption and responsivity (@sec-absorption, @sec-responsivity)
+
+| | |
+|---|---|
+| Beer–Lambert | $I(x)=I_oe^{-\alpha x}$, $\delta=1/\alpha$ |
+| cut-off | $\lambda_g\,[\mu\text m]=1.24/E_g\,[\text{eV}]$ |
+| QE | $\eta_e=(I_{ph}/e)/(P_o/h\nu)$ |
+| responsivity | $\mathcal R=\eta_e e\lambda/hc=\eta_e\lambda[\mu\text m]/1.24$ A/W |
+| max QE | tangent to $\mathcal R(\lambda)$ through the origin |
+| structure | $I_{ph}=\frac{e\eta_iTP_o}{h\nu}[e^{-\alpha(\ell_p-L_e)}-e^{-\alpha(\ell_p+W+L_h)}]$ |
+| bare surface | $T=1-[(n-1)/(n+1)]^2$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## pin photodiode (@sec-pin)
+
+| | |
+|---|---|
+| field | $E\approx V_r/W$ |
+| capacitance | $C_\text{dep}=\varepsilon_o\varepsilon_rA/W$ |
+| drift time | $t_\text{drift}=W/v_d$, $v_d\to v_\text{sat}\approx10^5$ m/s (Si) |
+| diffusion | $\ell=\sqrt{2Dt}$, $t_\text{diff}=\ell^2/2D$ |
+| steady state | $I_{ph}=\frac{e\eta_iTP_o}{h\nu}(1-e^{-\alpha W})$ |
+| optimum width | $f_\text{tr}=f_{RC}$: $W_\text{opt}\approx\sqrt{0.9\pi R\varepsilon Av_s}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Avalanche photodiode (@sec-apd, @sec-apd-noise)
+
+| | |
+|---|---|
+| gain | $M=I_{ph}/I_{pho}$, $\mathcal R_{APD}=M\mathcal R$ |
+| empirical | $M=1/[1-(V_r/V_{br})^m]$ |
+| Chynoweth | $\alpha=A\exp(-B/E)$ |
+| electrons only | $M=e^{\alpha_ew}$ |
+| both carriers | $M=\dfrac{1-k}{e^{-(1-k)\alpha_ew}-k}$ |
+| APD noise | $i_n^2=2e(I_{do}+I_{pho})M^2FB$ |
+| excess noise | $F\approx M^x$; $F=kM+(1-k)(2-1/M)$ |
+| optimum gain | $M_\text{opt}^{2+x}=4k_BT/(xeR_LI_{pho})$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Schottky, MSM, phototransistor, photoconductor (@sec-schottky, @sec-photoconductors)
+
+| | |
+|---|---|
+| barrier | $\Phi_B=\Phi_m-\chi$ |
+| dark current | $J=A^*T^2e^{-\Phi_B/k_BT}$ |
+| internal photoemission | $\eta=C_1(h\nu-\Phi_B)^2/h\nu$ |
+| phototransistor | $I_{ph}\approx\beta I_{pho}$, $f\approx I_{pho}/(2\pi(k_BT/e)C)$ |
+| photoconductivity | $\Delta\sigma=e\eta_iI\lambda\tau(\mu_e+\mu_h)/hcd$ |
+| photoconductive gain | $G=\tau/t_e+\tau/t_h$, $t=\ell/\mu E$ |
+| gain × bandwidth | $G\cdot\frac{1}{2\pi\tau}=\frac{1}{2\pi t_e}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Circuits and speed (@sec-circuits)
+
+| | |
+|---|---|
+| load line | $I=-(V+V_r)/R_L$ |
+| TIA | $V_\text{out}=-I_{ph}R_F$, $f\approx\sqrt{\text{GBW}/2\pi R_FC_d}$ |
+| cut-off | $f_c=1/2\pi R_\text{eq}C_t\approx1/2\pi R_LC_t$ |
+| rise/fall time | $\tau_r=\tau_F=2.2RC$ |
+| bandwidth–rise time | $f_c=0.35/\tau_r$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Noise (@sec-noise)
+
+| | |
+|---|---|
+| shot noise | $i_n=[2e(I_d+I_{ph})B]^{1/2}$ |
+| thermal noise | $i_\text{th}=[4k_BTB/R_L]^{1/2}$ |
+| SNR | $\dfrac{I_{ph}^2}{2e(I_d+I_{ph})B+4k_BTB/R_L}$ |
+| NEP | $P_1/\sqrt B=[2e(I_d+I_{ph})]^{1/2}/\mathcal R$ |
+| detectivity | $D^*=\sqrt A/\text{NEP}$ (Jones) |
+| ideal detector | $P_1=2hcB/\eta\lambda$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Receivers (@sec-receivers)
+
+| | |
+|---|---|
+| Q factor | $Q=(I_1-I_0)/(\sigma_1+\sigma_0)$ |
+| BER | $\frac12\operatorname{erfc}(Q/\sqrt2)$; $10^{-9}$: $Q=6$ |
+| thermal-limited pin | $\bar P=Q\sigma_T/\mathcal R$ |
+| shot-limited pin | $\bar P=Q^2eB_e/\mathcal R$ |
+| quantum limit | $\frac12e^{-N_1}$: 10 photons/bit at $10^{-9}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Image sensors (@sec-image)
+
+| | |
+|---|---|
+| signal | $S=\eta\Phi_{ph}A_\text{pix}t_\text{exp}\le N_\text{FW}$ |
+| pixel SNR | $S/\sqrt{S+D+\sigma_r^2}$ |
+| dynamic range | $N_\text{FW}/\sigma_r$ |
+| charge transfer | fraction kept $\text{CTE}^N$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Solar cells (@sec-solar, @sec-sq)
+
+| | |
+|---|---|
+| I–V | $I=-I_{ph}+I_o[e^{e(V-IR_s)/\eta k_BT}-1]+(V-IR_s)/R_p$ |
+| photocurrent | $I_{ph}=KI_\text{light}$ |
+| open circuit | $V_{oc}=\frac{\eta k_BT}{e}\ln(I_{ph}/I_o)$ |
+| fill factor | $\text{FF}=I_mV_m/I_{sc}V_{oc}$ |
+| efficiency | $\text{FF}I_{sc}V_{oc}/(I_\text{light}A)$ |
+| SQ limit | ≈ 30.5 % at 1.3 eV (black body), 33.7 % (AM1.5) |
+::::
+
+:::::

@@ -1,0 +1,165 @@
+# The pn junction photodiode {#sec-pn}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/pn-photodiode.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import detlib as dl
+dl.use_style()
+```
+
+*Slides 4–9 (reverse-biased, shorted and open-circuit pn junction under light, drift and diffusion of photogenerated carriers)
+and 10 (sign conventions, the I–V characteristic in the dark and under illumination, photodiode and photovoltaic modes).*
+
+## Key relations
+
+A photon with $h\nu>E_g$ absorbed in a semiconductor creates an electron–hole pair (EHP). If it is created in the **depletion
+region** (space-charge layer, SCL) of a pn junction, the built-in field $E_o$ separates the pair at once: the electron rolls down
+$E_c$ to the n side and the hole rolls up $E_v$ to the p side (slide 6). If it is created in a **neutral region**, the minority
+carrier must first diffuse to the SCL; it is collected only if it gets there before it recombines, i.e. within about one
+diffusion length $L_e$ or $L_h$ (slide 7, Ch. 3).
+
+Each collected pair moves one electron charge around the external circuit. The photodiode is therefore a current source
+$I_{ph}$ in parallel with the ordinary diode of Ch. 3. With the sign convention of slide 10 (positive $I$ and $V$ as in forward
+bias),
+
+$$
+I=I_o\left[\exp\!\left(\frac{eV}{\eta k_BT}\right)-1\right]-I_{ph},\qquad I_{ph}=\mathcal{R}P_o ,
+$$
+
+where $\mathcal R$ is the responsivity (@sec-responsivity). The illuminated curve is the dark curve shifted down by $I_{ph}$.
+Three operating points matter:
+
+- **Reverse bias** ($V=-V_r$, third quadrant): $I\approx-I_{ph}-I_o$, a current proportional to the power. This is the
+  **photodiode** (photoconductive) mode used for detection: linear, fast (wide SCL, small capacitance), but with a dark current.
+- **Short circuit** ($V=0$): $I_{sc}=-I_{ph}$ (slide 8). Still linear, and no bias means almost no dark current.
+- **Open circuit** ($I=0$, fourth quadrant): the separated carriers charge the n side negative and the p side positive. This
+  forward voltage lowers the barrier until diffusion back across the junction cancels the photocurrent (slide 9):
+
+$$
+V_{oc}=\frac{\eta k_BT}{e}\ln\!\left(1+\frac{I_{ph}}{I_o}\right).
+$$
+
+With a load the photodiode delivers power: this is the **photovoltaic** mode of the solar cell (@sec-solar).
+
+## Live panel: the illuminated I–V characteristic (slide 10)
+
+```{ojs}
+//| echo: false
+import {kT} from "./det_sim.js"
+viewof pn = Inputs.form({
+  P: Inputs.range([0, 100], {value: 20, step: 0.5, label: "optical power P_o (µW)"}),
+  R: Inputs.range([0.05, 1.2], {value: 0.5, step: 0.01, label: "responsivity R (A/W)"}),
+  lIo: Inputs.range([-14, -6], {value: -10, step: 0.1, label: "log₁₀ dark saturation current I_o (A)"}),
+  eta: Inputs.range([1, 2], {value: 1, step: 0.05, label: "ideality factor η"}),
+  Vr: Inputs.range([0, 10], {value: 5, step: 0.1, label: "reverse bias V_r (V)"})
+})
+```
+
+```{ojs}
+//| echo: false
+pnOut = {
+  const Io = 10 ** pn.lIo, Iph = pn.R * pn.P * 1e-6, Vt = pn.eta * kT(300), dark = [], light = [];
+  const Vmax = Math.max(0.15, Vt * Math.log(1 + 2 * Math.max(Iph, 1e-6) / Io));
+  for (let i = 0; i <= 600; i++) {
+    const V = -Math.max(pn.Vr, 1) - 0.5 + (Vmax + Math.max(pn.Vr, 1) + 0.5) * i / 600;
+    dark.push({V, I: 1e6 * Io * Math.expm1(V / Vt), c: "dark"});
+    light.push({V, I: 1e6 * (Io * Math.expm1(V / Vt) - Iph), c: "illuminated"});
+  }
+  const Voc = Vt * Math.log1p(Iph / Io);
+  return {pts: dark.concat(light), Iph, Io, Voc, Ir: Io * Math.expm1(-pn.Vr / Vt) - Iph, Vmax};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 320, x: {label: "diode voltage V (V)"}, y: {label: "current I (µA)", grid: true,
+    domain: [-1.3 * Math.max(pnOut.Iph * 1e6, 1), 0.8 * Math.max(pnOut.Iph * 1e6, 1)]},
+  color: {legend: true, domain: ["dark", "illuminated"], range: ["#52514e", "#e34948"]},
+  marks: [Plot.ruleX([0]), Plot.ruleY([0]),
+          Plot.line(pnOut.pts, {x: "V", y: "I", stroke: "c", strokeWidth: 2, clip: true}),
+          Plot.dot([{V: -pn.Vr, I: 1e6 * pnOut.Ir}], {x: "V", y: "I", r: 6, fill: "#2a78d6", tip: true, title: () => "reverse-biased operating point"}),
+          Plot.dot([{V: pnOut.Voc, I: 0}], {x: "V", y: "I", r: 6, fill: "#1baf7a", title: () => "open circuit"}),
+          Plot.dot([{V: 0, I: -1e6 * pnOut.Iph}], {x: "V", y: "I", r: 6, fill: "#eda100", title: () => "short circuit"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">
+photocurrent I<sub>ph</sub> = R P<sub>o</sub> = <b>${(pnOut.Iph * 1e6).toFixed(3)} µA</b> · dark current at −V<sub>r</sub>: ${(pnOut.Io * 1e9).toPrecision(3)} nA
+(${pnOut.Iph > 0 ? (100 * pnOut.Io / pnOut.Iph).toPrecision(2) : "∞"} % of the signal)<br>
+<span style="color:#2a78d6">●</span> reverse bias: I = ${(pnOut.Ir * 1e6).toFixed(3)} µA ·
+<span style="color:#eda100">●</span> short circuit: I<sub>sc</sub> = −I<sub>ph</sub> ·
+<span style="color:#1baf7a">●</span> open circuit: V<sub>oc</sub> = <b>${(pnOut.Voc * 1e3).toFixed(1)} mV</b>
+</div>`
+```
+
+Move the power slider: the reverse current and $I_{sc}$ follow $P_o$ linearly, while $V_{oc}$ grows only by $\eta k_BT\ln 10$
+(60 mV for $\eta=1$) per decade of power. Raise $I_o$ (a larger or hotter diode, a smaller band gap) and watch $V_{oc}$ fall.
+This is why germanium and InGaAs photodiodes, with dark currents in the µA range (slide 49), make poor photovoltaic detectors
+and why InAs and InSb must be cooled.
+
+```{python}
+#| label: fig-pn-iv
+#| fig-cap: "Left: I–V curves of a photodiode (I_o = 0.1 nA, R = 0.5 A/W) for increasing optical power; the curves are the dark characteristic shifted down by I_ph = RP_o (slide 10). Right: in reverse bias the current is proportional to P_o over many decades, while V_oc grows logarithmically and saturates near the band-gap voltage."
+Io, R = 1e-10, 0.5
+V = np.linspace(-2, 0.6, 800)
+fig, ax = plt.subplots(1, 2, figsize=(11, 3.8))
+for P in (0, 5e-6, 10e-6, 20e-6):
+    ax[0].plot(V, 1e6*dl.diode_current(V, Io, R*P), label=f"P_o = {P*1e6:.0f} µW")
+ax[0].set(xlabel="V (V)", ylabel="I (µA)", ylim=(-12, 6)); ax[0].axhline(0, color=dl.INK2, lw=0.8); ax[0].axvline(0, color=dl.INK2, lw=0.8)
+ax[0].legend(fontsize=8)
+P = np.logspace(-12, -2, 200)
+ax[1].loglog(P, R*P + Io, label="|I| at V_r = 5 V (A)")
+ax2 = ax[1].twinx(); ax2.semilogx(P, dl.kT()*np.log1p(R*P/Io), color=dl.PALETTE[1], label="V_oc (V)")
+ax2.set_ylabel("V_oc (V)", color=dl.PALETTE[1]); ax2.grid(False)
+ax[1].set(xlabel="optical power P_o (W)", ylabel="reverse current (A)"); ax[1].legend(loc="upper left", fontsize=8)
+plt.tight_layout(); plt.show()
+```
+
+## Worked example: photodiode or photovoltaic mode?
+
+> A Si photodiode of 1 mm² has $I_o=0.1$ nA and $\mathcal R=0.5$ A/W at 850 nm. Compare its output for 1 nW, 1 µW and 1 mW
+> in reverse bias and in open circuit.
+
+```{python}
+#| label: tbl-pn-modes
+#| tbl-cap: "Reverse-biased current versus open-circuit voltage. The current is linear in the power over nine decades; V_oc is logarithmic, and at 1 nW it is smaller than the thermal voltage."
+rows = []
+for P in (1e-9, 1e-6, 1e-3):
+    Iph = 0.5*P
+    rows.append((f"{P:.0e} W", f"{Iph:.1e} A", f"{dl.kT()*np.log1p(Iph/1e-10)*1e3:.1f} mV"))
+pd.DataFrame(rows, columns=["P_o", "I (reverse bias) ≈ I_ph", "V_oc"])
+```
+
+The reverse-biased photodiode is a **linear** power meter; the open-circuit photodiode is a **logarithmic** one. The first is
+the basis of every optical receiver; the second is useful for wide-dynamic-range light meters and is the operating principle of
+the solar cell.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Where is the dark current coming from?** In reverse bias $I_o$ has a diffusion part $\propto n_i^2$ and a generation part in
+  the SCL $\propto n_iW/\tau_g$ (Ch. 3). Which dominates in Si at room temperature, and how does each scale with temperature and
+  band gap? Estimate the increase of the dark current of a Si photodiode between 25 °C and 75 °C.
+- **Zero-bias (photovoltaic-mode) detection** is used in precision photometry: there is no dark *current*, only the thermal
+  (Johnson) noise of the shunt resistance $R_p=\eta k_BT/eI_o$. Compute $R_p$ for $I_o=10$ pA and compare its noise with the
+  shot noise of 10 pA in reverse bias (@sec-noise).
+- **Photon recycling in the neutral regions.** The collection probability of a carrier generated at a distance $x$ from the SCL is
+  $\approx e^{-x/L}$. Combine it with $e^{-\alpha x}$ to obtain the internal QE of a pn photodiode (@sec-responsivity).
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, *Optoelectronics and Photonics*, 2nd ed., sec. 5.1–5.2; Saleh & Teich, *Fundamentals of Photonics*, ch. 18.
+- Sze & Ng, *Physics of Semiconductor Devices*, ch. 13 (photodetectors and solar cells).
+:::
+
+## Try it yourself
+
+1. In the live panel, at what optical power does the open-circuit voltage reach 0.4 V for $I_o=0.1$ nA? Why can $V_{oc}$ never
+   exceed about $E_g/e$?
+2. A photodiode is operated at $V_r=0$ with a 1 MΩ load instead of a short. Sketch the load line on the I–V curve and explain why
+   the response becomes non-linear at high power (see @sec-circuits).
+3. Why does a carrier generated deep in the n-type neutral region not contribute to the photocurrent, although the photon was
+   absorbed?

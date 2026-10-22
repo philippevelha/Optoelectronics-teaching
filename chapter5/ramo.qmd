@@ -1,0 +1,200 @@
+# The Shockley–Ramo theorem {#sec-ramo}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/ramo.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import detlib as dl
+dl.use_style()
+```
+
+*Slides 11–15 (induced current of a photogenerated electron–hole pair drifting between two electrodes, electron and hole
+transit times, total collected charge).*
+
+## Key relations
+
+When does the external current flow: when the carriers *reach* the electrodes, or while they *move*? The Shockley–Ramo theorem
+answers: while they move. Consider an EHP created at $x=l$ in a semiconductor of length $L$ between two electrodes held at a
+voltage $V$, with a uniform field $E=V/L$ (slide 11). In a time $dt$ the electron drifts $dx=v_edt$ and the field does the work
+$eE\,dx$ on it. That energy comes from the battery, which supplies $Vi_e(t)dt$ (slide 12):
+
+$$
+eE\,dx=Vi_e\,dt\quad\Longrightarrow\quad i_e(t)=\frac{ev_e}{L}\quad (t<t_e),\qquad i_h(t)=\frac{ev_h}{L}\quad (t<t_h),
+$$
+
+with the transit times $t_e=(L-l)/v_e$ and $t_h=l/v_h$ (slide 14). Each carrier gives a rectangular current pulse. Neither pulse
+alone carries a full electron charge, but together they do (slide 15):
+
+$$
+Q=\int_0^{t_e}i_e\,dt+\int_0^{t_h}i_h\,dt=e\frac{L-l}{L}+e\frac{l}{L}=e .
+$$
+
+The current starts **as soon as the pair is created**, not when the first carrier arrives. The duration of the pulse, set by the
+slowest carrier that has the longest way to go, is the **transit-time** limit of the detector speed (@sec-pin).
+
+## Live panel: one electron–hole pair (slides 13–15)
+
+```{ojs}
+//| echo: false
+import {driftVelocity, pinImpulse, transitMag, f3dB, alpha, qe} from "./det_sim.js"
+viewof rm = Inputs.form({
+  L: Inputs.range([1, 50], {value: 10, step: 0.5, label: "electrode spacing L (µm)"}),
+  l: Inputs.range([0, 1], {value: 0.3, step: 0.01, label: "generation point l/L"}),
+  V: Inputs.range([0.5, 100], {value: 10, step: 0.5, label: "applied voltage V (V)"}),
+  sat: Inputs.toggle({label: "use Si drift velocities v(E) (else v_e = 2v_h = 10⁵ m/s)", value: true})
+})
+```
+
+```{ojs}
+//| echo: false
+rmOut = {
+  const L = rm.L * 1e-6, E = rm.V / L;
+  const ve = rm.sat ? driftVelocity(E, "e") : 1e5, vh = rm.sat ? driftVelocity(E, "h") : 5e4;
+  const te = (1 - rm.l) * L / ve, th = rm.l * L / vh, tmax = 1.25 * Math.max(te, th, 1e-15), pts = [];
+  for (let i = 0; i <= 600; i++) {
+    const t = tmax * i / 600, ie = t < te ? qe * ve / L : 0, ih = t < th ? qe * vh / L : 0;
+    pts.push({t: t * 1e12, i: ie * 1e9, c: "electron i_e"}, {t: t * 1e12, i: ih * 1e9, c: "hole i_h"}, {t: t * 1e12, i: (ie + ih) * 1e9, c: "total"});
+  }
+  return {pts, E, ve, vh, te, th, Qe: (1 - rm.l), Qh: rm.l};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 280, x: {label: "time (ps)"}, y: {label: "induced current (nA)", grid: true},
+  color: {legend: true, domain: ["electron i_e", "hole i_h", "total"], range: ["#2a78d6", "#e34948", "#0b0b0b"]},
+  marks: [Plot.line(rmOut.pts, {x: "t", y: "i", stroke: "c", strokeWidth: 2, curve: "step-after"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">E = ${(rmOut.E / 1e5).toFixed(2)} kV/cm · v<sub>e</sub> = ${(rmOut.ve / 1e3).toFixed(1)} km/s, v<sub>h</sub> = ${(rmOut.vh / 1e3).toFixed(1)} km/s<br>
+t<sub>e</sub> = ${(rmOut.te * 1e12).toFixed(1)} ps · t<sub>h</sub> = ${(rmOut.th * 1e12).toFixed(1)} ps ·
+charge carried by the electron ${rmOut.Qe.toFixed(2)} e, by the hole ${rmOut.Qh.toFixed(2)} e, total <b>1.00 e</b></div>`
+```
+
+Set $l/L\to 0$: the pair is created next to the electrode the hole drifts to. The hole contributes almost nothing; the electron
+crosses the whole device and carries the full charge. Raise the voltage with the Si velocities on: the current pulse grows
+taller and shorter until the carriers reach their **saturation velocity** (about $10^5$ m/s, slide 31). Beyond that, more volts
+no longer buy speed.
+
+## Many pairs: the transit-time impulse response
+
+A short light pulse creates pairs with the profile $e^{-\alpha x}$ of @sec-absorption (light entering at $x=0$, on the side
+where the holes are collected). The photocurrent is the sum of the rectangular pulses of all pairs. Its Fourier transform is the
+transit-time frequency response.
+
+```{ojs}
+//| echo: false
+viewof tr = Inputs.form({
+  W: Inputs.range([0.5, 50], {value: 10, step: 0.5, label: "drift-region width W (µm)"}),
+  la: Inputs.range([3, 8], {value: 5, step: 0.05, label: "log₁₀ absorption coefficient α (m⁻¹)"}),
+  ve: Inputs.range([1e4, 2e5], {value: 1e5, step: 1e3, label: "electron velocity v_e (m/s)"}),
+  vh: Inputs.range([1e4, 2e5], {value: 7e4, step: 1e3, label: "hole velocity v_h (m/s)"})
+})
+```
+
+```{ojs}
+//| echo: false
+trOut = {
+  const W = tr.W * 1e-6, a = 10 ** tr.la, tmax = 1.1 * W / Math.min(tr.ve, tr.vh), ts = d3.range(0, 501).map(i => tmax * i / 500);
+  const r = pinImpulse(ts, W, a, tr.ve, tr.vh, 300);
+  const pts = r.flatMap(d => [{t: d.t * 1e12, i: d.ie / qe * 1e-12, c: "electrons"}, {t: d.t * 1e12, i: d.ih / qe * 1e-12, c: "holes"},
+                               {t: d.t * 1e12, i: (d.ie + d.ih) / qe * 1e-12, c: "total"}]);
+  const fmax = 2 * Math.max(tr.ve, tr.vh) / W;
+  const resp = d3.range(0, 301).map(i => { const f = fmax * i / 300; return {f: f / 1e9, H: 20 * Math.log10(Math.max(transitMag(f, W, a, tr.ve, tr.vh), 1e-6))}; });
+  return {pts, resp, f3: f3dB(f => transitMag(f, W, a, tr.ve, tr.vh), fmax), absorbed: 1 - Math.exp(-a * W), aW: a * W};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 250, x: {label: "time after the light pulse (ps)"}, y: {label: "current per EHP (e/ps)", grid: true},
+  color: {legend: true, domain: ["electrons", "holes", "total"], range: ["#2a78d6", "#e34948", "#0b0b0b"]},
+  marks: [Plot.line(trOut.pts, {x: "t", y: "i", stroke: "c", strokeWidth: 2})]
+})
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: Math.min(width, 1050), height: 220, x: {label: "modulation frequency (GHz)"}, y: {label: "|H_transit| (dB)", domain: [-15, 1], grid: true},
+  marks: [Plot.line(trOut.resp, {x: "f", y: "H", stroke: "#2a78d6", strokeWidth: 2}), Plot.ruleY([-3], {stroke: "#52514e", strokeDasharray: "3,3"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">αW = ${trOut.aW.toPrecision(3)} → fraction absorbed in the drift region ${(100 * trOut.absorbed).toFixed(1)} % ·
+transit-limited bandwidth f<sub>3dB</sub> = <b>${(trOut.f3 / 1e9).toFixed(2)} GHz</b> = ${(trOut.f3 * tr.W * 1e-6 / Math.min(tr.ve, tr.vh)).toFixed(2)} × v<sub>slow</sub>/W</div>`
+```
+
+Strong absorption ($\alpha W\gg1$) creates all pairs near $x=0$: only electrons cross the device, and the pulse lasts $W/v_e$.
+Weak absorption gives uniform generation: both carriers contribute, each pulse is a triangle. Because the holes are slower, it
+pays to generate the carriers on the side where the holes are collected. This is why fast photodiodes are lit through the p⁺
+side, and why the "uni-travelling-carrier" photodiode (see Going further) lets only electrons travel.
+
+```{python}
+#| label: fig-ramo-response
+#| fig-cap: "Transit-time frequency response of a 10 µm drift region (v_e = 10⁵ m/s, v_h = 7×10⁴ m/s) for surface absorption, uniform absorption, and absorption on the wrong side (light entering where the electrons are collected, so the slow holes cross the whole device)."
+f = np.linspace(0, 15e9, 1500)
+W, ve, vh = 10e-6, 1e5, 7e4
+fig, ax = plt.subplots(figsize=(7.5, 3.6))
+for a, lab in ((1e7, "αW = 100 (surface, electrons cross)"), (0, "uniform generation")):
+    H = dl.transit_response(f, W, a, ve, vh)
+    ax.plot(f/1e9, 20*np.log10(abs(H)), label=f"{lab}: f₃dB = {dl.f3dB(f, H)/1e9:.2f} GHz")
+H = dl.transit_response(f, W, 1e7, vh, ve)       # swap roles: the slow carrier crosses
+ax.plot(f/1e9, 20*np.log10(abs(H)), "--", label=f"surface, holes cross: f₃dB = {dl.f3dB(f, H)/1e9:.2f} GHz")
+ax.axhline(-3, color=dl.INK2, ls=":", lw=1); ax.set(xlabel="f (GHz)", ylabel="|H| (dB)", ylim=(-15, 1)); ax.legend(fontsize=8); plt.show()
+```
+
+For a single carrier crossing the whole width in $t_{tr}=W/v$ the pulse is a rectangle and $|H|=|\mathrm{sinc}(ft_{tr})|$,
+whose −3 dB point is $f_{3dB}=0.443/t_{tr}=0.443\,v/W$. Uniform generation shares the work between the two carriers and is
+faster for the same width.
+
+## Worked check (slides 12–15)
+
+```{python}
+#| label: tbl-ramo
+#| tbl-cap: "An EHP created at l = 3 µm in a 10 µm Si sample at 10 V. The two rectangular pulses carry (L − l)/L and l/L of the charge."
+L, l, V = 10e-6, 3e-6, 10.0
+ve, vh = dl.drift_velocity(V/L, "e"), dl.drift_velocity(V/L, "h")
+t = np.linspace(0, 2e-10, 200001)
+ie, ih = dl.ramo_single(t, l, L, ve, vh)
+Qe, Qh = np.trapezoid(ie, t), np.trapezoid(ih, t)
+pd.DataFrame([("field E = V/L", f"{V/L:.1e} V/m"), ("v_e, v_h (Caughey–Thomas)", f"{ve:.3g}, {vh:.3g} m/s"),
+              ("t_e = (L − l)/v_e", f"{(L - l)/ve*1e12:.1f} ps"), ("t_h = l/v_h", f"{l/vh*1e12:.1f} ps"),
+              ("i_e = ev_e/L, i_h = ev_h/L", f"{dl.qe*ve/L*1e9:.2f} nA, {dl.qe*vh/L*1e9:.2f} nA"),
+              ("charge Q_e + Q_h", f"{Qe/dl.qe:.3f} e + {Qh/dl.qe:.3f} e = {(Qe + Qh)/dl.qe:.3f} e")],
+             columns=["quantity", "value"])
+```
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **The general theorem.** For any electrode geometry, a charge $q$ moving with velocity $\mathbf v$ induces on electrode $k$ the
+  current $i_k=q\,\mathbf v\cdot\mathbf E_w$, where $\mathbf E_w$ is the **weighting field**: the field obtained with electrode $k$
+  at 1 V, all others grounded and all charges removed. For parallel plates $E_w=1/L$ and we recover slide 12. In an interdigitated
+  MSM detector (@sec-schottky) $E_w$ is concentrated near the fingers: a carrier contributes most of its current when it is close to
+  the electrode. Compute $E_w$ for a pixelated X-ray detector and explain the "small-pixel effect".
+- **Uni-travelling-carrier (UTC) photodiode.** Absorb the light in a thin p-doped layer, where the photogenerated holes are majority
+  carriers and relax immediately; only electrons enter the depleted collector, at velocities up to $3\times10^5$ m/s in InP
+  (velocity overshoot). UTC photodiodes reach > 100 GHz and high saturation currents (no hole pile-up). Use the panel with the hole
+  velocity set very high to mimic it.
+- **Space charge.** At high photocurrents the drifting carriers screen the field (the photocurrent density approaches
+  $\varepsilon v_{sat}V/W^2$) and the response saturates. Estimate this saturation current for a 20 µm diameter, 1 µm thick InGaAs
+  pin at 3 V.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- W. Shockley, *J. Appl. Phys.* 9, 635 (1938); S. Ramo, *Proc. IRE* 27, 584 (1939) (references of slide 11).
+- Z. He, "Review of the Shockley–Ramo theorem and its application in semiconductor gamma-ray detectors", *Nucl. Instrum. Meth. A*
+  463, 250 (2001): a very readable derivation with weighting potentials.
+- T. Ishibashi *et al.*, "Uni-travelling-carrier photodiodes", *IEICE Trans. Electron.* E83-C, 938 (2000).
+:::
+
+## Try it yourself
+
+1. Prove that the charge collected is $e$ for any generation point, even if $v_e$ and $v_h$ depend on position.
+2. Show that $|H(f)|=|\sin(\pi ft_{tr})/(\pi ft_{tr})|$ for a single carrier and find the −3 dB frequency.
+3. In the second panel, what drift-region width gives a 10 GHz transit-limited bandwidth in Si at saturation velocity? What fraction
+   of 850 nm light ($\alpha\approx5\times10^4$ m⁻¹) does it absorb?
+4. A carrier is trapped halfway across the device and never released. What charge is collected in the external circuit?

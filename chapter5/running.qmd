@@ -1,0 +1,64 @@
+# Running the notebooks {#sec-running}
+
+## Three ways to use this companion
+
+1. **Read the website.** The live panels run in the browser with no installation.
+2. **Run the code in Google Colab.** Every chapter starts with an **Open in Colab** button. Colab is free and runs in the browser;
+   you only need a Google account. Use *File → Save a copy in Drive* to keep your changes.
+3. **Run it on your computer** with Jupyter, or rebuild the whole book with Quarto.
+
+## Installation
+
+```bash
+pip install -r requirements.txt     # numpy scipy matplotlib pandas jupyter ipywidgets
+quarto preview                      # live preview while editing
+quarto render                       # builds _book/ (HTML)
+```
+
+Rendering executes every Python cell once. Results are cached in `_freeze/` (`freeze: auto`), so later builds only re-run the
+chapters you changed.
+
+## Publishing the website (GitHub Pages)
+
+The source lives at <https://github.com/{{< var github_user >}}/{{< var repo >}}> (folder `{{< var subdir >}}/`) and the site at
+<https://{{< var github_user >}}.github.io/{{< var repo >}}/{{< var subdir >}}/>. After editing a chapter:
+
+```bash
+cd notebooks && python build_notebooks.py && cd ..         # refresh the notebooks (Colab buttons point to them)
+git add -A && git commit -m "Update chapter 5" && git push   # update the source on GitHub
+bash ../publish.sh                                         # render and update the website
+```
+
+## Regenerating the notebooks
+
+```bash
+cd notebooks
+python build_notebooks.py
+```
+
+The script converts every chapter, adds a setup cell that works both locally and in Colab (it downloads `detlib.py` from
+GitHub when running in Colab), and rebuilds `interactive_explorers.ipynb`.
+
+## The `detlib` module
+
+| function | purpose |
+|---|---|
+| `kT`, `photon_energy_eV`, `wavelength_from_eV`, `cutoff_wavelength`, `varshni`, `dB` | units, photon energies, band gap versus temperature |
+| `MATERIALS`, `alpha`, `penetration_depth`, `alpha_direct_model` | absorption coefficients of Si, Ge, GaAs, InP, InGaAsP, InGaAs; generic direct edge |
+| `responsivity`, `quantum_efficiency`, `max_qe_point`, `fresnel_T` | QE and responsivity |
+| `photocurrent_structure`, `pin_photocurrent` | photocurrent from the device structure |
+| `drift_velocity`, `diffusion_time`, `transit_time` | carrier transport (Caughey–Thomas for Si) |
+| `ramo_single`, `pin_impulse_response`, `transit_response`, `f3dB`, `junction_capacitance`, `pin_bandwidth` | Shockley–Ramo currents, transit-time and RC bandwidth |
+| `IONIZATION`, `chynoweth`, `apd_gain_uniform`, `apd_gain_profile`, `miller_gain` | avalanche multiplication |
+| `excess_noise_mcintyre`, `excess_noise_power` | APD excess noise |
+| `photoconductive_gain`, `photoconductivity` | photoconductors |
+| `A_STAR`, `schottky_dark`, `fowler_qe`, `msm_capacitance`, `phototransistor_bandwidth` | Schottky, MSM, phototransistors |
+| `diode_current`, `operating_point`, `rc_cutoff`, `rise_time` | circuits and load line |
+| `shot_noise`, `thermal_noise`, `snr`, `nep`, `detectivity`, `p_min_ideal`, `apd_snr`, `apd_optimum_gain` | noise and figures of merit |
+| `ber_from_q`, `q_from_ber`, `sensitivity_pin`, `sensitivity_apd`, `sensitivity_preamp`, `quantum_limit` | digital receivers |
+| `solar_iv`, `solar_operating_point`, `solar_mpp`, `shockley_queisser` | solar cells |
+| `cte_remaining`, `sensor_snr`, `simulate_exposure` | image sensors |
+
+`det_sim.js` contains JavaScript ports of the absorption tables, the drift velocities, the Shockley–Ramo responses, the avalanche gain,
+the solar-cell solver (Lambert W), the detailed-balance limit and a seeded random-number generator, used by the live panels. Every
+function was checked against the worked examples of the slides (see the "worked example" sections) and against `detlib.py`.

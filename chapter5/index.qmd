@@ -1,0 +1,74 @@
+# Preface {.unnumbered}
+
+This companion follows the slides of **Chapter 5: Photodetectors and Image Sensors** (Basics of Optoelectronics, University of
+Trento) section by section. The slides tell the story; this book lets you **compute it**. Every figure is made by a few lines of
+Python that you can unfold ("Show the Python"), copy and modify. The **live panels** (marked with a blue bar on the left)
+recompute directly in your browser. They need no installation.
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/interactive_explorers.ipynb) &nbsp;Interactive explorers in Google Colab (no installation, Google account needed).
+
+## Where this chapter sits in the course
+
+Chapter 1 described light as a wave, Chapter 2 guided it in fibers, Chapter 3 built the pn junction and the LED, and Chapter 4
+the laser and the optical amplifier. Chapter 5 closes the link: the **photodetector** converts the optical power back into an
+electrical current. It uses the same pn junction as the LED of Ch. 3, run in reverse: a photon of energy $h\nu>E_g$ creates an
+electron–hole pair, the field of the depletion region separates it, and a current flows in the external circuit. Three questions
+organise the chapter:
+
+1. **How many electrons per photon?** Absorption coefficient, quantum efficiency, responsivity, and internal gain (avalanche
+   photodiodes, photoconductors, phototransistors).
+2. **How fast?** Drift and diffusion of the carriers (the Shockley–Ramo theorem), transit time, and the $RC$ constant of the
+   junction capacitance and the load.
+3. **How weak a signal?** Shot noise, thermal noise, excess avalanche noise, SNR, NEP and detectivity, which set the
+   sensitivity of every fiber receiver (Ch. 2) and the noise floor that the EDFA of Ch. 4 must beat.
+
+The same physics then makes **image sensors** (CCD and CMOS arrays of photodiodes) and, in forward bias with a load, **solar cells**.
+
+## How the book is organised
+
+| Chapter | Slides | What you can play with |
+|---|---|---|
+| [The pn junction photodiode](pn-photodiode.qmd) | 4–10 | illuminated I–V curve, photoconductive and photovoltaic modes |
+| [The Shockley–Ramo theorem](ramo.qmd) | 11–15 | induced current of a drifting electron–hole pair, transit-time pulse |
+| [Absorption and the cut-off wavelength](absorption.qmd) | 16–20 | α(λ) of Si, Ge, GaAs, InP, InGaAs(P), penetration depth, band-gap and temperature |
+| [Quantum efficiency and responsivity](responsivity.qmd) | 21–28, 33–36, 139–145, 149–150 | R(λ) from the device structure, maximum-QE tangent |
+| [The pin photodiode](pin.qmd) | 29–32, 37–43 | drift velocity, diffusion tail, transit-time versus RC bandwidth |
+| [Avalanche photodiodes](apd.qmd) | 44–60 | Chynoweth coefficients, gain versus field, breakdown, SAM structures |
+| [Schottky, MSM and phototransistors](schottky.qmd) | 61–68 | Schottky barrier, internal photoemission, MSM finger spacing, gain–bandwidth |
+| [Photoconductive detectors](photoconductors.qmd) | 69–74, 146–148 | photoconductive gain, gain–bandwidth product, lock-in detection |
+| [Photodiode circuits and speed](circuits.qmd) | 75–85 | load line, transimpedance amplifier, equivalent circuit, pulse response |
+| [Noise, SNR, NEP and detectivity](noise.qmd) | 86–98, 101–105 | shot-noise simulation, SNR calculator, NEP and D* of real detectors |
+| [Noise in avalanche photodiodes](apd-noise.qmd) | 99–100, 106–107 | excess noise factor, optimum gain |
+| [Image sensors: CCD and CMOS](image-sensors.qmd) | 108–120 | charge transfer, CTE, shot-noise-limited images, Bayer filter |
+| [Solar cells](solar-cells.qmd) | 121–137 | I–V and load line, fill factor, series and shunt resistance, efficiency |
+| [Going further: optical receivers, BER and sensitivity](receivers.qmd) | — | Q factor, pin versus APD versus EDFA-preamplified receivers, quantum limit |
+| [Going further: the Shockley–Queisser limit](sq-limit.qmd) | — | detailed balance with Planck's law (Ch. 4), efficiency versus band gap, tandems |
+| [Projects, toolbox and connections](ideas.qmd) | — | Python packages, mini-projects, links to other chapters, notes on the slides |
+
+Each chapter recomputes the worked examples of the slides, then offers **Going further** questions, **Complements** (reading),
+and **Try it yourself** exercises. The two **Going further** chapters cover topics that the slides use but do not develop.
+A **formula sheet** is at the end.
+
+::: {.callout-note}
+## Units in the code
+The code works in **SI units** (m, m⁻¹, A, W, F). Absorption coefficients are in m⁻¹, as on the slides. The avalanche section of
+the slides quotes ionisation coefficients in cm⁻¹ and fields in V cm⁻¹; the APD functions use those units and say so.
+Photon and band energies are in **eV**.
+:::
+
+::: {.callout-tip}
+## Slide numbers
+Slide numbers refer to `chapter5_ Photodetectors.ppt` (152 slides).
+:::
+
+## Using the code
+
+All functions live in a small, readable module, [`detlib.py`](detlib.py), which you can import from your own notebooks:
+
+```python
+import detlib as dl
+dl.responsivity(0.6, 1.55e-6)                  # A/W of a 60 % QE detector at 1550 nm
+dl.snr(Iph=5e-9, Id=2e-9, B=1e6, RL=1e4)       # SNR of the receiver of slide 104
+```
+
+See the appendix [Running the notebooks](running.qmd) for installation.

@@ -1,0 +1,99 @@
+# Projects, toolbox and connections {#sec-ideas}
+
+## How Chapter 5 connects to the rest of the course
+
+| Chapter 5 concept | Where it comes from / where it goes |
+|---|---|
+| Photon energy, cut-off wavelength $1.24/E_g$ | Ch. 1: photons; Ch. 3: band gaps and LED emission wavelength |
+| Absorption coefficient, direct/indirect gaps | Ch. 3: E–k diagrams, why Si does not emit light; Ch. 4: gain is negative absorption |
+| pn and pin junctions, depletion width, capacitance | Ch. 3: the pn junction, depletion capacitance, LED speed |
+| Dark current $I_o$, ideality factor | Ch. 3: diode equation, diffusion and generation currents |
+| Fresnel reflection loss, AR coatings | Ch. 1: Fresnel equations, quarter-wave coatings |
+| Resonant-cavity photodiodes | Ch. 1: Fabry–Perot and Bragg mirrors; Ch. 4: VCSEL mirrors |
+| Waveguide photodiodes, confinement factor | Ch. 2: planar waveguides; Ch. 4: Γ in laser diodes |
+| Shockley–Ramo, transit time | Ch. 3: drift and diffusion, mobility, saturation velocity |
+| Bandwidth, rise time, receiver noise | Ch. 2: bit rate, dispersion, rise-time budget, BER and Q factor |
+| Shot noise, quantum limit | Ch. 4: photon statistics of laser light, EDFA noise figure and ASE beat noise |
+| APD excess noise versus optical preamplifier | Ch. 4: EDFA as a low-noise preamplifier (@sec-receivers) |
+| Solar cells and the SQ limit | Ch. 4: black-body radiation and detailed balance; Ch. 3: radiative and non-radiative recombination |
+| Image sensors, pixel size | Ch. 1: diffraction and resolution (Airy disc); Ch. 3: photometry and the eye |
+
+: Where Chapter 5 concepts come from and where they reappear. {#tbl-links tbl-colwidths="[45,55]"}
+
+## Mini-projects
+
+For students who want to go further. Each reuses `detlib.py` and can be done in one to three weeks.
+
+| # | project | skills | difficulty |
+|---|---|---|---|
+| 1 | **Characterise a photodiode**: measure dark I–V (extract $I_o$, η), responsivity versus λ with a monochromator or LEDs, linearity with a load resistor (load line!), and the pulse response with a fast LED driver; compare with the models of @sec-responsivity and @sec-circuits | experiment, fitting | ★ |
+| 2 | **Design a 25 Gb/s 850 nm receiver**: choose GaAs or Si, the absorber thickness and area, compute the transit/RC bandwidth and the sensitivity with a realistic TIA (include $e_nC$ noise) | device design, noise | ★★ |
+| 3 | **Drift–diffusion photodiode simulator**: solve the 1D continuity equations (finite differences) for a pn photodiode under a light pulse; reproduce the drift + diffusion pulse of slide 85 and the internal QE of slide 145 | numerics, semiconductor physics | ★★★ |
+| 4 | **APD Monte Carlo**: simulate random impact ionisation chains in a uniform field with given $\alpha_e$, $\alpha_h$; build the gain distribution and compare $F$ with McIntyre; add a dead space | stochastic simulation | ★★ |
+| 5 | **Photon transfer of a webcam or phone camera**: record flat fields with RAW output (`rawpy`), build the photon transfer curve, extract the conversion gain, read noise, full well and dark current versus exposure and temperature | experiment, statistics | ★★ |
+| 6 | **Solar panel I–V tracer**: measure a small panel with an electronic load (or a capacitor charging), extract $I_{sc}$, $V_{oc}$, FF, $R_s$, $R_p$ by fitting the one-diode model, follow the MPP during a day; compare with `pvlib` irradiance models | experiment, fitting | ★ |
+| 7 | **Lock-in amplifier in software**: digitise a chopped photodiode signal with a sound card, implement the lock-in in Python and measure a signal 40 dB below the noise | signal processing | ★★ |
+| 8 | **Single-photon statistics**: with a SPAD module (or a simulated one with dead time and after-pulsing), measure the photon-number distribution of an attenuated laser and of an LED; compare with Poisson and Bose–Einstein | quantum optics | ★★★ |
+
+## Python toolbox
+
+All worked examples run with the scientific core only. The packages below extend them.
+
+| Package | Install | What it is good for | Sections |
+|---|---|---|---|
+| `numpy`, `scipy`, `matplotlib`, `pandas` | `pip install ...` | everything in this book (`brentq`, `lambertw`, `erfc`, FFT) | all |
+| `solcore` | `pip install solcore` | solar-cell modelling: detailed balance, drift–diffusion, multijunctions, optical stacks | [-@sec-solar], [-@sec-sq] |
+| `pvlib` | `pip install pvlib` | solar irradiance, AM1.5 spectra, module models, one-diode fitting | [-@sec-solar] |
+| `rawpy`, `scikit-image` | `pip install rawpy scikit-image` | read camera RAW files, demosaicing, photon-transfer analysis | [-@sec-image] |
+| `PySpice` | `pip install PySpice` (needs ngspice) | photodiode equivalent circuits, TIAs, pulse response | [-@sec-circuits] |
+| `devsim` | `pip install devsim` | semiconductor device (TCAD) simulation of photodiodes | [-@sec-pin], [-@sec-ramo] |
+| `tmm` | `pip install tmm` | AR coatings and resonant-cavity photodiodes | [-@sec-responsivity] |
+| `lmfit` | `pip install lmfit` | fit I–V curves, responsivity spectra, APD gain curves | [-@sec-apd], [-@sec-solar] |
+
+: Optional Python packages for Chapter 5. {#tbl-toolbox tbl-colwidths="[18,24,44,14]"}
+
+## Improvements to the course
+
+1. **One trade-off per device.** Each detector of the chapter trades something for something: thickness for speed (pin), gain for noise
+   (APD), gain for bandwidth (photoconductor, phototransistor), fill factor for speed (MSM), voltage for current (solar cell band gap).
+   Framing the chapter this way, with the live panels of @sec-pin, @sec-apd-noise and @sec-photoconductors, makes it coherent.
+2. **"Predict, then compute."** *"Does doubling the light double V_oc?"*, *"Does raising V_r make a pin faster?"*, *"Does a higher APD gain
+   always improve the SNR?"*, *"Is a detector with R = 100 A/W better than one with R = 0.5 A/W?"*
+3. **Close the link budget.** The receiver chapter (@sec-receivers) ties Ch. 2 (BER, attenuation, dispersion), Ch. 4 (EDFA noise) and
+   Ch. 5 (photodiode noise) into a single calculation: a good capstone exercise.
+4. **Lab connection.** A Si photodiode, a few LEDs of different colours, a load resistor box, an oscilloscope and a small solar panel cover
+   responsivity, the load line, the RC response and the fill factor in one afternoon.
+5. **Modern content.** Possible updates: Ge-on-Si waveguide photodiodes for silicon photonics, SPAD arrays for lidar, SNSPDs, backside-illuminated
+   stacked CMOS sensors, perovskite and perovskite/Si tandem solar cells, coherent receivers.
+
+## Notes for the instructor: checks on the slides
+
+While recomputing the examples, everything matched the slides (QE and responsivity examples, pin transit and diffusion times, steady-state
+photocurrent with and without AR coating, Table 5.7, APD responsivities, Chynoweth example, ideal-detector and NEP examples, receiver SNR,
+APD noise example, solar-cell load line, $V_{oc}$ versus intensity, efficiency table), except these points:
+
+- **Slide numbering:** the companion uses the 152 slides of `chapter5_ Photodetectors.ppt`.
+- **Slide 20:** the column header "$\lambda_g$ (eV)" should read "$\lambda_g$ (µm)" (@sec-absorption).
+- **Slide 16:** the In₀.₅₃Ga₀.₄₇As curve gives about $2\times10^5$ m⁻¹ at 1.55 µm, three times below literature values
+  ($\approx7\times10^5$ m⁻¹); the companion uses the literature values for InGaAs.
+- **Slide 40:** "at this field the drift velocity saturates at $10^5$ m s⁻¹": at $3\times10^6$ V/m the Caughey–Thomas model gives
+  $0.89\times10^5$ m/s (0.22 ns instead of 0.2 ns); the conclusion is unchanged (@sec-pin).
+- **Slide 49:** the dark current of the GaP pin is printed "1 nm" (1 nA); the footnote letters are shuffled ("ᶜFGAP71" should be "ᵃ").
+- **Slide 56:** "$R=MR=(12)/(0.75)$" should be $(12)(0.75)=9.0$ A/W (@sec-apd).
+- **Slide 59 (Table 5.3):** with unrounded coefficients $M=58.7$ at $4.30\times10^5$ V/cm and 644 at $4.38\times10^5$ V/cm (slide: 57.2 and 647).
+  The difference comes from rounding $k$ to three digits and illustrates how sensitive $M$ is near breakdown.
+- **Slide 97:** the GaP Schottky NEP ($5.4\times10^{-15}$ W Hz⁻¹ᐟ²) is three times lower than the shot-noise value for the quoted
+  $I_d=10$ pA; the other entries agree with $\sqrt{2eI_d}/\mathcal R$ within 20 % (@sec-noise).
+- **Slide 102:** "for a bandwidth of 1 Hz, NEP = $2hc/\lambda$" is correct numerically, but the NEP of an ideal (quantum-noise-limited)
+  detector grows as $\sqrt B$; NEP is bandwidth-independent only when the noise does not depend on the signal (@sec-noise, warning box).
+- **Slide 105:** "Noise from load: $4k_BT/R_L$ = 1.29 nA" should read $[4k_BTB/R_L]^{1/2}=1.29$ nA.
+- **Slides 106–107:** the thermal noise of the load is neglected. With a 50 Ω load at 700 MHz it is 0.48 µA rms, and about 9 times more
+  optical power (0.2 µW) is needed for SNR = 10 (@sec-apd-noise). Worth a sentence on the slide, since it is the reason APDs exist.
+- **Slides 133–135:** the I–V curve of the 16 Ω example corresponds to an ideality factor η ≈ 2; the optimum load is 15.5 Ω and the
+  true FF 0.727 (the slide's 0.72 assumes the 16 Ω point is the MPP, which is very nearly true) (@sec-solar).
+- **Slide 149:** NEP is printed "W Hz" (W Hz⁻¹ᐟ²). **Slide 150:** "0.95 W/A" should be A/W.
+- **Slide 130:** the a-Si:H efficiency recomputed from $V_{oc}J_{sc}$FF is 9.9 % (slide 10.1 %, rounding in the source table).
+- **Missing material** added as "Going further": transit-time frequency response and the transit/RC optimum (@sec-ramo, @sec-pin), McIntyre
+  excess noise and the optimum APD gain (@sec-apd-noise), internal photoemission and MSM capacitance (@sec-schottky), gain–bandwidth of
+  photoconductors and phototransistors, lock-in detection, photon transfer curve, receiver sensitivity and BER (@sec-receivers), and the
+  Shockley–Queisser limit (@sec-sq).
