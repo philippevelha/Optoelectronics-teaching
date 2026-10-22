@@ -1,0 +1,180 @@
+# Going further: optical resonators and Gaussian modes {#sec-resonators}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/resonators.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import laserlib as lz
+lz.use_style()
+```
+
+*Not in the slides. Slide 75 shows transverse modes and slide 48 the longitudinal modes of a cavity, but the chapter never asks
+which mirrors make a cavity work, how large the beam is, or at which frequencies the transverse modes oscillate. This chapter
+answers these questions with the Gaussian beams of Chapter 1.*
+
+## Key relations
+
+A Gaussian beam (Ch. 1) has a waist $w_0$ and a wavefront radius $R(z)=z[1+(z_R/z)^2]$, with $z_R=\pi w_0^2/\lambda$. It is a
+mode of a two-mirror cavity if, at each mirror, its wavefront curvature matches the mirror curvature. With the **stability
+parameters**
+
+$$
+g_1=1-\frac{L}{R_1},\qquad g_2=1-\frac{L}{R_2}\qquad(R=\infty\text{ for a flat mirror}),
+$$
+
+such a beam exists only if
+
+$$
+0\le g_1g_2\le1 \qquad\text{(stable resonator)}.
+$$
+
+Its size on the mirrors and at the waist are
+
+$$
+w_1^2=\frac{\lambda L}{\pi}\sqrt{\frac{g_2}{g_1(1-g_1g_2)}},\quad
+w_2^2=\frac{\lambda L}{\pi}\sqrt{\frac{g_1}{g_2(1-g_1g_2)}},\quad
+w_0^2=\frac{\lambda L}{\pi}\frac{\sqrt{g_1g_2(1-g_1g_2)}}{|g_1+g_2-2g_1g_2|}.
+$$
+
+The Hermite–Gauss modes TEM$_{mn}$ (slide 75) accumulate an extra Gouy phase $(m+n+1)\arccos\sqrt{g_1g_2}$ per pass, so their
+resonance frequencies are
+
+$$
+\nu_{qmn}=\frac{c}{2nL}\left[q+(m+n+1)\frac{\arccos(\pm\sqrt{g_1g_2})}{\pi}\right],
+$$
+
+with the sign of $g_1$ (and $g_2$). Transverse modes thus add frequencies between the longitudinal modes of @sec-gas.
+
+## Resonator designer
+
+```{ojs}
+//| echo: false
+viewof rs = Inputs.form({
+  L: Inputs.range([1, 200], {value: 40, step: 1, label: "mirror spacing L (cm)"}),
+  flat1: Inputs.toggle({label: "mirror 1 flat", value: true}),
+  R1: Inputs.range([5, 500], {value: 100, step: 1, label: "R₁ (cm), if curved"}),
+  R2: Inputs.range([5, 500], {value: 100, step: 1, label: "R₂ (cm)"}),
+  lam: Inputs.range([400, 11000], {value: 632.8, step: 0.1, label: "wavelength (nm)"})
+})
+```
+
+```{ojs}
+//| echo: false
+rsOut = {
+  const L = rs.L*1e-2, R1 = rs.flat1 ? Infinity : rs.R1*1e-2, R2 = rs.R2*1e-2, lam = rs.lam*1e-9;
+  const g1 = 1 - L/R1, g2 = 1 - L/R2, G = g1*g2, stable = G >= 0 && G < 1 && !(g1 === 0 && g2 !== 0) && !(g2 === 0 && g1 !== 0);
+  const s = lam*L/Math.PI;
+  const ratio = Math.abs(g1 - g2) < 1e-9 ? 1 : g2/g1;
+  const w1 = stable ? Math.sqrt(s*Math.sqrt(ratio/(1 - G))) : NaN, w2 = stable ? Math.sqrt(s*Math.sqrt(1/(ratio*(1 - G)))) : NaN;
+  const sym = Math.abs(g1 - g2) < 1e-9;                              // symmetric cavity: avoid 0/0 (confocal)
+  const w0 = !stable ? NaN : sym ? Math.sqrt(s*Math.sqrt((1 + g1)/(4*(1 - g1)))) : Math.sqrt(s*Math.sqrt(G*(1 - G))/Math.abs(g1 + g2 - 2*G));
+  const zw = !stable ? NaN : sym ? L/2 : L*g2*(1 - g1)/(g1 + g2 - 2*G);  // waist position from mirror 1
+  const zR = Math.PI*w0*w0/lam, beam = [];
+  if (stable) for (let i = 0; i <= 200; i++) { const z = L*i/200, w = w0*Math.sqrt(1 + ((z - zw)/zR)**2); beam.push({z: z*100, w: w*1e3}, {z: z*100, w: -w*1e3}); }
+  const gouy = stable ? Math.acos(Math.sign(g1)*Math.sqrt(G))/Math.PI : NaN, fsr = 299792458/(2*L), spec = [];
+  if (stable) for (let q = 0; q <= 2; q++) for (let mn = 0; mn <= 6; mn++) spec.push({f: (q + (mn + 1)*gouy)*fsr/1e6, h: 1/(1 + 0.6*mn), mn: `m+n = ${mn}`});
+  return {g1, g2, G, stable, w1, w2, w0, zw, beam, gouy, fsr, spec};
+}
+Plot.plot({
+  width: Math.min(width, 380), height: 340, x: {label: "g₁", domain: [-2, 2]}, y: {label: "g₂", domain: [-2, 2]}, aspectRatio: 1,
+  marks: [
+    Plot.areaY(d3.range(0.5, 2.01, 0.01).map(x => ({x, y1: 0, y2: 1/x})), {x: "x", y1: "y1", y2: "y2", fill: "#1baf7a", fillOpacity: 0.25}),
+    Plot.areaY(d3.range(-2, -0.49, 0.01).map(x => ({x, y1: 1/x, y2: 0})), {x: "x", y1: "y1", y2: "y2", fill: "#1baf7a", fillOpacity: 0.25}),
+    Plot.rect([{x1: 0, x2: 0.5, y1: 0, y2: 2}, {x1: -0.5, x2: 0, y1: -2, y2: 0}], {x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: "#1baf7a", fillOpacity: 0.25}),
+    Plot.line(d3.range(0.5, 2.01, 0.01).map(x => ({x, y: 1/x})), {x: "x", y: "y", stroke: "#52514e"}),
+    Plot.line(d3.range(-2, -0.49, 0.01).map(x => ({x, y: 1/x})), {x: "x", y: "y", stroke: "#52514e"}),
+    Plot.ruleX([0], {stroke: "#52514e"}), Plot.ruleY([0], {stroke: "#52514e"}),
+    Plot.dot([{x: Math.max(-2, Math.min(2, rsOut.g1)), y: Math.max(-2, Math.min(2, rsOut.g2))}], {x: "x", y: "y", r: 7, fill: rsOut.stable ? "#2a78d6" : "#e34948"}),
+    Plot.text([{x: 1, y: 1, t: "planar"}, {x: 0, y: 0, t: "confocal"}, {x: -1, y: -1, t: "concentric"}], {x: "x", y: "y", text: "t", dy: -10, fontSize: 10})
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+rsOut.stable ? Plot.plot({
+  width: Math.min(width, 650), height: 220, x: {label: "position in the cavity (cm)"}, y: {label: "beam radius w(z) (mm)"},
+  marks: [Plot.areaY(rsOut.beam.filter(d => d.w > 0), {x: "z", y1: d => -d.w, y2: "w", fill: "#e34948", fillOpacity: 0.25}),
+          Plot.ruleX([0, rs.L], {stroke: "#0b0b0b", strokeWidth: 3})]
+}) : html`<p><b>Unstable resonator</b>: no Gaussian mode. The beam walks off after a few round trips.</p>`
+```
+
+```{ojs}
+//| echo: false
+rsOut.stable ? Plot.plot({
+  width: Math.min(width, 1050), height: 200, x: {label: "frequency (MHz, relative to an arbitrary longitudinal mode q₀)"}, y: {label: "", ticks: []},
+  color: {legend: true}, marks: [Plot.ruleX(rsOut.spec, {x: "f", y1: 0, y2: "h", stroke: "mn", strokeWidth: 2.5})]
+}) : html``
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">g₁ = ${rsOut.g1.toFixed(3)}, g₂ = ${rsOut.g2.toFixed(3)}, g₁g₂ = <b>${rsOut.G.toFixed(3)}</b> → <b>${rsOut.stable ? "stable" : "unstable"}</b>
+${rsOut.stable ? html` · w₀ = <b>${(rsOut.w0*1e3).toFixed(3)} mm</b> at ${(rsOut.zw*100).toFixed(1)} cm from mirror 1 · w₁ = ${(rsOut.w1*1e3).toFixed(3)} mm, w₂ = ${(rsOut.w2*1e3).toFixed(3)} mm<br>
+mode spacing c/2L = ${(rsOut.fsr/1e6).toFixed(1)} MHz · transverse-mode spacing = ${(rsOut.gouy*rsOut.fsr/1e6).toFixed(1)} MHz (${rsOut.gouy.toFixed(3)} × c/2L)` : ""}</div>`
+```
+
+Try the special cases:
+
+* **Confocal** ($R_1=R_2=L$, $g_1=g_2=0$): the transverse-mode spacing is exactly $c/4L$. Modes of different $m+n$ coincide with
+  longitudinal modes or fall exactly halfway: the cavity is highly **degenerate**, the principle of the scanning Fabry–Perot
+  spectrum analyser.
+* **Hemispherical** (flat + $R_2=L$, $g_1=1$, $g_2=0$): the cavity sits exactly on the stability boundary and
+  the mode would shrink to a point on the flat mirror. Shorten $L$ by 1 cm to see the tightly focused mode; lengthen it and the
+  cavity becomes unstable.
+* **He–Ne laser**: flat output coupler and $R_2\approx1$ m with $L=40$ cm. The beam radius is about 0.3 mm, so a 0.8 mm tube
+  (slide 73) acts as an aperture that suppresses higher-order modes.
+
+```{python}
+#| label: tbl-resonators
+#| tbl-cap: "Fundamental-mode sizes of some cavities used in this chapter (laserlib.waist_from_resonator)."
+cases = [("He–Ne, flat + R = 1 m, L = 40 cm", 0.40, np.inf, 1.0, 632.8e-9),
+         ("He–Ne, R = R = 1 m (symmetric), L = 40 cm", 0.40, 1.0, 1.0, 632.8e-9),
+         ("confocal 10 cm, 1064 nm", 0.10, 0.10, 0.10, 1064e-9),
+         ("CO₂, flat + R = 10 m, L = 1 m", 1.0, np.inf, 10.0, 10.6e-6),
+         ("near-concentric, R = 0.51 m, L = 1 m", 1.0, 0.51, 0.51, 632.8e-9)]
+rows = []
+for name, L, R1, R2, lam in cases:
+    g1, g2 = lz.resonator_g(L, R1, R2)
+    w0 = lz.waist_from_resonator(L, R1, R2, lam)
+    rows.append({"cavity": name, "g₁g₂": f"{g1*g2:.3f}", "w₀ (mm)": f"{w0*1e3:.3f}",
+                 "transverse spacing / (c/2L)": f"{np.arccos(np.sign(g1)*np.sqrt(g1*g2))/np.pi:.3f}"})
+pd.DataFrame(rows)
+```
+
+## Why stability matters for lasers
+
+The mode volume $\approx\pi w_0^2L/2$ decides how many atoms contribute to the gain, and the mode size on the mirrors decides
+how much light is clipped by the apertures. Near the stability edges ($g_1g_2\to0$ or $1$) the mode becomes very small or
+very large and sensitive to misalignment. Most lasers are designed well inside the stable region. High-power lasers with
+large-volume, high-gain media sometimes use **unstable** resonators on purpose: the beam fills the medium, and the output
+leaves around the edge of a small mirror.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **ABCD matrices.** Write the round-trip matrix $M$ of the cavity (propagation, mirror, propagation, mirror). Stability is
+  $|A+D|/2\le1$, and the self-consistent $q$ parameter solves $q=(Aq+B)/(Cq+D)$. Check that this reproduces $w_1$ above, then add
+  a thermal lens (@sec-pumping) inside the cavity.
+- **Laser diodes.** Edge-emitter waveguides guide the mode, so the stability analysis is replaced by the waveguide modes of Ch. 2.
+  In an external-cavity laser (@sec-single-mode), the lens and grating form an ABCD system again.
+- **Fox–Li iteration.** Propagate an arbitrary field back and forth between two finite mirrors with the angular-spectrum method
+  (the holography code of @sec-holography) and watch it converge to TEM$_{00}$, with a diffraction loss per pass that depends on
+  the Fresnel number $a^2/\lambda L$.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- H. Kogelnik and T. Li, "Laser beams and resonators", *Appl. Opt.* 5, 1550 (1966): still the best introduction.
+- Siegman, *Lasers*, ch. 19–21; Saleh and Teich, ch. 11 (resonator optics).
+:::
+
+## Try it yourself
+
+1. Find the range of $L$ for which a cavity with $R_1=R_2=50$ cm is stable.
+2. For the He–Ne laser, compute the frequency of the TEM$_{01}$ mode relative to TEM$_{00}$. Could it fall inside the 1.5 GHz
+   Doppler gain curve?
+3. Show that the confocal cavity has the smallest mirror spot sizes for a given $L$ among symmetric cavities.
+4. A 1 m CO₂ laser has a 6 mm bore. Which mirror radius gives a TEM$_{00}$ mode that fills 2/3 of the bore at the curved mirror?

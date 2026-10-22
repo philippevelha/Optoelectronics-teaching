@@ -1,0 +1,258 @@
+# Threshold, output power and photon lifetime {#sec-threshold}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/threshold.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import laserlib as lz
+lz.use_style()
+```
+
+*Slides 63–68 (gain coefficient and population inversion, threshold gain, phase condition, output versus pump rate), 69 and 74
+(threshold inversion of the He–Ne laser), 70–73 (output power and photon cavity lifetime). Also the two exercises of the course
+MATLAB live script `Chapter4.mlx`.*
+
+## Key relations
+
+The gain coefficient is the fractional power increase per unit length (slide 64). Writing the net stimulated emission rate
+$(N_2-N_1)B_{21}\rho$ with $\rho\approx N_\text{ph}h\nu_0/\Delta\nu$ gives the peak gain in terms of the inversion,
+
+$$
+g(\nu_0)\approx(N_2-N_1)\frac{B_{21}nh\nu_0}{c\,\Delta\nu}.
+$$
+
+A wave that makes one round trip in a cavity of length $L$, with mirror reflectances $R_1$, $R_2$ and internal loss $\alpha_s$,
+returns with the power $P_f=P_iR_1R_2e^{2gL}e^{-2\alpha_sL}$. Steady oscillation needs $P_f=P_i$ (slide 65): the gain must
+equal the total loss,
+
+$$
+g_{th}=\alpha_t=\alpha_s+\frac{1}{2L}\ln\frac{1}{R_1R_2}.
+$$
+
+The phase must also repeat after a round trip, $nk_m\,2L=2\pi m$ (slide 67), which selects the longitudinal modes of
+@sec-gas. With $A_{21}/B_{21}$ from @sec-einstein, the threshold inversion is (slide 66)
+
+$$
+(N_2-N_1)_{th}\approx g_{th}\frac{8\pi n^2\nu_0^2\tau_{sp}\Delta\nu}{c^2}.
+$$
+
+Photons leave the cavity through the mirrors and are absorbed inside it. The photon population decays with the **photon cavity
+lifetime** (slide 72) and the output power is the photon flux through mirror 1 (slide 71):
+
+$$
+\tau_{ph}=\frac{2nL}{c\left[1-e^{-2\alpha_tL}\right]}\approx\frac{n}{c\,\alpha_t},\qquad
+P_o=\tfrac12A(1-R_1)h\nu_0N_\text{ph}\frac{c}{n}.
+$$
+
+Above threshold the inversion is **clamped** at $(N_2-N_1)_{th}$. Every extra pump excitation becomes a stimulated photon, so
+$P_o$ grows linearly with the pump rate (slide 68).
+
+## Threshold calculator
+
+```{ojs}
+//| echo: false
+presets = ({
+  "He–Ne (slides 69, 73)":        {L: 40, R1: 0.95, R2: 1.0, as: 0.05, n: 1.0, lam: 632.8, dnu: 1.5e9, tsp: 100e-9, d: 0.8},
+  "Nd:YAG rod":                   {L: 10, R1: 0.90, R2: 0.999, as: 0.3, n: 1.82, lam: 1064, dnu: 120e9, tsp: 230e-6, d: 4},
+  "GaAs laser diode (slide 131)": {L: 0.025, R1: 0.32, R2: 0.32, as: 1000, n: 3.6, lam: 860, dnu: 8e12, tsp: 2.5e-9, d: 0.002},
+  "InGaAsP FP diode, one HR facet":{L: 0.03, R1: 0.30, R2: 0.90, as: 1500, n: 3.5, lam: 1550, dnu: 5e12, tsp: 2e-9, d: 0.002}
+})
+viewof preset = Inputs.select(Object.keys(presets), {label: "start from"})
+```
+
+```{ojs}
+//| echo: false
+viewof th = {
+  const p = presets[preset];
+  return Inputs.form({
+    L: Inputs.number({value: p.L, label: "cavity length L (cm)"}),
+    R1: Inputs.range([0.01, 0.9999], {value: p.R1, step: 0.0001, label: "output mirror R₁"}),
+    R2: Inputs.range([0.01, 1], {value: p.R2, step: 0.0001, label: "back mirror R₂"}),
+    as: Inputs.number({value: p.as, label: "internal loss α_s (m⁻¹)"}),
+    n: Inputs.number({value: p.n, label: "refractive index n"}),
+    lam: Inputs.number({value: p.lam, label: "wavelength λ₀ (nm)"}),
+    dnu: Inputs.number({value: p.dnu, label: "gain linewidth Δν (Hz)"}),
+    tsp: Inputs.number({value: p.tsp, label: "spontaneous lifetime τ_sp (s)"})
+  });
+}
+```
+
+```{ojs}
+//| echo: false
+thOut = {
+  const c = 299792458, L = th.L*1e-2, nu = c/(th.lam*1e-9);
+  const mir = Math.log(1/(th.R1*th.R2))/(2*L), at = th.as + mir;
+  const tph = 2*th.n*L/(c*(1 - Math.exp(-2*at*L))), tph0 = th.n/(c*at);
+  const dN = at*8*Math.PI*th.n**2*nu**2*th.tsp*th.dnu/c**2;
+  const fsr = c/(2*th.n*L), dnuc = 1/(2*Math.PI*tph), Q = 2*Math.PI*nu*tph;
+  return {at, mir, tph, tph0, dN, fsr, dnuc, Q, F: fsr/dnuc, ee: Math.log(1/th.R1)/(2*L)/at};
+}
+html`<div class="result-box">
+threshold gain g<sub>th</sub> = α<sub>t</sub> = <b>${thOut.at.toPrecision(4)} m⁻¹</b> (${(thOut.at/100).toPrecision(3)} cm⁻¹; mirrors ${(100*thOut.mir/thOut.at).toFixed(0)} %, internal ${(100*th.as/thOut.at).toFixed(0)} %)<br>
+threshold inversion (N₂ − N₁)<sub>th</sub> = <b>${thOut.dN.toExponential(3)} m⁻³</b> (${(thOut.dN/1e6).toExponential(2)} cm⁻³)<br>
+photon lifetime τ<sub>ph</sub> = <b>${thOut.tph < 1e-9 ? (thOut.tph*1e12).toFixed(2) + " ps" : (thOut.tph*1e9).toFixed(2) + " ns"}</b> (approximation n/cα<sub>t</sub>: ${thOut.tph0 < 1e-9 ? (thOut.tph0*1e12).toFixed(2) + " ps" : (thOut.tph0*1e9).toFixed(2) + " ns"})<br>
+cold-cavity linewidth 1/2πτ<sub>ph</sub> = ${(thOut.dnuc/1e6).toPrecision(3)} MHz · mode spacing c/2nL = ${(thOut.fsr/1e9).toPrecision(4)} GHz · finesse ≈ ${thOut.F.toPrecision(3)} · Q = ${thOut.Q.toExponential(2)}<br>
+fraction of the loss leaving through R₁ (extraction efficiency): ${(100*thOut.ee).toFixed(1)} %</div>`
+```
+
+Compare the presets. The He–Ne laser has a tiny gain (0.1 m⁻¹) and needs high-reflectivity mirrors. The laser diode has an
+enormous loss (55 cm⁻¹), mostly through its 32 % cleaved facets, and compensates with an enormous gain. Its photon lifetime is
+picoseconds, which is what makes GHz modulation possible (@sec-modulation).
+
+## Worked examples (slides 69 and 73), recomputed
+
+> He–Ne laser at 632.8 nm ($\nu_0=473.8$ THz), $L=40$ cm, $R_1=0.95$, $R_2=1$, $\Delta\nu=1.5$ GHz, $\alpha_s=0.05$ m⁻¹,
+> $\tau_{sp}=100$ ns, $n=1$. Find the threshold gain and inversion. With a 0.8 mm tube and 2.5 mW output, find the photon
+> lifetime and the photon concentration.
+
+```{python}
+#| label: tbl-hene-th
+#| tbl-cap: "Slides 69 and 73 recomputed."
+gth = lz.threshold_gain(0.05, 0.40, 0.95, 1.0)
+dN = lz.threshold_inversion(gth, 473.8e12, 100e-9, 1.5e9)
+tph, tph0 = lz.photon_lifetime(gth, 0.40), lz.photon_lifetime(gth, 0.40, exact=False)
+Nph = 2.5e-3/lz.gas_laser_output(1.0, np.pi*(0.4e-3)**2, 0.95, 474e12)
+pd.DataFrame([("threshold gain g_th = α_t", f"{gth:.3f} m⁻¹", "0.114 m⁻¹"),
+              ("threshold inversion (N₂ − N₁)_th", f"{dN:.2e} m⁻³", "≈ 1.1×10¹⁵ m⁻³"),
+              ("photon lifetime, exact (4.6.12)", f"{tph*1e9:.1f} ns", "30.6 ns"),
+              ("photon lifetime, n/(cα_t) (4.6.13)", f"{tph0*1e9:.1f} ns", "29.2 ns"),
+              ("photon concentration N_ph", f"{Nph:.2e} m⁻³", "2.1×10¹⁵ m⁻³")],
+             columns=["quantity", "computed", "slide"])
+```
+
+Only about $10^{15}$ inverted Ne atoms per m³ are needed, a fraction $10^{-7}$ of the gas: gas lasers work with tiny
+inversions spread over large volumes.
+
+## The Fabry–Perot resonator: exercises of `Chapter4.mlx`
+
+The MATLAB live script of the course contains two exercises on Fabry–Perot cavities in semiconductor lasers.
+
+> **Exercise 1.** InGaAsP–InP FP laser, $L=250$ µm, peak at 1550 nm, $n=3.8$, $\alpha_s=20$ cm⁻¹, gain FWHM 2 nm. Find the
+> mode number, the mode spacing, the number of modes and the facet reflectance.
+>
+> **Exercise 2.** Semiconductor FP cavity, $L=200$ µm, $n=3.6$. Find the mode nearest to 1300 nm, the mode separation and the
+> spectral width of each mode for $R=0.9$ and $0.8$.
+
+```{python}
+#| label: tbl-mlx
+#| tbl-cap: "The two exercises of Chapter4.mlx. The spectral width of a passive cavity mode is Δν_m/F with the finesse F = π√R/(1 − R)."
+R = lz.facet_R(3.8); m1 = lz.mode_number(250e-6, 1550e-9, 3.8)
+dnu1, dl1 = lz.mode_spacing(250e-6, 1550e-9, 3.8)
+m2 = lz.mode_number(200e-6, 1300e-9, 3.6); dnu2, dl2 = lz.mode_spacing(200e-6, 1300e-9, 3.6)
+rows = [("Ex. 1: facet reflectance ((n − 1)/(n + 1))²", f"{R:.3f}"),
+        ("Ex. 1: mode number m = 2nL/λ", f"{m1:.1f} → {round(m1)}"),
+        ("Ex. 1: mode spacing", f"{dnu1/1e9:.1f} GHz = {dl1*1e9:.3f} nm"),
+        ("Ex. 1: modes in 2 nm", f"{2/(dl1*1e9):.2f} → 2 or 3 modes"),
+        ("Ex. 1: threshold gain with α_s = 20 cm⁻¹", f"{lz.threshold_gain(2000, 250e-6, R)/100:.1f} cm⁻¹"),
+        ("Ex. 2: mode number nearest 1300 nm", f"{m2:.1f} → {round(m2)} (λ = {2*3.6*200e-6/round(m2)*1e9:.2f} nm)"),
+        ("Ex. 2: mode spacing", f"{dnu2/1e9:.1f} GHz = {dl2*1e9:.3f} nm")]
+for Rm in (0.9, 0.8):
+    F = np.pi*np.sqrt(Rm)/(1 - Rm)
+    rows.append((f"Ex. 2: finesse and mode width, R = {Rm}", f"F = {F:.1f}, δν = {dnu2/F/1e9:.2f} GHz = {dl2/F*1e12:.1f} pm"))
+pd.DataFrame(rows, columns=["quantity", "value"])
+```
+
+The conclusion of the live script, "the spectral width depends greatly on the mirror reflectances", holds for a **passive**
+cavity. The panel below shows what gain adds. A wave makes many round trips; with single-pass gain $e^{(g-\alpha_s)L}$ each round
+trip multiplies it by $R_1R_2e^{2(g-\alpha_s)L}$. As $g\to g_{th}$ this factor approaches 1, the transmission peaks diverge and
+their width collapses. A laser is a Fabry–Perot amplifier pushed to the point where it needs no input.
+
+```{ojs}
+//| echo: false
+viewof fp = Inputs.form({
+  R: Inputs.range([0.05, 0.99], {value: 0.32, step: 0.01, label: "facet reflectance R₁ = R₂"}),
+  L: Inputs.range([50, 1000], {value: 250, step: 10, label: "cavity length L (µm)"}),
+  n: Inputs.range([1, 4], {value: 3.6, step: 0.05, label: "refractive index n"}),
+  frac: Inputs.range([0, 0.999], {value: 0.0, step: 0.001, label: "net gain (g − α_s)/(mirror loss)"})
+})
+```
+
+```{ojs}
+//| echo: false
+fpOut = {
+  const c = 299792458, L = fp.L*1e-6, fsr = c/(2*fp.n*L), mir = Math.log(1/(fp.R*fp.R))/(2*L);
+  const Gs = Math.exp(fp.frac*mir*L), rr = fp.R*Gs, data = [];
+  for (let i = 0; i <= 1500; i++) {
+    const dnu = -1.6*fsr + 3.2*fsr*i/1500, phi = Math.PI*dnu/fsr;
+    data.push({f: dnu/1e9, T: (1 - fp.R)**2*Gs/((1 - rr)**2 + 4*rr*Math.sin(phi)**2)});
+  }
+  const width = fsr/Math.PI*2*Math.asin((1 - rr)/(2*Math.sqrt(rr)));
+  const peak = (1 - fp.R)**2*Gs/(1 - rr)**2;
+  return {data, fsr, width, peak};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 280, x: {label: "frequency offset (GHz)"}, y: {label: "transmission", type: "log", grid: true},
+  marks: [Plot.line(fpOut.data, {x: "f", y: "T", stroke: "#2a78d6", strokeWidth: 2})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">mode spacing ${(fpOut.fsr/1e9).toFixed(1)} GHz · peak transmission <b>${fpOut.peak.toPrecision(4)}</b> ·
+FWHM of each resonance <b>${fpOut.width > 1e9 ? (fpOut.width/1e9).toFixed(2) + " GHz" : (fpOut.width/1e6).toFixed(2) + " MHz"}</b>
+(finesse ${(fpOut.fsr/fpOut.width).toFixed(1)})</div>`
+```
+
+## Output versus pump rate (slide 68)
+
+The rate equations of a four-level laser, with $\beta$ the fraction of spontaneous emission that enters the lasing mode, show the
+threshold, the clamping of the inversion and the linear output:
+
+$$
+\frac{dN}{dt}=R_p-\frac{N}{\tau_{sp}}-\frac{N\,S}{N_{th}\tau_{ph}},\qquad
+\frac{dS}{dt}=\frac{N\,S}{N_{th}\tau_{ph}}-\frac{S}{\tau_{ph}}+\beta\frac{N}{\tau_{sp}}.
+$$
+
+```{python}
+#| label: fig-pump
+#| fig-cap: "Steady state of the rate equations versus pump rate (normalised to threshold, R_th = N_th/τ_sp). Left: inversion N/N_th, which clamps at 1 above threshold (slide 68). Right: photon number S (log scale) for three values of β. A smaller β gives a sharper threshold: the jump in S across threshold is about 1/β."
+Rp = np.logspace(-1, 1, 400)                       # pump in units of N_th/τ_sp
+fig, ax = plt.subplots(1, 2, figsize=(11, 3.8))
+for beta, c in zip((1e-1, 1e-3, 1e-6), lz.PALETTE):
+    # steady state (units N_th = τ_sp = τ_ph = 1 for N and rates; S in units of N_th τ_ph/τ_sp):
+    # N(1 + S) = Rp  and  S(N − 1) + βN = 0  →  S = βN/(1 − N); solve the quadratic for N
+    a, b, cc = (1 - beta), -(1 + Rp), Rp           # (1 − β)N² − (1 + Rp)N + Rp = 0
+    N = (-b - np.sqrt(b**2 - 4*a*cc))/(2*a)
+    S = beta*N/(1 - N)
+    ax[0].plot(Rp, N, color=c, label=f"β = {beta:g}")
+    ax[1].loglog(Rp, S, color=c, label=f"β = {beta:g}")
+ax[0].plot(Rp, np.minimum(Rp, 1), ":", color=lz.INK2, lw=1.2, label="ideal")
+ax[0].set(xlabel="pump rate R_p/R_th", ylabel="inversion N/N_th"); ax[0].legend(fontsize=8)
+ax[1].set(xlabel="pump rate R_p/R_th", ylabel="photons in the mode S"); ax[1].legend(fontsize=8)
+plt.tight_layout(); plt.show()
+```
+
+Gas and solid-state lasers have $\beta\sim10^{-8}$ to $10^{-10}$ and a razor-sharp threshold. Laser diodes have
+$\beta\sim10^{-4}$ to $10^{-5}$. Microcavity and nanolasers approach $\beta\to1$, the "thresholdless" laser, where the kink
+disappears and only photon statistics distinguish laser light from spontaneous emission.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Optimum output coupling.** For a given small-signal gain $g_0$ and internal loss, too high an $R_1$ traps the light, too low a
+  $R_1$ raises the threshold. Rigrod's analysis gives the output intensity
+  $I_\text{out}\propto(1-R_1)\left[g_0L-\tfrac12\ln(1/R_1R_2)-\alpha_sL\right]/\ldots$; find the optimum $R_1$ numerically for the
+  He–Ne laser ($g_0=0.15$ m⁻¹).
+- **Q factor and photon lifetime.** $Q=2\pi\nu_0\tau_{ph}$. Compute $Q$ for the presets of the calculator and compare with
+  microring resonators ($Q\sim10^6$) and photonic-crystal cavities ($Q\sim10^6$, volume $\sim(\lambda/n)^3$).
+- **Spontaneous emission factor β.** Estimate $\beta$ for the He–Ne laser as the ratio of modes inside the lasing mode to all modes
+  within the linewidth in the tube volume.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, sec. 4.6; Siegman, *Lasers*, ch. 11–13 (laser oscillation and output coupling); Svelto, ch. 7.
+- G. Björk and Y. Yamamoto, "Analysis of semiconductor microcavity lasers using rate equations", *IEEE J. Quantum Electron.* 27,
+  2386 (1991): the β-factor and thresholdless lasers.
+:::
+
+## Try it yourself
+
+1. A He–Ne laser has $R_1=0.99$ instead of 0.95. Recompute $g_{th}$, $\tau_{ph}$ and the output power for the same photon
+   concentration. Is the higher reflectance better?
+2. With the calculator, find the minimum reflectance $R_1=R_2$ for which a 1 cm long gain medium with $g=0.5$ m⁻¹ can lase.
+3. Show that $\tau_{ph}$ (exact) tends to $n/c\alpha_t$ when $\alpha_tL\ll1$. What is the error for a laser diode with
+   $\alpha_tL=1.4$?
+4. In the FP panel, what is the FWHM when the net gain reaches 99 % of the mirror loss? Compare with $1/2\pi\tau_{ph}$.

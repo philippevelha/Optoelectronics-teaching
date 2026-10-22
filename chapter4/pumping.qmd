@@ -1,0 +1,167 @@
+# Three- and four-level lasers {#sec-pumping}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/pumping.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import laserlib as lz
+lz.use_style()
+```
+
+*Slides 11–14 (the laser principle with the ruby laser, three-level lasers, the four-level Nd:YAG laser) and 20–21 (worked
+example: minimum pump power of a three-level laser).*
+
+## Key relations
+
+A two-level system cannot be inverted (@sec-einstein). Real lasers use auxiliary levels (slides 11–14):
+
+* **Three-level laser** (ruby, Cr³⁺:Al₂O₃). Pump photons lift ions from the ground state $E_1$ to a broad band $E_3$. The ions
+  relax in picoseconds, through phonons, to the long-lived level $E_2$ ($\tau_{sp}=3$ ms). The laser transition $E_2\to E_1$
+  ends on the **ground state**, so more than half of all ions must be pumped before any gain appears.
+* **Four-level laser** (Nd³⁺:YAG). The laser transition ends on a level $E_1$ that lies about 0.25 eV above the ground state and
+  empties in nanoseconds. $E_1$ is almost empty at room temperature, so every ion that reaches $E_2$ ($\tau_{sp}=230$ µs)
+  already contributes to the inversion.
+
+With a pump rate $W_p$ per ground-state ion and fast decay from the pump level, the steady-state inversions are
+
+$$
+\text{3-level: }\ \frac{N_2-N_1}{N_0}=\frac{W_p\tau_{sp}-1}{W_p\tau_{sp}+1},\qquad
+\text{4-level: }\ \frac{N_2-N_1}{N_0}=\frac{W_p(\tau_{21}-\tau_{10})}{1+W_p(\tau_{21}+\tau_{10})}\approx W_p\tau_{21}.
+$$
+
+The three-level system needs $W_p\tau_{sp}>1$: every ion must be pumped faster than it decays, which gives the minimum pump
+power of slide 20,
+
+$$
+\frac{P_{p,\min}}{V}=\frac{N_0}{2}\,\frac{h\nu_{13}}{\tau_{sp}}.
+$$
+
+## Inversion versus pump rate
+
+```{ojs}
+//| echo: false
+viewof lv = Inputs.form({
+  lw: Inputs.range([-3, 2], {value: 0.3, step: 0.02, label: "log₁₀ (W_p τ): pump rate × upper-level lifetime"}),
+  r10: Inputs.range([-6, -1], {value: -4, step: 0.1, label: "4-level: log₁₀ (τ₁₀/τ₂₁), lower-level emptying"}),
+  dth: Inputs.range([0.001, 0.2], {value: 0.02, step: 0.001, label: "threshold inversion ΔN_th/N₀"})
+})
+```
+
+```{ojs}
+//| echo: false
+lvOut = {
+  const r = 10 ** lv.r10, three = x => (x - 1)/(x + 1), four = x => x*(1 - r)/(1 + x*(1 + r)), data = [];
+  for (let i = 0; i <= 300; i++) { const x = 10 ** (-3 + 5*i/300); data.push({x, d: three(x), who: "3-level (ruby)"}, {x, d: four(x), who: "4-level (Nd:YAG)"}); }
+  const x = 10 ** lv.lw;
+  const need3 = (1 + lv.dth)/(1 - lv.dth), need4 = lv.dth/((1 - r) - lv.dth*(1 + r));
+  return {data, x, d3: three(x), d4: four(x), need3, need4};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 320, x: {label: "W_p τ", type: "log"}, y: {label: "inversion (N₂ − N₁)/N₀", domain: [-1, 1], grid: true},
+  color: {legend: true, range: ["#e34948", "#2a78d6"]},
+  marks: [Plot.line(lvOut.data, {x: "x", y: "d", stroke: "who", strokeWidth: 2}), Plot.ruleY([0], {stroke: "#0b0b0b"}),
+          Plot.ruleY([lv.dth], {stroke: "#1baf7a", strokeDasharray: "5,3"}), Plot.ruleX([lvOut.x], {stroke: "#52514e", strokeDasharray: "2,3"}),
+          Plot.dot([{x: lvOut.x, y: lvOut.d3}, {x: lvOut.x, y: lvOut.d4}], {x: "x", y: "y", r: 5, fill: ["#e34948", "#2a78d6"]})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">at W<sub>p</sub>τ = ${lvOut.x.toFixed(3)}: 3-level inversion = <b>${lvOut.d3.toFixed(3)}</b>, 4-level inversion = <b>${lvOut.d4.toFixed(4)}</b><br>
+pump needed for ΔN<sub>th</sub>/N₀ = ${lv.dth}: 3-level W<sub>p</sub>τ = <b>${lvOut.need3.toFixed(3)}</b>, 4-level W<sub>p</sub>τ = <b>${lvOut.need4.toExponential(2)}</b>
+→ the 3-level laser needs <b>${(lvOut.need3/lvOut.need4).toFixed(0)}×</b> more pump</div>`
+```
+
+The four-level curve starts at zero and rises linearly: any pump gives gain. The three-level curve starts at $-1$ (full
+absorption) and crosses zero only at $W_p\tau=1$. For a typical threshold inversion of a few percent, the four-level laser
+needs **tens of times** less pump. That is why the ruby laser runs only in pulses while Nd:YAG runs continuously (slide 14 notes).
+
+## Worked example (slides 20–21), recomputed
+
+> Ruby rod: $N_0=10^{19}$ cm⁻³ Cr³⁺ ions, length 10 cm, diameter 1 cm, $\tau_{sp}=3$ ms, pump band 2.2 eV above $E_1$. Find the
+> minimum pump power for inversion.
+
+```{python}
+#| label: tbl-ruby
+#| tbl-cap: "Minimum pump power of the ruby rod of slide 20, and the energy needed within one lifetime."
+V = np.pi*0.005**2*0.10                               # m^3
+N0 = 1e19*lz.CM3
+P = lz.pump_power_3level(N0, V, 2.2, 3e-3)
+pd.DataFrame({"quantity": ["volume (cm³)", "ions to pump, N0V/2", "minimum absorbed pump power", "energy within τ_sp = 3 ms",
+                           "slide"],
+              "value": [f"{V*1e6:.3f}", f"{N0*V/2:.3e}", f"{P/1e3:.2f} kW", f"{P*3e-3:.1f} J", "4.6 kW, 13.8 J"]})
+```
+
+The library agrees with the slide. A flash lamp converts at most a few percent of its electrical energy into absorbed pump light
+in the Cr³⁺ bands, so a real ruby laser needs **kilojoules** in the flash. Maiman's first laser (slide 12) fired once every few
+seconds.
+
+## A flash-pumped ruby laser in time
+
+The panel above shows steady states. A flash lasts about 1 ms, comparable to $\tau_{sp}$. The figure integrates the
+three-level rate equation $dN_2/dt=W_p(t)N_1-N_2/\tau_{sp}$ for a Gaussian flash:
+
+```{python}
+#| label: fig-ruby-flash
+#| fig-cap: "Population of the upper ruby level during a 1 ms (FWHM) flash for three peak pump rates (no laser oscillation). The flash is shorter than τ_sp, so the ions cannot accumulate: even W_pτ = 2.4 at the peak, which would invert in steady state, never reaches N₂ > N₀/2 (dashed). Inversion needs a much stronger flash, and it lasts only part of the pulse."
+from scipy.integrate import solve_ivp
+tau = 3e-3
+t = np.linspace(0, 6e-3, 2000)
+fig, ax = plt.subplots(figsize=(7.5, 3.8))
+for Wmax in (300, 800, 2000):
+    W = lambda t: Wmax*np.exp(-4*np.log(2)*((t - 1.5e-3)/1e-3)**2)
+    s = solve_ivp(lambda t, y: [W(t)*(1 - y[0]) - y[0]/tau], (0, t[-1]), [0.0], t_eval=t, max_step=1e-5)
+    ax.plot(t*1e3, s.y[0], label=f"peak W_p = {Wmax} s⁻¹ (W_pτ = {Wmax*tau:.1f})")
+ax.axhline(0.5, color=lz.PALETTE[7], ls="--", lw=1.2)
+ax2 = ax.twinx(); ax2.fill_between(t*1e3, np.exp(-4*np.log(2)*((t - 1.5e-3)/1e-3)**2), color=lz.GRID, alpha=0.5, zorder=0)
+ax2.set_yticks([]); ax2.grid(False); ax.set_zorder(ax2.get_zorder() + 1); ax.patch.set_visible(False)
+ax.set(xlabel="time (ms)", ylabel="N₂/N₀", ylim=(0, 1)); ax.legend(fontsize=8, loc="upper right"); plt.show()
+```
+
+## Quantum defect: where the pump energy goes
+
+Every pumped ion that lases emits a photon smaller than the pump photon. The difference heats the crystal:
+
+```{python}
+#| label: tbl-defect
+#| tbl-cap: "Quantum efficiency hν_laser/hν_pump of common pumping schemes. The rest of the absorbed pump energy becomes heat in the gain medium."
+schemes = [("ruby, green flash band", 550e-9, 694.3e-9), ("ruby, blue flash band", 410e-9, 694.3e-9),
+           ("Nd:YAG, flash lamp (avg.)", 600e-9, 1064e-9), ("Nd:YAG, diode at 808 nm", 808e-9, 1064e-9),
+           ("Nd:YAG, diode at 885 nm (direct)", 885e-9, 1064e-9), ("EDFA, pump at 980 nm", 980e-9, 1550e-9),
+           ("EDFA, pump at 1480 nm", 1480e-9, 1550e-9), ("Yb:YAG, diode at 940 nm", 940e-9, 1030e-9)]
+pd.DataFrame([{"scheme": s, "λ pump (nm)": round(p*1e9), "λ laser (nm)": round(l*1e9, 1),
+               "quantum efficiency": f"{p/l:.0%}", "heat fraction": f"{1 - p/l:.0%}"} for s, p, l in schemes])
+```
+
+Diode pumping into a narrow absorption line (808 nm for Nd³⁺) replaced flash lamps in most solid-state lasers. It wastes less
+pump light and less heat. Pumping directly into the upper laser level (885 nm, 1480 nm) cuts the heat further but makes the
+system **quasi-three-level**: the pump also stimulates emission back down.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Quasi-three-level media** (Yb³⁺, Er³⁺). The lower laser level lies only a few $k_BT$ above the ground state and is thermally
+  populated. Write $N_1$ with a Boltzmann factor and find how the threshold depends on temperature. Why are Yb lasers cooled to
+  reach high power?
+- **Lasers without pump levels.** Ti:sapphire and dye lasers are "vibronic" four-level systems: the lower level is a vibrational
+  state of the ground electronic level. Their gain spans 650–1100 nm (Ti:sapphire), the basis of femtosecond lasers
+  (@sec-pulsed).
+- **Thermal lensing.** The heat of the quantum defect creates a radial temperature profile and a positive lens in the rod. Estimate
+  the focal length of a Nd:YAG rod absorbing 50 W ($dn/dT=7\times10^{-6}$ K⁻¹, thermal conductivity 13 W m⁻¹ K⁻¹).
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- T. H. Maiman, "Stimulated optical radiation in ruby", *Nature* 187, 493 (1960): one page that started the field.
+- Kasap, sec. 4.2–4.3; Koechner, *Solid-State Laser Engineering*, 6th ed., ch. 1–2 and 6 (pumping).
+:::
+
+## Try it yourself
+
+1. Repeat the ruby example for a Nd:YAG rod of the same size ($N_0=1.4\times10^{20}$ cm⁻³, pump 808 nm, $\tau=230$ µs) that needs an
+   inversion of $10^{17}$ cm⁻³. Compare the pump powers.
+2. In the panel, set $\tau_{10}/\tau_{21}=0.1$. What happens to the four-level inversion at high pump rates? Explain the limit.
+3. For the 3-level system, at what $W_p\tau$ is half of the ions above $E_1$ in excess (inversion 0.5)?
+4. A Nd:YAG laser emits 10 W at 1064 nm when pumped with 25 W at 808 nm. What fraction of the losses is the quantum defect?

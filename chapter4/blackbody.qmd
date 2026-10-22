@@ -1,0 +1,210 @@
+# Radiation in a box {#sec-blackbody}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/blackbody.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import laserlib as lz
+lz.use_style()
+```
+
+*Slides 4–7: radiation in a box at temperature $T$, counting the modes, the density of modes, the "ultraviolet catastrophe"
+and Planck's law.*
+
+## Key relations
+
+A cubic box of side $L$ with conducting walls holds standing waves whose wavevector components are quantised (slide 4),
+
+$$
+k_x=\frac{\pi n_x}{L},\quad k_y=\frac{\pi n_y}{L},\quad k_z=\frac{\pi n_z}{L},\qquad n_x,n_y,n_z=1,2,3,\dots
+$$
+
+Each triplet $(n_x,n_y,n_z)$ is a point of a cubic lattice in "mode space" (slide 5). A mode of frequency $\nu$ sits at the
+distance $p=\sqrt{n_x^2+n_y^2+n_z^2}=2L\nu/c$ from the origin. Counting the points in the positive octant of a spherical shell
+of radius $p$ and thickness $dp$, and multiplying by **2 for the two polarisations**, gives the number of modes per unit volume
+per unit frequency (slides 6–7):
+
+$$
+\frac{dN}{L^3\,d\nu}=\frac{1}{L^3}\cdot2\cdot\frac{1}{8}\cdot4\pi p^2\frac{dp}{d\nu}=\frac{8\pi\nu^2}{c^3}.
+$$
+
+Classical physics gives every mode the mean energy $k_BT$. The energy density per unit frequency is then the
+**Rayleigh–Jeans** law, $\rho(\nu)=8\pi k_BT\nu^2/c^3$, which grows without bound at high frequency: the "disaster at high
+frequency" of slide 7. Planck replaced $k_BT$ by the mean energy of a quantised oscillator,
+$h\nu/(e^{h\nu/k_BT}-1)$, which falls off exponentially when $h\nu\gg k_BT$:
+
+$$
+\rho_\text{eq}(\nu)=\frac{8\pi h\nu^3}{c^3}\,\frac{1}{\exp(h\nu/k_BT)-1}.
+$$
+
+The Planck law reappears in @sec-einstein: Einstein used it to find the ratio of spontaneous to stimulated emission.
+
+::: {.callout-warning collapse="true"}
+## Two details of slides 6–7
+Slide 6 writes $dN=4\pi\nu\,(L/c)^3d\nu$. The exponent is missing: the octant of the shell gives $dN=4\pi\nu^2(L/c)^3d\nu$ for
+**one** polarisation. Slides 6–7 then carry $4\pi$ into $du_\nu/d\nu=4\pi k_BT\nu^2/c^3$, whereas Planck's law on the same slide
+has $8\pi$. The factor 2 is the second polarisation. With it, Planck's law tends exactly to Rayleigh–Jeans when $h\nu\ll k_BT$.
+:::
+
+## Counting the modes (slides 5–6)
+
+The panel draws a two-dimensional slice of mode space ($n_z=1$) and the shell between $p$ and $p+dp$. The table counts the
+modes of the full 3D box by brute force and compares with the continuum formula $\tfrac{\pi}{6}p^3$ (one polarisation).
+
+```{ojs}
+//| echo: false
+viewof mc = Inputs.form({
+  p: Inputs.range([4, 40], {value: 10, step: 0.5, label: "shell radius p = 2Lν/c"}),
+  dp: Inputs.range([0.5, 5], {value: 1.5, step: 0.1, label: "shell thickness dp"})
+})
+```
+
+```{ojs}
+//| echo: false
+mcOut = {
+  const pts = [], R = mc.p + mc.dp, N = Math.ceil(R) + 1;
+  for (let i = 1; i <= N; i++) for (let j = 1; j <= N; j++) {
+    const r = Math.hypot(i, j); pts.push({nx: i, ny: j, inShell: r >= mc.p && r < mc.p + mc.dp, inside: r < mc.p});
+  }
+  let count = 0, shell = 0;                                   // brute-force 3D count
+  for (let i = 1; i <= N; i++) for (let j = 1; j <= N; j++) for (let k = 1; k <= N; k++) {
+    const r2 = i*i + j*j + k*k; if (r2 < mc.p*mc.p) count++; else if (r2 < R*R) shell++;
+  }
+  const arc = d3.range(0, 91).map(a => ({x: mc.p*Math.cos(a*Math.PI/180), y: mc.p*Math.sin(a*Math.PI/180)}));
+  const arc2 = arc.map(d => ({x: d.x*R/mc.p, y: d.y*R/mc.p}));
+  return {pts, count, shell, arc, arc2, N};
+}
+Plot.plot({
+  width: Math.min(width, 520), height: Math.min(width, 520), x: {label: "n_x", domain: [0, mcOut.N]}, y: {label: "n_y", domain: [0, mcOut.N]},
+  marks: [
+    Plot.dot(mcOut.pts, {x: "nx", y: "ny", r: mcOut.N > 30 ? 1.5 : 2.5, fill: d => d.inShell ? "#eb6834" : d.inside ? "#2a78d6" : "#c3c2b7"}),
+    Plot.line(mcOut.arc, {x: "x", y: "y", stroke: "#0b0b0b"}), Plot.line(mcOut.arc2, {x: "x", y: "y", stroke: "#0b0b0b", strokeDasharray: "4,3"})
+  ]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">3D box, one polarisation: <b>${mcOut.count}</b> modes with p &lt; ${mc.p} (continuum π p³/6 = ${(Math.PI/6*mc.p**3).toFixed(0)},
+ratio ${(mcOut.count/(Math.PI/6*mc.p**3)).toFixed(3)}) · <b>${mcOut.shell}</b> modes in the shell (continuum (π/2) p² dp ≈ ${(Math.PI/2*mc.p**2*mc.dp + Math.PI/2*mc.p*mc.dp**2 + Math.PI/6*mc.dp**3).toFixed(0)})</div>`
+```
+
+For small $p$ the brute-force count falls below the continuum value. The points on the three planes $n_i=0$ are not modes
+(the field vanishes), and the sphere "loses" a surface layer. The relative error falls as $1/p$. For visible light in a 1 cm
+box, $p=2L\nu/c\approx4\times10^4$, so the continuum formula is exact for all practical purposes.
+
+```{python}
+#| label: fig-modecount
+#| fig-cap: "Brute-force count of the modes of a cubic box (one polarisation) divided by the continuum value π p³/6. The ratio tends to 1 as 1 − 9/(4p): the three planes n_i = 0 carry no modes, a surface correction that vanishes for large p."
+p = np.unique(np.round(np.logspace(0.7, 2.2, 25)))
+ratio = [lz.count_modes_box(1.0, P*lz.c0/2)/(np.pi/6*P**3) for P in p]
+fig, ax = plt.subplots(figsize=(7, 3.3))
+ax.semilogx(p, ratio, "o-", ms=4, label="brute force / continuum")
+ax.semilogx(p, 1 - 9/(4*p), "--", color=lz.INK2, lw=1.2, label="1 − 9/(4p) (surface correction)")
+ax.set(xlabel="p = 2Lν/c", ylabel="ratio", ylim=(0.5, 1.05)); ax.legend(fontsize=8); plt.show()
+```
+
+## The density of modes and the ultraviolet catastrophe (slide 7)
+
+```{ojs}
+//| echo: false
+viewof bb = Inputs.form({
+  T: Inputs.range([200, 10000], {value: 3000, step: 50, label: "temperature T (K)"}),
+  scale: Inputs.radio(["linear", "log"], {value: "log", label: "axes"})
+})
+```
+
+```{ojs}
+//| echo: false
+bbOut = {
+  const h = 6.62607015e-34, c = 299792458, k = 1.380649e-23, T = bb.T, data = [];
+  for (let i = 0; i <= 400; i++) {
+    const lam = 10 ** (-7 + 3*i/400), nu = c/lam;                               // 100 nm .. 100 µm
+    const M = 2*Math.PI*h*c*c/lam**5/Math.expm1(h*c/(lam*k*T))*1e-6;             // W m^-2 µm^-1
+    const MRJ = 2*Math.PI*c*k*T/lam**4*1e-6;
+    data.push({lam: lam*1e6, M, type: "Planck"}, {lam: lam*1e6, M: MRJ, type: "Rayleigh–Jeans"});
+  }
+  const peak = 2.897771955e-3/T*1e6, total = 5.670374419e-8*T**4;
+  return {data, peak, total};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 330, x: {label: "wavelength (µm)", type: bb.scale, domain: [0.1, 100]},
+  y: {label: "spectral emittance M_λ (W m⁻² µm⁻¹)", type: bb.scale, grid: true,
+      domain: bb.scale === "log" ? [1e-2, 1e9] : [0, 1.3*Math.max(...bbOut.data.filter(d => d.type === "Planck").map(d => d.M))]},
+  color: {legend: true, domain: ["Planck", "Rayleigh–Jeans"], range: ["#2a78d6", "#e34948"]},
+  marks: [Plot.line(bbOut.data.filter(d => d.M > 1e-3 && d.M < 1e10), {x: "lam", y: "M", stroke: "type", strokeWidth: 2, clip: true}),
+          Plot.ruleX([bbOut.peak], {stroke: "#52514e", strokeDasharray: "3,3"}),
+          Plot.rectX([{x1: 0.38, x2: 0.78}], {x1: "x1", x2: "x2", fill: "#eda100", fillOpacity: 0.12})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">Wien peak λ<sub>max</sub> = 2898/T = <b>${bbOut.peak.toFixed(3)} µm</b> · total emittance σT⁴ = <b>${bbOut.total.toExponential(3)} W m⁻²</b>
+(the Rayleigh–Jeans integral diverges) · shaded: visible range</div>`
+```
+
+```{python}
+#| label: fig-planck
+#| fig-cap: "Black-body spectral emittance at the three temperatures of slide 7 (solid) and the Rayleigh–Jeans law (dashed). The classical law agrees only at long wavelengths, where hν ≪ k_BT."
+wl = np.logspace(-7, np.log10(3e-4), 600)
+fig, ax = plt.subplots(figsize=(7.5, 4))
+for T, c in zip((8000, 1200, 300), lz.PALETTE):
+    ax.loglog(wl*1e6, lz.planck_emittance(wl, T)*1e-6, color=c, label=f"T = {T} K")
+    ax.loglog(wl*1e6, 2*np.pi*lz.c0*lz.kB*T/wl**4*1e-6, "--", color=c, lw=1)
+ax.set(xlabel="wavelength (µm)", ylabel="emittance (W m⁻² µm⁻¹)", ylim=(1e-2, 1e9), xlim=(0.1, 300)); ax.legend(fontsize=8); plt.show()
+```
+
+## How many photons per mode?
+
+The factor $1/(e^{h\nu/k_BT}-1)$ is the mean number of photons in one mode at temperature $T$. It is the quantity that decides
+whether stimulated or spontaneous emission dominates (@sec-einstein):
+
+```{python}
+#| label: tbl-occupation
+#| tbl-cap: "Mean photon number per mode in thermal equilibrium, n̄ = 1/(exp(hν/kT) − 1), equal to the ratio of stimulated to spontaneous emission rates (slide 17)."
+rows = []
+for name, wl in (("microwave, 10 GHz", lz.c0/10e9), ("CO₂ laser, 10.6 µm", 10.6e-6), ("telecom, 1.55 µm", 1.55e-6),
+                 ("He–Ne, 632.8 nm", 632.8e-9), ("UV, 250 nm", 250e-9)):
+    nu = lz.c0/wl
+    rows.append({"radiation": name, "hν (eV)": f"{lz.h*nu/lz.qe:.3g}",
+                 **{f"n̄ at {T} K": f"{lz.stim_over_spont(nu, T):.2e}" for T in (300, 3000, 6000)}})
+pd.DataFrame(rows)
+```
+
+At optical frequencies and room temperature a mode holds about $10^{-11}$ to $10^{-30}$ photons: thermal light is almost
+entirely spontaneous emission. A laser beam puts $10^{10}$ or more photons into a single mode. It cannot be thermal light.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Density of modes in a medium.** In a medium of index $n$, $k=2\pi n\nu/c$ and the mode density becomes
+  $8\pi n^3\nu^2/c^3$ (or $8\pi n^2n_g\nu^2/c^3$ with dispersion). This $n^3$ enters $A_{21}/B_{21}$ and the threshold of
+  semiconductor lasers (@sec-threshold).
+- **Spontaneous emission is not a constant of the atom.** Fermi's golden rule makes $A_{21}$ proportional to the density of
+  modes at $\nu_{21}$. In a cavity of volume $V$ and quality factor $Q$ the rate is multiplied by the **Purcell factor**
+  $F_P=\frac{3}{4\pi^2}\left(\frac{\lambda}{n}\right)^3\frac{Q}{V}$. Compute $F_P$ for a micropillar with $Q=10^4$ and
+  $V=5(\lambda/n)^3$. This is how single-photon sources and nanolasers work.
+- **Stefan–Boltzmann and Wien from Planck.** Integrate $M_\lambda$ numerically (`scipy.integrate.quad`) to recover $\sigma T^4$, and
+  differentiate to recover $\lambda_\text{max}T=2898$ µm K. Where is the maximum when plotted versus frequency instead? Why is it
+  different?
+- **Cosmic microwave background.** Fit the Planck law to the FIRAS data (2.725 K) and compare the mode occupation with that of a
+  radio receiver.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, *Optoelectronics and Photonics*, sec. 4.2; Saleh and Teich, *Fundamentals of Photonics*, ch. 13 (photons in
+  thermal equilibrium).
+- Milonni and Eberly, *Laser Physics* (Wiley, 2010), ch. 3: the Einstein argument and the mode density.
+:::
+
+## Try it yourself
+
+1. How many modes (both polarisations) lie between 632.7 and 632.9 nm in a 1 cm³ box?
+2. Show that Planck's law reduces to Rayleigh–Jeans when $h\nu\ll k_BT$ and to Wien's law $\propto\nu^3e^{-h\nu/k_BT}$ when
+   $h\nu\gg k_BT$.
+3. At what temperature does a 1.55 µm mode hold one photon on average? Is that temperature reachable?
+4. Repeat the mode count for a 2D box (a planar microcavity). How does the density of modes depend on $\nu$?

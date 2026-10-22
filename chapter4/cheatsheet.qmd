@@ -1,0 +1,146 @@
+# Formula sheet {#sec-cheatsheet}
+
+All the key relations of Chapter 4 on one page. Each block links to the chapter where the formula is derived and used.
+Use your browser's *Print → Save as PDF* for a paper copy.
+
+::: {.callout-note collapse="false"}
+## Symbols and constants
+$N_1,N_2$ lower/upper level populations · $N_0$ total ion density · $\tau_{sp}$ spontaneous lifetime · $\rho(\nu)$ energy density
+per unit frequency · $\sigma_{ab},\sigma_{em}$ cross sections · $g$ gain coefficient · $\alpha_s$ internal loss · $\alpha_t$ total
+loss · $R_1,R_2$ mirror reflectances · $L$ cavity length · $n$ (group) index · $\Gamma$ confinement factor · $\tau_{ph}$ photon
+lifetime · $n_{th}$, $I_{th}$ threshold carrier density and current · $\tau_r$ radiative lifetime · $\tau$ carrier lifetime
+
+$h=6.626\times10^{-34}$ J s · $hc=1.2398$ eV µm · $k_BT=25.85$ meV at 300 K · $e=1.602\times10^{-19}$ C · 1 cm⁻¹ = 100 m⁻¹
+:::
+
+::::: {.grid}
+
+:::: {.g-col-12 .g-col-lg-6}
+## Radiation and Einstein coefficients (@sec-blackbody, @sec-einstein)
+
+| | |
+|---|---|
+| mode density (2 polarisations) | $8\pi n^3\nu^2/c^3$ |
+| Planck | $\rho(\nu)=\dfrac{8\pi h\nu^3}{c^3}\dfrac{1}{e^{h\nu/k_BT}-1}$ |
+| rates | $R_{12}=B_{12}N_1\rho$, $R_{21}=A_{21}N_2+B_{21}N_2\rho$ |
+| Einstein relations | $B_{12}=B_{21}$, $A_{21}/B_{21}=8\pi h\nu^3n^3/c^3$ |
+| stim./absorption | $N_2/N_1$ → population inversion |
+| stim./spont. | $c^3\rho/8\pi h\nu^3$ = photons per mode → cavity |
+| spontaneous lifetime | $\tau_{sp}=1/A_{21}$ |
+| two-level, pumped | $N_2/N_0=W\tau/(1+2W\tau)<\tfrac12$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Pumping (@sec-pumping)
+
+| | |
+|---|---|
+| 3-level inversion | $(N_2-N_1)/N_0=(W_p\tau-1)/(W_p\tau+1)$ |
+| 4-level inversion | $\approx W_p\tau_{21}$ |
+| min. pump, 3-level | $P_{p,\min}/V=(N_0/2)h\nu_{13}/\tau_{sp}$ |
+| quantum efficiency | $\lambda_p/\lambda_\text{laser}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Gain and the EDFA (@sec-edfa)
+
+| | |
+|---|---|
+| absorption | $\alpha=\sigma_{ab}N_1$ |
+| gain coefficient | $g=\sigma_{em}N_2-\sigma_{ab}N_1=[\sigma_{em}x-\sigma_{ab}(1-x)]N_0$ |
+| gain | $G=e^{gL}$, $G_\text{dB}=4.343\,gL$ |
+| power conversion | $\eta_\text{PCE}=(P_{s,o}-P_{s,i})/P_p\le\lambda_p/\lambda_s$ |
+| gain vs PCE | $G=1+\eta_\text{PCE}P_p/P_{s,i}$ |
+| max. input | $P_{s,i}<(\lambda_p/\lambda_s)P_p/(G-1)$ |
+| pump length | $\Gamma P_p\approx AN_0h\nu_pL_p/\tau_{sp}$ |
+| inversion factor | $n_{sp}=\sigma_{em}N_2/(\sigma_{em}N_2-\sigma_{ab}N_1)$ |
+| noise figure | $\text{NF}\approx2n_{sp}(G-1)/G+1/G\ge3$ dB |
+| ASE power | $P_\text{ASE}=2n_{sp}(G-1)h\nu B_o$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Cavity, threshold, output (@sec-gas, @sec-threshold)
+
+| | |
+|---|---|
+| longitudinal modes | $m\lambda_m/2n=L$, $\nu_m=mc/2nL$ |
+| mode spacing | $\Delta\nu_m=c/2nL$, $\Delta\lambda_m\approx\lambda^2/2nL$ |
+| Doppler FWHM | $\Delta\nu=2\nu_0\sqrt{2k_BT\ln2/Mc^2}$ |
+| gain vs inversion | $g(\nu_0)\approx(N_2-N_1)B_{21}nh\nu_0/c\Delta\nu$ |
+| threshold gain | $g_{th}=\alpha_t=\alpha_s+\frac{1}{2L}\ln\frac{1}{R_1R_2}$ |
+| threshold inversion | $(N_2-N_1)_{th}=g_{th}8\pi n^2\nu_0^2\tau_{sp}\Delta\nu/c^2$ |
+| photon lifetime | $\tau_{ph}=\frac{2nL}{c(1-e^{-2\alpha_tL})}\approx\frac{n}{c\alpha_t}$ |
+| output power | $P_o=\frac12A(1-R_1)h\nu N_\text{ph}c/n$ |
+| finesse | $F=\pi\sqrt R/(1-R)$, mode width $\Delta\nu_m/F$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Line shapes and pulses (@sec-broadening, @sec-pulsed)
+
+| | |
+|---|---|
+| Lorentzian | $g_L=\frac{\gamma/\pi}{(\nu-\nu_0)^2+\gamma^2}$, FWHM $2\gamma$ |
+| lifetime width | $\Delta\nu=1/2\pi\tau$ |
+| Gaussian | $g_G=\frac{1}{\sqrt\pi\Gamma}e^{-(\nu-\nu_0)^2/\Gamma^2}$, FWHM $2\Gamma\sqrt{\ln2}$ |
+| Q-switch extraction | $r\eta=-\ln(1-\eta)$, $r=N_i/N_{th}$ |
+| Q-switch peak | $\phi_\text{max}=N_{th}(r-1-\ln r)$ |
+| mode-locked train | period $2L/c$, width $\approx1/\Delta\nu$, peak $\approx N\times$ avg. |
+| TEM$_{mn}$ | $H_m(\sqrt2x/w)H_n(\sqrt2y/w)e^{-(x^2+y^2)/w^2}$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Semiconductor gain (@sec-ld-principle, @sec-qw)
+
+| | |
+|---|---|
+| inversion condition | $E_g<h\nu<E_{Fn}-E_{Fp}=eV$ |
+| gain spectrum | $g=\alpha_0(h\nu)[f_c(E_2)-f_v(E_1)]$ |
+| near threshold | $g\approx a(n-n_{tr})$ or $g_0\ln(n/n_{tr})$ |
+| facet reflectance | $R=[(n-1)/(n+1)]^2\approx0.32$ |
+| QW levels | $\varepsilon_n=h^2n^2/8m^*d^2$ |
+| QW emission | $h\nu=E_g+\varepsilon_1+\varepsilon'_1$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Laser diode (@sec-ld-equation, @sec-ld-efficiency, @sec-ld-structures)
+
+| | |
+|---|---|
+| rate equations | $\frac{I}{eLWd}=\frac{n}{\tau_r}+CnN_\text{ph}$, $\frac{N_\text{ph}}{\tau_{ph}}=CnN_\text{ph}$ |
+| threshold | $n_{th}=1/C\tau_{ph}$, $I_{th}=eLWd\,n_{th}/\tau_r$, $\tau_r=1/Bn_{th}$ |
+| threshold gain | $\Gamma g_{th}=\alpha_t$ |
+| photons | $N_\text{ph}=\tau_{ph}(I-I_{th})/eLWd$ |
+| output | $P_o=\frac{hc^2\tau_{ph}(1-R)}{2en\lambda L}(I-I_{th})$ |
+| efficiencies | $\eta_\text{slope}=\Delta P_o/\Delta I$, $\eta_\text{EQE}=\frac{P_o/h\nu}{I/e}$, $\eta_\text{PCE}=\frac{P_o}{IV}$ |
+| EDQE | $\eta_\text{EDQE}=\eta_\text{EE}\eta_\text{IDQE}$, $\eta_\text{EE}=\frac{(1/2L)\ln(1/R_1)}{\alpha_t}$ |
+| temperature | $I_{th}=Ae^{T/T_0}$, $d\lambda_m/dT=(\lambda/n)dn/dT$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Single-frequency lasers and amplifiers (@sec-single-mode, @sec-soa)
+
+| | |
+|---|---|
+| Bragg wavelength | $\lambda_B=2n\Lambda/q$ |
+| DFB modes (Kasap) | $\lambda_m=\lambda_B\pm\frac{\lambda_B^2}{2nL}(m+1)$ |
+| grating reflectance | $R=\tanh^2\kappa L$, $\kappa=\pi\Delta n/\lambda$ |
+| quarter-wave stack | $R=\left(\frac{1-b}{1+b}\right)^2$, $b=\frac{n_\text{in}}{n_\text{sub}}\left(\frac{n_L}{n_H}\right)^{2N}$ |
+| FP amplifier ripple | $\left[\frac{1+\sqrt{R_1R_2}G_s}{1-\sqrt{R_1R_2}G_s}\right]^2$ |
+| saturation | $G=G_0\exp[-(G-1)P_\text{in}/P_\text{sat}]$ |
+::::
+
+:::: {.g-col-12 .g-col-lg-6}
+## Dynamics, linewidth, resonators (@sec-modulation, @sec-linewidth, @sec-resonators)
+
+| | |
+|---|---|
+| relaxation frequency | $f_r=\frac{1}{2\pi\sqrt{\tau\tau_{ph}}}\left(\frac{I_1}{I_{th}}-1\right)^{1/2}$ |
+| turn-on delay | $t_d=\tau\ln\frac{I_2-I_1}{I_2-I_{th}}$ |
+| linewidth | $\Delta\nu=\frac{\pi h\nu\Delta\nu_c^2n_{sp}}{P}(1+\alpha_H^2)$, $\Delta\nu_c=\frac{1}{2\pi\tau_{ph}}$ |
+| chirp | $\Delta\nu=\frac{\alpha_H}{4\pi}\frac{d\ln P}{dt}$ |
+| stability | $0\le g_1g_2\le1$, $g_i=1-L/R_i$ |
+| TEM frequencies | $\nu_{qmn}=\frac{c}{2nL}\left[q+(m+n+1)\frac{\arccos\sqrt{g_1g_2}}{\pi}\right]$ |
+| hologram | $U_rI=U_r(\lvert U_r\rvert^2+\lvert U\rvert^2)+\lvert U_r\rvert^2U+U_r^2U^*$ |
+::::
+
+:::::

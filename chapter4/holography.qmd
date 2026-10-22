@@ -1,0 +1,158 @@
+# Holography {#sec-holography}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/holography.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import laserlib as lz
+lz.use_style()
+```
+
+*Slides 165–168: Gabor's invention, wavefront recording (the hologram) and wavefront reconstruction (virtual and real images).*
+
+## Key relations
+
+A photograph records the intensity $|E|^2$ of the light scattered by an object and loses its phase, which carries the depth.
+Holography (Gabor, 1948, slide 165) records the phase too, by letting the object wave $U(x,y)$ interfere with a known
+**reference** wave $U_r(x,y)$ (slide 167). The film records
+
+$$
+I(x,y)=|U_r+U|^2=|U_r|^2+|U|^2+U_r^*U+U_rU^* .
+$$
+
+After development its amplitude transmittance is proportional to $I$. Illuminating it with the reference wave again (slide 168)
+transmits
+
+$$
+U_rI=\underbrace{U_r\left(|U_r|^2+|U|^2\right)}_\text{zero order}+\underbrace{|U_r|^2\,U}_\text{object wave: virtual image}
++\underbrace{U_r^2\,U^*}_\text{conjugate wave: real image}.
+$$
+
+The third term is a copy of the object wave: an observer sees the object, in 3D, behind the hologram. The fourth term is the phase
+conjugate: it converges to a real image in front of the hologram. Recording needs **coherence**: the path difference between
+object and reference must stay below the coherence length (Ch. 1), and the fringes must not move by more than a fraction of their
+period during the exposure. This is why practical holography waited for the laser (1962, Leith and Upatnieks).
+
+Leith and Upatnieks tilted the reference by an angle $\theta$ (off-axis holography). The fringes then have period
+$\lambda/\sin\theta$, and the three reconstructed waves leave the hologram in different directions, so the images do not overlap.
+
+## Record and reconstruct a hologram
+
+The panel works in one transverse dimension $x$ (a slice through a 2D hologram). Three point scatterers sit at a distance $z_0$
+behind the hologram plane. The panel computes the fringe pattern $I(x)$, illuminates it with the reference and propagates the
+transmitted field over $0<z<2z_0$ with the angular-spectrum method (exact scalar diffraction, computed with FFTs). To put
+the real image exactly where the object was, the hologram is illuminated with the **conjugate** reference $U_r^*$ (the
+reference beam sent backwards). The transmitted term $|U_r|^2U^*$ then carries no tilt, while the zero order and the
+object wave leave at angles $-\theta$ and $-2\theta$.
+
+```{ojs}
+//| echo: false
+import {propagate1D} from "./laser_sim.js"
+viewof hg = Inputs.form({
+  theta: Inputs.range([0, 12], {value: 6, step: 0.5, label: "reference angle θ (°), 0 = Gabor in-line"}),
+  z0: Inputs.range([1, 10], {value: 4, step: 0.5, label: "object distance z₀ (mm)"}),
+  aperture: Inputs.range([0.2, 1.8], {value: 1.6, step: 0.1, label: "hologram width (mm)"}),
+  obj: Inputs.range([0.05, 1], {value: 0.3, step: 0.05, label: "object/reference amplitude ratio"})
+})
+```
+
+```{ojs}
+//| echo: false
+hgOut = {
+  const N = 4096, dx = 0.5e-6, wl = 633e-9, k = 2*Math.PI/wl, z0 = hg.z0*1e-3, th = hg.theta*Math.PI/180;
+  const pts = [[-120e-6, 1], [0, 1], [150e-6, 1]], xs = d3.range(N).map(i => (i - N/2)*dx);
+  const win = x => Math.abs(x) < hg.aperture*1e-3/2 ? 1 : 0;
+  const reRef = xs.map(x => Math.cos(k*Math.sin(th)*x)), imRef = xs.map(x => Math.sin(k*Math.sin(th)*x));
+  const I = xs.map((x, i) => {
+    let re = reRef[i], im = imRef[i];
+    for (const [xp, a] of pts) { const r = Math.hypot(x - xp, z0), amp = hg.obj*a*Math.sqrt(z0/r)/pts.length; re += amp*Math.cos(k*r); im += amp*Math.sin(k*r); }
+    return win(x)*(re*re + im*im);
+  });
+  const re0 = xs.map((x, i) => I[i]*reRef[i]), im0 = xs.map((x, i) => -I[i]*imRef[i]);   // illuminate with the conjugate reference U_r*
+  const nz = 90, map = [];
+  for (let j = 0; j < nz; j++) {
+    const z = 2*z0*(j + 0.5)/nz, [R, Im] = propagate1D(re0, im0, dx, wl, z);
+    for (let i = N/4; i < 3*N/4; i += 8) map.push({x: xs[i]*1e3, z: z*1e3, v: Math.sqrt(R[i]*R[i] + Im[i]*Im[i])});
+  }
+  const fr = xs.map((x, i) => ({x: x*1e3, I: I[i]})).filter(d => Math.abs(d.x) < 0.25);
+  return {map, fr, period: th > 0 ? wl/Math.sin(th)*1e6 : NaN, N};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 160, x: {label: "x (mm) on the hologram (central 0.5 mm)"}, y: {label: "I(x)"},
+  marks: [Plot.line(hgOut.fr, {x: "x", y: "I", stroke: "#0b0b0b", strokeWidth: 1})]
+})
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: Math.min(width, 1050), height: 360, x: {label: "x (mm)"}, y: {label: "distance from the hologram z (mm)"},
+  color: {scheme: "magma", type: "sqrt", label: "|field|"},
+  marks: [Plot.dot(hgOut.map, {x: "x", y: "z", fill: "v", r: 2.2, symbol: "square"}),
+          Plot.ruleY([hg.z0], {stroke: "#1baf7a", strokeDasharray: "4,3"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">fringe period ${isNaN(hgOut.period) ? "(in-line: Fresnel zone pattern)" : html`λ/sin θ = <b>${hgOut.period.toFixed(2)} µm</b> (${(1000/hgOut.period).toFixed(0)} lines/mm)`} ·
+green dashed: z = z₀, where the conjugate wave focuses into the <b>real image</b>; the object wave diverges from the virtual image at z = −z₀ (behind the hologram)</div>`
+```
+
+Things to see:
+
+* The three bright foci at $z=z_0$ form the real image of the three points. Their spacing reproduces the object.
+* With $\theta=0$ (Gabor's in-line geometry) the real image sits on top of the zero-order beam and of the out-of-focus
+  virtual-image wave, which blur it. Tilting the reference sends these two waves sideways, out of the image region, and the foci
+  become clean.
+* Shrink the hologram: the foci broaden. The hologram is the "lens" of the imaging system and its width sets the resolution,
+  $\approx\lambda z_0/D$ (Ch. 1, diffraction).
+
+## Requirements on the laser
+
+```{python}
+#| label: tbl-holo
+#| tbl-cap: "Can these sources record a hologram of a 10 cm deep scene (path difference up to 20 cm)? Coherence length ℓ_c ≈ c/(πδν) for a Lorentzian line, λ²/Δλ for a broad spectrum."
+src = [("LED, 630 nm, Δλ = 20 nm", 630e-9, 20e-9), ("multimode FP laser diode, Δλ = 1 nm", 650e-9, 1e-9),
+       ("multimode He–Ne (Δν ≈ 1.5 GHz)", 632.8e-9, 632.8e-9**2*1.5e9/lz.c0),
+       ("single-mode He–Ne (Δν ≈ 1 MHz)", 632.8e-9, 632.8e-9**2*1e6/lz.c0),
+       ("DFB / DPSS single-frequency, Δν ≈ 1 MHz", 532e-9, 532e-9**2*1e6/lz.c0)]
+rows = []
+for name, lam, dl in src:
+    lc = lam**2/dl
+    rows.append({"source": name, "coherence length": f"{lc*1e3:.3g} mm" if lc < 1 else f"{lc:.3g} m",
+                 "hologram of a 10 cm deep scene?": "yes" if lc > 0.2 else "no"})
+pd.DataFrame(rows)
+```
+
+Mechanical stability matters as much: during the exposure the fringes, with period below 1 µm, must not move by more than about
+$\lambda/8$. Holography tables are heavy and floated, and short pulsed lasers (Q-switched ruby, @sec-pulsed) freeze any motion,
+which allows holograms of people.
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **2D numerical holography.** Extend the panel to 2D with `numpy.fft.fft2`: record the hologram of a small 3D object (points at
+  different depths) and reconstruct by propagating to several distances. This is digital holographic microscopy, where a camera
+  replaces the film and the computer does the reconstruction.
+- **Computer-generated holograms.** Choose the hologram so that its diffraction pattern is a desired image (Gerchberg–Saxton
+  algorithm). Spatial light modulators use this for optical tweezers and holographic displays.
+- **Volume holograms and Bragg selectivity.** A thick hologram is a 3D grating that diffracts only near the Bragg angle: the same
+  physics as the fiber Bragg grating (Ch. 2) and the DFB laser (@sec-single-mode). It allows white-light viewing (Denisyuk
+  holograms on banknotes) and holographic data storage.
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- D. Gabor, "A new microscopic principle", *Nature* 161, 777 (1948); E. N. Leith and J. Upatnieks, *J. Opt. Soc. Am.* 52, 1123 (1962).
+- Kasap, sec. 4.21; Goodman, *Introduction to Fourier Optics*, 4th ed., ch. 11.
+:::
+
+## Try it yourself
+
+1. What is the fringe period for a reference at 30° and λ = 532 nm? What film resolution (lines/mm) is needed?
+2. Show from the four terms of $U_rI$ that, for an off-axis reference, the conjugate wave leaves at about $2\theta$.
+3. A hologram recorded at 633 nm is reconstructed at 532 nm. Where does the real image of a point at $z_0$ appear (paraxial)?
+4. Why can a hologram broken in two still show the whole object? What is lost?

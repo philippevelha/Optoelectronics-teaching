@@ -1,0 +1,72 @@
+# Preface {.unnumbered}
+
+This companion follows the slides of **Chapter 4: Stimulated Emission Devices, Optical Amplifiers and Lasers** (Basics of
+Optoelectronics, University of Trento) section by section. The slides tell the story; this book lets you **compute it**. Every
+figure is made by a few lines of Python that you can unfold ("Show the Python"), copy and modify. The **live panels** (marked
+with a blue bar on the left) recompute directly in your browser. They need no installation.
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/interactive_explorers.ipynb) &nbsp;Interactive explorers in Google Colab (no installation, Google account needed).
+
+## Where this chapter sits in the course
+
+Chapter 1 described light as a wave, Chapter 2 guided it in fibers and Chapter 3 built a source, the LED, from a forward-biased
+pn junction. An LED emits by **spontaneous** emission: every photon has a random phase and direction, and the spectrum is a few
+$k_BT$ wide. Chapter 4 adds the third process between light and matter, **stimulated emission**. It is the basis of optical
+**amplifiers** (the erbium-doped fiber amplifier that made long-haul WDM possible, the semiconductor optical amplifier) and of
+**lasers**: a gain medium inside an optical resonator. The same three ingredients, a population inversion, an optical gain
+$g$ and a cavity with losses $\alpha_t$, explain the ruby, He–Ne and Nd:YAG lasers as well as the laser diodes that drive every
+fiber link (Ch. 2) and are detected by the photodiodes of Ch. 5.
+
+## How the book is organised
+
+| Chapter | Slides | What you can play with |
+|---|---|---|
+| [Radiation in a box](blackbody.qmd) | 4–7 | mode counting, Planck versus Rayleigh–Jeans, black-body spectra |
+| [Absorption, spontaneous and stimulated emission](einstein.qmd) | 8–10, 15–19 | Einstein coefficients, why two levels cannot invert, stimulated/spontaneous ratio |
+| [Three- and four-level lasers](pumping.qmd) | 11–14, 20–21 | rate-equation steady state, pump threshold, ruby example |
+| [Optical gain and the erbium-doped fiber amplifier](edfa.qmd) | 22–44 | cross sections, gain spectrum, pump and signal along the fiber, saturation, noise figure |
+| [Gas lasers and longitudinal modes](gas-lasers.qmd) | 45–62 | Doppler gain curve, cavity modes, He–Ne example |
+| [Threshold, output power and photon lifetime](threshold.qmd) | 63–74 | threshold calculator, Fabry–Perot resonances, output versus pump |
+| [Transverse modes and line broadening](broadening.qmd) | 75–83 | Hermite–Gauss modes, Lorentz/Gauss/Voigt, spectral hole burning |
+| [Q-switching and mode-locking](pulsed.qmd) | 84–88 | giant-pulse rate equations, mode-locked pulse train |
+| [Laser diode principle and optical gain](ld-principle.qmd) | 89–91, 128–130 | gain spectrum from quasi-Fermi levels, gain versus carrier density |
+| [Laser diode structures, modes and temperature](ld-structures.qmd) | 92–107 | mode spacing, mode hopping, $T_0$, beam divergence |
+| [Laser diode efficiencies](ld-efficiency.qmd) | 108–122 | slope, EQE, EDQE, PCE calculator, commercial data |
+| [The laser diode equation](ld-equation.qmd) | 123–134 | threshold current, $P$–$I$ curve, carrier clamping |
+| [Quantum-well lasers](qw-lasers.qmd) | 135–139 | QW levels and emission wavelength, MQW confinement |
+| [Single-frequency lasers: DBR, DFB, external cavity, VCSEL](single-mode.qmd) | 140–151 | coupled-mode grating, DFB and λ/4-shifted DFB, DBR mirrors |
+| [Semiconductor optical amplifiers and SLEDs](soa-sled.qmd) | 152–161 | Fabry–Perot versus travelling-wave SOA, saturation |
+| [Modulation of laser diodes](modulation.qmd) | 162–164 | relaxation oscillations, turn-on delay, small-signal bandwidth |
+| [Holography](holography.qmd) | 165–168 | record and reconstruct a hologram numerically |
+| [Going further: optical resonators and Gaussian modes](resonators.qmd) | — | stability diagram, mode size, transverse-mode frequencies |
+| [Going further: laser linewidth, noise and chirp](linewidth-noise.qmd) | — | Schawlow–Townes–Henry linewidth, RIN, chirp |
+| [Projects, toolbox and connections](ideas.qmd) | — | Python packages, mini-projects, links to other chapters |
+
+Each chapter recomputes the worked examples of the slides, then offers **Going further** questions, **Complements** (reading),
+and **Try it yourself** exercises. The two **Going further** chapters cover topics that the slides use but do not develop.
+A **formula sheet** is at the end.
+
+::: {.callout-note}
+## Units in the code
+The slides quote concentrations in cm$^{-3}$ and cross sections in cm$^2$, as most laser texts do. The code works in
+**SI units** (m$^{-3}$, m$^2$, m$^{-1}$ for gain and loss coefficients). Photon and band energies are in **eV**. Two constants
+convert: `lz.CM3 = 1e6` (cm$^{-3}$ → m$^{-3}$) and `lz.CM2 = 1e-4` (cm$^2$ → m$^2$). A gain of 1 cm$^{-1}$ is 100 m$^{-1}$.
+:::
+
+::: {.callout-tip}
+## Slide numbers
+Slide numbers refer to `Chapter4 - Lasers.pptx` (170 slides). The older PDF export `Chapter4 - Lasers_2024.pdf` has fewer
+pages and a different numbering.
+:::
+
+## Using the code
+
+All functions live in a small, readable module, [`laserlib.py`](laserlib.py), which you can import from your own notebooks:
+
+```python
+import laserlib as lz
+lz.threshold_gain(alpha_s=0.05, L=0.4, R1=0.95, R2=1.0)     # He-Ne threshold gain, m^-1
+lz.edfa_gain_uniform(0.9, 3.2e-25, 2.4e-25, 1e25, 3.0)     # g (m^-1) and G of a 3 m EDFA at 90 % inversion
+```
+
+See the appendix [Running the notebooks](running.qmd) for installation.

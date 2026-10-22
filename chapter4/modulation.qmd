@@ -1,0 +1,191 @@
+# Modulation of laser diodes {#sec-modulation}
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/{{< var github_user >}}/{{< var repo >}}/blob/main/{{< var subdir >}}/notebooks/modulation.ipynb){.colab-link} &nbsp;Run this chapter's code in Google Colab (no installation).
+
+```{python}
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import laserlib as lz
+lz.use_style()
+```
+
+*Slides 162–163 (direct modulation, small-signal response and relaxation-oscillation frequency) and 164 (digital modulation:
+turn-on delay, relaxation oscillations, biasing near threshold).*
+
+## Key relations
+
+The output of a laser diode follows its current, so the simplest transmitter modulates the current directly (slide 162): a DC
+bias $I_1$ above threshold plus a modulation $\Delta I_m\sin(2\pi ft)$. The rate equations of @sec-ld-equation couple two
+reservoirs, carriers ($\tau$) and photons ($\tau_{ph}$). Like a mass on a spring they exchange energy and oscillate at the
+**relaxation-oscillation frequency** (slide 163)
+
+$$
+f_r\approx\frac{1}{2\pi\sqrt{\tau\tau_{ph}}}\left(\frac{I_1}{I_{th}}-1\right)^{1/2}.
+$$
+
+Linearising the rate equations gives the small-signal response, a damped second-order system,
+
+$$
+H(f)=\frac{\Delta P(f)}{\Delta P(0)}=\frac{\omega_r^2}{\omega_r^2-\omega^2+j\omega\gamma},\qquad \omega_r=2\pi f_r,\qquad
+\gamma=\frac{I_1/I_{th}}{\tau}.
+$$
+
+It is flat at low frequency, peaks near $f_r$ and falls at 40 dB/decade above. Raising the bias raises $f_r$ and the bandwidth
+(slide 163). For large-signal (digital) modulation from $I_1<I_{th}$ to $I_2>I_{th}$, the carriers must first build up to $n_{th}$
+before any stimulated emission appears (slide 164). With $dn/dt=I_2/eV-n/\tau$ this takes the **turn-on delay**
+
+$$
+t_d=\tau\ln\frac{I_2-I_1}{I_2-I_{th}} .
+$$
+
+Biasing just below or at threshold ($I_1\to I_{th}$) removes the delay.
+
+::: {.callout-warning collapse="true"}
+## The turn-on delay formula in the slide-164 notes
+The speaker notes give $t_d=\tau\ln[I_2/(I_2-(I_{th}-I_1))]$. Integrating $dn/dt=I_2/eV-n/\tau$ from $n_1=I_1\tau/eV$ to
+$n_{th}=I_{th}\tau/eV$ gives $t_d=\tau\ln[(I_2-I_1)/(I_2-I_{th})]$. The two agree only for $I_1=0$. For $I_1=0.8I_{th}$,
+$I_2=2I_{th}$ the notes give $0.11\tau$ and the correct value is $0.18\tau$.
+:::
+
+## Small-signal response (slide 163)
+
+```{ojs}
+//| echo: false
+import {ldSimulate} from "./laser_sim.js"
+viewof ss = Inputs.form({
+  Ith: Inputs.range([1, 50], {value: 2, step: 0.5, label: "threshold current I_th (mA)"}),
+  tau: Inputs.range([0.2, 5], {value: 1, step: 0.05, label: "carrier lifetime τ (ns)"}),
+  tph: Inputs.range([0.5, 10], {value: 1.5, step: 0.1, label: "photon lifetime τ_ph (ps)"}),
+  I1: Inputs.range([1, 100], {value: 15, step: 0.5, label: "bias current I₁ (mA)"})
+})
+```
+
+```{ojs}
+//| echo: false
+ssOut = {
+  const tau = ss.tau*1e-9, tph = ss.tph*1e-12, H = (I1, f) => { const w = 2*Math.PI*f, wr2 = (I1/ss.Ith - 1)/(tau*tph), g = (I1/ss.Ith)/tau;
+    return 10*Math.log10(wr2*wr2/((wr2 - w*w)**2 + (w*g)**2)); };
+  const data = [], biases = [ss.I1/3, ss.I1, 2*ss.I1].filter(I => I > ss.Ith*1.01);
+  for (const I of biases) for (let i = 0; i <= 300; i++) { const f = 10 ** (8 + 3*i/300); data.push({f: f/1e9, H: H(I, f), I: `I₁ = ${I.toFixed(1)} mA`}); }
+  const fr = Math.sqrt(Math.max(ss.I1/ss.Ith - 1, 0)/(tau*tph))/(2*Math.PI);
+  let f3 = NaN; for (let i = 0; i <= 3000; i++) { const f = 10 ** (8 + 3*i/3000); if (H(ss.I1, f) < -3) { f3 = f; break; } }
+  return {data, fr, f3, peak: d3.max(data.filter(d => d.I === `I₁ = ${ss.I1.toFixed(1)} mA`), d => d.H)};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 300, x: {label: "modulation frequency (GHz)", type: "log"}, y: {label: "|ΔP(f)/ΔP(0)| (dB)", domain: [-20, 12], grid: true},
+  color: {legend: true}, marks: [Plot.line(ssOut.data, {x: "f", y: "H", stroke: "I", strokeWidth: 2}), Plot.ruleY([-3], {stroke: "#52514e", strokeDasharray: "3,3"})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">at I₁ = ${ss.I1} mA: f<sub>r</sub> = <b>${(ssOut.fr/1e9).toFixed(2)} GHz</b> · resonance peak ${ssOut.peak.toFixed(1)} dB ·
+−3 dB bandwidth <b>${(ssOut.f3/1e9).toFixed(2)} GHz</b> (≈ 1.55 f<sub>r</sub> for a weakly damped laser) ·
+NRZ bit rate roughly up to ${(1.4*ssOut.f3/1e9).toFixed(0)} Gb/s</div>`
+```
+
+```{python}
+#| label: fig-ss
+#| fig-cap: "Small-signal response for the three bias currents of slide 163 (I_th = 2 mA, τ = 1 ns, τ_ph = 1.5 ps). The resonance moves from 5 to 15 GHz and flattens as the bias increases."
+f = np.logspace(8, 11, 600)
+fig, ax = plt.subplots(figsize=(7.5, 3.6))
+for I1 in (5e-3, 15e-3, 30e-3):
+    H = lz.ld_small_signal(f, I1, 2e-3, 1e-9, 1.5e-12)
+    fr = lz.relaxation_frequency(I1, 2e-3, 1e-9, 1.5e-12)
+    ax.semilogx(f/1e9, 20*np.log10(abs(H)), label=f"I₁ = {I1*1e3:.0f} mA, f_r = {fr/1e9:.1f} GHz")
+ax.axhline(-3, color=lz.INK2, ls=":", lw=1)
+ax.set(xlabel="frequency (GHz)", ylabel="response (dB)", ylim=(-20, 12)); ax.legend(fontsize=8); plt.show()
+```
+
+The model has no gain compression, so its damping is too weak at high bias and the peak stays sharp. In real lasers the damping
+grows as $Kf_r^2$ (the K-factor) and the bandwidth saturates at a maximum of about $2\sqrt2\pi/K$, typically 20–40 GHz.
+
+## Digital modulation: turn-on delay and relaxation oscillations (slide 164)
+
+The panel integrates the full rate equations (with spontaneous coupling $\beta=10^{-4}$) for a pseudo-random NRZ bit sequence.
+
+```{ojs}
+//| echo: false
+viewof dm = Inputs.form({
+  I1: Inputs.range([0, 3], {value: 0.8, step: 0.05, label: "'0' current I₁ / I_th"}),
+  I2: Inputs.range([1.1, 6], {value: 3, step: 0.05, label: "'1' current I₂ / I_th"}),
+  B: Inputs.range([0.5, 20], {value: 2.5, step: 0.5, label: "bit rate (Gb/s)"}),
+  tau: Inputs.range([0.5, 5], {value: 2.5, step: 0.1, label: "carrier lifetime τ (ns)"}),
+  tph: Inputs.range([0.5, 5], {value: 2.16, step: 0.01, label: "photon lifetime τ_ph (ps)"})
+})
+```
+
+```{ojs}
+//| echo: false
+dmOut = {
+  const bits = [0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1], Tb = 1e-9/dm.B, Ith = 24e-3, V = 250e-6*5e-6*0.15e-6;
+  const I = t => { const k = Math.floor(t/Tb); return Ith*(k >= 0 && k < bits.length && bits[k] ? dm.I2 : dm.I1); };
+  const tau = dm.tau*1e-9, tph = dm.tph*1e-12, nth = Ith*tau/(1.602176634e-19*V);
+  const n0 = Math.min(dm.I1, 0.9999)*nth, y0 = [n0, dm.I1 >= 1 ? tph*(dm.I1 - 1)*Ith/(1.602176634e-19*V) : 1e-4*n0/tau/(1/tph - n0/(nth*tph))];
+  const tEnd = bits.length*Tb, steps = Math.min(200000, Math.ceil(tEnd/(0.1*tph)));
+  const sol = ldSimulate({I, Ith, tau, tauph: tph, V, tEnd, n: steps, every: Math.max(1, Math.floor(steps/3000)), y0});
+  const k = 6.626e-34*9e16*tph*(1 - 0.32)/(2*1.602e-19*3.6*860e-9*250e-6);     // W/A, slide 126
+  const P = sol.map(d => ({t: d.t*1e9, P: 1e3*k*1.602e-19*V*d.Nph/tph, n: d.n/nth}));   // P = k(I − I_th) = k eV N_ph/τ_ph
+  const ideal = d3.range(0, 2001).map(i => { const t = tEnd*i/2000; return {t: t*1e9, P: 1e3*k*Math.max(I(t) - Ith, 0)}; });
+  const td = dm.I1 < 1 ? tau*Math.log((dm.I2 - dm.I1)/(dm.I2 - 1)) : 0;
+  return {P, ideal, td, fr: Math.sqrt(Math.max(dm.I2 - 1, 0)/(tau*tph))/(2*Math.PI), Tb};
+}
+Plot.plot({
+  width: Math.min(width, 1050), height: 300, x: {label: "time (ns)"}, y: {label: "output power (mW)", grid: true},
+  color: {legend: true, domain: ["rate equations", "ideal P–I response"], range: ["#e34948", "#c3c2b7"]},
+  marks: [Plot.line(dmOut.ideal, {x: "t", y: "P", stroke: () => "ideal P–I response", strokeWidth: 1.5}),
+          Plot.line(dmOut.P, {x: "t", y: "P", stroke: () => "rate equations", strokeWidth: 1.5})]
+})
+```
+
+```{ojs}
+//| echo: false
+html`<div class="result-box">bit period ${(dmOut.Tb*1e12).toFixed(0)} ps · turn-on delay t<sub>d</sub> = τ ln[(I₂ − I₁)/(I₂ − I<sub>th</sub>)] = <b>${(dmOut.td*1e12).toFixed(0)} ps</b>
+${dmOut.td > 0.3*dmOut.Tb ? html`(<b>${(100*dmOut.td/dmOut.Tb).toFixed(0)} % of a bit</b>: pattern-dependent jitter)` : ""} ·
+relaxation oscillations at ≈ ${(dmOut.fr/1e9).toFixed(1)} GHz (laser of slide 131)</div>`
+```
+
+Things to try: set $I_1=0$ (laser switched fully off): each "1" starts late and the delay depends on how long the laser was off,
+because the carriers have not fully decayed after a short "0". Bias at $I_1=1.05I_{th}$: no delay, smaller ringing, but the "0"
+level now carries light and the **extinction ratio** falls. This trade-off is why high-speed links use external modulators (Ch. 6).
+
+```{python}
+#| label: fig-step
+#| fig-cap: "Turn-on transient of the slide-131 laser (I_th = 24 mA, τ = 2.5 ns, τ_ph = 2.16 ps) for a step to I₂ = 2I_th from three bias levels. Dashed lines: t_d from the formula, which only counts the time for the carriers to reach n_th. The simulated pulses appear about 0.3 ns later: the photon number must still grow from the spontaneous-emission seed (β = 10⁻⁴) to its steady-state value. The output then rings at f_r ≈ 2.1 GHz around the steady 8.5 mW."
+V = 250e-6*5e-6*0.15e-6
+fig, ax = plt.subplots(figsize=(7.5, 3.6))
+for frac, c in zip((0.0, 0.5, 0.9), lz.PALETTE):
+    t, n, N = lz.ld_step_response(frac*24e-3, 48e-3, 24e-3, 2.5e-9, 2.16e-12, V, t_end=6e-9)
+    k = lz.ld_power(1.0 + 24e-3, 24e-3, 2.16e-12, 0.32, 3.6, 860e-9, 250e-6)     # slope, W/A
+    P = k*lz.qe*V*N/2.16e-12                                                      # P = k(I − I_th) = k eV N_ph/τ_ph
+    ax.plot(t*1e9, P*1e3, color=c, label=f"I₁ = {frac:.1f} I_th")
+    ax.axvline(lz.turn_on_delay(frac*24e-3, 48e-3, 24e-3, 2.5e-9)*1e9, color=c, ls="--", lw=1)
+ax.set(xlabel="time (ns)", ylabel="P_o (mW)"); ax.legend(fontsize=8); plt.show()
+```
+
+::: {.callout-tip collapse="true"}
+## Going further
+- **Chirp.** The carrier density oscillates with the relaxation oscillations, and so does the refractive index. A directly modulated
+  laser therefore changes its frequency during each bit, $\Delta\nu(t)=\frac{\alpha_H}{4\pi}\frac{d\ln P}{dt}+\dots$ (Henry). Combined
+  with fiber dispersion (Ch. 2), chirp limits directly modulated 1550 nm links to about 10 km at 10 Gb/s. See
+  [Going further: linewidth, noise and chirp](linewidth-noise.qmd).
+- **Gain compression and the K-factor.** Add $g\to g/(1+\epsilon S)$ to `ld_rate_equations` and compute the damping and the maximum
+  bandwidth. Plot the damping rate versus $f_r^2$ and extract $K$.
+- **Parasitics.** The chip resistance and pad capacitance form an RC low-pass filter (Ch. 3, LED speed) in series with the intrinsic
+  response. For $R=5$ Ω and $C=1$ pF, where does the RC pole fall?
+:::
+
+::: {.callout-note collapse="true"}
+## Complements
+- Kasap, sec. 4.20; Coldren *et al.*, ch. 5 (dynamic effects); Agrawal, *Fiber-Optic Communication Systems*, sec. 3.5.
+- K. Y. Lau and A. Yariv, "Ultra-high speed semiconductor lasers", *IEEE J. Quantum Electron.* 21, 121 (1985).
+:::
+
+## Try it yourself
+
+1. What bias current gives $f_r=10$ GHz for the slide-131 laser? Is it a realistic operating point?
+2. Show that the resonance peak of $|H|$ occurs at $\sqrt{\omega_r^2-\gamma^2/2}$ and find when it disappears.
+3. In the digital panel, at what bit rate does a laser switched fully off ($I_1=0$) stop working correctly? Compare with $1/t_d$.
+4. Why does a shorter photon lifetime increase $f_r$ but also the threshold current?

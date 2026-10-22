@@ -1,0 +1,97 @@
+# Projects, toolbox and connections {#sec-ideas}
+
+## How Chapter 4 connects to the rest of the course
+
+| Chapter 4 concept | Where it comes from / where it goes |
+|---|---|
+| Density of modes, Planck's law | Ch. 1: plane waves and modes of a box; Ch. 5: thermal (black-body) background of detectors |
+| Fabry–Perot cavity, longitudinal modes, finesse | Ch. 1: Fabry–Perot interferometer; Ch. 2: FP filters in WDM |
+| Transverse modes, beam divergence, resonator stability | Ch. 1: Gaussian beams and diffraction |
+| DFB/DBR gratings, VCSEL mirrors | Ch. 1: Bragg mirrors and thin films; Ch. 2: fiber Bragg gratings |
+| EDFA gain spectrum, gain flattening, noise figure | Ch. 2: WDM, attenuation windows, link budgets and Q factor |
+| Optical confinement factor Γ | Ch. 2: planar waveguide; Ch. 3: double heterostructures |
+| Quasi-Fermi levels, Bernard–Duraffourg condition | Ch. 3: pn junction under forward bias |
+| Radiative lifetime $1/Bn$, ABC recombination | Ch. 3: LED efficiency and speed |
+| Quantum-well levels | Ch. 3: quantum wells in LEDs |
+| Linewidth, coherence length | Ch. 1: temporal coherence; Ch. 2: dispersion-limited bit rate |
+| Relaxation oscillations, chirp | Ch. 2: dispersion penalty; Ch. 6: external modulators |
+| SOA, ASE, noise figure | Ch. 5: detection, signal–spontaneous beat noise, receiver sensitivity |
+| Holography, coherence | Ch. 1: interference and diffraction |
+
+: Where Chapter 4 concepts come from and where they reappear. {#tbl-links tbl-colwidths="[45,55]"}
+
+## Mini-projects
+
+For students who want to go further. Each reuses `laserlib.py` and can be done in one to three weeks.
+
+| # | project | skills | difficulty |
+|---|---|---|---|
+| 1 | **EDFA with ASE**: extend `edfa_propagate` with forward and backward ASE in 1 nm bins (Giles–Desurvire), solve the boundary problem with `solve_bvp`, and reproduce the NF versus input power curve of slide 44b | numerics, amplifiers | ★★★ |
+| 2 | **Characterise a laser diode**: measure L–I–V curves at three temperatures (TEC mount), extract $I_{th}$, slope, PCE and $T_0$; record the spectrum with an OSA and measure the mode spacing to get $n_g$ | experiment, fitting | ★ |
+| 3 | **Rate-equation transmitter**: simulate a directly modulated DFB (with gain compression and chirp) feeding the fiber link simulator of Ch. 2; find the maximum distance at 10 Gb/s versus $\alpha_H$ | modelling, communications | ★★ |
+| 4 | **Coupled-mode DFB design**: compute threshold gain and side-mode suppression versus $\kappa L$ and facet phase for uniform and λ/4-shifted gratings; include facet reflections | transfer matrices, optimisation | ★★ |
+| 5 | **Fox–Li resonator**: iterate a field between two finite mirrors with the angular-spectrum method; find the TEM$_{00}$ loss versus Fresnel number; add a gain sheet | Fourier optics | ★★ |
+| 6 | **Q-switched laser design**: model a passively Q-switched Nd:YAG/Cr⁴⁺:YAG microchip laser; predict pulse energy, width and repetition rate versus pump power | rate equations | ★★ |
+| 7 | **Mode-locking simulator**: round-trip model of an active mode-locked laser (gain, loss modulator, filter); reproduce the Kuizenga–Siegman pulse width | signal processing | ★★★ |
+| 8 | **Digital holography**: record a hologram with a webcam and a laser pointer (or simulate it in 2D), reconstruct numerically at several depths | Fourier optics, experiment | ★★ |
+
+## Python toolbox
+
+All worked examples run with the scientific core only. The packages below extend them.
+
+| Package | Install | What it is good for | Sections |
+|---|---|---|---|
+| `numpy`, `scipy`, `matplotlib`, `pandas` | `pip install ...` | ODE solvers (`solve_ivp`, `solve_bvp`), root finding, FFT | all |
+| `scikit-rf` | `pip install scikit-rf` | network analysis of the laser small-signal response with parasitics | [-@sec-modulation] |
+| `tmm` | `pip install tmm` | thin-film stacks: VCSEL DBRs, AR coatings for SOAs | [-@sec-single-mode], [-@sec-soa] |
+| `LightPipes`, `poppy` | `pip install LightPipes` | Fourier-optics propagation: Fox–Li, holography, beam shaping | [-@sec-resonators], [-@sec-holography] |
+| Meep, `MPB` | `conda install -c conda-forge pymeep` | FDTD of DFB gratings, photonic-crystal and VCSEL cavities | [-@sec-single-mode] |
+| `nextnano`, `aestimo` | external / GitHub | quantum-well gain with strain and band mixing | [-@sec-qw] |
+| `lmfit` | `pip install lmfit` | fit L–I curves, gain spectra, Lorentzian linewidths | [-@sec-ld-efficiency], [-@sec-linewidth] |
+
+: Optional Python packages for Chapter 4. {#tbl-toolbox tbl-colwidths="[18,24,44,14]"}
+
+## Improvements to the course
+
+1. **One equation, three lasers.** The threshold condition $\Gamma g_{th}=\alpha_s+\frac{1}{2L}\ln\frac{1}{R_1R_2}$ and the
+   rate equations explain the He–Ne, the Nd:YAG and the laser diode. The threshold calculator of @sec-threshold puts them side by
+   side: a gain of 0.1 m⁻¹ versus 5000 m⁻¹, photon lifetimes of 30 ns versus 2 ps.
+2. **"Predict, then compute."** *"If I double the facet reflectance, does the slope efficiency go up or down?"*, *"Which side of the
+   EDFA gain spectrum disappears first when the inversion drops?"*, *"Does a Q-switched pulse leave the inversion above or below
+   threshold?"*
+3. **Fill the missing derivations.** Slides 43 (noise figure), 75 (transverse modes) and 88 (mode-locking) state results without
+   the physics; the noise-figure section of @sec-edfa and the two Going further chapters can be used as handouts.
+4. **Lab connection.** A laser diode on a TEC mount, a power meter and a cheap spectrometer cover threshold, slope efficiency,
+   $T_0$, mode hops and the mode spacing. A He–Ne laser and a scanning Fabry–Perot show longitudinal and transverse modes.
+5. **Modern content.** Possible updates: silicon photonics lasers (heterogeneous III–V on Si), quantum-dot and quantum-cascade
+   lasers, frequency combs, high-power fiber lasers, lidar VCSEL arrays, laser safety classes (IEC 60825-1).
+
+## Notes for the instructor: checks on the slides
+
+While recomputing the examples, everything matched the slides (ruby pump power, EDFA example, He–Ne Doppler and threshold
+examples, laser-diode modes, efficiencies, threshold current and output power, QW and DFB examples) except these points:
+
+- **Slide numbering:** the 2024 PDF (`Chapter4 - Lasers_2024.pdf`, 159 pages) does not follow the 2025 `.pptx` (170 slides). The
+  companion uses the `.pptx` numbers.
+- **Slide 6:** $dN=4\pi\nu(L/c)^3d\nu$ should be $4\pi\nu^2(L/c)^3d\nu$ (one polarisation). **Slides 6–7** then use $4\pi k_BT\nu^2/c^3$,
+  while Planck's law on slide 7 has $8\pi$: the factor 2 for the two polarisations is missing (@sec-blackbody).
+- **Slide 58:** the mode number is printed "1.264,222.5" (i.e. 1,264,222.5).
+- **Slide 78:** "$1/\gamma=\tau_2$" with $\Delta\nu=2\gamma$ contradicts the field $E_0e^{-t/2\tau_2}\cos\omega_0t$ on the same slide, which
+  gives $\Delta\nu=1/(2\pi\tau_2)$, i.e. $\gamma=1/(4\pi\tau_2)$ (@sec-broadening). **Slide 80:** the normalisation box shows
+  $\int g_L$ instead of $\int g_G$.
+- **Slide 111:** the definition under "Internal Quantum Efficiency" is labelled $\eta_\text{IDQE}$; the differential efficiency is
+  defined on slide 112.
+- **Slide 116:** for the 500 mW red laser, $P_o/(I-I_{th})=500/(700-400)=1.67$ mW/mA, not the 1.0 quoted; all other rows are
+  consistent (@sec-ld-efficiency).
+- **Slide 133:** $n_{th}\approx2.5\times10^{18}$ cm⁻³ for $g=111$ cm⁻¹ is read from the figure; the curve of slide 130 gives about
+  $2.4\times10^{18}$ cm⁻³. The results (30 A mm⁻², 37.5 mA) are consistent with 2.5.
+- **Slide 139:** the finite-well values (0.031, 0.121, 0.007 eV, 848 nm) are about 5 % below a direct solution with the stated
+  parameters (0.033, 0.126, 0.006 eV, 850 nm) (@sec-qw).
+- **Slide 143:** the footnote "fm is $10^{-15}$ s" should read $10^{-15}$ m.
+- **Slide 149:** for the 680 nm single-mode VCSEL, $P_o/(I-I_{th})=0.95/2.6=0.37$ mW/mA versus 0.32 quoted (minor).
+- **Slide 164, speaker notes:** $t_d=\tau\ln[I_2/(I_2-(I_{th}-I_1))]$ is correct only for $I_1=0$; the general result is
+  $t_d=\tau\ln[(I_2-I_1)/(I_2-I_{th})]$ (@sec-modulation).
+- **Slides 43–44:** the noise figure is defined but not derived; the companion adds $\text{NF}\approx2n_{sp}$ and the ASE power
+  (@sec-edfa-noise).
+- **Slide 101:** the mode spacing uses the phase index (3.6); measured FP spacings follow the group index ($\approx4.3$ for GaAs),
+  about 20 % smaller (@sec-ld-structures).
